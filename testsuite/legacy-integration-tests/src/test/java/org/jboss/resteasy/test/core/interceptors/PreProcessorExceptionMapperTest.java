@@ -13,7 +13,6 @@ import org.jboss.resteasy.test.core.interceptors.resource.PreProcessorExceptionM
 import org.jboss.resteasy.util.HttpResponseCodes;
 import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;

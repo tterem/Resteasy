@@ -12,7 +12,6 @@ import org.jboss.resteasy.client.LinkHeader;
 import org.jboss.resteasy.test.client.resource.LinkHeaderService;
 import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
 import org.junit.Assert;
