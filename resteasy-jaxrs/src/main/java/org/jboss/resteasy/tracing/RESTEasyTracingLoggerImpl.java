@@ -33,7 +33,7 @@ class RESTEasyTracingLoggerImpl extends RESTEasyTracing implements RESTEasyTraci
       }
    }
    
-   public RESTEasyTracingLoggerImpl(final RESTEasyTracingLevel threshold, String loggerNameSuffix) {
+   RESTEasyTracingLoggerImpl(final RESTEasyTracingLevel threshold, String loggerNameSuffix) {
       this.threshold = threshold;
 
       this.tracingInfo = new RESTEasyTracingInfo();
