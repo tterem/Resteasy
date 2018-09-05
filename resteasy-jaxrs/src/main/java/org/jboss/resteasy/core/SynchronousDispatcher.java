@@ -317,7 +317,7 @@ public class SynchronousDispatcher implements Dispatcher
       LogMessages.LOGGER.pathInfo(request.getUri().getPath());
       if (!request.isInitial())
       {
-         throw new InternalServerErrorException(Messages.MESSAGES.isNotInitialRequest(request.getUri().getPath())); 
+         throw new InternalServerErrorException(Messages.MESSAGES.isNotInitialRequest(request.getUri().getPath()));
       }
       ResourceInvoker invoker = registry.getResourceInvoker(request);
       if (invoker == null)
@@ -541,7 +541,7 @@ public class SynchronousDispatcher implements Dispatcher
          }
       }
    }
-   
+
    @Deprecated
    public void asynchronousExceptionDelivery(HttpRequest request, HttpResponse response, Throwable exception)
    {

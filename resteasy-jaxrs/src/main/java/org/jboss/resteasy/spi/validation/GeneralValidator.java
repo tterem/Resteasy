@@ -5,12 +5,12 @@ import java.lang.reflect.Method;
 import org.jboss.resteasy.spi.HttpRequest;
 
 /**
- * 
+ *
  * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
  * @version $Revision: 1.1 $
  *
  * Javadoc adapted from javax.validation.Validator and javax.validation.executable.ExecutableValidator:
- * 
+ *
  * @author Emmanuel Bernard
  * @author Hardy Ferentschik
  * @author Gunnar Morling
@@ -66,23 +66,23 @@ public interface GeneralValidator
 
    /**
     * Indicates if validation is turned on for a class.
-    * 
+    *
     * @param clazz Class to be examined
     * @return true if and only if validation is turned on for clazz
     */
    boolean isValidatable(Class<?> clazz);
-     
+
    /**
     * Indicates if validation is turned on for a method.
-    * 
+    *
     * @param method method to be examined
     * @return true if and only if validation is turned on for method
-    */   
+    */
    boolean isMethodValidatable(Method method);
 
    /**
     * Throws a ResteasyViolationException if any validation violations have been detected.
-    * 
+    *
     * @param request http request
     */
    void checkViolations(HttpRequest request);

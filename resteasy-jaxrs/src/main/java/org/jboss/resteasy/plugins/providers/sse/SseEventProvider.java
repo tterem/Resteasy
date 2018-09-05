@@ -33,11 +33,11 @@ import org.jboss.resteasy.util.MediaTypeHelper;
 public class SseEventProvider implements MessageBodyWriter<OutboundSseEvent>, MessageBodyReader<SseEventInputImpl>
 {
    public static final MediaType GENERAL_STREAM_TYPE = new MediaType("application", "x-stream-general");
-   
+
    @Override
    public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
    {
-      return OutboundSseEvent.class.isAssignableFrom(type) && 
+      return OutboundSseEvent.class.isAssignableFrom(type) &&
             (MediaType.SERVER_SENT_EVENTS_TYPE.isCompatible(mediaType) ||
              GENERAL_STREAM_TYPE.isCompatible(mediaType));
    }
@@ -140,7 +140,7 @@ public class SseEventProvider implements MessageBodyWriter<OutboundSseEvent>, Me
                                }
                                entityStream.write(b);
                                isNewLine = false;
-                            }   
+                            }
                         }
                         else
                         {
@@ -183,7 +183,7 @@ public class SseEventProvider implements MessageBodyWriter<OutboundSseEvent>, Me
    @Override
    public boolean isReadable(Class<?> cls, Type type, Annotation[] annotations, MediaType mediaType)
    {
-      return SseEventInputImpl.class.isAssignableFrom(cls) && 
+      return SseEventInputImpl.class.isAssignableFrom(cls) &&
             (MediaType.SERVER_SENT_EVENTS_TYPE.isCompatible(mediaType) ||
              GENERAL_STREAM_TYPE.isCompatible(mediaType));
    }

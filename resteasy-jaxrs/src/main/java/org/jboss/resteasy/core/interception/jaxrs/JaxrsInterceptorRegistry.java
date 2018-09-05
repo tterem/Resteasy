@@ -383,7 +383,7 @@ public class JaxrsInterceptorRegistry<T>
       factory.setOrder(priority);
       register(factory);
    }
-   
+
    private Class<?> getNonSyntheticClass(Class<?> clazz)
    {
       while (clazz.isSynthetic())

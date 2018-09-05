@@ -81,7 +81,7 @@ public class MessageSanitizerContainerResponseFilter implements ContainerRespons
              String[] partsType = mediaType.split("/");
              if (partsType.length >= 2) {
                 String[] partsSubtype = partsType[1].split(";");
-                if (partsType[0].trim().equalsIgnoreCase("text") && 
+                if (partsType[0].trim().equalsIgnoreCase("text") &&
                       partsSubtype[0].trim().toLowerCase().equals("html")) {
                    return true;
                 }

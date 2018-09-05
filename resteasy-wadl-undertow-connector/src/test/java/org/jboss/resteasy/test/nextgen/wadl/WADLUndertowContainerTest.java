@@ -35,7 +35,7 @@ public class WADLUndertowContainerTest {
         WadlUndertowConnector connector = new WadlUndertowConnector();
         connector.deployToServer(server, MyApp.class);
         Client client = ClientBuilder.newClient();
-        
+
         WebTarget target = client.target("http://127.0.0.1:${port}/base/application.xml".replaceAll("\\$\\{port\\}",
               Integer.valueOf(TestPortProvider.getPort()).toString()));
         Response response = target.request().get();
@@ -103,8 +103,8 @@ public class WADLUndertowContainerTest {
             requestVerifier.createVerifier("headerParam", "queryParam", "Cookie");
             requestVerifier.verify(compositeMethod.getRequest().getParam(), org.jboss.resteasy.wadl.jaxb.Param.class, "getName");
         }
-        
-        
+
+
         client.close();
     }
 
@@ -175,7 +175,7 @@ public class WADLUndertowContainerTest {
       return null;
    }
 
-    
+
     @ApplicationPath("/base")
     public static class MyApp extends Application {
         @Override

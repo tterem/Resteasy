@@ -35,7 +35,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ChunkedTransferEncodingTest {
-   
+
     static ResteasyClient clientDefault;
     static ResteasyClient clientEngine43;
     static ResteasyClient clientEngine4;
@@ -46,7 +46,7 @@ public class ChunkedTransferEncodingTest {
     static {
         testFilePath = TestUtil.getResourcePath(ChunkedTransferEncodingTest.class, "ChunkedTransferEncodingTestFile");
     }
-    
+
     @Deployment
     public static Archive<?> deploy() {
         WebArchive war = TestUtil.prepareArchive(ChunkedTransferEncodingTest.class.getSimpleName());
@@ -78,7 +78,7 @@ public class ChunkedTransferEncodingTest {
      * header is set only in case when chunked transfer encoding is set to false. Headers are tested with the default client,
      * client with te underlying http engines ApacheHttpClient4Engine and ApacheHttpClient43Engine.
      * @tpSince RESTEasy 3.0.24
-     */    
+     */
     @Test
     public void testTarget() throws Exception {
        doTestTarget(clientDefault, Boolean.TRUE, "chunked null");
@@ -91,7 +91,7 @@ public class ChunkedTransferEncodingTest {
        doTestTarget(clientEngine4, Boolean.FALSE, "null " + fileLength);
        doTestTarget(clientEngine4,null, "null " + fileLength);
     }
-    
+
     public void doTestTarget(ResteasyClient client, Boolean b, String expected) throws Exception
     {
        ResteasyWebTarget target = client.target(generateURL("/test"));
@@ -110,7 +110,7 @@ public class ChunkedTransferEncodingTest {
      * header is set only in case when chunked transfer encoding is set to false. Headers are tested with the default client,
      * client with te underlying http engines ApacheHttpClient4Engine and ApacheHttpClient43Engine.
      * @tpSince RESTEasy 3.0.24
-     */ 
+     */
     @Test
     public void testRequest() throws Exception {
        doTestRequest(clientDefault, Boolean.TRUE, "chunked null");
@@ -123,7 +123,7 @@ public class ChunkedTransferEncodingTest {
        doTestRequest(clientEngine4, Boolean.FALSE, "null " + fileLength);
        doTestRequest(clientEngine4, null, "null " + fileLength);
     }
-    
+
     protected void doTestRequest(ResteasyClient client, Boolean b, String expected) throws Exception
     {
        ResteasyWebTarget target = client.target(generateURL("/test"));

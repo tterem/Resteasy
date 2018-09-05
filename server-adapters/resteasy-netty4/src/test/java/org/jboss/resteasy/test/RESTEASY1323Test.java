@@ -105,7 +105,7 @@ public class RESTEASY1323Test
             ChannelFuture cf = ch.writeAndFlush(request);
             cf.await();
             Thread.sleep(2000);
-            
+
             // 2nd request
             URL url2 = new URL(BASE_URI+"/jaxrs/empty");
             HttpRequest request2 = new DefaultFullHttpRequest(
@@ -113,7 +113,7 @@ public class RESTEASY1323Test
             request2.headers().set(HttpHeaderNames.HOST, url2.getHost());
             request2.headers().set(HttpHeaderNames.CONNECTION, "keep-alive");
             ch.writeAndFlush(request2);
-            
+
             responseLatch.await();
          } finally {
             // Shut down executor threads to exit.

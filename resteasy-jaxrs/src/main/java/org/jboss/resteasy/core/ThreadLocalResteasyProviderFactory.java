@@ -178,7 +178,7 @@ public final class ThreadLocalResteasyProviderFactory extends ResteasyProviderFa
    {
       getDelegate().registerProviderInstance(provider);
    }
-   
+
    @Override
    public <T> StringParameterUnmarshaller<T> createStringParameterUnmarshaller(Class<T> clazz)
    {
@@ -514,7 +514,7 @@ public final class ThreadLocalResteasyProviderFactory extends ResteasyProviderFa
    {
       return getDelegate().getAsyncResponseProvider(type);
    }
-   
+
    @Override
    public Map<Class<?>, AsyncResponseProvider> getAsyncResponseProviders()
    {
@@ -526,7 +526,7 @@ public final class ThreadLocalResteasyProviderFactory extends ResteasyProviderFa
    {
       return getDelegate().getAsyncStreamProvider(type);
    }
-   
+
    @Override
    public Map<Class<?>, AsyncStreamProvider> getAsyncStreamProviders()
    {
@@ -544,7 +544,7 @@ public final class ThreadLocalResteasyProviderFactory extends ResteasyProviderFa
    {
       return getDelegate().getContextData(rawType, genericType, annotations, unwrapAsync);
    }
-   
+
    @Override
    public Map<Type, ContextInjector> getContextInjectors()
    {

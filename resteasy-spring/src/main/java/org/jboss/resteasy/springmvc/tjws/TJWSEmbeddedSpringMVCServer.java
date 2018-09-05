@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationContext;
 /**
 * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
 * @version $Revision: 1 $
-* 
+*
 */
 @Deprecated
 public class TJWSEmbeddedSpringMVCServer extends TJWSServletServer {

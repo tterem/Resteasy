@@ -86,7 +86,7 @@ public class FileProvider implements MessageBodyReader<File>,
       {
          LogMessages.LOGGER.temporaryFileCreated(downloadedFile.getPath());
       }
-      
+
       if (NoContent.isContentLengthZero(httpHeaders)) return downloadedFile;
       OutputStream output = new BufferedOutputStream(new FileOutputStream(
               downloadedFile));
@@ -214,11 +214,11 @@ public class FileProvider implements MessageBodyReader<File>,
          inputStream.close();
       }
    }
-   
+
    private static class FileHolder implements Cleanable
    {
       File file;
-      
+
       FileHolder(File file)
       {
          this.file = file;

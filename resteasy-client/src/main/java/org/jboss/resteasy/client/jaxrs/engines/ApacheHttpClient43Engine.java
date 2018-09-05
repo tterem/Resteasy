@@ -44,7 +44,7 @@ public class ApacheHttpClient43Engine extends ApacheHttpClient4Engine
      * attributes in it. It is hence recommended to override the HttpClient
      * <pre>execute(HttpUriRequest request, HttpContext context)</pre> method to perform a deep
      * copy of the context before executing the request.
-     * 
+     *
      * @param httpClient     The http client
      * @param httpContext    The context to be used for executing requests
      */
@@ -53,7 +53,7 @@ public class ApacheHttpClient43Engine extends ApacheHttpClient4Engine
     {
         super(httpClient, httpContext);
     }
-    
+
     public ApacheHttpClient43Engine(HttpClient httpClient, HttpContextProvider httpContextProvider)
     {
        this.httpClient = httpClient;

@@ -177,7 +177,7 @@ public class MessageBodyParameterInjector implements ValueInjector, JaxrsInterce
                try
                {
                   is = new ByteArrayInputStream(sb.toString().getBytes(charset));
-               } 
+               }
                catch (Exception e)
                {
                   LogMessages.LOGGER.charsetUnavailable(charset);
@@ -185,7 +185,7 @@ public class MessageBodyParameterInjector implements ValueInjector, JaxrsInterce
             }
          }
       }
-      
+
       try
       {
          if (is == null)

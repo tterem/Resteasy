@@ -79,7 +79,7 @@ public class ResourcePropertyInjector implements PropertyInjector
       CompletionStage<Void> ret = CompletableFuture.completedFuture(null);
       for (FieldInjector injector : fields)
       {
-         ret = ret.thenCompose(v -> 
+         ret = ret.thenCompose(v ->
             injector.injector.inject(request, response, unwrapAsync)
             .thenAccept(value -> {
                try
@@ -94,7 +94,7 @@ public class ResourcePropertyInjector implements PropertyInjector
       }
       for (SetterInjector injector : setters)
       {
-         ret = ret.thenCompose(v -> 
+         ret = ret.thenCompose(v ->
             injector.injector.inject(request, response, unwrapAsync)
             .thenAccept(value -> {
                      try
@@ -120,7 +120,7 @@ public class ResourcePropertyInjector implements PropertyInjector
       CompletionStage<Void> ret = CompletableFuture.completedFuture(null);
       for (FieldInjector injector : fields)
       {
-         ret = ret.thenCompose(v -> 
+         ret = ret.thenCompose(v ->
             injector.injector.inject(unwrapAsync)
             .thenAccept(value -> {
                try
@@ -135,7 +135,7 @@ public class ResourcePropertyInjector implements PropertyInjector
       }
       for (SetterInjector injector : setters)
       {
-         ret = ret.thenCompose(v -> 
+         ret = ret.thenCompose(v ->
             injector.injector.inject(unwrapAsync)
             .thenAccept(value -> {
                      try

@@ -23,7 +23,7 @@ import java.util.Map;
 public class MediaTypeHelper
 {
    private static final MediaTypeComparator COMPARATOR = new MediaTypeComparator();
-   
+
    @SuppressWarnings(value = "unchecked")
    public static MediaType getConsumes(Class declaring, AccessibleObject method)
    {
@@ -266,7 +266,7 @@ public class MediaTypeHelper
       }
       return true;
    }
-   
+
    public static boolean isTextLike(MediaType mediaType)
    {
       return "text".equalsIgnoreCase(mediaType.getType())

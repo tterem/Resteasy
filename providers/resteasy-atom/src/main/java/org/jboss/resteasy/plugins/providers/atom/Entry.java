@@ -125,11 +125,11 @@ public class Entry extends CommonAttributes
    private Source source;
 
    private Text summary;
-   
+
    private Element anyOtherElement;
-   
+
    private List<Object> anyOther;
-   
+
    private Object anyOtherJaxbObject;
 
    protected JAXBContextFinder finder;
@@ -151,19 +151,19 @@ public class Entry extends CommonAttributes
    }
 
    @XmlElement(name = "title")
-   public Text getTitleElement() 
+   public Text getTitleElement()
    {
-     return title;     
+     return title;
    }
-   
+
    public void setTitleElement(Text title) {
      this.title = title;
    }
-   
+
    @XmlTransient
    public String getTitle()
    {
-     if (this.title == null) 
+     if (this.title == null)
      {
        return null;
      }
@@ -172,7 +172,7 @@ public class Entry extends CommonAttributes
 
    public void setTitle(String title)
    {
-      if (this.title == null) 
+      if (this.title == null)
       {
         this.title = new Text();
       }
@@ -252,25 +252,25 @@ public class Entry extends CommonAttributes
    {
       this.rights = rights;
    }
-   
+
    @XmlTransient
    public String getRights() {
-     if (rights == null) 
+     if (rights == null)
      {
        return null;
      }
      return rights.getText();
    }
 
-   public void setRights(String rights) 
+   public void setRights(String rights)
    {
-     if (this.rights == null) 
+     if (this.rights == null)
      {
        this.rights = new Text();
      }
      this.rights.setText(rights);
    }
-   
+
    @XmlElement
    public Source getSource()
    {
@@ -295,23 +295,23 @@ public class Entry extends CommonAttributes
 
    @XmlTransient
    public String getSummary() {
-     if (rights == null) 
+     if (rights == null)
      {
        return null;
      }
      return rights.getText();
    }
 
-   public void setSummary(String summary) 
+   public void setSummary(String summary)
    {
-     if (this.summary == null) 
+     if (this.summary == null)
      {
        this.summary = new Text();
      }
      this.summary.setText(summary);
    }
-   
-   
+
+
    /**
     * Get content as an XML Element if the content is XML.  Otherwise, this will just return null.
     *
@@ -332,7 +332,7 @@ public class Entry extends CommonAttributes
       }
       return null;
    }
-   
+
    @XmlMixed
    @XmlAnyElement(lax = true)
    public List<Object> getAnyOther() {
@@ -368,9 +368,9 @@ public class Entry extends CommonAttributes
         } else {
             ctx = JAXBContext.newInstance(classes);
         }
- 
+
         Object obj = null;
- 
+
         if (getAnyOtherElement() != null) {
             obj = ctx.createUnmarshaller().unmarshal(getAnyOtherElement());
         } else {
@@ -383,11 +383,11 @@ public class Entry extends CommonAttributes
                     }
                 }
             }
- 
+
             if (obj == null)
                 return null;
         }
- 
+
         if (obj instanceof JAXBElement) {
             anyOtherJaxbObject = ((JAXBElement) obj).getValue();
             return (T) anyOtherJaxbObject;
@@ -397,7 +397,7 @@ public class Entry extends CommonAttributes
         }
     }
 
-   
+
    /**
     * Returns previous extracted jaxbobject from a call to getJAXBObject(Class{@literal <}T{@literal >} clazz)
     * or value passed in through a previous setJAXBObject().

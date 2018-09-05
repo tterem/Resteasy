@@ -673,7 +673,7 @@ public class Types
          return EMPTY_TYPE_ARRAY;
       }
    }
-   
+
    public static class ResteasyParameterizedType implements ParameterizedType {
 
       private Type[] actuals;
@@ -704,7 +704,7 @@ public class Types
       {
          return ownerType;
       }
-      
+
       @Override
       public boolean equals(Object other)
       {
@@ -718,7 +718,7 @@ public class Types
                && Objects.equals(rawType, b.getRawType())
                && Objects.equals(ownerType, b.getOwnerType());
       }
-      
+
       @Override
       public int hashCode()
       {
@@ -727,7 +727,7 @@ public class Types
             ^ Objects.hashCode(ownerType)
             ^ Objects.hashCode(rawType);
       }
-      
+
       @Override
       public String toString()
       {
@@ -735,7 +735,7 @@ public class Types
          if(getOwnerType() != null)
             sb.append(getOwnerType()).append(".");
          sb.append(getRawType());
-         if(actuals != null && actuals.length > 0) 
+         if(actuals != null && actuals.length > 0)
          {
             sb.append("<");
             boolean first = true;

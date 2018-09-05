@@ -44,14 +44,14 @@ public class JsonBindingProvider extends AbstractJsonBindingProvider
         implements MessageBodyReader<Object>, MessageBodyWriter<Object> {
 
    private final boolean disabled;
-   
+
    public JsonBindingProvider() {
       super();
       ResteasyConfiguration context = ResteasyProviderFactory.getContextData(ResteasyConfiguration.class);
       disabled = (context != null && (Boolean.parseBoolean(context.getParameter(ResteasyContextParameters.RESTEASY_PREFER_JACKSON_OVER_JSONB))
                 || Boolean.parseBoolean(context.getParameter("resteasy.jsonp.enable"))));
    }
-   
+
    @Override
    public boolean isReadable(Class<?> type, Type genericType,
                              Annotation[] annotations, MediaType mediaType) {
@@ -74,7 +74,7 @@ public class JsonBindingProvider extends AbstractJsonBindingProvider
                                  InputStream entityStream) throws java.io.IOException, javax.ws.rs.WebApplicationException {
       Jsonb jsonb = getJsonb(type);
       final EmptyCheckInputStream is = new EmptyCheckInputStream(entityStream);
-      
+
       try {
          return jsonb.fromJson(is, genericType);
          // If null is returned, considered to be empty stream
@@ -87,12 +87,12 @@ public class JsonBindingProvider extends AbstractJsonBindingProvider
          throw new ProcessingException(Messages.MESSAGES.jsonBDeserializationError(e));
       }
    }
-   
+
    private class EmptyCheckInputStream extends ProxyInputStream
    {
       boolean read = false;
       boolean empty = false;
-      
+
       EmptyCheckInputStream(InputStream proxy)
       {
          super(proxy);
@@ -105,7 +105,7 @@ public class JsonBindingProvider extends AbstractJsonBindingProvider
          }
          read = true;
       }
-      
+
       public boolean isEmpty() {
          return empty;
       }
@@ -148,7 +148,7 @@ public class JsonBindingProvider extends AbstractJsonBindingProvider
          throw new ProcessingException(Messages.MESSAGES.jsonBSerializationError(e.toString()));
       }
    }
-   
+
    private boolean isGenericJaxb(Class<?> type, Type genericType)
    {
       if (Map.class.isAssignableFrom(type) && genericType != null)
@@ -187,7 +187,7 @@ public class JsonBindingProvider extends AbstractJsonBindingProvider
       return false;
 
    }
-   
+
    private static boolean hasJsonBindingAnnotations(Annotation[] searchList)
    {
       if (searchList != null) {

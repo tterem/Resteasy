@@ -111,7 +111,7 @@ public class InboundSseEventImpl implements InboundSseEvent
       public InboundSseEvent build()
       {
          //from https://html.spec.whatwg.org/multipage/server-sent-events.html#processField
-         //If the data buffer's last character is a U+000A LINE FEED (LF) character, 
+         //If the data buffer's last character is a U+000A LINE FEED (LF) character,
          //then remove the last character from the data buffer
          return new InboundSseEventImpl(name, id, commentBuilder.length() > 0 ? commentBuilder.substring(0,
                commentBuilder.length() - 1) : null, reconnectDelay, dataStream.toByteArray(), annotations, mediaType,
@@ -243,7 +243,7 @@ public class InboundSseEventImpl implements InboundSseEvent
       return "InboundSseEvent{id=" + id + '\'' + ", comment=" + (comment == null ? "[]" : '\'' + comment + '\'')
             + ", data=" + s + '}';
    }
-   
+
    public MediaType getMediaType()
    {
        return mediaType;

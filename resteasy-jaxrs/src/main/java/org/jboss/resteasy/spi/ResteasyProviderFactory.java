@@ -305,7 +305,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
    {
       initialize(null);
    }
-   
+
    protected void initialize(ResteasyProviderFactory parent)
    {
       serverDynamicFeatures = parent == null ? new CopyOnWriteArraySet<>() : new CopyOnWriteArraySet<>(parent.getServerDynamicFeatures());
@@ -443,7 +443,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
       if (asyncClientResponseProviders == null && parent != null) return parent.getAsyncClientResponseProviders();
       return asyncClientResponseProviders;
    }
-   
+
    public Map<Class<?>, AsyncStreamProvider> getAsyncStreamProviders()
    {
       if (asyncStreamProviders == null && parent != null) return parent.getAsyncStreamProviders();
@@ -548,7 +548,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
    public boolean hasAsyncContextData(Type genericType) {
       return getAsyncContextInjectors().containsKey(Types.boxPrimitives(genericType));
    }
-   
+
    public <T> T getContextData(Class<T> rawType, Type genericType, Annotation[] annotations, boolean unwrapAsync)
    {
       T ret = (T) getContextDataMap().get(rawType);
@@ -561,7 +561,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
          contextInjector = getAsyncContextInjectors().get(Types.boxPrimitives(genericType));
          async = true;
       }
-      
+
       if(contextInjector != null)
       {
          ret = (T) contextInjector.resolve(rawType, genericType, annotations);
@@ -832,7 +832,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
       if (headerDelegates == null && parent != null) return parent.getHeaderDelegates();
       return headerDelegates;
    }
-   
+
    private void addHeaderDelegateIfAbsent(Class clazz, HeaderDelegate header)
    {
       if (headerDelegates == null || !headerDelegates.containsKey(clazz))
@@ -922,7 +922,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
       RuntimeType type = null;
       ConstrainedTo constrainedTo = providerClass.getAnnotation(ConstrainedTo.class);
       if (constrainedTo != null) type = constrainedTo.value();
-      
+
       if ((type == null || type == RuntimeType.CLIENT) && clientMessageBodyWriters == null)
       {
          clientMessageBodyWriters = parent.getClientMessageBodyWriters().clone();
@@ -942,7 +942,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
             } else if (type == RuntimeType.CLIENT) {
                clientMessageBodyWriters.add(MediaType.valueOf(consume), key);
             } else {
-               serverMessageBodyWriters.add(MediaType.valueOf(consume), key);   
+               serverMessageBodyWriters.add(MediaType.valueOf(consume), key);
             }
          }
       }
@@ -1072,7 +1072,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
          providerClass = providerClass.getSuperclass();
       }
       Type exceptionType = Types.getActualTypeArgumentsOfAnInterface(providerClass, ExceptionMapper.class)[0];
-      
+
       injectProperties(providerClass, provider);
 
       Class<?> exceptionClass = Types.getRawType(exceptionType);
@@ -1122,7 +1122,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
       }
       asyncClientResponseProviders.put(asyncClass, provider);
    }
-   
+
    private void addAsyncStreamProvider(AsyncStreamProvider provider, Class providerClass)
    {
       Type asyncType = Types.getActualTypeArgumentsOfAnInterface(providerClass, AsyncStreamProvider.class)[0];
@@ -1147,7 +1147,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
          contextInjectors.putAll(parent.getContextInjectors());
       }
       contextInjectors.put(typeArgs[0], provider);
-      
+
       if(!Objects.equals(typeArgs[0], typeArgs[1]))
       {
          if (asyncContextInjectors == null)
@@ -1706,7 +1706,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
          int priority = getPriority(priorityOverride, contracts, RxInvokerProvider.class, provider);
          newContracts.put(RxInvokerProvider.class, priority);
          Class<?> clazz = Types.getTemplateParameterOfInterface(provider, RxInvokerProvider.class);
-         clazz = Types.getTemplateParameterOfInterface(clazz, RxInvoker.class); 
+         clazz = Types.getTemplateParameterOfInterface(clazz, RxInvoker.class);
          if (clazz != null)
          {
             reactiveClasses.put(clazz, provider);
@@ -2063,7 +2063,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
       }
       return mapper;
    }
-   
+
    public <T> AsyncClientResponseProvider<T> getAsyncClientResponseProvider(Class<T> type)
    {
       Class asyncType = type;
@@ -2285,7 +2285,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
     * Create an instance of a class using provider allocation rules of the specification as well as the InjectorFactory
     * only does constructor injection.
     *
-    * @param clazz class 
+    * @param clazz class
     * @param <T> type
     * @return provider instance of type T
     */
@@ -2411,7 +2411,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
    {
       getInjectorFactory().createPropertyInjector(obj.getClass(), this).inject(obj, false).toCompletableFuture().getNow(null);
    }
-   
+
    public void injectProperties(Object obj, HttpRequest request, HttpResponse response)
    {
       getInjectorFactory().createPropertyInjector(obj.getClass(), this).inject(request, response, obj, false).toCompletableFuture().getNow(null);
@@ -2667,7 +2667,7 @@ public class ResteasyProviderFactory extends RuntimeDelegate implements Provider
       }
       return null;
    }
-   
+
    public RxInvokerProvider<?> getRxInvokerProviderFromReactiveClass(Class<?> clazz) {
       Class<? extends RxInvokerProvider> rxInvokerProviderClass = reactiveClasses.get(clazz);
       if (rxInvokerProviderClass != null)

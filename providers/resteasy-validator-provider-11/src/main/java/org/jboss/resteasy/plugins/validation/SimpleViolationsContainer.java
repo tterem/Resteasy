@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 
 /**
- * 
+ *
  * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
  * @version $Revision: 1.1 $
  *
@@ -15,12 +15,12 @@ import javax.validation.ConstraintViolation;
 public class SimpleViolationsContainer extends org.jboss.resteasy.api.validation.SimpleViolationsContainer implements Serializable
 {
    private static final long serialVersionUID = -7895854137980651539L;
-   
+
    public SimpleViolationsContainer(Object target)
    {
       super(target);
    }
-   
+
    public SimpleViolationsContainer(Set<ConstraintViolation<Object>> cvs)
    {
       super(cvs);

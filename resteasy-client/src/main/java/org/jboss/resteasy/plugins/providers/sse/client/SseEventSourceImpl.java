@@ -50,11 +50,11 @@ public class SseEventSourceImpl implements SseEventSource
    private final List<Consumer<Throwable>> onErrorConsumers = new CopyOnWriteArrayList<>();
 
    private final List<Runnable> onCompleteConsumers = new CopyOnWriteArrayList<>();
-   
+
    private boolean alwaysReconnect;
 
    private volatile ClientResponse response;
-   
+
    public static class SourceBuilder extends Builder
    {
       private WebTarget target = null;
@@ -98,7 +98,7 @@ public class SseEventSourceImpl implements SseEventSource
          reconnect = unit.toMillis(delay);
          return this;
       }
-      
+
       public Builder executor(ScheduledExecutorService executor)
       {
          this.executor = executor;
@@ -145,7 +145,7 @@ public class SseEventSourceImpl implements SseEventSource
       {
          this.executor = executor;
       }
-   
+
       if (open)
       {
          open();
@@ -160,7 +160,7 @@ public class SseEventSourceImpl implements SseEventSource
       private final AtomicInteger threadNumber = new AtomicInteger(1);
 
       private final String namePrefix;
-      
+
       DaemonThreadFactory(String name)
       {
          SecurityManager s = System.getSecurityManager();
@@ -186,7 +186,7 @@ public class SseEventSourceImpl implements SseEventSource
    {
       open(lastEventId, "GET", null, MediaType.SERVER_SENT_EVENTS_TYPE);
    }
-   
+
    public void open(String lastEventId, String verb, Entity<?> entity, MediaType... mediaTypes)
    {
       if (!state.compareAndSet(State.PENDING, State.OPEN))
@@ -271,7 +271,7 @@ public class SseEventSourceImpl implements SseEventSource
 
       return true;
    }
-   
+
    private void internalClose()
    {
       if (state.getAndSet(State.CLOSED) == State.CLOSED)
@@ -299,7 +299,7 @@ public class SseEventSourceImpl implements SseEventSource
    {
       this.alwaysReconnect = always;
    }
-   
+
    private class EventHandler implements Runnable
    {
 
@@ -308,7 +308,7 @@ public class SseEventSourceImpl implements SseEventSource
       private String lastEventId;
 
       private long reconnectDelay;
-      
+
       private String verb;
       private Entity<?> entity;
       private MediaType[] mediaTypes;
@@ -340,7 +340,7 @@ public class SseEventSourceImpl implements SseEventSource
          {
             return;
          }
-         
+
          SseEventInputImpl eventInput = null;
          long delay = reconnectDelay;
          try
@@ -360,7 +360,7 @@ public class SseEventSourceImpl implements SseEventSource
             {
                onConnection();
                eventInput = response.readEntity(SseEventInputImpl.class);
-               //if 200<= response code <300 and response contentType is null, fail the connection. 
+               //if 200<= response code <300 and response contentType is null, fail the connection.
                if (eventInput == null && !alwaysReconnect)
                {
                   internalClose();
@@ -395,7 +395,7 @@ public class SseEventSourceImpl implements SseEventSource
          {
             onUnrecoverableError(e);
          }
-        
+
          while (!Thread.currentThread().isInterrupted() && state.get() == State.OPEN)
          {
             if (eventInput == null || eventInput.isClosed())
@@ -444,7 +444,7 @@ public class SseEventSourceImpl implements SseEventSource
          }
 
       }
-      
+
       private void onConnection()
       {
          connectedLatch.countDown();
@@ -501,5 +501,5 @@ public class SseEventSourceImpl implements SseEventSource
       }
    }
 
-   
+
 }

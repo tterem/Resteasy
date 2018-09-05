@@ -7,7 +7,7 @@ import org.springframework.beans.factory.InitializingBean;
 /**
 * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
 * @version $Revision: 1 $
-* 
+*
 */
 @Deprecated
 public class TJWSEmbeddedSpringMVCServerBean implements InitializingBean,
@@ -15,7 +15,7 @@ public class TJWSEmbeddedSpringMVCServerBean implements InitializingBean,
 {
    private String applicationContextConfiguration;
    private int port;
-   private String context = ""; 
+   private String context = "";
 
    private TJWSEmbeddedSpringMVCServer server;
 

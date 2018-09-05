@@ -157,7 +157,7 @@ public class ApacheHttpClient4Engine implements ClientHttpEngine
     * attributes in it. It is hence recommended to override the HttpClient
     * <pre>execute(HttpUriRequest request, HttpContext context)</pre> method to perform a deep
     * copy of the context before executing the request.
-    * 
+    *
     * @param httpClient     The http client
     * @param httpContext    The context to be used for executing requests
     */
@@ -566,7 +566,7 @@ public class ApacheHttpClient4Engine implements ClientHttpEngine
       super.finalize();
    }
 
-   
+
    public boolean isChunked()
    {
       return chunked;
@@ -576,7 +576,7 @@ public class ApacheHttpClient4Engine implements ClientHttpEngine
    {
       this.chunked = chunked;
    }
-   
+
    public boolean isFollowRedirects()
    {
       return followRedirects;
@@ -645,7 +645,7 @@ public class ApacheHttpClient4Engine implements ClientHttpEngine
       }
       if (request.isChunked())
       {
-         entityToBuild.setChunked(true);  
+         entityToBuild.setChunked(true);
       }
       return (HttpEntity) entityToBuild;
    }

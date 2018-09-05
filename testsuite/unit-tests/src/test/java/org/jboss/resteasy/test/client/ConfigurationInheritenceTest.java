@@ -504,7 +504,7 @@ public class ConfigurationInheritenceTest extends ResteasyProviderFactory {
          client.close();
       }
    }
-   
+
     private void checkFirstConfiguration(Configuration config) {
         Set<Class<?>> classes = config.getClasses();
         Assert.assertTrue(ERROR_MSG, classes.contains(ConfigurationInheritenceTestFeature1.class));
