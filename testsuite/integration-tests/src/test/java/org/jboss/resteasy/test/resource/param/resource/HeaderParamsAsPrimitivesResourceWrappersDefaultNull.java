@@ -62,7 +62,7 @@ public class HeaderParamsAsPrimitivesResourceWrappersDefaultNull {
     @GET
     @Produces("application/char")
     public String doGet(@HeaderParam("char") Character v) {
-    	Assert.assertEquals(HeaderParamsAsPrimitivesTest.ERROR_MESSAGE, null, v);
+        Assert.assertEquals(HeaderParamsAsPrimitivesTest.ERROR_MESSAGE, null, v);
         return "content";
     }
 }

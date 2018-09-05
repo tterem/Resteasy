@@ -3961,9 +3961,9 @@ public class Serve implements ServletContext, Serializable
          {
             resHeaderNames.put(header, value);
             //if (header.equals(CONTENTTYPE)) {
-            //	String enc = extractEncodingFromContentType(value);
-            //	if (enc != null)
-            //		setCharacterEncoding(enc);
+            //    String enc = extractEncodingFromContentType(value);
+            //    if (enc != null)
+            //        setCharacterEncoding(enc);
             //}
          }
       }

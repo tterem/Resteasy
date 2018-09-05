@@ -18,7 +18,7 @@ import java.util.Map;
 public class LinkBuilderImpl implements Link.Builder
 {
    /**
-    * A map for all the link parameters such as "rel", "type", etc.	
+    * A map for all the link parameters such as "rel", "type", etc.
     */
    protected final Map<String, String> map = new HashMap<String, String>();
    protected UriBuilder uriBuilder;

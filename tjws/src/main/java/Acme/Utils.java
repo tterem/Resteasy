@@ -504,8 +504,8 @@ public class Utils
                ++p;
                for (i = string.length(); i >= s; --i)
                   if (match(pattern.substring(p), string.substring(i))) /*
-																														 * not quite right
-																														 */
+                                                                                                                         * not quite right
+                                                                                                                         */
                      return true;
                break;
             }

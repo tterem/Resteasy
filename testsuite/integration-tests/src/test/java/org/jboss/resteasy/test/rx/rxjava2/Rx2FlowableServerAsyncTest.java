@@ -446,7 +446,7 @@ public class Rx2FlowableServerAsyncTest {
    @Test
    public void testGetTwoLists() throws Exception {
       Builder request = client.target(generateURL("/get/string")).request();
-      Response response1 = request.get();      
+      Response response1 = request.get();
       List<String> list1 = response1.readEntity(LIST_OF_STRING);  
       
       Response response2 = request.get();      

@@ -394,22 +394,22 @@ public class SynchronousDispatcher implements Dispatcher
 
    public void clearContextData()
    {
-	  Cleanables cleanables = ResteasyProviderFactory.getContextData(Cleanables.class);
-	  if (cleanables != null)
-	  {
-		  for (Iterator<Cleanable> it = cleanables.getCleanables().iterator(); it.hasNext(); )
-		  {
-			  try
-			  {
-				  it.next().clean();
-			  }
-			  catch(Exception e)
-			  {
-				// Empty
-			  }
-		  }
-	  }
-	  ResteasyProviderFactory.clearContextData();
+      Cleanables cleanables = ResteasyProviderFactory.getContextData(Cleanables.class);
+      if (cleanables != null)
+      {
+          for (Iterator<Cleanable> it = cleanables.getCleanables().iterator(); it.hasNext(); )
+          {
+              try
+              {
+                  it.next().clean();
+              }
+              catch(Exception e)
+              {
+                // Empty
+              }
+          }
+      }
+      ResteasyProviderFactory.clearContextData();
       // just in case there were internalDispatches that need to be cleaned up
       MessageBodyParameterInjector.clearBodies();
    }

@@ -347,41 +347,41 @@ public class GeneralValidatorImpl implements GeneralValidatorCDI
    
    protected List<ExecutableType[]> getExecutableTypesOnMethodInInterfaces(Class<?> clazz, Method method)
    {
-   	List<ExecutableType[]> typesList = new ArrayList<ExecutableType[]>();
-   	Class<?>[] interfaces = clazz.getInterfaces();
-   	for (int i = 0; i < interfaces.length; i++)
-   	{
-   	   Method interfaceMethod = getSuperMethod(method, interfaces[i]);
-   	   if (interfaceMethod != null)
-   	   {
-   	      ExecutableType[] types = getExecutableTypesOnMethod(interfaceMethod);
-   	      if (types != null)
-   	      {
-   	         typesList.add(types);
-   	      }
-   	   }
-   	   List<ExecutableType[]> superList = getExecutableTypesOnMethodInInterfaces(interfaces[i], method);
-   	   if (superList.size() > 0)
-   	   {
-   	      typesList.addAll(superList);
-   	   }
-   	}
-   	return typesList;
+       List<ExecutableType[]> typesList = new ArrayList<ExecutableType[]>();
+       Class<?>[] interfaces = clazz.getInterfaces();
+       for (int i = 0; i < interfaces.length; i++)
+       {
+          Method interfaceMethod = getSuperMethod(method, interfaces[i]);
+          if (interfaceMethod != null)
+          {
+             ExecutableType[] types = getExecutableTypesOnMethod(interfaceMethod);
+             if (types != null)
+             {
+                typesList.add(types);
+             }
+          }
+          List<ExecutableType[]> superList = getExecutableTypesOnMethodInInterfaces(interfaces[i], method);
+          if (superList.size() > 0)
+          {
+             typesList.addAll(superList);
+          }
+       }
+       return typesList;
    }
    
    static protected ExecutableType[] getExecutableTypesOnMethod(Method method)
    {
-   	ValidateOnExecution voe = method.getAnnotation(ValidateOnExecution.class);
-   	if (voe == null || voe.type().length == 0)
-   	{
-   		return null;
-   	}
-   	ExecutableType[] types = voe.type();
-   	if (types == null || types.length == 0)
-   	{
-   		return null;
-   	}
-   	return types;
+       ValidateOnExecution voe = method.getAnnotation(ValidateOnExecution.class);
+       if (voe == null || voe.type().length == 0)
+       {
+           return null;
+       }
+       ExecutableType[] types = voe.type();
+       if (types == null || types.length == 0)
+       {
+           return null;
+       }
+       return types;
    }
    
    static protected boolean isGetter(Method m)
@@ -461,18 +461,18 @@ public class GeneralValidatorImpl implements GeneralValidatorCDI
       return null;
    }
    
-	/**
-	 * Checks, whether {@code subTypeMethod} overrides {@code superTypeMethod}.
-	 * 
-	 * N.B. "Override" here is reflexive. I.e., a method overrides itself.
-	 * 
-	 * @param subTypeMethod   The sub type method (cannot be {@code null}).
-	 * @param superTypeMethod The super type method (cannot be {@code null}).
-	 * 
-	 * @return Returns {@code true} if {@code subTypeMethod} overrides {@code superTypeMethod}, {@code false} otherwise.
-	 *         
-	 * Taken from Hibernate Validator
-	 */
+    /**
+     * Checks, whether {@code subTypeMethod} overrides {@code superTypeMethod}.
+     *
+     * N.B. "Override" here is reflexive. I.e., a method overrides itself.
+     *
+     * @param subTypeMethod   The sub type method (cannot be {@code null}).
+     * @param superTypeMethod The super type method (cannot be {@code null}).
+     *
+     * @return Returns {@code true} if {@code subTypeMethod} overrides {@code superTypeMethod}, {@code false} otherwise.
+     *
+     * Taken from Hibernate Validator
+     */
    protected boolean overrides(Method subTypeMethod, Method superTypeMethod)
    {
       if (subTypeMethod == null || superTypeMethod == null)

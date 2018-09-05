@@ -25,20 +25,20 @@ public class ProxyBuilder<T>
 {
    private static final Class<?>[] cClassArgArray = {Class.class};
    
-	private final Class<T> iface;
-	private final ResteasyWebTarget webTarget;
-	private ClassLoader loader;
-	private MediaType serverConsumes;
-	private MediaType serverProduces;
+    private final Class<T> iface;
+    private final ResteasyWebTarget webTarget;
+    private ClassLoader loader;
+    private MediaType serverConsumes;
+    private MediaType serverProduces;
 
    public static <T> ProxyBuilder<T> builder(Class<T> iface, WebTarget webTarget)
    {
       return new ProxyBuilder<T>(iface, (ResteasyWebTarget)webTarget);
    }
 
-	@SuppressWarnings("unchecked")
-	public static <T> T proxy(final Class<T> iface, WebTarget base, final ProxyConfig config)
-	{
+    @SuppressWarnings("unchecked")
+    public static <T> T proxy(final Class<T> iface, WebTarget base, final ProxyConfig config)
+    {
       if (iface.isAnnotationPresent(Path.class))
       {
          Path path = iface.getAnnotation(Path.class);
@@ -47,14 +47,14 @@ public class ProxyBuilder<T>
             base = base.path(path.value());
          }
       }
-		HashMap<Method, MethodInvoker> methodMap = new HashMap<Method, MethodInvoker>();
-		for (Method method : iface.getMethods())
-		{
+        HashMap<Method, MethodInvoker> methodMap = new HashMap<Method, MethodInvoker>();
+        for (Method method : iface.getMethods())
+        {
          // ignore the as method to allow declaration in client interfaces
-		   if ("as".equals(method.getName()) && Arrays.equals(method.getParameterTypes(), cClassArgArray))
-		   {
-		      continue;
-		   }
+           if ("as".equals(method.getName()) && Arrays.equals(method.getParameterTypes(), cClassArgArray))
+           {
+              continue;
+           }
          MethodInvoker invoker;
          Set<String> httpMethods = IsHttpMethod.getHttpMethods(method);
          if ((httpMethods == null || httpMethods.size() == 0) && method.isAnnotationPresent(Path.class) && method.getReturnType().isInterface())
@@ -74,21 +74,21 @@ public class ProxyBuilder<T>
             invoker = createClientInvoker(iface, method, (ResteasyWebTarget)base, config);
          }
          methodMap.put(method, invoker);
-		}
+        }
 
-		Class<?>[] intfs =
-		{
-				iface, ResteasyClientProxy.class
-		};
+        Class<?>[] intfs =
+        {
+                iface, ResteasyClientProxy.class
+        };
 
-		ClientProxy clientProxy = new ClientProxy(methodMap, base, config);
-		// this is done so that equals and hashCode work ok. Adding the proxy to a
-		// Collection will cause equals and hashCode to be invoked. The Spring
-		// infrastructure had some problems without this.
-		clientProxy.setClazz(iface);
+        ClientProxy clientProxy = new ClientProxy(methodMap, base, config);
+        // this is done so that equals and hashCode work ok. Adding the proxy to a
+        // Collection will cause equals and hashCode to be invoked. The Spring
+        // infrastructure had some problems without this.
+        clientProxy.setClazz(iface);
 
-		return (T) Proxy.newProxyInstance(config.getLoader(), intfs, clientProxy);
-	}
+        return (T) Proxy.newProxyInstance(config.getLoader(), intfs, clientProxy);
+    }
 
    private static <T> ClientInvoker createClientInvoker(Class<T> clazz, Method method, ResteasyWebTarget base, ProxyConfig config)
    {
@@ -124,22 +124,22 @@ public class ProxyBuilder<T>
    }
 
    public ProxyBuilder<T> classloader(ClassLoader cl)
-	{
-		this.loader = cl;
-		return this;
-	}
+    {
+        this.loader = cl;
+        return this;
+    }
 
-	public ProxyBuilder<T> defaultProduces(MediaType type)
-	{
-		this.serverProduces = type;
-		return this;
-	}
+    public ProxyBuilder<T> defaultProduces(MediaType type)
+    {
+        this.serverProduces = type;
+        return this;
+    }
 
-	public ProxyBuilder<T> defaultConsumes(MediaType type)
-	{
-		this.serverConsumes = type;
-		return this;
-	}
+    public ProxyBuilder<T> defaultConsumes(MediaType type)
+    {
+        this.serverConsumes = type;
+        return this;
+    }
 
    public ProxyBuilder<T> defaultProduces(String type)
    {
@@ -152,10 +152,10 @@ public class ProxyBuilder<T>
       this.serverConsumes = MediaType.valueOf(type);
       return this;
    }
-	public T build()
-	{
+    public T build()
+    {
       return proxy(iface, webTarget, new ProxyConfig(loader, serverConsumes, serverProduces));
-	}
+    }
 
 
 

@@ -125,11 +125,11 @@ public class RequestFilterTest {
      */
     @Test
     public void ThrowCustomExceptionFilterTest() {
-    	try {
-    		client.target(dummyUrl).register(RequestFilterThrowCustomException.class).request().get();
-    		Assert.fail();
-    	} catch (ProcessingException pe) {
-    		Assert.assertEquals(ClientCustomException.class, pe.getCause().getClass());
-    	}
+        try {
+            client.target(dummyUrl).register(RequestFilterThrowCustomException.class).request().get();
+            Assert.fail();
+        } catch (ProcessingException pe) {
+            Assert.assertEquals(ClientCustomException.class, pe.getCause().getClass());
+        }
     }
 }

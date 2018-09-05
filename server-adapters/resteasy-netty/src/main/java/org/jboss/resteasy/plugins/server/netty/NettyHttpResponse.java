@@ -155,7 +155,7 @@ public class NettyHttpResponse implements HttpResponse
 
    @Override
    public void flushBuffer() throws IOException {
-	   underlyingOutputStream.flush();
+       underlyingOutputStream.flush();
    }
 
 }

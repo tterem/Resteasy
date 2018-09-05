@@ -17,30 +17,30 @@ import org.jboss.resteasy.client.jaxrs.i18n.Messages;
  */
 public class ClientProxy implements InvocationHandler
 {
-	private Map<Method, MethodInvoker> methodMap;
-	private Class<?> clazz;
-	private final WebTarget target;
-	private final ProxyConfig config;
+    private Map<Method, MethodInvoker> methodMap;
+    private Class<?> clazz;
+    private final WebTarget target;
+    private final ProxyConfig config;
 
-	public ClientProxy(Map<Method, MethodInvoker> methodMap, WebTarget target, ProxyConfig config)
-	{
-	   super();
-	   this.methodMap = methodMap;
-	   this.target = target;
-	   this.config = config;
-	}
+    public ClientProxy(Map<Method, MethodInvoker> methodMap, WebTarget target, ProxyConfig config)
+    {
+       super();
+       this.methodMap = methodMap;
+       this.target = target;
+       this.config = config;
+    }
 
-	public Class<?> getClazz()
-	{
-		return clazz;
-	}
+    public Class<?> getClazz()
+    {
+        return clazz;
+    }
 
-	public void setClazz(Class<?> clazz)
-	{
-		this.clazz = clazz;
-	}
+    public void setClazz(Class<?> clazz)
+    {
+        this.clazz = clazz;
+    }
 
-	public Object invoke(Object o, Method method, Object[] args)
+    public Object invoke(Object o, Method method, Object[] args)
            throws Throwable
    {
       // equals and hashCode were added for cases where the proxy is added to
@@ -76,27 +76,27 @@ public class ClientProxy implements InvocationHandler
       return clientInvoker.invoke(args);
    }
 
-	@Override
-	public boolean equals(Object obj)
-	{
-		if (obj == null || !(obj instanceof ClientProxy))
-			return false;
-		ClientProxy other = (ClientProxy) obj;
-		if (other == this)
-			return true;
-		if (other.clazz != this.clazz)
-			return false;
-		return super.equals(obj);
-	}
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj == null || !(obj instanceof ClientProxy))
+            return false;
+        ClientProxy other = (ClientProxy) obj;
+        if (other == this)
+            return true;
+        if (other.clazz != this.clazz)
+            return false;
+        return super.equals(obj);
+    }
 
-	@Override
-	public int hashCode()
-	{
-		return clazz.hashCode();
-	}
+    @Override
+    public int hashCode()
+    {
+        return clazz.hashCode();
+    }
 
-	public String toString()
-	{
-	   return Messages.MESSAGES.resteasyClientProxyFor(clazz.getName());
-	}
+    public String toString()
+    {
+       return Messages.MESSAGES.resteasyClientProxyFor(clazz.getName());
+    }
 }

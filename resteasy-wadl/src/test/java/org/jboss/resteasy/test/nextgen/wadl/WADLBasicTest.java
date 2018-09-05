@@ -33,28 +33,28 @@ public class WADLBasicTest extends WADLTestSetup {
     private static HttpServer httpServer;
     private static HttpContextBuilder contextBuilder;
     private Client client;
-	private String url;
+    private String url;
 
     
     public Client getClient() {
-		return client;
-	}
+        return client;
+    }
 
-	public void setClient(Client client) {
-		this.client = client;
-	}
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     public String getUrl() {
-		return url;
-	}
+        return url;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	@BeforeClass
+    @BeforeClass
     public static void before() throws Exception {
-		
+
         httpServer = HttpServer.create(new InetSocketAddress(TestPortProvider.getPort()), 10);
         contextBuilder = new HttpContextBuilder();
         contextBuilder.getDeployment().getActualResourceClasses().add(BasicResource.class);
@@ -76,23 +76,23 @@ public class WADLBasicTest extends WADLTestSetup {
     @Before
     public void init() {
         setClient(ClientBuilder.newClient());
-    	setUrl("http://127.0.0.1:${port}/application.xml".replaceAll("\\$\\{port\\}",
+        setUrl("http://127.0.0.1:${port}/application.xml".replaceAll("\\$\\{port\\}",
             Integer.valueOf(TestPortProvider.getPort()).toString()));
     }
     
     @After
     public void clean() {
-    	try {
+        try {
             getClient().close();
             setClient(null);
         } catch (Exception e) {
-        	//ignore
+            //ignore
         }
     }
 
-	
+
     public WADLBasicTest() {
-    	
+
     }
 
 

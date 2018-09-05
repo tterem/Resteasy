@@ -136,7 +136,7 @@ public class FileProvider implements MessageBodyReader<File>,
       int byteUnit = range.indexOf("bytes=");
       if ( byteUnit < 0)
       {
-    	  //must start with 'bytes'
+          //must start with 'bytes'
           writeIt(uploadFile, entityStream);
           return;
       }

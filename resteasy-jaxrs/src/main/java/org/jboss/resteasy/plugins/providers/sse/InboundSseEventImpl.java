@@ -246,7 +246,7 @@ public class InboundSseEventImpl implements InboundSseEvent
    
    public MediaType getMediaType()
    {
-	   return mediaType;
+       return mediaType;
    }
 
 }

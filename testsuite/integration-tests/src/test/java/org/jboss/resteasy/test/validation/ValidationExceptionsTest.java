@@ -235,7 +235,7 @@ public class ValidationExceptionsTest {
         logger.info("entity: " + entity);
         Assert.assertTrue(ERROR_MESSAGE, entity.contains("GroupDefinitionException"));
         Assert.assertTrue(ERROR_MESSAGE,
-			  entity.contains(ValidationExceptionResourceWithInvalidConstraintGroup.GroupDefinitionExceptionMapper.class.getName()));
+              entity.contains(ValidationExceptionResourceWithInvalidConstraintGroup.GroupDefinitionExceptionMapper.class.getName()));
         }
 
     /**
@@ -310,11 +310,11 @@ public class ValidationExceptionsTest {
         String header = response.getStringHeaders().getFirst(Validation.VALIDATION_HEADER);
         Assert.assertNotNull(ERROR_HEADER_MESSAGE, header);
         Assert.assertTrue(ERROR_HEADER_VALIDATION_EXCEPTION_MESSAGE, Boolean.valueOf(header));
-		ResteasyViolationException resteasyViolationException = new ResteasyViolationException(
-				response.readEntity(String.class));
-		List<ResteasyConstraintViolation> classViolations = resteasyViolationException.getClassViolations();
-		Assert.assertEquals(1, classViolations.size());
-		Assert.assertEquals(ValidationExceptionCrazyConstraint.DEFAULT_MESSAGE, classViolations.get(0).getMessage());
-		logger.info("entity: " + resteasyViolationException);
+        ResteasyViolationException resteasyViolationException = new ResteasyViolationException(
+                response.readEntity(String.class));
+        List<ResteasyConstraintViolation> classViolations = resteasyViolationException.getClassViolations();
+        Assert.assertEquals(1, classViolations.size());
+        Assert.assertEquals(ValidationExceptionCrazyConstraint.DEFAULT_MESSAGE, classViolations.get(0).getMessage());
+        logger.info("entity: " + resteasyViolationException);
     }
 }

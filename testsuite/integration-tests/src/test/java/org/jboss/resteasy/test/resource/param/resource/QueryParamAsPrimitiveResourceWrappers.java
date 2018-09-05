@@ -63,6 +63,6 @@ public class QueryParamAsPrimitiveResourceWrappers implements QueryParamAsPrimit
     @Produces("application/char")
     public String doGet(@QueryParam("char") Character v) {
         Assert.assertEquals(QueryParamAsPrimitiveTest.ERROR_MESSAGE, 'a', v.charValue());
-    	return "content";
+        return "content";
     }
 }

@@ -139,10 +139,10 @@ public class AtomProviderModelTest {
         PrintStream ps = new PrintStream(baos);
         marshaller.marshal(content, ps);
         if (logger.isDebugEnabled()) {
-	        logger.debug("Result: " + ps.toString());
-	
-	        logger.debug("**********");
-	        logger.debug(writer.toString());
+            logger.debug("Result: " + ps.toString());
+
+            logger.debug("**********");
+            logger.debug(writer.toString());
         }
         content = (Content) ctx.createUnmarshaller().unmarshal(new StringReader(writer.toString()));
 

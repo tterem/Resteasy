@@ -48,7 +48,7 @@ public class EmptyInputStreamMultipartProviderTest {
      */
     @Test
     public void test() throws Exception {
-    	Client client = ClientBuilder.newClient();
+        Client client = ClientBuilder.newClient();
         WebTarget target = client.target(generateURL("/rest/zba"));
         Response response = target.request().get();
         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());

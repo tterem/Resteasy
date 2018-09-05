@@ -312,7 +312,7 @@ public class MimeMultipartProviderResource {
         Assert.assertNotNull(ERR_CUST_NULL, xop.getMyBinary());
         Assert.assertNotNull(ERR_CUST_NULL, xop.getMyDataHandler());
         Assert.assertEquals(ERR_VALUE, "Hello Xop World!", new String(xop.getMyBinary(),
-        		StandardCharsets.UTF_8));
+                StandardCharsets.UTF_8));
         // lets do it twice to test that we get different InputStream-s each
         // time.
         for (int fi = 0; fi < 2; fi++) {

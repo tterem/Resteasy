@@ -16,13 +16,13 @@ public class StringToPrimitive
       }
       else if (primitiveType.equals(char.class))
       {
-    	  if(value==null)
-    	  {
-    		  return Character.valueOf(Character.MIN_VALUE);
-    	  }
-    	  else if (value.length() != 1) {
-    		  throw new IllegalArgumentException();
-    	  }
+          if(value==null)
+          {
+              return Character.valueOf(Character.MIN_VALUE);
+          }
+          else if (value.length() != 1) {
+              throw new IllegalArgumentException();
+          }
           return Character.valueOf(value.charAt(0));
        }
       if (value == null) value = "0";

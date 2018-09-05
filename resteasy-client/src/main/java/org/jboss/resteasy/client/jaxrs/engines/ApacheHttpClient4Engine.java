@@ -272,7 +272,7 @@ public class ApacheHttpClient4Engine implements ClientHttpEngine
    @SuppressWarnings("deprecation")
    public HttpHost getDefaultProxy()
    {
-	   return (HttpHost) httpClient.getParams().getParameter(ConnRoutePNames.DEFAULT_PROXY);
+       return (HttpHost) httpClient.getParams().getParameter(ConnRoutePNames.DEFAULT_PROXY);
    }
 
    public static CaseInsensitiveMap<String> extractHeaders(

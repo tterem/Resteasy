@@ -77,7 +77,7 @@ public class QueryParamAsPrimitiveResourceList implements QueryParamAsPrimitiveR
     @GET
     @Produces("application/char")
     public String doGetCharacter(@QueryParam("char")List<Character> v) {
-    	  Assert.assertEquals(QueryParamAsPrimitiveTest.ERROR_MESSAGE, 'a', v.get(0).charValue());
+          Assert.assertEquals(QueryParamAsPrimitiveTest.ERROR_MESSAGE, 'a', v.get(0).charValue());
           Assert.assertEquals(QueryParamAsPrimitiveTest.ERROR_MESSAGE, 'a', v.get(1).charValue());
           Assert.assertEquals(QueryParamAsPrimitiveTest.ERROR_MESSAGE, 'a', v.get(2).charValue());
           return "content";

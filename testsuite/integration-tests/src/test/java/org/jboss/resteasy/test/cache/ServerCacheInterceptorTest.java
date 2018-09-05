@@ -38,19 +38,19 @@ import org.junit.runner.RunWith;
 @RunAsClient
 public class ServerCacheInterceptorTest {
 
-	private static ResteasyClient clientA;
+    private static ResteasyClient clientA;
     private static ResteasyClient clientB;
 
     @Deployment
     public static Archive<?> deploySimpleResource() {
-    	List<Class<?>> singletons = new ArrayList<>();
-    	singletons.add(ServerCacheFeature.class);
-    	WebArchive war = TestUtil.prepareArchive(ServerCacheInterceptorTest.class.getSimpleName());
+        List<Class<?>> singletons = new ArrayList<>();
+        singletons.add(ServerCacheFeature.class);
+        WebArchive war = TestUtil.prepareArchive(ServerCacheInterceptorTest.class.getSimpleName());
         // This test is not supposed to run with security manager
         war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(new AllPermission()), "permissions.xml");
         war.addClasses(ServerCache.class, InfinispanCache.class, ServerCacheHitFilter.class, ServerCacheInterceptor.class);
-		war.addAsManifestResource(new StringAsset("Manifest-Version: 1.0\n" + "Dependencies: org.infinispan\n"), "MANIFEST.MF");
-		return TestUtil.finishContainerPrepare(war, null, singletons, ServerCacheInterceptorResource.class);
+        war.addAsManifestResource(new StringAsset("Manifest-Version: 1.0\n" + "Dependencies: org.infinispan\n"), "MANIFEST.MF");
+        return TestUtil.finishContainerPrepare(war, null, singletons, ServerCacheInterceptorResource.class);
     }
 
     private String generateURL(String path) {

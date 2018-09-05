@@ -33,10 +33,10 @@ public class LinkImpl extends Link
    
    LinkImpl(URI uri, Map<String, String> map) 
    {
-	  this.uri = uri;
-	  this.map = map.isEmpty() ? Collections.<String, String> emptyMap() : Collections
-		.unmodifiableMap(new HashMap<String, String>(map));
-	}
+      this.uri = uri;
+      this.map = map.isEmpty() ? Collections.<String, String> emptyMap() : Collections
+        .unmodifiableMap(new HashMap<String, String>(map));
+    }
 
    @Override
    public URI getUri() {

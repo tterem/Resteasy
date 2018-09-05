@@ -8,11 +8,11 @@ import javax.ws.rs.ext.Provider;
 @Path("/")
 @ValidationExceptionIncorrectConstraint
 public class ValidationExceptionResourceWithIncorrectConstraint {
-	
-	@Provider
-	public static class ConstraintDefinitionExceptionMapper extends ValidationExceptionMapper<ConstraintDefinitionException> {
-	}
-	
+
+    @Provider
+    public static class ConstraintDefinitionExceptionMapper extends ValidationExceptionMapper<ConstraintDefinitionException> {
+    }
+
     @POST
     public void test() {
     }

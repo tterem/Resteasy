@@ -60,12 +60,12 @@ public class TestUtilRxJava {
     }
     
     public static void setManifestWithReactiveStreamsDependency(WebArchive archive) {
-    	archive.setManifest(new StringAsset("Manifest-Version: 1.0\n" + "Dependencies: org.reactivestreams"));
+        archive.setManifest(new StringAsset("Manifest-Version: 1.0\n" + "Dependencies: org.reactivestreams"));
     }
     
     public static void setupRxJava(WebArchive archive) {
-    	addRxJavaLibraries(archive);
-    	setManifestWithReactiveStreamsDependency(archive);
+        addRxJavaLibraries(archive);
+        setManifestWithReactiveStreamsDependency(archive);
     }
 
 }

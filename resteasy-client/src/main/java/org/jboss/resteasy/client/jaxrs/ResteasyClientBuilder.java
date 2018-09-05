@@ -350,7 +350,7 @@ public class ResteasyClientBuilder extends ClientBuilder
    public ResteasyClientBuilder defaultProxy(String hostname, int port, final String scheme)
    {
       this.defaultProxy = new HttpHost(hostname, port, scheme);
-	   return this;
+       return this;
    }
 
    protected ResteasyProviderFactory getProviderFactory()

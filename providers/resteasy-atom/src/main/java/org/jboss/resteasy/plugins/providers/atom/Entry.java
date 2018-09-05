@@ -355,7 +355,7 @@ public class Entry extends CommonAttributes
     * @throws JAXBException jaxb exception
     */
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	public <T> T getAnyOtherJAXBObject(Class<T> clazz, Class... otherPossibleClasses) throws JAXBException {
+    public <T> T getAnyOtherJAXBObject(Class<T> clazz, Class... otherPossibleClasses) throws JAXBException {
         JAXBContext ctx = null;
         Class[] classes = {clazz};
         if (otherPossibleClasses != null && otherPossibleClasses.length > 0) {
@@ -395,7 +395,7 @@ public class Entry extends CommonAttributes
             anyOtherJaxbObject = obj;
             return (T) obj;
         }
-	}
+    }
 
    
    /**

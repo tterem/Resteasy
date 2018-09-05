@@ -10,7 +10,7 @@ import java.util.Optional;
 public class GzipResource implements GzipInterface {
 
     private static Logger log = Logger.getLogger(GzipResource.class);
-	
+
     @Context HttpHeaders headers;
 
     public String process(String message) {

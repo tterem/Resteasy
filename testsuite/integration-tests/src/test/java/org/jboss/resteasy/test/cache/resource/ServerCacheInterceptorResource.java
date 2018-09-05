@@ -8,9 +8,9 @@ import javax.ws.rs.Path;
 @Path("/")
 public class ServerCacheInterceptorResource {
 
-	private static int count = 0;  
-	
-	@GET
+    private static int count = 0;
+
+    @GET
     @Cache(maxAge = 3600)
     @Path("public")
     public String getPublicResource() {

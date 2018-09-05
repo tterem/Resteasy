@@ -65,7 +65,7 @@ public class HeaderParamsAsPrimitivesResourceWrappersDefaultOverride
     @GET
     @Produces("application/char")
     public String doGet(@HeaderParam("char") @DefaultValue("b") Character v) {
-    	Assert.assertEquals(HeaderParamsAsPrimitivesTest.ERROR_MESSAGE, 'a', v.charValue());
+        Assert.assertEquals(HeaderParamsAsPrimitivesTest.ERROR_MESSAGE, 'a', v.charValue());
         return "content";
     }
 }

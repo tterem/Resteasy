@@ -19,9 +19,9 @@ public class CharSetResource {
         String name = "bill\u00E9";
         boolean equal = false;
         String test = new String(name.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
-		if (test.compareTo(cust.getName()) == 0) {
-		    equal = true;
-		}
+        if (test.compareTo(cust.getName()) == 0) {
+            equal = true;
+        }
         return equal ? Response.ok().build() : Response.serverError().build();
     }
 

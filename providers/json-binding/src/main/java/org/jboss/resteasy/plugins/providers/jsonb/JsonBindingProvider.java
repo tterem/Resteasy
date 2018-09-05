@@ -64,7 +64,7 @@ public class JsonBindingProvider extends AbstractJsonBindingProvider
          return false;
       }
       return (isSupportedMediaType(mediaType))
-    		  && ((hasJsonBindingAnnotations(annotations)) || (!isJaxbClass(type)));
+              && ((hasJsonBindingAnnotations(annotations)) || (!isJaxbClass(type)));
    }
 
    @Override
