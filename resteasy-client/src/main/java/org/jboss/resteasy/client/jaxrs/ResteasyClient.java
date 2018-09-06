@@ -12,7 +12,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Configuration;
 import javax.ws.rs.core.Link;
 import javax.ws.rs.core.UriBuilder;
-
 import java.net.URI;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
@@ -24,8 +23,7 @@ import java.util.concurrent.ScheduledExecutorService;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class ResteasyClient implements Client
-{
+public class ResteasyClient implements Client {
    protected volatile ClientHttpEngine httpEngine;
    protected volatile ExecutorService asyncInvocationExecutor;
    protected volatile ScheduledExecutorService scheduledExecutorService;
@@ -35,8 +33,7 @@ public class ResteasyClient implements Client
 
 
    protected ResteasyClient(ClientHttpEngine httpEngine, ExecutorService asyncInvocationExecutor, boolean cleanupExecutor,
-         ScheduledExecutorService scheduledExecutorService, ClientConfiguration configuration)
-   {
+                            ScheduledExecutorService scheduledExecutorService, ClientConfiguration configuration) {
       this.cleanupExecutor = cleanupExecutor;
       this.httpEngine = httpEngine;
       this.asyncInvocationExecutor = asyncInvocationExecutor;
@@ -44,194 +41,162 @@ public class ResteasyClient implements Client
       this.scheduledExecutorService = scheduledExecutorService;
    }
 
-   protected ResteasyClient(ClientHttpEngine httpEngine, ExecutorService asyncInvocationExecutor, boolean cleanupExecutor, ClientConfiguration configuration)
-   {
+   protected ResteasyClient(ClientHttpEngine httpEngine, ExecutorService asyncInvocationExecutor, boolean cleanupExecutor, ClientConfiguration configuration) {
       this.cleanupExecutor = cleanupExecutor;
       this.httpEngine = httpEngine;
       this.asyncInvocationExecutor = asyncInvocationExecutor;
       this.configuration = configuration;
    }
 
-   public ClientHttpEngine httpEngine()
-   {
+   public ClientHttpEngine httpEngine() {
       abortIfClosed();
       return httpEngine;
    }
 
 
-   public ExecutorService asyncInvocationExecutor()
-   {
+   public ExecutorService asyncInvocationExecutor() {
       return asyncInvocationExecutor;
    }
 
-   public ScheduledExecutorService getScheduledExecutor()
-   {
+   public ScheduledExecutorService getScheduledExecutor() {
       return this.scheduledExecutorService;
    }
 
-   public void abortIfClosed()
-   {
+   public void abortIfClosed() {
       if (isClosed()) throw new IllegalStateException(Messages.MESSAGES.clientIsClosed());
    }
 
-   public boolean isClosed()
-   {
+   public boolean isClosed() {
       return closed;
    }
 
    @Override
-   public void close()
-   {
+   public void close() {
       closed = true;
-      try
-      {
+      try {
          httpEngine.close();
-         if (cleanupExecutor)
-         {
-            if (System.getSecurityManager() == null)
-            {
+         if (cleanupExecutor) {
+            if (System.getSecurityManager() == null) {
                asyncInvocationExecutor.shutdown();
-            }
-            else
-            {
-               AccessController.doPrivileged(new PrivilegedAction<Void>()
-               {
+            } else {
+               AccessController.doPrivileged(new PrivilegedAction<Void>() {
                   @Override
-                  public Void run()
-                  {
+                  public Void run() {
                      asyncInvocationExecutor.shutdown();
                      return null;
                   }
                });
             }
          }
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new RuntimeException(e);
       }
    }
 
    @Override
-   public Configuration getConfiguration()
-   {
+   public Configuration getConfiguration() {
       abortIfClosed();
       return configuration;
    }
 
    @Override
-   public SSLContext getSslContext()
-   {
+   public SSLContext getSslContext() {
       abortIfClosed();
       return httpEngine().getSslContext();
    }
 
    @Override
-   public HostnameVerifier getHostnameVerifier()
-   {
+   public HostnameVerifier getHostnameVerifier() {
       abortIfClosed();
       return httpEngine().getHostnameVerifier();
    }
 
    @Override
-   public ResteasyClient property(String name, Object value)
-   {
+   public ResteasyClient property(String name, Object value) {
       abortIfClosed();
       configuration.property(name, value);
       return this;
    }
 
    @Override
-   public ResteasyClient register(Class<?> componentClass)
-   {
+   public ResteasyClient register(Class<?> componentClass) {
       abortIfClosed();
       configuration.register(componentClass);
       return this;
    }
 
    @Override
-   public ResteasyClient register(Class<?> componentClass, int priority)
-   {
+   public ResteasyClient register(Class<?> componentClass, int priority) {
       abortIfClosed();
       configuration.register(componentClass, priority);
       return this;
    }
 
    @Override
-   public ResteasyClient register(Class<?> componentClass, Class<?>... contracts)
-   {
+   public ResteasyClient register(Class<?> componentClass, Class<?>... contracts) {
       abortIfClosed();
       configuration.register(componentClass, contracts);
       return this;
    }
 
    @Override
-   public ResteasyClient register(Class<?> componentClass, Map<Class<?>, Integer> contracts)
-   {
+   public ResteasyClient register(Class<?> componentClass, Map<Class<?>, Integer> contracts) {
       abortIfClosed();
       configuration.register(componentClass, contracts);
       return this;
    }
 
    @Override
-   public ResteasyClient register(Object component)
-   {
+   public ResteasyClient register(Object component) {
       abortIfClosed();
       configuration.register(component);
       return this;
    }
 
    @Override
-   public ResteasyClient register(Object component, int priority)
-   {
+   public ResteasyClient register(Object component, int priority) {
       abortIfClosed();
       configuration.register(component, priority);
       return this;
    }
 
    @Override
-   public ResteasyClient register(Object component, Class<?>... contracts)
-   {
+   public ResteasyClient register(Object component, Class<?>... contracts) {
       abortIfClosed();
       configuration.register(component, contracts);
       return this;
    }
 
    @Override
-   public ResteasyClient register(Object component, Map<Class<?>, Integer> contracts)
-   {
+   public ResteasyClient register(Object component, Map<Class<?>, Integer> contracts) {
       abortIfClosed();
       configuration.register(component, contracts);
       return this;
    }
 
    @Override
-   public ResteasyWebTarget target(String uri) throws IllegalArgumentException, NullPointerException
-   {
+   public ResteasyWebTarget target(String uri) throws IllegalArgumentException, NullPointerException {
       abortIfClosed();
       if (uri == null) throw new NullPointerException(Messages.MESSAGES.uriWasNull());
       return new ClientWebTarget(this, uri, configuration);
    }
 
    @Override
-   public ResteasyWebTarget target(URI uri) throws NullPointerException
-   {
+   public ResteasyWebTarget target(URI uri) throws NullPointerException {
       abortIfClosed();
       if (uri == null) throw new NullPointerException(Messages.MESSAGES.uriWasNull());
       return new ClientWebTarget(this, uri, configuration);
    }
 
    @Override
-   public ResteasyWebTarget target(UriBuilder uriBuilder) throws NullPointerException
-   {
+   public ResteasyWebTarget target(UriBuilder uriBuilder) throws NullPointerException {
       abortIfClosed();
       if (uriBuilder == null) throw new NullPointerException(Messages.MESSAGES.uriBuilderWasNull());
       return new ClientWebTarget(this, uriBuilder, configuration);
    }
 
    @Override
-   public ResteasyWebTarget target(Link link) throws NullPointerException
-   {
+   public ResteasyWebTarget target(Link link) throws NullPointerException {
       abortIfClosed();
       if (link == null) throw new NullPointerException(Messages.MESSAGES.linkWasNull());
       URI uri = link.getUri();
@@ -239,8 +204,7 @@ public class ResteasyClient implements Client
    }
 
    @Override
-   public Invocation.Builder invocation(Link link) throws NullPointerException, IllegalArgumentException
-   {
+   public Invocation.Builder invocation(Link link) throws NullPointerException, IllegalArgumentException {
       abortIfClosed();
       if (link == null) throw new NullPointerException(Messages.MESSAGES.linkWasNull());
       WebTarget target = target(link);

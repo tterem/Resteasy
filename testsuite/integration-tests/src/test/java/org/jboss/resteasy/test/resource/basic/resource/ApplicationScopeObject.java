@@ -1,16 +1,13 @@
 package org.jboss.resteasy.test.resource.basic.resource;
 
+import javax.enterprise.context.ApplicationScoped;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.enterprise.context.ApplicationScoped;
-
 @ApplicationScoped
-public class ApplicationScopeObject
-{
+public class ApplicationScopeObject {
    AtomicInteger counter = new AtomicInteger();
 
-   public int getCount()
-   {
+   public int getCount() {
       return counter.incrementAndGet();
    }
 }

@@ -18,14 +18,12 @@ import java.lang.reflect.Type;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class AbstractMultipartWriter
-{
+public class AbstractMultipartWriter {
    @Context
    protected Providers workers;
 
    protected void write(MultipartOutput multipartOutput, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
-           throws IOException
-   {
+           throws IOException {
       String boundary = mediaType.getParameters().get("boundary");
       if (boundary == null)
          boundary = multipartOutput.getBoundary();
@@ -38,10 +36,8 @@ public class AbstractMultipartWriter
    }
 
    protected void writeParts(MultipartOutput multipartOutput, OutputStream entityStream, byte[] boundaryBytes)
-           throws IOException
-   {
-      for (OutputPart part : multipartOutput.getParts())
-      {
+           throws IOException {
+      for (OutputPart part : multipartOutput.getParts()) {
          MultivaluedMap<String, Object> headers = new MultivaluedMapImpl<String, Object>();
          writePart(entityStream, boundaryBytes, part, headers);
       }
@@ -49,8 +45,7 @@ public class AbstractMultipartWriter
 
    @SuppressWarnings(value = "unchecked")
    protected void writePart(OutputStream entityStream, byte[] boundaryBytes, OutputPart part, MultivaluedMap<String, Object> headers)
-           throws IOException
-   {
+           throws IOException {
       entityStream.write(boundaryBytes);
       entityStream.write("\r\n".getBytes());
       headers.putAll(part.getHeaders());

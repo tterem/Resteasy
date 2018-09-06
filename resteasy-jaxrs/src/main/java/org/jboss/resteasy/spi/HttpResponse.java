@@ -2,7 +2,6 @@ package org.jboss.resteasy.spi;
 
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.NewCookie;
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -13,8 +12,7 @@ import java.io.OutputStream;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface HttpResponse extends Closeable
-{
+public interface HttpResponse extends Closeable {
    int getStatus();
 
    void setStatus(int status);
@@ -22,6 +20,7 @@ public interface HttpResponse extends Closeable
    MultivaluedMap<String, Object> getOutputHeaders();
 
    OutputStream getOutputStream() throws IOException;
+
    void setOutputStream(OutputStream os);
 
    void addNewCookie(NewCookie cookie);
@@ -36,7 +35,7 @@ public interface HttpResponse extends Closeable
     * reset status and headers.  Will fail if response is committed
     */
    void reset();
-   
+
    default void close() throws IOException {
       // RESTEASY-1650
       getOutputStream().close();

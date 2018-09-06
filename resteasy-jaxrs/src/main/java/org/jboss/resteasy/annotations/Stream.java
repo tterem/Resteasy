@@ -11,10 +11,14 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Stream
-{
-   enum MODE {RAW, GENERAL};
+public @interface Stream {
    String INCLUDE_STREAMING_PARAMETER = "streaming";
+
+   ;
+
    MODE value() default MODE.GENERAL;
+
    boolean includeStreaming() default false;
+
+   enum MODE {RAW, GENERAL}
 }

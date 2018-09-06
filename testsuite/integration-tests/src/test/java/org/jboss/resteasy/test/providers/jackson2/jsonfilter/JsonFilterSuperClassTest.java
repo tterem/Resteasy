@@ -6,12 +6,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.resteasy.category.ExpectedFailingOnWildFly13;
 import org.jboss.resteasy.category.NotForForwardCompatibility;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.test.providers.jackson2.jsonfilter.resource.JsonFilterChild;
-import org.jboss.resteasy.test.providers.jackson2.jsonfilter.resource.JsonFilterChildResource;
-import org.jboss.resteasy.test.providers.jackson2.jsonfilter.resource.JsonFilterParent;
-import org.jboss.resteasy.test.providers.jackson2.jsonfilter.resource.ObjectFilterModifier;
-import org.jboss.resteasy.test.providers.jackson2.jsonfilter.resource.ObjectWriterModifierFilter;
-import org.jboss.resteasy.test.providers.jackson2.jsonfilter.resource.PersonType;
+import org.jboss.resteasy.test.providers.jackson2.jsonfilter.resource.*;
 import org.jboss.resteasy.util.HttpResponseCodes;
 import org.jboss.resteasy.utils.PortProviderUtil;
 import org.jboss.resteasy.utils.TestUtil;
@@ -39,33 +34,33 @@ import javax.ws.rs.core.Response;
 @Category({NotForForwardCompatibility.class, ExpectedFailingOnWildFly13.class})
 public class JsonFilterSuperClassTest {
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(JsonFilterSuperClassTest.class.getSimpleName());
-        war.addClasses(JsonFilterParent.class, JsonFilterChild.class, PersonType.class, ObjectFilterModifier.class,
-                ObjectWriterModifierFilter.class);
-        war.addAsManifestResource(new StringAsset("Manifest-Version: 1.0\n" + "Dependencies: com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider\n"), "MANIFEST.MF");
-        war.addAsWebInfResource(JsonFilterWithSerlvetFilterTest.class.getPackage(), "web.xml", "web.xml");
-        return TestUtil.finishContainerPrepare(war, null, JsonFilterChildResource.class);
-    }
+   @Deployment
+   public static Archive<?> deploy() {
+      WebArchive war = TestUtil.prepareArchive(JsonFilterSuperClassTest.class.getSimpleName());
+      war.addClasses(JsonFilterParent.class, JsonFilterChild.class, PersonType.class, ObjectFilterModifier.class,
+              ObjectWriterModifierFilter.class);
+      war.addAsManifestResource(new StringAsset("Manifest-Version: 1.0\n" + "Dependencies: com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider\n"), "MANIFEST.MF");
+      war.addAsWebInfResource(JsonFilterWithSerlvetFilterTest.class.getPackage(), "web.xml", "web.xml");
+      return TestUtil.finishContainerPrepare(war, null, JsonFilterChildResource.class);
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, JsonFilterSuperClassTest.class.getSimpleName());
-    }
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, JsonFilterSuperClassTest.class.getSimpleName());
+   }
 
-    /**
-     * @tpTestDetails Json string in the response is correctly filtered
-     * @tpSince RESTEasy 3.1.0
-     */
-    @Test
-    public void testJacksonStringInSuperClass() throws Exception {
-        Client client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(generateURL("/superclass/333"));
-        Response response = target.request().get();
-        response.bufferEntity();
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-        Assert.assertTrue("Filter doesn't work", !response.readEntity(String.class).contains("id") &&
-                response.readEntity(String.class).contains("name"));
-        client.close();
-    }
+   /**
+    * @tpTestDetails Json string in the response is correctly filtered
+    * @tpSince RESTEasy 3.1.0
+    */
+   @Test
+   public void testJacksonStringInSuperClass() throws Exception {
+      Client client = new ResteasyClientBuilder().build();
+      WebTarget target = client.target(generateURL("/superclass/333"));
+      Response response = target.request().get();
+      response.bufferEntity();
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      Assert.assertTrue("Filter doesn't work", !response.readEntity(String.class).contains("id") &&
+              response.readEntity(String.class).contains("name"));
+      client.close();
+   }
 }

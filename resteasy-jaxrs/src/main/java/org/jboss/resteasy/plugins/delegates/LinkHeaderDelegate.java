@@ -8,7 +8,6 @@ import org.jboss.resteasy.spi.LinkHeader;
 import javax.ws.rs.core.Link;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.RuntimeDelegate;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,52 +17,65 @@ import java.util.StringTokenizer;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class LinkHeaderDelegate implements RuntimeDelegate.HeaderDelegate<LinkHeader>
-{
-   private static class Parser
-   {
+public class LinkHeaderDelegate implements RuntimeDelegate.HeaderDelegate<LinkHeader> {
+   public static LinkHeader from(String value) throws IllegalArgumentException {
+      if (value == null) throw new IllegalArgumentException(Messages.MESSAGES.paramNull());
+      Parser parser = new Parser(value);
+      parser.parse();
+      return parser.getHeader();
+
+   }
+
+   public static String getString(LinkHeader value) {
+      StringBuffer buf = new StringBuffer();
+      for (Link link : value.getLinks()) {
+         if (buf.length() > 0) buf.append(", ");
+         buf.append(link.toString());
+      }
+      return buf.toString();
+   }
+
+   public LinkHeader fromString(String value) throws IllegalArgumentException {
+      return from(value);
+   }
+
+   public String toString(LinkHeader value) {
+      if (value == null) throw new IllegalArgumentException(Messages.MESSAGES.paramNull());
+      return getString(value);
+   }
+
+   private static class Parser {
       private int curr;
       private String value;
       private LinkHeader header = new LinkHeader();
 
-      Parser(String value)
-      {
+      Parser(String value) {
          this.value = value;
       }
 
-      public LinkHeader getHeader()
-      {
+      public LinkHeader getHeader() {
          return header;
       }
 
-      public void parse()
-      {
+      public void parse() {
          String href = null;
          MultivaluedMap<String, String> attributes = new MultivaluedMapImpl<String, String>();
-         while (curr < value.length())
-         {
+         while (curr < value.length()) {
 
             char c = value.charAt(curr);
-            if (c == '<')
-            {
+            if (c == '<') {
                if (href != null)
                   throw new IllegalArgumentException(Messages.MESSAGES.unableToParseLinkHeaderTooManyLinks(value));
                href = parseLink();
-            }
-            else if (c == ';' || c == ' ')
-            {
+            } else if (c == ';' || c == ' ') {
                curr++;
                continue;
-            }
-            else if (c == ',')
-            {
+            } else if (c == ',') {
                populateLink(href, attributes);
                href = null;
                attributes = new MultivaluedMapImpl<String, String>();
                curr++;
-            }
-            else
-            {
+            } else {
                parseAttribute(attributes);
             }
          }
@@ -72,8 +84,7 @@ public class LinkHeaderDelegate implements RuntimeDelegate.HeaderDelegate<LinkHe
 
       }
 
-      protected void populateLink(String href, MultivaluedMap<String, String> attributes)
-      {
+      protected void populateLink(String href, MultivaluedMap<String, String> attributes) {
          List<String> rels = attributes.get("rel");
          List<String> revs = attributes.get("rev");
          String title = attributes.getFirst("title");
@@ -82,38 +93,30 @@ public class LinkHeaderDelegate implements RuntimeDelegate.HeaderDelegate<LinkHe
          if (type != null) attributes.remove("type");
 
          Set<String> relationships = new HashSet<String>();
-         if (rels != null)
-         {
+         if (rels != null) {
             relationships.addAll(rels);
             attributes.remove("rel");
          }
-         if (revs != null)
-         {
+         if (revs != null) {
             relationships.addAll(revs);
             attributes.remove("rev");
          }
 
-         for (String relationship : relationships)
-         {
+         for (String relationship : relationships) {
             StringTokenizer tokenizer = new StringTokenizer(relationship);
-            while (tokenizer.hasMoreTokens())
-            {
+            while (tokenizer.hasMoreTokens()) {
                String rel = tokenizer.nextToken();
                Link.Builder builder = new LinkBuilderImpl().uri(href);
-               if (title != null)
-               {
+               if (title != null) {
                   builder.title(title);
                }
-               if (rel != null)
-               {
+               if (rel != null) {
                   builder.rel(rel);
                }
-               if (type != null)
-               {
+               if (type != null) {
                   builder.type(type);
                }
-               for (String key : attributes.keySet())
-               {
+               for (String key : attributes.keySet()) {
                   builder.param(key, attributes.getFirst(key));
                }
                Link link = builder.build();
@@ -125,8 +128,7 @@ public class LinkHeaderDelegate implements RuntimeDelegate.HeaderDelegate<LinkHe
          }
       }
 
-      public String parseLink()
-      {
+      public String parseLink() {
          int end = value.indexOf('>', curr);
          if (end == -1) throw new IllegalArgumentException(Messages.MESSAGES.unableToParseLinkHeaderNoEndToLink(value));
          String href = value.substring(curr + 1, end);
@@ -134,8 +136,7 @@ public class LinkHeaderDelegate implements RuntimeDelegate.HeaderDelegate<LinkHe
          return href;
       }
 
-      public void parseAttribute(MultivaluedMap<String, String> attributes)
-      {
+      public void parseAttribute(MultivaluedMap<String, String> attributes) {
          int end = value.indexOf('=', curr);
          if (end == -1 || end + 1 >= value.length())
             throw new IllegalArgumentException(Messages.MESSAGES.unableToParseLinkHeaderNoEndToParameter(value));
@@ -143,15 +144,11 @@ public class LinkHeaderDelegate implements RuntimeDelegate.HeaderDelegate<LinkHe
          name = name.trim();
          curr = end + 1;
          String val = null;
-         if (curr >= value.length())
-         {
+         if (curr >= value.length()) {
             val = "";
-         }
-         else
-         {
+         } else {
 
-            if (value.charAt(curr) == '"')
-            {
+            if (value.charAt(curr) == '"') {
                if (curr + 1 >= value.length())
                   throw new IllegalArgumentException(Messages.MESSAGES.unableToParseLinkHeaderNoEndToParameter(value));
                curr++;
@@ -160,12 +157,9 @@ public class LinkHeaderDelegate implements RuntimeDelegate.HeaderDelegate<LinkHe
                   throw new IllegalArgumentException(Messages.MESSAGES.unableToParseLinkHeaderNoEndToParameter(value));
                val = value.substring(curr, end);
                curr = end + 1;
-            }
-            else
-            {
+            } else {
                StringBuffer buf = new StringBuffer();
-               while (curr < value.length())
-               {
+               while (curr < value.length()) {
                   char c = value.charAt(curr);
                   if (c == ',' || c == ';') break;
                   buf.append(value.charAt(curr));
@@ -178,36 +172,5 @@ public class LinkHeaderDelegate implements RuntimeDelegate.HeaderDelegate<LinkHe
 
       }
 
-   }
-
-   public LinkHeader fromString(String value) throws IllegalArgumentException
-   {
-      return from(value);
-   }
-
-   public static LinkHeader from(String value) throws IllegalArgumentException
-   {
-      if (value == null) throw new IllegalArgumentException(Messages.MESSAGES.paramNull());
-      Parser parser = new Parser(value);
-      parser.parse();
-      return parser.getHeader();
-
-   }
-
-   public String toString(LinkHeader value)
-   {
-      if (value == null) throw new IllegalArgumentException(Messages.MESSAGES.paramNull());
-      return getString(value);
-   }
-
-   public static String getString(LinkHeader value)
-   {
-      StringBuffer buf = new StringBuffer();
-      for (Link link : value.getLinks())
-      {
-         if (buf.length() > 0) buf.append(", ");
-         buf.append(link.toString());
-      }
-      return buf.toString();
    }
 }

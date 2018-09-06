@@ -6,8 +6,7 @@ package org.jboss.resteasy.plugins.server.servlet;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface ResteasyBootstrapClasses
-{
+public interface ResteasyBootstrapClasses {
    String[] BOOTSTRAP_CLASSES = {
            HttpServletDispatcher.class.getName(),
            ResteasyBootstrap.class.getName(),

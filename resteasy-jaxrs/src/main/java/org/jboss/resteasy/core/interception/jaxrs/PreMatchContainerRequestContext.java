@@ -1,26 +1,5 @@
 package org.jboss.resteasy.core.interception.jaxrs;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.function.Supplier;
-
-import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.core.Cookie;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.SecurityContext;
-import javax.ws.rs.core.UriInfo;
-
 import org.jboss.resteasy.core.SynchronousDispatcher;
 import org.jboss.resteasy.specimpl.BuiltResponse;
 import org.jboss.resteasy.spi.ApplicationException;
@@ -28,12 +7,19 @@ import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.jboss.resteasy.tracing.RESTEasyTracingLogger;
 
+import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.core.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.util.*;
+import java.util.function.Supplier;
+
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class PreMatchContainerRequestContext implements SuspendableContainerRequestContext
-{
+public class PreMatchContainerRequestContext implements SuspendableContainerRequestContext {
    protected final HttpRequest httpRequest;
    protected Response response;
    private ContainerRequestFilter[] requestFilters;
@@ -47,243 +33,205 @@ public class PreMatchContainerRequestContext implements SuspendableContainerRequ
    private boolean startedContinuation;
 
    @Deprecated
-   public PreMatchContainerRequestContext(HttpRequest request)
-   {
+   public PreMatchContainerRequestContext(HttpRequest request) {
       this(request, new ContainerRequestFilter[]{}, null);
    }
-   
-   public PreMatchContainerRequestContext(HttpRequest request, 
-         ContainerRequestFilter[] requestFilters, Supplier<BuiltResponse> continuation)
-   {
+
+   public PreMatchContainerRequestContext(HttpRequest request,
+                                          ContainerRequestFilter[] requestFilters, Supplier<BuiltResponse> continuation) {
       this.httpRequest = request;
       this.requestFilters = requestFilters;
       this.continuation = continuation;
       contextDataMap = ResteasyProviderFactory.getContextDataMap();
    }
 
-   public HttpRequest getHttpRequest()
-   {
+   public HttpRequest getHttpRequest() {
       return httpRequest;
    }
 
-   public Response getResponseAbortedWith()
-   {
+   public Response getResponseAbortedWith() {
       return response;
    }
 
    @Override
-   public Object getProperty(String name)
-   {
+   public Object getProperty(String name) {
       return httpRequest.getAttribute(name);
    }
 
    @Override
-   public Collection<String> getPropertyNames()
-   {
+   public Collection<String> getPropertyNames() {
       ArrayList<String> names = new ArrayList<String>();
       Enumeration<String> enames = httpRequest.getAttributeNames();
-      while (enames.hasMoreElements())
-      {
+      while (enames.hasMoreElements()) {
          names.add(enames.nextElement());
       }
       return names;
    }
 
    @Override
-   public void setProperty(String name, Object object)
-   {
+   public void setProperty(String name, Object object) {
       httpRequest.setAttribute(name, object);
    }
 
    @Override
-   public void removeProperty(String name)
-   {
+   public void removeProperty(String name) {
       httpRequest.removeAttribute(name);
    }
 
    @Override
-   public UriInfo getUriInfo()
-   {
+   public UriInfo getUriInfo() {
       return httpRequest.getUri();
    }
 
    @Override
-   public void setRequestUri(URI requestUri) throws IllegalStateException
-   {
+   public void setRequestUri(URI requestUri) throws IllegalStateException {
       httpRequest.setRequestUri(requestUri);
    }
 
    @Override
-   public void setRequestUri(URI baseUri, URI requestUri) throws IllegalStateException
-   {
+   public void setRequestUri(URI baseUri, URI requestUri) throws IllegalStateException {
       httpRequest.setRequestUri(baseUri, requestUri);
    }
 
    @Override
-   public String getMethod()
-   {
+   public String getMethod() {
       return httpRequest.getHttpMethod();
    }
 
    @Override
-   public void setMethod(String method)
-   {
+   public void setMethod(String method) {
       httpRequest.setHttpMethod(method);
    }
 
    @Override
-   public MultivaluedMap<String, String> getHeaders()
-   {
+   public MultivaluedMap<String, String> getHeaders() {
       return httpRequest.getHttpHeaders().getRequestHeaders();
    }
 
    @Override
-   public Date getDate()
-   {
+   public Date getDate() {
       return httpRequest.getHttpHeaders().getDate();
    }
 
    @Override
-   public Locale getLanguage()
-   {
+   public Locale getLanguage() {
       return httpRequest.getHttpHeaders().getLanguage();
    }
 
    @Override
-   public int getLength()
-   {
+   public int getLength() {
       return httpRequest.getHttpHeaders().getLength();
    }
 
    @Override
-   public MediaType getMediaType()
-   {
+   public MediaType getMediaType() {
       return httpRequest.getHttpHeaders().getMediaType();
    }
 
    @Override
-   public List<MediaType> getAcceptableMediaTypes()
-   {
+   public List<MediaType> getAcceptableMediaTypes() {
       return httpRequest.getHttpHeaders().getAcceptableMediaTypes();
    }
 
    @Override
-   public List<Locale> getAcceptableLanguages()
-   {
+   public List<Locale> getAcceptableLanguages() {
       return httpRequest.getHttpHeaders().getAcceptableLanguages();
    }
 
    @Override
-   public Map<String, Cookie> getCookies()
-   {
+   public Map<String, Cookie> getCookies() {
       return httpRequest.getHttpHeaders().getCookies();
    }
 
    @Override
-   public boolean hasEntity()
-   {
+   public boolean hasEntity() {
       return getMediaType() != null;
    }
 
    @Override
-   public InputStream getEntityStream()
-   {
+   public InputStream getEntityStream() {
       return httpRequest.getInputStream();
    }
 
    @Override
-   public void setEntityStream(InputStream entityStream)
-   {
+   public void setEntityStream(InputStream entityStream) {
       httpRequest.setInputStream(entityStream);
    }
 
    @Override
-   public SecurityContext getSecurityContext()
-   {
+   public SecurityContext getSecurityContext() {
       return ResteasyProviderFactory.getContextData(SecurityContext.class);
    }
 
    @Override
-   public void setSecurityContext(SecurityContext context)
-   {
+   public void setSecurityContext(SecurityContext context) {
       ResteasyProviderFactory.pushContext(SecurityContext.class, context);
    }
 
    @Override
-   public Request getRequest()
-   {
+   public Request getRequest() {
       return ResteasyProviderFactory.getContextData(Request.class);
    }
 
    @Override
-   public String getHeaderString(String name)
-   {
+   public String getHeaderString(String name) {
       return httpRequest.getHttpHeaders().getHeaderString(name);
    }
 
    @Override
    public synchronized void suspend() {
-      if(continuation == null)
+      if (continuation == null)
          throw new RuntimeException("Suspend not supported yet");
       suspended = true;
    }
 
    @Override
-   public synchronized void abortWith(Response response)
-   {
-      if(suspended && !inFilter)
-      {
+   public synchronized void abortWith(Response response) {
+      if (suspended && !inFilter) {
          ResteasyProviderFactory.pushContextDataMap(contextDataMap);
          httpRequest.getAsyncContext().getAsyncResponse().resume(response);
-      }
-      else
-      {
+      } else {
          // not suspended, or suspend/abortWith within filter, same thread: collect and move on
          this.response = response;
          suspended = false;
       }
    }
-   
+
    @Override
    public synchronized void resume() {
-      if(!suspended)
+      if (!suspended)
          throw new RuntimeException("Cannot resume: not suspended");
-      if(inFilter)
-      {
+      if (inFilter) {
          // suspend/resume within filter, same thread: just ignore and move on
          suspended = false;
          return;
       }
-         
+
       ResteasyProviderFactory.pushContextDataMap(contextDataMap);
       // go on, but with proper exception handling
       try {
          filter();
-      }catch(Throwable t) {
+      } catch (Throwable t) {
          // don't throw to client
          writeException(t);
       }
    }
-   
+
    @Override
    public synchronized void resume(Throwable t) {
-      if(!suspended)
+      if (!suspended)
          throw new RuntimeException("Cannot resume: not suspended");
-      if(inFilter)
-      {
+      if (inFilter) {
          // not suspended, or suspend/abortWith within filter, same thread: collect and move on
          throwable = t;
          suspended = false;
-      }
-      else
-      {
+      } else {
          ResteasyProviderFactory.pushContextDataMap(contextDataMap);
          writeException(t);
       }
    }
-   
-   private void writeException(Throwable t)
-   {
+
+   private void writeException(Throwable t) {
       /*
        * Here, contrary to ContainerResponseContextImpl.writeException, we can use the async response
        * to write the exception, because it calls the right response filters, complete() and callbacks
@@ -291,17 +239,14 @@ public class PreMatchContainerRequestContext implements SuspendableContainerRequ
       httpRequest.getAsyncContext().getAsyncResponse().resume(t);
    }
 
-   public synchronized BuiltResponse filter()
-   {
+   public synchronized BuiltResponse filter() {
       RESTEasyTracingLogger tracingLogger = RESTEasyTracingLogger.getInstance(httpRequest);
 
       final long totalTimestamp = tracingLogger.timestamp("REQUEST_FILTER_SUMMARY");
 
-      while(currentFilter < requestFilters.length)
-      {
+      while (currentFilter < requestFilters.length) {
          ContainerRequestFilter filter = requestFilters[currentFilter++];
-         try
-         {
+         try {
             suspended = false;
             response = null;
             throwable = null;
@@ -309,42 +254,34 @@ public class PreMatchContainerRequestContext implements SuspendableContainerRequ
             final long timestamp = tracingLogger.timestamp("REQUEST_FILTER");
             filter.filter(this);
             tracingLogger.logDuration("REQUEST_FILTER", timestamp, filter);
-         }
-         catch (IOException e)
-         {
+         } catch (IOException e) {
             throw new ApplicationException(e);
-         }
-         finally
-         {
+         } finally {
             inFilter = false;
          }
-         if(suspended) {
-            if(!httpRequest.getAsyncContext().isSuspended())
+         if (suspended) {
+            if (!httpRequest.getAsyncContext().isSuspended())
                httpRequest.getAsyncContext().suspend();
             // ignore any abort request until we are resumed
             filterReturnIsMeaningful = false;
             response = null;
             return null;
          }
-         BuiltResponse serverResponse = (BuiltResponse)getResponseAbortedWith();
-         if (serverResponse != null)
-         {
+         BuiltResponse serverResponse = (BuiltResponse) getResponseAbortedWith();
+         if (serverResponse != null) {
             // handle the case where we've been suspended by a previous filter
-            if(filterReturnIsMeaningful)
+            if (filterReturnIsMeaningful)
                return serverResponse;
-            else
-            {
+            else {
                httpRequest.getAsyncContext().getAsyncResponse().resume(serverResponse);
                return null;
             }
          }
-         if (throwable != null)
-         {
+         if (throwable != null) {
             // handle the case where we've been suspended by a previous filter
-            if(filterReturnIsMeaningful)
+            if (filterReturnIsMeaningful)
                SynchronousDispatcher.rethrow(throwable);
-            else
-            {
+            else {
                writeException(throwable);
                return null;
             }
@@ -356,14 +293,13 @@ public class PreMatchContainerRequestContext implements SuspendableContainerRequ
       // so if we get here we're still synchronous and don't have a continuation, which must be in
       // the caller
       startedContinuation = true;
-      if(continuation == null)
+      if (continuation == null)
          return null;
       // in any case, return the continuation: sync will use it, and async will ignore it
       return continuation.get();
    }
 
-   public boolean startedContinuation()
-   {
+   public boolean startedContinuation() {
       return startedContinuation;
    }
 }

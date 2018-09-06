@@ -13,21 +13,20 @@ import java.util.regex.Pattern;
 /**
  * Can inject maps.
  */
-public class MapFormInjector extends AbstractCollectionFormInjector<Map>
-{
+public class MapFormInjector extends AbstractCollectionFormInjector<Map> {
 
    private final StringParameterInjector keyInjector;
 
    /**
     * Constructor.
+    *
     * @param collectionType collection type
-    * @param keyType key type
-    * @param valueType value type
-    * @param prefix prefix
-    * @param factory provider factory
+    * @param keyType        key type
+    * @param valueType      value type
+    * @param prefix         prefix
+    * @param factory        provider factory
     */
-   public MapFormInjector(Class collectionType, Class keyType, Class valueType, String prefix, ResteasyProviderFactory factory)
-   {
+   public MapFormInjector(Class collectionType, Class keyType, Class valueType, String prefix, ResteasyProviderFactory factory) {
       super(collectionType, valueType, prefix, Pattern.compile("^" + prefix + "\\[([0-9a-zA-Z_\\-\\.~]+)\\]"), factory);
       keyInjector = new StringParameterInjector(keyType, keyType, null, Form.class, null, null, new Annotation[0], factory);
    }
@@ -37,14 +36,11 @@ public class MapFormInjector extends AbstractCollectionFormInjector<Map>
     */
    @SuppressWarnings(value = "unchecked")
    @Override
-   protected Map createInstance(Class collectionType)
-   {
-      if (collectionType.isAssignableFrom(LinkedHashMap.class))
-      {
+   protected Map createInstance(Class collectionType) {
+      if (collectionType.isAssignableFrom(LinkedHashMap.class)) {
          return new LinkedHashMap();
       }
-      if (collectionType.isAssignableFrom(TreeMap.class))
-      {
+      if (collectionType.isAssignableFrom(TreeMap.class)) {
          return new TreeMap();
       }
       throw new RuntimeException(Messages.MESSAGES.unsupportedCollectionType(collectionType));
@@ -55,8 +51,7 @@ public class MapFormInjector extends AbstractCollectionFormInjector<Map>
     */
    @SuppressWarnings(value = "unchecked")
    @Override
-   protected void addTo(Map collection, String key, Object value)
-   {
+   protected void addTo(Map collection, String key, Object value) {
       collection.put(keyInjector.extractValue(key), value);
    }
 }

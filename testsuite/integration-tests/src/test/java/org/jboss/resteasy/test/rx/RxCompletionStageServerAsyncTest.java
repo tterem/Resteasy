@@ -1,46 +1,35 @@
 package org.jboss.resteasy.test.rx;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.internal.CompletionStageRxInvokerProvider;
-import org.jboss.resteasy.test.rx.resource.ExceptionThrowingFilter;
-import org.jboss.resteasy.test.rx.resource.FilterException;
-import org.jboss.resteasy.test.rx.resource.RxCompletionStageResourceImpl;
-import org.jboss.resteasy.test.rx.resource.RxScheduledExecutorService;
-import org.jboss.resteasy.test.rx.resource.TestException;
-import org.jboss.resteasy.test.rx.resource.TestExceptionMapper;
-import org.jboss.resteasy.test.rx.resource.Thing;
+import org.jboss.resteasy.test.rx.resource.*;
 import org.jboss.resteasy.utils.PortProviderUtil;
 import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
+
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation.Builder;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 /**
  * @tpSubChapter Reactive classes
  * @tpChapter Integration tests
  * @tpSince RESTEasy 4.0
- * 
+ * <p>
  * These tests run synchronously on client, making synchronous invocations.
  * The server creates and returns CompletionStages which run asynchronously.
  */
@@ -50,14 +39,19 @@ public class RxCompletionStageServerAsyncTest {
 
    private static ResteasyClient client;
 
-   private static List<Thing>  xThingList =  new ArrayList<Thing>();
-   private static List<Thing>  aThingList =  new ArrayList<Thing>();
+   private static List<Thing> xThingList = new ArrayList<Thing>();
+   private static List<Thing> aThingList = new ArrayList<Thing>();
    private static Entity<String> aEntity = Entity.entity("a", MediaType.TEXT_PLAIN_TYPE);
-   private static GenericType<List<Thing>> LIST_OF_THING = new GenericType<List<Thing>>() {};
+   private static GenericType<List<Thing>> LIST_OF_THING = new GenericType<List<Thing>>() {
+   };
 
    static {
-      for (int i = 0; i < 3; i++) {xThingList.add(new Thing("x"));}
-      for (int i = 0; i < 3; i++) {aThingList.add(new Thing("a"));}
+      for (int i = 0; i < 3; i++) {
+         xThingList.add(new Thing("x"));
+      }
+      for (int i = 0; i < 3; i++) {
+         aThingList.add(new Thing("a"));
+      }
    }
 
    @Deployment
@@ -324,7 +318,7 @@ public class RxCompletionStageServerAsyncTest {
       ResteasyClient client1 = new ResteasyClientBuilder().build();
       client1.register(CompletionStageRxInvokerProvider.class);
       Builder request1 = client1.target(generateURL("/get/string")).request();
-      Response response1 = request1.get();      
+      Response response1 = request1.get();
 
       ResteasyClient client2 = new ResteasyClientBuilder().build();
       client2.register(CompletionStageRxInvokerProvider.class);
@@ -345,7 +339,7 @@ public class RxCompletionStageServerAsyncTest {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       Builder request1 = client.target(generateURL("/get/string")).request();
-      Response response1 = request1.get();      
+      Response response1 = request1.get();
 
       Builder request2 = client.target(generateURL("/get/string")).request();
       Response response2 = request2.get();
@@ -364,7 +358,7 @@ public class RxCompletionStageServerAsyncTest {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       Builder request = client.target(generateURL("/get/string")).request();
-      Response response1 = request.get();      
+      Response response1 = request.get();
       Response response2 = request.get();
 
       list.add(response1.readEntity(String.class));

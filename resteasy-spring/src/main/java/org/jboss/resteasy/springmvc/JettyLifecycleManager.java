@@ -7,44 +7,33 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
 /**
-* 
-* @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
-* @version $Revision: 1 $
-*/
+ * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
+ * @version $Revision: 1 $
+ */
 
-public class JettyLifecycleManager implements InitializingBean, DisposableBean
-{
+public class JettyLifecycleManager implements InitializingBean, DisposableBean {
 
    private Server servletContainer;
 
-   public Server getServletContainer()
-   {
+   public Server getServletContainer() {
       return servletContainer;
    }
 
-   public void setServletContainer(Server servletContainer)
-   {
+   public void setServletContainer(Server servletContainer) {
       this.servletContainer = servletContainer;
    }
 
-   public void afterPropertiesSet() throws Exception
-   {
+   public void afterPropertiesSet() throws Exception {
       LogMessages.LOGGER.info(Messages.MESSAGES.startingUpJetty());
-      try
-      {
+      try {
          servletContainer.start();
 
-         while (!servletContainer.isStarted())
-         {
+         while (!servletContainer.isStarted()) {
             Thread.sleep(1000);
          }
-      }
-      catch (InterruptedException e)
-      {
+      } catch (InterruptedException e) {
          LogMessages.LOGGER.error(Messages.MESSAGES.interruptedStartingUpJetty(), e);
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          LogMessages.LOGGER.error(Messages.MESSAGES.exceptionStartingUpJetty(), e);
       }
 
@@ -56,15 +45,11 @@ public class JettyLifecycleManager implements InitializingBean, DisposableBean
        */
    }
 
-   public void destroy() throws Exception
-   {
+   public void destroy() throws Exception {
       LogMessages.LOGGER.info(Messages.MESSAGES.shuttingDownJetty());
-      try
-      {
+      try {
          servletContainer.stop();
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          LogMessages.LOGGER.info(Messages.MESSAGES.exceptionShuttingDownJetty(), e);
       }
    }

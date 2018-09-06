@@ -1,10 +1,6 @@
 package org.jboss.resteasy.links;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * <p>
@@ -15,6 +11,7 @@ import java.lang.annotation.Target;
  * and your resource holds the <tt>name</tt> bean property, then your
  * <tt>name</tt> property should be annotated with {@link ResourceID @ResourceID}.
  * </p>
+ *
  * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
  */
 @Target({ElementType.METHOD, ElementType.FIELD})

@@ -1,10 +1,6 @@
 package org.jboss.resteasy.core;
 
-import org.jboss.resteasy.spi.ConstructorInjector;
-import org.jboss.resteasy.spi.HttpRequest;
-import org.jboss.resteasy.spi.HttpResponse;
-import org.jboss.resteasy.spi.PropertyInjector;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
+import org.jboss.resteasy.spi.*;
 
 import java.lang.reflect.Constructor;
 import java.util.concurrent.CompletionStage;
@@ -23,12 +19,9 @@ public class QueryInjector implements ValueInjector {
       this.type = type;
       Constructor<?> constructor;
 
-      try
-      {
+      try {
          constructor = type.getConstructor();
-      }
-      catch (NoSuchMethodException e)
-      {
+      } catch (NoSuchMethodException e) {
          throw new RuntimeException("Unable to instantiate @Query class. No no-arg constructor.");
       }
 
@@ -44,7 +37,7 @@ public class QueryInjector implements ValueInjector {
    @Override
    public CompletionStage<Object> inject(HttpRequest request, HttpResponse response, boolean unwrapAsync) {
       return constructorInjector.construct(unwrapAsync)
-            .thenCompose(target -> propertyInjector.inject(request, response, target, unwrapAsync)
-                                 .thenApply(v -> target));
+              .thenCompose(target -> propertyInjector.inject(request, response, target, unwrapAsync)
+                      .thenApply(v -> target));
    }
 }

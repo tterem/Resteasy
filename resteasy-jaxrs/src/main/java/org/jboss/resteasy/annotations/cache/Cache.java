@@ -13,8 +13,7 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Cache
-{
+public @interface Cache {
    int maxAge() default -1;
 
    int sMaxAge() default -1;

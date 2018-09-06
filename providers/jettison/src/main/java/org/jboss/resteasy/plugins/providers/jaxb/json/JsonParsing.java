@@ -10,10 +10,8 @@ import java.io.Reader;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class JsonParsing
-{
-   public static String extractJsonMapString(Reader reader) throws IOException
-   {
+public class JsonParsing {
+   public static String extractJsonMapString(Reader reader) throws IOException {
       int openBrace = 1;
       boolean quote = false;
       boolean backslash = false;
@@ -22,39 +20,30 @@ public class JsonParsing
       char c = (char) i;
       StringBuffer buffer = new StringBuffer();
       if (c != '{') throw new JAXBUnmarshalException(Messages.MESSAGES.expectingLeftBraceJsonMap());
-      
+
       buffer.append(c);
-      do
-      {
+      do {
          i = reader.read();
          if (i == -1) throw new JAXBUnmarshalException(Messages.MESSAGES.unexpectedEndOfStream());
          c = (char) i;
          buffer.append(c);
-         if (backslash)
-         {
+         if (backslash) {
             backslash = false;
-         }
-         else
-         {
-            switch (c)
-            {
-               case '"':
-               {
+         } else {
+            switch (c) {
+               case '"': {
                   quote = !quote;
                   break;
                }
-               case '{':
-               {
+               case '{': {
                   if (!quote) openBrace++;
                   break;
                }
-               case '}':
-               {
+               case '}': {
                   if (!quote) openBrace--;
                   break;
                }
-               case '\\':
-               {
+               case '\\': {
                   backslash = true;
                   break;
                }
@@ -64,8 +53,7 @@ public class JsonParsing
       return buffer.toString();
    }
 
-   public static String getJsonString(Reader reader) throws IOException
-   {
+   public static String getJsonString(Reader reader) throws IOException {
       boolean quote = true;
       boolean backslash = false;
 
@@ -74,27 +62,20 @@ public class JsonParsing
       StringBuffer buffer = new StringBuffer();
       if (c != '"') throw new JAXBUnmarshalException(Messages.MESSAGES.expectingQuote());
 
-      do
-      {
+      do {
          i = reader.read();
          if (i == -1) throw new JAXBUnmarshalException(Messages.MESSAGES.unexpectedEndOfStream());
          c = (char) i;
-         if (backslash)
-         {
+         if (backslash) {
             buffer.append(c);
             backslash = false;
-         }
-         else
-         {
-            switch (c)
-            {
-               case '"':
-               {
+         } else {
+            switch (c) {
+               case '"': {
                   quote = false;
                   break;
                }
-               case '\\':
-               {
+               case '\\': {
                   backslash = true;
                   break;
                }
@@ -109,12 +90,10 @@ public class JsonParsing
    }
 
    protected static char eatWhitspace(Reader buffer, boolean reset)
-           throws IOException
-   {
+           throws IOException {
       int i;
       char c;
-      do
-      {
+      do {
          buffer.mark(2);
          i = buffer.read();
          if (i == -1) throw new JAXBUnmarshalException(Messages.MESSAGES.unexpectedEndOfJsonInput());

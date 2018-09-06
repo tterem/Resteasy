@@ -18,7 +18,6 @@ import javax.xml.namespace.QName;
  * type definitions, element declarations and model
  * groups.  Factory methods for each of these are
  * provided in this class.
- *
  */
 @XmlRegistry
 public class ObjectFactory {
@@ -29,14 +28,12 @@ public class ObjectFactory {
 
    /**
     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: de.creaity.homecontrol.service.rest.jaxb.v1
-    *
     */
    public ObjectFactory() {
    }
 
    /**
     * Create an instance of {@link UserType }
-    *
     */
    public UserType createUserType() {
       return new UserType();
@@ -44,7 +41,6 @@ public class ObjectFactory {
 
    /**
     * Create an instance of {@link ErrorMessageType }
-    *
     */
    public ErrorMessageType createErrorMessageType() {
       return new ErrorMessageType();
@@ -59,7 +55,6 @@ public class ObjectFactory {
 
    /**
     * Create an instance of {@link BinaryType }
-    *
     */
    public BinaryType createBinaryType() {
       return new BinaryType();
@@ -67,7 +62,6 @@ public class ObjectFactory {
 
    /**
     * Create an instance of {@link UserType.Credentials }
-    *
     */
    public UserType.Credentials createUserTypeCredentials() {
       return new UserType.Credentials();
@@ -75,7 +69,6 @@ public class ObjectFactory {
 
    /**
     * Create an instance of {@link JAXBElement }{@code <}{@link UserType }{@code >}}
-    *
     */
    @XmlElementDecl(namespace = "http://creaity.de/homecontrol/rest/types/v1", name = "user")
    public JAXBElement<UserType> createUser(UserType value) {
@@ -84,7 +77,6 @@ public class ObjectFactory {
 
    /**
     * Create an instance of {@link JAXBElement }{@code <}{@link ErrorMessageType }{@code >}}
-    *
     */
    @XmlElementDecl(namespace = "http://creaity.de/homecontrol/rest/types/v1", name = "error")
    public JAXBElement<ErrorMessageType> createError(ErrorMessageType value) {
@@ -93,7 +85,6 @@ public class ObjectFactory {
 
    /**
     * Create an instance of {@link JAXBElement }{@code <}{@link IDType }{@code >}}
-    *
     */
    @XmlElementDecl(namespace = "http://creaity.de/homecontrol/rest/types/v1", name = "id")
    public JAXBElement<IDType> createId(IDType value) {

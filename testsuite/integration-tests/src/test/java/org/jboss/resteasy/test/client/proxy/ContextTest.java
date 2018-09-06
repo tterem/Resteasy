@@ -31,46 +31,46 @@ import javax.ws.rs.core.UriInfo;
 @RunAsClient
 public class ContextTest {
 
-    @Path(value = "/test")
-    public interface ResourceInterface {
+   static ResteasyClient client;
 
-        @GET
-        @Produces("text/plain")
-        String echo(@Context UriInfo info);
-    }
+   @Deployment
+   public static Archive<?> deploy() {
+      WebArchive war = TestUtil.prepareArchive(ContextTest.class.getSimpleName());
+      war.addClass(ContextTest.class);
+      return TestUtil.finishContainerPrepare(war, null, ContextTestResource.class);
+   }
 
-    static ResteasyClient client;
+   @Before
+   public void init() {
+      client = new ResteasyClientBuilder().build();
+   }
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(ContextTest.class.getSimpleName());
-        war.addClass(ContextTest.class);
-        return TestUtil.finishContainerPrepare(war, null, ContextTestResource.class);
-    }
+   @After
+   public void after() throws Exception {
+      client.close();
+   }
 
-    @Before
-    public void init() {
-        client = new ResteasyClientBuilder().build();
-    }
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, ContextTest.class.getSimpleName());
+   }
 
-    @After
-    public void after() throws Exception {
-        client.close();
-    }
+   /**
+    * @tpTestDetails Client sends async GET requests thru client proxy. UriInfo is injected as argument of the GET
+    * method call.
+    * @tpPassCrit UriInfo was injected into method call
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testContextInjectionProxy() {
+      ResourceInterface proxy = client.target(generateURL("")).proxy(ResourceInterface.class);
+      Assert.assertEquals("UriInfo was not injected", "content", proxy.echo(null));
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, ContextTest.class.getSimpleName());
-    }
+   @Path(value = "/test")
+   public interface ResourceInterface {
 
-    /**
-     * @tpTestDetails Client sends async GET requests thru client proxy. UriInfo is injected as argument of the GET
-     * method call.
-     * @tpPassCrit UriInfo was injected into method call
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testContextInjectionProxy() {
-        ResourceInterface proxy = client.target(generateURL("")).proxy(ResourceInterface.class);
-        Assert.assertEquals("UriInfo was not injected", "content", proxy.echo(null));
-    }
+      @GET
+      @Produces("text/plain")
+      String echo(@Context UriInfo info);
+   }
 }

@@ -21,7 +21,7 @@ import org.junit.runner.RunWith;
  * @tpChapter Integration tests
  * @tpTestCaseDetails Test for RESTEASY-1671
  * @tpSince RESTEasy 4.0.0
- *
+ * <p>
  * Created by rsearls on 8/24/17.
  */
 @RunWith(Arquillian.class)
@@ -42,13 +42,12 @@ public class ProxyNullInputStreamTest {
 
 
    @Test
-   public void testNullPointerEx () throws Exception {
+   public void testNullPointerEx() throws Exception {
       ResteasyClient client = new ResteasyClientBuilder().register(ProxyNullInputStreamClientResponseFilter.class).build();
       ProxyNullInputStreamResource pResource = client.target(generateURL("/test/user/mydb"))
               .proxyBuilder(ProxyNullInputStreamResource.class)
               .build();
-      try
-      {
+      try {
          pResource.getUserHead("myDb");
       } catch (Exception e) {
          Assert.assertEquals("HTTP 404 Not Found", e.getMessage());

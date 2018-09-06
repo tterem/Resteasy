@@ -16,39 +16,39 @@ import java.net.URL;
  */
 public class NotAllowGzipOnServerAllowGzipOnClientTest extends NotAllowGzipOnServerAbstractTestBase {
 
-    @BeforeClass
-    public static void init() {
-        System.setProperty(PROPERTY_NAME, Boolean.TRUE.toString());
-    }
+   @ArquillianResource
+   private URL deploymentBaseUrl;
 
-    @AfterClass
-    public static void clean() {
-        System.clearProperty(PROPERTY_NAME);
-    }
+   @BeforeClass
+   public static void init() {
+      System.setProperty(PROPERTY_NAME, Boolean.TRUE.toString());
+   }
 
-    @ArquillianResource
-    private URL deploymentBaseUrl;
+   @AfterClass
+   public static void clean() {
+      System.clearProperty(PROPERTY_NAME);
+   }
 
    /**
-     * @tpTestDetails gzip is disabled on server
-     *                gzip is allowed on client by resteasy.allowGzip system property
-     * @tpSince RESTEasy 3.6
-     */
-    @Test
-    @OperateOnDeployment(WAR_WITHOUT_PROVIDERS_FILE)
-    public void noProvidersFileOnServer() throws Exception {
-        testNormalClient(deploymentBaseUrl, false, "null", true, false);
-    }
+    * @tpTestDetails gzip is disabled on server
+    * gzip is allowed on client by resteasy.allowGzip system property
+    * @tpSince RESTEasy 3.6
+    */
+   @Test
+   @OperateOnDeployment(WAR_WITHOUT_PROVIDERS_FILE)
+   public void noProvidersFileOnServer() throws Exception {
+      testNormalClient(deploymentBaseUrl, false, "null", true, false);
+   }
 
-    /**
-     * @tpTestDetails gzip is enabled on server by javax.ws.rs.ext.Providers file in deployment
-     *                gzip is allowed on client by resteasy.allowGzip system property
-     * @tpSince RESTEasy 3.6
-     */
-    @Test
-    @OperateOnDeployment(WAR_WITH_PROVIDERS_FILE)
-    public void providersFileOnServer() throws Exception {
-        testNormalClient(deploymentBaseUrl, false, "null", true, true);
-    }
+   /**
+    * @tpTestDetails gzip is enabled on server by javax.ws.rs.ext.Providers file in deployment
+    * gzip is allowed on client by resteasy.allowGzip system property
+    * @tpSince RESTEasy 3.6
+    */
+   @Test
+   @OperateOnDeployment(WAR_WITH_PROVIDERS_FILE)
+   public void providersFileOnServer() throws Exception {
+      testNormalClient(deploymentBaseUrl, false, "null", true, true);
+   }
 
 }

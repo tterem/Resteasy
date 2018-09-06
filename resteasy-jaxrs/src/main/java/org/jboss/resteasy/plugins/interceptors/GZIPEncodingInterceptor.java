@@ -20,65 +20,14 @@ import java.util.zip.GZIPOutputStream;
  */
 @Provider
 @Priority(Priorities.ENTITY_CODER)
-public class GZIPEncodingInterceptor implements WriterInterceptor
-{
-   public static class EndableGZIPOutputStream extends GZIPOutputStream
-   {
-      public EndableGZIPOutputStream(OutputStream os) throws IOException
-      {
-         super(os);
-      }
-
-      @Override
-      public void finish() throws IOException
-      {
-         super.finish();
-         def.end(); // make sure on finish the deflater's end() is called to release the native code pointer
-      }
-   }
-
-   public static class CommittedGZIPOutputStream extends CommitHeaderOutputStream
-   {
-      protected CommittedGZIPOutputStream(OutputStream delegate, CommitCallback headers)
-      {
-         super(delegate, headers);
-      }
-
-      protected GZIPOutputStream gzip;
-
-      public GZIPOutputStream getGzip()
-      {
-         return gzip;
-      }
-
-      @Override
-      public synchronized void commit()
-      {
-         if (isHeadersCommitted) return;
-         isHeadersCommitted = true;
-         try
-         {
-            // GZIPOutputStream constructor writes to underlying OS causing headers to be written.
-            // so we swap gzip OS in when we are ready to write.
-            gzip  = new EndableGZIPOutputStream(delegate);
-            delegate = gzip;
-         }
-         catch (IOException e)
-         {
-            throw new RuntimeException(e);
-         }
-      }
-   }
-
+public class GZIPEncodingInterceptor implements WriterInterceptor {
    @Override
-   public void aroundWriteTo(WriterInterceptorContext context) throws IOException, WebApplicationException
-   {
+   public void aroundWriteTo(WriterInterceptorContext context) throws IOException, WebApplicationException {
       LogMessages.LOGGER.debugf("Interceptor : %s,  Method : aroundWriteTo", getClass().getName());
 
       Object encoding = context.getHeaders().getFirst(HttpHeaders.CONTENT_ENCODING);
 
-      if (encoding != null && encoding.toString().equalsIgnoreCase("gzip"))
-      {
+      if (encoding != null && encoding.toString().equalsIgnoreCase("gzip")) {
          OutputStream old = context.getOutputStream();
          // GZIPOutputStream constructor writes to underlying OS causing headers to be written.
          CommittedGZIPOutputStream gzipOutputStream = new CommittedGZIPOutputStream(old, null);
@@ -87,20 +36,53 @@ public class GZIPEncodingInterceptor implements WriterInterceptor
          context.getHeaders().remove("Content-Length");
 
          context.setOutputStream(gzipOutputStream);
-         try
-         {
+         try {
             context.proceed();
-         }
-         finally
-         {
+         } finally {
             if (gzipOutputStream.getGzip() != null) gzipOutputStream.getGzip().finish();
             context.setOutputStream(old);
          }
          return;
-      }
-      else
-      {
+      } else {
          context.proceed();
+      }
+   }
+
+   public static class EndableGZIPOutputStream extends GZIPOutputStream {
+      public EndableGZIPOutputStream(OutputStream os) throws IOException {
+         super(os);
+      }
+
+      @Override
+      public void finish() throws IOException {
+         super.finish();
+         def.end(); // make sure on finish the deflater's end() is called to release the native code pointer
+      }
+   }
+
+   public static class CommittedGZIPOutputStream extends CommitHeaderOutputStream {
+      protected GZIPOutputStream gzip;
+
+      protected CommittedGZIPOutputStream(OutputStream delegate, CommitCallback headers) {
+         super(delegate, headers);
+      }
+
+      public GZIPOutputStream getGzip() {
+         return gzip;
+      }
+
+      @Override
+      public synchronized void commit() {
+         if (isHeadersCommitted) return;
+         isHeadersCommitted = true;
+         try {
+            // GZIPOutputStream constructor writes to underlying OS causing headers to be written.
+            // so we swap gzip OS in when we are ready to write.
+            gzip = new EndableGZIPOutputStream(delegate);
+            delegate = gzip;
+         } catch (IOException e) {
+            throw new RuntimeException(e);
+         }
       }
    }
 }

@@ -8,13 +8,11 @@ import java.lang.reflect.Type;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class MethodParameter extends Parameter
-{
+public class MethodParameter extends Parameter {
    protected Annotation[] annotations = {};
    protected ResourceLocator locator;
 
-   protected MethodParameter(ResourceLocator locator, String name, Class<?> type, Type genericType,Annotation[] annotations)
-   {
+   protected MethodParameter(ResourceLocator locator, String name, Class<?> type, Type genericType, Annotation[] annotations) {
       super(locator.getResourceClass(), type, genericType);
       this.annotations = annotations;
       this.locator = locator;
@@ -22,13 +20,11 @@ public class MethodParameter extends Parameter
    }
 
    @Override
-   public AccessibleObject getAccessibleObject()
-   {
+   public AccessibleObject getAccessibleObject() {
       return locator.getMethod();
    }
 
-   public Annotation[] getAnnotations()
-   {
+   public Annotation[] getAnnotations() {
       return annotations;
    }
 }

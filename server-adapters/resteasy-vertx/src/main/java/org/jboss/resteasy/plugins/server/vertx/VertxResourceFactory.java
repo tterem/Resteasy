@@ -14,59 +14,49 @@ import java.util.concurrent.CompletionStage;
 /**
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */
-public class VertxResourceFactory implements ResourceFactory
-{
+public class VertxResourceFactory implements ResourceFactory {
 
    private final ResourceFactory delegate;
    private final String id = UUID.randomUUID().toString();
 
-   public VertxResourceFactory(ResourceFactory delegate)
-   {
+   public VertxResourceFactory(ResourceFactory delegate) {
       this.delegate = delegate;
    }
 
    @Override
-   public Class<?> getScannableClass()
-   {
+   public Class<?> getScannableClass() {
       return delegate.getScannableClass();
    }
 
    @Override
-   public void registered(ResteasyProviderFactory factory)
-   {
+   public void registered(ResteasyProviderFactory factory) {
       delegate.registered(factory);
    }
 
    @Override
-   public CompletionStage<Object> createResource(HttpRequest request, HttpResponse response, ResteasyProviderFactory factory)
-   {
+   public CompletionStage<Object> createResource(HttpRequest request, HttpResponse response, ResteasyProviderFactory factory) {
       Context ctx = Vertx.currentContext();
-      if (ctx != null)
-      {
+      if (ctx != null) {
          Object resource = ctx.get(id);
-         if (resource == null)
-         {
+         if (resource == null) {
             return delegate.createResource(request, response, factory).thenApply(newResource -> {
                ctx.put(id, newResource);
                return newResource;
             });
          }
          return CompletableFuture.completedFuture(resource);
-      } else
-      {
+      } else {
          throw new IllegalStateException();
       }
    }
 
    @Override
-   public void requestFinished(HttpRequest request, HttpResponse response, Object resource)
-   {
+   public void requestFinished(HttpRequest request, HttpResponse response, Object resource) {
       delegate.requestFinished(request, response, resource);
    }
 
    @Override
-   public void unregistered()
-   {
+   public void unregistered() {
       delegate.unregistered();
    }
 }

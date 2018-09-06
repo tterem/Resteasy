@@ -1,21 +1,21 @@
 package org.jboss.resteasy.test.rx.resource;
 
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.HEAD;
-import javax.ws.rs.OPTIONS;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 
 @Path("")
 public class SimpleResourceImpl {
+
+   static List<Thing> buildThingList(String s, int listSize) {
+      List<Thing> list = new ArrayList<Thing>();
+      for (int i = 0; i < listSize; i++) {
+         list.add(new Thing(s));
+      }
+      return list;
+   }
 
    @GET
    @Path("get/string")
@@ -139,13 +139,5 @@ public class SimpleResourceImpl {
    @Path("exception/handled")
    public Thing exceptionHandled() throws Exception {
       throw new TestException("handled");
-   }
-   
-   static List<Thing> buildThingList(String s, int listSize) {
-      List<Thing> list = new ArrayList<Thing>();
-      for (int i = 0; i < listSize; i++) {
-         list.add(new Thing(s));
-      }
-      return list;
    }
 }

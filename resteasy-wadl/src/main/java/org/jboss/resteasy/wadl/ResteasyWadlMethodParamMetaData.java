@@ -6,62 +6,60 @@ import java.lang.annotation.Annotation;
  * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
  */
 public class ResteasyWadlMethodParamMetaData {
-    public enum MethodParamType {
-        QUERY_PARAMETER, HEADER_PARAMETER, COOKIE_PARAMETER, PATH_PARAMETER, MATRIX_PARAMETER, FORM_PARAMETER, FORM, ENTITY_PARAMETER
-    }
+   private Class<?> type;
+   private String typeName;
+   private Annotation[] annotations;
+   private MethodParamType paramType;
+   private String paramName;
+   public ResteasyWadlMethodParamMetaData(Class<?> type, Annotation[] annotations,
+                                          MethodParamType paramType, String paramName) {
+      super();
+      this.type = type;
+      this.annotations = annotations;
+      this.paramType = paramType;
+      this.paramName = paramName;
+   }
 
-    private Class<?> type;
-    private String typeName;
-    private Annotation[] annotations;
+   public Class<?> getType() {
+      return type;
+   }
 
-    private MethodParamType paramType;
-    private String paramName;
+   public void setType(Class<?> type) {
+      this.type = type;
+   }
 
-    public ResteasyWadlMethodParamMetaData(Class<?> type, Annotation[] annotations,
-                                           MethodParamType paramType, String paramName) {
-        super();
-        this.type = type;
-        this.annotations = annotations;
-        this.paramType = paramType;
-        this.paramName = paramName;
-    }
+   public String getTypeName() {
+      int i = 0;
 
-    public Class<?> getType() {
-        return type;
-    }
+      return "";
+   }
 
-    public String getTypeName() {
-        int i = 0;
+   public Annotation[] getAnnotations() {
+      return annotations;
+   }
 
-        return "";
-    }
+   public void setAnnotations(Annotation[] annotations) {
+      this.annotations = annotations;
+   }
 
-    public void setType(Class<?> type) {
-        this.type = type;
-    }
+   public MethodParamType getParamType() {
+      return paramType;
+   }
 
-    public Annotation[] getAnnotations() {
-        return annotations;
-    }
+   public void setParamType(MethodParamType paramType) {
+      this.paramType = paramType;
+   }
 
-    public void setAnnotations(Annotation[] annotations) {
-        this.annotations = annotations;
-    }
+   public String getParamName() {
+      return paramName;
+   }
 
-    public MethodParamType getParamType() {
-        return paramType;
-    }
+   public void setParamName(String paramName) {
+      this.paramName = paramName;
+   }
 
-    public void setParamType(MethodParamType paramType) {
-        this.paramType = paramType;
-    }
-
-    public String getParamName() {
-        return paramName;
-    }
-
-    public void setParamName(String paramName) {
-        this.paramName = paramName;
-    }
+   public enum MethodParamType {
+      QUERY_PARAMETER, HEADER_PARAMETER, COOKIE_PARAMETER, PATH_PARAMETER, MATRIX_PARAMETER, FORM_PARAMETER, FORM, ENTITY_PARAMETER
+   }
 
 }

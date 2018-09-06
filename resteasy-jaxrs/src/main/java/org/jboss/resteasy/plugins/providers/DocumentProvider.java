@@ -20,7 +20,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -36,62 +35,48 @@ import java.lang.reflect.Type;
 @Provider
 @Produces({"text/xml", "text/*+xml", "application/xml", "application/*+xml"})
 @Consumes({"text/xml", "text/*+xml", "application/xml", "application/*+xml"})
-public class DocumentProvider extends AbstractEntityProvider<Document>
-{
+public class DocumentProvider extends AbstractEntityProvider<Document> {
    private final TransformerFactory transformerFactory;
    private final DocumentBuilderFactory documentBuilder;
    private boolean expandEntityReferences = false;
    private boolean enableSecureProcessingFeature = true;
    private boolean disableDTDs = true;
 
-   public DocumentProvider(@Context ResteasyConfiguration config)
-   {
+   public DocumentProvider(@Context ResteasyConfiguration config) {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : DocumentProvider", getClass().getName());
       this.documentBuilder = DocumentBuilderFactory.newInstance();
       this.transformerFactory = TransformerFactory.newInstance();
-      try
-      {
+      try {
          String s = config.getParameter(ResteasyContextParameters.RESTEASY_EXPAND_ENTITY_REFERENCES);
          expandEntityReferences = (s == null ? false : Boolean.parseBoolean(s));
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          LogMessages.LOGGER.unableToRetrieveConfigExpand();
       }
-      try
-      {
+      try {
          String s = config.getParameter(ResteasyContextParameters.RESTEASY_SECURE_PROCESSING_FEATURE);
          enableSecureProcessingFeature = (s == null ? true : Boolean.parseBoolean(s));
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          LogMessages.LOGGER.unableToRetrieveConfigSecure();
       }
-      try
-      {
+      try {
          String s = config.getParameter(ResteasyContextParameters.RESTEASY_DISABLE_DTDS);
          disableDTDs = (s == null ? true : Boolean.parseBoolean(s));
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          LogMessages.LOGGER.unableToRetrieveConfigDTDs();
       }
    }
 
    public boolean isReadable(Class<?> clazz, Type type,
-                             Annotation[] annotation, MediaType mediaType)
-   {
+                             Annotation[] annotation, MediaType mediaType) {
       return Document.class.isAssignableFrom(clazz);
    }
 
    public Document readFrom(Class<Document> clazz, Type type,
                             Annotation[] annotations, MediaType mediaType,
                             MultivaluedMap<String, String> headers, InputStream input)
-           throws IOException, WebApplicationException
-   {
+           throws IOException, WebApplicationException {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom", getClass().getName());
-      try
-      {
+      try {
          documentBuilder.setExpandEntityReferences(expandEntityReferences);
          documentBuilder.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, enableSecureProcessingFeature);
          documentBuilder.setFeature("http://apache.org/xml/features/disallow-doctype-decl", disableDTDs);
@@ -109,33 +94,26 @@ public class DocumentProvider extends AbstractEntityProvider<Document>
             }
          }
          return documentBuilder.newDocumentBuilder().parse(input);
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new ReaderException(e);
       }
    }
 
    public boolean isWriteable(Class<?> clazz, Type type,
-                              Annotation[] annotation, MediaType mediaType)
-   {
+                              Annotation[] annotation, MediaType mediaType) {
       return Document.class.isAssignableFrom(clazz);
    }
 
    public void writeTo(Document document, Class<?> clazz, Type type,
                        Annotation[] annotation, MediaType mediaType,
                        MultivaluedMap<String, Object> headers, OutputStream output)
-           throws IOException, WebApplicationException
-   {
+           throws IOException, WebApplicationException {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : writeTo", getClass().getName());
-      try
-      {
+      try {
          DOMSource source = new DOMSource(document);
          StreamResult result = new StreamResult(output);
          transformerFactory.newTransformer().transform(source, result);
-      }
-      catch (TransformerException te)
-      {
+      } catch (TransformerException te) {
          throw new WriterException(te);
       }
    }

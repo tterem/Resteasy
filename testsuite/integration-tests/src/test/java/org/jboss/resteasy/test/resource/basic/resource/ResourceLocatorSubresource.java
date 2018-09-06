@@ -1,19 +1,18 @@
 package org.jboss.resteasy.test.resource.basic.resource;
 
-import java.util.List;
+import org.jboss.logging.Logger;
+import org.junit.Assert;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-
-import org.jboss.logging.Logger;
-import org.junit.Assert;
+import java.util.List;
 
 public class ResourceLocatorSubresource {
 
    private static final Logger LOG = Logger.getLogger(ResourceLocatorSubresource.class);
-   
+
    @GET
    public String doGet(@Context UriInfo uri) {
       LOG.info("Uri Ancesstors for Subresource.doGet():");

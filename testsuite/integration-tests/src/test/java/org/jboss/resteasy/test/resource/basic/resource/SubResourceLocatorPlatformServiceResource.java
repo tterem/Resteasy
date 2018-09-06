@@ -7,13 +7,13 @@ import javax.ws.rs.PathParam;
 @Path("/platform")
 public interface SubResourceLocatorPlatformServiceResource {
 
-    @Path("/users/{user}")
-    SubResourceLocatorUserResource getUserService(
-            @HeaderParam("entity")
-            String entity,
-            @HeaderParam("ticket")
-            String ticket,
-            @PathParam("user")
-            String userId
-    );
+   @Path("/users/{user}")
+   SubResourceLocatorUserResource getUserService(
+           @HeaderParam("entity")
+                   String entity,
+           @HeaderParam("ticket")
+                   String ticket,
+           @PathParam("user")
+                   String userId
+   );
 }

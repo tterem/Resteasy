@@ -18,49 +18,40 @@ import java.util.List;
  * @version $Revision: 1 $
  */
 
-public class ObjectToURI
-{
+public class ObjectToURI {
 
    private static ObjectToURI instance = null;
 
-   static
-   {
+   static {
       instance = new ObjectToURI();
       instance.defaultResolvers.add(new URIableURIResolver());
       instance.defaultResolvers.add(new URITemplateAnnotationResolver());
       instance.defaultResolvers.add(new MappedByAnnotationResolver());
    }
 
-   public static ObjectToURI getInstance()
-   {
-      return instance;
-   }
-
    private List<URIResolver> resolvers = new ArrayList<URIResolver>();
    private List<URIResolver> defaultResolvers = new ArrayList<URIResolver>();
 
-   public void registerURIResolver(URIResolver uriResolver)
-   {
+   public static ObjectToURI getInstance() {
+      return instance;
+   }
+
+   public void registerURIResolver(URIResolver uriResolver) {
       this.resolvers.add(uriResolver);
    }
 
-   public String resolveURI(Object object)
-   {
+   public String resolveURI(Object object) {
       String result = getResolver(object, resolvers);
-      if (result == null)
-      {
+      if (result == null) {
          result = getResolver(object, defaultResolvers);
       }
       return result;
    }
 
-   private String getResolver(Object object, List<URIResolver> resolvers)
-   {
+   private String getResolver(Object object, List<URIResolver> resolvers) {
       Class<? extends Object> type = object.getClass();
-      for (URIResolver resolver : resolvers)
-      {
-         if (resolver.handles(type))
-         {
+      for (URIResolver resolver : resolvers) {
+         if (resolver.handles(type)) {
             return resolver.resolveURI(object);
          }
       }

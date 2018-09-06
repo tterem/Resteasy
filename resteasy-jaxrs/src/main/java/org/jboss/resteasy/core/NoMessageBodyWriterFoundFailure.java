@@ -6,11 +6,9 @@ import org.jboss.resteasy.util.HttpResponseCodes;
 import javax.ws.rs.core.MediaType;
 
 @SuppressWarnings("serial")
-public class NoMessageBodyWriterFoundFailure extends LoggableFailure
-{
+public class NoMessageBodyWriterFoundFailure extends LoggableFailure {
 
-   public NoMessageBodyWriterFoundFailure(Class type, MediaType contentType)
-   {
+   public NoMessageBodyWriterFoundFailure(Class type, MediaType contentType) {
       super(
               String
                       .format(

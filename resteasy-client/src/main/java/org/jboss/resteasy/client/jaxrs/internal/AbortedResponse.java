@@ -8,7 +8,6 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.MessageBodyWriter;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,20 +21,16 @@ import java.util.Map;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class AbortedResponse extends ClientResponse
-{
+public class AbortedResponse extends ClientResponse {
    protected InputStream is;
 
    @SuppressWarnings("unchecked")
-   public AbortedResponse(ClientConfiguration configuration, Response response)
-   {
+   public AbortedResponse(ClientConfiguration configuration, Response response) {
       super(configuration);
 
-      for (Map.Entry<String, List<Object>> entry : response.getMetadata().entrySet())
-      {
-         for (Object obj : entry.getValue())
-         {
-             getMetadata().add(entry.getKey(), configuration.toHeaderString(obj));
+      for (Map.Entry<String, List<Object>> entry : response.getMetadata().entrySet()) {
+         for (Object obj : entry.getValue()) {
+            getMetadata().add(entry.getKey(), configuration.toHeaderString(obj));
          }
       }
       setStatus(response.getStatus());
@@ -68,16 +63,13 @@ public class AbortedResponse extends ClientResponse
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try {
                writer.writeTo(getEntity(), getEntityClass(), getGenericType(), getAnnotations(), mediaType, getHeaders(), baos);
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                throw new ProcessingException(Messages.MESSAGES.failedToBufferAbortedResponse(), e);
             }
             bufferedEntity = baos.toByteArray();
             setInputStream(new ByteArrayInputStream(bufferedEntity));
-         }
-         else
-         {
-            InputStream is = (InputStream)response.getEntity();
+         } else {
+            InputStream is = (InputStream) response.getEntity();
             setInputStream(is);
          }
 //  The following lines commented for RESTEASY-1540
@@ -89,8 +81,7 @@ public class AbortedResponse extends ClientResponse
    }
 
    @Override
-   protected InputStream getInputStream()
-   {
+   protected InputStream getInputStream() {
       if (is == null && entity != null && entity instanceof InputStream) {
          is = (InputStream) entity;
       }
@@ -98,46 +89,36 @@ public class AbortedResponse extends ClientResponse
    }
 
    @Override
-   protected void setInputStream(InputStream is)
-   {
+   protected void setInputStream(InputStream is) {
       this.is = is;
    }
 
    @Override
-   public void releaseConnection()
-   {
+   public void releaseConnection() {
       releaseConnection(false);
    }
-   
+
    @Override
-   public void releaseConnection(boolean consumeInputStream)
-   {
-      try
-      {
-         if (is != null)
-         {
-            if (consumeInputStream)
-            {
-               while (is.read() > 0)
-               {
+   public void releaseConnection(boolean consumeInputStream) {
+      try {
+         if (is != null) {
+            if (consumeInputStream) {
+               while (is.read() > 0) {
                }
             }
             is.close();
          }
-      }
-      catch (IOException e)
-      {
+      } catch (IOException e) {
 
       }
 
    }
-   
+
    /**
     * Added for RESTEASY-1540.
     */
    @Override
-   public synchronized <T> T readEntity(Class<T> type, Type genericType, Annotation[] anns)
-   {
+   public synchronized <T> T readEntity(Class<T> type, Type genericType, Annotation[] anns) {
       setEntity(null); // clear all entity information
       setAnnotations(null);
       return super.readEntity(type, genericType, anns);

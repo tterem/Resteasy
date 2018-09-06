@@ -36,104 +36,20 @@ import static org.jboss.resteasy.spi.ResteasyProviderFactory.getContextData;
  * @version $Revision: 1 $
  */
 
-public class InternalDispatcher
-{
+public class InternalDispatcher {
 
    private static InternalDispatcher instance = new InternalDispatcher();
 
    // using a singleton so that that end users can override this behavior
-   public static InternalDispatcher getInstance()
-   {
+   public static InternalDispatcher getInstance() {
       return instance;
    }
 
-   public static void setInstance(InternalDispatcher instance)
-   {
+   public static void setInstance(InternalDispatcher instance) {
       InternalDispatcher.instance = instance;
    }
 
-   public Object getEntity(String uri)
-   {
-      return getResponse(uri).getEntity();
-   }
-
-   public Response delete(String uri)
-   {
-      return getResponse(createRequest(uri, "DELETE"));
-   }
-
-   public Response putEntity(String uri, String contentType, Object entity)
-   {
-      return executeEntity("PUT", uri, contentType, entity);
-
-   }
-
-   public Response putEntity(String uri, Object entity)
-   {
-      return putEntity(uri, "*/*", entity);
-   }
-
-   public Response executeEntity(String method, String uri, String contentType, Object entity)
-   {
-      MockHttpRequest post = createRequest(uri, method);
-      post.contentType(contentType);
-      return getResponse(post, entity);
-   }
-
-   public Response postEntity(String uri, String contentType, Object entity)
-   {
-      return executeEntity("POST", uri, contentType, entity);
-   }
-
-   public Response postEntity(String uri, Object entity)
-   {
-      return postEntity(uri, "*/*", entity);
-   }
-
-   public Response getResponse(String uri)
-   {
-      return getResponse(createRequest(uri, "GET"));
-   }
-
-   public Response getResponse(MockHttpRequest request)
-   {
-      return getResponse(request, null);
-   }
-
-   public Response getResponse(MockHttpRequest request, Object entity)
-   {
-      try
-      {
-         Dispatcher dispatcher = getContextData(Dispatcher.class);
-         if (dispatcher == null)
-         {
-            return null;
-         }
-         enhanceRequest(request);
-         return dispatcher.internalInvocation(request, new MockHttpResponse(), entity);
-      }
-      finally
-      {
-      }
-
-   }
-
-   protected void enhanceRequest(MockHttpRequest request)
-   {
-      HttpRequest previousRequest = getContextData(HttpRequest.class);
-      if (previousRequest != null)
-      {
-         getHeaders(request).putAll(getHeaders(previousRequest));
-      }
-   }
-
-   private MultivaluedMap<String, String> getHeaders(HttpRequest request)
-   {
-      return request.getHttpHeaders().getRequestHeaders();
-   }
-
-   public static MockHttpRequest createRequest(String relativeUri, String verb)
-   {
+   public static MockHttpRequest createRequest(String relativeUri, String verb) {
       UriInfo uriInfo = ResteasyProviderFactory.getContextData(UriInfo.class);
 
       URI baseUri = uriInfo.getBaseUri();
@@ -142,9 +58,72 @@ public class InternalDispatcher
    }
 
    private static URI parseRelativeUri(String relativeUri) {
-      if(relativeUri.startsWith("/")) {
+      if (relativeUri.startsWith("/")) {
          return URI.create(relativeUri.substring(1));
       }
       return URI.create(relativeUri);
+   }
+
+   public Object getEntity(String uri) {
+      return getResponse(uri).getEntity();
+   }
+
+   public Response delete(String uri) {
+      return getResponse(createRequest(uri, "DELETE"));
+   }
+
+   public Response putEntity(String uri, String contentType, Object entity) {
+      return executeEntity("PUT", uri, contentType, entity);
+
+   }
+
+   public Response putEntity(String uri, Object entity) {
+      return putEntity(uri, "*/*", entity);
+   }
+
+   public Response executeEntity(String method, String uri, String contentType, Object entity) {
+      MockHttpRequest post = createRequest(uri, method);
+      post.contentType(contentType);
+      return getResponse(post, entity);
+   }
+
+   public Response postEntity(String uri, String contentType, Object entity) {
+      return executeEntity("POST", uri, contentType, entity);
+   }
+
+   public Response postEntity(String uri, Object entity) {
+      return postEntity(uri, "*/*", entity);
+   }
+
+   public Response getResponse(String uri) {
+      return getResponse(createRequest(uri, "GET"));
+   }
+
+   public Response getResponse(MockHttpRequest request) {
+      return getResponse(request, null);
+   }
+
+   public Response getResponse(MockHttpRequest request, Object entity) {
+      try {
+         Dispatcher dispatcher = getContextData(Dispatcher.class);
+         if (dispatcher == null) {
+            return null;
+         }
+         enhanceRequest(request);
+         return dispatcher.internalInvocation(request, new MockHttpResponse(), entity);
+      } finally {
+      }
+
+   }
+
+   protected void enhanceRequest(MockHttpRequest request) {
+      HttpRequest previousRequest = getContextData(HttpRequest.class);
+      if (previousRequest != null) {
+         getHeaders(request).putAll(getHeaders(previousRequest));
+      }
+   }
+
+   private MultivaluedMap<String, String> getHeaders(HttpRequest request) {
+      return request.getHttpHeaders().getRequestHeaders();
    }
 }

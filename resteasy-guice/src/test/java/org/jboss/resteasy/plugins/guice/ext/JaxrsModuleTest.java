@@ -1,12 +1,9 @@
 package org.jboss.resteasy.plugins.guice.ext;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
-import javax.ws.rs.core.Variant;
-import javax.ws.rs.ext.RuntimeDelegate;
-
+import com.google.inject.Binder;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Module;
 import org.jboss.resteasy.client.jaxrs.ClientHttpEngine;
 import org.jboss.resteasy.core.Dispatcher;
 import org.jboss.resteasy.plugins.guice.ModuleProcessor;
@@ -17,19 +14,19 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.google.inject.Binder;
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Module;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.Variant;
+import javax.ws.rs.ext.RuntimeDelegate;
 
-public class JaxrsModuleTest
-{
+public class JaxrsModuleTest {
    private static NettyJaxrsServer server;
    private static Dispatcher dispatcher;
 
    @BeforeClass
-   public static void beforeClass() throws Exception
-   {
+   public static void beforeClass() throws Exception {
       server = new NettyJaxrsServer();
       server.setPort(TestPortProvider.getPort());
       server.setRootResourcePath("/");
@@ -38,21 +35,17 @@ public class JaxrsModuleTest
    }
 
    @AfterClass
-   public static void afterClass() throws Exception
-   {
+   public static void afterClass() throws Exception {
       server.stop();
       server = null;
       dispatcher = null;
    }
 
    @Test
-   public void testInjection()
-   {
-      final Module module = new Module()
-      {
+   public void testInjection() {
+      final Module module = new Module() {
          @Override
-         public void configure(final Binder binder)
-         {
+         public void configure(final Binder binder) {
             binder.bind(TestResource.class).to(JaxrsTestResource.class);
          }
       };
@@ -64,14 +57,12 @@ public class JaxrsModuleTest
    }
 
    @Path("test")
-   public interface TestResource
-   {
+   public interface TestResource {
       @GET
       String getName();
    }
 
-   public static class JaxrsTestResource implements TestResource
-   {
+   public static class JaxrsTestResource implements TestResource {
       private final ClientHttpEngine clientExecutor;
       private final RuntimeDelegate runtimeDelegate;
       private final Response.ResponseBuilder responseBuilder;
@@ -79,8 +70,7 @@ public class JaxrsModuleTest
       private final Variant.VariantListBuilder variantListBuilder;
 
       @Inject
-      public JaxrsTestResource(final ClientHttpEngine clientExecutor, final RuntimeDelegate runtimeDelegate, final Response.ResponseBuilder responseBuilder, final UriBuilder uriBuilder, final Variant.VariantListBuilder variantListBuilder)
-      {
+      public JaxrsTestResource(final ClientHttpEngine clientExecutor, final RuntimeDelegate runtimeDelegate, final Response.ResponseBuilder responseBuilder, final UriBuilder uriBuilder, final Variant.VariantListBuilder variantListBuilder) {
          this.clientExecutor = clientExecutor;
          this.runtimeDelegate = runtimeDelegate;
          this.responseBuilder = responseBuilder;
@@ -89,8 +79,7 @@ public class JaxrsModuleTest
       }
 
       @Override
-      public String getName()
-      {
+      public String getName() {
          Assert.assertNotNull(clientExecutor);
          Assert.assertNotNull(runtimeDelegate);
          Assert.assertNotNull(responseBuilder);

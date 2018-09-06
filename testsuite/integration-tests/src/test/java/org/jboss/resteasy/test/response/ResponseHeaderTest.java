@@ -58,16 +58,15 @@ public class ResponseHeaderTest {
       Object obj = headers.get("Server");
 
       if (obj instanceof ArrayList) {
-         List<Object> objs = (List<Object>)obj;
+         List<Object> objs = (List<Object>) obj;
          if (objs.size() != 2) {
             Assert.fail("2 array objects expected " + objs.size() + " were returned");
          }
 
          Assert.assertEquals("Wrong headers",
-                 (String)objs.get(0) + "," + (String)objs.get(1),
+                 (String) objs.get(0) + "," + (String) objs.get(1),
                  "WILDFLY/TEN.Full,AndOtherStuff");
-      }
-      else {
+      } else {
          Assert.fail("Expected header data value to be of type ArrayList.  It was not.");
       }
 

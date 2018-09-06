@@ -1,21 +1,15 @@
 package org.jboss.resteasy.specimpl;
 
 import javax.ws.rs.core.MultivaluedMap;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
 @SuppressWarnings("serial")
-public class MultivaluedMapImpl<K, V> extends HashMap<K, List<V>> implements MultivaluedMap<K, V>
-{
-   public void putSingle(K key, V value)
-   {
+public class MultivaluedMapImpl<K, V> extends HashMap<K, List<V>> implements MultivaluedMap<K, V> {
+   public void putSingle(K key, V value) {
       List<V> list = new ArrayList<V>();
       list.add(value);
       put(key, list);
@@ -23,66 +17,53 @@ public class MultivaluedMapImpl<K, V> extends HashMap<K, List<V>> implements Mul
 
    @SuppressWarnings(value = "unchecked")
    @Override
-   public void addAll(K key, V... newValues)
-   {
-      for (V value : newValues)
-      {
+   public void addAll(K key, V... newValues) {
+      for (V value : newValues) {
          add(key, value);
       }
    }
 
    @Override
-   public void addAll(K key, List<V> valueList)
-   {
-      for (V value : valueList)
-      {
+   public void addAll(K key, List<V> valueList) {
+      for (V value : valueList) {
          add(key, value);
       }
    }
 
    @Override
-   public void addFirst(K key, V value)
-   {
+   public void addFirst(K key, V value) {
       List<V> list = get(key);
-      if (list == null)
-      {
+      if (list == null) {
          add(key, value);
          return;
-      }
-      else
-      {
+      } else {
          list.add(0, value);
       }
    }
-   public final void add(K key, V value)
-   {
+
+   public final void add(K key, V value) {
       getList(key).add(value);
    }
 
 
-   public final void addMultiple(K key, Collection<V> values)
-   {
+   public final void addMultiple(K key, Collection<V> values) {
       getList(key).addAll(values);
    }
 
-   public V getFirst(K key)
-   {
+   public V getFirst(K key) {
       List<V> list = get(key);
       return list == null ? null : list.get(0);
    }
 
-   public final List<V> getList(K key)
-   {
+   public final List<V> getList(K key) {
       List<V> list = get(key);
       if (list == null)
          put(key, list = new ArrayList<V>());
       return list;
    }
 
-   public void addAll(MultivaluedMapImpl<K, V> other)
-   {
-      for (Map.Entry<K, List<V>> entry : other.entrySet())
-      {
+   public void addAll(MultivaluedMapImpl<K, V> other) {
+      for (Map.Entry<K, List<V>> entry : other.entrySet()) {
          getList(entry.getKey()).addAll(entry.getValue());
       }
    }

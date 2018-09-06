@@ -7,17 +7,14 @@ import java.nio.charset.StandardCharsets;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class BasicAuthHelper
-{
-   public static String createHeader(String username, String password) 
-   {
+public class BasicAuthHelper {
+   public static String createHeader(String username, String password) {
       StringBuffer buf = new StringBuffer(username);
       buf.append(':').append(password);
       return "Basic " + Base64.encodeBytes(buf.toString().getBytes(StandardCharsets.UTF_8));
    }
 
-   public static String[] parseHeader(String header)
-   {
+   public static String[] parseHeader(String header) {
       if (header.length() < 6) return null;
       String type = header.substring(0, 5);
       type = type.toLowerCase();

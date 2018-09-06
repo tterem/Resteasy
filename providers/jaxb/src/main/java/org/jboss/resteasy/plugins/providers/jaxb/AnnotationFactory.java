@@ -9,77 +9,60 @@ import java.lang.annotation.Annotation;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class AnnotationFactory
-{
-   public static Annotation[] createArray(final String elementName, final String namespace, final String prefix)
-   {
+public class AnnotationFactory {
+   public static Annotation[] createArray(final String elementName, final String namespace, final String prefix) {
       Annotation[] ann = {create(elementName, namespace, prefix)};
       return ann;
    }
 
-   public static Wrapped create(final String elementName, final String namespace, final String prefix)
-   {
-      return new Wrapped()
-      {
-         public String element()
-         {
+   public static Wrapped create(final String elementName, final String namespace, final String prefix) {
+      return new Wrapped() {
+         public String element() {
             return elementName == null ? "" : elementName;
          }
 
-         public String namespace()
-         {
+         public String namespace() {
             return namespace == null ? "" : namespace;
          }
 
-         public String prefix()
-         {
+         public String prefix() {
             return prefix == null ? "" : prefix;
          }
 
-         public Class<? extends Annotation> annotationType()
-         {
+         public Class<? extends Annotation> annotationType() {
             return Wrapped.class;
          }
       };
    }
 
-   public static Annotation[] createArray(final String map, final String entry, final String key, final String namespace, final String prefix)
-   {
+   public static Annotation[] createArray(final String map, final String entry, final String key, final String namespace, final String prefix) {
       Annotation[] ann = {create(map, entry, key, namespace, prefix)};
       return ann;
    }
 
-   public static WrappedMap create(final String map, final String entry, final String key, final String namespace, final String prefix)
-   {
-      return new WrappedMap()
-      {
-         public String map()
-         {
+   public static WrappedMap create(final String map, final String entry, final String key, final String namespace, final String prefix) {
+      return new WrappedMap() {
+         public String map() {
             return map == null ? "" : map;
          }
 
-         public String entry()
-         {
+         public String entry() {
             return entry == null ? "" : entry;
          }
 
-         public String key()
-         {
+         public String key() {
             return key == null ? "" : key;
          }
 
-         public String namespace()
-         {
+         public String namespace() {
             return namespace == null ? "" : namespace;
          }
 
-         public String prefix()
-         {
+         public String prefix() {
             return prefix == null ? "" : prefix;
          }
 
-         public Class<? extends Annotation> annotationType()
-         {
+         public Class<? extends Annotation> annotationType() {
             return WrappedMap.class;
          }
       };

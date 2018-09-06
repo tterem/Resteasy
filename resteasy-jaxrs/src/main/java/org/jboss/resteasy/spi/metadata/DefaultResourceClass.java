@@ -4,8 +4,7 @@ package org.jboss.resteasy.spi.metadata;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class DefaultResourceClass implements ResourceClass
-{
+public class DefaultResourceClass implements ResourceClass {
    private static final FieldParameter[] EMPTY_FIELD_PARAMS = {};
    private static final SetterParameter[] EMPTY_SETTER_PARAMETERS = {};
    private static final ResourceMethod[] EMPTY_RESOURCE_METHODS = {};
@@ -19,51 +18,43 @@ public class DefaultResourceClass implements ResourceClass
    protected ResourceConstructor constructor; // only one allowed
    protected String path;
 
-   public DefaultResourceClass(Class<?> clazz, String path)
-   {
+   public DefaultResourceClass(Class<?> clazz, String path) {
       this.clazz = clazz;
       this.path = path;
    }
 
    @Override
-   public String getPath()
-   {
+   public String getPath() {
       return path;
    }
 
    @Override
-   public Class<?> getClazz()
-   {
+   public Class<?> getClazz() {
       return clazz;
    }
 
    @Override
-   public ResourceConstructor getConstructor()
-   {
+   public ResourceConstructor getConstructor() {
       return constructor;
    }
 
    @Override
-   public FieldParameter[] getFields()
-   {
+   public FieldParameter[] getFields() {
       return fields;
    }
 
    @Override
-   public SetterParameter[] getSetters()
-   {
+   public SetterParameter[] getSetters() {
       return setters;
    }
 
    @Override
-   public ResourceMethod[] getResourceMethods()
-   {
+   public ResourceMethod[] getResourceMethods() {
       return resourceMethods;
    }
 
    @Override
-   public ResourceLocator[] getResourceLocators()
-   {
+   public ResourceLocator[] getResourceLocators() {
       return resourceLocators;
    }
 }

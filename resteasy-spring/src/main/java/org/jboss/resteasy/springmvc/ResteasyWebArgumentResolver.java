@@ -16,7 +16,6 @@ import javax.ws.rs.CookieParam;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.MessageBodyReader;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
@@ -29,30 +28,25 @@ import java.lang.reflect.Type;
  * @version $Revision: 1 $
  */
 @SuppressWarnings("rawtypes")
-public class ResteasyWebArgumentResolver implements WebArgumentResolver
-{
+public class ResteasyWebArgumentResolver implements WebArgumentResolver {
 
    ResteasyProviderFactory factory;
 
-   public ResteasyProviderFactory getFactory()
-   {
+   public ResteasyProviderFactory getFactory() {
       return factory;
    }
 
-   public void setFactory(ResteasyProviderFactory factory)
-   {
+   public void setFactory(ResteasyProviderFactory factory) {
       this.factory = factory;
    }
 
    @SuppressWarnings("unchecked")
    public Object resolveArgument(MethodParameter methodParameter,
-                                 NativeWebRequest webRequest) throws Exception
-   {
+                                 NativeWebRequest webRequest) throws Exception {
       HttpServletRequest servletRequest = (HttpServletRequest) webRequest
               .getNativeRequest();
       Object[] parameterAnnotations = methodParameter.getParameterAnnotations();
-      for (int i = 0; i < parameterAnnotations.length; i++)
-      {
+      for (int i = 0; i < parameterAnnotations.length; i++) {
          Object annotation = parameterAnnotations[i];
          boolean isRestfulData = RestfulData.class.isInstance(annotation);
          boolean isCookie = CookieParam.class.isInstance(annotation);
@@ -65,8 +59,7 @@ public class ResteasyWebArgumentResolver implements WebArgumentResolver
          Type genericType = method.getGenericParameterTypes()[i];
          Annotation[] annotations = method.getParameterAnnotations()[i];
 
-         if (isRestfulData)
-         {
+         if (isRestfulData) {
             method.getTypeParameters();
             String contentType = servletRequest.getContentType();
             MediaType mediaType = MediaType.valueOf(contentType);
@@ -77,9 +70,7 @@ public class ResteasyWebArgumentResolver implements WebArgumentResolver
             return reader.readFrom(type, genericType, annotations, mediaType,
                     request.getHttpHeaders().getRequestHeaders(), request
                             .getInputStream());
-         }
-         else if (isCookie)
-         {
+         } else if (isCookie) {
             CookieParam cookieParam = (CookieParam) annotation;
             DefaultValue defaultValue = FindAnnotation.findAnnotation(
                     annotations, DefaultValue.class);

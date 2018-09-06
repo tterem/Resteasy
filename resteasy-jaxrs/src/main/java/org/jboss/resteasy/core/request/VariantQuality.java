@@ -1,9 +1,8 @@
 package org.jboss.resteasy.core.request;
 
+import javax.ws.rs.core.MediaType;
 import java.math.BigDecimal;
 import java.math.MathContext;
-
-import javax.ws.rs.core.MediaType;
 
 
 /**
@@ -12,24 +11,21 @@ import javax.ws.rs.core.MediaType;
  * @author Pascal S. de Kloe
  * @see "RFC 2296"
  */
-public class VariantQuality
-{
+public class VariantQuality {
 
    private QualityValue mediaTypeQualityValue = QualityValue.DEFAULT;
    private QualityValue characterSetQualityValue = QualityValue.DEFAULT;
    private QualityValue encodingQualityValue = QualityValue.DEFAULT;
    private QualityValue languageQualityValue = QualityValue.DEFAULT;
-   
+
    private MediaType requestMediaType;
 
 
-   public VariantQuality()
-   {
+   public VariantQuality() {
    }
 
 
-   public void setMediaTypeQualityValue(QualityValue value)
-   {
+   public void setMediaTypeQualityValue(QualityValue value) {
       if (value == null)
          mediaTypeQualityValue = QualityValue.DEFAULT;
       else
@@ -37,8 +33,7 @@ public class VariantQuality
    }
 
 
-   public void setCharacterSetQualityValue(QualityValue value)
-   {
+   public void setCharacterSetQualityValue(QualityValue value) {
       if (value == null)
          characterSetQualityValue = QualityValue.DEFAULT;
       else
@@ -46,8 +41,7 @@ public class VariantQuality
    }
 
 
-   public void setEncodingQualityValue(QualityValue value)
-   {
+   public void setEncodingQualityValue(QualityValue value) {
       if (value == null)
          encodingQualityValue = QualityValue.DEFAULT;
       else
@@ -55,8 +49,7 @@ public class VariantQuality
    }
 
 
-   public void setLanguageQualityValue(QualityValue value)
-   {
+   public void setLanguageQualityValue(QualityValue value) {
       if (value == null)
          languageQualityValue = QualityValue.DEFAULT;
       else
@@ -64,14 +57,12 @@ public class VariantQuality
    }
 
 
-   public MediaType getRequestMediaType()
-   {
+   public MediaType getRequestMediaType() {
       return requestMediaType;
    }
 
 
-   public void setRequestMediaType(MediaType requestMediaType)
-   {
+   public void setRequestMediaType(MediaType requestMediaType) {
       this.requestMediaType = requestMediaType;
    }
 
@@ -80,8 +71,7 @@ public class VariantQuality
     * @return the quality value between zero and one with five decimal places after the point.
     * @see "3.3 Computing overall quality values"
     */
-   public BigDecimal getOverallQuality()
-   {
+   public BigDecimal getOverallQuality() {
       BigDecimal qt = BigDecimal.valueOf(mediaTypeQualityValue.intValue(), 3);
       BigDecimal qc = BigDecimal.valueOf(characterSetQualityValue.intValue(), 3);
       BigDecimal qe = BigDecimal.valueOf(encodingQualityValue.intValue(), 3);

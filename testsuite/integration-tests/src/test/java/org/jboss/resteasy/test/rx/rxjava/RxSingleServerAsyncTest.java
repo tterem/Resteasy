@@ -1,16 +1,5 @@
 package org.jboss.resteasy.test.rx.rxjava;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PropertyPermission;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -28,20 +17,26 @@ import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.resteasy.utils.TestUtilRxJava;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
+
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation.Builder;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PropertyPermission;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 /**
  * @tpSubChapter Reactive classes
  * @tpChapter Integration tests
  * @tpSince RESTEasy 4.0
- * 
- * In these tests, the server resource methods create and return objects of type Single<T>. 
+ * <p>
+ * In these tests, the server resource methods create and return objects of type Single<T>.
  * The client does synchronous invocations to get objects of type T.
  */
 @RunWith(Arquillian.class)
@@ -50,14 +45,19 @@ public class RxSingleServerAsyncTest {
 
    private static ResteasyClient client;
 
-   private static List<Thing>  xThingList =  new ArrayList<Thing>();
-   private static List<Thing>  aThingList =  new ArrayList<Thing>();
+   private static List<Thing> xThingList = new ArrayList<Thing>();
+   private static List<Thing> aThingList = new ArrayList<Thing>();
    private static Entity<String> aEntity = Entity.entity("a", MediaType.TEXT_PLAIN_TYPE);
-   private static GenericType<List<Thing>> LIST_OF_THING = new GenericType<List<Thing>>() {};
+   private static GenericType<List<Thing>> LIST_OF_THING = new GenericType<List<Thing>>() {
+   };
 
    static {
-      for (int i = 0; i < 3; i++) {xThingList.add(new Thing("x"));}
-      for (int i = 0; i < 3; i++) {aThingList.add(new Thing("a"));}
+      for (int i = 0; i < 3; i++) {
+         xThingList.add(new Thing("x"));
+      }
+      for (int i = 0; i < 3; i++) {
+         aThingList.add(new Thing("a"));
+      }
    }
 
    @Deployment
@@ -280,8 +280,7 @@ public class RxSingleServerAsyncTest {
       Builder request = client.target(generateURL("/exception/unhandled")).request();
       try {
          request.get(Thing.class);
-      } catch (Exception e)
-      {
+      } catch (Exception e) {
          Assert.assertTrue(e.getMessage().contains("500"));
       }
    }
@@ -303,7 +302,7 @@ public class RxSingleServerAsyncTest {
       ResteasyClient client1 = new ResteasyClientBuilder().build();
       client1.register(CompletionStageRxInvokerProvider.class);
       Builder request1 = client1.target(generateURL("/get/string")).request();
-      Response response1 = request1.get();      
+      Response response1 = request1.get();
 
       ResteasyClient client2 = new ResteasyClientBuilder().build();
       client2.register(CompletionStageRxInvokerProvider.class);
@@ -324,7 +323,7 @@ public class RxSingleServerAsyncTest {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       Builder request1 = client.target(generateURL("/get/string")).request();
-      Response response1 = request1.get();      
+      Response response1 = request1.get();
 
       Builder request2 = client.target(generateURL("/get/string")).request();
       Response response2 = request2.get();
@@ -343,7 +342,7 @@ public class RxSingleServerAsyncTest {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       Builder request = client.target(generateURL("/get/string")).request();
-      Response response1 = request.get();      
+      Response response1 = request.get();
       Response response2 = request.get();
 
       list.add(response1.readEntity(String.class));

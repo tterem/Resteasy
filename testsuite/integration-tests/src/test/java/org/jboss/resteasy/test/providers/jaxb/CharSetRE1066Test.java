@@ -38,20 +38,26 @@ import java.util.Map;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class CharSetRE1066Test
-{
-   protected static ResteasyDeployment deployment;
-   protected static Dispatcher dispatcher;
+public class CharSetRE1066Test {
    public static final MediaType APPLICATION_XML_UTF16_TYPE;
    public static final MediaType TEXT_PLAIN_UTF16_TYPE;
    public static final MediaType WILDCARD_UTF16_TYPE;
    public static final String APPLICATION_XML_UTF16 = "application/xml;charset=UTF-16";
    public static final String TEXT_PLAIN_UTF16 = "text/plain;charset=UTF-16";
    public static final String WILDCARD_UTF16 = "*/*;charset=UTF-16";
+   protected static ResteasyDeployment deployment;
+   protected static Dispatcher dispatcher;
+   static ResteasyClient client;
 
+   static {
+      Map<String, String> params = new HashMap<String, String>();
+      params.put("charset", "UTF-16");
+      APPLICATION_XML_UTF16_TYPE = new MediaType("application", "xml", params);
+      TEXT_PLAIN_UTF16_TYPE = new MediaType("text", "plain", params);
+      WILDCARD_UTF16_TYPE = new MediaType("*", "*", params);
+   }
 
    private final Logger log = Logger.getLogger(CharSetRE1066Test.class.getName());
-   static ResteasyClient client;
 
    @Deployment
    public static Archive<?> deploy() {
@@ -75,26 +81,14 @@ public class CharSetRE1066Test
       return PortProviderUtil.generateURL(path, CharSetRE1066Test.class.getSimpleName());
    }
 
-   static
-   {
-      Map<String, String> params = new HashMap<String, String>();
-      params.put("charset", "UTF-16");
-      APPLICATION_XML_UTF16_TYPE = new MediaType("application", "xml", params);
-      TEXT_PLAIN_UTF16_TYPE = new MediaType("text", "plain", params);
-      WILDCARD_UTF16_TYPE = new MediaType("*", "*", params);
-   }
-
-
-
    @Test
-   public void testXmlDefault() throws Exception
-   {
+   public void testXmlDefault() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/xml/default"));
       Builder request = target.request();
       request.accept(MediaType.APPLICATION_XML_TYPE);
 
       String str = "<?xml version=\"1.0\"?>\r"
-            + "<charSetFavoriteMovieXmlRootElement><title>La Règle du Jeu</title></charSetFavoriteMovieXmlRootElement>";
+              + "<charSetFavoriteMovieXmlRootElement><title>La Règle du Jeu</title></charSetFavoriteMovieXmlRootElement>";
       log.info(str);
       log.info("client default charset: " + Charset.defaultCharset());
       log.info("Sending request");
@@ -110,13 +104,12 @@ public class CharSetRE1066Test
    }
 
    @Test
-   public void testXmlProduces() throws Exception
-   {
+   public void testXmlProduces() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/xml/produces"));
       Builder request = target.request();
 
       String str = "<?xml version=\"1.0\"?>\r"
-            + "<charSetFavoriteMovieXmlRootElement><title>La Règle du Jeu</title></charSetFavoriteMovieXmlRootElement>";
+              + "<charSetFavoriteMovieXmlRootElement><title>La Règle du Jeu</title></charSetFavoriteMovieXmlRootElement>";
       log.info(str);
       log.info("client default charset: " + Charset.defaultCharset());
 
@@ -129,14 +122,13 @@ public class CharSetRE1066Test
    }
 
    @Test
-   public void testXmlAccepts() throws Exception
-   {
+   public void testXmlAccepts() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/xml/accepts"));
       Builder request = target.request();
       request.accept(APPLICATION_XML_UTF16_TYPE);
 
       String str = "<?xml version=\"1.0\"?>\r"
-            + "<charSetFavoriteMovieXmlRootElement><title>La Règle du Jeu</title></charSetFavoriteMovieXmlRootElement>";
+              + "<charSetFavoriteMovieXmlRootElement><title>La Règle du Jeu</title></charSetFavoriteMovieXmlRootElement>";
       log.info(str);
       log.info("client default charset: " + Charset.defaultCharset());
 

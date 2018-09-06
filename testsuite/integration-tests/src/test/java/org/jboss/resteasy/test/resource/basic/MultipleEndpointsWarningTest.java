@@ -1,10 +1,5 @@
 package org.jboss.resteasy.test.resource.basic;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -23,6 +18,10 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.logging.LoggingPermission;
 
 /**
@@ -33,26 +32,25 @@ import java.util.logging.LoggingPermission;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class MultipleEndpointsWarningTest
-{
+public class MultipleEndpointsWarningTest {
    private static Client client;
-   
+
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(MultipleEndpointsWarningTest.class.getSimpleName());
-       war.addClass(LogHandler.class);
+      WebArchive war = TestUtil.prepareArchive(MultipleEndpointsWarningTest.class.getSimpleName());
+      war.addClass(LogHandler.class);
       war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(
               new LoggingPermission("control", "")
       ), "permissions.xml");
       // Test registers it's own LogHandler
       war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(new LoggingPermission("control", "")), "permissions.xml");
-       return TestUtil.finishContainerPrepare(war, null, MultipleEndpointsWarningResource.class);
+      return TestUtil.finishContainerPrepare(war, null, MultipleEndpointsWarningResource.class);
    }
 
    private static String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, MultipleEndpointsWarningTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, MultipleEndpointsWarningTest.class.getSimpleName());
    }
-   
+
    @BeforeClass
    public static void setUp() throws Exception {
       client = ClientBuilder.newClient();
@@ -64,7 +62,7 @@ public class MultipleEndpointsWarningTest
       client.target(generateURL("/teardown")).request().get();
       client.close();
    }
-   
+
    @Test
    public void testUnique() throws Exception {
       Response response = client.target(generateURL("/unique/")).request().accept(MediaType.TEXT_PLAIN).get();

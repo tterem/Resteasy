@@ -1,10 +1,6 @@
 package org.jboss.resteasy.plugins.stats;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,14 +16,13 @@ import java.util.List;
  *     {@literal <}/post{@literal >}
  * {@literal <}/resource{@literal >}
  * </pre>
- * 
+ *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 2 $
  */
 @XmlRootElement(name = "resource")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RegistryEntry implements Comparable<RegistryEntry>
-{
+public class RegistryEntry implements Comparable<RegistryEntry> {
    @XmlAttribute
    private String uriTemplate;
 
@@ -37,37 +32,31 @@ public class RegistryEntry implements Comparable<RegistryEntry>
    @XmlElementRef
    private SubresourceLocator locator;
 
-   public String getUriTemplate()
-   {
+   public String getUriTemplate() {
       return uriTemplate;
    }
 
-   public SubresourceLocator getLocator()
-   {
-      return locator;
-   }
-
-   public void setLocator(SubresourceLocator locator)
-   {
-      this.locator = locator;
-   }
-
-   public void setUriTemplate(String uriTemplate)
-   {
+   public void setUriTemplate(String uriTemplate) {
       this.uriTemplate = uriTemplate;
    }
 
-   public List<ResourceMethodEntry> getMethods()
-   {
+   public SubresourceLocator getLocator() {
+      return locator;
+   }
+
+   public void setLocator(SubresourceLocator locator) {
+      this.locator = locator;
+   }
+
+   public List<ResourceMethodEntry> getMethods() {
       return methods;
    }
 
-    @Override
-    public int compareTo(RegistryEntry o)
-    {
-        if (this.getUriTemplate() == null)
-            return o.getUriTemplate() == null ? 0 : 1;
+   @Override
+   public int compareTo(RegistryEntry o) {
+      if (this.getUriTemplate() == null)
+         return o.getUriTemplate() == null ? 0 : 1;
 
-        return this.getUriTemplate().compareTo(o.getUriTemplate());
-    }
+      return this.getUriTemplate().compareTo(o.getUriTemplate());
+   }
 }

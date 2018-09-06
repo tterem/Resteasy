@@ -15,7 +15,6 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.ext.Provider;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,23 +23,18 @@ import java.util.Set;
  * @version $Revision: 1 $
  */
 @HandlesTypes({Application.class, Path.class, Provider.class})
-public class ResteasyServletInitializer implements ServletContainerInitializer
-{
+public class ResteasyServletInitializer implements ServletContainerInitializer {
    final static Set<String> ignoredPackages = new HashSet<String>();
 
-   static
-   {
+   static {
       ignoredPackages.add(AsynchronousDispatcher.class.getPackage().getName());
    }
 
    @Override
-   public void onStartup(Set<Class<?>> classes, ServletContext servletContext) throws ServletException
-   {
+   public void onStartup(Set<Class<?>> classes, ServletContext servletContext) throws ServletException {
       if (classes == null || classes.size() == 0) return;
-      for (ServletRegistration reg : servletContext.getServletRegistrations().values())
-      {
-         if (reg.getInitParameter("javax.ws.rs.Application") != null)
-         {
+      for (ServletRegistration reg : servletContext.getServletRegistrations().values()) {
+         if (reg.getInitParameter("javax.ws.rs.Application") != null) {
             return; // there's already a servlet mapping, do nothing
          }
       }
@@ -49,44 +43,33 @@ public class ResteasyServletInitializer implements ServletContainerInitializer
       Set<Class<?>> providers = new HashSet<Class<?>>();
       Set<Class<?>> resources = new HashSet<Class<?>>();
 
-      for (Class<?> clazz : classes)
-      {
+      for (Class<?> clazz : classes) {
          if (clazz.isInterface() || ignoredPackages.contains(clazz.getPackage().getName())) continue;
-         if (clazz.isAnnotationPresent(Path.class))
-         {
+         if (clazz.isAnnotationPresent(Path.class)) {
             resources.add(clazz);
-         }
-         else if (clazz.isAnnotationPresent(Provider.class))
-         {
+         } else if (clazz.isAnnotationPresent(Provider.class)) {
             providers.add(clazz);
-         }
-         else
-         {
+         } else {
             appClasses.add(clazz);
          }
       }
       if (appClasses.size() == 0 && resources.size() == 0) return;
 
-      if (appClasses.size() == 0)
-      {
+      if (appClasses.size() == 0) {
          // todo make sure we can do this on all servlet containers
          //handleNoApplicationClass(providers, resources, servletContext);
          return;
       }
 
-      for (Class<?> app : appClasses)
-      {
+      for (Class<?> app : appClasses) {
          register(app, providers, resources, servletContext);
       }
    }
 
-   protected void handleNoApplicationClass(Set<Class<?>> providers, Set<Class<?>> resources, ServletContext servletContext)
-   {
+   protected void handleNoApplicationClass(Set<Class<?>> providers, Set<Class<?>> resources, ServletContext servletContext) {
       ServletRegistration defaultApp = null;
-      for (ServletRegistration reg : servletContext.getServletRegistrations().values())
-      {
-         if (reg.getName().equals(Application.class.getName()))
-         {
+      for (ServletRegistration reg : servletContext.getServletRegistrations().values()) {
+         if (reg.getName().equals(Application.class.getName())) {
             defaultApp = reg;
          }
       }
@@ -96,11 +79,9 @@ public class ResteasyServletInitializer implements ServletContainerInitializer
    }
 
 
-   protected void register(Class<?> applicationClass, Set<Class<?>> providers, Set<Class<?>> resources, ServletContext servletContext)
-   {
+   protected void register(Class<?> applicationClass, Set<Class<?>> providers, Set<Class<?>> resources, ServletContext servletContext) {
       ApplicationPath path = applicationClass.getAnnotation(ApplicationPath.class);
-      if (path == null)
-      {
+      if (path == null) {
          // todo we don't support this yet, i'm not sure if partial deployments are supported in all servlet containers
          return;
       }
@@ -109,14 +90,12 @@ public class ResteasyServletInitializer implements ServletContainerInitializer
       reg.setAsyncSupported(true);
       reg.setInitParameter("javax.ws.rs.Application", applicationClass.getName());
 
-      if (path != null)
-      {
+      if (path != null) {
          String mapping = path.value();
          if (!mapping.startsWith("/")) mapping = "/" + mapping;
          String prefix = mapping;
          if (!prefix.equals("/") && prefix.endsWith("/")) prefix = prefix.substring(0, prefix.length() - 1);
-         if (!mapping.endsWith("/*")) 
-         {
+         if (!mapping.endsWith("/*")) {
             if (mapping.endsWith("/")) mapping += "*";
             else mapping += "/*";
          }
@@ -125,18 +104,13 @@ public class ResteasyServletInitializer implements ServletContainerInitializer
          reg.addMapping(mapping);
       }
 
-      if (resources.size() > 0)
-      {
+      if (resources.size() > 0) {
          StringBuilder builder = new StringBuilder();
          boolean first = true;
-         for (Class resource : resources)
-         {
-            if (first)
-            {
+         for (Class resource : resources) {
+            if (first) {
                first = false;
-            }
-            else
-            {
+            } else {
                builder.append(",");
             }
 
@@ -144,18 +118,13 @@ public class ResteasyServletInitializer implements ServletContainerInitializer
          }
          reg.setInitParameter(ResteasyContextParameters.RESTEASY_SCANNED_RESOURCES, builder.toString());
       }
-      if (providers.size() > 0)
-      {
+      if (providers.size() > 0) {
          StringBuilder builder = new StringBuilder();
          boolean first = true;
-         for (Class provider : providers)
-         {
-            if (first)
-            {
+         for (Class provider : providers) {
+            if (first) {
                first = false;
-            }
-            else
-            {
+            } else {
                builder.append(",");
             }
             builder.append(provider.getName());

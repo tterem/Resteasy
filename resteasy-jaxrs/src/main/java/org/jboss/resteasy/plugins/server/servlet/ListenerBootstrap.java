@@ -6,31 +6,40 @@ import org.jboss.resteasy.spi.ResteasyDeployment;
 import javax.servlet.ServletContext;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class ListenerBootstrap extends ConfigurationBootstrap
-{
+public class ListenerBootstrap extends ConfigurationBootstrap {
+   private static Object RD_LOCK = new Object();
    protected ServletContext servletContext;
 
-   public ListenerBootstrap(ServletContext servletContext)
-   {
+   public ListenerBootstrap(ServletContext servletContext) {
       this.servletContext = servletContext;
    }
 
-   private static Object RD_LOCK = new Object();
+   public static URL[] findWebInfLibClasspaths(ServletContext servletContext) {
+      ArrayList<URL> list = new ArrayList<URL>();
+      Set libJars = servletContext.getResourcePaths("/WEB-INF/lib");
+      if (libJars == null) {
+         URL[] empty = {};
+         return empty;
+      }
+      for (Object jar : libJars) {
+         try {
+            list.add(servletContext.getResource((String) jar));
+         } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+         }
+      }
+      return list.toArray(new URL[list.size()]);
+   }
 
    @Override
-   public ResteasyDeployment createDeployment()
-   {
+   public ResteasyDeployment createDeployment() {
       ResteasyDeployment deployment = (ResteasyDeployment) servletContext.getAttribute(ResteasyDeployment.class.getName());
       if (deployment == null) deployment = super.createDeployment();
 
@@ -41,12 +50,10 @@ public class ListenerBootstrap extends ConfigurationBootstrap
       if (servletMappingPrefix == null) servletMappingPrefix = "";
       servletMappingPrefix = servletMappingPrefix.trim();
 
-      synchronized (RD_LOCK)
-      {
+      synchronized (RD_LOCK) {
          @SuppressWarnings(value = "unchecked")
          Map<String, ResteasyDeployment> deployments = (Map<String, ResteasyDeployment>) servletContext.getAttribute(ResteasyContextParameters.RESTEASY_DEPLOYMENTS);
-         if (deployments == null)
-         {
+         if (deployments == null) {
             deployments = new ConcurrentHashMap<String, ResteasyDeployment>();
             servletContext.setAttribute("resteasy.deployments", deployments);
          }
@@ -55,37 +62,12 @@ public class ListenerBootstrap extends ConfigurationBootstrap
       return deployment;
    }
 
-   public static URL[] findWebInfLibClasspaths(ServletContext servletContext)
-   {
-      ArrayList<URL> list = new ArrayList<URL>();
-      Set libJars = servletContext.getResourcePaths("/WEB-INF/lib");
-      if (libJars == null)
-      {
-         URL[] empty = {};
-         return empty;
-      }
-      for (Object jar : libJars)
-      {
-         try
-         {
-            list.add(servletContext.getResource((String) jar));
-         }
-         catch (MalformedURLException e)
-         {
-            throw new RuntimeException(e);
-         }
-      }
-      return list.toArray(new URL[list.size()]);
-   }
-
    @Override
-   public Set<String> getParameterNames()
-   {
+   public Set<String> getParameterNames() {
       return getServletContextNames();
    }
 
-   protected Set<String> getServletContextNames()
-   {
+   protected Set<String> getServletContextNames() {
       Enumeration<String> en = servletContext.getInitParameterNames();
       HashSet<String> set = new HashSet<String>();
       while (en.hasMoreElements()) set.add(en.nextElement());
@@ -93,19 +75,16 @@ public class ListenerBootstrap extends ConfigurationBootstrap
    }
 
    @Override
-   public Set<String> getInitParameterNames()
-   {
+   public Set<String> getInitParameterNames() {
       return getParameterNames();
    }
 
-   public String getParameter(String name)
-   {
+   public String getParameter(String name) {
       return servletContext.getInitParameter(name);
    }
 
    @Override
-   public String getInitParameter(String name)
-   {
+   public String getInitParameter(String name) {
       return servletContext.getInitParameter(name);
    }
 }

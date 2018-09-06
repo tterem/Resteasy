@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java-Klasse für ErrorDomainType.
- *
+ * <p>
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * <p>
  * <pre>
@@ -18,7 +18,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
- *
  */
 @XmlType(name = "ErrorDomainType")
 @XmlEnum
@@ -27,24 +26,21 @@ public enum ErrorDomainType {
 
    /**
     * The error happend on the server side and can't be corrected with changing the request
-    *                         format
-    *
-    *
+    * format
     */
    SERVER,
 
    /**
     * The error happend because of the request or the requests content.
-    *
     */
    REQUEST;
 
-   public String value() {
-      return name();
-   }
-
    public static ErrorDomainType fromValue(String v) {
       return valueOf(v);
+   }
+
+   public String value() {
+      return name();
    }
 
 }

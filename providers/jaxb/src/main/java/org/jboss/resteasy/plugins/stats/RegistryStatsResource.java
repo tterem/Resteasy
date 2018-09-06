@@ -20,31 +20,25 @@ import java.util.concurrent.atomic.AtomicLong;
  * @version $Revision: 1 $
  */
 @Path("/resteasy/registry")
-public class RegistryStatsResource
-{
+public class RegistryStatsResource {
    @GET
    @Produces({"application/xml", "application/json"})
-   public RegistryData get() throws JAXBException
-   {
+   public RegistryData get() throws JAXBException {
       ResourceMethodRegistry registry = (ResourceMethodRegistry) ResteasyProviderFactory.getContextData(Registry.class);
 
       RegistryData data = new RegistryData();
 
-      for (String key : registry.getBounded().keySet())
-      {
+      for (String key : registry.getBounded().keySet()) {
          List<ResourceInvoker> invokers = registry.getBounded().get(key);
 
          RegistryEntry entry = new RegistryEntry();
          data.getEntries().add(entry);
          entry.setUriTemplate(key);
 
-         for (ResourceInvoker invoker : invokers)
-         {
-            if (invoker instanceof ResourceMethodInvoker)
-            {
+         for (ResourceInvoker invoker : invokers) {
+            if (invoker instanceof ResourceMethodInvoker) {
                ResourceMethodInvoker rm = (ResourceMethodInvoker) invoker;
-               for (String httpMethod : rm.getHttpMethods())
-               {
+               for (String httpMethod : rm.getHttpMethods()) {
                   ResourceMethodEntry method = null;
                   if (httpMethod.equals("GET")) method = new GetResourceMethod();
                   else if (httpMethod.equals("PUT")) method = new PutResourceMethod();
@@ -60,17 +54,13 @@ public class RegistryStatsResource
                   if (stat != null) method.setInvocations(stat.longValue());
                   else method.setInvocations(0);
 
-                  if (rm.getProduces() != null)
-                  {
-                     for (MediaType mediaType : rm.getProduces())
-                     {
+                  if (rm.getProduces() != null) {
+                     for (MediaType mediaType : rm.getProduces()) {
                         method.getProduces().add(mediaType.toString());
                      }
                   }
-                  if (rm.getConsumes() != null)
-                  {
-                     for (MediaType mediaType : rm.getConsumes())
-                     {
+                  if (rm.getConsumes() != null) {
+                     for (MediaType mediaType : rm.getConsumes()) {
                         method.getConsumes().add(mediaType.toString());
                      }
                   }
@@ -78,9 +68,7 @@ public class RegistryStatsResource
 
                }
 
-            }
-            else
-            {
+            } else {
                ResourceLocatorInvoker rl = (ResourceLocatorInvoker) invoker;
                SubresourceLocator locator = new SubresourceLocator();
                locator.setClazz(rl.getMethod().getDeclaringClass().getName());

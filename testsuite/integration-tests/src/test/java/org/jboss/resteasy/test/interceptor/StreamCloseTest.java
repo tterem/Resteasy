@@ -31,11 +31,11 @@ import java.util.PropertyPermission;
  * @tpTestCaseDetails Verify outpustream close is invoked on server side (https://issues.jboss.org/browse/RESTEASY-1650)
  */
 @RunWith(Arquillian.class)
-public class StreamCloseTest
-{
+public class StreamCloseTest {
+   static Client client;
+
    @Deployment
-   public static Archive<?> deploy()
-   {
+   public static Archive<?> deploy() {
       WebArchive war = TestUtil.prepareArchive(StreamCloseTest.class.getSimpleName());
       war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(
               new SocketPermission(PortProviderUtil.getHost(), "connect,resolve"),
@@ -50,35 +50,29 @@ public class StreamCloseTest
       return TestUtil.finishContainerPrepare(war, null, InterceptorStreamResource.class, TestInterceptor.class, PortProviderUtil.class);
    }
 
-   static Client client;
-
    @Before
-   public void setup()
-   {
+   public void setup() {
       client = ClientBuilder.newClient();
    }
 
    @After
-   public void cleanup()
-   {
+   public void cleanup() {
       client.close();
    }
 
-   private String generateURL(String path)
-   {
+   private String generateURL(String path) {
       return PortProviderUtil.generateURL(path, StreamCloseTest.class.getSimpleName());
    }
 
    @Test
-   public void testPriority() throws Exception
-   {
+   public void testPriority() throws Exception {
       final int count = TestInterceptor.closeCounter.get();
       Response response = client.target(generateURL("/test")).request().post(Entity.text("test"));
       response.bufferEntity();
       Assert.assertEquals("Wrong response status, interceptors don't work correctly", HttpResponseCodes.SC_OK,
-            response.getStatus());
+              response.getStatus());
       Assert.assertEquals("Wrong content of response, interceptors don't work correctly", "test",
-            response.readEntity(String.class));
+              response.readEntity(String.class));
       response.close();
       Assert.assertEquals(1, TestInterceptor.closeCounter.get() - count);
 

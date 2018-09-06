@@ -13,21 +13,15 @@ import javax.ws.rs.container.TimeoutHandler;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.WriterInterceptor;
-
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public abstract class AbstractAsynchronousResponse implements ResteasyAsynchronousResponse
-{
+public abstract class AbstractAsynchronousResponse implements ResteasyAsynchronousResponse {
    protected SynchronousDispatcher dispatcher;
    protected ResourceMethodInvoker method;
    protected HttpRequest request;
@@ -40,8 +34,7 @@ public abstract class AbstractAsynchronousResponse implements ResteasyAsynchrono
    protected Map<Class<?>, Object> contextDataMap;
    private boolean callbacksCalled;
 
-   protected AbstractAsynchronousResponse(SynchronousDispatcher dispatcher, HttpRequest request, HttpResponse response)
-   {
+   protected AbstractAsynchronousResponse(SynchronousDispatcher dispatcher, HttpRequest request, HttpResponse response) {
       this.dispatcher = dispatcher;
       this.request = request;
       this.response = response;
@@ -49,22 +42,18 @@ public abstract class AbstractAsynchronousResponse implements ResteasyAsynchrono
    }
 
 
-
    @Override
-   public Collection<Class<?>> register(Class<?> callback) throws NullPointerException
-   {
+   public Collection<Class<?>> register(Class<?> callback) throws NullPointerException {
       if (callback == null) throw new NullPointerException(Messages.MESSAGES.callbackWasNull());
       Object cb = dispatcher.getProviderFactory().createProviderInstance(callback);
       return register(cb);
    }
 
    @Override
-   public Collection<Class<?>> register(Object callback) throws NullPointerException
-   {
+   public Collection<Class<?>> register(Object callback) throws NullPointerException {
       if (callback == null) throw new NullPointerException(Messages.MESSAGES.callbackWasNull());
       ArrayList<Class<?>> registered = new ArrayList<Class<?>>();
-      if (callback instanceof CompletionCallback)
-      {
+      if (callback instanceof CompletionCallback) {
          completionCallbacks.add((CompletionCallback) callback);
          registered.add(CompletionCallback.class);
       }
@@ -72,142 +61,115 @@ public abstract class AbstractAsynchronousResponse implements ResteasyAsynchrono
    }
 
    @Override
-   public Map<Class<?>, Collection<Class<?>>> register(Class<?> callback, Class<?>... callbacks) throws NullPointerException
-   {
+   public Map<Class<?>, Collection<Class<?>>> register(Class<?> callback, Class<?>... callbacks) throws NullPointerException {
       Map<Class<?>, Collection<Class<?>>> map = new HashMap<Class<?>, Collection<Class<?>>>();
       map.put(callback, register(callback));
-      for (Class<?> call : callbacks)
-      {
+      for (Class<?> call : callbacks) {
          map.put(call, register(call));
       }
       return map;
    }
 
    @Override
-   public Map<Class<?>, Collection<Class<?>>> register(Object callback, Object... callbacks) throws NullPointerException
-   {
+   public Map<Class<?>, Collection<Class<?>>> register(Object callback, Object... callbacks) throws NullPointerException {
       Map<Class<?>, Collection<Class<?>>> map = new HashMap<Class<?>, Collection<Class<?>>>();
       map.put(callback.getClass(), register(callback));
-      for (Object call : callbacks)
-      {
+      for (Object call : callbacks) {
          map.put(call.getClass(), register(call));
       }
       return map;
    }
 
    @Override
-   public void setTimeoutHandler(TimeoutHandler handler)
-   {
+   public void setTimeoutHandler(TimeoutHandler handler) {
       this.timeoutHandler = handler;
    }
 
    @Override
-   public ResourceMethodInvoker getMethod()
-   {
+   public ResourceMethodInvoker getMethod() {
       return method;
    }
 
    @Override
-   public void setMethod(ResourceMethodInvoker method)
-   {
+   public void setMethod(ResourceMethodInvoker method) {
       this.method = method;
    }
 
    @Override
-   public ContainerResponseFilter[] getResponseFilters()
-   {
+   public ContainerResponseFilter[] getResponseFilters() {
       return responseFilters;
    }
 
    @Override
-   public void setResponseFilters(ContainerResponseFilter[] responseFilters)
-   {
+   public void setResponseFilters(ContainerResponseFilter[] responseFilters) {
       this.responseFilters = responseFilters;
    }
 
    @Override
-   public WriterInterceptor[] getWriterInterceptors()
-   {
+   public WriterInterceptor[] getWriterInterceptors() {
       return writerInterceptors;
    }
 
    @Override
-   public void setWriterInterceptors(WriterInterceptor[] writerInterceptors)
-   {
+   public void setWriterInterceptors(WriterInterceptor[] writerInterceptors) {
       this.writerInterceptors = writerInterceptors;
    }
 
    @Override
-   public Annotation[] getAnnotations()
-   {
+   public Annotation[] getAnnotations() {
       return annotations;
    }
 
    @Override
-   public void setAnnotations(Annotation[] annotations)
-   {
+   public void setAnnotations(Annotation[] annotations) {
       this.annotations = annotations;
    }
 
    @Override
-   public void completionCallbacks(Throwable throwable)
-   {
+   public void completionCallbacks(Throwable throwable) {
       // make sure we only call them once
-      if(callbacksCalled)
+      if (callbacksCalled)
          return;
       callbacksCalled = true;
-      for (CompletionCallback callback : completionCallbacks)
-      {
+      for (CompletionCallback callback : completionCallbacks) {
          callback.onComplete(throwable);
       }
    }
 
    @Deprecated
-   protected boolean internalResume(Object entity)
-   {
-      return internalResume(entity, t -> {});
+   protected boolean internalResume(Object entity) {
+      return internalResume(entity, t -> {
+      });
    }
 
-   protected boolean internalResume(Object entity, Consumer<Throwable> onComplete)
-   {
+   protected boolean internalResume(Object entity, Consumer<Throwable> onComplete) {
       ResteasyProviderFactory.pushContextDataMap(contextDataMap);
       Response response = null;
-      if (entity == null)
-      {
+      if (entity == null) {
          response = Response.noContent().build();
-      }
-      else if (entity instanceof Response)
-      {
+      } else if (entity instanceof Response) {
          response = (Response) entity;
-      }
-      else
-      {
+      } else {
          if (method == null) throw new IllegalStateException(Messages.MESSAGES.unknownMediaTypeResponseEntity());
          MediaType type = method.resolveContentType(request, entity);
-         BuiltResponse jaxrsResponse = (BuiltResponse)Response.ok(entity, type).build();
+         BuiltResponse jaxrsResponse = (BuiltResponse) Response.ok(entity, type).build();
          jaxrsResponse.setGenericType(method.getGenericReturnType());
          jaxrsResponse.addMethodAnnotations(method.getMethodAnnotations());
          response = jaxrsResponse;
       }
-      try
-      {
+      try {
          dispatcher.asynchronousDelivery(this.request, this.response, response, t -> {
-            if(t != null)
-            {
+            if (t != null) {
                internalResume(t, t2 -> {
                   onComplete.accept(t);
                   // callbacks done by internalResume
                });
-            }
-            else
-            {
+            } else {
                onComplete.accept(null);
                completionCallbacks(null);
             }
          });
-      }
-      catch (Throwable e)
-      {
+      } catch (Throwable e) {
          return internalResume(e, t -> {
             onComplete.accept(e);
             // callbacks done by internalResume
@@ -217,13 +179,12 @@ public abstract class AbstractAsynchronousResponse implements ResteasyAsynchrono
    }
 
    @Deprecated
-   protected boolean internalResume(Throwable exc)
-   {
-      return internalResume(exc, t -> {});
+   protected boolean internalResume(Throwable exc) {
+      return internalResume(exc, t -> {
+      });
    }
 
-   protected boolean internalResume(Throwable exc, Consumer<Throwable> onComplete)
-   {
+   protected boolean internalResume(Throwable exc, Consumer<Throwable> onComplete) {
       ResteasyProviderFactory.pushContextDataMap(contextDataMap);
       dispatcher.asynchronousExceptionDelivery(request, response, exc, t -> {
          onComplete.accept(t);

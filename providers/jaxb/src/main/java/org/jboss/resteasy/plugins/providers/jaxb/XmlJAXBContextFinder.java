@@ -19,47 +19,40 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Provider
 @Produces({"text/xml", "text/*+xml", "application/xml", "application/*+xml"})
-public class XmlJAXBContextFinder extends AbstractJAXBContextFinder implements ContextResolver<JAXBContextFinder>
-{
+public class XmlJAXBContextFinder extends AbstractJAXBContextFinder implements ContextResolver<JAXBContextFinder> {
    private ConcurrentHashMap<Class<?>, JAXBContext> cache = new ConcurrentHashMap<Class<?>, JAXBContext>();
    private ConcurrentHashMap<CacheKey, JAXBContext> collectionCache = new ConcurrentHashMap<CacheKey, JAXBContext>();
    private ConcurrentHashMap<CacheKey, JAXBContext> xmlTypeCollectionCache = new ConcurrentHashMap<CacheKey, JAXBContext>();
 
 
-	@Override
-   public JAXBContext findCachedContext(Class type, MediaType mediaType, Annotation[] parameterAnnotations) throws JAXBException
-   {
-		JAXBContext jaxb = findProvidedJAXBContext(type, mediaType);
-		if (jaxb != null)
-      {
-			return jaxb;
+   @Override
+   public JAXBContext findCachedContext(Class type, MediaType mediaType, Annotation[] parameterAnnotations) throws JAXBException {
+      JAXBContext jaxb = findProvidedJAXBContext(type, mediaType);
+      if (jaxb != null) {
+         return jaxb;
       }
-		jaxb = type != null ? cache.get(type) : null;
-		if (jaxb == null)
-      {
-			jaxb = createContext(parameterAnnotations, type);
-			if (jaxb != null && type != null) {
-				cache.putIfAbsent(type, jaxb);
-			}
+      jaxb = type != null ? cache.get(type) : null;
+      if (jaxb == null) {
+         jaxb = createContext(parameterAnnotations, type);
+         if (jaxb != null && type != null) {
+            cache.putIfAbsent(type, jaxb);
+         }
       }
-		return jaxb;
+      return jaxb;
    }
 
-   protected JAXBContext createContextObject(Annotation[] parameterAnnotations, Class... classes) throws JAXBException
-   {
+   protected JAXBContext createContextObject(Annotation[] parameterAnnotations, Class... classes) throws JAXBException {
       JAXBConfig config = FindAnnotation.findAnnotation(parameterAnnotations, JAXBConfig.class);
       return new JAXBContextWrapper(config, classes);
    }
 
    @Override
-   protected JAXBContext createContextObject(Annotation[] parameterAnnotations, String contextPath) throws JAXBException
-   {
+   protected JAXBContext createContextObject(Annotation[] parameterAnnotations, String contextPath) throws JAXBException {
       JAXBConfig config = FindAnnotation.findAnnotation(parameterAnnotations, JAXBConfig.class);
       return new JAXBContextWrapper(contextPath, config);
    }
 
-   public JAXBContext findCacheContext(MediaType mediaType, Annotation[] paraAnnotations, Class... classes) throws JAXBException
-   {
+   public JAXBContext findCacheContext(MediaType mediaType, Annotation[] paraAnnotations, Class... classes) throws JAXBException {
       CacheKey key = new CacheKey(classes);
       JAXBContext ctx = collectionCache.get(key);
       if (ctx != null) return ctx;
@@ -71,8 +64,7 @@ public class XmlJAXBContextFinder extends AbstractJAXBContextFinder implements C
    }
 
    @Override
-   public JAXBContext findCacheXmlTypeContext(MediaType mediaType, Annotation[] paraAnnotations, Class... classes) throws JAXBException
-   {
+   public JAXBContext findCacheXmlTypeContext(MediaType mediaType, Annotation[] paraAnnotations, Class... classes) throws JAXBException {
       CacheKey key = new CacheKey(classes);
       JAXBContext ctx = xmlTypeCollectionCache.get(key);
       if (ctx != null) return ctx;

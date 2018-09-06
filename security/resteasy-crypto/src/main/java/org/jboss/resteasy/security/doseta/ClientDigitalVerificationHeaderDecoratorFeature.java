@@ -22,33 +22,27 @@ import java.io.IOException;
  */
 @Provider
 @ConstrainedTo(RuntimeType.CLIENT)
-public class ClientDigitalVerificationHeaderDecoratorFeature implements DynamicFeature
-{
+public class ClientDigitalVerificationHeaderDecoratorFeature implements DynamicFeature {
    @Override
-   public void configure(ResourceInfo resourceInfo, FeatureContext configurable)
-   {
+   public void configure(ResourceInfo resourceInfo, FeatureContext configurable) {
       Verify verify = resourceInfo.getResourceMethod().getAnnotation(Verify.class);
       Verifications verifications = resourceInfo.getResourceClass().getAnnotation(Verifications.class);
 
-      if (verify != null || verifications != null)
-      {
+      if (verify != null || verifications != null) {
          configurable.register(new DigitalVerificationHeaderDecorator(verify, verifications));
       }
 
    }
 
    @Priority(Priorities.HEADER_DECORATOR)
-   public static class DigitalVerificationHeaderDecorator extends AbstractDigitalVerificationHeaderDecorator implements ClientResponseFilter
-   {
-      public DigitalVerificationHeaderDecorator(Verify verify, Verifications verifications)
-      {
+   public static class DigitalVerificationHeaderDecorator extends AbstractDigitalVerificationHeaderDecorator implements ClientResponseFilter {
+      public DigitalVerificationHeaderDecorator(Verify verify, Verifications verifications) {
          this.verify = verify;
          this.verifications = verifications;
       }
 
       @Override
-      public void filter(ClientRequestContext requestContext, ClientResponseContext responseContext) throws IOException
-      {
+      public void filter(ClientRequestContext requestContext, ClientResponseContext responseContext) throws IOException {
          requestContext.setProperty(Verifier.class.getName(), create());
       }
 

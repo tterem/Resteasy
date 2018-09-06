@@ -25,27 +25,23 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class PartialAnnotationResourceTest
-{
+public class PartialAnnotationResourceTest {
    static ResteasyClient client;
 
    @Deployment
-   public static Archive<?> deploySimpleResource()
-   {
+   public static Archive<?> deploySimpleResource() {
       WebArchive war = TestUtil.prepareArchive(PartialAnnotationResourceTest.class.getSimpleName());
       war.addClasses(PartialAnnotationResource.class, PartialAnnotationResourceImpl.class);
       return TestUtil.finishContainerPrepare(war, null, PartialAnnotationResourceImpl.class);
    }
 
    @Before
-   public void init()
-   {
+   public void init() {
       client = new ResteasyClientBuilder().build();
    }
 
    @After
-   public void after() throws Exception
-   {
+   public void after() throws Exception {
       client.close();
    }
 
@@ -54,11 +50,10 @@ public class PartialAnnotationResourceTest
     * @tpSince RESTEasy 3.5.1
     */
    @Test
-   public void test()
-   {
+   public void test() {
       PartialAnnotationResource proxy = client
-            .target(PortProviderUtil.generateBaseUrl(PartialAnnotationResourceTest.class.getSimpleName()))
-            .proxy(PartialAnnotationResource.class);
+              .target(PortProviderUtil.generateBaseUrl(PartialAnnotationResourceTest.class.getSimpleName()))
+              .proxy(PartialAnnotationResource.class);
       Assert.assertEquals(PartialAnnotationResourceImpl.BAR_RESPONSE, proxy.bar());
    }
 }

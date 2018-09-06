@@ -9,86 +9,71 @@ import java.security.cert.X509Certificate;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class SMIMEOutput
-{
+public class SMIMEOutput {
    protected Object entity;
    protected Type genericType;
    protected Class type;
    protected MediaType mediaType;
    protected X509Certificate certificate;
 
-   public SMIMEOutput(Object obj, String mediaType)
-   {
+   public SMIMEOutput(Object obj, String mediaType) {
       this.entity = obj;
       this.type = obj.getClass();
       setMediaType(mediaType);
    }
 
-   public SMIMEOutput(Object obj, MediaType mediaType)
-   {
+   public SMIMEOutput(Object obj, MediaType mediaType) {
       this.entity = obj;
       this.type = obj.getClass();
       this.mediaType = mediaType;
    }
 
-   public Object getEntity()
-   {
+   public Object getEntity() {
       return entity;
    }
 
-   public void setEntity(Object entity)
-   {
+   public void setEntity(Object entity) {
       this.entity = entity;
    }
 
-   public Type getGenericType()
-   {
+   public Type getGenericType() {
       return genericType;
    }
 
-   public void setGenericType(Type genericType)
-   {
+   public void setGenericType(Type genericType) {
       this.genericType = genericType;
    }
 
-   public Class getType()
-   {
+   public Class getType() {
       return type;
    }
 
-   public void setType(Class type)
-   {
-      this.type = type;
-   }
-
-   public void setType(GenericType t)
-   {
+   public void setType(GenericType t) {
       type = t.getRawType();
       genericType = t.getType();
    }
 
-   public MediaType getMediaType()
-   {
+   public void setType(Class type) {
+      this.type = type;
+   }
+
+   public MediaType getMediaType() {
       return mediaType;
    }
 
-   public void setMediaType(MediaType mediaType)
-   {
-      this.mediaType = mediaType;
-   }
-
-   public void setMediaType(String mediaType)
-   {
+   public void setMediaType(String mediaType) {
       this.mediaType = MediaType.valueOf(mediaType);
    }
 
-   public X509Certificate getCertificate()
-   {
+   public void setMediaType(MediaType mediaType) {
+      this.mediaType = mediaType;
+   }
+
+   public X509Certificate getCertificate() {
       return certificate;
    }
 
-   public void setCertificate(X509Certificate certificate)
-   {
+   public void setCertificate(X509Certificate certificate) {
       this.certificate = certificate;
    }
 }

@@ -23,10 +23,8 @@ import java.nio.charset.StandardCharsets;
 @Provider
 @Produces("*/*")
 @Consumes("*/*")
-public class StringTextStar implements MessageBodyReader<String>, MessageBodyWriter<String>
-{
-   public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+public class StringTextStar implements MessageBodyReader<String>, MessageBodyWriter<String> {
+   public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return String.class.equals(type);
    }
 
@@ -35,20 +33,17 @@ public class StringTextStar implements MessageBodyReader<String>, MessageBodyWri
                           Annotation[] annotations,
                           MediaType mediaType,
                           MultivaluedMap<String, String> httpHeaders,
-                          InputStream entityStream) throws IOException
-   {
+                          InputStream entityStream) throws IOException {
       if (NoContent.isContentLengthZero(httpHeaders)) return "";
       return ProviderHelper.readString(entityStream, mediaType);
    }
 
 
-   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return String.class.equals(type);
    }
 
-   public long getSize(String o, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public long getSize(String o, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return -1;
    }
 
@@ -58,8 +53,7 @@ public class StringTextStar implements MessageBodyReader<String>, MessageBodyWri
                        Annotation[] annotations,
                        MediaType mediaType,
                        MultivaluedMap<String, Object> httpHeaders,
-                       OutputStream entityStream) throws IOException
-   {
+                       OutputStream entityStream) throws IOException {
       String charset = mediaType.getParameters().get("charset");
       if (charset == null) entityStream.write(o.getBytes(StandardCharsets.UTF_8));
       else entityStream.write(o.getBytes(charset));

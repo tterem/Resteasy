@@ -16,34 +16,27 @@ import java.io.IOException;
  * @version $Revision: 1 $
  */
 @Priority(Priorities.AUTHORIZATION)
-public class RoleBasedSecurityFilter implements ContainerRequestFilter
-{
+public class RoleBasedSecurityFilter implements ContainerRequestFilter {
    protected String[] rolesAllowed;
    protected boolean denyAll;
    protected boolean permitAll;
 
-   public RoleBasedSecurityFilter(String[] rolesAllowed, boolean denyAll, boolean permitAll)
-   {
+   public RoleBasedSecurityFilter(String[] rolesAllowed, boolean denyAll, boolean permitAll) {
       this.rolesAllowed = rolesAllowed;
       this.denyAll = denyAll;
       this.permitAll = permitAll;
    }
 
    @Override
-   public void filter(ContainerRequestContext requestContext) throws IOException
-   {
-      if (denyAll) 
-      {
+   public void filter(ContainerRequestContext requestContext) throws IOException {
+      if (denyAll) {
          throw new ForbiddenException(Response.status(403).entity("Access forbidden: role not allowed").type("text/html;charset=UTF-8").build());
       }
       if (permitAll) return;
-      if (rolesAllowed != null)
-      {
+      if (rolesAllowed != null) {
          SecurityContext context = ResteasyProviderFactory.getContextData(SecurityContext.class);
-         if (context != null)
-         {
-            for (String role : rolesAllowed)
-            {
+         if (context != null) {
+            for (String role : rolesAllowed) {
                if (context.isUserInRole(role)) return;
             }
             throw new ForbiddenException(Response.status(403).entity("Access forbidden: role not allowed").type("text/html;charset=UTF-8").build());

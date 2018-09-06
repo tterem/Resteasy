@@ -25,7 +25,7 @@ import java.lang.reflect.Type;
  * A provider to handle multipart representations. This implementation will be
  * invoked when a method parameter takes a {@link MimeMultipart} as a method
  * parameter or a return value and the
- *
+ * <p>
  * {@literal @}Consumes value is either multipart/mixed or multipart/form-data.
  * <p>
  * <code>
@@ -36,24 +36,22 @@ import java.lang.reflect.Type;
  * <p>
  * When the {@link MimeMultipart} is passed to the method body, it is up to the
  * developer to extract the various parts.
- * 
+ *
  * @author <a href="mailto:ryan@damnhandy.com">Ryan J. McDonough</a>
  */
 
 @Provider
 @Produces("multipart/mixed")
 @Consumes({"multipart/mixed", "multipart/form-data"})
-public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>
-{
+public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart> {
 
    /**
-    * @param in input stream
+    * @param in        input stream
     * @param mediaType media type
     * @return data source
     * @throws IOException if I/O error occurred
     */
-   public static DataSource readDataSource(InputStream in, MediaType mediaType) throws IOException
-   {
+   public static DataSource readDataSource(InputStream in, MediaType mediaType) throws IOException {
       ByteArrayDataSource ds = new ByteArrayDataSource(new BufferedInputStream(in), mediaType
               .toString());
 
@@ -85,8 +83,7 @@ public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>
     *                    used.
     * @return {@code true} if the type is supported, otherwise {@code false}.
     */
-   public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return MimeMultipart.class.equals(type);
    }
 
@@ -102,8 +99,7 @@ public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>
     * @param mediaType   the media type of the HTTP entity.
     * @return {@code true} if the type is supported, otherwise {@code false}.
     */
-   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return MimeMultipart.class.equals(type);
    }
 
@@ -136,9 +132,9 @@ public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>
     *                     entity has been consumed. The implementation should not close the input
     *                     stream.
     * @return the type that was read from the stream. In case the entity input stream is empty, the reader
-    *         is expected to either return an instance representing a zero-length entity or throw
-    *         a {@link javax.ws.rs.core.NoContentException} in case no zero-length entity representation is
-    *         defined for the supported Java type.
+    * is expected to either return an instance representing a zero-length entity or throw
+    * a {@link javax.ws.rs.core.NoContentException} in case no zero-length entity representation is
+    * defined for the supported Java type.
     * @throws java.io.IOException if an IO error arises. In case the entity input stream is empty
     *                             and the reader is not able to produce a Java representation for
     *                             a zero-length entity, {@code NoContentException} is expected to
@@ -149,16 +145,12 @@ public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>
                                  Annotation[] annotations,
                                  MediaType mediaType,
                                  MultivaluedMap<String, String> httpHeaders,
-                                 InputStream entityStream) throws IOException
-   {
-      try
-      {
+                                 InputStream entityStream) throws IOException {
+      try {
          LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom", getClass().getName());
          DataSource ds = readDataSource(entityStream, mediaType);
          return new MimeMultipart(ds);
-      }
-      catch (MessagingException e)
-      {
+      } catch (MessagingException e) {
          throw new ReaderException(e);
       }
    }
@@ -169,14 +161,14 @@ public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>
     * the headers will be flushed prior to writing the message body.
     *
     * @param mimeMultipart the instance to write.
-    * @param type         the class of instance that is to be written.
-    * @param genericType  the type of instance to be written. {@link javax.ws.rs.core.GenericEntity}
-    *                     provides a way to specify this information at runtime.
-    * @param annotations  an array of the annotations attached to the message entity instance.
-    * @param mediaType    the media type of the HTTP entity.
-    * @param httpHeaders  a mutable map of the HTTP message headers.
-    * @param entityStream the {@link OutputStream} for the HTTP entity. The
-    *                     implementation should not close the output stream.
+    * @param type          the class of instance that is to be written.
+    * @param genericType   the type of instance to be written. {@link javax.ws.rs.core.GenericEntity}
+    *                      provides a way to specify this information at runtime.
+    * @param annotations   an array of the annotations attached to the message entity instance.
+    * @param mediaType     the media type of the HTTP entity.
+    * @param httpHeaders   a mutable map of the HTTP message headers.
+    * @param entityStream  the {@link OutputStream} for the HTTP entity. The
+    *                      implementation should not close the output stream.
     * @throws java.io.IOException if an IO error arises.
     */
    public void writeTo(MimeMultipart mimeMultipart,
@@ -185,18 +177,14 @@ public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>
                        Annotation[] annotations,
                        MediaType mediaType,
                        MultivaluedMap<String, Object> httpHeaders,
-                       OutputStream entityStream) throws IOException
-   {
-      try
-      {
+                       OutputStream entityStream) throws IOException {
+      try {
          LogMessages.LOGGER.debugf("Provider : %s,  Method : writeTo", getClass().getName());
          // replace the Content-Type header to include the boundry
          // information
          httpHeaders.putSingle("Content-Type", MediaType.valueOf(mimeMultipart.getContentType()));
          mimeMultipart.writeTo(entityStream);
-      }
-      catch (MessagingException e)
-      {
+      } catch (MessagingException e) {
          throw new WriterException(e);
       }
 

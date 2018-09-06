@@ -1,10 +1,6 @@
 package org.jboss.resteasy.test.providers.jsonb.basic.resource;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 
 @Path("/test/jsonBinding")
 public class JsonBindingResource {
@@ -55,7 +51,7 @@ public class JsonBindingResource {
          throw new Exception("JsonbTransient annotation doesn't work");
       }
       return "{\"color\":\"tabby\",\"sort\":\"semi-british\",\"name\":\"Rosa\",\"domesticated\":true,\"transientVar\":\""
-      + RETURNED_TRANSIENT_VALUE + "\"}";
+              + RETURNED_TRANSIENT_VALUE + "\"}";
    }
 
    @Path("get/cat")

@@ -6,8 +6,7 @@ import javax.ws.rs.core.MediaType;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface MultipartConstants
-{
+public interface MultipartConstants {
    /**
     * "multipart/mixed"
     */

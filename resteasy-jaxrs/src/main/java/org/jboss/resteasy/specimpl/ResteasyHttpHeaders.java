@@ -9,49 +9,40 @@ import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class ResteasyHttpHeaders implements HttpHeaders
-{
+public class ResteasyHttpHeaders implements HttpHeaders {
 
    private MultivaluedMap<String, String> requestHeaders;
    private Map<String, Cookie> cookies;
+   // because header string map is mutable, we only cache the parsed media type
+   // and still do hash lookup
+   private String cachedMediaTypeString;
+   private MediaType cachedMediaType;
 
-   public ResteasyHttpHeaders(MultivaluedMap<String, String> requestHeaders)
-   {
+   public ResteasyHttpHeaders(MultivaluedMap<String, String> requestHeaders) {
       this(requestHeaders, new HashMap<String, Cookie>());
    }
 
-   public ResteasyHttpHeaders(MultivaluedMap<String, String> requestHeaders, Map<String, Cookie> cookies)
-   {
+   public ResteasyHttpHeaders(MultivaluedMap<String, String> requestHeaders, Map<String, Cookie> cookies) {
       this.requestHeaders = requestHeaders;
       this.cookies = (cookies == null ? new HashMap<String, Cookie>() : cookies);
    }
 
    @Override
-   public MultivaluedMap<String, String> getRequestHeaders()
-   {
+   public MultivaluedMap<String, String> getRequestHeaders() {
       return requestHeaders;
    }
 
-   public MultivaluedMap<String, String> getMutableHeaders()
-   {
+   public MultivaluedMap<String, String> getMutableHeaders() {
       return requestHeaders;
    }
 
-   public void testParsing()
-   {
+   public void testParsing() {
       // test parsing should throw an exception on error
       getAcceptableMediaTypes();
       getMediaType();
@@ -61,48 +52,41 @@ public class ResteasyHttpHeaders implements HttpHeaders
    }
 
    @Override
-   public List<String> getRequestHeader(String name)
-   {
+   public List<String> getRequestHeader(String name) {
       List<String> vals = requestHeaders.get(name);
       if (vals == null) return Collections.<String>emptyList();
       return Collections.unmodifiableList(vals);
    }
 
    @Override
-   public Map<String, Cookie> getCookies()
-   {
+   public Map<String, Cookie> getCookies() {
       mergeCookies();
       return Collections.unmodifiableMap(cookies);
    }
 
-   public Map<String, Cookie> getMutableCookies()
-   {
+   public void setCookies(Map<String, Cookie> cookies) {
+      this.cookies = cookies;
+   }
+
+   public Map<String, Cookie> getMutableCookies() {
       mergeCookies();
       return cookies;
    }
 
-   public void setCookies(Map<String, Cookie> cookies)
-   {
-      this.cookies = cookies;
-   }
-
    @Override
-   public Date getDate()
-   {
+   public Date getDate() {
       String date = requestHeaders.getFirst(DATE);
       if (date == null) return null;
       return DateUtil.parseDate(date);
    }
 
    @Override
-   public String getHeaderString(String name)
-   {
+   public String getHeaderString(String name) {
       List<String> vals = requestHeaders.get(name);
       if (vals == null) return null;
       StringBuilder builder = new StringBuilder();
       boolean first = true;
-      for (String val : vals)
-      {
+      for (String val : vals) {
          if (first) first = false;
          else builder.append(",");
          builder.append(val);
@@ -111,28 +95,21 @@ public class ResteasyHttpHeaders implements HttpHeaders
    }
 
    @Override
-   public Locale getLanguage()
-   {
+   public Locale getLanguage() {
       String obj = requestHeaders.getFirst(HttpHeaders.CONTENT_LANGUAGE);
       if (obj == null) return null;
       return new Locale(obj);
    }
 
    @Override
-   public int getLength()
-   {
+   public int getLength() {
       String obj = requestHeaders.getFirst(HttpHeaders.CONTENT_LENGTH);
       if (obj == null) return -1;
       return Integer.parseInt(obj);
    }
 
-   // because header string map is mutable, we only cache the parsed media type
-   // and still do hash lookup
-   private String cachedMediaTypeString;
-   private MediaType cachedMediaType;
    @Override
-   public MediaType getMediaType()
-   {
+   public MediaType getMediaType() {
       String obj = requestHeaders.getFirst(HttpHeaders.CONTENT_TYPE);
       if (obj == null) return null;
       if (obj == cachedMediaTypeString) return cachedMediaType;
@@ -142,8 +119,7 @@ public class ResteasyHttpHeaders implements HttpHeaders
    }
 
    @Override
-   public List<MediaType> getAcceptableMediaTypes()
-   {
+   public List<MediaType> getAcceptableMediaTypes() {
       List<String> vals = requestHeaders.get(ACCEPT);
       if (vals == null || vals.isEmpty()) {
          return Collections.singletonList(MediaType.WILDCARD_TYPE);
@@ -160,10 +136,9 @@ public class ResteasyHttpHeaders implements HttpHeaders
          return Collections.unmodifiableList(list);
       }
    }
-   
+
    @Override
-   public List<Locale> getAcceptableLanguages()
-   {
+   public List<Locale> getAcceptableLanguages() {
       List<String> vals = requestHeaders.get(ACCEPT_LANGUAGE);
       if (vals == null || vals.isEmpty()) {
          return Collections.emptyList();
@@ -181,17 +156,13 @@ public class ResteasyHttpHeaders implements HttpHeaders
       for (WeightedLanguage language : languages) list.add(language.getLocale());
       return Collections.unmodifiableList(list);
    }
-   
-   private void mergeCookies()
-   {
+
+   private void mergeCookies() {
       List<String> cookieHeader = requestHeaders.get(HttpHeaders.COOKIE);
-      if (cookieHeader != null && !cookieHeader.isEmpty())
-      {
-         for (String s : cookieHeader)
-         {
+      if (cookieHeader != null && !cookieHeader.isEmpty()) {
+         for (String s : cookieHeader) {
             List<Cookie> list = CookieParser.parseCookies(s);
-            for (Cookie cookie : list)
-            {
+            for (Cookie cookie : list) {
                cookies.put(cookie.getName(), cookie);
             }
          }

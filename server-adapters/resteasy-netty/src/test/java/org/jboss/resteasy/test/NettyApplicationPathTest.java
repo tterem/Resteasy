@@ -5,66 +5,30 @@ import org.jboss.resteasy.spi.ResteasyDeployment;
 import org.jboss.resteasy.util.HttpResponseCodes;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Fetching root path from ApplicationPath annotation related tests.
- *  @see https://issues.jboss.org/browse/RESTEASY-1657
+ *
+ * @see https://issues.jboss.org/browse/RESTEASY-1657
  */
-public class NettyApplicationPathTest
-{
+public class NettyApplicationPathTest {
    private static final String ECHO = "hello";
 
-   @ApplicationPath("/rest-test")
-   public static class TestApplication extends Application
-   {
-      private final Set<Object> singletons = new HashSet<>();
-
-      public TestApplication()
-      {
-         singletons.add(new EchoService());
-      }
-
-      @Override
-      public Set<Object> getSingletons()
-      {
-         return singletons;
-      }
-   }
-
-   @Path("/")
-   public static class EchoService
-   {
-      @GET
-      @Path("/echo")
-      @Produces("text/plain")
-      public String echo(@QueryParam("text") final String echo)
-      {
-         return echo;
-      }
-   }
-
    @Test
-   public void testWithClass() throws Exception
-   {
+   public void testWithClass() throws Exception {
       NettyJaxrsServer server = null;
       Client client = null;
-      try
-      {
+      try {
          ResteasyDeployment deployment = new ResteasyDeployment();
          deployment.setApplicationClass(TestApplication.class.getName());
          server = new NettyJaxrsServer();
@@ -81,27 +45,21 @@ public class NettyApplicationPathTest
          assertTrue(response.getStatus() == HttpResponseCodes.SC_OK);
          String msg = response.readEntity(String.class);
          assertEquals(ECHO, msg);
-      }
-      finally
-      {
-         if (client != null)
-         {
+      } finally {
+         if (client != null) {
             client.close();
          }
-         if (server != null)
-         {
+         if (server != null) {
             server.stop();
          }
       }
    }
 
    @Test
-   public void testWithApplication() throws Exception
-   {
+   public void testWithApplication() throws Exception {
       NettyJaxrsServer server = null;
       Client client = null;
-      try
-      {
+      try {
          ResteasyDeployment deployment = new ResteasyDeployment();
          Application app = new TestApplication();
          deployment.setApplication(app);
@@ -119,27 +77,21 @@ public class NettyApplicationPathTest
          assertTrue(response.getStatus() == HttpResponseCodes.SC_OK);
          String msg = response.readEntity(String.class);
          assertEquals(ECHO, msg);
-      }
-      finally
-      {
-         if (client != null)
-         {
+      } finally {
+         if (client != null) {
             client.close();
          }
-         if (server != null)
-         {
+         if (server != null) {
             server.stop();
          }
       }
    }
 
    @Test
-   public void testWithManualRootPath() throws Exception
-   {
+   public void testWithManualRootPath() throws Exception {
       NettyJaxrsServer server = null;
       Client client = null;
-      try
-      {
+      try {
          ResteasyDeployment deployment = new ResteasyDeployment();
          deployment.setApplicationClass(TestApplication.class.getName());
          server = new NettyJaxrsServer();
@@ -158,17 +110,37 @@ public class NettyApplicationPathTest
          assertTrue(response.getStatus() == HttpResponseCodes.SC_OK);
          String msg = response.readEntity(String.class);
          assertEquals(ECHO, msg);
-      }
-      finally
-      {
-         if (client != null)
-         {
+      } finally {
+         if (client != null) {
             client.close();
          }
-         if (server != null)
-         {
+         if (server != null) {
             server.stop();
          }
+      }
+   }
+
+   @ApplicationPath("/rest-test")
+   public static class TestApplication extends Application {
+      private final Set<Object> singletons = new HashSet<>();
+
+      public TestApplication() {
+         singletons.add(new EchoService());
+      }
+
+      @Override
+      public Set<Object> getSingletons() {
+         return singletons;
+      }
+   }
+
+   @Path("/")
+   public static class EchoService {
+      @GET
+      @Path("/echo")
+      @Produces("text/plain")
+      public String echo(@QueryParam("text") final String echo) {
+         return echo;
       }
    }
 }

@@ -14,8 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class SynchronousExecutionContext extends AbstractExecutionContext
-{
+public class SynchronousExecutionContext extends AbstractExecutionContext {
    protected final CountDownLatch syncLatch = new CountDownLatch(1);
    protected long timeout;
    protected TimeUnit timeoutUnit = TimeUnit.MILLISECONDS;
@@ -24,26 +23,22 @@ public class SynchronousExecutionContext extends AbstractExecutionContext
    protected Object responseLock = new Object();
    protected ResteasyAsynchronousResponse asynchronousResponse;
 
-   public SynchronousExecutionContext(SynchronousDispatcher dispatcher, HttpRequest request, HttpResponse response)
-   {
+   public SynchronousExecutionContext(SynchronousDispatcher dispatcher, HttpRequest request, HttpResponse response) {
       super(dispatcher, request, response);
    }
 
    @Override
-   public ResteasyAsynchronousResponse suspend() throws IllegalStateException
-   {
+   public ResteasyAsynchronousResponse suspend() throws IllegalStateException {
       return suspend(-1);
    }
 
    @Override
-   public ResteasyAsynchronousResponse suspend(long millis) throws IllegalStateException
-   {
+   public ResteasyAsynchronousResponse suspend(long millis) throws IllegalStateException {
       return suspend(millis, TimeUnit.MILLISECONDS);
    }
 
    @Override
-   public ResteasyAsynchronousResponse suspend(long time, TimeUnit unit) throws IllegalStateException
-   {
+   public ResteasyAsynchronousResponse suspend(long time, TimeUnit unit) throws IllegalStateException {
       wasSuspended = true;
       asynchronousResponse = new SynchronousAsynchronousResponse(dispatcher, request, response);
       asynchronousResponse.setTimeout(time, unit);
@@ -51,31 +46,25 @@ public class SynchronousExecutionContext extends AbstractExecutionContext
    }
 
    @Override
-   public ResteasyAsynchronousResponse getAsyncResponse()
-   {
+   public ResteasyAsynchronousResponse getAsyncResponse() {
       return asynchronousResponse;
    }
 
    @Override
-   public boolean isSuspended()
-   {
+   public boolean isSuspended() {
       return wasSuspended;
    }
 
-   protected class SynchronousAsynchronousResponse extends AbstractAsynchronousResponse
-   {
+   protected class SynchronousAsynchronousResponse extends AbstractAsynchronousResponse {
       protected boolean cancelled;
 
-      public SynchronousAsynchronousResponse(SynchronousDispatcher dispatcher, HttpRequest request, HttpResponse response)
-      {
+      public SynchronousAsynchronousResponse(SynchronousDispatcher dispatcher, HttpRequest request, HttpResponse response) {
          super(dispatcher, request, response);
       }
 
       @Override
-      public void complete()
-      {
-         synchronized (responseLock)
-         {
+      public void complete() {
+         synchronized (responseLock) {
             if (done) return;
             if (cancelled) return;
             done = true;
@@ -84,10 +73,8 @@ public class SynchronousExecutionContext extends AbstractExecutionContext
       }
 
       @Override
-      public boolean resume(Object entity)
-      {
-         synchronized (responseLock)
-         {
+      public boolean resume(Object entity) {
+         synchronized (responseLock) {
             if (done) return false;
             if (cancelled) return false;
             done = true;
@@ -97,10 +84,8 @@ public class SynchronousExecutionContext extends AbstractExecutionContext
 
 
       @Override
-      public boolean resume(Throwable exc) throws IllegalStateException
-      {
-         synchronized (responseLock)
-         {
+      public boolean resume(Throwable exc) throws IllegalStateException {
+         synchronized (responseLock) {
             if (done) return false;
             if (cancelled) return false;
             done = true;
@@ -109,41 +94,30 @@ public class SynchronousExecutionContext extends AbstractExecutionContext
       }
 
       @Override
-      public void initialRequestThreadFinished()
-      {
+      public void initialRequestThreadFinished() {
          if (!wasSuspended) return;
 
          boolean result = false;
-         try
-         {
-            if (timeout <= 0)
-            {
+         try {
+            if (timeout <= 0) {
                syncLatch.await();
                result = true;
-            }
-            else
-            {
+            } else {
                result = syncLatch.await(timeout, timeoutUnit);
             }
-         }
-         catch (InterruptedException e)
-         {
+         } catch (InterruptedException e) {
 
          }
-         if (result == false)
-         {
-            synchronized (responseLock)
-            {
-               if (!done)
-               {
-                  if (timeoutHandler != null)
-                  {
+         if (result == false) {
+            synchronized (responseLock) {
+               if (!done) {
+                  if (timeoutHandler != null) {
                      timeoutHandler.handleTimeout(this);
                   }
-                  if (!done)
-                  {
+                  if (!done) {
                      done = true;
-                     internalResume(Response.status(503).build(), t -> {});
+                     internalResume(Response.status(503).build(), t -> {
+                     });
                      // FIXME: what to do here?
 //                     throw new UnhandledException(e);
                   }
@@ -153,8 +127,7 @@ public class SynchronousExecutionContext extends AbstractExecutionContext
       }
 
       @Override
-      public boolean setTimeout(long time, TimeUnit unit) throws IllegalStateException
-      {
+      public boolean setTimeout(long time, TimeUnit unit) throws IllegalStateException {
          timeout = time;
          timeoutUnit = unit;
          if (done || cancelled) return false;
@@ -162,10 +135,8 @@ public class SynchronousExecutionContext extends AbstractExecutionContext
       }
 
       @Override
-      public boolean cancel()
-      {
-         synchronized (responseLock)
-         {
+      public boolean cancel() {
+         synchronized (responseLock) {
             if (cancelled) return true;
             if (done) return false;
             done = true;
@@ -175,10 +146,8 @@ public class SynchronousExecutionContext extends AbstractExecutionContext
       }
 
       @Override
-      public boolean cancel(int retryAfter)
-      {
-         synchronized (responseLock)
-         {
+      public boolean cancel(int retryAfter) {
+         synchronized (responseLock) {
             if (cancelled) return true;
             if (done) return false;
             done = true;
@@ -188,10 +157,8 @@ public class SynchronousExecutionContext extends AbstractExecutionContext
       }
 
       @Override
-      public boolean cancel(Date retryAfter)
-      {
-         synchronized (responseLock)
-         {
+      public boolean cancel(Date retryAfter) {
+         synchronized (responseLock) {
             if (cancelled) return true;
             if (done) return false;
             done = true;
@@ -201,20 +168,17 @@ public class SynchronousExecutionContext extends AbstractExecutionContext
       }
 
       @Override
-      public boolean isSuspended()
-      {
+      public boolean isSuspended() {
          return !done;
       }
 
       @Override
-      public boolean isCancelled()
-      {
+      public boolean isCancelled() {
          return cancelled;
       }
 
       @Override
-      public boolean isDone()
-      {
+      public boolean isDone() {
          return done;
       }
 

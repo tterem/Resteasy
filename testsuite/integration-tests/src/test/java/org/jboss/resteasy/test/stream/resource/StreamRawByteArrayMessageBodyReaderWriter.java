@@ -2,13 +2,6 @@ package org.jboss.resteasy.test.stream.resource;
 
 import org.jboss.logging.Logger;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
@@ -17,6 +10,12 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 @Consumes("*/*")
 @Produces("*/*")
@@ -50,7 +49,7 @@ public class StreamRawByteArrayMessageBodyReaderWriter implements MessageBodyRea
       ArrayList<Byte> list = new ArrayList<Byte>();
       int b = entityStream.read();
       while (b != -1) {
-         list.add(new Byte((byte)b));
+         list.add(new Byte((byte) b));
          b = entityStream.read();
       }
       return list.toArray(new Byte[list.size()]);

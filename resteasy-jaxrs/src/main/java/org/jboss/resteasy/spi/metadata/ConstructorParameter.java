@@ -8,13 +8,11 @@ import java.lang.reflect.Type;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class ConstructorParameter extends Parameter
-{
+public class ConstructorParameter extends Parameter {
    protected Annotation[] annotations = {};
    protected ResourceConstructor constructor;
 
-   protected ConstructorParameter(ResourceConstructor constructor, String name, Class<?> type, Type genericType, Annotation[] annotations)
-   {
+   protected ConstructorParameter(ResourceConstructor constructor, String name, Class<?> type, Type genericType, Annotation[] annotations) {
       super(constructor.getResourceClass(), type, genericType);
       this.annotations = annotations;
       this.constructor = constructor;
@@ -22,13 +20,11 @@ public class ConstructorParameter extends Parameter
    }
 
    @Override
-   public AccessibleObject getAccessibleObject()
-   {
+   public AccessibleObject getAccessibleObject() {
       return constructor.getConstructor();
    }
 
-   public Annotation[] getAnnotations()
-   {
+   public Annotation[] getAnnotations() {
       return annotations;
    }
 }

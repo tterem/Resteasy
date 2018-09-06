@@ -1,15 +1,5 @@
 package org.jboss.resteasy.test.response;
 
-import java.util.PropertyPermission;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -28,6 +18,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.Response;
+import java.util.PropertyPermission;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * @tpSubChapter Publisher response type
@@ -51,7 +50,7 @@ public class PublisherResponseRawStreamTest {
               new RuntimePermission("modifyThread")
       ), "permissions.xml");
       return TestUtil.finishContainerPrepare(war, null, PublisherResponseRawStreamResource.class,
-            AsyncResponseCallback.class, AsyncResponseExceptionMapper.class, AsyncResponseException.class);
+              AsyncResponseCallback.class, AsyncResponseExceptionMapper.class, AsyncResponseException.class);
    }
 
    private String generateURL(String path) {
@@ -74,8 +73,7 @@ public class PublisherResponseRawStreamTest {
     * @tpSince RESTEasy 4.0
     */
    @Test
-   public void testChunked() throws Exception
-   {
+   public void testChunked() throws Exception {
       Invocation.Builder request = client.target(generateURL("/chunked")).request();
       Response response = request.get();
       String entity = response.readEntity(String.class);
@@ -88,16 +86,12 @@ public class PublisherResponseRawStreamTest {
     * @tpSince RESTEasy 4.0
     */
    @Test
-   public void testInfiniteStreamsChunked() throws Exception
-   {
+   public void testInfiniteStreamsChunked() throws Exception {
       Invocation.Builder request = client.target(generateURL("/chunked-infinite")).request();
       Future<Response> futureResponse = request.async().get();
-      try 
-      {
+      try {
          futureResponse.get(2, TimeUnit.SECONDS);
-      }
-      catch(TimeoutException x) 
-      {
+      } catch (TimeoutException x) {
       }
       close();
       setup();

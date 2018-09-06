@@ -9,64 +9,52 @@ import org.springframework.beans.factory.FactoryBean;
 
 /**
  * This resovles optional
- * 
+ *
  * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
  * @version $Revision: 1 $
  */
 
-public class OptionalValueBeanFactory implements FactoryBean<Object>, BeanFactoryAware
-{
+public class OptionalValueBeanFactory implements FactoryBean<Object>, BeanFactoryAware {
 
    private String beanName;
    private Class<?> clazz;
    private BeanFactory beanFactory;
 
-   public String getBeanName()
-   {
+   public String getBeanName() {
       return beanName;
    }
 
-   public void setBeanName(String beanName)
-   {
+   public void setBeanName(String beanName) {
       this.beanName = beanName;
    }
 
-   public Class<?> getClazz()
-   {
+   public Class<?> getClazz() {
       return clazz;
    }
 
-   public void setClazz(Class<?> clazz)
-   {
+   public void setClazz(Class<?> clazz) {
       this.clazz = clazz;
    }
 
-   public Object getObject() throws Exception
-   {
-      try
-      {
+   public Object getObject() throws Exception {
+      try {
          if (beanFactory.containsBean(beanName))
             return beanFactory.getBean(beanName, clazz);
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          LogMessages.LOGGER.error(Messages.MESSAGES.couldNotRetrieveBean(beanName), e);
       }
       return null;
    }
 
-   public Class<?> getObjectType()
-   {
+   public Class<?> getObjectType() {
       return clazz;
    }
 
-   public boolean isSingleton()
-   {
+   public boolean isSingleton() {
       return true;
    }
 
-   public void setBeanFactory(BeanFactory beanFactory) throws BeansException
-   {
+   public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
       this.beanFactory = beanFactory;
    }
 

@@ -8,25 +8,20 @@ import org.jboss.resteasy.annotations.security.doseta.Verify;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class AbstractDigitalVerificationHeaderDecorator
-{
+public class AbstractDigitalVerificationHeaderDecorator {
    protected Verify verify;
    protected Verifications verifications;
 
-   public Verifier create()
-   {
+   public Verifier create() {
       // Currently we create verifier every time so that the verifications can hold state related to failures
       // todo create a VerifyResult object for each verification.
       Verifier verifier = new Verifier();
-      if (verify != null)
-      {
+      if (verify != null) {
          Verification v = createVerification(verify);
          verifier.getVerifications().add(v);
       }
-      if (verifications != null)
-      {
-         for (Verify ver : verifications.value())
-         {
+      if (verifications != null) {
+         for (Verify ver : verifications.value()) {
             Verification v = createVerification(ver);
             verifier.getVerifications().add(v);
          }
@@ -34,8 +29,7 @@ public class AbstractDigitalVerificationHeaderDecorator
       return verifier;
    }
 
-   protected Verification createVerification(Verify v)
-   {
+   protected Verification createVerification(Verify v) {
       Verification verification = new Verification();
       if (v.identifierName() != null && !v.identifierName().trim().equals(""))
          verification.setIdentifierName(v.identifierName());
@@ -49,8 +43,7 @@ public class AbstractDigitalVerificationHeaderDecorator
               || staleAfter.hours() > 0
               || staleAfter.days() > 0
               || staleAfter.months() > 0
-              || staleAfter.years() > 0)
-      {
+              || staleAfter.years() > 0) {
          verification.setStaleCheck(true);
          verification.setStaleSeconds(staleAfter.seconds());
          verification.setStaleMinutes(staleAfter.minutes());

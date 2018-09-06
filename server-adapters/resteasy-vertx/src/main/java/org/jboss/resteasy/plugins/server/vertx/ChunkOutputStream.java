@@ -1,10 +1,10 @@
 package org.jboss.resteasy.plugins.server.vertx;
 
-import java.io.IOException;
-import java.io.OutputStream;
-
 import io.vertx.core.buffer.Buffer;
 import org.jboss.resteasy.plugins.server.vertx.i18n.Messages;
+
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Class to help application that are built to write to an
@@ -24,17 +24,14 @@ import org.jboss.resteasy.plugins.server.vertx.i18n.Messages;
  *
  * @author tbussier
  */
-public class ChunkOutputStream extends OutputStream
-{
-   private Buffer buffer;
+public class ChunkOutputStream extends OutputStream {
    private final VertxHttpResponse response;
    private final int chunkSize;
+   private Buffer buffer;
 
-   ChunkOutputStream(VertxHttpResponse response, int chunksize)
-   {
+   ChunkOutputStream(VertxHttpResponse response, int chunksize) {
       this.response = response;
-      if (chunksize < 1)
-      {
+      if (chunksize < 1) {
          throw new IllegalArgumentException(Messages.MESSAGES.chunkSizeMustBeAtLeastOne());
       }
       this.chunkSize = chunksize;
@@ -42,51 +39,43 @@ public class ChunkOutputStream extends OutputStream
    }
 
    @Override
-   public void write(int b) throws IOException
-   {
-      if (buffer.length() >= chunkSize - 1)
-      {
+   public void write(int b) throws IOException {
+      if (buffer.length() >= chunkSize - 1) {
          flush();
       }
       buffer.appendByte((byte) b);
    }
 
-   public void reset()
-   {
+   public void reset() {
       if (response.isCommitted()) throw new IllegalStateException(Messages.MESSAGES.responseIsCommitted());
       buffer = Buffer.buffer(chunkSize);
    }
 
    @Override
-   public void close() throws IOException
-   {
+   public void close() throws IOException {
       flush();
       super.close();
    }
 
 
    @Override
-   public void write(byte[] b, int off, int len) throws IOException
-   {
+   public void write(byte[] b, int off, int len) throws IOException {
       int dataLengthLeftToWrite = len;
       int dataToWriteOffset = off;
       int spaceLeftInCurrentChunk;
-      while ((spaceLeftInCurrentChunk = chunkSize - buffer.length()) < dataLengthLeftToWrite)
-      {
+      while ((spaceLeftInCurrentChunk = chunkSize - buffer.length()) < dataLengthLeftToWrite) {
          buffer.appendBytes(b, dataToWriteOffset, spaceLeftInCurrentChunk);
          dataToWriteOffset = dataToWriteOffset + spaceLeftInCurrentChunk;
          dataLengthLeftToWrite = dataLengthLeftToWrite - spaceLeftInCurrentChunk;
          flush();
       }
-      if (dataLengthLeftToWrite > 0)
-      {
+      if (dataLengthLeftToWrite > 0) {
          buffer.appendBytes(b, dataToWriteOffset, dataLengthLeftToWrite);
       }
    }
 
    @Override
-   public void flush() throws IOException
-   {
+   public void flush() throws IOException {
       int readable = buffer.length();
       if (readable == 0) return;
       if (!response.isCommitted()) response.prepareChunkStream();

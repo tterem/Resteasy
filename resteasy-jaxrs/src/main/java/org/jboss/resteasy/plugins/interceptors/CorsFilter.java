@@ -4,13 +4,8 @@ import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 import org.jboss.resteasy.spi.CorsHeaders;
 
 import javax.ws.rs.ForbiddenException;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.container.ContainerResponseContext;
-import javax.ws.rs.container.ContainerResponseFilter;
-import javax.ws.rs.container.PreMatching;
+import javax.ws.rs.container.*;
 import javax.ws.rs.core.Response;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,8 +18,7 @@ import java.util.Set;
  * @version $Revision: 1 $
  */
 @PreMatching
-public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilter
-{
+public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilter {
    protected boolean allowCredentials = true;
    protected String allowedMethods;
    protected String allowedHeaders;
@@ -37,8 +31,7 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
     *
     * @return allowed origins
     */
-   public Set<String> getAllowedOrigins()
-   {
+   public Set<String> getAllowedOrigins() {
       return allowedOrigins;
    }
 
@@ -47,13 +40,11 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
     *
     * @return allow credentials
     */
-   public boolean isAllowCredentials()
-   {
+   public boolean isAllowCredentials() {
       return allowCredentials;
    }
 
-   public void setAllowCredentials(boolean allowCredentials)
-   {
+   public void setAllowCredentials(boolean allowCredentials) {
       this.allowCredentials = allowCredentials;
    }
 
@@ -62,8 +53,7 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
     *
     * @return allowed methods
     */
-   public String getAllowedMethods()
-   {
+   public String getAllowedMethods() {
       return allowedMethods;
    }
 
@@ -73,13 +63,11 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
     *
     * @param allowedMethods allowed methods
     */
-   public void setAllowedMethods(String allowedMethods)
-   {
+   public void setAllowedMethods(String allowedMethods) {
       this.allowedMethods = allowedMethods;
    }
 
-   public String getAllowedHeaders()
-   {
+   public String getAllowedHeaders() {
       return allowedHeaders;
    }
 
@@ -89,23 +77,19 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
     *
     * @param allowedHeaders allowed headers
     */
-   public void setAllowedHeaders(String allowedHeaders)
-   {
+   public void setAllowedHeaders(String allowedHeaders) {
       this.allowedHeaders = allowedHeaders;
    }
 
-   public int getCorsMaxAge()
-   {
+   public int getCorsMaxAge() {
       return corsMaxAge;
    }
 
-   public void setCorsMaxAge(int corsMaxAge)
-   {
+   public void setCorsMaxAge(int corsMaxAge) {
       this.corsMaxAge = corsMaxAge;
    }
 
-   public String getExposedHeaders()
-   {
+   public String getExposedHeaders() {
       return exposedHeaders;
    }
 
@@ -114,41 +98,34 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
     *
     * @param exposedHeaders exposed headers
     */
-   public void setExposedHeaders(String exposedHeaders)
-   {
+   public void setExposedHeaders(String exposedHeaders) {
       this.exposedHeaders = exposedHeaders;
    }
 
    @Override
-   public void filter(ContainerRequestContext requestContext) throws IOException
-   {
+   public void filter(ContainerRequestContext requestContext) throws IOException {
       String origin = requestContext.getHeaderString(CorsHeaders.ORIGIN);
-      if (origin == null)
-      {
+      if (origin == null) {
          return;
       }
-      if (requestContext.getMethod().equalsIgnoreCase("OPTIONS"))
-      {
+      if (requestContext.getMethod().equalsIgnoreCase("OPTIONS")) {
          preflight(origin, requestContext);
-      }
-      else
-      {
+      } else {
          checkOrigin(requestContext, origin);
       }
    }
 
    @Override
-   public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException
-   {
+   public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
       String origin = requestContext.getHeaderString(CorsHeaders.ORIGIN);
-      if (origin == null || requestContext.getMethod().equalsIgnoreCase("OPTIONS") || requestContext.getProperty("cors.failure") != null)
-      {
+      if (origin == null || requestContext.getMethod().equalsIgnoreCase("OPTIONS") || requestContext.getProperty("cors.failure") != null) {
          // don't do anything if origin is null, its an OPTIONS request, or cors.failure is set
          return;
       }
       responseContext.getHeaders().putSingle(CorsHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, origin);
       responseContext.getHeaders().putSingle(CorsHeaders.VARY, CorsHeaders.ORIGIN);
-      if (allowCredentials) responseContext.getHeaders().putSingle(CorsHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
+      if (allowCredentials)
+         responseContext.getHeaders().putSingle(CorsHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
 
       if (exposedHeaders != null) {
          responseContext.getHeaders().putSingle(CorsHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, exposedHeaders);
@@ -156,8 +133,7 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
    }
 
 
-   protected void preflight(String origin, ContainerRequestContext requestContext) throws IOException
-   {
+   protected void preflight(String origin, ContainerRequestContext requestContext) throws IOException {
       checkOrigin(requestContext, origin);
 
       Response.ResponseBuilder builder = Response.ok();
@@ -165,35 +141,28 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
       builder.header(CorsHeaders.VARY, CorsHeaders.ORIGIN);
       if (allowCredentials) builder.header(CorsHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
       String requestMethods = requestContext.getHeaderString(CorsHeaders.ACCESS_CONTROL_REQUEST_METHOD);
-      if (requestMethods != null)
-      {
-         if (allowedMethods != null)
-         {
+      if (requestMethods != null) {
+         if (allowedMethods != null) {
             requestMethods = this.allowedMethods;
          }
          builder.header(CorsHeaders.ACCESS_CONTROL_ALLOW_METHODS, requestMethods);
       }
       String allowHeaders = requestContext.getHeaderString(CorsHeaders.ACCESS_CONTROL_REQUEST_HEADERS);
-      if (allowHeaders != null)
-      {
-         if (allowedHeaders != null)
-         {
+      if (allowHeaders != null) {
+         if (allowedHeaders != null) {
             allowHeaders = this.allowedHeaders;
          }
          builder.header(CorsHeaders.ACCESS_CONTROL_ALLOW_HEADERS, allowHeaders);
       }
-      if (corsMaxAge > -1)
-      {
+      if (corsMaxAge > -1) {
          builder.header(CorsHeaders.ACCESS_CONTROL_MAX_AGE, corsMaxAge);
       }
       requestContext.abortWith(builder.build());
 
    }
 
-   protected void checkOrigin(ContainerRequestContext requestContext, String origin)
-   {
-      if (!allowedOrigins.contains("*") && !allowedOrigins.contains(origin))
-      {
+   protected void checkOrigin(ContainerRequestContext requestContext, String origin) {
+      if (!allowedOrigins.contains("*") && !allowedOrigins.contains(origin)) {
          requestContext.setProperty("cors.failure", true);
          throw new ForbiddenException(Messages.MESSAGES.originNotAllowed(origin));
       }

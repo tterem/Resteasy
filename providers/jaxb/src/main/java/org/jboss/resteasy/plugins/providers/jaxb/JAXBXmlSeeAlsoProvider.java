@@ -14,7 +14,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
@@ -27,16 +26,13 @@ import java.lang.reflect.Type;
 @Provider
 @Produces({"application/xml", "application/*+xml", "text/xml", "text/*+xml"})
 @Consumes({"application/xml", "application/*+xml", "text/xml", "text/*+xml"})
-public class JAXBXmlSeeAlsoProvider extends AbstractJAXBProvider<Object>
-{
+public class JAXBXmlSeeAlsoProvider extends AbstractJAXBProvider<Object> {
    @Override
    public JAXBContext findJAXBContext(Class<?> type, Annotation[] annotations, MediaType mediaType, boolean reader)
-           throws JAXBException
-   {
+           throws JAXBException {
       ContextResolver<JAXBContextFinder> resolver = providers.getContextResolver(JAXBContextFinder.class, mediaType);
       JAXBContextFinder finder = resolver.getContext(type);
-      if (finder == null)
-      {
+      if (finder == null) {
          if (reader) throw new JAXBUnmarshalException(Messages.MESSAGES.couldNotFindJAXBContextFinder(mediaType));
          else throw new JAXBMarshalException(Messages.MESSAGES.couldNotFindJAXBContextFinder(mediaType));
       }
@@ -50,8 +46,7 @@ public class JAXBXmlSeeAlsoProvider extends AbstractJAXBProvider<Object>
    protected boolean isReadWritable(Class<?> type,
                                     Type genericType,
                                     Annotation[] annotations,
-                                    MediaType mediaType)
-   {
+                                    MediaType mediaType) {
       return (type.isAnnotationPresent(XmlSeeAlso.class) && !type.isAnnotationPresent(XmlRootElement.class) && !type.isAnnotationPresent(XmlType.class)) && (FindAnnotation.findAnnotation(type, annotations, DoNotUseJAXBProvider.class) == null) && !IgnoredMediaTypes.ignored(type, annotations, mediaType);
    }
 

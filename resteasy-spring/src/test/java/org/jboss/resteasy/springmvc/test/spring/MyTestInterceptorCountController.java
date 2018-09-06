@@ -11,15 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Controller
-public class MyTestInterceptorCountController
-{
+public class MyTestInterceptorCountController {
    @Autowired
    MyTestInterceptor interceptor;
 
    @RequestMapping(method = RequestMethod.GET, value = "/basic/interceptor-test")
-   public void getInterceptorCount(@RequestParam("type")String type,
-                                   HttpServletResponse response, ModelMap model) throws IOException
-   {
+   public void getInterceptorCount(@RequestParam("type") String type,
+                                   HttpServletResponse response, ModelMap model) throws IOException {
       Integer i = interceptor.getCount(type);
       if (i == null)
          i = -1;

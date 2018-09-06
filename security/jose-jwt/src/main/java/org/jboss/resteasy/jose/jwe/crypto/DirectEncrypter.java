@@ -7,7 +7,6 @@ import org.jboss.resteasy.jose.jwe.CompressionAlgorithm;
 import org.jboss.resteasy.jose.jwe.EncryptionMethod;
 
 import javax.crypto.SecretKey;
-
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -33,8 +32,7 @@ import java.security.SecureRandom;
  * @author Vladimir Dzhuvinov
  * @version $version$ (2013-05-29)
  */
-public class DirectEncrypter
-{
+public class DirectEncrypter {
 
 
    /**
@@ -49,33 +47,26 @@ public class DirectEncrypter
     * @throws RuntimeException If the secure random byte generator couldn't
     *                          be instantiated.
     */
-   private static void initSecureRandom()
-   {
+   private static void initSecureRandom() {
 
-      try
-      {
+      try {
          randomGen = SecureRandom.getInstance("SHA1PRNG");
 
-      }
-      catch (NoSuchAlgorithmException e)
-      {
+      } catch (NoSuchAlgorithmException e) {
 
          throw new RuntimeException(e.getMessage(), e);
       }
    }
 
 
-   public static String encrypt(EncryptionMethod enc, CompressionAlgorithm compressionAlgorithm, String encodedJWEHeader, final SecretKey key, final byte[] bytes)
-   {
+   public static String encrypt(EncryptionMethod enc, CompressionAlgorithm compressionAlgorithm, String encodedJWEHeader, final SecretKey key, final byte[] bytes) {
 
       if (randomGen == null) initSecureRandom();
 
-      if (enc.getCekBitLength() != key.getEncoded().length * 8)
-      {
+      if (enc.getCekBitLength() != key.getEncoded().length * 8) {
 
          throw new RuntimeException(Messages.MESSAGES.contentEncryptionKeyLength(enc.getCekBitLength(), enc));
       }
-
 
 
       // Apply compression if instructed
@@ -90,24 +81,19 @@ public class DirectEncrypter
       byte[] iv;
       AuthenticatedCipherText authCipherText;
 
-      if (enc.equals(EncryptionMethod.A128CBC_HS256) || enc.equals(EncryptionMethod.A256CBC_HS512))
-      {
+      if (enc.equals(EncryptionMethod.A128CBC_HS256) || enc.equals(EncryptionMethod.A256CBC_HS512)) {
 
          iv = AESCBC.generateIV(randomGen);
 
          authCipherText = AESCBC.encryptAuthenticated(key, iv, plainText, aad);
 
-      }
-      else if (enc.equals(EncryptionMethod.A128GCM) || enc.equals(EncryptionMethod.A256GCM))
-      {
+      } else if (enc.equals(EncryptionMethod.A128GCM) || enc.equals(EncryptionMethod.A256GCM)) {
 
          iv = AESGCM.generateIV(randomGen);
 
          authCipherText = AESGCM.encrypt(key, iv, plainText, aad);
 
-      }
-      else
-      {
+      } else {
 
          throw new RuntimeException(Messages.MESSAGES.unsupportedEncryptionMethod());
       }

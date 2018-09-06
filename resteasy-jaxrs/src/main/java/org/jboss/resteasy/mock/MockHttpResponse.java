@@ -20,8 +20,7 @@ import java.util.List;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class MockHttpResponse implements HttpResponse
-{
+public class MockHttpResponse implements HttpResponse {
    private static final String CHARSET_PREFIX = "charset=";
    protected int status;
    protected ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -31,113 +30,91 @@ public class MockHttpResponse implements HttpResponse
    protected String errorMessage;
    protected boolean sentError = false;
 
-   public MockHttpResponse()
-   {
+   public MockHttpResponse() {
    }
 
-   public int getStatus()
-   {
+   public int getStatus() {
       return status;
    }
 
-   public void setStatus(int status)
-   {
+   public void setStatus(int status) {
       this.status = status;
    }
 
-   public MultivaluedMap<String, Object> getOutputHeaders()
-   {
+   public MultivaluedMap<String, Object> getOutputHeaders() {
       return outputHeaders;
    }
 
-   public OutputStream getOutputStream() throws IOException
-   {
+   public OutputStream getOutputStream() throws IOException {
       return os;
    }
 
    @Override
-   public void setOutputStream(OutputStream os)
-   {
+   public void setOutputStream(OutputStream os) {
       this.os = os;
    }
 
-   public byte[] getOutput()
-   {
+   public byte[] getOutput() {
       return baos.toByteArray();
    }
 
-   public String getContentAsString() throws UnsupportedEncodingException
-   {
+   public String getContentAsString() throws UnsupportedEncodingException {
       String charset = getCharset();
       return (charset == null ? baos.toString() : baos.toString(charset));
    }
 
-   private String getCharset()
-   {
+   private String getCharset() {
       String characterEncoding = null;
       MultivaluedMap<String, Object> headers = this.getOutputHeaders();
       Object obj = headers.getFirst(HttpHeaderNames.CONTENT_TYPE);
       String value = null;
-      if (obj instanceof MediaType)
-      {
-         value = ((MediaType)obj).toString();
-      }
-      else
-      {
-         value = (String)obj;
+      if (obj instanceof MediaType) {
+         value = ((MediaType) obj).toString();
+      } else {
+         value = (String) obj;
       }
 
-      if (value != null && !value.isEmpty())
-      {
+      if (value != null && !value.isEmpty()) {
          int charsetIndex = value.toLowerCase().indexOf(CHARSET_PREFIX);
-         if (charsetIndex != -1)
-         {
+         if (charsetIndex != -1) {
             characterEncoding = value.substring(charsetIndex + CHARSET_PREFIX.length());
          }
       }
       return characterEncoding;
    }
 
-   public void addNewCookie(NewCookie cookie)
-   {
+   public void addNewCookie(NewCookie cookie) {
       newCookies.add(cookie);
    }
 
-   public void sendError(int status) throws IOException
-   {
+   public void sendError(int status) throws IOException {
       sentError = true;
       this.status = status;
    }
 
-   public void sendError(int status, String message) throws IOException
-   {
+   public void sendError(int status, String message) throws IOException {
       sentError = true;
       this.status = status;
       this.errorMessage = message;
    }
 
-   public List<NewCookie> getNewCookies()
-   {
+   public List<NewCookie> getNewCookies() {
       return newCookies;
    }
 
-   public String getErrorMessage()
-   {
+   public String getErrorMessage() {
       return errorMessage;
    }
 
-   public boolean isErrorSent()
-   {
+   public boolean isErrorSent() {
       return sentError;
    }
 
-   public boolean isCommitted()
-   {
+   public boolean isCommitted() {
       return baos.size() > 0;
    }
 
-   public void reset()
-   {
+   public void reset() {
       baos = new ByteArrayOutputStream();
       os = baos;
       outputHeaders = new CaseInsensitiveMap<Object>();
@@ -148,7 +125,6 @@ public class MockHttpResponse implements HttpResponse
    }
 
    @Override
-   public void flushBuffer() throws IOException
-   {
+   public void flushBuffer() throws IOException {
    }
 }

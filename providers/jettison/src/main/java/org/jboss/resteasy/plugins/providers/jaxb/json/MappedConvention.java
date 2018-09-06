@@ -10,20 +10,16 @@ import org.codehaus.jettison.mapped.MappedNamespaceConvention;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class MappedConvention extends MappedNamespaceConvention
-{
-   public MappedConvention()
-   {
+public class MappedConvention extends MappedNamespaceConvention {
+   public MappedConvention() {
    }
 
-   public MappedConvention(Configuration configuration)
-   {
+   public MappedConvention(Configuration configuration) {
       super(configuration);
    }
 
    @Override
-   public boolean isElement(String p, String ns, String local)
-   {
+   public boolean isElement(String p, String ns, String local) {
       if (p == null) p = "";
       if (ns == null) ns = "";
       return super.isElement(p, ns, local);

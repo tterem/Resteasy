@@ -8,14 +8,7 @@ import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlMixed;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.net.URI;
 import java.security.AccessController;
 import java.security.PrivilegedActionException;
@@ -70,50 +63,37 @@ import java.util.List;
  */
 @XmlRootElement(name = "content")
 @XmlAccessorType(XmlAccessType.PROPERTY)
-public class Content extends CommonAttributes
-{
-
-   private String type;
-
-   private MediaType mediaType;
-
-   private String text;
-
-   private Element element;
-
-   private URI src;
-
-   private List<Object> value;
-
-   private Object jaxbObject;
+public class Content extends CommonAttributes {
 
    protected JAXBContextFinder finder;
+   private String type;
+   private MediaType mediaType;
+   private String text;
+   private Element element;
+   private URI src;
+   private List<Object> value;
+   private Object jaxbObject;
 
-   protected void setFinder(JAXBContextFinder finder)
-   {
+   protected void setFinder(JAXBContextFinder finder) {
       this.finder = finder;
    }
 
    @XmlAnyElement
    @XmlMixed
-   public List<Object> getValue()
-   {
+   public List<Object> getValue() {
       return value;
    }
 
-   public void setValue(List<Object> value)
-   {
+   public void setValue(List<Object> value) {
       this.value = value;
    }
 
    @XmlAttribute
-   public URI getSrc()
-   {
+   public URI getSrc() {
       return src;
    }
 
-   public void setSrc(URI src)
-   {
+   public void setSrc(URI src) {
       this.src = src;
    }
 
@@ -123,10 +103,8 @@ public class Content extends CommonAttributes
     * @return media type
     */
    @XmlTransient
-   public MediaType getType()
-   {
-      if (mediaType == null)
-      {
+   public MediaType getType() {
+      if (mediaType == null) {
          if (type.equals("html")) mediaType = MediaType.TEXT_HTML_TYPE;
          else if (type.equals("text")) mediaType = MediaType.TEXT_PLAIN_TYPE;
          else if (type.equals("xhtml")) mediaType = MediaType.APPLICATION_XHTML_XML_TYPE;
@@ -135,8 +113,7 @@ public class Content extends CommonAttributes
       return mediaType;
    }
 
-   public void setType(MediaType type)
-   {
+   public void setType(MediaType type) {
       mediaType = type;
       if (type.equals(MediaType.TEXT_PLAIN_TYPE)) this.type = "text";
       else if (type.equals(MediaType.TEXT_HTML_TYPE)) this.type = "html";
@@ -145,14 +122,12 @@ public class Content extends CommonAttributes
    }
 
    @XmlAttribute(name = "type")
-   public String getRawType()
-   {
+   public String getRawType() {
       return type;
    }
 
 
-   public void setRawType(String type)
-   {
+   public void setRawType(String type) {
       this.type = type;
    }
 
@@ -163,14 +138,12 @@ public class Content extends CommonAttributes
     * @return text
     */
    @XmlTransient
-   public String getText()
-   {
+   public String getText() {
       if (value == null) return null;
       if (value.size() == 0) return null;
       if (text != null) return text;
       StringBuffer buf = new StringBuffer();
-      for (Object obj : value)
-      {
+      for (Object obj : value) {
          if (obj instanceof String) buf.append(obj.toString());
       }
       text = buf.toString();
@@ -182,8 +155,7 @@ public class Content extends CommonAttributes
     *
     * @param text text
     */
-   public void setText(String text)
-   {
+   public void setText(String text) {
       if (value == null) value = new ArrayList<Object>();
       if (this.text != null && value != null) value.clear();
       this.text = text;
@@ -196,14 +168,11 @@ public class Content extends CommonAttributes
     * @return {@link Element}
     */
    @XmlTransient
-   public Element getElement()
-   {
+   public Element getElement() {
       if (value == null) return null;
       if (element != null) return element;
-      for (Object obj : value)
-      {
-         if (obj instanceof Element)
-         {
+      for (Object obj : value) {
+         if (obj instanceof Element) {
             element = (Element) obj;
             return element;
          }
@@ -216,8 +185,7 @@ public class Content extends CommonAttributes
     *
     * @param element {@link Element}
     */
-   public void setElement(Element element)
-   {
+   public void setElement(Element element) {
       if (value == null) value = new ArrayList<Object>();
       if (this.element != null && value != null) value.clear();
       this.element = element;
@@ -232,29 +200,24 @@ public class Content extends CommonAttributes
     * or, if those are not existent, it will create a new JAXBContext from scratch
     * using the class.
     *
-    * @param <T> type
+    * @param <T>                  type
     * @param clazz                class type you are expecting
     * @param otherPossibleClasses Other classe you want to create the JAXBContext with
     * @return null if there is no XML content
     * @throws JAXBException jaxb exception
     */
    @SuppressWarnings(value = "unchecked")
-   public <T> T getJAXBObject(Class<T> clazz, Class... otherPossibleClasses) throws JAXBException
-   {
+   public <T> T getJAXBObject(Class<T> clazz, Class... otherPossibleClasses) throws JAXBException {
       JAXBContext ctx = null;
       Class[] classes = {clazz};
-      if (otherPossibleClasses != null && otherPossibleClasses.length > 0)
-      {
+      if (otherPossibleClasses != null && otherPossibleClasses.length > 0) {
          classes = new Class[1 + otherPossibleClasses.length];
          classes[0] = clazz;
          for (int i = 0; i < otherPossibleClasses.length; i++) classes[i + 1] = otherPossibleClasses[i];
       }
-      if (finder != null)
-      {
+      if (finder != null) {
          ctx = finder.findCacheContext(MediaType.APPLICATION_XML_TYPE, null, classes);
-      }
-      else
-      {
+      } else {
          ctx = JAXBContext.newInstance(classes);
       }
       if (getElement() == null) return null;
@@ -262,9 +225,7 @@ public class Content extends CommonAttributes
 
       if (System.getSecurityManager() == null) {
          obj = ctx.createUnmarshaller().unmarshal(getElement());
-      }
-      else
-      {
+      } else {
          final JAXBContext smCtx = ctx;
          try {
             obj = AccessController.doPrivileged(new PrivilegedExceptionAction<Object>() {
@@ -273,19 +234,15 @@ public class Content extends CommonAttributes
                   return smCtx.createUnmarshaller().unmarshal(getElement());
                }
             });
-         } catch (PrivilegedActionException pae)
-         {
+         } catch (PrivilegedActionException pae) {
             throw new JAXBException(pae);
          }
       }
 
-      if (obj instanceof JAXBElement)
-      {
+      if (obj instanceof JAXBElement) {
          jaxbObject = ((JAXBElement) obj).getValue();
          return (T) jaxbObject;
-      }
-      else
-      {
+      } else {
          jaxbObject = obj;
          return (T) obj;
       }
@@ -298,21 +255,16 @@ public class Content extends CommonAttributes
     * @return jaxb object
     */
    @XmlTransient
-   public Object getJAXBObject()
-   {
+   public Object getJAXBObject() {
       return jaxbObject;
    }
 
-   public void setJAXBObject(Object obj)
-   {
+   public void setJAXBObject(Object obj) {
       if (value == null) value = new ArrayList<Object>();
       if (jaxbObject != null && value != null) value.clear();
-      if (!obj.getClass().isAnnotationPresent(XmlRootElement.class) && obj.getClass().isAnnotationPresent(XmlType.class))
-      {
+      if (!obj.getClass().isAnnotationPresent(XmlRootElement.class) && obj.getClass().isAnnotationPresent(XmlType.class)) {
          value.add(JAXBXmlTypeProvider.wrapInJAXBElement(obj, obj.getClass()));
-      }
-      else
-      {
+      } else {
          value.add(obj);
       }
       jaxbObject = obj;

@@ -1,10 +1,5 @@
 package org.jboss.resteasy.test.resource.basic;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -21,6 +16,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation.Builder;
+import javax.ws.rs.core.Response;
+
 /**
  * @tpSubChapter Resource
  * @tpChapter Integration tests
@@ -29,29 +29,28 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class InheritanceTest
-{
+public class InheritanceTest {
    private static Client client;
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(InheritanceTest.class.getSimpleName());
-       war.addClass(InheritenceParentResource.class);
-       return TestUtil.finishContainerPrepare(war, null, InheritenceParentResourceImpl.class);
+      WebArchive war = TestUtil.prepareArchive(InheritanceTest.class.getSimpleName());
+      war.addClass(InheritenceParentResource.class);
+      return TestUtil.finishContainerPrepare(war, null, InheritenceParentResourceImpl.class);
    }
 
-   private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, InheritanceTest.class.getSimpleName());
-   }
-   
    @BeforeClass
    public static void beforeSub() {
       client = ClientBuilder.newClient();
    }
-   
+
    @AfterClass
    public static void afterSub() {
       client.close();
+   }
+
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, InheritanceTest.class.getSimpleName());
    }
 
    @Test

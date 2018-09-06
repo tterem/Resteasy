@@ -1,13 +1,5 @@
 package org.jboss.resteasy.test.client;
 
-import java.util.concurrent.CountDownLatch;
-
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.InvocationCallback;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -23,22 +15,26 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.InvocationCallback;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
+import java.util.concurrent.CountDownLatch;
+
 @RunWith(Arquillian.class)
 @RunAsClient
 @Ignore
-public class AsyncBenchTest extends ClientTestBase
-{
+public class AsyncBenchTest extends ClientTestBase {
 
+   static final int ITERATIONS = 4000;
+   static final int MAX_CONNECTIONS = 200;
    static Client client;
    static Client nioClient;
    private static Logger log = Logger.getLogger(AsyncBenchTest.class);
-   
-   static final int ITERATIONS = 4000;
-   static final int MAX_CONNECTIONS = 200;
 
    @Deployment
-   public static Archive<?> deploy()
-   {
+   public static Archive<?> deploy() {
       WebArchive war = TestUtil.prepareArchive(AsyncBenchTest.class.getSimpleName());
       war.addClass(AsyncBenchTest.class);
       war.addClass(ClientTestBase.class);
@@ -46,8 +42,7 @@ public class AsyncBenchTest extends ClientTestBase
    }
 
    @After
-   public void after() throws Exception
-   {
+   public void after() throws Exception {
       if (client != null)
          client.close();
       if (nioClient != null)
@@ -55,8 +50,7 @@ public class AsyncBenchTest extends ClientTestBase
    }
 
    @Test
-   public void testAsyncPost() throws Exception
-   {
+   public void testAsyncPost() throws Exception {
       long start = System.currentTimeMillis();
       final String oldProp = System.getProperty("http.maxConnections");
       System.setProperty("http.maxConnections", String.valueOf(MAX_CONNECTIONS));
@@ -65,19 +59,15 @@ public class AsyncBenchTest extends ClientTestBase
       runCallback(wt, "NIO");
       long end = System.currentTimeMillis() - start;
       log.info("TEST NON BLOCKING IO - " + ITERATIONS + " iterations took " + end + "ms");
-      if (oldProp != null)
-      {
+      if (oldProp != null) {
          System.setProperty("http.maxConnections", oldProp);
-      }
-      else
-      {
+      } else {
          System.clearProperty("http.maxConnections");
       }
    }
-   
+
    @Test
-   public void testPost() throws Exception
-   {
+   public void testPost() throws Exception {
       long start = System.currentTimeMillis();
       client = new ResteasyClientBuilder().connectionPoolSize(MAX_CONNECTIONS).maxPooledPerRoute(MAX_CONNECTIONS).build();
       WebTarget wt2 = client.target(generateURL("/test"));
@@ -85,29 +75,25 @@ public class AsyncBenchTest extends ClientTestBase
       long end = System.currentTimeMillis() - start;
       log.info("TEST BLOCKING IO - " + ITERATIONS + " iterations took " + end + "ms");
    }
-   
-   private void runCallback(WebTarget wt, String msg) throws Exception
-   {
+
+   private void runCallback(WebTarget wt, String msg) throws Exception {
       CountDownLatch latch = new CountDownLatch(ITERATIONS);
       for (int i = 0; i < ITERATIONS; i++) {
          final String m = msg + i;
-         wt.request().async().post(Entity.text(m), new InvocationCallback<Response>()
-         {
+         wt.request().async().post(Entity.text(m), new InvocationCallback<Response>() {
             @Override
-            public void completed(Response response)
-            {
+            public void completed(Response response) {
                String entity = response.readEntity(String.class);
                Assert.assertEquals("post " + m, entity);
                latch.countDown();
             }
-   
+
             @Override
-            public void failed(Throwable error)
-            {
-               throw new RuntimeException(error);               
+            public void failed(Throwable error) {
+               throw new RuntimeException(error);
             }
          });
       }
       latch.await();
-   }   
+   }
 }

@@ -1,17 +1,21 @@
 package org.jboss.resteasy.util;
 
-import java.util.Comparator;
-
 import org.jboss.resteasy.specimpl.MultivaluedTreeMap;
+
+import java.util.Comparator;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class CaseInsensitiveMap<V> extends MultivaluedTreeMap<String, V>
-{
+public class CaseInsensitiveMap<V> extends MultivaluedTreeMap<String, V> {
    public static final Comparator<String> CASE_INSENSITIVE_ORDER
            = new CaseInsensitiveComparator();
+
+   public CaseInsensitiveMap() {
+      super(CASE_INSENSITIVE_ORDER);
+   }
+
    private static class CaseInsensitiveComparator
            implements Comparator<String>, java.io.Serializable {
 
@@ -37,11 +41,6 @@ public class CaseInsensitiveMap<V> extends MultivaluedTreeMap<String, V>
          }
          return n1 - n2;
       }
-   }
-
-   public CaseInsensitiveMap()
-   {
-      super(CASE_INSENSITIVE_ORDER);
    }
 
 }

@@ -1,10 +1,9 @@
 package org.jboss.resteasy.test.resource.basic.resource;
 
-import java.util.List;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
+import java.util.List;
 
 public interface ResourceLocatorSubresource3Interface {
 

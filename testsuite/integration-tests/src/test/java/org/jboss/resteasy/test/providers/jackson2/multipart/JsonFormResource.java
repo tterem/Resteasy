@@ -11,30 +11,30 @@ import javax.ws.rs.Path;
 @Path("/")
 public class JsonFormResource {
 
-    public JsonFormResource() {
-    }
+   public JsonFormResource() {
+   }
 
-    public static class Form {
-        @FormParam("user")
-        @PartType("application/json")
-        private JsonUser user;
+   @PUT
+   @Path("form/class")
+   @Consumes("multipart/form-data")
+   public String putMultipartForm(@MultipartForm Form form) {
+      return form.getUser().getName();
+   }
 
-        public Form() {
-        }
+   public static class Form {
+      @FormParam("user")
+      @PartType("application/json")
+      private JsonUser user;
 
-        public Form(final JsonUser user) {
-            this.user = user;
-        }
+      public Form() {
+      }
 
-        public JsonUser getUser() {
-            return user;
-        }
-    }
+      public Form(final JsonUser user) {
+         this.user = user;
+      }
 
-    @PUT
-    @Path("form/class")
-    @Consumes("multipart/form-data")
-    public String putMultipartForm(@MultipartForm Form form) {
-        return form.getUser().getName();
-    }
+      public JsonUser getUser() {
+         return user;
+      }
+   }
 }

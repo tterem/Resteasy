@@ -1,17 +1,15 @@
 package org.jboss.resteasy.client.jaxrs;
 
-import java.lang.reflect.Method;
-import java.util.Map;
-
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MultivaluedMap;
+import java.lang.reflect.Method;
+import java.util.Map;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface ResteasyWebTarget extends WebTarget
-{
+public interface ResteasyWebTarget extends WebTarget {
    ResteasyClient getResteasyClient();
 
    <T> T proxy(Class<T> proxyInterface);
@@ -52,7 +50,8 @@ public interface ResteasyWebTarget extends WebTarget
 
    /**
     * Will encode any '{}' characters and not treat them as template parameters.
-    * @param name name
+    *
+    * @param name   name
     * @param values values
     * @return web resource target
     */
@@ -60,6 +59,7 @@ public interface ResteasyWebTarget extends WebTarget
 
    /**
     * Will encode any '{}' characters and not treat them as template parameters.
+    *
     * @param parameters parameters map
     * @return web resource target
     */
@@ -97,6 +97,6 @@ public interface ResteasyWebTarget extends WebTarget
 
    @Override
    ResteasyWebTarget register(Object component, Map<Class<?>, Integer> contracts);
-   
+
    ResteasyWebTarget setChunked(boolean chunked);
 }

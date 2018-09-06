@@ -1,24 +1,17 @@
 package org.jboss.resteasy.plugins.stats;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
 @XmlRootElement(name = "error")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso({GetResourceMethod.class, DeleteResourceMethod.class, HeadResourceMethod.class, OptionsResourceMethod.class, PostResourceMethod.class, PutResourceMethod.class, TraceResourceMethod.class})
-public class ResourceMethodEntry
-{
+public class ResourceMethodEntry {
    @XmlAttribute(name = "class")
    private String clazz;
 
@@ -35,44 +28,35 @@ public class ResourceMethodEntry
    private List<String> consumes = new ArrayList<String>();
 
 
-   public String getClazz()
-   {
+   public String getClazz() {
       return clazz;
    }
 
-   public String getMethod()
-   {
-      return method;
-   }
-
-
-   public long getInvocations()
-   {
-      return invocations;
-   }
-
-   public void setClazz(String clazz)
-   {
+   public void setClazz(String clazz) {
       this.clazz = clazz;
    }
 
-   public void setMethod(String method)
-   {
+   public String getMethod() {
+      return method;
+   }
+
+   public void setMethod(String method) {
       this.method = method;
    }
 
-   public void setInvocations(long invocations)
-   {
+   public long getInvocations() {
+      return invocations;
+   }
+
+   public void setInvocations(long invocations) {
       this.invocations = invocations;
    }
 
-   public List<String> getProduces()
-   {
+   public List<String> getProduces() {
       return produces;
    }
 
-   public List<String> getConsumes()
-   {
+   public List<String> getConsumes() {
       return consumes;
    }
 }

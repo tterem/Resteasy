@@ -17,21 +17,18 @@ import java.security.cert.X509Certificate;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class PemUtils
-{
-   static
-   {
+public class PemUtils {
+   static {
       BouncyIntegration.init();
    }
-   public static X509Certificate decodeCertificate(InputStream is) throws Exception
-   {
+
+   public static X509Certificate decodeCertificate(InputStream is) throws Exception {
       byte[] der = pemToDer(is);
       ByteArrayInputStream bis = new ByteArrayInputStream(der);
       return DerUtils.decodeCertificate(bis);
    }
 
-   public static X509Certificate decodeCertificate(String cert) throws Exception
-   {
+   public static X509Certificate decodeCertificate(String cert) throws Exception {
       byte[] der = pemToDer(cert);
       ByteArrayInputStream bis = new ByteArrayInputStream(der);
       return DerUtils.decodeCertificate(bis);
@@ -45,8 +42,7 @@ public class PemUtils
     * @return {@link PublicKey}
     * @throws Exception if error occurred
     */
-   public static PublicKey decodePublicKey(String pem) throws Exception
-   {
+   public static PublicKey decodePublicKey(String pem) throws Exception {
       byte[] der = pemToDer(pem);
       return DerUtils.decodePublicKey(der);
    }
@@ -58,14 +54,12 @@ public class PemUtils
     * @return {@link PrivateKey}
     * @throws Exception if error occurred
     */
-   public static PrivateKey decodePrivateKey(String pem) throws Exception
-   {
+   public static PrivateKey decodePrivateKey(String pem) throws Exception {
       byte[] der = pemToDer(pem);
       return DerUtils.decodePrivateKey(der);
    }
 
-   public static PrivateKey decodePrivateKey(InputStream is) throws Exception
-   {
+   public static PrivateKey decodePrivateKey(InputStream is) throws Exception {
       String pem = pemFromStream(is);
       return decodePrivateKey(pem);
    }
@@ -77,8 +71,7 @@ public class PemUtils
     * @return decoded bytes
     * @throws IOException if I/O error occurred
     */
-   public static byte[] pemToDer(InputStream is) throws IOException
-   {
+   public static byte[] pemToDer(InputStream is) throws IOException {
       String pem = pemFromStream(is);
       byte[] der = pemToDer(pem);
       return der;
@@ -91,14 +84,12 @@ public class PemUtils
     * @return decoded bytes
     * @throws java.io.IOException if I/O error occurred
     */
-   public static byte[] pemToDer(String pem) throws java.io.IOException
-   {
+   public static byte[] pemToDer(String pem) throws java.io.IOException {
       pem = removeBeginEnd(pem);
       return Base64.decode(pem);
    }
 
-   public static String removeBeginEnd(String pem)
-   {
+   public static String removeBeginEnd(String pem) {
       pem = pem.replaceAll("-----BEGIN (.*)-----", "");
       pem = pem.replaceAll("-----END (.*)----", "");
       pem = pem.replaceAll("\r\n", "");
@@ -107,8 +98,7 @@ public class PemUtils
    }
 
 
-   public static String pemFromStream(InputStream is) throws IOException
-   {
+   public static String pemFromStream(InputStream is) throws IOException {
       DataInputStream dis = new DataInputStream(is);
       byte[] keyBytes = new byte[dis.available()];
       dis.readFully(keyBytes);

@@ -1,16 +1,5 @@
 package org.jboss.resteasy.test.response;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.sse.SseEventSource;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -30,6 +19,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.sse.SseEventSource;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 /**
  * @tpSubChapter Publisher response type
  * @tpChapter Integration tests
@@ -39,17 +38,16 @@ import org.junit.runner.RunWith;
 @RunAsClient
 public class PublisherResponseNoStreamTest {
 
-   Client client;
-
    private final static Logger logger = Logger.getLogger(PublisherResponseNoStreamTest.class);
+   Client client;
 
    @Deployment
    public static Archive<?> deploy() {
       WebArchive war = TestUtil.prepareArchive(PublisherResponseNoStreamTest.class.getSimpleName());
       war.setManifest(new StringAsset("Manifest-Version: 1.0\n"
-         + "Dependencies: org.jboss.resteasy.resteasy-rxjava2 services, org.reactivestreams\n"));
+              + "Dependencies: org.jboss.resteasy.resteasy-rxjava2 services, org.reactivestreams\n"));
       return TestUtil.finishContainerPrepare(war, null, PublisherResponseNoStreamResource.class,
-            AsyncResponseCallback.class, AsyncResponseExceptionMapper.class, AsyncResponseException.class);
+              AsyncResponseCallback.class, AsyncResponseExceptionMapper.class, AsyncResponseException.class);
    }
 
    private String generateURL(String path) {
@@ -72,8 +70,7 @@ public class PublisherResponseNoStreamTest {
     * @tpSince RESTEasy 4.0
     */
    @Test
-   public void testText() throws Exception
-   {
+   public void testText() throws Exception {
       Invocation.Builder request = client.target(generateURL("/text")).request();
       Response response = request.get();
       String entity = response.readEntity(String.class);
@@ -92,8 +89,7 @@ public class PublisherResponseNoStreamTest {
     * @tpSince RESTEasy 4.0
     */
    @Test
-   public void testTextErrorImmediate() throws Exception
-   {
+   public void testTextErrorImmediate() throws Exception {
       Invocation.Builder request = client.target(generateURL("/text-error-immediate")).request();
       Response response = request.get();
       String entity = response.readEntity(String.class);
@@ -112,8 +108,7 @@ public class PublisherResponseNoStreamTest {
     * @tpSince RESTEasy 4.0
     */
    @Test
-   public void testTextErrorDeferred() throws Exception
-   {
+   public void testTextErrorDeferred() throws Exception {
       Invocation.Builder request = client.target(generateURL("/text-error-deferred")).request();
       Response response = request.get();
       String entity = response.readEntity(String.class);
@@ -132,28 +127,27 @@ public class PublisherResponseNoStreamTest {
     * @tpSince RESTEasy 4.0
     */
    @Test
-   public void testSse() throws Exception
-   {
+   public void testSse() throws Exception {
       WebTarget target = client.target(generateURL("/sse"));
       List<String> collector = new ArrayList<>();
       List<Throwable> errors = new ArrayList<>();
       CompletableFuture<Void> future = new CompletableFuture<Void>();
       SseEventSource source = SseEventSource.target(target).build();
       source.register(evt -> {
-    	  String data = evt.readData(String.class);
-    	  collector.add(data);
-    	  if(collector.size() >= 2) {
-    		  future.complete(null);
-    	  }
-      }, 
-    		  t -> {
-    			  logger.error(t.getMessage(), t);
-    			  errors.add(t);  
-    		  }, 
-    		  () -> {
-    			  // bah, never called
-    			  future.complete(null);
-    		  });
+                 String data = evt.readData(String.class);
+                 collector.add(data);
+                 if (collector.size() >= 2) {
+                    future.complete(null);
+                 }
+              },
+              t -> {
+                 logger.error(t.getMessage(), t);
+                 errors.add(t);
+              },
+              () -> {
+                 // bah, never called
+                 future.complete(null);
+              });
       source.open();
       future.get();
       source.close();
@@ -168,28 +162,27 @@ public class PublisherResponseNoStreamTest {
     * @tpSince RESTEasy 4.0
     */
    @Test
-   public void testInfiniteStreamsSse() throws Exception
-   {
+   public void testInfiniteStreamsSse() throws Exception {
       WebTarget target = client.target(generateURL("/sse-infinite"));
       List<String> collector = new ArrayList<>();
       List<Throwable> errors = new ArrayList<>();
       CompletableFuture<Void> future = new CompletableFuture<Void>();
       SseEventSource source = SseEventSource.target(target).build();
       source.register(evt -> {
-        String data = evt.readData(String.class);
-        collector.add(data);
-        if(collector.size() >= 2) {
-           future.complete(null);
-        }
-      }, 
-           t -> {
-              logger.error(t);
-              errors.add(t);  
-           }, 
-           () -> {
-              // bah, never called
-              future.complete(null);
-           });
+                 String data = evt.readData(String.class);
+                 collector.add(data);
+                 if (collector.size() >= 2) {
+                    future.complete(null);
+                 }
+              },
+              t -> {
+                 logger.error(t);
+                 errors.add(t);
+              },
+              () -> {
+                 // bah, never called
+                 future.complete(null);
+              });
       source.open();
       future.get();
       source.close();

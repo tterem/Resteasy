@@ -1,20 +1,5 @@
 package org.jboss.resteasy.test.rx.rxjava;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PropertyPermission;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
-
-import javax.ws.rs.ClientErrorException;
-import javax.ws.rs.InternalServerErrorException;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -34,23 +19,31 @@ import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.resteasy.utils.TestUtilRxJava;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
-
 import rx.Single;
+
+import javax.ws.rs.ClientErrorException;
+import javax.ws.rs.InternalServerErrorException;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PropertyPermission;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 /**
  * @tpSubChapter Reactive classes
  * @tpChapter Integration tests
  * @tpSince RESTEasy 4.0
- * 
- * In these tests, the server resource methods create and return objects of type Single<T>. 
+ * <p>
+ * In these tests, the server resource methods create and return objects of type Single<T>.
  * The client uses a SingleRxInvoker to get objects of type Single<T>.
  */
 @RunWith(Arquillian.class)
@@ -60,14 +53,19 @@ public class RxSingleTest {
    private static ResteasyClient client;
    private static CountDownLatch latch;
    private static AtomicReference<Object> value = new AtomicReference<Object>();
-   private static List<Thing>  xThingList =  new ArrayList<Thing>();
-   private static List<Thing>  aThingList =  new ArrayList<Thing>();
+   private static List<Thing> xThingList = new ArrayList<Thing>();
+   private static List<Thing> aThingList = new ArrayList<Thing>();
    private static Entity<String> aEntity = Entity.entity("a", MediaType.TEXT_PLAIN_TYPE);
-   private static GenericType<List<Thing>> LIST_OF_THING = new GenericType<List<Thing>>() {};
+   private static GenericType<List<Thing>> LIST_OF_THING = new GenericType<List<Thing>>() {
+   };
 
    static {
-      for (int i = 0; i < 3; i++) {xThingList.add(new Thing("x"));}
-      for (int i = 0; i < 3; i++) {aThingList.add(new Thing("a"));}
+      for (int i = 0; i < 3; i++) {
+         xThingList.add(new Thing("x"));
+      }
+      for (int i = 0; i < 3; i++) {
+         aThingList.add(new Thing("a"));
+      }
    }
 
    @Deployment
@@ -95,15 +93,25 @@ public class RxSingleTest {
       client = new ResteasyClientBuilder().build();
    }
 
+   @AfterClass
+   public static void after() throws Exception {
+      client.close();
+   }
+
+   private static boolean throwableContains(Throwable t, String s) {
+      while (t != null) {
+         if (t.getMessage().contains(s)) {
+            return true;
+         }
+         t = t.getCause();
+      }
+      return false;
+   }
+
    @Before
    public void before() throws Exception {
       latch = new CountDownLatch(1);
       value.set(null);
-   }
-
-   @AfterClass
-   public static void after() throws Exception {
-      client.close();
    }
 
    //////////////////////////////////////////////////////////////////////////////
@@ -111,7 +119,10 @@ public class RxSingleTest {
    public void testGet() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/get/string")).request().rx(SingleRxInvoker.class);
       Single<Response> single = invoker.get();
-      single.subscribe((Response r) -> {value.set(r.readEntity(String.class)); latch.countDown();});
+      single.subscribe((Response r) -> {
+         value.set(r.readEntity(String.class));
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals("x", value.get());
@@ -121,7 +132,10 @@ public class RxSingleTest {
    public void testGetString() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/get/string")).request().rx(SingleRxInvoker.class);
       Single<String> single = invoker.get(String.class);
-      single.subscribe((String s) -> {value.set(s); latch.countDown();});
+      single.subscribe((String s) -> {
+         value.set(s);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals("x", value.get());
@@ -131,7 +145,10 @@ public class RxSingleTest {
    public void testGetThing() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/get/thing")).request().rx(SingleRxInvoker.class);
       Single<Thing> single = invoker.get(Thing.class);
-      single.subscribe((Thing t) -> {value.set(t); latch.countDown();});
+      single.subscribe((Thing t) -> {
+         value.set(t);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(new Thing("x"), value.get());
@@ -141,7 +158,10 @@ public class RxSingleTest {
    public void testGetThingList() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/get/thing/list")).request().rx(SingleRxInvoker.class);
       Single<List<Thing>> single = invoker.get(LIST_OF_THING);
-      single.subscribe((List<Thing> l) -> {value.set(l); latch.countDown();});
+      single.subscribe((List<Thing> l) -> {
+         value.set(l);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(xThingList, value.get());
@@ -151,7 +171,10 @@ public class RxSingleTest {
    public void testPut() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/put/string")).request().rx(SingleRxInvoker.class);
       Single<Response> single = invoker.put(aEntity);
-      single.subscribe((Response r) -> {value.set(r.readEntity(String.class)); latch.countDown();});
+      single.subscribe((Response r) -> {
+         value.set(r.readEntity(String.class));
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals("a", value.get());
@@ -161,7 +184,10 @@ public class RxSingleTest {
    public void testPutThing() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/put/thing")).request().rx(SingleRxInvoker.class);
       Single<Thing> single = invoker.put(aEntity, Thing.class);
-      single.subscribe((Thing t) -> {value.set(t); latch.countDown();});
+      single.subscribe((Thing t) -> {
+         value.set(t);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(new Thing("a"), value.get());
@@ -171,7 +197,10 @@ public class RxSingleTest {
    public void testPutThingList() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/put/thing/list")).request().rx(SingleRxInvoker.class);
       Single<List<Thing>> single = invoker.put(aEntity, LIST_OF_THING);
-      single.subscribe((List<Thing> l) -> {value.set(l); latch.countDown();});
+      single.subscribe((List<Thing> l) -> {
+         value.set(l);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(aThingList, value.get());
@@ -181,7 +210,10 @@ public class RxSingleTest {
    public void testPost() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/post/string")).request().rx(SingleRxInvoker.class);
       Single<Response> single = invoker.post(aEntity);
-      single.subscribe((Response r) -> {value.set(r.readEntity(String.class)); latch.countDown();});
+      single.subscribe((Response r) -> {
+         value.set(r.readEntity(String.class));
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals("a", value.get());
@@ -191,7 +223,10 @@ public class RxSingleTest {
    public void testPostThing() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/post/thing")).request().rx(SingleRxInvoker.class);
       Single<Thing> single = invoker.post(aEntity, Thing.class);
-      single.subscribe((Thing t) -> {value.set(t); latch.countDown();});
+      single.subscribe((Thing t) -> {
+         value.set(t);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(new Thing("a"), value.get());
@@ -201,7 +236,10 @@ public class RxSingleTest {
    public void testPostThingList() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/post/thing/list")).request().rx(SingleRxInvoker.class);
       Single<List<Thing>> single = invoker.post(aEntity, LIST_OF_THING);
-      single.subscribe((List<Thing> l) -> {value.set(l); latch.countDown();});
+      single.subscribe((List<Thing> l) -> {
+         value.set(l);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(aThingList, value.get());
@@ -211,7 +249,10 @@ public class RxSingleTest {
    public void testDelete() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/delete/string")).request().rx(SingleRxInvoker.class);
       Single<Response> single = invoker.delete();
-      single.subscribe((Response r) -> {value.set(r.readEntity(String.class)); latch.countDown();});
+      single.subscribe((Response r) -> {
+         value.set(r.readEntity(String.class));
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals("x", value.get());
@@ -221,7 +262,10 @@ public class RxSingleTest {
    public void testDeleteThing() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/delete/thing")).request().rx(SingleRxInvoker.class);
       Single<Thing> single = invoker.delete(Thing.class);
-      single.subscribe((Thing t) -> {value.set(t); latch.countDown();});
+      single.subscribe((Thing t) -> {
+         value.set(t);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(new Thing("x"), value.get());
@@ -231,7 +275,10 @@ public class RxSingleTest {
    public void testDeleteThingList() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/delete/thing/list")).request().rx(SingleRxInvoker.class);
       Single<List<Thing>> single = invoker.delete(LIST_OF_THING);
-      single.subscribe((List<Thing> l) -> {value.set(l); latch.countDown();});
+      single.subscribe((List<Thing> l) -> {
+         value.set(l);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(xThingList, value.get());
@@ -242,7 +289,10 @@ public class RxSingleTest {
       SingleRxInvoker invoker = client.target(generateURL("/head/string")).request().rx(SingleRxInvoker.class);
       Single<Response> single = invoker.head();
       single.subscribe(
-              (Response r) -> {value.set(r.readEntity(String.class)); latch.countDown();},
+              (Response r) -> {
+                 value.set(r.readEntity(String.class));
+                 latch.countDown();
+              },
               (Throwable t) -> throwableContains(t, "Input stream was empty"));
       Assert.assertNull(value.get());
    }
@@ -251,7 +301,10 @@ public class RxSingleTest {
    public void testOptions() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/options/string")).request().rx(SingleRxInvoker.class);
       Single<Response> single = invoker.options();
-      single.subscribe((Response r) -> {value.set(r.readEntity(String.class)); latch.countDown();});
+      single.subscribe((Response r) -> {
+         value.set(r.readEntity(String.class));
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals("x", value.get());
@@ -261,7 +314,10 @@ public class RxSingleTest {
    public void testOptionsThing() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/options/thing")).request().rx(SingleRxInvoker.class);
       Single<Thing> single = invoker.options(Thing.class);
-      single.subscribe((Thing t) -> {value.set(t); latch.countDown();});
+      single.subscribe((Thing t) -> {
+         value.set(t);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(new Thing("x"), value.get());
@@ -271,7 +327,10 @@ public class RxSingleTest {
    public void testOptionsThingList() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/options/thing/list")).request().rx(SingleRxInvoker.class);
       Single<List<Thing>> single = invoker.options(LIST_OF_THING);
-      single.subscribe((List<Thing> l) -> {value.set(l); latch.countDown();});
+      single.subscribe((List<Thing> l) -> {
+         value.set(l);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(xThingList, value.get());
@@ -282,7 +341,10 @@ public class RxSingleTest {
    public void testTrace() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/trace/string")).request().rx(SingleRxInvoker.class);
       Single<Response> single = invoker.trace();
-      single.subscribe((Response r) -> {value.set(r.readEntity(String.class)); latch.countDown();});
+      single.subscribe((Response r) -> {
+         value.set(r.readEntity(String.class));
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals("x", value.get());
@@ -293,7 +355,10 @@ public class RxSingleTest {
    public void testTraceThing() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/trace/thing")).request().rx(SingleRxInvoker.class);
       Single<Thing> single = invoker.trace(Thing.class);
-      single.subscribe((Thing t) -> {value.set(t); latch.countDown();});
+      single.subscribe((Thing t) -> {
+         value.set(t);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(new Thing("x"), value.get());
@@ -304,7 +369,10 @@ public class RxSingleTest {
    public void testTraceThingList() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/trace/thing/list")).request().rx(SingleRxInvoker.class);
       Single<List<Thing>> single = invoker.trace(LIST_OF_THING);
-      single.subscribe((List<Thing> l) -> {value.set(l); latch.countDown();});
+      single.subscribe((List<Thing> l) -> {
+         value.set(l);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(xThingList, value.get());
@@ -314,7 +382,10 @@ public class RxSingleTest {
    public void testMethodGet() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/get/string")).request().rx(SingleRxInvoker.class);
       Single<Response> single = invoker.method("GET");
-      single.subscribe((Response r) -> {value.set(r.readEntity(String.class)); latch.countDown();});
+      single.subscribe((Response r) -> {
+         value.set(r.readEntity(String.class));
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals("x", value.get());
@@ -324,7 +395,10 @@ public class RxSingleTest {
    public void testMethodGetThing() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/get/thing")).request().rx(SingleRxInvoker.class);
       Single<Thing> single = invoker.method("GET", Thing.class);
-      single.subscribe((Thing t) -> {value.set(t); latch.countDown();});
+      single.subscribe((Thing t) -> {
+         value.set(t);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(new Thing("x"), value.get());
@@ -334,7 +408,10 @@ public class RxSingleTest {
    public void testMethodGetThingList() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/get/thing/list")).request().rx(SingleRxInvoker.class);
       Single<List<Thing>> single = invoker.method("GET", LIST_OF_THING);
-      single.subscribe((List<Thing> l) -> {value.set(l); latch.countDown();});
+      single.subscribe((List<Thing> l) -> {
+         value.set(l);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(xThingList, value.get());
@@ -344,7 +421,10 @@ public class RxSingleTest {
    public void testMethodPost() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/post/string")).request().rx(SingleRxInvoker.class);
       Single<Response> single = invoker.method("POST", aEntity);
-      single.subscribe((Response r) -> {value.set(r.readEntity(String.class)); latch.countDown();});
+      single.subscribe((Response r) -> {
+         value.set(r.readEntity(String.class));
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals("a", value.get());
@@ -354,7 +434,10 @@ public class RxSingleTest {
    public void testMethodPostThing() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/post/thing")).request().rx(SingleRxInvoker.class);
       Single<Thing> single = invoker.method("POST", aEntity, Thing.class);
-      single.subscribe((Thing t) -> {value.set(t); latch.countDown();});
+      single.subscribe((Thing t) -> {
+         value.set(t);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(new Thing("a"), value.get());
@@ -364,19 +447,25 @@ public class RxSingleTest {
    public void testMethodPostThingList() throws Exception {
       SingleRxInvoker invoker = client.target(generateURL("/post/thing/list")).request().rx(SingleRxInvoker.class);
       Single<List<Thing>> single = invoker.method("POST", aEntity, LIST_OF_THING);
-      single.subscribe((List<Thing> l) -> {value.set(l); latch.countDown();});
+      single.subscribe((List<Thing> l) -> {
+         value.set(l);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(aThingList, value.get());
    }
 
    @Test
-   public void testScheduledExecutorService () throws Exception {
+   public void testScheduledExecutorService() throws Exception {
       {
          RxScheduledExecutorService.used = false;
          SingleRxInvoker invoker = client.target(generateURL("/get/string")).request().rx(SingleRxInvoker.class);
          Single<Response> single = invoker.get();
-         single.subscribe((Response r) -> {value.set(r.readEntity(String.class)); latch.countDown();});
+         single.subscribe((Response r) -> {
+            value.set(r.readEntity(String.class));
+            latch.countDown();
+         });
          boolean waitResult = latch.await(30, TimeUnit.SECONDS);
          Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
          Assert.assertFalse(RxScheduledExecutorService.used);
@@ -391,7 +480,10 @@ public class RxSingleTest {
          client.register(SingleRxInvokerProvider.class);
          SingleRxInvoker invoker = client.target(generateURL("/get/string")).request().rx(SingleRxInvoker.class);
          Single<Response> single = invoker.get();
-         single.subscribe((Response r) -> {value.set(r.readEntity(String.class)); latch.countDown();});
+         single.subscribe((Response r) -> {
+            value.set(r.readEntity(String.class));
+            latch.countDown();
+         });
          boolean waitResult = latch.await(30, TimeUnit.SECONDS);
          Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
          Assert.assertTrue(RxScheduledExecutorService.used);
@@ -404,8 +496,12 @@ public class RxSingleTest {
       SingleRxInvoker invoker = client.target(generateURL("/exception/unhandled")).request().rx(SingleRxInvoker.class);
       Single<Thing> single = (Single<Thing>) invoker.get(Thing.class);
       single.subscribe(
-         (Thing t) -> {},
-         (Throwable t) -> {value.set(t); latch.countDown();});
+              (Thing t) -> {
+              },
+              (Throwable t) -> {
+                 value.set(t);
+                 latch.countDown();
+              });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Throwable t = unwrap((Throwable) value.get(), InternalServerErrorException.class);
@@ -418,8 +514,12 @@ public class RxSingleTest {
       SingleRxInvoker invoker = client.target(generateURL("/exception/handled")).request().rx(SingleRxInvoker.class);
       Single<Thing> single = (Single<Thing>) invoker.get(Thing.class);
       single.subscribe(
-         (Thing t) -> {},
-         (Throwable t) -> {value.set(t); latch.countDown();});
+              (Thing t) -> {
+              },
+              (Throwable t) -> {
+                 value.set(t);
+                 latch.countDown();
+              });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Throwable t = unwrap((Throwable) value.get(), ClientErrorException.class);
@@ -435,15 +535,21 @@ public class RxSingleTest {
       ResteasyClient client1 = new ResteasyClientBuilder().build();
       client1.register(SingleRxInvokerProvider.class);
       SingleRxInvoker invoker1 = client1.target(generateURL("/get/string")).request().rx(SingleRxInvoker.class);
-      Single<Response> single1 = (Single<Response>) invoker1.get();      
+      Single<Response> single1 = (Single<Response>) invoker1.get();
 
       ResteasyClient client2 = new ResteasyClientBuilder().build();
       client2.register(SingleRxInvokerProvider.class);
       SingleRxInvoker invoker2 = client2.target(generateURL("/get/string")).request().rx(SingleRxInvoker.class);
       Single<Response> single2 = (Single<Response>) invoker2.get();
 
-      single1.subscribe((Response r) -> {list.add(r.readEntity(String.class)); cdl.countDown();});
-      single2.subscribe((Response r) -> {list.add(r.readEntity(String.class)); cdl.countDown();});
+      single1.subscribe((Response r) -> {
+         list.add(r.readEntity(String.class));
+         cdl.countDown();
+      });
+      single2.subscribe((Response r) -> {
+         list.add(r.readEntity(String.class));
+         cdl.countDown();
+      });
 
       boolean waitResult = cdl.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
@@ -459,13 +565,19 @@ public class RxSingleTest {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       SingleRxInvoker invoker1 = client.target(generateURL("/get/string")).request().rx(SingleRxInvoker.class);
-      Single<Response> single1 = (Single<Response>) invoker1.get();      
+      Single<Response> single1 = (Single<Response>) invoker1.get();
 
       SingleRxInvoker invoker2 = client.target(generateURL("/get/string")).request().rx(SingleRxInvoker.class);
       Single<Response> single2 = (Single<Response>) invoker2.get();
 
-      single1.subscribe((Response r) -> {list.add(r.readEntity(String.class)); cdl.countDown();});
-      single2.subscribe((Response r) -> {list.add(r.readEntity(String.class)); cdl.countDown();});
+      single1.subscribe((Response r) -> {
+         list.add(r.readEntity(String.class));
+         cdl.countDown();
+      });
+      single2.subscribe((Response r) -> {
+         list.add(r.readEntity(String.class));
+         cdl.countDown();
+      });
 
       boolean waitResult = cdl.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
@@ -481,11 +593,17 @@ public class RxSingleTest {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       SingleRxInvoker invoker = client.target(generateURL("/get/string")).request().rx(SingleRxInvoker.class);
-      Single<Response> single1 = (Single<Response>) invoker.get();      
+      Single<Response> single1 = (Single<Response>) invoker.get();
       Single<Response> single2 = (Single<Response>) invoker.get();
 
-      single1.subscribe((Response r) -> {list.add(r.readEntity(String.class)); cdl.countDown();});
-      single2.subscribe((Response r) -> {list.add(r.readEntity(String.class)); cdl.countDown();});
+      single1.subscribe((Response r) -> {
+         list.add(r.readEntity(String.class));
+         cdl.countDown();
+      });
+      single2.subscribe((Response r) -> {
+         list.add(r.readEntity(String.class));
+         cdl.countDown();
+      });
 
       boolean waitResult = cdl.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
@@ -503,15 +621,5 @@ public class RxSingleTest {
          t = t.getCause();
       }
       return null;
-   }
-
-   private static boolean throwableContains(Throwable t, String s) {
-      while (t != null) {
-         if (t.getMessage().contains(s)) {
-            return true;
-         }
-         t = t.getCause();
-      }
-      return false;
    }
 }

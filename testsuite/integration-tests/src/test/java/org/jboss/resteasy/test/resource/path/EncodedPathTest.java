@@ -1,10 +1,5 @@
 package org.jboss.resteasy.test.resource.path;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -20,6 +15,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation.Builder;
+import javax.ws.rs.core.Response;
+
 /**
  * @tpSubChapter Resource
  * @tpChapter Integration tests
@@ -28,52 +28,44 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class EncodedPathTest
-{
+public class EncodedPathTest {
    static Client client;
 
    @BeforeClass
    public static void setup() {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void close() {
-       client.close();
+      client.close();
    }
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(EncodedPathTest.class.getSimpleName());
-       return TestUtil.finishContainerPrepare(war, null, EncodedPathResource.class);
+      WebArchive war = TestUtil.prepareArchive(EncodedPathTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, EncodedPathResource.class);
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, EncodedPathTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, EncodedPathTest.class.getSimpleName());
    }
 
-   private void _test(String path)
-   {
+   private void _test(String path) {
       Builder builder = client.target(generateURL(path)).request();
       Response response = null;
-      try
-      {
+      try {
          response = builder.get();
          Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new RuntimeException(e);
-      }
-      finally
-      {
+      } finally {
          response.close();
       }
    }
 
    @Test
-   public void testEncoded() throws Exception
-   {
+   public void testEncoded() throws Exception {
       _test("/hello%20world");
       _test("/goodbye%7Bworld");
    }

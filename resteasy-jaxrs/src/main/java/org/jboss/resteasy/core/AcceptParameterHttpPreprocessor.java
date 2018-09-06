@@ -7,7 +7,6 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MultivaluedMap;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -34,8 +33,7 @@ import java.util.List;
  * @version $Revision: 1.2 $
  */
 @PreMatching
-public class AcceptParameterHttpPreprocessor implements ContainerRequestFilter
-{
+public class AcceptParameterHttpPreprocessor implements ContainerRequestFilter {
 
    private final String paramMapping;
 
@@ -44,33 +42,25 @@ public class AcceptParameterHttpPreprocessor implements ContainerRequestFilter
     *
     * @param paramMapping The name of query parameter that will be used to do the content negotiation
     */
-   public AcceptParameterHttpPreprocessor(String paramMapping)
-   {
+   public AcceptParameterHttpPreprocessor(String paramMapping) {
       if (paramMapping == null || paramMapping.matches("\\s+"))
          throw new IllegalArgumentException(Messages.MESSAGES.constructorMappingInvalid());
       this.paramMapping = paramMapping;
    }
 
    @Override
-   public void filter(ContainerRequestContext request) throws IOException
-   {
+   public void filter(ContainerRequestContext request) throws IOException {
       MultivaluedMap<String, String> params = request.getUriInfo().getQueryParameters(false);
 
-      if (params != null)
-      {
+      if (params != null) {
          List<String> accepts = params.get(paramMapping);
 
-         if (accepts != null && !accepts.isEmpty())
-         {
-            for (String accept : accepts)
-            {
-               try
-               {
+         if (accepts != null && !accepts.isEmpty()) {
+            for (String accept : accepts) {
+               try {
                   accept = URLDecoder.decode(accept, StandardCharsets.UTF_8.name());
                   request.getHeaders().add(HttpHeaders.ACCEPT, accept);
-               }
-               catch (UnsupportedEncodingException e)
-               {
+               } catch (UnsupportedEncodingException e) {
                   throw new RuntimeException(e);
                }
             }

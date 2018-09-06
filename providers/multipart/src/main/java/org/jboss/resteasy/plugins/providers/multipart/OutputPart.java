@@ -10,22 +10,19 @@ import java.lang.reflect.Type;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class OutputPart
-{
+public class OutputPart {
    private MultivaluedMap<String, Object> headers = new MultivaluedMapImpl<String, Object>();
    private Object entity;
    private Class<?> type;
    private Type genericType;
    private MediaType mediaType;
    private String filename;
-   
-   public OutputPart(Object entity, Class<?> type, Type genericType, MediaType mediaType)
-   {
-	   this(entity, type, genericType, mediaType, null);
+
+   public OutputPart(Object entity, Class<?> type, Type genericType, MediaType mediaType) {
+      this(entity, type, genericType, mediaType, null);
    }
 
-   public OutputPart(Object entity, Class<?> type, Type genericType, MediaType mediaType, String filename)
-   {
+   public OutputPart(Object entity, Class<?> type, Type genericType, MediaType mediaType, String filename) {
       this.entity = entity;
       this.type = type;
       this.genericType = genericType;
@@ -33,33 +30,27 @@ public class OutputPart
       this.filename = filename;
    }
 
-   public MultivaluedMap<String, Object> getHeaders()
-   {
+   public MultivaluedMap<String, Object> getHeaders() {
       return headers;
    }
 
-   public Object getEntity()
-   {
+   public Object getEntity() {
       return entity;
    }
 
-   public Class<?> getType()
-   {
+   public Class<?> getType() {
       return type;
    }
 
-   public Type getGenericType()
-   {
+   public Type getGenericType() {
       return genericType;
    }
 
-   public MediaType getMediaType()
-   {
+   public MediaType getMediaType() {
       return mediaType;
    }
-   
-   public String getFilename() 
-   {
-	   return filename;
+
+   public String getFilename() {
+      return filename;
    }
 }

@@ -5,8 +5,8 @@ import java.util.Collection;
 
 @Local
 public interface CDIInjectionBookBagLocal {
-    void addBook(CDIInjectionBook book);
+   void addBook(CDIInjectionBook book);
 
-    Collection<CDIInjectionBook> getContents();
+   Collection<CDIInjectionBook> getContents();
 }
 

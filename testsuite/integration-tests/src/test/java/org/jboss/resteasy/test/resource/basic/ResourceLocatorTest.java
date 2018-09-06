@@ -1,30 +1,9 @@
 package org.jboss.resteasy.test.resource.basic;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.resteasy.test.resource.basic.resource.ResourceLocatorAbstractAnnotationFreeResouce;
-import org.jboss.resteasy.test.resource.basic.resource.ResourceLocatorAnnotationFreeSubResource;
-import org.jboss.resteasy.test.resource.basic.resource.ResourceLocatorBaseResource;
-import org.jboss.resteasy.test.resource.basic.resource.ResourceLocatorCollectionResource;
-import org.jboss.resteasy.test.resource.basic.resource.ResourceLocatorDirectory;
-import org.jboss.resteasy.test.resource.basic.resource.ResourceLocatorQueueReceiver;
-import org.jboss.resteasy.test.resource.basic.resource.ResourceLocatorReceiver;
-import org.jboss.resteasy.test.resource.basic.resource.ResourceLocatorRootInterface;
-import org.jboss.resteasy.test.resource.basic.resource.ResourceLocatorSubInterface;
-import org.jboss.resteasy.test.resource.basic.resource.ResourceLocatorSubresource;
-import org.jboss.resteasy.test.resource.basic.resource.ResourceLocatorSubresource2;
-import org.jboss.resteasy.test.resource.basic.resource.ResourceLocatorSubresource3;
-import org.jboss.resteasy.test.resource.basic.resource.ResourceLocatorSubresource3Interface;
+import org.jboss.resteasy.test.resource.basic.resource.*;
 import org.jboss.resteasy.utils.PortProviderUtil;
 import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.shrinkwrap.api.Archive;
@@ -35,6 +14,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation.Builder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 /**
  * @tpSubChapter Resource
  * @tpChapter Integration tests
@@ -43,43 +31,42 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class ResourceLocatorTest
-{
+public class ResourceLocatorTest {
    static Client client;
 
    @BeforeClass
    public static void setup() {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void close() {
-       client.close();
+      client.close();
    }
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(ResourceLocatorTest.class.getSimpleName());
-       war.addClass(ResourceLocatorQueueReceiver.class)
-          .addClass(ResourceLocatorReceiver.class)
-          .addClass(ResourceLocatorRootInterface.class)
-          .addClass(ResourceLocatorSubInterface.class)
-          .addClass(ResourceLocatorSubresource3Interface.class)
-          ;
-       return TestUtil.finishContainerPrepare(war, null,
-             ResourceLocatorAbstractAnnotationFreeResouce.class,
-             ResourceLocatorAnnotationFreeSubResource.class,
-             ResourceLocatorBaseResource.class,
-             ResourceLocatorCollectionResource.class,
-             ResourceLocatorDirectory.class,
-             ResourceLocatorSubresource.class,
-             ResourceLocatorSubresource2.class,
-             ResourceLocatorSubresource3.class
-             );
+      WebArchive war = TestUtil.prepareArchive(ResourceLocatorTest.class.getSimpleName());
+      war.addClass(ResourceLocatorQueueReceiver.class)
+              .addClass(ResourceLocatorReceiver.class)
+              .addClass(ResourceLocatorRootInterface.class)
+              .addClass(ResourceLocatorSubInterface.class)
+              .addClass(ResourceLocatorSubresource3Interface.class)
+      ;
+      return TestUtil.finishContainerPrepare(war, null,
+              ResourceLocatorAbstractAnnotationFreeResouce.class,
+              ResourceLocatorAnnotationFreeSubResource.class,
+              ResourceLocatorBaseResource.class,
+              ResourceLocatorCollectionResource.class,
+              ResourceLocatorDirectory.class,
+              ResourceLocatorSubresource.class,
+              ResourceLocatorSubresource2.class,
+              ResourceLocatorSubresource3.class
+      );
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, ResourceLocatorTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, ResourceLocatorTest.class.getSimpleName());
    }
 
 
@@ -88,8 +75,7 @@ public class ResourceLocatorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
-   public void testProxiedSubresource() throws Exception
-   {
+   public void testProxiedSubresource() throws Exception {
       WebTarget target = client.target(generateURL("/proxy/3"));
       Response res = target.queryParam("foo", "1.2").queryParam("foo", "1.3").request().get();
       Assert.assertEquals(200, res.getStatus());
@@ -102,8 +88,7 @@ public class ResourceLocatorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
-   public void testSubresource() throws Exception
-   {
+   public void testSubresource() throws Exception {
       {
          Response response = client.target(generateURL("/base/1/resources")).request().get();
          Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
@@ -123,8 +108,7 @@ public class ResourceLocatorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
-   public void testSameUri() throws Exception
-   {
+   public void testSameUri() throws Exception {
       Response response = client.target(generateURL("/directory/receivers/1")).request().delete();
       Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
       Assert.assertEquals(ResourceLocatorDirectory.class.getName(), response.readEntity(String.class));
@@ -136,8 +120,7 @@ public class ResourceLocatorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
-   public void testAnnotationFreeSubresource() throws Exception
-   {
+   public void testAnnotationFreeSubresource() throws Exception {
       {
          Response response = client.target(generateURL("/collection/annotation_free_subresource")).request().get();
          Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());

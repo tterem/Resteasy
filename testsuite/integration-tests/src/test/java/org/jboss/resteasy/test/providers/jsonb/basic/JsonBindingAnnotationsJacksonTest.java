@@ -40,11 +40,9 @@ import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALI
 public class JsonBindingAnnotationsJacksonTest {
 
 
+   protected static final Logger logger = Logger.getLogger(JsonBindingAnnotationsJacksonTest.class.getName());
    private static final String WAR_WITH_JSONB = "war_with_jsonb";
    private static final String WAR_WITHOUT_JSONB = "war_without_jsonb";
-
-   protected static final Logger logger = Logger.getLogger(JsonBindingAnnotationsJacksonTest.class.getName());
-
    static Client client;
 
    @Deployment(name = WAR_WITH_JSONB)
@@ -88,11 +86,10 @@ public class JsonBindingAnnotationsJacksonTest {
 
    /**
     * @tpTestDetails JSON-B is not used on client, JSON-B is used on server
-    *                client send a value in variable with @JsonbTransient annotation
-    *                server should not receive a value in this variable (JSON-B on server should filter it)
-    *                end-point returns a value in this variable, but server should ignore this variable
-    *                check that server returns object without variable with @JsonbTransient annotation to client
-    *
+    * client send a value in variable with @JsonbTransient annotation
+    * server should not receive a value in this variable (JSON-B on server should filter it)
+    * end-point returns a value in this variable, but server should ignore this variable
+    * check that server returns object without variable with @JsonbTransient annotation to client
     * @tpPassCrit The resource returns object with correct values
     * @tpSince RESTEasy 3.5
     */
@@ -108,10 +105,10 @@ public class JsonBindingAnnotationsJacksonTest {
       Assert.assertThat("Variable with JsonbTransient annotation should be transient, if JSON-B is used",
               json.getTransientVar(), is(Cat.DEFAULT_TRANSIENT_VAR_VALUE));
    }
+
    /**
     * @tpTestDetails JSON-B is not used on both server and client
-    *                check that @JsonbTransient annotation is ignored
-    *
+    * check that @JsonbTransient annotation is ignored
     * @tpPassCrit The resource returns object with correct values
     * @tpSince RESTEasy 3.5
     */
@@ -130,10 +127,10 @@ public class JsonBindingAnnotationsJacksonTest {
 
    /**
     * @tpTestDetails JSON-B is not used on client, JSON-B is used on server
-    *                client uses custom json provider that returns corrupted json data
-    *                client sends corrupted json data to server
-    *                JSON-B provider on server should throw relevant exception
-    *                Server should returns relevant error message in response
+    * client uses custom json provider that returns corrupted json data
+    * client sends corrupted json data to server
+    * JSON-B provider on server should throw relevant exception
+    * Server should returns relevant error message in response
     * @tpSince RESTEasy 3.5
     */
    @Test

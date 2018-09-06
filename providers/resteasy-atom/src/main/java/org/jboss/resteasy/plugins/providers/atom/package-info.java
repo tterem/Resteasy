@@ -6,7 +6,8 @@
         {
                 @XmlJavaTypeAdapter(type = URI.class, value = UriAdapter.class),
                 @XmlJavaTypeAdapter(type = MediaType.class, value = MediaTypeAdapter.class)
-        }) package org.jboss.resteasy.plugins.providers.atom;
+        })
+package org.jboss.resteasy.plugins.providers.atom;
 
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.XmlNsForm;

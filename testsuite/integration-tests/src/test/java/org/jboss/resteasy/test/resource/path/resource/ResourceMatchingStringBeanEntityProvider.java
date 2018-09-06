@@ -18,41 +18,41 @@ import java.lang.reflect.Type;
 public class ResourceMatchingStringBeanEntityProvider implements MessageBodyReader<ResourceMatchingStringBean>,
         MessageBodyWriter<ResourceMatchingStringBean> {
 
-    @Override
-    public boolean isWriteable(Class<?> type, Type genericType,
-                               Annotation[] annotations, MediaType mediaType) {
-        return ResourceMatchingStringBean.class.isAssignableFrom(type);
-    }
-
-    @Override
-    public long getSize(ResourceMatchingStringBean t, Class<?> type, Type genericType,
-                        Annotation[] annotations, MediaType mediaType) {
-        return t.get().length();
-    }
-
-    @Override
-    public void writeTo(ResourceMatchingStringBean t, Class<?> type, Type genericType,
-                        Annotation[] annotations, MediaType mediaType,
-                        MultivaluedMap<String, Object> httpHeaders,
-                        OutputStream entityStream) throws IOException,
-            WebApplicationException {
-        entityStream.write(t.get().getBytes());
-    }
-
-    @Override
-    public boolean isReadable(Class<?> type, Type genericType,
+   @Override
+   public boolean isWriteable(Class<?> type, Type genericType,
                               Annotation[] annotations, MediaType mediaType) {
-        return isWriteable(type, genericType, annotations, mediaType);
-    }
+      return ResourceMatchingStringBean.class.isAssignableFrom(type);
+   }
 
-    @Override
-    public ResourceMatchingStringBean readFrom(Class<ResourceMatchingStringBean> type, Type genericType,
-                               Annotation[] annotations, MediaType mediaType,
-                               MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
-            throws IOException, WebApplicationException {
-        String stream = ResourceMatchingTest.readFromStream(entityStream);
-        ResourceMatchingStringBean bean = new ResourceMatchingStringBean(stream);
-        return bean;
-    }
+   @Override
+   public long getSize(ResourceMatchingStringBean t, Class<?> type, Type genericType,
+                       Annotation[] annotations, MediaType mediaType) {
+      return t.get().length();
+   }
+
+   @Override
+   public void writeTo(ResourceMatchingStringBean t, Class<?> type, Type genericType,
+                       Annotation[] annotations, MediaType mediaType,
+                       MultivaluedMap<String, Object> httpHeaders,
+                       OutputStream entityStream) throws IOException,
+           WebApplicationException {
+      entityStream.write(t.get().getBytes());
+   }
+
+   @Override
+   public boolean isReadable(Class<?> type, Type genericType,
+                             Annotation[] annotations, MediaType mediaType) {
+      return isWriteable(type, genericType, annotations, mediaType);
+   }
+
+   @Override
+   public ResourceMatchingStringBean readFrom(Class<ResourceMatchingStringBean> type, Type genericType,
+                                              Annotation[] annotations, MediaType mediaType,
+                                              MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
+           throws IOException, WebApplicationException {
+      String stream = ResourceMatchingTest.readFromStream(entityStream);
+      ResourceMatchingStringBean bean = new ResourceMatchingStringBean(stream);
+      return bean;
+   }
 
 }

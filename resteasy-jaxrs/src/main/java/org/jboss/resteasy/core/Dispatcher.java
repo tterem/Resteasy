@@ -1,10 +1,6 @@
 package org.jboss.resteasy.core;
 
-import org.jboss.resteasy.spi.HttpRequest;
-import org.jboss.resteasy.spi.HttpRequestPreprocessor;
-import org.jboss.resteasy.spi.HttpResponse;
-import org.jboss.resteasy.spi.Registry;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
+import org.jboss.resteasy.spi.*;
 
 import javax.ws.rs.core.Response;
 import java.util.Map;
@@ -13,8 +9,7 @@ import java.util.Map;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface Dispatcher
-{
+public interface Dispatcher {
    ResteasyProviderFactory getProviderFactory();
 
    Registry getRegistry();

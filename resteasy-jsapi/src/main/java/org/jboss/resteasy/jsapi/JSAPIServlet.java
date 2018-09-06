@@ -1,18 +1,5 @@
 package org.jboss.resteasy.jsapi;
 
-import java.io.IOException;
-
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import org.jboss.resteasy.core.ResourceMethodRegistry;
 import org.jboss.resteasy.jsapi.i18n.LogMessages;
 import org.jboss.resteasy.jsapi.i18n.Messages;
@@ -20,12 +7,21 @@ import org.jboss.resteasy.plugins.server.servlet.ResteasyContextParameters;
 import org.jboss.resteasy.spi.ResteasyDeployment;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
  */
-public class JSAPIServlet extends HttpServlet
-{
+public class JSAPIServlet extends HttpServlet {
 
    //corresponding to RFC 4329 this is the right MEDIA_TYPE
    private static final String JS_MEDIA_TYPE = "application/javascript";
@@ -37,8 +33,7 @@ public class JSAPIServlet extends HttpServlet
    private JSAPIWriter apiWriter = new JSAPIWriter();
 
    @Override
-   public void init(ServletConfig config) throws ServletException
-   {
+   public void init(ServletConfig config) throws ServletException {
       super.init(config);
       if (LogMessages.LOGGER.isDebugEnabled())
          LogMessages.LOGGER.info(Messages.MESSAGES.loadingJSAPIServlet());
@@ -59,13 +54,11 @@ public class JSAPIServlet extends HttpServlet
 
    @Override
    protected void service(HttpServletRequest req, HttpServletResponse resp)
-           throws ServletException, IOException
-   {
+           throws ServletException, IOException {
       String pathInfo = req.getPathInfo();
       String uri = req.getRequestURL().toString();
       uri = uri.substring(0, uri.length() - req.getServletPath().length());
-      if (LogMessages.LOGGER.isDebugEnabled())
-      {
+      if (LogMessages.LOGGER.isDebugEnabled()) {
          LogMessages.LOGGER.debug(Messages.MESSAGES.serving(pathInfo));
          LogMessages.LOGGER.debug(Messages.MESSAGES.query(req.getQueryString()));
       }
@@ -75,8 +68,7 @@ public class JSAPIServlet extends HttpServlet
          resp.sendError(503, Messages.MESSAGES.thereAreNoResteasyDeployments()); // FIXME should return internal error
       }
 
-      if (this.services == null)
-      {
+      if (this.services == null) {
          resp.sendError(503, Messages.MESSAGES.thereAreNoResteasyDeployments());
       }
       resp.setContentType(JS_MEDIA_TYPE);
@@ -92,11 +84,9 @@ public class JSAPIServlet extends HttpServlet
       Map<String, ResteasyDeployment> deployments = (Map<String, ResteasyDeployment>) servletContext.getAttribute(ResteasyContextParameters.RESTEASY_DEPLOYMENTS);
 
       if (deployments == null) return;
-      synchronized (this)
-      {
+      synchronized (this) {
          services = new HashMap<String, ServiceRegistry>();
-         for (Map.Entry<String, ResteasyDeployment> entry : deployments.entrySet())
-         {
+         for (Map.Entry<String, ResteasyDeployment> entry : deployments.entrySet()) {
             ResourceMethodRegistry registry = (ResourceMethodRegistry) entry.getValue().getRegistry();
             ResteasyProviderFactory providerFactory =
                     (ResteasyProviderFactory) entry.getValue().getProviderFactory();

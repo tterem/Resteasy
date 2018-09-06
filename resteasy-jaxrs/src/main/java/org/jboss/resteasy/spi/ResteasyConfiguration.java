@@ -8,8 +8,7 @@ import java.util.Set;
  * Context injectable interface that allows you to get at configuration information.  If resteasy is deployed
  * within a WAR this will allow you to reference servlet context, filter, and servlet parameters.
  */
-public interface ResteasyConfiguration
-{
+public interface ResteasyConfiguration {
    /**
     * i.e. Servlet init-param first is searched, then servlet context.
     *

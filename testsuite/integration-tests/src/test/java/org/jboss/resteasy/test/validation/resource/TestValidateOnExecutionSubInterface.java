@@ -7,8 +7,8 @@ import javax.ws.rs.Path;
 
 public interface TestValidateOnExecutionSubInterface extends
         TestValidateOnExecutionInterface {
-    @POST
-    @Path("overrideInterface2")
-    @ValidateOnExecution(type = {ExecutableType.NONE})
-    void overrideInterface2(String s);
+   @POST
+   @Path("overrideInterface2")
+   @ValidateOnExecution(type = {ExecutableType.NONE})
+   void overrideInterface2(String s);
 }

@@ -26,10 +26,8 @@ import java.lang.reflect.Type;
  */
 @Provider
 @Produces("multipart/signed")
-public class MultipartSignedWriter implements MessageBodyWriter<SignedOutput>
-{
-   static
-   {
+public class MultipartSignedWriter implements MessageBodyWriter<SignedOutput> {
+   static {
       BouncyIntegration.init();
    }
 
@@ -37,22 +35,18 @@ public class MultipartSignedWriter implements MessageBodyWriter<SignedOutput>
    protected Providers providers;
 
    @Override
-   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return SignedOutput.class.isAssignableFrom(type);
    }
 
    @Override
-   public long getSize(SignedOutput smimeOutput, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public long getSize(SignedOutput smimeOutput, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return -1;
    }
 
    @Override
-   public void writeTo(SignedOutput out, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> headers, OutputStream os) throws IOException, WebApplicationException
-   {
-      try
-      {
+   public void writeTo(SignedOutput out, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> headers, OutputStream os) throws IOException, WebApplicationException {
+      try {
          SMIMESignedGenerator gen = new SMIMESignedGenerator();
          SignerInfoGenerator signer = new JcaSimpleSignerInfoGeneratorBuilder().setProvider("BC").build("SHA1WITHRSA", out.getPrivateKey(), out.getCertificate());
          gen.addSignerInfoGenerator(signer);
@@ -62,9 +56,7 @@ public class MultipartSignedWriter implements MessageBodyWriter<SignedOutput>
          contentType = contentType.replace("\r\n", "").replace("\t", " ");
          headers.putSingle("Content-Type", contentType);
          mp.writeTo(os);
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new WriterException(e);
       }
    }

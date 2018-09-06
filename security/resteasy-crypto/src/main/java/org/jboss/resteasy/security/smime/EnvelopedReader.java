@@ -29,25 +29,20 @@ import java.nio.charset.StandardCharsets;
  */
 @Provider
 @Consumes("*/*")
-public class EnvelopedReader implements MessageBodyReader<EnvelopedInput>
-{
-   static
-   {
+public class EnvelopedReader implements MessageBodyReader<EnvelopedInput> {
+   static {
       BouncyIntegration.init();
    }
 
-   public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return EnvelopedInput.class.isAssignableFrom(type);
    }
 
-   public EnvelopedInput readFrom(Class<EnvelopedInput> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, String> headers, InputStream entityStream) throws IOException, WebApplicationException
-   {
+   public EnvelopedInput readFrom(Class<EnvelopedInput> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, String> headers, InputStream entityStream) throws IOException, WebApplicationException {
       Class<?> baseType = null;
       Type baseGenericType = null;
 
-      if (genericType != null && genericType instanceof ParameterizedType)
-      {
+      if (genericType != null && genericType instanceof ParameterizedType) {
          ParameterizedType param = (ParameterizedType) genericType;
          baseGenericType = param.getActualTypeArguments()[0];
          baseType = Types.getRawType(baseGenericType);
@@ -57,27 +52,21 @@ public class EnvelopedReader implements MessageBodyReader<EnvelopedInput>
       input.setGenericType(baseGenericType);
 
       StringBuilder headerString = new StringBuilder();
-      if (headers.containsKey("Content-Disposition"))
-      {
+      if (headers.containsKey("Content-Disposition")) {
          headerString.append("Content-Disposition: ").append(headers.getFirst("Content-Disposition")).append("\r\n");
       }
-      if (headers.containsKey("Content-Type"))
-      {
+      if (headers.containsKey("Content-Type")) {
          headerString.append("Content-Type: ").append(headers.getFirst("Content-Type")).append("\r\n");
       }
-      if (headers.containsKey("Content-Transfer-Encoding"))
-      {
+      if (headers.containsKey("Content-Transfer-Encoding")) {
          headerString.append("Content-Transfer-Encoding: ").append(headers.getFirst("Content-Transfer-Encoding")).append("\r\n");
       }
       headerString.append("\r\n");
       ByteArrayInputStream is = new ByteArrayInputStream(headerString.toString().getBytes(StandardCharsets.UTF_8));
       MimeBodyPart body = null;
-      try
-      {
+      try {
          body = new MimeBodyPart(new SequenceInputStream(is, entityStream));
-      }
-      catch (MessagingException e)
-      {
+      } catch (MessagingException e) {
          throw new ReaderException(e);
       }
       Providers providers = ResteasyProviderFactory.getContextData(Providers.class);

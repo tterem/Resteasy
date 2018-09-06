@@ -29,82 +29,83 @@ import java.util.Map;
  * @tpSubChapter XXE
  * @tpChapter Integration tests
  * @tpTestCaseDetails Regression test for RESTEASY-637
- *                    Basic XXE test.
+ * Basic XXE test.
  * @tpSince RESTEasy 3.0.16
  */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class XXEBasicTest {
 
-    static String request;
-    static {
-        String filename = TestUtil.getResourcePath(XXEBasicTest.class, "testpasswd.txt");
-        request = new StringBuilder()
-                .append("<?xml version=\"1.0\"?>\r")
-                .append("<!DOCTYPE foo\r")
-                .append("[<!ENTITY xxe SYSTEM \"").append(filename).append("\">\r")
-                .append("]>\r")
-                .append("<search><user>&xxe;</user></search>").toString();
-    }
+   static String request;
+   static ResteasyClient client;
 
-    static ResteasyClient client;
-    protected final Logger logger = LogManager.getLogger(XXEBasicTest.class.getName());
+   static {
+      String filename = TestUtil.getResourcePath(XXEBasicTest.class, "testpasswd.txt");
+      request = new StringBuilder()
+              .append("<?xml version=\"1.0\"?>\r")
+              .append("<!DOCTYPE foo\r")
+              .append("[<!ENTITY xxe SYSTEM \"").append(filename).append("\">\r")
+              .append("]>\r")
+              .append("<search><user>&xxe;</user></search>").toString();
+   }
 
-    public static Archive<?> deploy(String expandEntityReferences) {
-        WebArchive war = TestUtil.prepareArchive(expandEntityReferences);
-        Map<String, String> contextParam = new HashMap<>();
-        contextParam.put(ResteasyContextParameters.RESTEASY_EXPAND_ENTITY_REFERENCES, expandEntityReferences);
-        contextParam.put(ResteasyContextParameters.RESTEASY_DISABLE_DTDS, "false");
-        return TestUtil.finishContainerPrepare(war, contextParam, XXEBasicResource.class);
-    }
+   protected final Logger logger = LogManager.getLogger(XXEBasicTest.class.getName());
 
-    @Deployment(name = "true")
-    public static Archive<?> deployDefault() {
-        return deploy("true");
-    }
+   public static Archive<?> deploy(String expandEntityReferences) {
+      WebArchive war = TestUtil.prepareArchive(expandEntityReferences);
+      Map<String, String> contextParam = new HashMap<>();
+      contextParam.put(ResteasyContextParameters.RESTEASY_EXPAND_ENTITY_REFERENCES, expandEntityReferences);
+      contextParam.put(ResteasyContextParameters.RESTEASY_DISABLE_DTDS, "false");
+      return TestUtil.finishContainerPrepare(war, contextParam, XXEBasicResource.class);
+   }
 
-    @Deployment(name = "false")
-    public static Archive<?> deployOne() {
-        return deploy("false");
-    }
+   @Deployment(name = "true")
+   public static Archive<?> deployDefault() {
+      return deploy("true");
+   }
 
-    @Before
-    public void init() {
-        client = new ResteasyClientBuilder().build();
-    }
+   @Deployment(name = "false")
+   public static Archive<?> deployOne() {
+      return deploy("false");
+   }
 
-    @After
-    public void after() throws Exception {
-        client.close();
-        client = null;
-    }
+   @Before
+   public void init() {
+      client = new ResteasyClientBuilder().build();
+   }
 
-    /**
-     * @tpTestDetails "resteasy.document.secure.disableDTDs" is set to false
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testXXEWithoutExpansion() throws Exception {
-        logger.info(String.format("Request body: %s", request));
+   @After
+   public void after() throws Exception {
+      client.close();
+      client = null;
+   }
 
-        Response response = client.target(PortProviderUtil.generateURL("/", "false")).request().post(Entity.entity(request, "application/xml"));
+   /**
+    * @tpTestDetails "resteasy.document.secure.disableDTDs" is set to false
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testXXEWithoutExpansion() throws Exception {
+      logger.info(String.format("Request body: %s", request));
 
-        Assert.assertEquals(HttpResponseCodes.SC_NO_CONTENT, response.getStatus());
-        String entity = response.readEntity(String.class);
-        Assert.assertEquals(entity, null);
-        response.close();
-    }
+      Response response = client.target(PortProviderUtil.generateURL("/", "false")).request().post(Entity.entity(request, "application/xml"));
 
-    /**
-     * @tpTestDetails "resteasy.document.secure.disableDTDs" is set to true
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testXXEWithExpansion() throws Exception {
-        Response response = client.target(PortProviderUtil.generateURL("/", "true")).request().post(Entity.entity(request, "application/xml"));
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-        String entity = response.readEntity(String.class);
-        Assert.assertEquals("xx:xx:xx:xx:xx:xx:xx", entity);
-        response.close();
-    }
+      Assert.assertEquals(HttpResponseCodes.SC_NO_CONTENT, response.getStatus());
+      String entity = response.readEntity(String.class);
+      Assert.assertEquals(entity, null);
+      response.close();
+   }
+
+   /**
+    * @tpTestDetails "resteasy.document.secure.disableDTDs" is set to true
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testXXEWithExpansion() throws Exception {
+      Response response = client.target(PortProviderUtil.generateURL("/", "true")).request().post(Entity.entity(request, "application/xml"));
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      String entity = response.readEntity(String.class);
+      Assert.assertEquals("xx:xx:xx:xx:xx:xx:xx", entity);
+      response.close();
+   }
 }

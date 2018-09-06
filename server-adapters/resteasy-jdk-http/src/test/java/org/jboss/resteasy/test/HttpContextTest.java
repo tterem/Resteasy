@@ -7,12 +7,11 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.net.InetSocketAddress;
-
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
+import java.net.InetSocketAddress;
 
 import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 
@@ -22,15 +21,13 @@ import static org.jboss.resteasy.test.TestPortProvider.generateURL;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class HttpContextTest
-{
+public class HttpContextTest {
 
    private static HttpServer httpServer;
    private static HttpContextBuilder contextBuilder;
 
    @BeforeClass
-   public static void before() throws Exception
-   {
+   public static void before() throws Exception {
       int port = TestPortProvider.getPort();
       httpServer = HttpServer.create(new InetSocketAddress(port), 10);
       contextBuilder = new HttpContextBuilder();
@@ -41,17 +38,15 @@ public class HttpContextTest
    }
 
    @AfterClass
-   public static void after() throws Exception
-   {
+   public static void after() throws Exception {
       contextBuilder.cleanup();
       httpServer.stop(0);
    }
 
    @Test
-   public void testNoDefaultsResource() throws Exception
-   {
+   public void testNoDefaultsResource() throws Exception {
       Client client = ClientBuilder.newClient();
-      
+
       {
          Response response = client.target(generateURL("/basic")).request().get();
          Assert.assertEquals(200, response.getStatus());
@@ -63,7 +58,7 @@ public class HttpContextTest
          Assert.assertEquals(204, response.getStatus());
          response.close();
       }
-      
+
       {
          Response response = client.target(generateURL("/queryParam")).queryParam("param", "hello world").request().get();
          Assert.assertEquals(200, response.getStatus());
@@ -73,7 +68,7 @@ public class HttpContextTest
       {
          Response response = client.target(generateURL("/uriParam/1234")).request().get();
          Assert.assertEquals(200, response.getStatus());
-         Assert.assertEquals("1234", response.readEntity(String.class));   
+         Assert.assertEquals("1234", response.readEntity(String.class));
       }
    }
 

@@ -1,7 +1,5 @@
 package org.jboss.resteasy.test.rx.rxjava;
 
-import static org.junit.Assert.assertArrayEquals;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -22,6 +20,8 @@ import org.junit.runner.RunWith;
 
 import java.util.PropertyPermission;
 
+import static org.junit.Assert.assertArrayEquals;
+
 /**
  * @tpSubChapter Reactive classes
  * @tpChapter Integration tests
@@ -29,8 +29,7 @@ import java.util.PropertyPermission;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class NoStreamRxTest
-{
+public class NoStreamRxTest {
    private static ResteasyClient client;
 
    @Deployment
@@ -60,18 +59,17 @@ public class NoStreamRxTest
    }
 
    @Test
-   public void testRx() throws InterruptedException
-   {
+   public void testRx() throws InterruptedException {
       String data = client.target(generateURL("/single")).request().get(String.class);
       Assert.assertEquals("got it", data);
 
       String[] data2 = client.target(generateURL("/observable")).request().get(String[].class);
-      Assert.assertArrayEquals(new String[] {"one", "two"}, data2);
+      Assert.assertArrayEquals(new String[]{"one", "two"}, data2);
 
       String data3 = client.target(generateURL("/context/single")).request().get(String.class);
       Assert.assertEquals("got it", data3);
 
       String[] data4 = client.target(generateURL("/context/observable")).request().get(String[].class);
-      assertArrayEquals(new String[] {"one", "two"}, data4);
+      assertArrayEquals(new String[]{"one", "two"}, data4);
    }
 }

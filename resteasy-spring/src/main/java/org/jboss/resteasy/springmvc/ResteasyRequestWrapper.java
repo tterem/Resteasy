@@ -16,8 +16,7 @@ import java.io.IOException;
  * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
  * @version $Revision: 1 $
  */
-public class ResteasyRequestWrapper
-{
+public class ResteasyRequestWrapper {
 
    private HttpRequest httpRequest = null;
    private HttpServletRequest httpServletRequest;
@@ -26,14 +25,12 @@ public class ResteasyRequestWrapper
    private String errorMessage;
    private Response abortedResponse;
 
-   public ResteasyRequestWrapper(HttpServletRequest request) throws ServletException, IOException
-   {
+   public ResteasyRequestWrapper(HttpServletRequest request) throws ServletException, IOException {
       this(request, request.getMethod(), "");
    }
 
    public ResteasyRequestWrapper(HttpServletRequest request, String httpMethod, String prefix)
-           throws ServletException, IOException
-   {
+           throws ServletException, IOException {
       this.httpServletRequest = request;
       ResteasyHttpHeaders headers = ServletUtil.extractHttpHeaders(request);
       ResteasyUriInfo uriInfo = ServletUtil.extractUriInfo(request, prefix);
@@ -51,59 +48,48 @@ public class ResteasyRequestWrapper
               .toUpperCase(), null);
    }
 
-   public HttpServletRequest getHttpServletRequest()
-   {
+   public HttpServletRequest getHttpServletRequest() {
       return httpServletRequest;
    }
 
-   public HttpRequest getHttpRequest()
-   {
+   public HttpRequest getHttpRequest() {
       return httpRequest;
    }
 
-   public ResourceInvoker getInvoker()
-   {
+   public ResourceInvoker getInvoker() {
       return invoker;
    }
 
-   public void setInvoker(ResourceInvoker invoker)
-   {
+   public void setInvoker(ResourceInvoker invoker) {
       this.invoker = invoker;
    }
 
-   public Integer getErrorCode()
-   {
+   public Integer getErrorCode() {
       return errorCode;
    }
 
-   public void setErrorCode(Integer errorCode)
-   {
+   public void setErrorCode(Integer errorCode) {
       this.errorCode = errorCode;
    }
 
-   public String getErrorMessage()
-   {
+   public String getErrorMessage() {
       return errorMessage;
    }
 
-   public void setErrorMessage(String errorMessage)
-   {
+   public void setErrorMessage(String errorMessage) {
       this.errorMessage = errorMessage;
    }
 
-   public void setError(Integer errorCode, String errorMessage)
-   {
+   public void setError(Integer errorCode, String errorMessage) {
       setErrorCode(errorCode);
       setErrorMessage(errorMessage);
    }
 
-   public Response getAbortedResponse()
-   {
+   public Response getAbortedResponse() {
       return abortedResponse;
    }
 
-   public void setAbortedResponse(Response abortedResponse)
-   {
+   public void setAbortedResponse(Response abortedResponse) {
       this.abortedResponse = abortedResponse;
    }
 }

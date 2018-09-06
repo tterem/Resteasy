@@ -1,21 +1,11 @@
 package org.jboss.resteasy.test.response;
 
-import java.net.InetAddress;
-import java.util.concurrent.Future;
-
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.test.response.resource.AsyncResponseCallback;
-import org.jboss.resteasy.test.response.resource.CompletionStageProxy;
-import org.jboss.resteasy.test.response.resource.CompletionStageResponseMessageBodyWriter;
-import org.jboss.resteasy.test.response.resource.CompletionStageResponseResource;
-import org.jboss.resteasy.test.response.resource.CompletionStageResponseTestClass;
+import org.jboss.resteasy.test.response.resource.*;
 import org.jboss.resteasy.utils.PortProviderUtil;
 import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.shrinkwrap.api.Archive;
@@ -26,6 +16,11 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.Response;
+import java.net.InetAddress;
+import java.util.concurrent.Future;
 
 /**
  * @tpSubChapter CompletionStage response type
@@ -46,9 +41,9 @@ public class CompletionStageResponseTest {
       war.addClass(CompletionStageProxy.class);
       war.setManifest(new StringAsset("Manifest-Version: 1.0\n"
               + "Dependencies: org.jboss.resteasy.resteasy-rxjava2 services, org.reactivestreams\n"));
-      return TestUtil.finishContainerPrepare(war, null, CompletionStageResponseMessageBodyWriter.class, 
-            CompletionStageResponseResource.class, SingleProvider.class,
-            AsyncResponseCallback.class);
+      return TestUtil.finishContainerPrepare(war, null, CompletionStageResponseMessageBodyWriter.class,
+              CompletionStageResponseResource.class, SingleProvider.class,
+              AsyncResponseCallback.class);
    }
 
    private static String generateURL(String path) {
@@ -58,7 +53,7 @@ public class CompletionStageResponseTest {
    @BeforeClass
    public static void setup() throws Exception {
       client = new ResteasyClientBuilder().build();
-      
+
       // Undertow's default behavior is to send an HTML error page only if the client and 
       // server are communicating on a loopback connection. Otherwise, it returns "".
       Invocation.Builder request = client.target(generateURL("/host")).request();
@@ -80,8 +75,7 @@ public class CompletionStageResponseTest {
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testText() throws Exception
-   {
+   public void testText() throws Exception {
       Invocation.Builder request = client.target(generateURL("/text")).request();
       Response response = request.get();
       String entity = response.readEntity(String.class);
@@ -101,8 +95,7 @@ public class CompletionStageResponseTest {
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testResponse() throws Exception
-   {
+   public void testResponse() throws Exception {
       ResteasyClient client = new ResteasyClientBuilder().build();
       Invocation.Builder request = client.target(generateURL("/response")).request();
       Response response = request.get();
@@ -119,8 +112,7 @@ public class CompletionStageResponseTest {
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testTestClass() throws Exception
-   {
+   public void testTestClass() throws Exception {
       Invocation.Builder request = client.target(generateURL("/testclass")).request();
       Response response = request.get();
       String entity = response.readEntity(String.class);
@@ -130,15 +122,14 @@ public class CompletionStageResponseTest {
    }
 
    /**
-    * @tpTestDetails Resource method returns CompletionStage<Response>, where the Response 
+    * @tpTestDetails Resource method returns CompletionStage<Response>, where the Response
     * emtity is a CompletionStageResponseTestClass, and where
     * CompletionStageResponseTestClass is handled by CompletionStageResponseMessageBodyWriter,
     * which has annotation @Produces("abc/xyz").
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testResponseTestClass() throws Exception
-   {
+   public void testResponseTestClass() throws Exception {
       Invocation.Builder request = client.target(generateURL("/responsetestclass")).request();
       Response response = request.get();
       String entity = response.readEntity(String.class);
@@ -153,8 +144,7 @@ public class CompletionStageResponseTest {
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testNull() throws Exception
-   {
+   public void testNull() throws Exception {
       Invocation.Builder request = client.target(generateURL("/null")).request();
       Response response = request.get();
       String entity = response.readEntity(String.class);
@@ -168,8 +158,7 @@ public class CompletionStageResponseTest {
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testExceptionDelay() throws Exception
-   {
+   public void testExceptionDelay() throws Exception {
       Invocation.Builder request = client.target(generateURL("/exception/delay")).request();
       Response response = request.get();
       String entity = response.readEntity(String.class);
@@ -189,8 +178,7 @@ public class CompletionStageResponseTest {
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testExceptionImmediateRuntime() throws Exception
-   {
+   public void testExceptionImmediateRuntime() throws Exception {
       Invocation.Builder request = client.target(generateURL("/exception/immediate/runtime")).request();
       Response response = request.get();
       String entity = response.readEntity(String.class);
@@ -210,14 +198,13 @@ public class CompletionStageResponseTest {
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testExceptionImmediateNotRuntime() throws Exception
-   {
+   public void testExceptionImmediateNotRuntime() throws Exception {
       Invocation.Builder request = client.target(generateURL("/exception/immediate/notruntime")).request();
       Response response = request.get();
       String entity = response.readEntity(String.class);
       Assert.assertEquals(500, response.getStatus());
       response.close();
-      
+
       // make sure the completion callback was called with with an error
       request = client.target(generateURL("/callback-called-with-error")).request();
       response = request.get();
@@ -230,8 +217,7 @@ public class CompletionStageResponseTest {
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testTextSingle() throws Exception
-   {
+   public void testTextSingle() throws Exception {
       Invocation.Builder request = client.target(generateURL("/textSingle")).request();
       Response response = request.get();
       String entity = response.readEntity(String.class);
@@ -244,8 +230,7 @@ public class CompletionStageResponseTest {
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void getDataWithDelayTest() throws Exception
-   {
+   public void getDataWithDelayTest() throws Exception {
       Invocation.Builder request = client.target(generateURL("/sleep")).request();
       Future<Response> future = request.async().get();
       Assert.assertFalse(future.isDone());
@@ -258,13 +243,12 @@ public class CompletionStageResponseTest {
 
    /**
     * @tpTestDetails Resource method returns CompletionStage<String>, client try to use proxy
-    *                Regression check for https://issues.jboss.org/browse/RESTEASY-1798
-    *                                       - RESTEasy proxy client can't use RxClient and CompletionStage
+    * Regression check for https://issues.jboss.org/browse/RESTEASY-1798
+    * - RESTEasy proxy client can't use RxClient and CompletionStage
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void proxyTest() throws Exception
-   {
+   public void proxyTest() throws Exception {
       CompletionStageProxy proxy = client.target(generateURL("/")).proxy(CompletionStageProxy.class);
       Future<String> future = proxy.sleep().toCompletableFuture();
       Assert.assertFalse(future.isDone());

@@ -1,5 +1,6 @@
 package org.jboss.resteasy.test;
 
+import com.sun.net.httpserver.HttpServer;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
@@ -10,39 +11,22 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sun.net.httpserver.HttpServer;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+import java.net.InetSocketAddress;
 
 import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 
-import java.net.InetSocketAddress;
-
-public class HeadContentLengthTest
-{
-   @Path("/")
-   public static class Resource
-   {
-      @GET
-      @Path("/test")
-      @Produces("text/plain")
-      public String hello()
-      {
-         return "hello world";
-      }
-   }
-   
+public class HeadContentLengthTest {
    private static HttpServer httpServer;
    private static HttpContextBuilder contextBuilder;
 
    @BeforeClass
-   public static void before() throws Exception
-   {
+   public static void before() throws Exception {
       int port = TestPortProvider.getPort();
       httpServer = HttpServer.create(new InetSocketAddress(port), 10);
       contextBuilder = new HttpContextBuilder();
@@ -53,15 +37,13 @@ public class HeadContentLengthTest
    }
 
    @AfterClass
-   public static void after() throws Exception
-   {
+   public static void after() throws Exception {
       contextBuilder.cleanup();
       httpServer.stop(0);
    }
 
    @Test
-   public void testBasic() throws Exception
-   {
+   public void testBasic() throws Exception {
       ResteasyClient client = new ResteasyClientBuilder().build();
       ResteasyWebTarget target = client.target(generateURL("/test"));
       String val = target.request().get(String.class);
@@ -69,8 +51,7 @@ public class HeadContentLengthTest
    }
 
    @Test
-   public void testHeadContentLength() throws Exception
-   {
+   public void testHeadContentLength() throws Exception {
       ResteasyClient client = new ResteasyClientBuilder().build();
       ResteasyWebTarget target = client.target(generateURL("/test"));
       Response getResponse = target.request().buildGet().invoke();
@@ -78,5 +59,15 @@ public class HeadContentLengthTest
       Assert.assertEquals("hello world", val);
       Response headResponse = target.request().build(HttpMethod.HEAD).invoke();
       Assert.assertNull(headResponse.getHeaderString("Content-Length"));
+   }
+
+   @Path("/")
+   public static class Resource {
+      @GET
+      @Path("/test")
+      @Produces("text/plain")
+      public String hello() {
+         return "hello world";
+      }
    }
 }

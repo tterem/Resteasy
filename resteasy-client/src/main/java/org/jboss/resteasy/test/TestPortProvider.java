@@ -4,11 +4,10 @@ import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.jboss.resteasy.util.PortProvider;
 
+import javax.ws.rs.client.ClientBuilder;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-
-import javax.ws.rs.client.ClientBuilder;
 
 /**
  * Test utility class
@@ -16,40 +15,37 @@ import javax.ws.rs.client.ClientBuilder;
  * @author <a href="justin@justinedelson.com">Justin Edelson</a>
  * @version $Revision$
  */
-public class TestPortProvider
-{
+public class TestPortProvider {
    /**
     * Creates a ResteasyWebTarget using base request path.
+    *
     * @param path the path
     * @return web resource target
     */
-   public static ResteasyWebTarget createTarget(String path)
-   {
+   public static ResteasyWebTarget createTarget(String path) {
       return (ResteasyWebTarget) ClientBuilder.newClient().target(generateURL(path));
    }
-   
+
    /**
     * Create a Resteasy client proxy with an empty base request path.
     *
-    * @param <T> type
+    * @param <T>   type
     * @param clazz the client interface class
     * @return the proxy object
     */
-   public static <T> T createProxy(Class<T> clazz)
-   {
+   public static <T> T createProxy(Class<T> clazz) {
       return createProxy(clazz, generateBaseUrl());
    }
 
    /**
     * Create a Resteasy client proxy.
     *
-    * @param <T> type
+    * @param <T>   type
     * @param clazz the client interface class
-    * @param url request url
+    * @param url   request url
     * @return the proxy object
     */
-   public static <T> T createProxy(Class<T> clazz, String url)
-   {
+   public static <T> T createProxy(Class<T> clazz, String url) {
       ResteasyWebTarget target = (ResteasyWebTarget) ResteasyClientBuilder.newClient().target(url);
       return target.proxy(clazz);
    }
@@ -60,8 +56,7 @@ public class TestPortProvider
     * @param path the request path
     * @return a full URI
     */
-   public static URI createURI(String path)
-   {
+   public static URI createURI(String path) {
       return URI.create(generateURL(path));
    }
 
@@ -70,10 +65,9 @@ public class TestPortProvider
     *
     * @param path the request path
     * @return a full URL
-    * @throws MalformedURLException if no protocol is specified or an unknown protocol is found 
+    * @throws MalformedURLException if no protocol is specified or an unknown protocol is found
     */
-   public static URL createURL(String path) throws MalformedURLException
-   {
+   public static URL createURL(String path) throws MalformedURLException {
       return new URL(generateURL(path));
    }
 
@@ -82,8 +76,7 @@ public class TestPortProvider
     *
     * @return a full URL
     */
-   public static String generateBaseUrl()
-   {
+   public static String generateBaseUrl() {
       return generateURL("");
    }
 
@@ -93,8 +86,7 @@ public class TestPortProvider
     * @param path the path
     * @return a full URL
     */
-   public static String generateURL(String path)
-   {
+   public static String generateURL(String path) {
       return String.format("http://%s:%d%s", getHost(), getPort(), path);
    }
 
@@ -104,19 +96,17 @@ public class TestPortProvider
     *
     * @return the port number specified in either the environment or system properties
     */
-   public static int getPort()
-   {
+   public static int getPort() {
       return PortProvider.getPort();
    }
-   
+
    /**
     * Look up the configured hostname, first checking an environment variable (RESTEASY_HOST),
     * then a system property (org.jboss.resteasy.host), and finally the default hostname (localhost).
     *
     * @return the host specified in either the environment or system properties
     */
-   public static String getHost()
-   {
+   public static String getHost() {
       return PortProvider.getHost();
    }
 }

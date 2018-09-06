@@ -5,6 +5,6 @@ import java.util.concurrent.Future;
 
 @Local
 public interface AsynchronousStatelessLocal {
-    Future<Boolean> asynch() throws InterruptedException;
+   Future<Boolean> asynch() throws InterruptedException;
 }
 

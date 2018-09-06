@@ -1,11 +1,9 @@
 package org.jboss.resteasy.test.asynch.resource;
 
-public class AsyncInjectionContext implements AsyncInjectionContextInterface
-{
+public class AsyncInjectionContext implements AsyncInjectionContextInterface {
 
    @Override
-   public int foo()
-   {
+   public int foo() {
       return 42;
    }
 

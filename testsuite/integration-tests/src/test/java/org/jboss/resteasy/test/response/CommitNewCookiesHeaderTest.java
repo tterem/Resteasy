@@ -1,22 +1,5 @@
 package org.jboss.resteasy.test.response;
 
-import java.lang.reflect.ReflectPermission;
-import java.util.Map;
-import java.util.PropertyPermission;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.core.Cookie;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.NewCookie;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -31,53 +14,24 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.*;
+import java.lang.reflect.ReflectPermission;
+import java.util.Map;
+import java.util.PropertyPermission;
+
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CommitNewCookiesHeaderTest {
 
-   @Path("echo")
-   public static class EchoResource {
-
-      @Produces(MediaType.TEXT_PLAIN)
-      @GET
-      public Response echo(@QueryParam("msg") String msg) {
-         // send cookie as a simple string
-         return Response.ok(msg).header(HttpHeaders.SET_COOKIE, "Cookie 1=Cookie 1 value;Version=1;Path=/")
-                 .cookie(new NewCookie("Cookie 2", "Cookie 2 value"),
-                         new NewCookie("Cookie 3", "Cookie 3 value"))
-                 .build();
-      }
-
-      @Path("two")
-      @Produces(MediaType.TEXT_PLAIN)
-      @GET
-      public Response echoTwo(@QueryParam("msg") String msg) {
-         // Any class that provides a toString can be provided as a cookie
-         return Response.ok().header(HttpHeaders.SET_COOKIE,
-                 new Object() {
-                     @Override
-                     public String toString() {
-                        return "Cookie 1=Cookie 1 value;Version=1;Path=/";
-                     }
-                  })
-          .cookie(new NewCookie("Cookie 2", "Cookie 2 value"))
-          .build();
-      }
-
-      @Path("three")
-      @Produces(MediaType.TEXT_PLAIN)
-      @GET
-      public Response echoThree(@QueryParam("msg") String msg) {
-         // Cookie should really only be used with request but it is an object with a toString impl
-         return Response.ok(msg).header(HttpHeaders.SET_COOKIE,  new Cookie("Cookie 1", "Cookie 1 value"))
-                 .cookie(new NewCookie("Cookie 2", "Cookie 2 value"))
-                 .build();
-      }
-
-   }
-
-   private static Client client;
    private static final String DEP = "CommitCookiesHeaderTest";
+   private static Client client;
 
    @Deployment
    public static Archive<?> deploy() {
@@ -140,5 +94,46 @@ public class CommitNewCookiesHeaderTest {
          Assert.assertEquals("Cookie 1 value", cookies.get("Cookie 1").getValue());
          Assert.assertEquals("Cookie 2 value", cookies.get("Cookie 2").getValue());
       }
+   }
+
+   @Path("echo")
+   public static class EchoResource {
+
+      @Produces(MediaType.TEXT_PLAIN)
+      @GET
+      public Response echo(@QueryParam("msg") String msg) {
+         // send cookie as a simple string
+         return Response.ok(msg).header(HttpHeaders.SET_COOKIE, "Cookie 1=Cookie 1 value;Version=1;Path=/")
+                 .cookie(new NewCookie("Cookie 2", "Cookie 2 value"),
+                         new NewCookie("Cookie 3", "Cookie 3 value"))
+                 .build();
+      }
+
+      @Path("two")
+      @Produces(MediaType.TEXT_PLAIN)
+      @GET
+      public Response echoTwo(@QueryParam("msg") String msg) {
+         // Any class that provides a toString can be provided as a cookie
+         return Response.ok().header(HttpHeaders.SET_COOKIE,
+                 new Object() {
+                    @Override
+                    public String toString() {
+                       return "Cookie 1=Cookie 1 value;Version=1;Path=/";
+                    }
+                 })
+                 .cookie(new NewCookie("Cookie 2", "Cookie 2 value"))
+                 .build();
+      }
+
+      @Path("three")
+      @Produces(MediaType.TEXT_PLAIN)
+      @GET
+      public Response echoThree(@QueryParam("msg") String msg) {
+         // Cookie should really only be used with request but it is an object with a toString impl
+         return Response.ok(msg).header(HttpHeaders.SET_COOKIE, new Cookie("Cookie 1", "Cookie 1 value"))
+                 .cookie(new NewCookie("Cookie 2", "Cookie 2 value"))
+                 .build();
+      }
+
    }
 }

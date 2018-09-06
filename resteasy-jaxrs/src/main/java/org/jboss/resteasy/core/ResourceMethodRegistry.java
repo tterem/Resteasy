@@ -1,9 +1,5 @@
 package org.jboss.resteasy.core;
 
-import java.security.AccessController;
-import java.security.PrivilegedActionException;
-import java.security.PrivilegedExceptionAction;
-
 import org.jboss.resteasy.core.registry.RootClassNode;
 import org.jboss.resteasy.core.registry.RootNode;
 import org.jboss.resteasy.plugins.server.resourcefactory.JndiResourceFactory;
@@ -12,11 +8,7 @@ import org.jboss.resteasy.plugins.server.resourcefactory.SingletonResource;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.LogMessages;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 import org.jboss.resteasy.specimpl.ResteasyUriBuilder;
-import org.jboss.resteasy.spi.HttpRequest;
-import org.jboss.resteasy.spi.InjectorFactory;
-import org.jboss.resteasy.spi.Registry;
-import org.jboss.resteasy.spi.ResourceFactory;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
+import org.jboss.resteasy.spi.*;
 import org.jboss.resteasy.spi.metadata.ResourceBuilder;
 import org.jboss.resteasy.spi.metadata.ResourceClass;
 import org.jboss.resteasy.spi.metadata.ResourceLocator;
@@ -28,6 +20,9 @@ import org.jboss.resteasy.util.IsHttpMethod;
 import javax.ws.rs.Path;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.security.AccessController;
+import java.security.PrivilegedActionException;
+import java.security.PrivilegedExceptionAction;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -38,8 +33,7 @@ import java.util.Set;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class ResourceMethodRegistry implements Registry
-{
+public class ResourceMethodRegistry implements Registry {
    public static final String REGISTRY_MATCHING_EXCEPTION = "registry.matching.exception";
 
    protected ResteasyProviderFactory providerFactory;
@@ -49,24 +43,20 @@ public class ResourceMethodRegistry implements Registry
    protected ResourceBuilder resourceBuilder;
 
 
-   public ResourceMethodRegistry(ResteasyProviderFactory providerFactory)
-   {
+   public ResourceMethodRegistry(ResteasyProviderFactory providerFactory) {
       this.providerFactory = providerFactory;
       this.resourceBuilder = providerFactory.getResourceBuilder();
    }
 
-   public boolean isWiderMatching()
-   {
+   public boolean isWiderMatching() {
       return widerMatching;
    }
 
-   public void setWiderMatching(boolean widerMatching)
-   {
+   public void setWiderMatching(boolean widerMatching) {
       this.widerMatching = widerMatching;
    }
 
-   public void addPerRequestResource(Class clazz, String basePath)
-   {
+   public void addPerRequestResource(Class clazz, String basePath) {
       addResourceFactory(new POJOResourceFactory(resourceBuilder, clazz), basePath);
 
    }
@@ -76,77 +66,66 @@ public class ResourceMethodRegistry implements Registry
     *
     * @param clazz class
     */
-   public void addPerRequestResource(Class clazz)
-   {
+   public void addPerRequestResource(Class clazz) {
       addResourceFactory(new POJOResourceFactory(resourceBuilder, clazz));
    }
 
    @Override
-   public void addPerRequestResource(ResourceClass clazz)
-   {
+   public void addPerRequestResource(ResourceClass clazz) {
       POJOResourceFactory resourceFactory = new POJOResourceFactory(resourceBuilder, clazz);
       register(resourceFactory, null, clazz);
       resourceFactory.registered(providerFactory);
    }
 
    @Override
-   public void addPerRequestResource(ResourceClass clazz, String basePath)
-   {
+   public void addPerRequestResource(ResourceClass clazz, String basePath) {
       POJOResourceFactory resourceFactory = new POJOResourceFactory(resourceBuilder, clazz);
       register(resourceFactory, basePath, clazz);
       resourceFactory.registered(providerFactory);
    }
 
-   public void addSingletonResource(Object singleton)
-   {
+   public void addSingletonResource(Object singleton) {
       ResourceClass resourceClass = resourceBuilder.getRootResourceFromAnnotations(singleton.getClass());
       addResourceFactory(new SingletonResource(singleton, resourceClass));
    }
 
-   public void addSingletonResource(Object singleton, String basePath)
-   {
+   public void addSingletonResource(Object singleton, String basePath) {
       ResourceClass resourceClass = resourceBuilder.getRootResourceFromAnnotations(singleton.getClass());
       addResourceFactory(new SingletonResource(singleton, resourceClass), basePath);
    }
 
    @Override
-   public void addSingletonResource(Object singleton, ResourceClass resourceClass)
-   {
+   public void addSingletonResource(Object singleton, ResourceClass resourceClass) {
       SingletonResource resourceFactory = new SingletonResource(singleton, resourceClass);
       register(resourceFactory, null, resourceClass);
       resourceFactory.registered(providerFactory);
    }
 
    @Override
-   public void addSingletonResource(Object singleton, ResourceClass resourceClass, String basePath)
-   {
+   public void addSingletonResource(Object singleton, ResourceClass resourceClass, String basePath) {
       SingletonResource resourceFactory = new SingletonResource(singleton, resourceClass);
       register(resourceFactory, basePath, resourceClass);
       resourceFactory.registered(providerFactory);
    }
 
 
-   public void addJndiResource(String jndiName)
-   {
+   public void addJndiResource(String jndiName) {
       addResourceFactory(new JndiResourceFactory(jndiName));
    }
 
-   public void addJndiResource(String jndiName, String basePath)
-   {
+   public void addJndiResource(String jndiName, String basePath) {
       addResourceFactory(new JndiResourceFactory(jndiName), basePath);
    }
 
    @Override
-   public void addJndiResource(String jndiName, ResourceClass resourceClass)
-   {
+   public void addJndiResource(String jndiName, ResourceClass resourceClass) {
       JndiResourceFactory resourceFactory = new JndiResourceFactory(jndiName);
       register(resourceFactory, null, resourceClass);
       resourceFactory.registered(providerFactory);
    }
 
    @Override
-   public void addJndiResource(String jndiName, ResourceClass resourceClass, String basePath)
-   {
+   public void addJndiResource(String jndiName, ResourceClass resourceClass, String basePath) {
       JndiResourceFactory resourceFactory = new JndiResourceFactory(jndiName);
       register(resourceFactory, basePath, resourceClass);
       resourceFactory.registered(providerFactory);
@@ -159,8 +138,7 @@ public class ResourceMethodRegistry implements Registry
     *
     * @param ref resource factory
     */
-   public void addResourceFactory(ResourceFactory ref)
-   {
+   public void addResourceFactory(ResourceFactory ref) {
       addResourceFactory(ref, null);
    }
 
@@ -168,18 +146,15 @@ public class ResourceMethodRegistry implements Registry
     * ResourceFactory.getScannableClass() defines what class should be scanned
     * for JAX-RS annotations.    The class and any implemented interfaces are scanned for annotations.
     *
-    * @param ref resource factory
+    * @param ref  resource factory
     * @param base base URI path for any resources provided by the factory, in addition to rootPath
     */
-   public void addResourceFactory(ResourceFactory ref, String base)
-   {
+   public void addResourceFactory(ResourceFactory ref, String base) {
       Class<?> clazz = ref.getScannableClass();
       Class restful = GetRestful.getRootResourceClass(clazz);
-      if (restful == null)
-      {
+      if (restful == null) {
          String msg = Messages.MESSAGES.classIsNotRootResource(clazz.getName());
-         for (Class intf : clazz.getInterfaces())
-         {
+         for (Class intf : clazz.getInterfaces()) {
             msg += " " + intf.getName();
          }
          throw new RuntimeException(msg);
@@ -191,12 +166,11 @@ public class ResourceMethodRegistry implements Registry
     * ResourceFactory.getScannableClass() is not used, only the clazz parameter and not any implemented interfaces
     * of the clazz parameter.
     *
-    * @param ref resource factory
+    * @param ref   resource factory
     * @param base  base URI path for any resources provided by the factory, in addition to rootPath
     * @param clazz specific class
     */
-   public void addResourceFactory(ResourceFactory ref, String base, Class<?> clazz)
-   {
+   public void addResourceFactory(ResourceFactory ref, String base, Class<?> clazz) {
       Class<?>[] classes = {clazz};
       addResourceFactory(ref, base, classes);
       if (ref != null) ref.registered(providerFactory);
@@ -206,38 +180,29 @@ public class ResourceMethodRegistry implements Registry
     * ResourceFactory.getScannableClass() is not used, only the clazz parameter and not any implemented interfaces
     * of the clazz parameter.
     *
-    * @param ref resource factory
+    * @param ref     resource factory
     * @param base    base URI path for any resources provided by the factory, in addition to rootPath
     * @param classes specific class
     */
-   public void addResourceFactory(ResourceFactory ref, String base, Class<?>[] classes)
-   {
+   public void addResourceFactory(ResourceFactory ref, String base, Class<?>[] classes) {
       if (ref != null) ref.registered(providerFactory);
-      for (Class<?> clazz : classes)
-      {
-         if (Proxy.isProxyClass(clazz))
-         {
-            for (Class<?> intf : clazz.getInterfaces())
-            {
+      for (Class<?> clazz : classes) {
+         if (Proxy.isProxyClass(clazz)) {
+            for (Class<?> intf : clazz.getInterfaces()) {
                ResourceClass resourceClass = resourceBuilder.getRootResourceFromAnnotations(intf);
                register(ref, base, resourceClass);
             }
-         }
-         else
-         {
+         } else {
             ResourceClass resourceClass = resourceBuilder.getRootResourceFromAnnotations(clazz);
             register(ref, base, resourceClass);
          }
       }
 
       // https://issues.jboss.org/browse/JBPAPP-7871
-      for (Class<?> clazz : classes)
-      {
-         for (Method method : getDeclaredMethods(clazz))
-         {
+      for (Class<?> clazz : classes) {
+         for (Method method : getDeclaredMethods(clazz)) {
             Method _method = resourceBuilder.getAnnotatedMethod(clazz, method);
-            if (_method != null && !java.lang.reflect.Modifier.isPublic(_method.getModifiers()))
-            {
+            if (_method != null && !java.lang.reflect.Modifier.isPublic(_method.getModifiers())) {
                LogMessages.LOGGER.JAXRSAnnotationsFoundAtNonPublicMethod(method.getDeclaringClass().getName(), method.getName());
             }
          }
@@ -265,20 +230,16 @@ public class ResourceMethodRegistry implements Registry
    }
 
    @Override
-   public void addResourceFactory(ResourceFactory rf, String base, ResourceClass resourceClass)
-   {
+   public void addResourceFactory(ResourceFactory rf, String base, ResourceClass resourceClass) {
       if (rf != null) rf.registered(providerFactory);
       register(rf, base, resourceClass);
    }
 
-   protected void register(ResourceFactory rf, String base, ResourceClass resourceClass)
-   {
-      for (ResourceMethod method : resourceClass.getResourceMethods())
-      {
+   protected void register(ResourceFactory rf, String base, ResourceClass resourceClass) {
+      for (ResourceMethod method : resourceClass.getResourceMethods()) {
          processMethod(rf, base, method);
       }
-      for (ResourceLocator method : resourceClass.getResourceLocators())
-      {
+      for (ResourceLocator method : resourceClass.getResourceLocators()) {
          processMethod(rf, base, method);
       }
    }
@@ -289,35 +250,28 @@ public class ResourceMethodRegistry implements Registry
     * assisting customers identify this issue during an upgrade from Resteasy 2 to 3
     * provides a waring when the situation is found.
     */
-   public void checkAmbiguousUri()
-   {
-      for (Map.Entry<String, List<ResourceInvoker>> entry : this.root.getBounded().entrySet())
-      {
+   public void checkAmbiguousUri() {
+      for (Map.Entry<String, List<ResourceInvoker>> entry : this.root.getBounded().entrySet()) {
          List<ResourceInvoker> values = entry.getValue();
          if (values.size() > 1) {
             int locatorCnt = 0;
             int methodCnt = 0;
-            for(ResourceInvoker rInvoker : values)
-            {
-               if (rInvoker instanceof ResourceLocatorInvoker)
-               {
+            for (ResourceInvoker rInvoker : values) {
+               if (rInvoker instanceof ResourceLocatorInvoker) {
                   locatorCnt++;
-               } else if (rInvoker instanceof ResourceMethodInvoker)
-               {
+               } else if (rInvoker instanceof ResourceMethodInvoker) {
                   methodCnt++;
                }
             }
-            if (methodCnt > 0 && locatorCnt > 0)
-            {
+            if (methodCnt > 0 && locatorCnt > 0) {
                StringBuilder sb = new StringBuilder();
                int cnt = values.size();
-               for (int i=0; i < cnt; i++) {
+               for (int i = 0; i < cnt; i++) {
                   ResourceInvoker exp = values.get(i);
                   sb.append(exp.getMethod().getDeclaringClass().getName())
                           .append(".")
                           .append(exp.getMethod().getName());
-                  if (i < cnt-1)
-                  {
+                  if (i < cnt - 1) {
                      sb.append(", ");
                   }
                }
@@ -327,8 +281,7 @@ public class ResourceMethodRegistry implements Registry
       }
    }
 
-   protected void processMethod(ResourceFactory rf, String base, ResourceLocator method)
-   {
+   protected void processMethod(ResourceFactory rf, String base, ResourceLocator method) {
       ResteasyUriBuilder builder = new ResteasyUriBuilder();
       if (base != null)
          builder.path(base);
@@ -346,15 +299,12 @@ public class ResourceMethodRegistry implements Registry
          classExpression = "";
 
       InjectorFactory injectorFactory = providerFactory.getInjectorFactory();
-      if (method instanceof ResourceMethod)
-      {
+      if (method instanceof ResourceMethod) {
          ResourceMethodInvoker invoker = new ResourceMethodInvoker((ResourceMethod) method, injectorFactory, rf, providerFactory);
          if (widerMatching)
             rootNode.addInvoker(fullpath, invoker);
          else root.addInvoker(classExpression, fullpath, invoker);
-      }
-      else
-      {
+      } else {
          ResourceLocatorInvoker locator = new ResourceLocatorInvoker(rf, injectorFactory, providerFactory, method);
          if (widerMatching)
             rootNode.addInvoker(fullpath, locator);
@@ -367,36 +317,29 @@ public class ResourceMethodRegistry implements Registry
     *
     * @param clazz class
     */
-   public void removeRegistrations(Class clazz)
-   {
+   public void removeRegistrations(Class clazz) {
       removeRegistrations(clazz, null);
    }
 
-   public void removeRegistrations(Class clazz, String base)
-   {
+   public void removeRegistrations(Class clazz, String base) {
       Class restful = GetRestful.getRootResourceClass(clazz);
       removeRegistration(base, restful);
    }
 
    @Override
-   public void removeRegistrations(ResourceClass resourceClass)
-   {
-      for (ResourceMethod method : resourceClass.getResourceMethods())
-      {
+   public void removeRegistrations(ResourceClass resourceClass) {
+      for (ResourceMethod method : resourceClass.getResourceMethods()) {
          if (widerMatching) rootNode.removeBinding(method.getFullpath(), method.getMethod());
          else root.removeBinding(resourceClass.getPath(), method.getFullpath(), method.getMethod());
       }
-      for (ResourceLocator method : resourceClass.getResourceLocators())
-      {
+      for (ResourceLocator method : resourceClass.getResourceLocators()) {
          if (widerMatching) rootNode.removeBinding(method.getFullpath(), method.getMethod());
          else root.removeBinding(resourceClass.getPath(), method.getFullpath(), method.getMethod());
       }
    }
 
-   private void removeRegistration(String base, Class<?> clazz)
-   {
-      for (Method method : clazz.getMethods())
-      {
+   private void removeRegistration(String base, Class<?> clazz) {
+      for (Method method : clazz.getMethods()) {
          Path path = method.getAnnotation(Path.class);
          Set<String> httpMethods = IsHttpMethod.getHttpMethods(method);
          if (path == null && httpMethods == null) continue;
@@ -414,8 +357,7 @@ public class ResourceMethodRegistry implements Registry
       }
    }
 
-   public Map<String, List<ResourceInvoker>> getBounded()
-   {
+   public Map<String, List<ResourceInvoker>> getBounded() {
       if (widerMatching) return rootNode.getBounded();
       else return root.getBounded();
    }
@@ -425,8 +367,7 @@ public class ResourceMethodRegistry implements Registry
     *
     * @return number of endpoints registered
     */
-   public int getSize()
-   {
+   public int getSize() {
       if (widerMatching) return rootNode.getSize();
       else return root.getSize();
    }
@@ -436,8 +377,7 @@ public class ResourceMethodRegistry implements Registry
     *
     * @return resource invoker
     */
-   public ResourceInvoker getResourceInvoker(HttpRequest request)
-   {
+   public ResourceInvoker getResourceInvoker(HttpRequest request) {
       RESTEasyTracingLogger tracingLogger = RESTEasyTracingLogger.getInstance(request);
       final long timestamp = tracingLogger.timestamp("MATCH_SUMMARY");
       try {
@@ -448,8 +388,7 @@ public class ResourceMethodRegistry implements Registry
          }
       } catch (RuntimeException e) {
          throw e;
-      }
-      finally {
+      } finally {
          tracingLogger.logDuration("MATCH_SUMMARY", timestamp);
       }
    }

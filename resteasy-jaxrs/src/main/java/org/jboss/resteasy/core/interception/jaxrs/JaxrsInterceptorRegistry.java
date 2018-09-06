@@ -8,7 +8,6 @@ import javax.ws.rs.NameBinding;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.core.Application;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Array;
@@ -23,62 +22,173 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @version $Revision: 1 $
  */
 @SuppressWarnings("unchecked")
-public class JaxrsInterceptorRegistry<T>
-{
-   public static class Match
-   {
-      public Match(Object interceptor, int order)
-      {
-         this.interceptor = interceptor;
-         this.order = order;
-      }
+public class JaxrsInterceptorRegistry<T> {
+   protected List<InterceptorFactory> interceptors = new CopyOnWriteArrayList<InterceptorFactory>();
+   protected List<JaxrsInterceptorRegistryListener> listeners = new CopyOnWriteArrayList<JaxrsInterceptorRegistryListener>();
+   protected ResteasyProviderFactory providerFactory;
+   protected Class<T> intf;
+   protected volatile T[] cachedPreMatch;
 
-      final public Object interceptor;
-      final public int order;
+
+   public JaxrsInterceptorRegistry(ResteasyProviderFactory providerFactory, Class<T> intf) {
+      this.providerFactory = providerFactory;
+      this.intf = intf;
    }
 
-   public interface InterceptorFactory
-   {
-      Match preMatch();
-
-      Match postMatch(Class declaring, AccessibleObject target);
-   }
-
-   protected static List<Class<? extends Annotation>> getNameBound(Class<?> declaring)
-   {
+   protected static List<Class<? extends Annotation>> getNameBound(Class<?> declaring) {
       List<Class<? extends Annotation>> nameBound = new ArrayList<Class<? extends Annotation>>();
-      for (Annotation annotation : declaring.getAnnotations())
-      {
-         if (annotation.annotationType().isAnnotationPresent(NameBinding.class))
-         {
-             nameBound.add(annotation.annotationType());
+      for (Annotation annotation : declaring.getAnnotations()) {
+         if (annotation.annotationType().isAnnotationPresent(NameBinding.class)) {
+            nameBound.add(annotation.annotationType());
          }
       }
       return nameBound;
    }
 
-   public static int getPriority(Class<?> declaring)
-   {
+   public static int getPriority(Class<?> declaring) {
       Priority priority = (Priority) declaring.getAnnotation(Priority.class);
       if (priority != null) return priority.value();
       return Priorities.USER;
    }
 
-   public abstract class AbstractInterceptorFactory implements InterceptorFactory
-   {
+   public JaxrsInterceptorRegistry<T> clone(ResteasyProviderFactory factory) {
+      JaxrsInterceptorRegistry<T> clone = new JaxrsInterceptorRegistry(factory, intf);
+      clone.interceptors.addAll(interceptors);
+      return clone;
+   }
+
+   public Class<T> getIntf() {
+      return intf;
+   }
+
+   public List<JaxrsInterceptorRegistryListener> getListeners() {
+      return listeners;
+   }
+
+   public T[] preMatch() {
+      if (cachedPreMatch == null) {
+         List<Match> matches = new ArrayList<Match>();
+         for (InterceptorFactory factory : interceptors) {
+            Match match = factory.preMatch();
+            if (match != null) {
+               matches.add(match);
+            }
+         }
+         cachedPreMatch = createArray(matches);
+      }
+      return cachedPreMatch;
+   }
+
+   public T[] postMatch(Class declaring, AccessibleObject target) {
+      List<Match> matches = new ArrayList<Match>();
+      for (InterceptorFactory factory : interceptors) {
+         Match match = factory.postMatch(declaring, target);
+         if (match != null) {
+            matches.add(match);
+         }
+      }
+      return createArray(matches);
+   }
+
+   private T[] createArray(List<Match> matches) {
+      sort(matches);
+      T[] array = (T[]) Array.newInstance(intf, matches.size());
+      for (int i = 0; i < array.length; i++) {
+         array[i] = (T) matches.get(i).interceptor;
+      }
+      return array;
+   }
+
+   protected void sort(List<Match> matches) {
+      Collections.sort(matches, new AscendingPrecedenceComparator());
+   }
+
+   public synchronized void register(InterceptorFactory factory) {
+      interceptors.add(factory);
+      cachedPreMatch = null;
+      for (JaxrsInterceptorRegistryListener listener : listeners) {
+         listener.registryUpdated(this);
+      }
+   }
+
+   public synchronized void registerClass(Class<? extends T> declaring) {
+      register(new OnDemandInterceptorFactory(declaring));
+   }
+
+   public synchronized void registerClass(Class<? extends T> declaring, int priority) {
+      OnDemandInterceptorFactory factory = new OnDemandInterceptorFactory(declaring);
+      factory.setOrder(priority);
+      register(factory);
+   }
+
+   public synchronized void registerSingleton(T interceptor) {
+      register(new SingletonInterceptorFactory(interceptor.getClass(), interceptor));
+   }
+
+   public synchronized void registerSingleton(T interceptor, int priority) {
+      SingletonInterceptorFactory factory = new SingletonInterceptorFactory(interceptor.getClass(), interceptor);
+      factory.setOrder(priority);
+      register(factory);
+   }
+
+   private Class<?> getNonSyntheticClass(Class<?> clazz) {
+      while (clazz.isSynthetic()) {
+         clazz = clazz.getSuperclass();
+      }
+      return clazz;
+   }
+
+   public interface InterceptorFactory {
+      Match preMatch();
+
+      Match postMatch(Class declaring, AccessibleObject target);
+   }
+
+   public static class Match {
+      final public Object interceptor;
+      final public int order;
+      public Match(Object interceptor, int order) {
+         this.interceptor = interceptor;
+         this.order = order;
+      }
+   }
+
+   public static class AscendingPrecedenceComparator implements Comparator<Match> {
+      public int compare(Match match, Match match2) {
+         if (match.order < match2.order) {
+            return -1;
+         }
+         if (match.order == match2.order) {
+            return 0;
+         }
+         return 1;
+      }
+   }
+
+   public static class DescendingPrecedenceComparator implements Comparator<Match> {
+      public int compare(Match match, Match match2) {
+         if (match2.order < match.order) {
+            return -1;
+         }
+         if (match2.order == match.order) {
+            return 0;
+         }
+         return 1;
+      }
+   }
+
+   public abstract class AbstractInterceptorFactory implements InterceptorFactory {
       protected final Class declaring;
       protected int order = Priorities.USER;
       protected List<Class<? extends Annotation>> nameBound;
       protected volatile boolean initialized;
       protected boolean ignorePrematch;
 
-      public AbstractInterceptorFactory(Class declaring)
-      {
+      public AbstractInterceptorFactory(Class declaring) {
          this.declaring = getNonSyntheticClass(declaring);
       }
 
-      protected void setPrecedence(Class<?> declaring)
-      {
+      protected void setPrecedence(Class<?> declaring) {
          nameBound = getNameBound(declaring);
          order = getPriority(declaring);
       }
@@ -87,13 +197,10 @@ public class JaxrsInterceptorRegistry<T>
 
       protected abstract Object getInterceptor();
 
-      protected void checkInitialize()
-      {
+      protected void checkInitialize() {
          boolean isInitialized = initialized;
-         if (!isInitialized)
-         {
-            synchronized (this)
-            {
+         if (!isInitialized) {
+            synchronized (this) {
                isInitialized = initialized;
                if (isInitialized) return;
                isInitialized = initialized = true;
@@ -102,39 +209,31 @@ public class JaxrsInterceptorRegistry<T>
          }
       }
 
-      public void setOrder(int order)
-      {
+      public void setOrder(int order) {
          this.order = order;
       }
 
-      public void setIgnorePrematch(boolean ignorePrematch)
-      {
+      public void setIgnorePrematch(boolean ignorePrematch) {
          this.ignorePrematch = ignorePrematch;
       }
 
       @Override
-      public Match preMatch()
-      {
+      public Match preMatch() {
          if (declaring.isAnnotationPresent(PreMatching.class)) return new Match(getInterceptor(), order);
          return null;
       }
 
       @Override
-      public Match postMatch(Class targetClass, AccessibleObject target)
-      {
+      public Match postMatch(Class targetClass, AccessibleObject target) {
          if (!ignorePrematch && declaring.isAnnotationPresent(PreMatching.class)) return null;
-         if (targetClass != null && target != null)
-         {
-            if (nameBound.size() > 0)
-            {
+         if (targetClass != null && target != null) {
+            if (nameBound.size() > 0) {
                Application application = ResteasyProviderFactory.getContextData(Application.class);
                // must match all namebound annotations
-               for (Class<? extends Annotation> annotation : nameBound)
-               {
+               for (Class<? extends Annotation> annotation : nameBound) {
                   if (!targetClass.isAnnotationPresent(annotation) &&
                           !target.isAnnotationPresent(annotation)
-                          && (application == null || !getNonSyntheticClass(application.getClass()).isAnnotationPresent(annotation)))
-                  {
+                          && (application == null || !getNonSyntheticClass(application.getClass()).isAnnotationPresent(annotation))) {
                      return null;
                   }
                }
@@ -143,61 +242,48 @@ public class JaxrsInterceptorRegistry<T>
                if (intercept == null)
                   throw new NullPointerException(Messages.MESSAGES.interceptorNullFromClass(this.getClass().getName()));
                return new Match(intercept, order);
-            }
-            else
-            {
+            } else {
                Object intercept = getInterceptor();
                if (intercept == null)
                   throw new NullPointerException(Messages.MESSAGES.interceptorNullFromClass(this.getClass().getName()));
                return new Match(intercept, order);
             }
-         } else if (nameBound.size() == 0)
-         {
+         } else if (nameBound.size() == 0) {
             Object intercept = getInterceptor();
             if (intercept == null)
                throw new NullPointerException(Messages.MESSAGES.interceptorNullFromClass(this.getClass().getName()));
             return new Match(intercept, order);
-         } else
-         {
+         } else {
             return null;
          }
       }
 
-      protected Object createInterceptor()
-      {
+      protected Object createInterceptor() {
          return providerFactory.injectedInstance(declaring);
       }
    }
 
-
-   protected class OnDemandInterceptorFactory extends AbstractInterceptorFactory
-   {
+   protected class OnDemandInterceptorFactory extends AbstractInterceptorFactory {
       protected volatile Object interceptor;
 
-      public OnDemandInterceptorFactory(Class declaring)
-      {
+      public OnDemandInterceptorFactory(Class declaring) {
          super(declaring);
          setPrecedence(declaring);
       }
 
       @Override
-      protected void initialize()
-      {
+      protected void initialize() {
          interceptor = createInterceptor();
          providerFactory.injectProperties(interceptor);
          initialized = true;
       }
 
-      protected void checkInitialize()
-      {
+      protected void checkInitialize() {
          Object tmp = interceptor;
-         if (tmp == null)
-         {
-            synchronized (this)
-            {
+         if (tmp == null) {
+            synchronized (this) {
                tmp = interceptor;
-               if (tmp == null)
-               {
+               if (tmp == null) {
                   initialize();
                   tmp = interceptor;
                }
@@ -207,189 +293,30 @@ public class JaxrsInterceptorRegistry<T>
 
 
       @Override
-      protected Object getInterceptor()
-      {
+      protected Object getInterceptor() {
          checkInitialize();
          return interceptor;
       }
    }
 
-   protected class SingletonInterceptorFactory extends AbstractInterceptorFactory
-   {
+   protected class SingletonInterceptorFactory extends AbstractInterceptorFactory {
       protected Object interceptor;
 
-      public SingletonInterceptorFactory(Class declaring, Object interceptor)
-      {
+      public SingletonInterceptorFactory(Class declaring, Object interceptor) {
          super(declaring);
          this.interceptor = interceptor;
          setPrecedence(declaring);
       }
 
       @Override
-      protected void initialize()
-      {
+      protected void initialize() {
          providerFactory.injectProperties(interceptor);
       }
 
       @Override
-      protected Object getInterceptor()
-      {
+      protected Object getInterceptor() {
          checkInitialize();
          return interceptor;
       }
-   }
-
-   protected List<InterceptorFactory> interceptors = new CopyOnWriteArrayList<InterceptorFactory>();
-   protected List<JaxrsInterceptorRegistryListener> listeners = new CopyOnWriteArrayList<JaxrsInterceptorRegistryListener>();
-   protected ResteasyProviderFactory providerFactory;
-   protected Class<T> intf;
-   protected volatile T[] cachedPreMatch;
-
-   public JaxrsInterceptorRegistry(ResteasyProviderFactory providerFactory, Class<T> intf)
-   {
-      this.providerFactory = providerFactory;
-      this.intf = intf;
-   }
-
-   public JaxrsInterceptorRegistry<T> clone(ResteasyProviderFactory factory)
-   {
-      JaxrsInterceptorRegistry<T> clone = new JaxrsInterceptorRegistry(factory, intf);
-      clone.interceptors.addAll(interceptors);
-      return clone;
-   }
-
-   public Class<T> getIntf()
-   {
-      return intf;
-   }
-
-   public static class AscendingPrecedenceComparator implements Comparator<Match>
-   {
-      public int compare(Match match, Match match2)
-      {
-         if (match.order < match2.order)
-         {
-            return -1;
-         }
-         if (match.order == match2.order)
-         {
-            return 0;
-         }
-         return 1;
-      }
-   }
-
-   public static class DescendingPrecedenceComparator implements Comparator<Match>
-   {
-      public int compare(Match match, Match match2)
-      {
-         if (match2.order < match.order)
-         {
-            return -1;
-         }
-         if (match2.order == match.order)
-         {
-            return 0;
-         }
-         return 1;
-      }
-   }
-
-
-   public List<JaxrsInterceptorRegistryListener> getListeners()
-   {
-      return listeners;
-   }
-
-   public T[] preMatch()
-   {
-      if (cachedPreMatch == null)
-      {
-         List<Match> matches = new ArrayList<Match>();
-         for (InterceptorFactory factory : interceptors)
-         {
-            Match match = factory.preMatch();
-            if (match != null)
-            {
-               matches.add(match);
-            }
-         }
-         cachedPreMatch = createArray(matches);
-      }
-      return cachedPreMatch;
-   }
-
-
-   public T[] postMatch(Class declaring, AccessibleObject target)
-   {
-      List<Match> matches = new ArrayList<Match>();
-      for (InterceptorFactory factory : interceptors)
-      {
-         Match match = factory.postMatch(declaring, target);
-         if (match != null)
-         {
-            matches.add(match);
-         }
-      }
-      return createArray(matches);
-   }
-
-   private T[] createArray(List<Match> matches)
-   {
-      sort(matches);
-      T[] array = (T[]) Array.newInstance(intf, matches.size());
-      for (int i = 0; i < array.length; i++)
-      {
-         array[i] = (T) matches.get(i).interceptor;
-      }
-      return array;
-   }
-
-   protected void sort(List<Match> matches)
-   {
-      Collections.sort(matches, new AscendingPrecedenceComparator());
-   }
-
-   public synchronized void register(InterceptorFactory factory)
-   {
-      interceptors.add(factory);
-      cachedPreMatch = null;
-      for (JaxrsInterceptorRegistryListener listener : listeners)
-      {
-         listener.registryUpdated(this);
-      }
-   }
-
-   public synchronized void registerClass(Class<? extends T> declaring)
-   {
-      register(new OnDemandInterceptorFactory(declaring));
-   }
-
-   public synchronized void registerClass(Class<? extends T> declaring, int priority)
-   {
-      OnDemandInterceptorFactory factory = new OnDemandInterceptorFactory(declaring);
-      factory.setOrder(priority);
-      register(factory);
-   }
-
-   public synchronized void registerSingleton(T interceptor)
-   {
-      register(new SingletonInterceptorFactory(interceptor.getClass(), interceptor));
-   }
-
-   public synchronized void registerSingleton(T interceptor, int priority)
-   {
-      SingletonInterceptorFactory factory = new SingletonInterceptorFactory(interceptor.getClass(), interceptor);
-      factory.setOrder(priority);
-      register(factory);
-   }
-   
-   private Class<?> getNonSyntheticClass(Class<?> clazz)
-   {
-      while (clazz.isSynthetic())
-      {
-         clazz = clazz.getSuperclass();
-      }
-      return clazz;
    }
 }

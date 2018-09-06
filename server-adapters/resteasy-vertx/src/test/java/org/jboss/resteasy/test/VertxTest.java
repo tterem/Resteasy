@@ -10,12 +10,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.HttpMethod;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -30,133 +25,41 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Locale;
 
-import static org.jboss.resteasy.test.TestPortProvider.generateURL;
-import static org.jboss.resteasy.test.TestPortProvider.getHost;
-import static org.jboss.resteasy.test.TestPortProvider.getPort;
+import static org.jboss.resteasy.test.TestPortProvider.*;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class VertxTest
-{
-
-   @Path("/")
-   public static class Resource
-   {
-      @GET
-      @Path("/test")
-      @Produces("text/plain")
-      public String hello()
-      {
-         return "hello world";
-      }
-
-      @GET
-      @Path("empty")
-      public void empty()
-      {
-
-      }
-
-      @GET
-      @Path("query")
-      public String query(@QueryParam("param") String value)
-      {
-         return value;
-
-      }
-
-
-      @GET
-      @Path("/exception")
-      @Produces("text/plain")
-      public String exception()
-      {
-         throw new RuntimeException();
-      }
-
-      @GET
-      @Path("large")
-      @Produces("text/plain")
-      public String large()
-      {
-         StringBuffer buf = new StringBuffer();
-         for (int i = 0; i < 1000; i++)
-         {
-            buf.append(i);
-         }
-         return buf.toString();
-      }
-
-      @GET
-      @Path("/context")
-      @Produces("text/plain")
-      public String context(
-            @Context io.vertx.core.Context context,
-            @Context io.vertx.core.Vertx vertx,
-            @Context io.vertx.core.http.HttpServerRequest req,
-            @Context io.vertx.core.http.HttpServerResponse resp)
-      {
-         if (context != null && vertx != null && req != null && resp != null)
-         {
-            return "pass";
-         } else
-         {
-            return "fail";
-         }
-      }
-
-      @POST
-      @Path("/post")
-      @Produces("text/plain")
-      public String post(String postBody)
-      {
-         return postBody;
-      }
-
-      @GET
-      @Path("/test/absolute")
-      @Produces("text/plain")
-      public String absolute(@Context UriInfo info)
-      {
-         return "uri: " + info.getRequestUri().toString();
-      }
-   }
+public class VertxTest {
 
    static Client client;
 
    @BeforeClass
-   public static void setup() throws Exception
-   {
+   public static void setup() throws Exception {
       VertxContainer.start().getRegistry().addPerRequestResource(Resource.class);
       client = ClientBuilder.newClient();
    }
 
    @AfterClass
-   public static void end() throws Exception
-   {
-      try
-      {
+   public static void end() throws Exception {
+      try {
          client.close();
-      } catch (Exception e)
-      {
+      } catch (Exception e) {
 
       }
       VertxContainer.stop();
    }
 
    @Test
-   public void testBasic() throws Exception
-   {
+   public void testBasic() throws Exception {
       WebTarget target = client.target(generateURL("/test"));
       String val = target.request().get(String.class);
       Assert.assertEquals("hello world", val);
    }
 
    @Test
-   public void testHeadContentLength() throws Exception
-   {
+   public void testHeadContentLength() throws Exception {
       ResteasyClient client = new ResteasyClientBuilder().build();
       ResteasyWebTarget target = client.target(generateURL("/test"));
       Response getResponse = target.request().buildGet().invoke();
@@ -169,81 +72,67 @@ public class VertxTest
    }
 
    @Test
-   public void testQuery() throws Exception
-   {
+   public void testQuery() throws Exception {
       WebTarget target = client.target(generateURL("/query"));
       String val = target.queryParam("param", "val").request().get(String.class);
       Assert.assertEquals("val", val);
    }
 
    @Test
-   public void testEmpty() throws Exception
-   {
+   public void testEmpty() throws Exception {
       WebTarget target = client.target(generateURL("/empty"));
       Response response = target.request().get();
-      try
-      {
+      try {
          Assert.assertEquals(204, response.getStatus());
-      } finally
-      {
+      } finally {
          response.close();
       }
    }
 
    @Test
-   public void testLarge() throws Exception
-   {
+   public void testLarge() throws Exception {
       WebTarget target = client.target(generateURL("/large"));
       Response response = target.request().get();
-      try
-      {
+      try {
          Assert.assertEquals(200, response.getStatus());
          StringBuffer buf = new StringBuffer();
-         for (int i = 0; i < 1000; i++)
-         {
+         for (int i = 0; i < 1000; i++) {
             buf.append(i);
          }
          String expected = buf.toString();
          String have = response.readEntity(String.class);
          Assert.assertEquals(expected, have);
 
-      } finally
-      {
+      } finally {
          response.close();
       }
    }
 
    @Test
-   public void testUnhandledException() throws Exception
-   {
+   public void testUnhandledException() throws Exception {
       WebTarget target = client.target(generateURL("/exception"));
       Response resp = target.request().get();
-      try
-      {
+      try {
          Assert.assertEquals(500, resp.getStatus());
-      } finally
-      {
+      } finally {
          resp.close();
       }
    }
 
    @Test
-   public void testChannelContext() throws Exception
-   {
+   public void testChannelContext() throws Exception {
       WebTarget target = client.target(generateURL("/context"));
       String val = target.request().get(String.class);
       Assert.assertEquals("pass", val);
    }
 
    @Test
-   public void testPost()
-   {
+   public void testPost() {
       WebTarget target = client.target(generateURL("/post"));
       String postBody = "hello world";
       String result = (String) target.request().post(Entity.text(postBody), String.class);
       Assert.assertEquals(postBody, result);
    }
-
 
    /**
     * Per the HTTP spec, we must allow requests like:
@@ -264,8 +153,7 @@ public class VertxTest
     * @throws Exception
     */
    @Test
-   public void testAbsoluteURI() throws Exception
-   {
+   public void testAbsoluteURI() throws Exception {
       String uri = generateURL("/test/absolute");
 
       Socket client = new Socket(getHost(), getPort());
@@ -274,12 +162,82 @@ public class VertxTest
       out.printf(Locale.US, "GET %s HTTP/1.1\nHost: %s:%d\n\n", uri, getHost(), getPort());
       String statusLine = in.readLine();
       String response = in.readLine();
-      while (!response.startsWith("uri"))
-      {
+      while (!response.startsWith("uri")) {
          response = in.readLine();
       }
       client.close();
       Assert.assertEquals("HTTP/1.1 200 OK", statusLine);
       Assert.assertEquals(uri, response.subSequence(5, response.length()));
+   }
+
+   @Path("/")
+   public static class Resource {
+      @GET
+      @Path("/test")
+      @Produces("text/plain")
+      public String hello() {
+         return "hello world";
+      }
+
+      @GET
+      @Path("empty")
+      public void empty() {
+
+      }
+
+      @GET
+      @Path("query")
+      public String query(@QueryParam("param") String value) {
+         return value;
+
+      }
+
+
+      @GET
+      @Path("/exception")
+      @Produces("text/plain")
+      public String exception() {
+         throw new RuntimeException();
+      }
+
+      @GET
+      @Path("large")
+      @Produces("text/plain")
+      public String large() {
+         StringBuffer buf = new StringBuffer();
+         for (int i = 0; i < 1000; i++) {
+            buf.append(i);
+         }
+         return buf.toString();
+      }
+
+      @GET
+      @Path("/context")
+      @Produces("text/plain")
+      public String context(
+              @Context io.vertx.core.Context context,
+              @Context io.vertx.core.Vertx vertx,
+              @Context io.vertx.core.http.HttpServerRequest req,
+              @Context io.vertx.core.http.HttpServerResponse resp) {
+         if (context != null && vertx != null && req != null && resp != null) {
+            return "pass";
+         } else {
+            return "fail";
+         }
+      }
+
+      @POST
+      @Path("/post")
+      @Produces("text/plain")
+      public String post(String postBody) {
+         return postBody;
+      }
+
+      @GET
+      @Path("/test/absolute")
+      @Produces("text/plain")
+      public String absolute(@Context UriInfo info) {
+         return "uri: " + info.getRequestUri().toString();
+      }
    }
 }

@@ -1,16 +1,10 @@
 package org.jboss.resteasy.util;
 
+import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Locale;
-import java.util.TimeZone;
-
-import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
+import java.util.*;
 
 /**
  * A utility class for parsing and formatting HTTP dates as used in cookies and
@@ -20,60 +14,37 @@ import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
  * @author Christopher Brown
  * @author Michael Becke
  */
-public class DateUtil
-{
-
-   public static class DateParseException extends RuntimeException
-   {
-      public DateParseException()
-      {
-      }
-
-      public DateParseException(String s)
-      {
-         super(s);
-      }
-
-      public DateParseException(String s, Throwable throwable)
-      {
-         super(s, throwable);
-      }
-
-      public DateParseException(Throwable throwable)
-      {
-         super(throwable);
-      }
-   }
+public class DateUtil {
 
    /**
     * Date format pattern used to parse HTTP date headers in RFC 1123 format.
     */
    public static final String PATTERN_RFC1123 = "EEE, dd MMM yyyy HH:mm:ss zzz";
-
    /**
     * Date format pattern used to parse HTTP date headers in RFC 1036 format.
     */
    public static final String PATTERN_RFC1036 = "EEEE, dd-MMM-yy HH:mm:ss zzz";
-
    /**
     * Date format pattern used to parse HTTP date headers in ANSI C
     * <code>asctime()</code> format.
     */
    public static final String PATTERN_ASCTIME = "EEE MMM d HH:mm:ss yyyy";
-
    private static final Collection DEFAULT_PATTERNS = Arrays.asList(
            new String[]{PATTERN_ASCTIME, PATTERN_RFC1036, PATTERN_RFC1123});
-
    private static final Date DEFAULT_TWO_DIGIT_YEAR_START;
+   private static final TimeZone GMT = TimeZone.getTimeZone("GMT");
 
-   static
-   {
+   static {
       Calendar calendar = Calendar.getInstance();
       calendar.set(2000, Calendar.JANUARY, 1, 0, 0);
       DEFAULT_TWO_DIGIT_YEAR_START = calendar.getTime();
    }
 
-   private static final TimeZone GMT = TimeZone.getTimeZone("GMT");
+   /**
+    * This class should not be instantiated.
+    */
+   private DateUtil() {
+   }
 
    /**
     * Parses a date value.  The formats used for parsing the date value are retrieved from
@@ -84,8 +55,7 @@ public class DateUtil
     * @throws DateParseException if the value could not be parsed using any of the
     *                            supported date formats
     */
-   public static Date parseDate(String dateValue) throws DateParseException
-   {
+   public static Date parseDate(String dateValue) throws DateParseException {
       return parseDate(dateValue, null, null);
    }
 
@@ -98,8 +68,7 @@ public class DateUtil
     * @throws DateParseException if none of the dataFormats could parse the dateValue
     */
    public static Date parseDate(String dateValue, Collection dateFormats)
-           throws DateParseException
-   {
+           throws DateParseException {
       return parseDate(dateValue, dateFormats, null);
    }
 
@@ -119,19 +88,15 @@ public class DateUtil
            String dateValue,
            Collection dateFormats,
            Date startDate
-   ) throws DateParseException
-   {
+   ) throws DateParseException {
 
-      if (dateValue == null)
-      {
+      if (dateValue == null) {
          throw new IllegalArgumentException(Messages.MESSAGES.dateValueNull());
       }
-      if (dateFormats == null)
-      {
+      if (dateFormats == null) {
          dateFormats = DEFAULT_PATTERNS;
       }
-      if (startDate == null)
-      {
+      if (startDate == null) {
          startDate = DEFAULT_TWO_DIGIT_YEAR_START;
       }
       // trim single quotes around date if present
@@ -139,33 +104,25 @@ public class DateUtil
       if (dateValue.length() > 1
               && dateValue.startsWith("'")
               && dateValue.endsWith("'")
-              )
-      {
+              ) {
          dateValue = dateValue.substring(1, dateValue.length() - 1);
       }
 
       SimpleDateFormat dateParser = null;
       Iterator formatIter = dateFormats.iterator();
 
-      while (formatIter.hasNext())
-      {
+      while (formatIter.hasNext()) {
          String format = (String) formatIter.next();
-         if (dateParser == null)
-         {
+         if (dateParser == null) {
             dateParser = new SimpleDateFormat(format, Locale.US);
             dateParser.setTimeZone(TimeZone.getTimeZone("GMT"));
             dateParser.set2DigitYearStart(startDate);
-         }
-         else
-         {
+         } else {
             dateParser.applyPattern(format);
          }
-         try
-         {
+         try {
             return dateParser.parse(dateValue);
-         }
-         catch (ParseException pe)
-         {
+         } catch (ParseException pe) {
             // ignore this exception, we will try the next format
          }
       }
@@ -181,8 +138,7 @@ public class DateUtil
     * @return An RFC 1123 formatted date string.
     * @see #PATTERN_RFC1123
     */
-   public static String formatDate(Date date)
-   {
+   public static String formatDate(Date date) {
       return formatDate(date, PATTERN_RFC1123);
    }
 
@@ -197,8 +153,7 @@ public class DateUtil
     * @throws IllegalArgumentException If the given date pattern is invalid.
     * @see SimpleDateFormat
     */
-   public static String formatDate(Date date, String pattern)
-   {
+   public static String formatDate(Date date, String pattern) {
       if (date == null) throw new IllegalArgumentException(Messages.MESSAGES.dateNull());
       if (pattern == null) throw new IllegalArgumentException(Messages.MESSAGES.patternNull());
 
@@ -207,11 +162,21 @@ public class DateUtil
       return formatter.format(date);
    }
 
-   /**
-    * This class should not be instantiated.
-    */
-   private DateUtil()
-   {
+   public static class DateParseException extends RuntimeException {
+      public DateParseException() {
+      }
+
+      public DateParseException(String s) {
+         super(s);
+      }
+
+      public DateParseException(String s, Throwable throwable) {
+         super(s, throwable);
+      }
+
+      public DateParseException(Throwable throwable) {
+         super(throwable);
+      }
    }
 
 }

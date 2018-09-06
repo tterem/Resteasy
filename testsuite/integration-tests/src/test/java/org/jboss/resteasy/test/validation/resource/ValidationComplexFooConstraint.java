@@ -6,9 +6,7 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.PARAMETER;
-import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Documented
@@ -16,13 +14,13 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({TYPE, PARAMETER, METHOD})
 @Retention(RUNTIME)
 public @interface ValidationComplexFooConstraint {
-    String message() default "s must have length: {min} <= length <= {max}";
+   String message() default "s must have length: {min} <= length <= {max}";
 
-    Class<?>[] groups() default {};
+   Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+   Class<? extends Payload>[] payload() default {};
 
-    int min();
+   int min();
 
-    int max();
+   int max();
 }

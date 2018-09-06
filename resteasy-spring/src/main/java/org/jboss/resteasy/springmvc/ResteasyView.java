@@ -25,91 +25,77 @@ import java.util.Map;
  */
 
 @SuppressWarnings("rawtypes")
-public class ResteasyView implements View
-{
+public class ResteasyView implements View {
 
    private MediaType contentType = null;
    private List<MediaType> potentialContentTypes = null;
    private ResteasyDeployment deployment;
 
-   public ResteasyView(String contentType, ResteasyDeployment deployment)
-   {
+   public ResteasyView(String contentType, ResteasyDeployment deployment) {
       setContentType(contentType);
       this.deployment = deployment;
    }
 
-   public ResteasyView()
-   {
+   public ResteasyView() {
    }
 
-   public ResteasyDeployment getDeployment()
-   {
+   public ResteasyDeployment getDeployment() {
       return deployment;
    }
 
-   public void setDeployment(ResteasyDeployment deployment)
-   {
+   public void setDeployment(ResteasyDeployment deployment) {
       this.deployment = deployment;
    }
 
-   public String getContentType()
-   {
+   public String getContentType() {
       return contentType.toString();
    }
 
-   public List<String> getPotentialContentTypes()
-   {
+   public void setContentType(String contentType) {
+      this.contentType = MediaType.valueOf(contentType);
+   }
+
+   public List<String> getPotentialContentTypes() {
       List<String> contentTypes = new ArrayList<String>(potentialContentTypes.size());
-      for (MediaType mediaType : potentialContentTypes)
-      {
+      for (MediaType mediaType : potentialContentTypes) {
          contentTypes.add(mediaType.toString());
       }
       return contentTypes;
    }
 
-   public void setPotentialContentTypes(List<String> potentialContentTypes)
-   {
+   public void setPotentialContentTypes(List<String> potentialContentTypes) {
       this.potentialContentTypes = new ArrayList<MediaType>();
-      for (String type : potentialContentTypes)
-      {
+      for (String type : potentialContentTypes) {
          this.potentialContentTypes.add(MediaType.valueOf(type));
       }
    }
 
    public void render(final Map model, final HttpServletRequest servletRequest,
-                      final HttpServletResponse servletResponse) throws Exception
-   {
-      final SynchronousDispatcher dispatcher = (SynchronousDispatcher)deployment.getDispatcher();
-      ResteasyWebHandlerTemplate template = new ResteasyWebHandlerTemplate<Void>(dispatcher.getProviderFactory())
-      {
+                      final HttpServletResponse servletResponse) throws Exception {
+      final SynchronousDispatcher dispatcher = (SynchronousDispatcher) deployment.getDispatcher();
+      ResteasyWebHandlerTemplate template = new ResteasyWebHandlerTemplate<Void>(dispatcher.getProviderFactory()) {
          protected Void handle(ResteasyRequestWrapper requestWrapper,
-                               HttpResponse response) throws Exception
-         {
+                               HttpResponse response) throws Exception {
             HttpRequest httpRequest = requestWrapper.getHttpRequest();
             dispatcher.pushContextObjects(httpRequest, response);
-            try
-            {
-               try
-               {
+            try {
+               try {
                   MediaType resolvedContentType = resolveContentType(httpRequest,
                           httpRequest.getHttpHeaders().getMediaType());
                   BuiltResponse responseInvoker = getResponse(model, resolvedContentType);
-                  if (responseInvoker != null)
-                  {
+                  if (responseInvoker != null) {
                      ServerResponseWriter.writeNomapResponse(responseInvoker, httpRequest, response, dispatcher.getProviderFactory(), t -> {
-                    	 if(t != null)
-                    		 dispatcher.writeException(httpRequest, response, t, t2 -> {});
+                        if (t != null)
+                           dispatcher.writeException(httpRequest, response, t, t2 -> {
+                           });
                      });
                   }
-               }
-               catch (Exception e)
-               {
-                  dispatcher.writeException(httpRequest, response, e, t -> {});
+               } catch (Exception e) {
+                  dispatcher.writeException(httpRequest, response, e, t -> {
+                  });
                }
                return null;
-            }
-            finally
-            {
+            } finally {
                dispatcher.clearContextData();
             }
          }
@@ -118,15 +104,12 @@ public class ResteasyView implements View
       template.handle(requestWrapper, servletResponse);
    }
 
-   private MediaType resolveContentType(HttpRequest jaxrsRequest, MediaType mt)
-   {
-      if (mt == null || MediaType.MEDIA_TYPE_WILDCARD.equals(mt.getType()))
-      {
+   private MediaType resolveContentType(HttpRequest jaxrsRequest, MediaType mt) {
+      if (mt == null || MediaType.MEDIA_TYPE_WILDCARD.equals(mt.getType())) {
          List<MediaType> acceptableMediaTypes = jaxrsRequest.getHttpHeaders()
                  .getAcceptableMediaTypes();
 
-         if (contentType != null && isAcceptable(acceptableMediaTypes, contentType))
-         {
+         if (contentType != null && isAcceptable(acceptableMediaTypes, contentType)) {
             return contentType;
          }
 
@@ -136,13 +119,10 @@ public class ResteasyView implements View
    }
 
    private boolean isAcceptable(List<MediaType> acceptableMediaTypes,
-                                MediaType potentialContentType)
-   {
+                                MediaType potentialContentType) {
       boolean isAcceptable = false;
-      for (MediaType acceptableMediaType : acceptableMediaTypes)
-      {
-         if (acceptableMediaType.isCompatible(potentialContentType))
-         {
+      for (MediaType acceptableMediaType : acceptableMediaTypes) {
+         if (acceptableMediaType.isCompatible(potentialContentType)) {
             isAcceptable = true;
             break;
          }
@@ -150,27 +130,20 @@ public class ResteasyView implements View
       return isAcceptable;
    }
 
-   protected BuiltResponse getResponse(Map model, MediaType mt)
-   {
+   protected BuiltResponse getResponse(Map model, MediaType mt) {
       Collection modelValues = model.values();
-      for (Object value : modelValues)
-      {
-         if (value instanceof BuiltResponse)
-         {
+      for (Object value : modelValues) {
+         if (value instanceof BuiltResponse) {
             return (BuiltResponse) value;
          }
       }
 
-      if (model.size() == 1)
-      {
+      if (model.size() == 1) {
          return createResponse(modelValues.iterator().next(), mt);
       }
-      if (model.size() == 2)
-      {
-         for (Object value : modelValues)
-         {
-            if (!(value instanceof BindingResult))
-            {
+      if (model.size() == 2) {
+         for (Object value : modelValues) {
+            if (!(value instanceof BindingResult)) {
                return createResponse(value, mt);
             }
          }
@@ -178,18 +151,12 @@ public class ResteasyView implements View
       return null;
    }
 
-   private BuiltResponse createResponse(Object value, MediaType contentType)
-   {
+   private BuiltResponse createResponse(Object value, MediaType contentType) {
       BuiltResponse responseImpl = new BuiltResponse();
       responseImpl.setEntity(value);
       if (contentType != null)
          responseImpl.getMetadata().putSingle(HttpHeaderNames.CONTENT_TYPE, contentType);
       return responseImpl;
-   }
-
-   public void setContentType(String contentType)
-   {
-      this.contentType = MediaType.valueOf(contentType);
    }
 
 }

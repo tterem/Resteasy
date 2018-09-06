@@ -9,44 +9,35 @@ import javax.ws.rs.core.Response;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class NoLogWebApplicationException extends WebApplicationException
-{
-   public NoLogWebApplicationException()
-   {
+public class NoLogWebApplicationException extends WebApplicationException {
+   public NoLogWebApplicationException() {
    }
 
-   public NoLogWebApplicationException(Response response)
-   {
+   public NoLogWebApplicationException(Response response) {
       super(response);
    }
 
-   public NoLogWebApplicationException(int status)
-   {
+   public NoLogWebApplicationException(int status) {
       super(status);
    }
 
-   public NoLogWebApplicationException(Response.Status status)
-   {
+   public NoLogWebApplicationException(Response.Status status) {
       super(status);
    }
 
-   public NoLogWebApplicationException(Throwable cause)
-   {
+   public NoLogWebApplicationException(Throwable cause) {
       super(cause);
    }
 
-   public NoLogWebApplicationException(Throwable cause, Response response)
-   {
+   public NoLogWebApplicationException(Throwable cause, Response response) {
       super(cause, response);
    }
 
-   public NoLogWebApplicationException(Throwable cause, int status)
-   {
+   public NoLogWebApplicationException(Throwable cause, int status) {
       super(cause, status);
    }
 
-   public NoLogWebApplicationException(Throwable cause, Response.Status status)
-   {
+   public NoLogWebApplicationException(Throwable cause, Response.Status status) {
       super(cause, status);
    }
 }

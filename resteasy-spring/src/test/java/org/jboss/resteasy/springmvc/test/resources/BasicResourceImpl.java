@@ -14,8 +14,7 @@ import java.util.Date;
 
 @Path("/basic")
 @Component
-public class BasicResourceImpl
-{
+public class BasicResourceImpl {
 
    @Context
    private HttpHeaders headers;
@@ -28,16 +27,14 @@ public class BasicResourceImpl
     */
    @GET
    @Produces("text/plain")
-   public String getBasicString()
-   {
+   public String getBasicString() {
       return "test";
    }
 
    @GET
    @Produces("application/xml")
    @Path("object")
-   public BasicJaxbObject getBasicObject()
-   {
+   public BasicJaxbObject getBasicObject() {
       return new BasicJaxbObject("something", new Date());
    }
 
@@ -47,8 +44,7 @@ public class BasicResourceImpl
    @GET
    @Produces("application/custom")
    @Path("/custom-rep")
-   public ModelAndView getCustomRepresentation()
-   {
+   public ModelAndView getCustomRepresentation() {
       // MyCustomView is auto created
       return new ModelAndView("myCustomView");
    }
@@ -57,8 +53,7 @@ public class BasicResourceImpl
    @GET
    @Produces("text/plain")
    @Path("/header")
-   public String getContentTypeHeader()
-   {
+   public String getContentTypeHeader() {
       return this.headers.getAcceptableMediaTypes().get(0).toString();
    }
 
@@ -68,8 +63,7 @@ public class BasicResourceImpl
    @GET
    @Produces("text/plain")
    @Path("/url")
-   public String getURL()
-   {
+   public String getURL() {
       return uri.getPath();
    }
 }

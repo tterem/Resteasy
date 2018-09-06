@@ -1,5 +1,19 @@
 package org.jboss.resteasy.test.rx;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.internal.CompletionStageRxInvokerProvider;
+import org.jboss.resteasy.test.rx.resource.*;
+import org.jboss.resteasy.utils.PortProviderUtil;
+import org.jboss.resteasy.utils.TestUtil;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.*;
+import org.junit.runner.RunWith;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
@@ -8,35 +22,12 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.client.jaxrs.internal.CompletionStageRxInvokerProvider;
-import org.jboss.resteasy.test.rx.resource.RxCompletionStageResource;
-import org.jboss.resteasy.test.rx.resource.RxScheduledExecutorService;
-import org.jboss.resteasy.test.rx.resource.SimpleResourceImpl;
-import org.jboss.resteasy.test.rx.resource.TestException;
-import org.jboss.resteasy.test.rx.resource.TestExceptionMapper;
-import org.jboss.resteasy.test.rx.resource.Thing;
-import org.jboss.resteasy.utils.PortProviderUtil;
-import org.jboss.resteasy.utils.TestUtil;
-import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 
 /**
  * @tpSubChapter Reactive classes
  * @tpChapter Integration tests
  * @tpSince RESTEasy 4.0
- * 
+ * <p>
  * These tests run asynchronously on client, calling a proxy which calls a CompletionStageRxInvoker.
  * The server creates and returns objects synchronously.
  */
@@ -47,12 +38,16 @@ public class RxCompletionStageProxyClientAsyncTest {
    private static ResteasyClient client;
    private static RxCompletionStageResource proxy;
 
-   private static List<Thing>  xThingList =  new ArrayList<Thing>();
-   private static List<Thing>  aThingList =  new ArrayList<Thing>();
+   private static List<Thing> xThingList = new ArrayList<Thing>();
+   private static List<Thing> aThingList = new ArrayList<Thing>();
 
    static {
-      for (int i = 0; i < 3; i++) {xThingList.add(new Thing("x"));}
-      for (int i = 0; i < 3; i++) {aThingList.add(new Thing("a"));}
+      for (int i = 0; i < 3; i++) {
+         xThingList.add(new Thing("x"));
+      }
+      for (int i = 0; i < 3; i++) {
+         aThingList.add(new Thing("a"));
+      }
    }
 
    @Deployment
@@ -81,7 +76,17 @@ public class RxCompletionStageProxyClientAsyncTest {
    }
 
    //////////////////////////////////////////////////////////////////////////////
-   
+
+   private static boolean throwableContains(Throwable t, String s) {
+      while (t != null) {
+         if (t.getMessage().contains(s)) {
+            return true;
+         }
+         t = t.getCause();
+      }
+      return false;
+   }
+
    @Test
    public void testGet() throws Exception {
       CompletionStage<String> completionStage = proxy.get();
@@ -204,7 +209,7 @@ public class RxCompletionStageProxyClientAsyncTest {
    }
 
    @Test
-   public void testScheduledExecutorService () throws Exception {
+   public void testScheduledExecutorService() throws Exception {
       {
          RxScheduledExecutorService.used = false;
          CompletionStage<String> completionStage = proxy.get();
@@ -223,48 +228,53 @@ public class RxCompletionStageProxyClientAsyncTest {
          Assert.assertTrue(RxScheduledExecutorService.used);
       }
    }
-   
+
    @Test
    public void testUnhandledException() throws Exception {
       CompletionStage<Thing> completionStage = proxy.exceptionUnhandled();
       AtomicReference<Throwable> value = new AtomicReference<Throwable>();
       CountDownLatch latch = new CountDownLatch(1);
-      completionStage.whenComplete((Thing t1, Throwable t2) -> {value.set(t2); latch.countDown();});
+      completionStage.whenComplete((Thing t1, Throwable t2) -> {
+         value.set(t2);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertTrue(value.get().getMessage().contains("500"));
    }
-   
+
    @Test
    public void testHandledException() throws Exception {
       CompletionStage<Thing> completionStage = proxy.exceptionHandled();
       AtomicReference<Throwable> value = new AtomicReference<Throwable>();
       CountDownLatch latch = new CountDownLatch(1);
-      completionStage.whenComplete((Thing t1, Throwable t2) -> {value.set(t2); latch.countDown();});
+      completionStage.whenComplete((Thing t1, Throwable t2) -> {
+         value.set(t2);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertTrue(value.get().getMessage().contains("444"));
    }
-   
+
    @Test
    public void testGetTwoClients() throws Exception {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       ResteasyClient client1 = new ResteasyClientBuilder().build();
       client1.register(CompletionStageRxInvokerProvider.class);
-      RxCompletionStageResource  proxy1 = client1.target(generateURL("/")).proxy(RxCompletionStageResource.class);
-      CompletionStage<String> completionStage1 = proxy1.get();   
+      RxCompletionStageResource proxy1 = client1.target(generateURL("/")).proxy(RxCompletionStageResource.class);
+      CompletionStage<String> completionStage1 = proxy1.get();
 
       ResteasyClient client2 = new ResteasyClientBuilder().build();
       client2.register(CompletionStageRxInvokerProvider.class);
-      RxCompletionStageResource  proxy2 = client2.target(generateURL("/")).proxy(RxCompletionStageResource.class);
+      RxCompletionStageResource proxy2 = client2.target(generateURL("/")).proxy(RxCompletionStageResource.class);
       CompletionStage<String> completionStage2 = proxy2.get();
 
       list.add(completionStage1.toCompletableFuture().get());
       list.add(completionStage2.toCompletableFuture().get());
       Assert.assertEquals(2, list.size());
-      for (int i = 0; i < 2; i++)
-      {
+      for (int i = 0; i < 2; i++) {
          Assert.assertEquals("x", list.get(i));
       }
    }
@@ -273,24 +283,23 @@ public class RxCompletionStageProxyClientAsyncTest {
    public void testGetTwoProxies() throws Exception {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
-      RxCompletionStageResource  proxy1 = client.target(generateURL("/")).proxy(RxCompletionStageResource.class);
-      CompletionStage<String> completionStage1 = proxy1.get();   
+      RxCompletionStageResource proxy1 = client.target(generateURL("/")).proxy(RxCompletionStageResource.class);
+      CompletionStage<String> completionStage1 = proxy1.get();
 
-      RxCompletionStageResource  proxy2 = client.target(generateURL("/")).proxy(RxCompletionStageResource.class);
+      RxCompletionStageResource proxy2 = client.target(generateURL("/")).proxy(RxCompletionStageResource.class);
       CompletionStage<String> completionStage2 = proxy2.get();
 
       list.add(completionStage1.toCompletableFuture().get());
       list.add(completionStage2.toCompletableFuture().get());
       Assert.assertEquals(2, list.size());
-      for (int i = 0; i < 2; i++)
-      {
+      for (int i = 0; i < 2; i++) {
          Assert.assertEquals("x", list.get(i));
       }
    }
-   
+
    @Test
    public void testGetTwoCompletionStages() throws Exception {
-      CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();   
+      CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       CompletionStage<String> completionStage1 = proxy.get();
       CompletionStage<String> completionStage2 = proxy.get();
@@ -298,20 +307,8 @@ public class RxCompletionStageProxyClientAsyncTest {
       list.add(completionStage1.toCompletableFuture().get());
       list.add(completionStage2.toCompletableFuture().get());
       Assert.assertEquals(2, list.size());
-      for (int i = 0; i < 2; i++)
-      {
+      for (int i = 0; i < 2; i++) {
          Assert.assertEquals("x", list.get(i));
       }
-   }
-   
-   private static boolean throwableContains(Throwable t, String s) {
-      while (t != null) {
-         if (t.getMessage().contains(s))
-         {
-            return true;
-         }
-         t = t.getCause();
-      }
-      return false;
    }
 }

@@ -6,27 +6,22 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class MapCache implements BrowserCache
-{
+public class MapCache implements BrowserCache {
    protected Map<String, Map<String, Entry>> cache = null;
 
-   public MapCache()
-   {
+   public MapCache() {
       this(new ConcurrentHashMap<String, Map<String, Entry>>());
    }
 
-   public MapCache(Map<String, Map<String, Entry>> cache)
-   {
+   public MapCache(Map<String, Map<String, Entry>> cache) {
       this.cache = cache;
    }
 
-   protected Map<String, Map<String, Entry>> createCache()
-   {
+   protected Map<String, Map<String, Entry>> createCache() {
       return new ConcurrentHashMap<String, Map<String, Entry>>();
    }
 
-   public Entry get(String key, MediaType accept)
-   {
+   public Entry get(String key, MediaType accept) {
       Map<String, Entry> parent = cache.get(key);
       if (parent == null || parent.isEmpty()) {
          return null;
@@ -45,8 +40,7 @@ public class MapCache implements BrowserCache
       return parent.get(accept.toString());
    }
 
-   public Entry getAny(String key)
-   {
+   public Entry getAny(String key) {
       Map<String, Entry> parent = cache.get(key);
       if (parent == null) return null;
       Iterator<Entry> iterator = parent.values().iterator();
@@ -54,39 +48,31 @@ public class MapCache implements BrowserCache
       return null;
    }
 
-   public Entry getEntry(String key, MediaType accept)
-   {
+   public Entry getEntry(String key, MediaType accept) {
       Map<String, Entry> parent = cache.get(key);
       if (parent == null) return null;
       return parent.get(accept.toString());
    }
 
-   public Entry remove(String key, MediaType type)
-   {
+   public Entry remove(String key, MediaType type) {
       Map<String, Entry> data = cache.get(key);
       if (data == null) return null;
       Entry removed = data.remove(type.toString());
-      if (data.isEmpty())
-      {
+      if (data.isEmpty()) {
          cache.remove(key);
-      }
-      else
-      {
+      } else {
          cache.put(key, data);
       }
       return removed;
    }
 
-   public void clear()
-   {
+   public void clear() {
       cache.clear();
    }
 
-   public Entry put(CacheEntry cacheEntry)
-   {
+   public Entry put(CacheEntry cacheEntry) {
       Map<String, Entry> map = cache.get(cacheEntry.getKey());
-      if (map == null)
-      {
+      if (map == null) {
          map = new ConcurrentHashMap<String, Entry>();
       }
       map.put(cacheEntry.getMediaType().toString(), cacheEntry);
@@ -96,8 +82,7 @@ public class MapCache implements BrowserCache
 
    public Entry put(String key, MediaType mediaType,
                     MultivaluedMap<String, String> headers, byte[] cached, int expires,
-                    String etag, String lastModified)
-   {
+                    String etag, String lastModified) {
       return put(new CacheEntry(key, headers, cached, expires, etag, lastModified, mediaType));
    }
 }

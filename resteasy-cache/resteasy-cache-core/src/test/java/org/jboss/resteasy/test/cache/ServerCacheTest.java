@@ -1,26 +1,5 @@
 package org.jboss.resteasy.test.cache;
 
-import static org.jboss.resteasy.test.TestPortProvider.generateURL;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
-
 import org.jboss.resteasy.annotations.cache.Cache;
 import org.jboss.resteasy.plugins.cache.server.ServerCacheFeature;
 import org.jboss.resteasy.plugins.server.netty.NettyJaxrsServer;
@@ -28,18 +7,27 @@ import org.jboss.resteasy.spi.Registry;
 import org.jboss.resteasy.spi.ResteasyDeployment;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.jboss.resteasy.test.TestPortProvider;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+
+import javax.ws.rs.*;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation.Builder;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.Response;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class ServerCacheTest
-{
+public class ServerCacheTest {
    private static NettyJaxrsServer server;
    private static ResteasyDeployment deployment;
    private static int count = 0;
@@ -49,8 +37,7 @@ public class ServerCacheTest
 
 
    @BeforeClass
-   public static void beforeClass() throws Exception
-   {
+   public static void beforeClass() throws Exception {
       server = new NettyJaxrsServer();
       server.setPort(TestPortProvider.getPort());
       server.setRootResourcePath("/");
@@ -60,43 +47,36 @@ public class ServerCacheTest
    }
 
    @AfterClass
-   public static void afterClass() throws Exception
-   {
+   public static void afterClass() throws Exception {
       server.stop();
       server = null;
       deployment = null;
       client.close();
    }
 
-   public Registry getRegistry()
-   {
-      return deployment.getRegistry();
-   }
-
-   public ResteasyProviderFactory getProviderFactory()
-   {
-      return deployment.getProviderFactory();
-   }
-
    /**
     * @param resource
     */
-   public static void addPerRequestResource(Class<?> resource)
-   {
+   public static void addPerRequestResource(Class<?> resource) {
       deployment.getRegistry().addPerRequestResource(resource);
    }
 
-   public String readString(InputStream in) throws IOException
-   {
+   public Registry getRegistry() {
+      return deployment.getRegistry();
+   }
+
+   public ResteasyProviderFactory getProviderFactory() {
+      return deployment.getProviderFactory();
+   }
+
+   public String readString(InputStream in) throws IOException {
       char[] buffer = new char[1024];
       StringBuilder builder = new StringBuilder();
       BufferedReader reader = new BufferedReader(new InputStreamReader(in));
       int wasRead = 0;
-      do
-      {
+      do {
          wasRead = reader.read(buffer, 0, 1024);
-         if (wasRead > 0)
-         {
+         if (wasRead > 0) {
             builder.append(buffer, 0, wasRead);
          }
       }
@@ -104,85 +84,15 @@ public class ServerCacheTest
 
       return builder.toString();
    }
-   
-   @Path("/cache")
-   public static class MyService
-   {
-      @GET
-      @Produces("text/plain")
-      @Cache(maxAge = 2)
-      public String get()
-      {
-         count++;
-         return "hello world" + count;
-      }
-
-      @PUT
-      @Consumes("text/plain")
-      public void put(String val)
-      {
-      }
-
-      @GET
-      @Produces("text/plain")
-      @Path("accepts")
-      @Cache(maxAge = 2)
-      public String getPlain()
-      {
-         plainCount++;
-         return "plain" + plainCount;
-      }
-
-      @GET
-      @Produces("text/html")
-      @Path("accepts")
-      @Cache(maxAge = 2)
-      public String getHtml()
-      {
-         htmlCount++;
-         return "html" + htmlCount;
-      }
-
-      @GET
-      @Produces("text/plain")
-      @Path("stuff")
-      @Cache(maxAge = 2)
-      public String getStuff()
-      {
-         count++;
-         return "stuff";
-      }
-
-      @GET
-      @Produces("text/plain")
-      @Path("vary")
-      @Cache(maxAge = 2)
-      public Response getVary(@HeaderParam("X-Test-Vary") @DefaultValue("default") String testVary)
-      {
-         count++;
-         return Response.ok(testVary).header(HttpHeaders.VARY, "X-Test-Vary").header("X-Count", count).build();
-      }
-   }
-
-   @Path("/cache")
-   public interface MyProxy
-   {
-      @GET
-      @Produces("text/plain")
-      String get();
-
-   }
 
    @Before
-   public void setUp() throws Exception
-   {
+   public void setUp() throws Exception {
       getProviderFactory().register(ServerCacheFeature.class);
       addPerRequestResource(MyService.class);
    }
 
    @Test
-   public void testNoCacheHitValidation() throws Exception
-   {
+   public void testNoCacheHitValidation() throws Exception {
       // test that after a cache expiration NOT MODIFIED is still returned if matching etags
 
       count = 0;
@@ -211,10 +121,8 @@ public class ServerCacheTest
       }
    }
 
-
    @Test
-   public void testCache() throws Exception
-   {
+   public void testCache() throws Exception {
       count = 0;
       String etag = null;
       {
@@ -291,10 +199,8 @@ public class ServerCacheTest
       }
    }
 
-
    @Test
-   public void testAccepts() throws Exception
-   {
+   public void testAccepts() throws Exception {
       count = 0;
       plainCount = 0;
       htmlCount = 0;
@@ -344,8 +250,7 @@ public class ServerCacheTest
    }
 
    @Test
-   public void testPreferredAccepts() throws Exception
-   {
+   public void testPreferredAccepts() throws Exception {
       count = 0;
       plainCount = 0;
       htmlCount = 0;
@@ -397,8 +302,7 @@ public class ServerCacheTest
    }
 
    @Test
-   public void testPreferredButNotCachedAccepts() throws Exception
-   {
+   public void testPreferredButNotCachedAccepts() throws Exception {
       count = 0;
       plainCount = 0;
       htmlCount = 0;
@@ -430,30 +334,29 @@ public class ServerCacheTest
 
    @Test
    public void testVary() throws Exception {
-       int cachedCount;
-       {
-           Builder request = client.target(generateURL("/cache/vary")).request();
-           Response foo = request.accept("text/plain").header("X-Test-Vary", "foo").get();
-           Assert.assertEquals("foo", foo.readEntity(String.class));
-           cachedCount = Integer.parseInt(foo.getHeaderString("X-Count"));
-       }
-       {
-           Builder request = client.target(generateURL("/cache/vary")).request();
-           Response bar = request.accept("text/plain").header("X-Test-Vary", "bar").get();
-           Assert.assertEquals("bar", bar.readEntity(String.class));
-       }
-       {
-           Builder request = client.target(generateURL("/cache/vary")).request();
-           Response foo = request.accept("text/plain").header("X-Test-Vary", "foo").get();
-           Assert.assertEquals("foo", foo.readEntity(String.class));
-           int currentCount = Integer.parseInt(foo.getHeaderString("X-Count"));
-           Assert.assertEquals(cachedCount, currentCount);
-       }
+      int cachedCount;
+      {
+         Builder request = client.target(generateURL("/cache/vary")).request();
+         Response foo = request.accept("text/plain").header("X-Test-Vary", "foo").get();
+         Assert.assertEquals("foo", foo.readEntity(String.class));
+         cachedCount = Integer.parseInt(foo.getHeaderString("X-Count"));
+      }
+      {
+         Builder request = client.target(generateURL("/cache/vary")).request();
+         Response bar = request.accept("text/plain").header("X-Test-Vary", "bar").get();
+         Assert.assertEquals("bar", bar.readEntity(String.class));
+      }
+      {
+         Builder request = client.target(generateURL("/cache/vary")).request();
+         Response foo = request.accept("text/plain").header("X-Test-Vary", "foo").get();
+         Assert.assertEquals("foo", foo.readEntity(String.class));
+         int currentCount = Integer.parseInt(foo.getHeaderString("X-Count"));
+         Assert.assertEquals(cachedCount, currentCount);
+      }
    }
 
    @Test
-   public void testProxy() throws Exception
-   {
+   public void testProxy() throws Exception {
 
       /*
       MyProxy proxy = ProxyFactory.create(MyProxy.class, generateBaseUrl());
@@ -474,6 +377,66 @@ public class ServerCacheTest
       Assert.assertEquals(2, count);
       */
 
+   }
+
+   @Path("/cache")
+   public interface MyProxy {
+      @GET
+      @Produces("text/plain")
+      String get();
+
+   }
+
+   @Path("/cache")
+   public static class MyService {
+      @GET
+      @Produces("text/plain")
+      @Cache(maxAge = 2)
+      public String get() {
+         count++;
+         return "hello world" + count;
+      }
+
+      @PUT
+      @Consumes("text/plain")
+      public void put(String val) {
+      }
+
+      @GET
+      @Produces("text/plain")
+      @Path("accepts")
+      @Cache(maxAge = 2)
+      public String getPlain() {
+         plainCount++;
+         return "plain" + plainCount;
+      }
+
+      @GET
+      @Produces("text/html")
+      @Path("accepts")
+      @Cache(maxAge = 2)
+      public String getHtml() {
+         htmlCount++;
+         return "html" + htmlCount;
+      }
+
+      @GET
+      @Produces("text/plain")
+      @Path("stuff")
+      @Cache(maxAge = 2)
+      public String getStuff() {
+         count++;
+         return "stuff";
+      }
+
+      @GET
+      @Produces("text/plain")
+      @Path("vary")
+      @Cache(maxAge = 2)
+      public Response getVary(@HeaderParam("X-Test-Vary") @DefaultValue("default") String testVary) {
+         count++;
+         return Response.ok(testVary).header(HttpHeaders.VARY, "X-Test-Vary").header("X-Count", count).build();
+      }
    }
 
 }

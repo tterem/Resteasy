@@ -5,11 +5,10 @@ import org.jboss.resteasy.spi.HttpResponse;
 import org.jboss.resteasy.spi.ResourceFactory;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 /**
  * Used for component jndi-based resources like EJBs.
@@ -17,8 +16,7 @@ import javax.naming.NamingException;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class JndiComponentResourceFactory implements ResourceFactory
-{
+public class JndiComponentResourceFactory implements ResourceFactory {
    private String jndiName;
    private InitialContext ctx;
    private volatile Object reference;
@@ -26,43 +24,31 @@ public class JndiComponentResourceFactory implements ResourceFactory
    private boolean cache;
 
 
-   public JndiComponentResourceFactory(String jndiName, Class scannable, boolean cacheReference)
-   {
+   public JndiComponentResourceFactory(String jndiName, Class scannable, boolean cacheReference) {
       this.jndiName = jndiName;
       this.scannable = scannable;
       this.cache = cacheReference;
-      try
-      {
+      try {
          ctx = new InitialContext();
-      }
-      catch (NamingException e)
-      {
+      } catch (NamingException e) {
          throw new RuntimeException(e);
       }
    }
 
-   public void registered(ResteasyProviderFactory factory)
-   {
+   public void registered(ResteasyProviderFactory factory) {
    }
 
-   public CompletionStage<Object> createResource(HttpRequest request, HttpResponse response, ResteasyProviderFactory factory)
-   {
+   public CompletionStage<Object> createResource(HttpRequest request, HttpResponse response, ResteasyProviderFactory factory) {
       if (reference != null) return CompletableFuture.completedFuture(reference);
       Object ref = reference;
-      if (ref == null)
-      {
-         try
-         {
+      if (ref == null) {
+         try {
             ref = ctx.lookup(jndiName);
-         }
-         catch (NamingException e)
-         {
+         } catch (NamingException e) {
             throw new RuntimeException(e);
          }
-         if (cache)
-         {
-            synchronized (this)
-            {
+         if (cache) {
+            synchronized (this) {
                reference = ref;
             }
          }
@@ -70,16 +56,13 @@ public class JndiComponentResourceFactory implements ResourceFactory
       return CompletableFuture.completedFuture(ref);
    }
 
-   public void unregistered()
-   {
+   public void unregistered() {
    }
 
-   public Class<?> getScannableClass()
-   {
+   public Class<?> getScannableClass() {
       return scannable;
    }
 
-   public void requestFinished(HttpRequest request, HttpResponse response, Object resource)
-   {
+   public void requestFinished(HttpRequest request, HttpResponse response, Object resource) {
    }
 }

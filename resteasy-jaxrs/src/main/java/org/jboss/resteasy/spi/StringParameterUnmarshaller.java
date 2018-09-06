@@ -13,8 +13,7 @@ import java.lang.annotation.Annotation;
  * @see StringConverter
  * @see org.jboss.resteasy.annotations.StringParameterUnmarshallerBinder
  */
-public interface StringParameterUnmarshaller<T>
-{
+public interface StringParameterUnmarshaller<T> {
    void setAnnotations(Annotation[] annotations);
 
    T fromString(String str);

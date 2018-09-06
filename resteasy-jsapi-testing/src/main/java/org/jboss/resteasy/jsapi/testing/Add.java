@@ -1,4 +1,5 @@
 package org.jboss.resteasy.jsapi.testing;
+
 import javax.ws.rs.Path;
 
 /**

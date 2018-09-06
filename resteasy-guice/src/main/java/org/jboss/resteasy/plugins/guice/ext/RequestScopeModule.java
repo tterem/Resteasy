@@ -4,38 +4,27 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Key;
 import com.google.inject.Provider;
 import com.google.inject.Scope;
-
 import org.jboss.resteasy.plugins.guice.RequestScoped;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.SecurityContext;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.*;
 
 /**
  * Binds the {@link RequestScoped} to the current HTTP request and
  * makes all the classes available via the {@link Context} annotation injectable.
  */
-public class RequestScopeModule extends AbstractModule
-{
+public class RequestScopeModule extends AbstractModule {
    @Override
-   protected void configure()
-   {
-      bindScope(RequestScoped.class, new Scope()
-      {
+   protected void configure() {
+      bindScope(RequestScoped.class, new Scope() {
          @Override
-         public <T> Provider<T> scope(final Key<T> key, final Provider<T> creator)
-         {
-            return new Provider<T>()
-            {
+         public <T> Provider<T> scope(final Key<T> key, final Provider<T> creator) {
+            return new Provider<T>() {
                @SuppressWarnings("unchecked")
                @Override
-               public T get()
-               {
+               public T get() {
                   Class<T> instanceClass = (Class<T>) key.getTypeLiteral().getType();
                   T instance = ResteasyProviderFactory.getContextData(instanceClass);
 
@@ -69,8 +58,7 @@ public class RequestScopeModule extends AbstractModule
 
       private final Class<T> instanceClass;
 
-      ResteasyContextProvider(Class<T> instanceClass)
-      {
+      ResteasyContextProvider(Class<T> instanceClass) {
          this.instanceClass = instanceClass;
       }
 

@@ -5,11 +5,7 @@ import org.codehaus.jettison.mapped.MappedNamespaceConvention;
 import org.jboss.resteasy.annotations.providers.jaxb.json.Mapped;
 import org.jboss.resteasy.annotations.providers.jaxb.json.XmlNsMap;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.Validator;
+import javax.xml.bind.*;
 import javax.xml.namespace.QName;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,56 +17,63 @@ import java.util.Map;
  * @version $Revision: 1 $
  */
 @SuppressWarnings("deprecation")
-public class JettisonMappedContext extends JAXBContext
-{
+public class JettisonMappedContext extends JAXBContext {
    private JAXBContext context;
    private MappedNamespaceConvention convention;
 
-   public JettisonMappedContext(Class... classes)
-   {
+   public JettisonMappedContext(Class... classes) {
       this(new HashMap<String, String>(), new ArrayList<QName>(), new ArrayList<QName>(), classes);
    }
 
-   public JettisonMappedContext(Mapped mapped, Class... classes)
-   {
+   public JettisonMappedContext(Mapped mapped, Class... classes) {
       createConvention(mapped);
 
-      try
-      {
+      try {
          context = JAXBContext.newInstance(classes);
-      }
-      catch (JAXBException e)
-      {
+      } catch (JAXBException e) {
          throw new RuntimeException(e);
       }
    }
 
-   public JettisonMappedContext(Mapped mapped, String contextPath)
-   {
+   public JettisonMappedContext(Mapped mapped, String contextPath) {
       createConvention(mapped);
 
-      try
-      {
+      try {
          context = JAXBContext.newInstance(contextPath);
-      }
-      catch (JAXBException e)
-      {
+      } catch (JAXBException e) {
          throw new RuntimeException(e);
       }
    }
-   protected void createConvention(Mapped mapped)
-   {
+
+   public JettisonMappedContext(Map<String, String> xmlnsToJson, List<QName> attributesAsElements, List<QName> ignoredElements, Class... classes) {
+      Configuration config = new Configuration(xmlnsToJson, attributesAsElements, ignoredElements);
+      convention = new MappedNamespaceConvention(config);
+
+      try {
+         context = JAXBContext.newInstance(classes);
+      } catch (JAXBException e) {
+         throw new RuntimeException(e);
+      }
+   }
+
+   public JettisonMappedContext(MappedNamespaceConvention convention, Class... classes) {
+      this.convention = convention;
+      try {
+         context = JAXBContext.newInstance(classes);
+      } catch (JAXBException e) {
+         throw new RuntimeException(e);
+      }
+   }
+
+   protected void createConvention(Mapped mapped) {
       List<QName> attributesAsElements = new ArrayList<QName>();
       HashMap<String, String> xmlnsToJson = new HashMap<String, String>();
-      if (mapped != null)
-      {
-         for (String name : mapped.attributesAsElements())
-         {
+      if (mapped != null) {
+         for (String name : mapped.attributesAsElements()) {
             QName qName = new QName(name);
             attributesAsElements.add(qName);
          }
-         for (XmlNsMap j : mapped.namespaceMap())
-         {
+         for (XmlNsMap j : mapped.namespaceMap()) {
             xmlnsToJson.put(j.namespace(), j.jsonName());
          }
       }
@@ -79,46 +82,15 @@ public class JettisonMappedContext extends JAXBContext
       convention = new MappedConvention(config);
    }
 
-   public JettisonMappedContext(Map<String, String> xmlnsToJson, List<QName> attributesAsElements, List<QName> ignoredElements, Class... classes)
-   {
-      Configuration config = new Configuration(xmlnsToJson, attributesAsElements, ignoredElements);
-      convention = new MappedNamespaceConvention(config);
-
-      try
-      {
-         context = JAXBContext.newInstance(classes);
-      }
-      catch (JAXBException e)
-      {
-         throw new RuntimeException(e);
-      }
-   }
-
-   public JettisonMappedContext(MappedNamespaceConvention convention, Class... classes)
-   {
-      this.convention = convention;
-      try
-      {
-         context = JAXBContext.newInstance(classes);
-      }
-      catch (JAXBException e)
-      {
-         throw new RuntimeException(e);
-      }
-   }
-
-   public Unmarshaller createUnmarshaller() throws JAXBException
-   {
+   public Unmarshaller createUnmarshaller() throws JAXBException {
       return new JettisonMappedUnmarshaller(context, convention);
    }
 
-   public Marshaller createMarshaller() throws JAXBException
-   {
+   public Marshaller createMarshaller() throws JAXBException {
       return new JettisonMappedMarshaller(context, convention);
    }
 
-   public Validator createValidator() throws JAXBException
-   {
+   public Validator createValidator() throws JAXBException {
       return context.createValidator();
    }
 

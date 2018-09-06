@@ -6,8 +6,7 @@ import org.jboss.resteasy.spi.ResteasyDeployment;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface EmbeddedJaxrsServer
-{
+public interface EmbeddedJaxrsServer {
    void setRootResourcePath(String rootResourcePath);
 
    void start();

@@ -8,7 +8,6 @@ import org.jboss.resteasy.jose.jwe.EncryptionMethod;
 import org.jboss.resteasy.jose.jwe.JWEHeader;
 
 import javax.crypto.SecretKey;
-
 import java.nio.charset.StandardCharsets;
 import java.security.interfaces.RSAPrivateKey;
 
@@ -35,8 +34,7 @@ import java.security.interfaces.RSAPrivateKey;
  * @author Vladimir Dzhuvinov
  * @version $version$ (2013-05-29)
  */
-public class RSADecrypter
-{
+public class RSADecrypter {
 
    public static byte[] decrypt(final JWEHeader readOnlyJWEHeader,
                                 final String encodedHeader,
@@ -45,24 +43,20 @@ public class RSADecrypter
                                 final String encodedCipherText,
                                 final String encodedAuthTag,
                                 final RSAPrivateKey privateKey
-                               )
-   {
+   ) {
 
       // Validate required JWE parts
-      if (encodedEncryptedKey == null)
-      {
+      if (encodedEncryptedKey == null) {
 
          throw new RuntimeException(Messages.MESSAGES.encryptedKeyMustNotBeNull());
       }
 
-      if (encodedIv == null)
-      {
+      if (encodedIv == null) {
 
          throw new RuntimeException(Messages.MESSAGES.initializationVectorMustNotBeNull());
       }
 
-      if (encodedAuthTag == null)
-      {
+      if (encodedAuthTag == null) {
 
          throw new RuntimeException(Messages.MESSAGES.authenticationTagMustNotBeNull());
       }
@@ -78,35 +72,27 @@ public class RSADecrypter
       byte[] cipherText = Base64Url.decode(encodedCipherText);
       byte[] authTag = Base64Url.decode(encodedAuthTag);
 
-      if (alg.equals(Algorithm.RSA1_5))
-      {
+      if (alg.equals(Algorithm.RSA1_5)) {
 
          int keyLength = readOnlyJWEHeader.getEncryptionMethod().getCekBitLength();
 
          SecretKey randomCEK = AES.generateKey(keyLength);
 
-         try
-         {
+         try {
             cek = RSA1_5.decryptCEK(privateKey, encryptedKey, keyLength);
 
-         }
-         catch (Exception e)
-         {
+         } catch (Exception e) {
 
             // Protect against MMA attack by generating random CEK on failure,
             // see http://www.ietf.org/mail-archive/web/jose/current/msg01832.html
             cek = randomCEK;
          }
 
-      }
-      else if (alg.equals(Algorithm.RSA_OAEP))
-      {
+      } else if (alg.equals(Algorithm.RSA_OAEP)) {
 
          cek = RSA_OAEP.decryptCEK(privateKey, encryptedKey);
 
-      }
-      else
-      {
+      } else {
 
          throw new RuntimeException(Messages.MESSAGES.unsupportedJWEalgorithm());
       }
@@ -117,20 +103,15 @@ public class RSADecrypter
 
       byte[] plainText;
 
-      if (enc.equals(EncryptionMethod.A128CBC_HS256) || enc.equals(EncryptionMethod.A256CBC_HS512))
-      {
+      if (enc.equals(EncryptionMethod.A128CBC_HS256) || enc.equals(EncryptionMethod.A256CBC_HS512)) {
 
          plainText = AESCBC.decryptAuthenticated(cek, iv, cipherText, aad, authTag);
 
-      }
-      else if (enc.equals(EncryptionMethod.A128GCM) || enc.equals(EncryptionMethod.A256GCM))
-      {
+      } else if (enc.equals(EncryptionMethod.A128GCM) || enc.equals(EncryptionMethod.A256GCM)) {
 
          plainText = AESGCM.decrypt(cek, iv, cipherText, aad, authTag);
 
-      }
-      else
-      {
+      } else {
 
          throw new RuntimeException(Messages.MESSAGES.unsupportedEncryptionMethod());
       }

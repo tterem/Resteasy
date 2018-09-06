@@ -10,8 +10,7 @@ import java.lang.reflect.Type;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class DefaultResourceLocator implements ResourceLocator
-{
+public class DefaultResourceLocator implements ResourceLocator {
    protected ResourceClass resourceClass;
    protected Class<?> returnType;
    protected Type genericReturnType;
@@ -21,8 +20,7 @@ public class DefaultResourceLocator implements ResourceLocator
    protected String fullpath;
    protected String path;
 
-   public DefaultResourceLocator(ResourceClass resourceClass, Method method, Method annotatedMethod)
-   {
+   public DefaultResourceLocator(ResourceClass resourceClass, Method method, Method annotatedMethod) {
       this.resourceClass = resourceClass;
       this.annotatedMethod = annotatedMethod;
       this.method = method;
@@ -32,57 +30,48 @@ public class DefaultResourceLocator implements ResourceLocator
       this.returnType = Types.getRawType(genericReturnType);
       this.params = new MethodParameter[method.getParameterTypes().length];
       Parameter[] reflectionParameters = method.getParameters();
-      for (int i = 0; i < method.getParameterTypes().length; i++)
-      {
+      for (int i = 0; i < method.getParameterTypes().length; i++) {
          this.params[i] = new MethodParameter(this, reflectionParameters[i].getName(), method.getParameterTypes()[i], method.getGenericParameterTypes()[i], annotatedMethod.getParameterAnnotations()[i]);
       }
    }
 
    @Override
-   public ResourceClass getResourceClass()
-   {
+   public ResourceClass getResourceClass() {
       return resourceClass;
    }
 
    @Override
-   public Class<?> getReturnType()
-   {
+   public Class<?> getReturnType() {
       return returnType;
    }
 
    @Override
-   public Type getGenericReturnType()
-   {
+   public Type getGenericReturnType() {
       return genericReturnType;
    }
 
    @Override
-   public Method getMethod()
-   {
+   public Method getMethod() {
       return method;
    }
 
    @Override
-   public Method getAnnotatedMethod()
-   {
+   public Method getAnnotatedMethod() {
       return annotatedMethod;
    }
 
    @Override
-   public MethodParameter[] getParams()
-   {
+   public MethodParameter[] getParams() {
       return params;
    }
 
    @Override
-   public String getFullpath()
-   {
+   public String getFullpath() {
       return fullpath;
    }
 
    @Override
-   public String getPath()
-   {
+   public String getPath() {
       return path;
    }
 

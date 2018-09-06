@@ -1,25 +1,11 @@
 package org.jboss.resteasy.test.rx.rxjava;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.PropertyPermission;
-
-import javax.ws.rs.ClientErrorException;
-import javax.ws.rs.InternalServerErrorException;
-import javax.ws.rs.client.ResponseProcessingException;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.test.rx.resource.Bytes;
-import org.jboss.resteasy.test.rx.resource.RxScheduledExecutorService;
-import org.jboss.resteasy.test.rx.resource.TRACE;
-import org.jboss.resteasy.test.rx.resource.TestException;
-import org.jboss.resteasy.test.rx.resource.TestExceptionMapper;
-import org.jboss.resteasy.test.rx.resource.Thing;
+import org.jboss.resteasy.test.rx.resource.*;
 import org.jboss.resteasy.test.rx.rxjava.resource.RxObservableNoStreamResource;
 import org.jboss.resteasy.test.rx.rxjava.resource.RxObservableResourceNoStreamImpl;
 import org.jboss.resteasy.utils.PermissionUtil;
@@ -29,25 +15,27 @@ import org.jboss.resteasy.utils.TestUtilRxJava;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
+
+import javax.ws.rs.ClientErrorException;
+import javax.ws.rs.InternalServerErrorException;
+import javax.ws.rs.client.ResponseProcessingException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.PropertyPermission;
 
 
 /**
  * @tpSubChapter Reactive classes
  * @tpChapter Integration tests
  * @tpSince RESTEasy 4.0
- * 
+ * <p>
  * In these tests, the server uses Observables to build objects asynchronously, then collects the
  * results and returns then in one transmission.
- * 
+ * <p>
  * The client uses a proxy to make synchronous calls.
  */
 @RunWith(Arquillian.class)
@@ -55,23 +43,34 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RxObservableProxyServerAsyncTest {
 
+   private final static List<String> xStringList = new ArrayList<String>();
+   private final static List<String> aStringList = new ArrayList<String>();
+   private final static List<Thing> xThingList = new ArrayList<Thing>();
+   private final static List<Thing> aThingList = new ArrayList<Thing>();
+   private final static List<List<Thing>> xThingListList = new ArrayList<List<Thing>>();
+   private final static List<List<Thing>> aThingListList = new ArrayList<List<Thing>>();
    private static ResteasyClient client;
    private static RxObservableNoStreamResource proxy;
 
-   private final static List<String> xStringList = new ArrayList<String>();
-   private final static List<String> aStringList = new ArrayList<String>();   
-   private final static List<Thing>  xThingList =  new ArrayList<Thing>();
-   private final static List<Thing>  aThingList =  new ArrayList<Thing>();
-   private final static List<List<Thing>> xThingListList = new ArrayList<List<Thing>>();
-   private final static List<List<Thing>> aThingListList = new ArrayList<List<Thing>>();
-
    static {
-      for (int i = 0; i < 3; i++) {xStringList.add("x");}
-      for (int i = 0; i < 3; i++) {aStringList.add("a");}
-      for (int i = 0; i < 3; i++) {xThingList.add(new Thing("x"));}
-      for (int i = 0; i < 3; i++) {aThingList.add(new Thing("a"));}
-      for (int i = 0; i < 2; i++) {xThingListList.add(xThingList);}
-      for (int i = 0; i < 2; i++) {aThingListList.add(aThingList);}
+      for (int i = 0; i < 3; i++) {
+         xStringList.add("x");
+      }
+      for (int i = 0; i < 3; i++) {
+         aStringList.add("a");
+      }
+      for (int i = 0; i < 3; i++) {
+         xThingList.add(new Thing("x"));
+      }
+      for (int i = 0; i < 3; i++) {
+         aThingList.add(new Thing("a"));
+      }
+      for (int i = 0; i < 2; i++) {
+         xThingListList.add(xThingList);
+      }
+      for (int i = 0; i < 2; i++) {
+         aThingListList.add(aThingList);
+      }
    }
 
    @Deployment
@@ -88,7 +87,7 @@ public class RxObservableProxyServerAsyncTest {
       ), "permissions.xml");
       TestUtilRxJava.addRxJavaLibraries(war);
       war.setManifest(new StringAsset("Manifest-Version: 1.0\n"
-         + "Dependencies: org.reactivestreams services, org.jboss.resteasy.resteasy-json-binding-provider services\n"));
+              + "Dependencies: org.reactivestreams services, org.jboss.resteasy.resteasy-json-binding-provider services\n"));
       return TestUtil.finishContainerPrepare(war, null, RxObservableResourceNoStreamImpl.class, TestExceptionMapper.class);
    }
 
@@ -103,13 +102,13 @@ public class RxObservableProxyServerAsyncTest {
       proxy = client.target(generateURL("/")).proxy(RxObservableNoStreamResource.class);
    }
 
-   @Before
-   public void before() throws Exception {
-   }
-
    @AfterClass
    public static void after() throws Exception {
       client.close();
+   }
+
+   @Before
+   public void before() throws Exception {
    }
 
    //////////////////////////////////////////////////////////////////////////////
@@ -291,8 +290,7 @@ public class RxObservableProxyServerAsyncTest {
 
    @Test
    public void testUnhandledException() throws Exception {
-      try
-      {
+      try {
          proxy.exceptionUnhandled();
          Assert.fail("expecting Exception");
       } catch (Exception e) {
@@ -303,8 +301,7 @@ public class RxObservableProxyServerAsyncTest {
 
    @Test
    public void testHandledException() throws Exception {
-      try
-      {
+      try {
          proxy.exceptionHandled();
          Assert.fail("expecting Exception");
       } catch (Exception e) {
@@ -317,11 +314,11 @@ public class RxObservableProxyServerAsyncTest {
    public void testGetTwoClients() throws Exception {
       ResteasyClient client1 = new ResteasyClientBuilder().build();
       RxObservableNoStreamResource proxy1 = client1.target(generateURL("/")).proxy(RxObservableNoStreamResource.class);
-      List<String> list1 = proxy1.get();  
+      List<String> list1 = proxy1.get();
 
       ResteasyClient client2 = new ResteasyClientBuilder().build();
       RxObservableNoStreamResource proxy2 = client2.target(generateURL("/")).proxy(RxObservableNoStreamResource.class);
-      List<String> list2 = proxy2.get(); 
+      List<String> list2 = proxy2.get();
 
       list1.addAll(list2);
       Assert.assertEquals(6, list1.size());
@@ -333,10 +330,10 @@ public class RxObservableProxyServerAsyncTest {
    @Test
    public void testGetTwoProxies() throws Exception {
       RxObservableNoStreamResource proxy1 = client.target(generateURL("/")).proxy(RxObservableNoStreamResource.class);
-      List<String> list1 = proxy1.get();   
+      List<String> list1 = proxy1.get();
 
       RxObservableNoStreamResource proxy2 = client.target(generateURL("/")).proxy(RxObservableNoStreamResource.class);
-      List<String> list2 = proxy2.get(); 
+      List<String> list2 = proxy2.get();
 
       list1.addAll(list2);
       Assert.assertEquals(6, list1.size());
@@ -347,8 +344,8 @@ public class RxObservableProxyServerAsyncTest {
 
    @Test
    public void testGetTwoLists() throws Exception {
-      List<String> list1 = proxy.get(); 
-      List<String> list2 = proxy.get(); 
+      List<String> list1 = proxy.get();
+      List<String> list2 = proxy.get();
 
       list1.addAll(list2);
       Assert.assertEquals(6, list1.size());

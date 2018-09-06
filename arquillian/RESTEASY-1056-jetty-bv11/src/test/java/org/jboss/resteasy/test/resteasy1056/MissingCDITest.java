@@ -1,10 +1,5 @@
 package org.jboss.resteasy.test.resteasy1056;
 
-import static org.junit.Assert.assertEquals;
-
-import java.net.URI;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -21,57 +16,62 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.core.Response;
+import java.net.URI;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * RESTEASY-1056
  *
  * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
  * @version $Revision: 1.1 $
- *          <p>
- *          Copyright June 7, 2014
+ * <p>
+ * Copyright June 7, 2014
  */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MissingCDITest {
-    @Deployment
-    public static Archive<?> createTestArchive() {
-        WebArchive war = ShrinkWrap.create(WebArchive.class, "RESTEASY-1056.war")
-                .addClasses(TestApplication.class, TestResource.class)
-                .addAsWebInfResource("web.xml");
-        return war;
-    }
+   @ArquillianResource
+   URI baseUri;
 
-    @ArquillianResource
-    URI baseUri;
+   @Deployment
+   public static Archive<?> createTestArchive() {
+      WebArchive war = ShrinkWrap.create(WebArchive.class, "RESTEASY-1056.war")
+              .addClasses(TestApplication.class, TestResource.class)
+              .addAsWebInfResource("web.xml");
+      return war;
+   }
 
-    @Test
-    public void testMissingCDIValid() throws Exception {
-        Response response = ResteasyClientBuilder.newClient().target(baseUri.toString() + "test/17").request().get();
+   @Test
+   public void testMissingCDIValid() throws Exception {
+      Response response = ResteasyClientBuilder.newClient().target(baseUri.toString() + "test/17").request().get();
 //        System.out.println("Status: " + response.getStatus());
-        String entity = response.readEntity(String.class);
+      String entity = response.readEntity(String.class);
 //        System.out.println("Result: " + entity);
-        assertEquals(200, response.getStatus());
-        Assert.assertEquals("17", entity);
-    }
+      assertEquals(200, response.getStatus());
+      Assert.assertEquals("17", entity);
+   }
 
-    @Test
-    public void testMissingCDIInvalid() throws Exception {
-        Response response = ResteasyClientBuilder.newClient().target(baseUri.toString() + "test/0").request().get();
+   @Test
+   public void testMissingCDIInvalid() throws Exception {
+      Response response = ResteasyClientBuilder.newClient().target(baseUri.toString() + "test/0").request().get();
 //        System.out.println("Status: " + response.getStatus());
-        String entity = response.readEntity(String.class);
+      String entity = response.readEntity(String.class);
 //        System.out.println("Result: " + entity);
-        assertEquals(400, response.getStatus());
-        ResteasyViolationException e = new ResteasyViolationException(entity);
-        countViolations(e, 1, 0, 0, 0, 1, 0);
-        ResteasyConstraintViolation cv = e.getParameterViolations().iterator().next();
-        Assert.assertTrue(cv.getMessage().equals("must be greater than or equal to 7"));
-    }
+      assertEquals(400, response.getStatus());
+      ResteasyViolationException e = new ResteasyViolationException(entity);
+      countViolations(e, 1, 0, 0, 0, 1, 0);
+      ResteasyConstraintViolation cv = e.getParameterViolations().iterator().next();
+      Assert.assertTrue(cv.getMessage().equals("must be greater than or equal to 7"));
+   }
 
-    protected void countViolations(ResteasyViolationException e, int totalCount, int fieldCount, int propertyCount, int classCount, int parameterCount, int returnValueCount) {
-        Assert.assertEquals(totalCount, e.getViolations().size());
-        Assert.assertEquals(fieldCount, e.getFieldViolations().size());
-        Assert.assertEquals(propertyCount, e.getPropertyViolations().size());
-        Assert.assertEquals(classCount, e.getClassViolations().size());
-        Assert.assertEquals(parameterCount, e.getParameterViolations().size());
-        Assert.assertEquals(returnValueCount, e.getReturnValueViolations().size());
-    }
+   protected void countViolations(ResteasyViolationException e, int totalCount, int fieldCount, int propertyCount, int classCount, int parameterCount, int returnValueCount) {
+      Assert.assertEquals(totalCount, e.getViolations().size());
+      Assert.assertEquals(fieldCount, e.getFieldViolations().size());
+      Assert.assertEquals(propertyCount, e.getPropertyViolations().size());
+      Assert.assertEquals(classCount, e.getClassViolations().size());
+      Assert.assertEquals(parameterCount, e.getParameterViolations().size());
+      Assert.assertEquals(returnValueCount, e.getReturnValueViolations().size());
+   }
 }

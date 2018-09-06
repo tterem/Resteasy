@@ -1,24 +1,17 @@
 package org.jboss.resteasy.plugins.spring;
 
+import org.jboss.resteasy.spi.*;
+import org.springframework.beans.factory.BeanFactory;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
-import org.jboss.resteasy.spi.HttpRequest;
-import org.jboss.resteasy.spi.HttpResponse;
-import org.jboss.resteasy.spi.PropertyInjector;
-import org.jboss.resteasy.spi.ResourceFactory;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
-import org.springframework.beans.factory.BeanFactory;
-
 /**
-* 
-* 
-* @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
-* @version $Revision: 1 $
-*/
+ * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
+ * @version $Revision: 1 $
+ */
 
-public class SpringResourceFactory implements ResourceFactory 
-{
+public class SpringResourceFactory implements ResourceFactory {
 
    protected BeanFactory beanFactory;
    protected String beanName;
@@ -26,55 +19,45 @@ public class SpringResourceFactory implements ResourceFactory
    protected PropertyInjector propertyInjector;
    protected String context = null;
 
-   public SpringResourceFactory(String beanName, BeanFactory beanFactory, Class<?> scannable)
-   {
+   public SpringResourceFactory(String beanName, BeanFactory beanFactory, Class<?> scannable) {
       this.beanName = beanName;
       this.beanFactory = beanFactory;
       this.scannableClass = scannable;
    }
 
-   public PropertyInjector getPropertyInjector()
-   {
+   public PropertyInjector getPropertyInjector() {
       return propertyInjector;
    }
 
    public CompletionStage<Object> createResource(HttpRequest request, HttpResponse response,
-                                ResteasyProviderFactory factory)
-   {
+                                                 ResteasyProviderFactory factory) {
       return CompletableFuture.completedFuture(beanFactory.getBean(beanName));
    }
 
-   public Class<?> getScannableClass()
-   {
+   public Class<?> getScannableClass() {
       return scannableClass;
    }
 
-   public void registered(ResteasyProviderFactory factory)
-   {
+   public void registered(ResteasyProviderFactory factory) {
       this.propertyInjector = factory.getInjectorFactory().createPropertyInjector(getScannableClass(), factory);
    }
 
    public void requestFinished(HttpRequest request, HttpResponse response,
-                               Object resource)
-   {
+                               Object resource) {
    }
 
-   public void unregistered()
-   {
+   public void unregistered() {
    }
-   
-   public String getBeanName()
-   {
+
+   public String getBeanName() {
       return beanName;
    }
-   
-   public void setContext(String context)
-   {
-      this.context = context;
-   }
-   
-   public String getContext()
-   {
+
+   public String getContext() {
       return context;
+   }
+
+   public void setContext(String context) {
+      this.context = context;
    }
 }

@@ -27,31 +27,25 @@ import java.lang.reflect.Type;
  */
 @Provider
 @Consumes("multipart/signed")
-public class MultipartSignedReader implements MessageBodyReader<SignedInput>
-{
-   static
-   {
+public class MultipartSignedReader implements MessageBodyReader<SignedInput> {
+   static {
       BouncyIntegration.init();
    }
 
-   public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return SignedInput.class.isAssignableFrom(type);
    }
 
-   public SignedInput readFrom(Class<SignedInput> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, String> headers, InputStream entityStream) throws IOException, WebApplicationException
-   {
+   public SignedInput readFrom(Class<SignedInput> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, String> headers, InputStream entityStream) throws IOException, WebApplicationException {
       Class<?> baseType = null;
       Type baseGenericType = null;
 
-      if (genericType != null && genericType instanceof ParameterizedType)
-      {
+      if (genericType != null && genericType instanceof ParameterizedType) {
          ParameterizedType param = (ParameterizedType) genericType;
          baseGenericType = param.getActualTypeArguments()[0];
          baseType = Types.getRawType(baseGenericType);
       }
-      try
-      {
+      try {
          ByteArrayDataSource ds = new ByteArrayDataSource(entityStream, mediaType.toString());
          MimeMultipart mm = new MimeMultipart(ds);
          MultipartSignedInputImpl input = new MultipartSignedInputImpl();
@@ -63,9 +57,7 @@ public class MultipartSignedReader implements MessageBodyReader<SignedInput>
          Providers providers = ResteasyProviderFactory.getContextData(Providers.class);
          input.setProviders(providers);
          return input;
-      }
-      catch (MessagingException e)
-      {
+      } catch (MessagingException e) {
          throw new ReaderException(e);
       }
 

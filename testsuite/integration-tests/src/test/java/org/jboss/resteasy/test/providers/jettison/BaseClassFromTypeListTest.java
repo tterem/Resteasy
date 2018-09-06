@@ -7,10 +7,10 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.test.providers.jettison.resource.BaseClassFromTypeListStoreIntf;
 import org.jboss.resteasy.test.providers.jettison.resource.BaseClassFromTypeListCustomer;
 import org.jboss.resteasy.test.providers.jettison.resource.BaseClassFromTypeListInAccountsIntf;
 import org.jboss.resteasy.test.providers.jettison.resource.BaseClassFromTypeListResource;
+import org.jboss.resteasy.test.providers.jettison.resource.BaseClassFromTypeListStoreIntf;
 import org.jboss.resteasy.util.HttpResponseCodes;
 import org.jboss.resteasy.utils.PortProviderUtil;
 import org.jboss.resteasy.utils.TestUtil;
@@ -37,54 +37,53 @@ import java.util.List;
 @RunAsClient
 public class BaseClassFromTypeListTest {
 
-    public static class Parent<T> {
-        public List<T> get() {
-            return null;
-        }
-    }
+   static ResteasyClient client;
+   protected final Logger logger = Logger.getLogger(BaseClassFromTypeListTest.class.getName());
 
-    public static class Child extends Parent<BaseClassFromTypeListCustomer> {
-    }
+   @Deployment
+   public static Archive<?> deploy() {
+      WebArchive war = TestUtil.prepareArchive(BaseClassFromTypeListTest.class.getSimpleName());
+      war.addAsManifestResource("jboss-deployment-structure-no-jackson.xml", "jboss-deployment-structure.xml");
+      return TestUtil.finishContainerPrepare(war, null, BaseClassFromTypeListCustomer.class, BaseClassFromTypeListResource.class,
+              BaseClassFromTypeListInAccountsIntf.class, BaseClassFromTypeListStoreIntf.class);
+   }
 
-    protected final Logger logger = Logger.getLogger(BaseClassFromTypeListTest.class.getName());
+   @Before
+   public void init() {
+      client = new ResteasyClientBuilder().build();
+   }
 
-    static ResteasyClient client;
+   @After
+   public void after() throws Exception {
+      client.close();
+      client = null;
+   }
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(BaseClassFromTypeListTest.class.getSimpleName());
-        war.addAsManifestResource("jboss-deployment-structure-no-jackson.xml", "jboss-deployment-structure.xml");
-        return TestUtil.finishContainerPrepare(war, null, BaseClassFromTypeListCustomer.class, BaseClassFromTypeListResource.class,
-                BaseClassFromTypeListInAccountsIntf.class, BaseClassFromTypeListStoreIntf.class);
-    }
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, BaseClassFromTypeListTest.class.getSimpleName());
+   }
 
-    @Before
-    public void init() {
-        client = new ResteasyClientBuilder().build();
-    }
+   /**
+    * @tpTestDetails Test with resource implementing generic interface
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testIntfTemplate() throws Exception {
+      WebTarget target = client.target(generateURL("/intf"));
+      Response response = target.request().get();
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      String str = response.readEntity(String.class);
+      logger.info(str);
+      response = target.request().put(Entity.entity(str, "application/json"));
+      Assert.assertEquals(HttpResponseCodes.SC_NO_CONTENT, response.getStatus());
+   }
 
-    @After
-    public void after() throws Exception {
-        client.close();
-        client = null;
-    }
+   public static class Parent<T> {
+      public List<T> get() {
+         return null;
+      }
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, BaseClassFromTypeListTest.class.getSimpleName());
-    }
-
-    /**
-     * @tpTestDetails Test with resource implementing generic interface
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testIntfTemplate() throws Exception {
-        WebTarget target = client.target(generateURL("/intf"));
-        Response response = target.request().get();
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-        String str = response.readEntity(String.class);
-        logger.info(str);
-        response = target.request().put(Entity.entity(str, "application/json"));
-        Assert.assertEquals(HttpResponseCodes.SC_NO_CONTENT, response.getStatus());
-    }
+   public static class Child extends Parent<BaseClassFromTypeListCustomer> {
+   }
 }

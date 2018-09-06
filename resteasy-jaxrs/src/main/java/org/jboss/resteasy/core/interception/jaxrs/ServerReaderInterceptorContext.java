@@ -12,7 +12,6 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.NoContentException;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.ReaderInterceptor;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
@@ -25,82 +24,66 @@ import java.util.Enumeration;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class ServerReaderInterceptorContext extends AbstractReaderInterceptorContext
-{
+public class ServerReaderInterceptorContext extends AbstractReaderInterceptorContext {
    private HttpRequest request;
 
    public ServerReaderInterceptorContext(ReaderInterceptor[] interceptors, ResteasyProviderFactory providerFactory, Class type,
                                          Type genericType, Annotation[] annotations, MediaType mediaType,
                                          MultivaluedMap<String, String> headers, InputStream inputStream,
-                                         HttpRequest request)
-   {
+                                         HttpRequest request) {
       super(mediaType, providerFactory, annotations, interceptors, headers, genericType, type, inputStream, RESTEasyTracingLogger.getInstance(request));
       this.request = request;
    }
 
    @Override
-   protected MessageBodyReader resolveReader(MediaType mediaType)
-   {
+   protected MessageBodyReader resolveReader(MediaType mediaType) {
       @SuppressWarnings(value = "unchecked")
-      MessageBodyReader reader =  providerFactory.getServerMessageBodyReader(type,
+      MessageBodyReader reader = providerFactory.getServerMessageBodyReader(type,
               genericType, annotations, mediaType, tracingLogger);
       //logger.info("**** picked reader: " + reader.getClass().getName());
       return reader;
    }
 
    @Override
-   protected void throwReaderNotFound()
-   {
+   protected void throwReaderNotFound() {
       throw new NotSupportedException(Messages.MESSAGES.couldNotFindMessageBodyReader(genericType, mediaType));
    }
 
    @Override
-   protected Object readFrom(MessageBodyReader reader) throws IOException
-   {
-      try
-      {
+   protected Object readFrom(MessageBodyReader reader) throws IOException {
+      try {
          return super.readFrom(reader);
-      }
-      catch (NoContentException e)
-      {
+      } catch (NoContentException e) {
          throw new BadRequestException(e);
       }
    }
 
    @Override
-   public Object getProperty(String name)
-   {
+   public Object getProperty(String name) {
       return request.getAttribute(name);
    }
 
    @Override
-   public Collection<String> getPropertyNames()
-   {
+   public Collection<String> getPropertyNames() {
       ArrayList<String> names = new ArrayList<String>();
       Enumeration<String> enames = request.getAttributeNames();
-      while (enames.hasMoreElements())
-      {
+      while (enames.hasMoreElements()) {
          names.add(enames.nextElement());
       }
       return names;
    }
 
    @Override
-   public void setProperty(String name, Object object)
-   {
-      if (object == null)
-      {
+   public void setProperty(String name, Object object) {
+      if (object == null) {
          request.removeAttribute(name);
-      }
-      else
-      {
+      } else {
          request.setAttribute(name, object);
       }
    }
 
    @Override
-   public void removeProperty(String name)
-   {
+   public void removeProperty(String name) {
       request.removeAttribute(name);
    }
 }

@@ -14,7 +14,6 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.Provider;
 import javax.ws.rs.ext.Providers;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
@@ -31,16 +30,14 @@ import java.util.List;
  */
 @Provider
 @Consumes("multipart/form-data")
-public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
-{
+public class MultipartFormAnnotationReader implements MessageBodyReader<Object> {
    protected
    @Context
    Providers workers;
 
    @Override
    public boolean isReadable(Class<?> type, Type genericType,
-                             Annotation[] annotations, MediaType mediaType)
-   {
+                             Annotation[] annotations, MediaType mediaType) {
       return FindAnnotation.findAnnotation(annotations, MultipartForm.class) != null
               || type.isAnnotationPresent(MultipartForm.class);
    }
@@ -49,8 +46,7 @@ public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
    public Object readFrom(Class<Object> type, Type genericType,
                           Annotation[] annotations, MediaType mediaType,
                           MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
-           throws IOException, WebApplicationException
-   {
+           throws IOException, WebApplicationException {
       String boundary = mediaType.getParameters().get("boundary");
       if (boundary == null)
          throw new IOException(Messages.MESSAGES.unableToGetBoundary());
@@ -59,37 +55,28 @@ public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
       input.parse(entityStream);
 
       Object obj;
-      try
-      {
+      try {
          obj = type.newInstance();
-      }
-      catch (InstantiationException e)
-      {
+      } catch (InstantiationException e) {
          throw new ReaderException(e.getCause());
-      }
-      catch (IllegalAccessException e)
-      {
+      } catch (IllegalAccessException e) {
          throw new ReaderException(e);
       }
 
       boolean hasInputStream = false;
 
       Class<?> theType = type;
-      while (theType != null && !theType.equals(Object.class))
-      {
-         if (setFields(theType, input, obj))
-         {
+      while (theType != null && !theType.equals(Object.class)) {
+         if (setFields(theType, input, obj)) {
             hasInputStream = true;
          }
          theType = theType.getSuperclass();
       }
 
-      for (Method method : type.getMethods())
-      {
+      for (Method method : type.getMethods()) {
          if (method.isAnnotationPresent(FormParam.class)
                  && method.getName().startsWith("set")
-                 && method.getParameterTypes().length == 1)
-         {
+                 && method.getParameterTypes().length == 1) {
             FormParam param = method.getAnnotation(FormParam.class);
             List<InputPart> list = input.getFormDataMap()
                     .get(param.value());
@@ -104,47 +91,35 @@ public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
             Class<?> type1 = method.getParameterTypes()[0];
             Object data;
             if (InputPart.class.equals(type1)) {
-                hasInputStream = true;
-                data = part;
+               hasInputStream = true;
+               data = part;
+            } else {
+               if (InputStream.class.equals(type1)) {
+                  hasInputStream = true;
+               }
+               data = part.getBody(type1,
+                       method.getGenericParameterTypes()[0]);
             }
-            else
-            {
-                if (InputStream.class.equals(type1))
-                {
-                   hasInputStream = true;
-                }
-                data = part.getBody(type1,
-                        method.getGenericParameterTypes()[0]);
-            }
-            try
-            {
+            try {
                method.invoke(obj, data);
-            }
-            catch (IllegalAccessException e)
-            {
+            } catch (IllegalAccessException e) {
                throw new ReaderException(e);
-            }
-            catch (InvocationTargetException e)
-            {
+            } catch (InvocationTargetException e) {
                throw new ReaderException(e.getCause());
             }
          }
       }
-      if (!hasInputStream)
-      {
+      if (!hasInputStream) {
          input.close();
       }
       return obj;
    }
 
    protected boolean setFields(Class<?> type, MultipartFormDataInputImpl input,
-                            Object obj) throws IOException
-   {
+                               Object obj) throws IOException {
       boolean hasInputStream = false;
-      for (Field field : type.getDeclaredFields())
-      {
-         if (field.isAnnotationPresent(FormParam.class))
-         {
+      for (Field field : type.getDeclaredFields()) {
+         if (field.isAnnotationPresent(FormParam.class)) {
             AccessController.doPrivileged(new FieldEnablerPrivilegedAction(field));
             FormParam param = field.getAnnotation(FormParam.class);
             List<InputPart> list = input.getFormDataMap()
@@ -159,24 +134,18 @@ public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
                continue;
             Object data;
             if (InputPart.class.equals(field.getType())) {
-                hasInputStream = true;
-                data = part;
+               hasInputStream = true;
+               data = part;
+            } else {
+               if (InputStream.class.equals(field.getType())) {
+                  hasInputStream = true;
+               }
+               data = part.getBody(field.getType(), field
+                       .getGenericType());
             }
-            else
-            {
-                if (InputStream.class.equals(field.getType()))
-                {
-                    hasInputStream = true;
-                }
-                data = part.getBody(field.getType(), field
-                        .getGenericType());
-            }
-            try
-            {
+            try {
                field.set(obj, data);
-            }
-            catch (IllegalAccessException e)
-            {
+            } catch (IllegalAccessException e) {
                throw new ReaderException(e);
             }
          }

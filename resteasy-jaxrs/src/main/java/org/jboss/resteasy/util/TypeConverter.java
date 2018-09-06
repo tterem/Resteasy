@@ -20,8 +20,7 @@ import java.util.Map;
  * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
  * @version $Revision: $
  */
-public final class TypeConverter
-{
+public final class TypeConverter {
    private static final String VALUE_OF_METHOD = "valueOf";
 
    /**
@@ -29,8 +28,7 @@ public final class TypeConverter
     */
    private static final Map<Class<?>, Class<?>> PRIMITIVES;
 
-   static
-   {
+   static {
       PRIMITIVES = new HashMap<Class<?>, Class<?>>();
       PRIMITIVES.put(int.class, Integer.class);
       PRIMITIVES.put(double.class, Double.class);
@@ -40,8 +38,7 @@ public final class TypeConverter
       PRIMITIVES.put(long.class, Long.class);
    }
 
-   private TypeConverter()
-   {
+   private TypeConverter() {
 
    }
 
@@ -54,83 +51,57 @@ public final class TypeConverter
     * @return the object instance
     */
    @SuppressWarnings(value = "unchecked")
-   public static <T> T getType(final Class<T> targetType, final String source)
-   {
+   public static <T> T getType(final Class<T> targetType, final String source) {
       // just return that source if it's a String
-      if (String.class.equals(targetType))
-      {
+      if (String.class.equals(targetType)) {
          return targetType.cast(source);
       }
       /*
        * Dates are too complicated for this class.
        */
-      if (Date.class.isAssignableFrom(targetType))
-      {
+      if (Date.class.isAssignableFrom(targetType)) {
          throw new IllegalArgumentException(Messages.MESSAGES.dateInstancesNotSupported());
       }
-      if (Character.class.equals(targetType))
-      {
+      if (Character.class.equals(targetType)) {
          if (source.length() == 0) return targetType.cast(new Character('\0'));
          return targetType.cast(new Character(source.charAt(0)));
       }
-      if (char.class.equals(targetType))
-      {
+      if (char.class.equals(targetType)) {
          Character c = null;
-         if (source.length() == 0)c = new Character('\0');
+         if (source.length() == 0) c = new Character('\0');
          else c = new Character(source.charAt(0));
-         try
-         {
-            return (T)Character.class.getMethod("charValue").invoke(c);
-         }
-         catch (IllegalAccessException e)
-         {
+         try {
+            return (T) Character.class.getMethod("charValue").invoke(c);
+         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
-         }
-         catch (InvocationTargetException e)
-         {
+         } catch (InvocationTargetException e) {
             throw new RuntimeException(e);
-         }
-         catch (NoSuchMethodException e)
-         {
+         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
          }
 
       }
       T result;
       // boolean types need special handling
-      if (Boolean.class.equals(targetType) || boolean.class.equals(targetType))
-      {
+      if (Boolean.class.equals(targetType) || boolean.class.equals(targetType)) {
          Boolean booleanValue = getBooleanValue(source);
-         if (Boolean.class.equals(targetType))
-         {
+         if (Boolean.class.equals(targetType)) {
             return targetType.cast(booleanValue);
-         }
-         else
-         {
-            try
-            {
-               return (T)Boolean.class.getMethod("booleanValue").invoke(booleanValue);
-            }
-            catch (IllegalAccessException e)
-            {
+         } else {
+            try {
+               return (T) Boolean.class.getMethod("booleanValue").invoke(booleanValue);
+            } catch (IllegalAccessException e) {
                throw new RuntimeException(e);
-            }
-            catch (InvocationTargetException e)
-            {
+            } catch (InvocationTargetException e) {
                throw new RuntimeException(e);
-            }
-            catch (NoSuchMethodException e)
-            {
+            } catch (NoSuchMethodException e) {
                throw new RuntimeException(e);
             }
          }
       }
-      try
-      {
+      try {
          result = getTypeViaValueOfMethod(source, targetType);
-      }
-      catch (NoSuchMethodException e)
-      {
+      } catch (NoSuchMethodException e) {
          LogMessages.LOGGER.noValueOfMethodAvailable(targetType.getSimpleName());
          result = getTypeViaStringConstructor(source, targetType);
       }
@@ -143,38 +114,27 @@ public final class TypeConverter
     *
     * @param targetType the type to convert to
     * @return true if the class possesses either a "valueOf()" method or a constructor with a String
-    *         parameter.
+    * parameter.
     */
-   public static boolean isConvertable(final Class<?> targetType)
-   {
-      if (Boolean.class.equals(targetType))
-      {
+   public static boolean isConvertable(final Class<?> targetType) {
+      if (Boolean.class.equals(targetType)) {
          return true;
       }
-      if (Character.class.equals(targetType))
-      {
+      if (Character.class.equals(targetType)) {
          return true;
       }
 
-      if (targetType.isPrimitive())
-      {
+      if (targetType.isPrimitive()) {
          return true;
       }
-      try
-      {
+      try {
          targetType.getDeclaredMethod(VALUE_OF_METHOD, String.class);
          return true;
-      }
-      catch (NoSuchMethodException e)
-      {
-         try
-         {
+      } catch (NoSuchMethodException e) {
+         try {
             targetType.getDeclaredConstructor(String.class);
             return true;
-         }
-
-         catch (NoSuchMethodException e1)
-         {
+         } catch (NoSuchMethodException e1) {
             return false;
          }
       }
@@ -204,109 +164,85 @@ public final class TypeConverter
     * @param source source string
     * @return boolean value from string
     */
-   public static Boolean getBooleanValue(final String source)
-   {
+   public static Boolean getBooleanValue(final String source) {
       if ("Y".equalsIgnoreCase(source) || "T".equalsIgnoreCase(source)
-              || "Yes".equalsIgnoreCase(source) || "1".equalsIgnoreCase(source))
-      {
+              || "Yes".equalsIgnoreCase(source) || "1".equalsIgnoreCase(source)) {
          return Boolean.TRUE;
-      }
-      else if ("N".equals(source) || "F".equals(source) || "No".equals(source)
-              || "0".equalsIgnoreCase(source))
-      {
+      } else if ("N".equals(source) || "F".equals(source) || "No".equals(source)
+              || "0".equalsIgnoreCase(source)) {
          return Boolean.FALSE;
       }
       return Boolean.valueOf(source);
    }
 
    /**
-    * @param <T> type
-    * @param source source string
+    * @param <T>        type
+    * @param source     source string
     * @param targetType target type
     * @return object instance of type T
     * @throws NoSuchMethodException if method was not found
     */
    @SuppressWarnings("unchecked")
    public static <T> T getTypeViaValueOfMethod(final String source, final Class<T> targetType)
-           throws NoSuchMethodException
-   {
+           throws NoSuchMethodException {
       Class<?> actualTarget = targetType;
       /*
-       * if this is a primitive type, use the Object class's "valueOf()" 
+       * if this is a primitive type, use the Object class's "valueOf()"
        * method.
        */
-      if (targetType.isPrimitive())
-      {
+      if (targetType.isPrimitive()) {
          actualTarget = PRIMITIVES.get(targetType);
       }
       T result = null;
-      try
-      {
+      try {
          // if the type has a static "valueOf()" method, try and create the instance that way
          Method valueOf = actualTarget.getDeclaredMethod(VALUE_OF_METHOD, String.class);
          Object value = valueOf.invoke(null, source);
-         if (actualTarget.equals(targetType) && targetType.isInstance(value))
-         {
+         if (actualTarget.equals(targetType) && targetType.isInstance(value)) {
             result = targetType.cast(value);
          }
          /*
           * handle the primitive case
           */
-         else if (!actualTarget.equals(targetType) && actualTarget.isInstance(value))
-         {
+         else if (!actualTarget.equals(targetType) && actualTarget.isInstance(value)) {
             // because you can't use targetType.cast() with primitives.
             result = (T) value;
          }
-      }
-      catch (IllegalAccessException e)
-      {
+      } catch (IllegalAccessException e) {
          throw new ExceptionAdapter(e);
-      }
-      catch (InvocationTargetException e)
-      {
+      } catch (InvocationTargetException e) {
          throw new ExceptionAdapter(e);
       }
       return result;
    }
 
    /**
-    * @param <T> type
-    * @param source source string
+    * @param <T>        type
+    * @param source     source string
     * @param targetType target type
     * @return object instance of type T
-    * @throws IllegalArgumentException if not suitable constructor was found
-    * @throws InstantiationException if the underlying constructor represents an abstract class
-    * @throws IllegalAccessException if the underlying constructor is not accessible 
+    * @throws IllegalArgumentException  if not suitable constructor was found
+    * @throws InstantiationException    if the underlying constructor represents an abstract class
+    * @throws IllegalAccessException    if the underlying constructor is not accessible
     * @throws InvocationTargetException if the underlying constructor throws exception
     */
-   private static <T> T getTypeViaStringConstructor(String source, Class<T> targetType)
-   {
+   private static <T> T getTypeViaStringConstructor(String source, Class<T> targetType) {
       T result = null;
       Constructor<T> c = null;
 
-      try
-      {
+      try {
          c = targetType.getDeclaredConstructor(String.class);
-      }
-      catch (NoSuchMethodException e)
-      {
+      } catch (NoSuchMethodException e) {
          throw new IllegalArgumentException(Messages.MESSAGES.hasNoStringConstructor(targetType.getName()), e);
       }
 
-      try
-      {
+      try {
          result = c.newInstance(source);
-      }
-      catch (InstantiationException e)
-      {
+      } catch (InstantiationException e) {
          throw new ExceptionAdapter(e);
-      }
-      catch (IllegalAccessException e)
-      {
+      } catch (IllegalAccessException e) {
          throw new ExceptionAdapter(e);
-      }
-      catch (InvocationTargetException e)
-      {
+      } catch (InvocationTargetException e) {
          throw new ExceptionAdapter(e);
       }
       return result;

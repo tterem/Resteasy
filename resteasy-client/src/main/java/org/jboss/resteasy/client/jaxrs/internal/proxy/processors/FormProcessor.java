@@ -8,11 +8,7 @@ import javax.ws.rs.client.WebTarget;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.Type;
+import java.lang.reflect.*;
 import java.security.DigestOutputStream;
 import java.security.MessageDigest;
 import java.util.ArrayList;
@@ -24,40 +20,22 @@ import java.util.Map;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class FormProcessor implements InvocationProcessor, WebTargetProcessor
-{
+public class FormProcessor implements InvocationProcessor, WebTargetProcessor {
    protected HashMap<Field, Object> fieldMap = new HashMap<Field, Object>();
-
-   private static class GetterMethod
-   {
-      private GetterMethod(Method method, Object processor)
-      {
-         this.method = method;
-         this.processor = processor;
-      }
-
-      public Method method;
-      public Object processor;
-   }
-
    protected List<GetterMethod> getters = new ArrayList<GetterMethod>();
    protected HashMap<Long, Method> getterHashes = new HashMap<Long, Method>();
    protected Class clazz;
-
-   public FormProcessor(Class clazz, ClientConfiguration configuration)
-   {
+   public FormProcessor(Class clazz, ClientConfiguration configuration) {
       this.clazz = clazz;
 
       populateMap(clazz, configuration);
    }
 
    public static long methodHash(Method method)
-           throws Exception
-   {
+           throws Exception {
       Class[] parameterTypes = method.getParameterTypes();
       StringBuilder methodDesc = new StringBuilder(method.getName()).append("(");
-      for (int j = 0; j < parameterTypes.length; j++)
-      {
+      for (int j = 0; j < parameterTypes.length; j++) {
          methodDesc.append(getTypeString(parameterTypes[j]));
       }
       methodDesc.append(")").append(getTypeString(method.getReturnType()));
@@ -65,8 +43,7 @@ public class FormProcessor implements InvocationProcessor, WebTargetProcessor
    }
 
    public static long createHash(String methodDesc)
-           throws Exception
-   {
+           throws Exception {
       long hash = 0;
       ByteArrayOutputStream bytearrayoutputstream = new ByteArrayOutputStream(512);
       MessageDigest messagedigest = MessageDigest.getInstance("SHA");
@@ -80,58 +57,34 @@ public class FormProcessor implements InvocationProcessor, WebTargetProcessor
 
    }
 
-   static String getTypeString(Class cl)
-   {
-      if (cl == Byte.TYPE)
-      {
+   static String getTypeString(Class cl) {
+      if (cl == Byte.TYPE) {
          return "B";
-      }
-      else if (cl == Character.TYPE)
-      {
+      } else if (cl == Character.TYPE) {
          return "C";
-      }
-      else if (cl == Double.TYPE)
-      {
+      } else if (cl == Double.TYPE) {
          return "D";
-      }
-      else if (cl == Float.TYPE)
-      {
+      } else if (cl == Float.TYPE) {
          return "F";
-      }
-      else if (cl == Integer.TYPE)
-      {
+      } else if (cl == Integer.TYPE) {
          return "I";
-      }
-      else if (cl == Long.TYPE)
-      {
+      } else if (cl == Long.TYPE) {
          return "J";
-      }
-      else if (cl == Short.TYPE)
-      {
+      } else if (cl == Short.TYPE) {
          return "S";
-      }
-      else if (cl == Boolean.TYPE)
-      {
+      } else if (cl == Boolean.TYPE) {
          return "Z";
-      }
-      else if (cl == Void.TYPE)
-      {
+      } else if (cl == Void.TYPE) {
          return "V";
-      }
-      else if (cl.isArray())
-      {
+      } else if (cl.isArray()) {
          return "[" + getTypeString(cl.getComponentType());
-      }
-      else
-      {
+      } else {
          return "L" + cl.getName().replace('.', '/') + ";";
       }
    }
 
-   protected void populateMap(Class clazz, ClientConfiguration configuration)
-   {
-      for (Field field : clazz.getDeclaredFields())
-      {
+   protected void populateMap(Class clazz, ClientConfiguration configuration) {
+      for (Field field : clazz.getDeclaredFields()) {
          Annotation[] annotations = field.getAnnotations();
          if (annotations == null || annotations.length == 0) continue;
          Class type = field.getType();
@@ -139,14 +92,12 @@ public class FormProcessor implements InvocationProcessor, WebTargetProcessor
 
          Object processor = ProcessorFactory.createProcessor(
                  clazz, configuration, type, annotations, genericType, field, true);
-         if (processor != null)
-         {
+         if (processor != null) {
             if (!Modifier.isPublic(field.getModifiers())) field.setAccessible(true);
             fieldMap.put(field, processor);
          }
       }
-      for (Method method : clazz.getDeclaredMethods())
-      {
+      for (Method method : clazz.getDeclaredMethods()) {
          if (!method.getName().startsWith("get")) continue;
 
          if (method.getParameterTypes().length > 0) continue;
@@ -160,19 +111,14 @@ public class FormProcessor implements InvocationProcessor, WebTargetProcessor
          Object processor = ProcessorFactory
                  .createProcessor(clazz, configuration, type, annotations,
                          genericType, method, true);
-         if (processor != null)
-         {
+         if (processor != null) {
             long hash = 0;
-            try
-            {
+            try {
                hash = methodHash(method);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                throw new RuntimeException(e);
             }
-            if (!Modifier.isPrivate(method.getModifiers()))
-            {
+            if (!Modifier.isPrivate(method.getModifiers())) {
                Method older = getterHashes.get(hash);
                if (older != null) continue;
             }
@@ -189,70 +135,48 @@ public class FormProcessor implements InvocationProcessor, WebTargetProcessor
 
    }
 
-
-   interface Process
-   {
-      Object process(Object target, Object value, Object processor);
-   }
-
    @Override
-   public WebTarget build(WebTarget target, Object param)
-   {
+   public WebTarget build(WebTarget target, Object param) {
       if (param == null) return target;
-      return (WebTarget) process(new Process()  {
+      return (WebTarget) process(new Process() {
          @Override
-         public Object process(Object target, Object value, Object processor)
-         {
-            return build((WebTarget)target, value, processor);
+         public Object process(Object target, Object value, Object processor) {
+            return build((WebTarget) target, value, processor);
          }
       }, target, param);
    }
 
    @Override
-   public void process(ClientInvocation invocation, Object param)
-   {
-      process(new Process()  {
+   public void process(ClientInvocation invocation, Object param) {
+      process(new Process() {
          @Override
-         public Object process(Object target, Object value, Object processor)
-         {
-            processParam((ClientInvocation)target, value, processor);
+         public Object process(Object target, Object value, Object processor) {
+            processParam((ClientInvocation) target, value, processor);
             return target;
          }
       }, invocation, param);
    }
 
-
-   protected Object process(Process process, Object target, Object param)
-   {
+   protected Object process(Process process, Object target, Object param) {
       if (param == null) return target;
 
-      for (Map.Entry<Field, Object> entry : fieldMap.entrySet())
-      {
+      for (Map.Entry<Field, Object> entry : fieldMap.entrySet()) {
 
-         try
-         {
+         try {
             Object val = entry.getKey().get(param);
             Object proc = entry.getValue();
             target = process.process(target, val, proc);
-         }
-         catch (IllegalAccessException e)
-         {
+         } catch (IllegalAccessException e) {
             throw new LoggableFailure(e);
          }
       }
-      for (GetterMethod getter : getters)
-      {
+      for (GetterMethod getter : getters) {
          Object val = null;
-         try
-         {
+         try {
             val = getter.method.invoke(param);
-         }
-         catch (IllegalAccessException e)
-         {
+         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
-         }
-         catch (InvocationTargetException e)
-         {
+         } catch (InvocationTargetException e) {
             throw new RuntimeException(e);
          }
          Object proc = getter.processor;
@@ -261,22 +185,31 @@ public class FormProcessor implements InvocationProcessor, WebTargetProcessor
       return target;
    }
 
-   private WebTarget build(WebTarget target, Object val, Object proc)
-   {
-      if (proc instanceof WebTargetProcessor)
-      {
+   private WebTarget build(WebTarget target, Object val, Object proc) {
+      if (proc instanceof WebTargetProcessor) {
          WebTargetProcessor processor = (WebTargetProcessor) proc;
          target = processor.build(target, val);
       }
       return target;
    }
 
-   private void processParam(ClientInvocation invocation, Object val, Object proc)
-   {
-      if (proc instanceof InvocationProcessor)
-      {
+   private void processParam(ClientInvocation invocation, Object val, Object proc) {
+      if (proc instanceof InvocationProcessor) {
          InvocationProcessor processor = (InvocationProcessor) proc;
          processor.process(invocation, val);
+      }
+   }
+
+   interface Process {
+      Object process(Object target, Object value, Object processor);
+   }
+
+   private static class GetterMethod {
+      public Method method;
+      public Object processor;
+      private GetterMethod(Method method, Object processor) {
+         this.method = method;
+         this.processor = processor;
       }
    }
 }

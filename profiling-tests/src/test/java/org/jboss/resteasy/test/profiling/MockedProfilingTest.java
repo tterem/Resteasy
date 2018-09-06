@@ -1,10 +1,10 @@
 package org.jboss.resteasy.test.profiling;
 
-import org.junit.Assert;
 import org.jboss.resteasy.mock.MockHttpRequest;
 import org.jboss.resteasy.mock.MockHttpResponse;
 import org.jboss.resteasy.spi.Registry;
 import org.jboss.resteasy.spi.ResteasyDeployment;
+import org.junit.Assert;
 import org.junit.Test;
 
 import javax.ws.rs.Consumes;
@@ -20,26 +20,9 @@ import java.net.URI;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class MockedProfilingTest
-{
-   @Path("/test")
-   public static class CleartextResource
-   {
-
-      @POST
-      @Produces("text/plain")
-      @Consumes("text/plain")
-      @Path("create")
-      public String create(String cust)
-      {
-         return cust;
-      }
-
-   }
-
+public class MockedProfilingTest {
    @Test
-   public void testUri() throws Exception
-   {
+   public void testUri() throws Exception {
       URI uri = URI.create("/foo");
       Assert.assertEquals(uri.toString(), "/foo");
 
@@ -48,8 +31,7 @@ public class MockedProfilingTest
    }
 
    @Test
-   public void testCleartext() throws Exception
-   {
+   public void testCleartext() throws Exception {
       final int WARMUP = 10;
       final int INTERATIONS = 100;
       //final int WARMUP = 1000;
@@ -72,19 +54,30 @@ public class MockedProfilingTest
       ByteArrayInputStream stream = new ByteArrayInputStream("hello".getBytes());
       request.setInputStream(stream);
 
-      for (int i = 0; i < WARMUP; i++)
-      {
+      for (int i = 0; i < WARMUP; i++) {
          deployment.getDispatcher().invoke(request, response);
          stream.reset();
       }
 //      long start = System.currentTimeMillis();
-      for (int i = 0; i < INTERATIONS; i++)
-      {
+      for (int i = 0; i < INTERATIONS; i++) {
          deployment.getDispatcher().invoke(request, response);
          stream.reset();
       }
 //      long end = System.currentTimeMillis() - start;
 //      System.out.println("Time took: " + end);
+
+   }
+
+   @Path("/test")
+   public static class CleartextResource {
+
+      @POST
+      @Produces("text/plain")
+      @Consumes("text/plain")
+      @Path("create")
+      public String create(String cust) {
+         return cust;
+      }
 
    }
 }

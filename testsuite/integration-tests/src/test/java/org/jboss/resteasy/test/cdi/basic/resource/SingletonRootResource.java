@@ -15,42 +15,39 @@ import javax.ws.rs.core.Response;
 @Singleton
 @Path("root")
 public class SingletonRootResource {
-    @EJB
-    SingletonSubResource sub;
+   @EJB
+   SingletonSubResource sub;
 
-    @EJB
-    SingletonLocalIF rl;
+   @EJB
+   SingletonLocalIF rl;
+   @Context
+   private Application injectedApplication;
+   private boolean isJaxrsInjectedPriorToPostConstruct = false;
 
+   @Path("sub")
+   public SingletonSubResource getSub() {
+      return sub;
+   }
 
-    @Path("sub")
-    public SingletonSubResource getSub() {
-        return sub;
-    }
+   @Path("intfsub")
+   public SingletonLocalIF getLocalSub() {
+      return rl;
+   }
 
-    @Path("intfsub")
-    public SingletonLocalIF getLocalSub() {
-        return rl;
-    }
+   @PostConstruct
+   public void postConstruct() {
+      isJaxrsInjectedPriorToPostConstruct = injectedApplication != null;
+   }
 
+   @Path("injected")
+   @GET
+   public String injected() {
+      return String.valueOf(isJaxrsInjectedPriorToPostConstruct);
+   }
 
-    @Context
-    private Application injectedApplication;
-    private boolean isJaxrsInjectedPriorToPostConstruct = false;
-
-    @PostConstruct
-    public void postConstruct() {
-        isJaxrsInjectedPriorToPostConstruct = injectedApplication != null;
-    }
-
-    @Path("injected")
-    @GET
-    public String injected() {
-        return String.valueOf(isJaxrsInjectedPriorToPostConstruct);
-    }
-
-    @Path("exception")
-    @GET
-    public String throwException() {
-        throw new EJBException(new WebApplicationException(Response.Status.CREATED));
-    }
+   @Path("exception")
+   @GET
+   public String throwException() {
+      throw new EJBException(new WebApplicationException(Response.Status.CREATED));
+   }
 }

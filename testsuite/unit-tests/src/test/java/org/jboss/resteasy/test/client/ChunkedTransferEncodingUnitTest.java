@@ -1,15 +1,5 @@
 package org.jboss.resteasy.test.client;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
-
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Response;
-
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
@@ -21,6 +11,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 /**
  * @author <a href="mailto:rsigal@redhat.com">Ron Sigal</a>
  * @version $Revision: 1 $
@@ -29,40 +28,57 @@ import org.junit.Test;
  * @tpTestCaseDetails Verify request is sent in chunked format
  * @tpSince RESTEasy 3.1.4
  */
-public class ChunkedTransferEncodingUnitTest
-{
+public class ChunkedTransferEncodingUnitTest {
+   static final String testFilePath;
+   private final static Logger logger = Logger.getLogger(ChunkedTransferEncodingUnitTest.class);
    private static Thread t;
    private static ServerSocket ss;
    private static Socket s;
-   private final static Logger logger = Logger.getLogger(ChunkedTransferEncodingUnitTest.class);
-   
    private static String RESPONSE_200 =
-         "HTTP/1.1 200 OK\r\n" +
-         "Content-Type: text/plain;charset=UTF-8\r\n" +
-         "Content-Length: 2\r\n" +
-         "\r\n" +
-         "ok";
-   
+           "HTTP/1.1 200 OK\r\n" +
+                   "Content-Type: text/plain;charset=UTF-8\r\n" +
+                   "Content-Length: 2\r\n" +
+                   "\r\n" +
+                   "ok";
    private static String RESPONSE_400 =
-         "HTTP/1.1 400 OK\r\n" +
-         "Content-Type: text/plain;charset=UTF-8\r\n" +
-         "Content-Length: 6\r\n" +
-         "\r\n" +
-         "not ok";
-              
-   static final String testFilePath;
+           "HTTP/1.1 400 OK\r\n" +
+                   "Content-Type: text/plain;charset=UTF-8\r\n" +
+                   "Content-Length: 6\r\n" +
+                   "\r\n" +
+                   "not ok";
 
    static {
-       testFilePath = TestUtil.getResourcePath(ChunkedTransferEncodingUnitTest.class, "ChunkedTransferEncodingUnitTestFile");
+      testFilePath = TestUtil.getResourcePath(ChunkedTransferEncodingUnitTest.class, "ChunkedTransferEncodingUnitTestFile");
    }
-   
+
    //////////////////////////////////////////////////////////////////////////////
-   
+
+   private static boolean endOfHeaders(int[] chars, int length) {
+      if (length < 4) {
+         return false;
+      }
+      return chars[length - 4] == '\r' && chars[length - 3] == '\n' && chars[length - 2] == '\r' && chars[length - 1] == '\n';
+   }
+
+   private static int getLength(int[] chars, int start, InputStream is) throws IOException {
+      int i = start;
+      while (true) {
+         chars[i] = is.read();
+         while (chars[i++] != '\r') {
+            chars[i] = is.read();
+         }
+         chars[i] = is.read();
+         if (chars[i++] == '\n') {
+            String s = new String(chars, start, i - start - 2);
+            return Integer.valueOf(s, 16);
+         }
+      }
+   }
+
    @Before
-   public void before() throws Exception
-   {
+   public void before() throws Exception {
       int[] chars = new int[1024];
-      
+
       t = new Thread() {
          public void run() {
             try {
@@ -82,8 +98,7 @@ public class ChunkedTransferEncodingUnitTest
                OutputStream os = s.getOutputStream();
                if (headers.contains("Transfer-Encoding: chunked") && entity.contains("file entity")) {
                   os.write(RESPONSE_200.getBytes());
-               }
-               else {
+               } else {
                   os.write(RESPONSE_400.getBytes());
                }
                return;
@@ -96,31 +111,8 @@ public class ChunkedTransferEncodingUnitTest
       t.start();
    }
 
-   private static boolean endOfHeaders(int[] chars, int length) {
-      if (length < 4) {
-         return false;
-      }
-      return chars[length - 4] == '\r' && chars[length - 3] == '\n' && chars[length - 2] == '\r' && chars[length - 1] == '\n';
-   }
-   
-   private static int getLength(int[] chars, int start, InputStream is) throws IOException {
-      int i = start;
-      while (true) {
-         chars[i] = is.read();
-         while (chars[i++] != '\r') {
-            chars[i] = is.read();
-         }
-         chars[i] = is.read();
-         if (chars[i++] == '\n') {
-            String s = new String(chars, start, i - start - 2);
-            return Integer.valueOf(s, 16);
-         }
-      }
-   }
-   
    @After
-   public void after() throws Exception
-   {
+   public void after() throws Exception {
       if (s != null) {
          s.close();
       }
@@ -145,7 +137,7 @@ public class ChunkedTransferEncodingUnitTest
       response.close();
       client.close();
    }
-   
+
    @Test
    public void testChunkedRequest() throws Exception {
       ResteasyClient client = new ResteasyClientBuilder().build();

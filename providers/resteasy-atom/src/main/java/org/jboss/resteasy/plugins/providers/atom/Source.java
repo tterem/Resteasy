@@ -1,10 +1,6 @@
 package org.jboss.resteasy.plugins.providers.atom;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,8 +52,7 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.PROPERTY)
 @XmlType(propOrder = {"title", "subtitle", "categories", "updated", "id", "links", "authors", "contributors", "rights",
         "icon", "logo", "generator"})
-public class Source extends CommonAttributes
-{
+public class Source extends CommonAttributes {
    private List<Person> authors = new ArrayList<Person>();
    private List<Category> categories = new ArrayList<Category>();
    private List<Person> contributors = new ArrayList<Person>();
@@ -72,120 +67,99 @@ public class Source extends CommonAttributes
    private String subtitle;
 
    @XmlElement(name = "author")
-   public List<Person> getAuthors()
-   {
+   public List<Person> getAuthors() {
       return authors;
    }
 
    @XmlElement(name = "contributor")
-   public List<Person> getContributors()
-   {
+   public List<Person> getContributors() {
       return contributors;
    }
 
    @XmlElement
-   public URI getId()
-   {
+   public URI getId() {
       return id;
    }
 
-   public void setId(URI id)
-   {
+   public void setId(URI id) {
       this.id = id;
    }
 
    @XmlElement
-   public String getTitle()
-   {
+   public String getTitle() {
       return title;
    }
 
-   public void setTitle(String title)
-   {
+   public void setTitle(String title) {
       this.title = title;
    }
 
    @XmlElement
-   public Date getUpdated()
-   {
+   public Date getUpdated() {
       return updated;
    }
 
-   public void setUpdated(Date updated)
-   {
+   public void setUpdated(Date updated) {
       this.updated = updated;
    }
 
-   public Link getLinkByRel(String name)
-   {
+   public Link getLinkByRel(String name) {
       for (Link link : links) if (link.getRel().equals(name)) return link;
       return null;
    }
 
    @XmlElementRef
-   public List<Link> getLinks()
-   {
+   public List<Link> getLinks() {
       return links;
    }
 
    @XmlElementRef
-   public List<Category> getCategories()
-   {
+   public List<Category> getCategories() {
       return categories;
    }
 
    @XmlElementRef
-   public Generator getGenerator()
-   {
+   public Generator getGenerator() {
       return generator;
    }
 
-   public void setGenerator(Generator generator)
-   {
+   public void setGenerator(Generator generator) {
       this.generator = generator;
    }
 
    @XmlElement
-   public URI getIcon()
-   {
+   public URI getIcon() {
       return icon;
    }
 
-   public void setIcon(URI icon)
-   {
+   public void setIcon(URI icon) {
       this.icon = icon;
    }
 
    @XmlElement
-   public URI getLogo()
-   {
+   public URI getLogo() {
       return logo;
    }
 
-   public void setLogo(URI logo)
-   {
+   public void setLogo(URI logo) {
       this.logo = logo;
    }
 
    @XmlElement
-   public String getRights()
-   {
+   public String getRights() {
       return rights;
    }
 
-   public void setRights(String rights)
-   {
+   public void setRights(String rights) {
       this.rights = rights;
    }
 
    @XmlElement
-   public String getSubtitle()
-   {
+   public String getSubtitle() {
       return subtitle;
    }
 
-   public void setSubtitle(String subtitle)
-   {
+   public void setSubtitle(String subtitle) {
       this.subtitle = subtitle;
    }
 }

@@ -1,11 +1,8 @@
 package org.jboss.resteasy.plugins.guice;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
-
+import com.google.inject.Binder;
+import com.google.inject.Guice;
+import com.google.inject.Module;
 import org.jboss.resteasy.core.Dispatcher;
 import org.jboss.resteasy.plugins.server.netty.NettyJaxrsServer;
 import org.jboss.resteasy.test.TestPortProvider;
@@ -14,18 +11,18 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.google.inject.Binder;
-import com.google.inject.Guice;
-import com.google.inject.Module;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
 
-public class GuiceProviderTest
-{
+public class GuiceProviderTest {
    private static NettyJaxrsServer server;
    private static Dispatcher dispatcher;
 
    @BeforeClass
-   public static void beforeClass() throws Exception
-   {
+   public static void beforeClass() throws Exception {
       server = new NettyJaxrsServer();
       server.setPort(TestPortProvider.getPort());
       server.setRootResourcePath("/");
@@ -34,21 +31,17 @@ public class GuiceProviderTest
    }
 
    @AfterClass
-   public static void afterClass() throws Exception
-   {
+   public static void afterClass() throws Exception {
       server.stop();
       server = null;
       dispatcher = null;
    }
 
    @Test
-   public void testProvider()
-   {
-      final Module module = new Module()
-      {
+   public void testProvider() {
+      final Module module = new Module() {
          @Override
-         public void configure(final Binder binder)
-         {
+         public void configure(final Binder binder) {
             binder.bind(TestExceptionProvider.class);
             binder.bind(TestResource.class).to(TestResourceException.class);
          }
@@ -61,31 +54,25 @@ public class GuiceProviderTest
    }
 
    @Path("test")
-   public interface TestResource
-   {
+   public interface TestResource {
       @GET
       String getName();
    }
 
-   public static class TestResourceException implements TestResource
-   {
+   public static class TestResourceException implements TestResource {
       @Override
-      public String getName()
-      {
+      public String getName() {
          throw new TestException();
       }
    }
 
-   public static class TestException extends RuntimeException
-   {
+   public static class TestException extends RuntimeException {
    }
 
    @Provider
-   public static class TestExceptionProvider implements ExceptionMapper<TestException>
-   {
+   public static class TestExceptionProvider implements ExceptionMapper<TestException> {
       @Override
-      public Response toResponse(final TestException exception)
-      {
+      public Response toResponse(final TestException exception) {
          return Response.ok("exception").build();
       }
    }

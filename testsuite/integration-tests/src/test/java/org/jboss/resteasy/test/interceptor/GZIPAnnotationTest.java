@@ -1,8 +1,5 @@
 package org.jboss.resteasy.test.interceptor;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -22,6 +19,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+
 /**
  * @tpSubChapter Interceptor
  * @tpChapter Integration tests
@@ -31,38 +31,38 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GZIPAnnotationTest {
-   
+
    static Client client;
 
    @BeforeClass
    public static void setup() {
-       client = ClientBuilder.newClient()
-                   .register(AcceptEncodingGZIPFilter.class)
-                   .register(GZIPEncodingInterceptor.class)
-                   .register(GZIPDecodingInterceptor.class);
+      client = ClientBuilder.newClient()
+              .register(AcceptEncodingGZIPFilter.class)
+              .register(GZIPEncodingInterceptor.class)
+              .register(GZIPDecodingInterceptor.class);
    }
 
    @AfterClass
    public static void close() {
-       client.close();
+      client.close();
    }
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(GZIPAnnotationTest.class.getSimpleName());
-       war.addClass(GZIPAnnotationInterface.class);
-       war.addAsManifestResource("org/jboss/resteasy/test/client/javax.ws.rs.ext.Providers", "services/javax.ws.rs.ext.Providers");
-       return TestUtil.finishContainerPrepare(war, null, GZIPAnnotationResource.class);
+      WebArchive war = TestUtil.prepareArchive(GZIPAnnotationTest.class.getSimpleName());
+      war.addClass(GZIPAnnotationInterface.class);
+      war.addAsManifestResource("org/jboss/resteasy/test/client/javax.ws.rs.ext.Providers", "services/javax.ws.rs.ext.Providers");
+      return TestUtil.finishContainerPrepare(war, null, GZIPAnnotationResource.class);
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, GZIPAnnotationTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, GZIPAnnotationTest.class.getSimpleName());
    }
 
    /**
     * @tpTestDetails Test that org.jboss.resteasy.plugins.interceptors.ClientContentEncodingAnnotationFilter
-    *                and org.jboss.resteasy.plugins.interceptors.AcceptEncodingGZIPFilter
-    *                are called on client side
+    * and org.jboss.resteasy.plugins.interceptors.AcceptEncodingGZIPFilter
+    * are called on client side
     * @tpSince RESTEasy 3.0.20
     */
    @Test

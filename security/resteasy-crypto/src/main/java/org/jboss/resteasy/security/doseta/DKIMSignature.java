@@ -7,21 +7,9 @@ import org.jboss.resteasy.util.Base64;
 import org.jboss.resteasy.util.ParameterParser;
 
 import javax.ws.rs.core.MultivaluedMap;
-
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.Signature;
-import java.security.SignatureException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.security.*;
+import java.util.*;
 
 /**
  * One single signature within a DKIM-Signature header
@@ -29,8 +17,7 @@ import java.util.Map;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class DKIMSignature
-{
+public class DKIMSignature {
    public static final String DKIM_SIGNATURE = "DKIM-Signature";
    public static final String TIMESTAMP = "t";
    public static final String DOMAIN = "d";
@@ -45,14 +32,11 @@ public class DKIMSignature
    public static final String QUERY = "q";
    public static final String SELECTOR = "s";
    public static final String LENGTH = "l";
-
+   public static final String SHA256WITH_RSA = "SHA256withRSA";
    /**
     * This is settable
     */
    public static String DEFAULT_SIGNER = "DEFAULT_SIGNER";
-
-   public static final String SHA256WITH_RSA = "SHA256withRSA";
-
    /**
     * This is settable
     */
@@ -66,44 +50,35 @@ public class DKIMSignature
    protected boolean bodyHashRequired = true;
 
 
-   public DKIMSignature()
-   {
+   public DKIMSignature() {
    }
 
-   public DKIMSignature(Map<String, String> attrs)
-   {
+   public DKIMSignature(Map<String, String> attrs) {
       attributes = attrs;
       extractAttributes();
    }
 
-   public DKIMSignature(String headerValue)
-   {
+   public DKIMSignature(String headerValue) {
       this.headerValue = headerValue;
       ParameterParser parser = new ParameterParser();
       attributes = parser.parse(headerValue, ';');
       extractAttributes();
    }
 
-   protected void extractAttributes()
-   {
+   protected void extractAttributes() {
       String heads = attributes.get(HEADERS);
-      if (heads != null)
-      {
+      if (heads != null) {
          headers = Arrays.asList(heads.split(":"));
       }
       String sig = attributes.get(SIGNATURE);
-      try
-      {
+      try {
          if (sig != null) signature = Base64.decode(sig);
-      }
-      catch (IOException e)
-      {
+      } catch (IOException e) {
          throw new RuntimeException(e);
       }
    }
 
-   public List<String> getHeaderList()
-   {
+   public List<String> getHeaderList() {
       return headers;
    }
 
@@ -112,8 +87,7 @@ public class DKIMSignature
     *
     * @return header value
     */
-   public String toString()
-   {
+   public String toString() {
       return headerValue;
    }
 
@@ -122,13 +96,11 @@ public class DKIMSignature
     *
     * @return body hash required
     */
-   public boolean isBodyHashRequired()
-   {
+   public boolean isBodyHashRequired() {
       return bodyHashRequired;
    }
 
-   public void setBodyHashRequired(boolean bodyHashRequired)
-   {
+   public void setBodyHashRequired(boolean bodyHashRequired) {
       this.bodyHashRequired = bodyHashRequired;
    }
 
@@ -137,84 +109,54 @@ public class DKIMSignature
     *
     * @param headerName header name
     */
-   public void addHeader(String headerName)
-   {
+   public void addHeader(String headerName) {
       headers.add(headerName);
    }
 
    /**
-    * @param name attribute name
+    * @param name  attribute name
     * @param value if null, remove attribute
     */
-   public void setAttribute(String name, String value)
-   {
-      if (value == null)
-      {
+   public void setAttribute(String name, String value) {
+      if (value == null) {
          attributes.remove(name);
       }
       attributes.put(name, value);
    }
 
-   /**
-    * Default value is SHA256withRSA, see Javadoc on java.security.Signature for other supported values.
-    *
-    * @param value if null, remove attribute
-    */
-   public void setAlgorithm(String value)
-   {
-      setAttribute(ALGORITHM, value);
-   }
-
-   public void setTimestamp(String value)
-   {
+   public void setTimestamp(String value) {
       setAttribute(TIMESTAMP, value);
    }
 
-   public void setTimestamp()
-   {
+   public void setTimestamp() {
       setAttribute(TIMESTAMP, ((new Date()).getTime() / 1000) + "");
    }
 
-   public void setSelector(String selector)
-   {
-      setAttribute(SELECTOR, selector);
-   }
-
-   public String getSelector()
-   {
+   public String getSelector() {
       return attributes.get(SELECTOR);
    }
 
-   public String getQuery()
-   {
+   public void setSelector(String selector) {
+      setAttribute(SELECTOR, selector);
+   }
+
+   public String getQuery() {
       return attributes.get(QUERY);
    }
 
-   public void setQuery(String query)
-   {
+   public void setQuery(String query) {
       setAttribute(QUERY, query);
    }
 
-   public void setDomain(String domain)
-   {
-      setAttribute(DOMAIN, domain);
-   }
-
-   public String getDomain()
-   {
+   public String getDomain() {
       return attributes.get(DOMAIN);
    }
 
-   /**
-    * @param id id
-    */
-   public void setId(String id)
-   {
-      setAttribute(IDENTITY, id);
+   public void setDomain(String domain) {
+      setAttribute(DOMAIN, domain);
    }
 
-   public void setExpiration(Date expire)
-   {
+   public void setExpiration(Date expire) {
       setAttribute(EXPIRATION, (expire.getTime() / 1000) + "");
    }
 
@@ -224,13 +166,12 @@ public class DKIMSignature
     *
     * @param seconds number of seconds
     * @param minutes number of minutes
-    * @param hours number of hours
-    * @param days number of days
-    * @param months number of months
-    * @param years number of years
+    * @param hours   number of hours
+    * @param days    number of days
+    * @param months  number of months
+    * @param years   number of years
     */
-   public void setExpiration(int seconds, int minutes, int hours, int days, int months, int years)
-   {
+   public void setExpiration(int seconds, int minutes, int hours, int days, int months, int years) {
       Calendar now = Calendar.getInstance();
       if (seconds > 0) now.add(Calendar.SECOND, seconds);
       if (minutes > 0) now.add(Calendar.MINUTE, minutes);
@@ -241,14 +182,12 @@ public class DKIMSignature
       setExpiration(now.getTime());
    }
 
-
    /**
     * Return false if true current time.  If expiration isn't set, then just return false. Returns false otherwise.
     *
     * @return true if expired, false otherwise or when expiration attribute is not set
     */
-   public boolean isExpired()
-   {
+   public boolean isExpired() {
       String exp = attributes.get(EXPIRATION);
       if (exp == null) return false;
 
@@ -262,16 +201,13 @@ public class DKIMSignature
     *
     * @param seconds number of seconds
     * @param minutes number of minutes
-    * @param hours number of hours
-    * @param days number of days
-    * @param months number of months
-    * @param years number of years
-    * 
+    * @param hours   number of hours
+    * @param days    number of days
+    * @param months  number of months
+    * @param years   number of years
     * @return true if stale or timestamp attribute is not set
-    * 
     */
-   public boolean isStale(int seconds, int minutes, int hours, int days, int months, int years)
-   {
+   public boolean isStale(int seconds, int minutes, int hours, int days, int months, int years) {
       String time = attributes.get(TIMESTAMP);
       if (time == null) return true;
 
@@ -288,39 +224,47 @@ public class DKIMSignature
       return (new Date()).getTime() > expires.getTime().getTime();
    }
 
-   public String getId()
-   {
+   public String getId() {
       return attributes.get(IDENTITY);
    }
 
-   public String getAlgorithm()
-   {
+   /**
+    * @param id id
+    */
+   public void setId(String id) {
+      setAttribute(IDENTITY, id);
+   }
+
+   public String getAlgorithm() {
       return attributes.get(ALGORITHM);
    }
 
+   /**
+    * Default value is SHA256withRSA, see Javadoc on java.security.Signature for other supported values.
+    *
+    * @param value if null, remove attribute
+    */
+   public void setAlgorithm(String value) {
+      setAttribute(ALGORITHM, value);
+   }
 
-   public Map<String, String> getAttributes()
-   {
+   public Map<String, String> getAttributes() {
       return attributes;
    }
 
-   public String getBased64Signature()
-   {
+   public String getBased64Signature() {
       return attributes.get(SIGNATURE);
    }
 
-   public void setBase64Signature(String signature)
-   {
+   public void setBase64Signature(String signature) {
       setAttribute(SIGNATURE, signature);
    }
 
-   public byte[] getSignature()
-   {
+   public byte[] getSignature() {
       return signature;
    }
 
-   public void setSignature(byte[] signature)
-   {
+   public void setSignature(byte[] signature) {
       this.signature = signature;
    }
 
@@ -330,13 +274,11 @@ public class DKIMSignature
     *
     * @return {@link PrivateKey}
     */
-   public PrivateKey getPrivateKey()
-   {
+   public PrivateKey getPrivateKey() {
       return privateKey;
    }
 
-   public void setPrivateKey(PrivateKey privateKey)
-   {
+   public void setPrivateKey(PrivateKey privateKey) {
       this.privateKey = privateKey;
    }
 
@@ -345,17 +287,14 @@ public class DKIMSignature
     * JAX-RS's MultivaluedMap.   If a map of lists, every value of each header duplicate will be added.
     * <p>
     *
-    * @param headers headers map
-    * @param body if null, bh field will not be set or provided
+    * @param headers    headers map
+    * @param body       if null, bh field will not be set or provided
     * @param defaultKey will be used if privateKey is null
     * @throws SignatureException if security exception occurred
-    *
     */
-   public void sign(Map headers, byte[] body, PrivateKey defaultKey) throws SignatureException
-   {
+   public void sign(Map headers, byte[] body, PrivateKey defaultKey) throws SignatureException {
       PrivateKey key = privateKey == null ? defaultKey : privateKey;
-      if (key == null)
-      {
+      if (key == null) {
          throw new SignatureException(Messages.MESSAGES.privateKeyIsNull());
       }
       attributes.put(VERSION, "1");
@@ -365,22 +304,17 @@ public class DKIMSignature
       String hashAlgorithm = SigningAlgorithm.SHA256withRSA.getJavaHashNotation();
 
       Signature signature = null;
-      try
-      {
+      try {
          signature = Signature.getInstance(algorithm);
          signature.initSign(key);
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new SignatureException(e);
       }
 
-      if (this.headers.size() > 0)
-      {
+      if (this.headers.size() > 0) {
          StringBuffer headerCat = new StringBuffer();
          int count = 0;
-         for (int i = 0; i < this.headers.size(); i++)
-         {
+         for (int i = 0; i < this.headers.size(); i++) {
             String name = this.headers.get(i);
             if (i > 0) headerCat.append(":");
             headerCat.append(name);
@@ -389,8 +323,7 @@ public class DKIMSignature
          updateSignatureWithHeader(headers, signature);
       }
 
-      if (body != null && bodyHashRequired)
-      {
+      if (body != null && bodyHashRequired) {
          String encodedBodyHash = calculateEncodedHash(body, hashAlgorithm);
 
          attributes.put(BODY_HASH, encodedBodyHash);
@@ -399,8 +332,7 @@ public class DKIMSignature
       StringBuffer dosetaBuffer = new StringBuffer();
 
       boolean first = true;
-      for (Map.Entry<String, String> entry : attributes.entrySet())
-      {
+      for (Map.Entry<String, String> entry : attributes.entrySet()) {
          if (first) first = false;
          else dosetaBuffer.append(";");
 
@@ -420,29 +352,23 @@ public class DKIMSignature
 
    }
 
-   private String calculateEncodedHash(byte[] body, String hashAlgorithm) throws SignatureException
-   {
+   private String calculateEncodedHash(byte[] body, String hashAlgorithm) throws SignatureException {
       byte[] bodyHash = hash(body, hashAlgorithm);
 
       return Base64.encodeBytes(bodyHash);
    }
 
-   private byte[] hash(byte[] body, String hashAlgorithm) throws SignatureException
-   {
+   private byte[] hash(byte[] body, String hashAlgorithm) throws SignatureException {
       MessageDigest digest = null;
-      try
-      {
+      try {
          digest = MessageDigest.getInstance(hashAlgorithm);
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new SignatureException(e);
       }
 
       int length = body.length;
 
-      if (attributes.containsKey(LENGTH))
-      {
+      if (attributes.containsKey(LENGTH)) {
          length = Integer.parseInt(attributes.get(LENGTH));
       }
 
@@ -452,39 +378,31 @@ public class DKIMSignature
       return bodyHash;
    }
 
-   private MultivaluedMap<String, String> updateSignatureWithHeader(Map transmittedHeaders, Signature signature) throws SignatureException
-   {
+   private MultivaluedMap<String, String> updateSignatureWithHeader(Map transmittedHeaders, Signature signature) throws SignatureException {
       MultivaluedMap<String, String> verifiedHeaders = new MultivaluedMapImpl<String, String>();
       List<String> list = this.headers;
       Map<String, Integer> count = new HashMap<String, Integer>();
-      for (String name : list)
-      {
+      for (String name : list) {
          int index = 0;
-         if (count.containsKey(name))
-         {
+         if (count.containsKey(name)) {
             index = count.get(name);
             index++;
          }
          count.put(name, index);
 
          Object v = transmittedHeaders.get(name);
-         if (v == null)
-         {
+         if (v == null) {
             throw new SignatureException(Messages.MESSAGES.unableToFindHeader(name, (index > 0 ? "[" + index + "]" : "")));
          }
 
-         if (v instanceof List)
-         {
+         if (v instanceof List) {
             List l = (List) v;
             int i = l.size() - 1 - index;
-            if (i < 0)
-            {
+            if (i < 0) {
                throw new SignatureException(Messages.MESSAGES.unableToFindHeader(name, (index > 0 ? "[" + index + "]" : "")));
             }
             v = l.get(i);
-         }
-         else if (index > 0)
-         {
+         } else if (index > 0) {
             throw new SignatureException(Messages.MESSAGES.unableToFindHeader(name, (index > 0 ? "[" + index + "]" : "")));
          }
          String entry = name + ":" + v.toString() + "\r\n";
@@ -494,8 +412,7 @@ public class DKIMSignature
       return verifiedHeaders;
    }
 
-   public MultivaluedMap<String, String> verify(Map headers, byte[] body, PublicKey key) throws SignatureException
-   {
+   public MultivaluedMap<String, String> verify(Map headers, byte[] body, PublicKey key) throws SignatureException {
       return verify(true, headers, body, key);
    }
 
@@ -504,55 +421,43 @@ public class DKIMSignature
     * JAX-RS's MultivaluedMap.   If a map of lists, every value of each header duplicate will be added.
     *
     * @param bodyHashRequired body hash required
-    * @param headers headers map
-    * @param body body
-    * @param key public key
+    * @param headers          headers map
+    * @param body             body
+    * @param key              public key
     * @return map of verified headers and their values
     * @throws SignatureException signature exception
     */
-   public MultivaluedMap<String, String> verify(boolean bodyHashRequired, Map headers, byte[] body, PublicKey key) throws SignatureException
-   {
+   public MultivaluedMap<String, String> verify(boolean bodyHashRequired, Map headers, byte[] body, PublicKey key) throws SignatureException {
       if (key == null) throw new SignatureException(Messages.MESSAGES.noKeyToVerifyWith());
 
       String algorithm = getAlgorithm();
-      if (algorithm == null || !SigningAlgorithm.SHA256withRSA.getRfcNotation().toLowerCase().equals(algorithm.toLowerCase()))
-      {
+      if (algorithm == null || !SigningAlgorithm.SHA256withRSA.getRfcNotation().toLowerCase().equals(algorithm.toLowerCase())) {
          throw new SignatureException(Messages.MESSAGES.unsupportedAlgorithm(algorithm));
       }
 
       Signature verifier = null;
-      try
-      {
+      try {
          verifier = Signature.getInstance(SigningAlgorithm.SHA256withRSA.getJavaSecNotation());
          verifier.initVerify(key);
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new SignatureException(e);
       }
 
 
       String encodedBh = attributes.get("bh");
-      if (encodedBh == null)
-      {
+      if (encodedBh == null) {
          if (body != null && bodyHashRequired) throw new SignatureException(Messages.MESSAGES.thereWasNoBodyHash());
-      }
-      else
-      {
+      } else {
 
          byte[] bh = hash(body, SigningAlgorithm.SHA256withRSA.getJavaHashNotation());
          byte[] enclosedBh = null;
-         try
-         {
+         try {
             enclosedBh = Base64.decode(encodedBh);
-         }
-         catch (IOException e)
-         {
+         } catch (IOException e) {
             throw new SignatureException(Messages.MESSAGES.failedToParseBodyHash(), e);
          }
 
-         if (Arrays.equals(bh, enclosedBh) == false)
-         {
+         if (Arrays.equals(bh, enclosedBh) == false) {
             throw new SignatureException(Messages.MESSAGES.bodyHashesDoNotMatch());
          }
       }
@@ -560,8 +465,7 @@ public class DKIMSignature
       ParameterParser parser = new ParameterParser();
       String strippedHeader = parser.setAttribute(headerValue.toCharArray(), 0, headerValue.length(), ';', "b", "");
       verifier.update(strippedHeader.getBytes());
-      if (verifier.verify(getSignature()) == false)
-      {
+      if (verifier.verify(getSignature()) == false) {
          throw new SignatureException(Messages.MESSAGES.failedToVerifySignature());
       }
 

@@ -1,21 +1,19 @@
 package org.jboss.resteasy.spi.metadata;
 
-import java.util.Set;
-
 import javax.ws.rs.core.MediaType;
+import java.util.Set;
 
 /**
  * @author Christian Kaltepoth
  */
-public interface ResourceMethod extends ResourceLocator
-{
-  Set<String> getHttpMethods();
+public interface ResourceMethod extends ResourceLocator {
+   Set<String> getHttpMethods();
 
-  MediaType[] getProduces();
+   MediaType[] getProduces();
 
-  MediaType[] getConsumes();
+   MediaType[] getConsumes();
 
-  boolean isAsynchronous();
+   boolean isAsynchronous();
 
-  void markAsynchronous();
+   void markAsynchronous();
 }

@@ -14,6 +14,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import javax.ws.rs.core.Response;
 
 /**
@@ -26,30 +27,30 @@ import javax.ws.rs.core.Response;
 @RunAsClient
 public class QueryParamWithMultipleEqualsTest {
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(QueryParamWithMultipleEqualsTest.class.getSimpleName());
-        return TestUtil.finishContainerPrepare(war, null, QueryParamWithMultipleEqualsResource.class);
-    }
+   @Deployment
+   public static Archive<?> deploy() {
+      WebArchive war = TestUtil.prepareArchive(QueryParamWithMultipleEqualsTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, QueryParamWithMultipleEqualsResource.class);
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, QueryParamWithMultipleEqualsTest.class.getSimpleName());
-    }
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, QueryParamWithMultipleEqualsTest.class.getSimpleName());
+   }
 
-    /**
-     * @tpTestDetails Test query parameter "foo=weird=but=valid"
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testQueryParam() throws Exception {
-        ResteasyClient client = new ResteasyClientBuilder().build();
-        Response response = client.target(generateURL("/test?foo=weird=but=valid")).request().get();
+   /**
+    * @tpTestDetails Test query parameter "foo=weird=but=valid"
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testQueryParam() throws Exception {
+      ResteasyClient client = new ResteasyClientBuilder().build();
+      Response response = client.target(generateURL("/test?foo=weird=but=valid")).request().get();
 
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-        String entity = response.readEntity(String.class);
-        Assert.assertEquals("Wrong content of response", "weird=but=valid", entity);
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      String entity = response.readEntity(String.class);
+      Assert.assertEquals("Wrong content of response", "weird=but=valid", entity);
 
-        response.close();
-        client.close();
-    }
+      response.close();
+      client.close();
+   }
 }

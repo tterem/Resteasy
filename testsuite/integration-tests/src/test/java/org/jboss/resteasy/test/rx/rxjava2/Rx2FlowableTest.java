@@ -1,5 +1,29 @@
 package org.jboss.resteasy.test.rx.rxjava2;
 
+import io.reactivex.Flowable;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.rxjava2.FlowableRxInvoker;
+import org.jboss.resteasy.rxjava2.FlowableRxInvokerProvider;
+import org.jboss.resteasy.test.rx.resource.*;
+import org.jboss.resteasy.test.rx.rxjava2.resource.Rx2FlowableResourceImpl;
+import org.jboss.resteasy.utils.PortProviderUtil;
+import org.jboss.resteasy.utils.TestUtil;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
+
+import javax.ws.rs.ClientErrorException;
+import javax.ws.rs.InternalServerErrorException;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,51 +33,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-import javax.ws.rs.ClientErrorException;
-import javax.ws.rs.InternalServerErrorException;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.rxjava2.FlowableRxInvoker;
-import org.jboss.resteasy.rxjava2.FlowableRxInvokerProvider;
-import org.jboss.resteasy.test.rx.resource.Bytes;
-import org.jboss.resteasy.test.rx.resource.RxScheduledExecutorService;
-import org.jboss.resteasy.test.rx.resource.TRACE;
-import org.jboss.resteasy.test.rx.resource.TestException;
-import org.jboss.resteasy.test.rx.resource.TestExceptionMapper;
-import org.jboss.resteasy.test.rx.resource.Thing;
-import org.jboss.resteasy.test.rx.rxjava2.resource.Rx2FlowableResourceImpl;
-import org.jboss.resteasy.utils.PortProviderUtil;
-import org.jboss.resteasy.utils.TestUtil;
-import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
-
-import io.reactivex.Flowable;
-
 /**
  * @tpSubChapter Reactive classes
  * @tpChapter Integration tests
  * @tpSince RESTEasy 4.0
- * 
+ * <p>
  * In these tests, the server uses Flowables to create results asynchronously and streams the elements
  * of the Flowables as they are created.
- * 
+ * <p>
  * The client makes invocations on an FlowableRxInvoker.
  */
 @RunWith(Arquillian.class)
@@ -61,33 +48,44 @@ import io.reactivex.Flowable;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Rx2FlowableTest {
 
-   private static ResteasyClient client;
-   private static CountDownLatch latch;
-   private static AtomicInteger errors;
-
    private final static List<String> xStringList = new ArrayList<String>();
-   private final static List<String> aStringList = new ArrayList<String>();   
-   private final static List<Thing>  xThingList =  new ArrayList<Thing>();
-   private final static List<Thing>  aThingList =  new ArrayList<Thing>();
+   private final static List<String> aStringList = new ArrayList<String>();
+   private final static List<Thing> xThingList = new ArrayList<Thing>();
+   private final static List<Thing> aThingList = new ArrayList<Thing>();
    private final static List<List<Thing>> xThingListList = new ArrayList<List<Thing>>();
    private final static List<List<Thing>> aThingListList = new ArrayList<List<Thing>>();
    private final static Entity<String> aEntity = Entity.entity("a", MediaType.TEXT_PLAIN_TYPE);
    private final static Entity<String> threeEntity = Entity.entity("3", MediaType.TEXT_PLAIN_TYPE);
-
+   private static ResteasyClient client;
+   private static CountDownLatch latch;
+   private static AtomicInteger errors;
    private static AtomicReference<Object> value = new AtomicReference<Object>();
    private static ArrayList<String> stringList = new ArrayList<String>();
-   private static ArrayList<Thing>  thingList = new ArrayList<Thing>();
+   private static ArrayList<Thing> thingList = new ArrayList<Thing>();
    private static ArrayList<List<?>> thingListList = new ArrayList<List<?>>();
    private static ArrayList<byte[]> bytesList = new ArrayList<byte[]>();
-   private static GenericType<List<Thing>> LIST_OF_THING = new GenericType<List<Thing>>() {};
+   private static GenericType<List<Thing>> LIST_OF_THING = new GenericType<List<Thing>>() {
+   };
 
    static {
-      for (int i = 0; i < 3; i++) {xStringList.add("x");}
-      for (int i = 0; i < 3; i++) {aStringList.add("a");}
-      for (int i = 0; i < 3; i++) {xThingList.add(new Thing("x"));}
-      for (int i = 0; i < 3; i++) {aThingList.add(new Thing("a"));}
-      for (int i = 0; i < 2; i++) {xThingListList.add(xThingList);}
-      for (int i = 0; i < 2; i++) {aThingListList.add(aThingList);}
+      for (int i = 0; i < 3; i++) {
+         xStringList.add("x");
+      }
+      for (int i = 0; i < 3; i++) {
+         aStringList.add("a");
+      }
+      for (int i = 0; i < 3; i++) {
+         xThingList.add(new Thing("x"));
+      }
+      for (int i = 0; i < 3; i++) {
+         aThingList.add(new Thing("a"));
+      }
+      for (int i = 0; i < 2; i++) {
+         xThingListList.add(xThingList);
+      }
+      for (int i = 0; i < 2; i++) {
+         aThingListList.add(aThingList);
+      }
    }
 
    @Deployment
@@ -99,7 +97,7 @@ public class Rx2FlowableTest {
       war.addClass(RxScheduledExecutorService.class);
       war.addClass(TestException.class);
       war.setManifest(new StringAsset("Manifest-Version: 1.0\n"
-         + "Dependencies: org.jboss.resteasy.resteasy-rxjava2 services\n"));
+              + "Dependencies: org.jboss.resteasy.resteasy-rxjava2 services\n"));
       return TestUtil.finishContainerPrepare(war, null, Rx2FlowableResourceImpl.class, TestExceptionMapper.class);
    }
 
@@ -113,6 +111,23 @@ public class Rx2FlowableTest {
       client = new ResteasyClientBuilder().build();
    }
 
+   @AfterClass
+   public static void after() throws Exception {
+      client.close();
+   }
+
+   private static boolean throwableContains(Throwable t, String s) {
+      while (t != null) {
+         if (t.getMessage().contains(s)) {
+            return true;
+         }
+         t = t.getCause();
+      }
+      return false;
+   }
+
+   //////////////////////////////////////////////////////////////////////////////
+
    @Before
    public void before() throws Exception {
       stringList.clear();
@@ -124,22 +139,15 @@ public class Rx2FlowableTest {
       value.set(null);
    }
 
-   @AfterClass
-   public static void after() throws Exception {
-      client.close();
-   }
-
-   //////////////////////////////////////////////////////////////////////////////
-
    @SuppressWarnings("unchecked")
    @Test
    public void testGet() throws Exception {
       FlowableRxInvoker invoker = client.target(generateURL("/get/string")).request().rx(FlowableRxInvoker.class);
       Flowable<String> flowable = (Flowable<String>) invoker.get();
       flowable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -152,9 +160,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/get/thing")).request().rx(FlowableRxInvoker.class);
       Flowable<Thing> flowable = (Flowable<Thing>) invoker.get(Thing.class);
       flowable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing o) -> thingList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -167,9 +175,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/get/thing/list")).request().rx(FlowableRxInvoker.class);
       Flowable<List<Thing>> flowable = (Flowable<List<Thing>>) invoker.get(LIST_OF_THING);
       flowable.subscribe(
-         (List<?> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<?> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -182,9 +190,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/get/bytes")).request().rx(FlowableRxInvoker.class);
       Flowable<byte[]> flowable = (Flowable<byte[]>) invoker.get(byte[].class);
       flowable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -200,9 +208,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/put/string")).request().rx(FlowableRxInvoker.class);
       Flowable<String> flowable = (Flowable<String>) invoker.put(aEntity);
       flowable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -215,9 +223,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/put/thing")).request().rx(FlowableRxInvoker.class);
       Flowable<Thing> flowable = (Flowable<Thing>) invoker.put(aEntity, Thing.class);
       flowable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing o) -> thingList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -230,9 +238,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/put/thing/list")).request().rx(FlowableRxInvoker.class);
       Flowable<List<Thing>> flowable = (Flowable<List<Thing>>) invoker.put(aEntity, LIST_OF_THING);
       flowable.subscribe(
-         (List<?> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<?> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -245,9 +253,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/put/bytes")).request().rx(FlowableRxInvoker.class);
       Flowable<byte[]> flowable = (Flowable<byte[]>) invoker.put(threeEntity, byte[].class);
       flowable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -263,9 +271,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/post/string")).request().rx(FlowableRxInvoker.class);
       Flowable<String> flowable = (Flowable<String>) invoker.post(aEntity);
       flowable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -278,9 +286,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/post/thing")).request().rx(FlowableRxInvoker.class);
       Flowable<Thing> flowable = (Flowable<Thing>) invoker.post(aEntity, Thing.class);
       flowable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing o) -> thingList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -293,9 +301,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/post/thing/list")).request().rx(FlowableRxInvoker.class);
       Flowable<List<Thing>> flowable = (Flowable<List<Thing>>) invoker.post(aEntity, LIST_OF_THING);
       flowable.subscribe(
-         (List<?> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<?> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -308,9 +316,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/post/bytes")).request().rx(FlowableRxInvoker.class);
       Flowable<byte[]> flowable = (Flowable<byte[]>) invoker.post(threeEntity, byte[].class);
       flowable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -326,9 +334,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/delete/string")).request().rx(FlowableRxInvoker.class);
       Flowable<String> flowable = (Flowable<String>) invoker.delete();
       flowable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -341,9 +349,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/delete/thing")).request().rx(FlowableRxInvoker.class);
       Flowable<Thing> flowable = (Flowable<Thing>) invoker.delete(Thing.class);
       flowable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing o) -> thingList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -356,9 +364,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/delete/thing/list")).request().rx(FlowableRxInvoker.class);
       Flowable<List<Thing>> flowable = (Flowable<List<Thing>>) invoker.delete(LIST_OF_THING);
       flowable.subscribe(
-         (List<?> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<?> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -371,9 +379,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/delete/bytes")).request().rx(FlowableRxInvoker.class);
       Flowable<byte[]> flowable = (Flowable<byte[]>) invoker.delete(byte[].class);
       flowable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -400,9 +408,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/options/string")).request().rx(FlowableRxInvoker.class);
       Flowable<String> flowable = (Flowable<String>) invoker.options();
       flowable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -415,9 +423,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/options/thing")).request().rx(FlowableRxInvoker.class);
       Flowable<Thing> flowable = (Flowable<Thing>) invoker.options(Thing.class);
       flowable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing o) -> thingList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -430,9 +438,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/options/thing/list")).request().rx(FlowableRxInvoker.class);
       Flowable<List<Thing>> flowable = (Flowable<List<Thing>>) invoker.options(LIST_OF_THING);
       flowable.subscribe(
-         (List<?> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<?> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -445,9 +453,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/options/bytes")).request().rx(FlowableRxInvoker.class);
       Flowable<byte[]> flowable = (Flowable<byte[]>) invoker.options(byte[].class);
       flowable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -464,9 +472,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/trace/string")).request().rx(FlowableRxInvoker.class);
       Flowable<String> flowable = (Flowable<String>) invoker.trace();
       flowable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -480,9 +488,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/trace/thing")).request().rx(FlowableRxInvoker.class);
       Flowable<Thing> flowable = (Flowable<Thing>) invoker.trace(Thing.class);
       flowable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing o) -> thingList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -496,9 +504,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/trace/thing/list")).request().rx(FlowableRxInvoker.class);
       Flowable<List<Thing>> flowable = (Flowable<List<Thing>>) invoker.trace(LIST_OF_THING);
       flowable.subscribe(
-         (List<?> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<?> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -512,9 +520,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/trace/bytes")).request().rx(FlowableRxInvoker.class);
       Flowable<byte[]> flowable = (Flowable<byte[]>) invoker.get(byte[].class);
       flowable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -530,9 +538,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/get/string")).request().rx(FlowableRxInvoker.class);
       Flowable<String> flowable = (Flowable<String>) invoker.method("GET");
       flowable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -545,9 +553,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/get/thing")).request().rx(FlowableRxInvoker.class);
       Flowable<Thing> flowable = (Flowable<Thing>) invoker.method("GET", Thing.class);
       flowable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing o) -> thingList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -560,9 +568,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/get/thing/list")).request().rx(FlowableRxInvoker.class);
       Flowable<List<Thing>> flowable = (Flowable<List<Thing>>) invoker.method("GET", LIST_OF_THING);
       flowable.subscribe(
-         (List<?> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<?> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -575,9 +583,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/get/bytes")).request().rx(FlowableRxInvoker.class);
       Flowable<byte[]> flowable = (Flowable<byte[]>) invoker.method("GET", byte[].class);
       flowable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -593,9 +601,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/post/string")).request().rx(FlowableRxInvoker.class);
       Flowable<String> flowable = (Flowable<String>) invoker.method("POST", aEntity);
       flowable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -608,9 +616,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/post/thing")).request().rx(FlowableRxInvoker.class);
       Flowable<Thing> flowable = (Flowable<Thing>) invoker.method("POST", aEntity, Thing.class);
       flowable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing o) -> thingList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -623,9 +631,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/post/thing/list")).request().rx(FlowableRxInvoker.class);
       Flowable<List<Thing>> flowable = (Flowable<List<Thing>>) invoker.method("POST", aEntity, LIST_OF_THING);
       flowable.subscribe(
-         (List<?> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<?> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -638,9 +646,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/post/bytes")).request().rx(FlowableRxInvoker.class);
       Flowable<byte[]> flowable = (Flowable<byte[]>) invoker.method("POST", threeEntity, byte[].class);
       flowable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -652,15 +660,15 @@ public class Rx2FlowableTest {
 
    @SuppressWarnings("unchecked")
    @Test
-   public void testScheduledExecutorService () throws Exception {
+   public void testScheduledExecutorService() throws Exception {
       {
          RxScheduledExecutorService.used = false;
          FlowableRxInvoker invoker = client.target(generateURL("/get/string")).request().rx(FlowableRxInvoker.class);
          Flowable<String> flowable = (Flowable<String>) invoker.get();
          flowable.subscribe(
-            (String o) -> stringList.add(o),
-            (Throwable t) -> errors.incrementAndGet(),
-            () -> latch.countDown());
+                 (String o) -> stringList.add(o),
+                 (Throwable t) -> errors.incrementAndGet(),
+                 () -> latch.countDown());
          boolean waitResult = latch.await(30, TimeUnit.SECONDS);
          Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
          Assert.assertEquals(0, errors.get());
@@ -679,9 +687,9 @@ public class Rx2FlowableTest {
          Flowable<String> flowable = (Flowable<String>) invoker.get();
          stringList.clear();
          flowable.subscribe(
-            (String o) -> stringList.add(o),
-            (Throwable t) -> errors.incrementAndGet(),
-            () -> latch.countDown());
+                 (String o) -> stringList.add(o),
+                 (Throwable t) -> errors.incrementAndGet(),
+                 () -> latch.countDown());
          boolean waitResult = latch.await(30, TimeUnit.SECONDS);
          Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
          Assert.assertEquals(0, errors.get());
@@ -697,9 +705,12 @@ public class Rx2FlowableTest {
       Flowable<Thing> flowable = (Flowable<Thing>) invoker.get(Thing.class);
       AtomicReference<Object> value = new AtomicReference<Object>();
       flowable.subscribe(
-         (Thing t) -> thingList.add(t),
-         (Throwable t) -> {value.set(t); latch.countDown();},
-         () -> latch.countDown());
+              (Thing t) -> thingList.add(t),
+              (Throwable t) -> {
+                 value.set(t);
+                 latch.countDown();
+              },
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Throwable t = (Throwable) value.get();
@@ -714,9 +725,12 @@ public class Rx2FlowableTest {
       Flowable<Thing> flowable = (Flowable<Thing>) invoker.get(Thing.class);
       AtomicReference<Object> value = new AtomicReference<Object>();
       flowable.subscribe(
-         (Thing t) -> thingList.add(t),
-         (Throwable t) -> {value.set(t); latch.countDown();},
-         () -> latch.countDown());
+              (Thing t) -> thingList.add(t),
+              (Throwable t) -> {
+                 value.set(t);
+                 latch.countDown();
+              },
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Throwable t = (Throwable) value.get();
@@ -733,22 +747,22 @@ public class Rx2FlowableTest {
       ResteasyClient client1 = new ResteasyClientBuilder().build();
       client1.register(FlowableRxInvokerProvider.class);
       FlowableRxInvoker invoker1 = client1.target(generateURL("/get/string")).request().rx(FlowableRxInvoker.class);
-      Flowable<String> flowable1 = (Flowable<String>) invoker1.get();      
+      Flowable<String> flowable1 = (Flowable<String>) invoker1.get();
 
       ResteasyClient client2 = new ResteasyClientBuilder().build();
       client2.register(FlowableRxInvokerProvider.class);
       FlowableRxInvoker invoker2 = client2.target(generateURL("/get/string")).request().rx(FlowableRxInvoker.class);
-      Flowable<String> flowable2 = (Flowable<String>) invoker2.get();   
+      Flowable<String> flowable2 = (Flowable<String>) invoker2.get();
 
       flowable1.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+              (String o) -> list.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> cdl.countDown());
 
       flowable2.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+              (String o) -> list.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> cdl.countDown());
 
       boolean waitResult = cdl.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
@@ -766,20 +780,20 @@ public class Rx2FlowableTest {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       FlowableRxInvoker invoker1 = client.target(generateURL("/get/string")).request().rx(FlowableRxInvoker.class);
-      Flowable<String> flowable1 = (Flowable<String>) invoker1.get();      
+      Flowable<String> flowable1 = (Flowable<String>) invoker1.get();
 
       FlowableRxInvoker invoker2 = client.target(generateURL("/get/string")).request().rx(FlowableRxInvoker.class);
-      Flowable<String> flowable2 = (Flowable<String>) invoker2.get();   
+      Flowable<String> flowable2 = (Flowable<String>) invoker2.get();
 
       flowable1.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+              (String o) -> list.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> cdl.countDown());
 
       flowable2.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+              (String o) -> list.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> cdl.countDown());
 
       boolean waitResult = cdl.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
@@ -797,18 +811,18 @@ public class Rx2FlowableTest {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       FlowableRxInvoker invoker = client.target(generateURL("/get/string")).request().rx(FlowableRxInvoker.class);
-      Flowable<String> flowable1 = (Flowable<String>) invoker.get();      
-      Flowable<String> flowable2 = (Flowable<String>) invoker.get();   
+      Flowable<String> flowable1 = (Flowable<String>) invoker.get();
+      Flowable<String> flowable2 = (Flowable<String>) invoker.get();
 
       flowable1.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+              (String o) -> list.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> cdl.countDown());
 
       flowable2.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+              (String o) -> list.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> cdl.countDown());
 
       boolean waitResult = cdl.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
@@ -825,9 +839,9 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/post/bytes")).request().rx(FlowableRxInvoker.class);
       Flowable<byte[]> flowable = (Flowable<byte[]>) invoker.post(Entity.entity("1000", MediaType.TEXT_PLAIN_TYPE), byte[].class);
       flowable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -835,16 +849,5 @@ public class Rx2FlowableTest {
       for (byte[] b : bytesList) {
          Assert.assertTrue(Arrays.equals(Bytes.BYTES, b));
       }
-   }
-
-   private static boolean throwableContains(Throwable t, String s) {
-      while (t != null) {
-         if (t.getMessage().contains(s))
-         {
-            return true;
-         }
-         t = t.getCause();
-      }
-      return false;
    }
 }

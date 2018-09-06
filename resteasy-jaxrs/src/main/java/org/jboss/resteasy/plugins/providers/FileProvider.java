@@ -15,14 +15,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
@@ -35,8 +28,7 @@ import java.lang.reflect.Type;
 @Produces("*/*")
 @Consumes("*/*")
 public class FileProvider implements MessageBodyReader<File>,
-        MessageBodyWriter<File>
-{
+        MessageBodyWriter<File> {
    private static final String PREFIX = "pfx";
 
    private static final String SUFFIX = "sfx";
@@ -46,28 +38,22 @@ public class FileProvider implements MessageBodyReader<File>,
    // defined at runtime
 
    public boolean isReadable(Class<?> type, Type genericType,
-                             Annotation[] annotations, MediaType mediaType)
-   {
+                             Annotation[] annotations, MediaType mediaType) {
       return File.class == type;
    }
 
    public File readFrom(Class<File> type, Type genericType,
                         Annotation[] annotations, MediaType mediaType,
                         MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
-           throws IOException
-   {
+           throws IOException {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom", getClass().getName());
       File downloadedFile = null;
 
-      if (_downloadDirectory != null)
-      {
-         try
-         {
+      if (_downloadDirectory != null) {
+         try {
             downloadedFile = File.createTempFile(PREFIX, SUFFIX, new File(
                     _downloadDirectory));
-         }
-         catch (final IOException ex)
-         {
+         } catch (final IOException ex) {
             // could make this configurable, so we fail on fault rather than
             // default.
             LogMessages.LOGGER.couldNotBindToDirectory(_downloadDirectory);
@@ -78,25 +64,19 @@ public class FileProvider implements MessageBodyReader<File>,
          downloadedFile = File.createTempFile(PREFIX, SUFFIX);
 
       Cleanables cleanables = ResteasyProviderFactory.getContextData(Cleanables.class);
-      if (cleanables != null)
-      {
+      if (cleanables != null) {
          cleanables.addCleanable(new FileHolder(downloadedFile));
-      }
-      else
-      {
+      } else {
          LogMessages.LOGGER.temporaryFileCreated(downloadedFile.getPath());
       }
-      
+
       if (NoContent.isContentLengthZero(httpHeaders)) return downloadedFile;
       OutputStream output = new BufferedOutputStream(new FileOutputStream(
               downloadedFile));
 
-      try
-      {
+      try {
          ProviderHelper.writeTo(entityStream, output);
-      }
-      finally
-      {
+      } finally {
          output.close();
       }
 
@@ -104,83 +84,65 @@ public class FileProvider implements MessageBodyReader<File>,
    }
 
    public boolean isWriteable(Class<?> type, Type genericType,
-                              Annotation[] annotations, MediaType mediaType)
-   {
+                              Annotation[] annotations, MediaType mediaType) {
       return File.class.isAssignableFrom(type); // catch subtypes
    }
 
-   public long getSize(File o, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public long getSize(File o, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return o.length();
    }
 
    public void writeTo(File uploadFile, Class<?> type, Type genericType,
                        Annotation[] annotations, MediaType mediaType,
                        MultivaluedMap<String, Object> httpHeaders,
-                       OutputStream entityStream) throws IOException
-   {
+                       OutputStream entityStream) throws IOException {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom", getClass().getName());
       HttpHeaders headers = ResteasyProviderFactory.getContextData(HttpHeaders.class);
-      if (headers == null)
-      {
+      if (headers == null) {
          writeIt(uploadFile, entityStream);
          return;
       }
       String range = headers.getRequestHeaders().getFirst("Range");
-      if (range == null)
-      {
+      if (range == null) {
          writeIt(uploadFile, entityStream);
          return;
       }
       range = range.trim();
       int byteUnit = range.indexOf("bytes=");
-      if ( byteUnit < 0)
-      {
-    	  //must start with 'bytes'
-          writeIt(uploadFile, entityStream);
-          return;
+      if (byteUnit < 0) {
+         //must start with 'bytes'
+         writeIt(uploadFile, entityStream);
+         return;
       }
       range = range.substring("bytes=".length());
-      if (range.indexOf(',') > -1)
-      {
+      if (range.indexOf(',') > -1) {
          // we don't support this
          writeIt(uploadFile, entityStream);
          return;
       }
       int separator = range.indexOf('-');
-      if (separator < 0)
-      {
+      if (separator < 0) {
          writeIt(uploadFile, entityStream);
          return;
-      }
-      else if (separator == 0)
-      {
+      } else if (separator == 0) {
          long fileSize = uploadFile.length();
          long begin = Long.parseLong(range);
-         if (fileSize + begin < 1)
-         {
+         if (fileSize + begin < 1) {
             writeIt(uploadFile, entityStream);
             return;
          }
          throw new FileRangeException(mediaType, uploadFile, fileSize + begin, fileSize - 1);
-      }
-      else
-      {
-         try
-         {
+      } else {
+         try {
             long fileSize = uploadFile.length();
             long begin = Long.parseLong(range.substring(0, separator));
-            if (begin >= fileSize)
-            {
+            if (begin >= fileSize) {
                throw new WebApplicationException(416);
             }
             long end;
-            if (range.endsWith("-"))
-            {
+            if (range.endsWith("-")) {
                end = fileSize - 1;
-            }
-            else
-            {
+            } else {
                String substring = range.substring(separator + 1);
                end = Long.parseLong(substring);
             }
@@ -192,41 +154,32 @@ public class FileProvider implements MessageBodyReader<File>,
             }
             */
             throw new FileRangeException(mediaType, uploadFile, begin, end);
-         }
-         catch (NumberFormatException e)
-         {
+         } catch (NumberFormatException e) {
             writeIt(uploadFile, entityStream);
             return;
          }
       }
    }
 
-   protected void writeIt(File uploadFile, OutputStream entityStream) throws IOException
-   {
+   protected void writeIt(File uploadFile, OutputStream entityStream) throws IOException {
       InputStream inputStream = new BufferedInputStream(new FileInputStream(uploadFile));
 
-      try
-      {
+      try {
          ProviderHelper.writeTo(inputStream, entityStream);
-      }
-      finally
-      {
+      } finally {
          inputStream.close();
       }
    }
-   
-   private static class FileHolder implements Cleanable
-   {
+
+   private static class FileHolder implements Cleanable {
       File file;
-      
-      FileHolder(File file)
-      {
+
+      FileHolder(File file) {
          this.file = file;
       }
 
       @Override
-      public void clean() throws Exception
-      {
+      public void clean() throws Exception {
          file.delete();
       }
    }

@@ -1,23 +1,20 @@
 package org.jboss.resteasy.rxjava;
 
+import rx.Single;
+
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.RxInvoker;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
-import rx.Single;
-
 /**
- * @deprecated:
- * 
- *   "RxJava 1.x is now officially end-of-life (EOL). No further developments,
- *    bugfixes, enhancements, javadoc changes or maintenance will be provided by
- *    this project after version 1.3.8." - From https://github.com/ReactiveX/RxJava/releases
- *    
- *    Please upgrade to resteasy-rxjava2 and RxJava 2.x.
+ * @deprecated: "RxJava 1.x is now officially end-of-life (EOL). No further developments,
+ * bugfixes, enhancements, javadoc changes or maintenance will be provided by
+ * this project after version 1.3.8." - From https://github.com/ReactiveX/RxJava/releases
+ * <p>
+ * Please upgrade to resteasy-rxjava2 and RxJava 2.x.
  */
-public interface SingleRxInvoker extends RxInvoker<Single<?>>
-{
+public interface SingleRxInvoker extends RxInvoker<Single<?>> {
    @Override
    Single<Response> get();
 

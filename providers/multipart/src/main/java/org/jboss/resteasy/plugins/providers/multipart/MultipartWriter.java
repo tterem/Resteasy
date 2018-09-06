@@ -17,23 +17,19 @@ import java.lang.reflect.Type;
  */
 @Provider
 @Produces("multipart/*")
-public class MultipartWriter extends AbstractMultipartWriter implements MessageBodyWriter<MultipartOutput>
-{
+public class MultipartWriter extends AbstractMultipartWriter implements MessageBodyWriter<MultipartOutput> {
 
 
-   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return MultipartOutput.class.isAssignableFrom(type);
    }
 
-   public long getSize(MultipartOutput multipartOutput, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public long getSize(MultipartOutput multipartOutput, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return -1;
    }
 
 
-   public void writeTo(MultipartOutput multipartOutput, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException
-   {
+   public void writeTo(MultipartOutput multipartOutput, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
       write(multipartOutput, mediaType, httpHeaders, entityStream);
    }
 

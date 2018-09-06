@@ -7,26 +7,19 @@ import java.util.Set;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class HeaderHelper
-{
+public class HeaderHelper {
    @SuppressWarnings(value = "unchecked")
-   public static void setAllow(MultivaluedMap headers, String[] methods)
-   {
-      if (methods == null)
-      {
+   public static void setAllow(MultivaluedMap headers, String[] methods) {
+      if (methods == null) {
          headers.remove("Allow");
          return;
       }
       StringBuilder builder = new StringBuilder();
       boolean isFirst = true;
-      for (String l : methods)
-      {
-         if (isFirst)
-         {
+      for (String l : methods) {
+         if (isFirst) {
             isFirst = false;
-         }
-         else
-         {
+         } else {
             builder.append(", ");
          }
          builder.append(l);
@@ -35,23 +28,17 @@ public class HeaderHelper
    }
 
    @SuppressWarnings(value = "unchecked")
-   public static void setAllow(MultivaluedMap headers, Set<String> methods)
-   {
-      if (methods == null)
-      {
+   public static void setAllow(MultivaluedMap headers, Set<String> methods) {
+      if (methods == null) {
          headers.remove("Allow");
          return;
       }
       StringBuilder builder = new StringBuilder();
       boolean isFirst = true;
-      for (String l : methods)
-      {
-         if (isFirst)
-         {
+      for (String l : methods) {
+         if (isFirst) {
             isFirst = false;
-         }
-         else
-         {
+         } else {
             builder.append(", ");
          }
          builder.append(l);

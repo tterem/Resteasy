@@ -11,10 +11,10 @@ import org.jboss.resteasy.utils.PortProviderUtil;
 import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ws.rs.Path;
@@ -37,112 +37,111 @@ import java.util.List;
 @RunAsClient
 public class CollectionProviderTest {
 
-    public static String getPathValue(Annotation[] annotations) {
-        return getSpecifiedAnnotationValue(annotations, Path.class);
-    }
+   static Client client;
 
-    @SuppressWarnings("unchecked")
-    public static <T extends Annotation> T getSpecifiedAnnotation(
-            Annotation[] annotations, Class<T> clazz) {
-        T t = null;
-        for (Annotation a : annotations) {
-            if (a.annotationType() == clazz) {
-                t = (T) a;
-            }
-        }
-        return t != null ? t : null;
-    }
+   public static String getPathValue(Annotation[] annotations) {
+      return getSpecifiedAnnotationValue(annotations, Path.class);
+   }
 
-    public static <T extends Annotation> String getSpecifiedAnnotationValue(
-            Annotation[] annotations, Class<T> clazz) {
-        T t = getSpecifiedAnnotation(annotations, clazz);
-        try {
-            Method m = clazz.getMethod("value");
-            return (String) m.invoke(t);
-        } catch (Exception e) {
-            return null;
-        }
-    }
+   @SuppressWarnings("unchecked")
+   public static <T extends Annotation> T getSpecifiedAnnotation(
+           Annotation[] annotations, Class<T> clazz) {
+      T t = null;
+      for (Annotation a : annotations) {
+         if (a.annotationType() == clazz) {
+            t = (T) a;
+         }
+      }
+      return t != null ? t : null;
+   }
 
-    public static boolean checkOther(Class<?> type, Type genericType) {
-        if (!(genericType instanceof ParameterizedType)) {
-            return false;
-        }
-        ParameterizedType pType = (ParameterizedType) genericType;
-        boolean ok = pType.getRawType().equals(LinkedList.class);
-        ok &= pType.getActualTypeArguments()[0].equals(String.class);
-        return ok;
-    }
+   public static <T extends Annotation> String getSpecifiedAnnotationValue(
+           Annotation[] annotations, Class<T> clazz) {
+      T t = getSpecifiedAnnotation(annotations, clazz);
+      try {
+         Method m = clazz.getMethod("value");
+         return (String) m.invoke(t);
+      } catch (Exception e) {
+         return null;
+      }
+   }
 
-    public static boolean checkResponseNongeneric(Class<?> type,
-                                                   Type genericType) {
-        boolean ok = genericType.equals(LinkedList.class);
-        ok &= type.equals(LinkedList.class);
-        return ok;
-    }
+   public static boolean checkOther(Class<?> type, Type genericType) {
+      if (!(genericType instanceof ParameterizedType)) {
+         return false;
+      }
+      ParameterizedType pType = (ParameterizedType) genericType;
+      boolean ok = pType.getRawType().equals(LinkedList.class);
+      ok &= pType.getActualTypeArguments()[0].equals(String.class);
+      return ok;
+   }
 
-    public static boolean checkGeneric(Class<?> type, Type genericType) {
-        if (ParameterizedType.class.isInstance(genericType)) {
-            genericType = ((ParameterizedType) genericType).getRawType();
-        }
-        boolean ok = genericType.getClass().equals(List.class)
-                || genericType.equals(LinkedList.class);
-        ok &= type.equals(LinkedList.class);
-        return ok;
-    }
+   public static boolean checkResponseNongeneric(Class<?> type,
+                                                 Type genericType) {
+      boolean ok = genericType.equals(LinkedList.class);
+      ok &= type.equals(LinkedList.class);
+      return ok;
+   }
 
+   public static boolean checkGeneric(Class<?> type, Type genericType) {
+      if (ParameterizedType.class.isInstance(genericType)) {
+         genericType = ((ParameterizedType) genericType).getRawType();
+      }
+      boolean ok = genericType.getClass().equals(List.class)
+              || genericType.equals(LinkedList.class);
+      ok &= type.equals(LinkedList.class);
+      return ok;
+   }
 
-    static Client client;
+   @BeforeClass
+   public static void before() throws Exception {
+      client = ClientBuilder.newClient();
+   }
 
-    @BeforeClass
-    public static void before() throws Exception {
-        client = ClientBuilder.newClient();
-    }
+   @Deployment
+   public static Archive<?> deploy() {
+      WebArchive war = TestUtil.prepareArchive(CollectionProviderTest.class.getSimpleName());
+      war.addClasses(CollectionProviderTest.class);
+      return TestUtil.finishContainerPrepare(war, null, CollectionProviderResource.class,
+              CollectionProviderIncorrectCollectionWriter.class, CollectionProviderCollectionWriter.class);
+   }
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(CollectionProviderTest.class.getSimpleName());
-        war.addClasses(CollectionProviderTest.class);
-        return TestUtil.finishContainerPrepare(war, null, CollectionProviderResource.class,
-                CollectionProviderIncorrectCollectionWriter.class, CollectionProviderCollectionWriter.class);
-    }
+   @AfterClass
+   public static void close() {
+      client.close();
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, CollectionProviderTest.class.getSimpleName());
-    }
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, CollectionProviderTest.class.getSimpleName());
+   }
 
-    @AfterClass
-    public static void close() {
-        client.close();
-    }
+   /**
+    * @tpTestDetails Client sends GET request to the server, server sends LinkedList with String items. Two message
+    * body readers are registered. One always returns isWritable false, so the other one has to be used.
+    * @tpPassCrit Correct MessageBodyReader is used for writing response of the type LinkedList<String>
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testGenericTypeDefault() {
+      Response response = client.target(generateURL("/resource/response/linkedlist")).request().get();
+      String val = response.readEntity(String.class);
+      Assert.assertEquals("OK", val);
+   }
 
-    /**
-     * @tpTestDetails Client sends GET request to the server, server sends LinkedList with String items. Two message
-     * body readers are registered. One always returns isWritable false, so the other one has to be used.
-     * @tpPassCrit Correct MessageBodyReader is used for writing response of the type LinkedList<String>
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testGenericTypeDefault() {
-        Response response = client.target(generateURL("/resource/response/linkedlist")).request().get();
-        String val = response.readEntity(String.class);
-        Assert.assertEquals("OK", val);
-    }
-
-    /**
-     * @tpTestDetails Client sends GET request to the server, server sends response with GenericEntity of the type
-     * LinkedList with String items. Two message body readers are registered. One always returns isWritable false,
-     * so the other one has to be used.
-     * @tpPassCrit Correct MessageBodyReader is used for writing response with GenericEntity of the type LinkedList<String>
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testGenericTypeResponse() {
-        Response response = client.target(generateURL("/resource/genericentity/linkedlist")).request().get();
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-        String val = response.readEntity(String.class);
-        Assert.assertEquals("OK", val);
-    }
+   /**
+    * @tpTestDetails Client sends GET request to the server, server sends response with GenericEntity of the type
+    * LinkedList with String items. Two message body readers are registered. One always returns isWritable false,
+    * so the other one has to be used.
+    * @tpPassCrit Correct MessageBodyReader is used for writing response with GenericEntity of the type LinkedList<String>
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testGenericTypeResponse() {
+      Response response = client.target(generateURL("/resource/genericentity/linkedlist")).request().get();
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      String val = response.readEntity(String.class);
+      Assert.assertEquals("OK", val);
+   }
 
 
 }

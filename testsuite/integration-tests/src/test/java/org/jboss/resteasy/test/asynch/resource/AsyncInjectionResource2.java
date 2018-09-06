@@ -1,13 +1,11 @@
 package org.jboss.resteasy.test.asynch.resource;
 
-import java.util.concurrent.CompletionStage;
-
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
+import java.util.concurrent.CompletionStage;
 
 @Path("/")
-public class AsyncInjectionResource2
-{
+public class AsyncInjectionResource2 {
 
    @Context
    AsyncInjectionContext resolvedContextField;
@@ -18,7 +16,6 @@ public class AsyncInjectionResource2
    @AsyncInjectionContextAsyncSpecifier
    AsyncInjectionContext resolvedContextFieldAsync;
 
-   public AsyncInjectionResource2()
-   {
+   public AsyncInjectionResource2() {
    }
 }

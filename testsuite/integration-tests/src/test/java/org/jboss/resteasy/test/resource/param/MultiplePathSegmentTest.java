@@ -1,10 +1,5 @@
 package org.jboss.resteasy.test.resource.param;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -18,6 +13,11 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.Response;
 
 /**
  * @tpSubChapter Parameters
@@ -37,27 +37,26 @@ public class MultiplePathSegmentTest {
       return TestUtil.finishContainerPrepare(war, null, MultiplePathSegmentResource.class);
    }
 
-   private String generateURL(String path) {
-      return PortProviderUtil.generateURL(path, MultiplePathSegmentTest.class.getSimpleName());
-   }
-
    @BeforeClass
    public static void setup() {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void cleanup() {
-       client.close();
+      client.close();
    }
-   
+
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, MultiplePathSegmentTest.class.getSimpleName());
+   }
+
    /**
     * @tpTestDetails Array of PathSegments captured by wildcard
     * @tpSince RESTEasy 3.1.3.Final
     */
    @Test
-   public void testWildcardArray() throws Exception
-   {
+   public void testWildcardArray() throws Exception {
       Invocation.Builder request = client.target(generateURL("/a/b/c/array/3")).request();
       Response response = request.get();
       Assert.assertEquals(200, response.getStatus());
@@ -69,8 +68,7 @@ public class MultiplePathSegmentTest {
     * @tpSince RESTEasy 3.1.3.Final
     */
    @Test
-   public void testWildcardList() throws Exception
-   {
+   public void testWildcardList() throws Exception {
       Invocation.Builder request = client.target(generateURL("/a/b/c/list/3")).request();
       Response response = request.get();
       Assert.assertEquals(200, response.getStatus());
@@ -82,8 +80,7 @@ public class MultiplePathSegmentTest {
     * @tpSince RESTEasy 3.1.3.Final
     */
    @Test
-   public void testWildcardArrayList() throws Exception
-   {
+   public void testWildcardArrayList() throws Exception {
       Invocation.Builder request = client.target(generateURL("/a/b/c/arraylist/3")).request();
       Response response = request.get();
       Assert.assertEquals(200, response.getStatus());
@@ -95,8 +92,7 @@ public class MultiplePathSegmentTest {
     * @tpSince RESTEasy 3.1.3.Final
     */
    @Test
-   public void testTwoSegmentsArray() throws Exception
-   {
+   public void testTwoSegmentsArray() throws Exception {
       Invocation.Builder request = client.target(generateURL("/a/b/array")).request();
       Response response = request.get();
       Assert.assertEquals(200, response.getStatus());
@@ -108,8 +104,7 @@ public class MultiplePathSegmentTest {
     * @tpSince RESTEasy 3.1.3.Final
     */
    @Test
-   public void testTwoSegmentsList() throws Exception
-   {
+   public void testTwoSegmentsList() throws Exception {
       Invocation.Builder request = client.target(generateURL("/a/b/list")).request();
       Response response = request.get();
       Assert.assertEquals(200, response.getStatus());
@@ -121,8 +116,7 @@ public class MultiplePathSegmentTest {
     * @tpSince RESTEasy 3.1.3.Final
     */
    @Test
-   public void testTwoSegmentsArrayList() throws Exception
-   {
+   public void testTwoSegmentsArrayList() throws Exception {
       Invocation.Builder request = client.target(generateURL("/a/b/arraylist")).request();
       Response response = request.get();
       Assert.assertEquals(200, response.getStatus());

@@ -1,10 +1,6 @@
 package org.jboss.resteasy.annotations.providers.jaxb.json;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * A JSONToXml.
@@ -15,8 +11,7 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.ANNOTATION_TYPE})
-public @interface XmlNsMap
-{
+public @interface XmlNsMap {
 
    /**
     * XML Namespace

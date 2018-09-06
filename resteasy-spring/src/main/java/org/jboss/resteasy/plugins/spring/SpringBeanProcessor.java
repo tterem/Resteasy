@@ -2,12 +2,7 @@ package org.jboss.resteasy.plugins.spring;
 
 import org.jboss.resteasy.core.Dispatcher;
 import org.jboss.resteasy.plugins.spring.i18n.Messages;
-import org.jboss.resteasy.spi.HttpRequest;
-import org.jboss.resteasy.spi.HttpResponse;
-import org.jboss.resteasy.spi.PropertyInjector;
-import org.jboss.resteasy.spi.Registry;
-import org.jboss.resteasy.spi.ResteasyDeployment;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
+import org.jboss.resteasy.spi.*;
 import org.jboss.resteasy.util.GetRestful;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
@@ -17,11 +12,7 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
-import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.beans.factory.config.BeanReference;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.config.*;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
@@ -33,14 +24,8 @@ import org.springframework.util.ReflectionUtils;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
-
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * <p>
@@ -64,8 +49,7 @@ import java.util.Set;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartApplicationListener
-{
+public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartApplicationListener {
    protected Registry registry;
    protected ResteasyProviderFactory providerFactory;
    protected Dispatcher dispatcher;
@@ -79,290 +63,34 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
 
    private int order;
 
-   protected class ResteasyBeanPostProcessor implements BeanPostProcessor
-   {
-      private ConfigurableListableBeanFactory beanFactory;
-
-      protected ResteasyBeanPostProcessor(ConfigurableListableBeanFactory beanFactory)
-      {
-         this.beanFactory = beanFactory;
-      }
-
-      public Object postProcessBeforeInitialization(Object bean, String beanName)
-              throws BeansException
-      {
-         return bean;
-      }
-
-      /**
-       * This method is invoked after postProcessBeanFactory.
-       * <p>
-       * this method is invoked when ever a new bean is created. This will
-       * perform the following:
-       * <ol>
-       * <li>RESTEasy injection of singleton @Providers, as well as @Provider
-       * registration</li>
-       * <li>either singleton or request/prototype RESTeasy injection... but not
-       * registration. The RESTEasy registration happens in the
-       * onApplicationEvent() below, which happens at the end of the Spring
-       * life-cycle</li>
-       * <li>merges the {@link ResteasyDeployment} bean with the user deployment</li>
-       * </ol>
-       * @param bean bean
-       * @param beanName bean name
-       * @see SpringBeanProcessor#postProcessBeanFactory(ConfigurableListableBeanFactory)
-       */
-      public Object postProcessAfterInitialization(Object bean, String beanName)
-              throws BeansException
-      {
-         if (providerNames.contains(beanName))
-         {
-            PropertyInjector injector = getInjector(AopUtils.getTargetClass(bean));
-            injector.inject(bean, false);
-            providerFactory.registerProviderInstance(bean);
-         }
-
-         else if(registrations.contains(beanName) && bean instanceof ResteasyRegistration)
-         {
-            ResteasyRegistration registration = (ResteasyRegistration)bean;
-            String registeredBeanName = registration.getBeanName();
-            BeanDefinition beanDef = beanFactory.getBeanDefinition(registeredBeanName);
-            Class<?> beanClass = getBeanClass(registeredBeanName, beanDef, beanFactory);
-            SpringResourceFactory resourceFactory = new SpringResourceFactory(registeredBeanName, beanFactory, beanClass);
-            resourceFactory.setContext(registration.getContext());
-            resourceFactories.put(registeredBeanName, resourceFactory);
-         }
-
-         else if (bean instanceof ResteasyDeployment && deployment != null) {
-            ResteasyDeployment beanDeployment = (ResteasyDeployment) bean;
-            deployment.merge(beanDeployment);
-            deployment.start();
-         }
-
-         else 
-         {
-            SpringResourceFactory resourceFactory = resourceFactories.get(beanName);
-            if (resourceFactory != null)
-            {
-               inject(beanName, bean, getInjector(resourceFactory.getScannableClass()));
-            }
-         }
-
-         return bean;
-      }
-
-      public PropertyInjector getInjector(Class<?> clazz)
-      {
-         return providerFactory.getInjectorFactory().createPropertyInjector(clazz, providerFactory);
-      }
-
-      public void inject(String beanName, Object bean, PropertyInjector propertyInjector)
-      {
-         if (propertyInjector == null)
-         {
-            return;
-         }
-         HttpRequest request = ResteasyProviderFactory.getContextData(HttpRequest.class);
-         if (request == null || isSingleton(beanName))
-         {
-            propertyInjector.inject(bean, false);
-         }
-         else
-         {
-            HttpResponse response = ResteasyProviderFactory.getContextData(HttpResponse.class);
-            propertyInjector.inject(request, response, bean, false);
-         }
-      }
-
-      private boolean isSingleton(String beanName)
-      {
-         boolean isSingleton = false;
-         try
-         {
-            BeanDefinition beanDef = beanFactory.getBeanDefinition(beanName);
-            isSingleton = beanDef.isSingleton();
-         }
-         catch (org.springframework.beans.factory.NoSuchBeanDefinitionException nsbde)
-         {
-            // cannot distinguish between singleton & prototype
-         }
-         return isSingleton;
-      }
-   }
-
-   public SpringBeanProcessor(ResteasyDeployment deployment)
-   {
+   public SpringBeanProcessor(ResteasyDeployment deployment) {
       this(deployment.getDispatcher(), deployment.getRegistry(), deployment.getProviderFactory());
       this.deployment = deployment;
    }
 
-   public SpringBeanProcessor(Dispatcher dispatcher)
-   {
+   public SpringBeanProcessor(Dispatcher dispatcher) {
       this(dispatcher, dispatcher.getRegistry(), dispatcher.getProviderFactory());
    }
 
    public SpringBeanProcessor(Dispatcher dispatcher, Registry registry,
-                              ResteasyProviderFactory providerFactory)
-   {
+                              ResteasyProviderFactory providerFactory) {
       this.setRegistry(registry);
       this.setProviderFactory(providerFactory);
       this.setDispatcher(dispatcher);
    }
 
-   public SpringBeanProcessor()
-   {
-   }
-
-   @Required
-   public Registry getRegistry()
-   {
-      return registry;
-   }
-
-   public void setRegistry(Registry registry)
-   {
-      this.registry = registry;
-   }
-
-   public ResteasyProviderFactory getProviderFactory()
-   {
-      return providerFactory;
-   }
-
-   public void setProviderFactory(ResteasyProviderFactory providerFactory)
-   {
-      this.providerFactory = providerFactory;
-   }
-
-   public Dispatcher getDispatcher()
-   {
-      return dispatcher;
-   }
-
-   public void setDispatcher(Dispatcher dispatcher)
-   {
-      this.dispatcher = dispatcher;
-   }
-
-   /**
-    * <p>
-    * This method keeps track of @Provider and resources for future use. It also
-    * registers the RESTEasy Registry, ProviderFactry, and Dispatcher for @Autowire
-    * injection.
-    * </p>
-    * <p>
-    * Beyond tracking, this will ensure that non-MessageBody(Reader|Writer) @Providers
-    * are created by Spring before any resources by having the resources
-    * "depends-on" the @Providers.
-    * </p>
-    * 
-    * @param beanFactory bean factory
-    */
-   public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)
-           throws BeansException
-   {
-      beanFactory.registerResolvableDependency(Registry.class, getRegistry());
-      beanFactory.registerResolvableDependency(ResteasyProviderFactory.class, getProviderFactory());
-      if (dispatcher != null)
-      {
-         beanFactory.registerResolvableDependency(Dispatcher.class, getDispatcher());
-      }
-      beanFactory.addBeanPostProcessor(new ResteasyBeanPostProcessor(beanFactory));
-
-      List<String> dependsOnBeans = new ArrayList<String>();
-      for (String name : beanFactory.getBeanDefinitionNames())
-      {
-         BeanDefinition beanDef = beanFactory.getBeanDefinition(name);
-         if ( (beanDef.getBeanClassName() != null || beanDef.getFactoryBeanName() != null)
-                 && !beanDef.isAbstract())
-             processBean(beanFactory, dependsOnBeans, name, beanDef);
-      }
-
-      dependsOnBeans.addAll(registrations);
-      String[] dependsOnArray = dependsOnBeans.toArray(new String[dependsOnBeans.size()]);
-
-      if (dependsOnArray.length > 0)
-      {
-         for (SpringResourceFactory resourceFactory : resourceFactories.values())
-         {
-            BeanDefinition beanDef = beanFactory.getBeanDefinition(resourceFactory.getBeanName());
-            beanDef.setDependsOn(concat(beanDef.getDependsOn(), dependsOnArray));
-         }
-      }
-   }
-
-   /**
-    * process a single @Provider or a single resource.
-    */
-   protected Class<?> processBean(final ConfigurableListableBeanFactory beanFactory,
-                                  List<String> dependsOnProviders, String name, BeanDefinition beanDef)
-   {
-      Class<?> beanClass = getBeanClass(name, beanDef, beanFactory);
-      if (beanClass.isAnnotationPresent(Provider.class))
-      {
-         if (!isSingleton(beanDef))
-         {
-            throw new RuntimeException(Messages.MESSAGES.providerIsNotSingleton(name));
-         }
-
-         providerNames.add(name);
-
-         if (!MessageBodyWriter.class.isAssignableFrom(beanClass)
-                 && !MessageBodyReader.class.isAssignableFrom(beanClass))
-         {
-            dependsOnProviders.add(name);
-         }
-      }
-      if (GetRestful.isRootResource(beanClass))
-      {
-         resourceFactories.put(name, new SpringResourceFactory(name, beanFactory, beanClass));
-      }
-      if(beanClass == ResteasyRegistration.class)
-      {
-         registrations.add(name);
-      }
-      return beanClass;
-   }
-
-   public String getPropertyValue(
-      MutablePropertyValues registrationPropertyValues, String propertyName) 
-   {
-      if(registrationPropertyValues == null)
-      {
-         return null;
-      }
-      PropertyValue propertyValue = registrationPropertyValues.getPropertyValue(propertyName);
-      if(propertyValue == null)
-      {
-         return null;
-      }
-      Object value = propertyValue.getValue();
-      if(value == null)
-      {
-         return null;
-      }
-      if(value.getClass() == String.class)
-      {
-          return (String) value;
-      }
-      if(value instanceof BeanReference)
-      {
-          return ((BeanReference)value).getBeanName();
-      }
-      throw new IllegalStateException(Messages.MESSAGES.resteasyRegistrationReferences());
+   public SpringBeanProcessor() {
    }
 
    /**
     * merge two arrays.
     *
-    * @param dependsOn first array
+    * @param dependsOn          first array
     * @param dependsOnProviders second array
     * @return merged array
     */
-   private static String[] concat(String[] dependsOn, String[] dependsOnProviders)
-   {
-      if (dependsOn == null || dependsOn.length == 0)
-      {
+   private static String[] concat(String[] dependsOn, String[] dependsOnProviders) {
+      if (dependsOn == null || dependsOn.length == 0) {
          return dependsOnProviders;
       }
 
@@ -377,25 +105,19 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
    /**
     * Get the bean class, and take @Configuration @Beans into consideration.
     *
-    * @param beanDef {@link BeanDefinition}
+    * @param beanDef     {@link BeanDefinition}
     * @param beanFactory bean factory
     * @return bean class
     */
    private static Class<?> getBeanClass(String name, BeanDefinition beanDef,
-                                        ConfigurableListableBeanFactory beanFactory)
-   {
-      if (beanDef instanceof RootBeanDefinition)
-      {
+                                        ConfigurableListableBeanFactory beanFactory) {
+      if (beanDef instanceof RootBeanDefinition) {
          RootBeanDefinition rootBeanDef = (RootBeanDefinition) beanDef;
-         try
-         {
-            if (rootBeanDef.getBeanClass() != null)
-            {
+         try {
+            if (rootBeanDef.getBeanClass() != null) {
                return rootBeanDef.getBeanClass();
             }
-         }
-         catch (IllegalStateException e)
-         {
+         } catch (IllegalStateException e) {
             // do nothing. This gets thrown for factory beans
          }
       }
@@ -403,40 +125,32 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
       // final String factoryBeanName = beanDef.getFactoryBeanName();
       final String factoryMethodName = beanDef.getFactoryMethodName();
 
-      if (beanDef.getBeanClassName() != null && factoryMethodName == null)
-      {
+      if (beanDef.getBeanClassName() != null && factoryMethodName == null) {
          return getBeanClass(beanDef.getBeanClassName());
       }
 
-      if (factoryMethodName != null)
-      {
+      if (factoryMethodName != null) {
          String factoryClassName = null;
 
-         if (beanDef instanceof AnnotatedBeanDefinition)
-         {
+         if (beanDef instanceof AnnotatedBeanDefinition) {
             factoryClassName = ((AnnotatedBeanDefinition) beanDef).getMetadata().getClassName();
-         }
-         else
-         {
+         } else {
             // Checks if beanDefinition has a factorybean defined. If so, lookup the classname of that bean
             // definition and use that as the factory class name.
-            if (beanDef.getFactoryBeanName() != null)
-            {
+            if (beanDef.getFactoryBeanName() != null) {
                factoryClassName = beanFactory.getBeanDefinition(beanDef.getFactoryBeanName()).getBeanClassName();
-            }
-            else
-            {
+            } else {
                factoryClassName = beanDef.getBeanClassName();
             }
          }
 
-          final Class<?> beanClass = getBeanClass(factoryClassName);
-          final Method[] methods = ReflectionUtils.getAllDeclaredMethods(beanClass);
-          for (Method method : methods) {
-              if (method.getName().equals(factoryMethodName)) {
-                  return method.getReturnType();
-              }
-          }
+         final Class<?> beanClass = getBeanClass(factoryClassName);
+         final Method[] methods = ReflectionUtils.getAllDeclaredMethods(beanClass);
+         for (Method method : methods) {
+            if (method.getName().equals(factoryMethodName)) {
+               return method.getReturnType();
+            }
+         }
 
          /*
             https://github.com/resteasy/Resteasy/issues/585
@@ -455,64 +169,171 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
             As a fix for this, we retrieve the return type for Bean A from the FactoryBean, which later on can be used to retrieve the other beans.
 
          */
-          if (FactoryBean.class.isAssignableFrom(beanClass)) {
-              String defaultFactoryMethod = "getObject";
-              Class<?> returnType = null;
-              for (Method method : methods) {
-                  if (method.getName().equals(defaultFactoryMethod)) {
-                      returnType = method.getReturnType();
-                      if (returnType != Object.class) {
-                          break;
-                      }
+         if (FactoryBean.class.isAssignableFrom(beanClass)) {
+            String defaultFactoryMethod = "getObject";
+            Class<?> returnType = null;
+            for (Method method : methods) {
+               if (method.getName().equals(defaultFactoryMethod)) {
+                  returnType = method.getReturnType();
+                  if (returnType != Object.class) {
+                     break;
                   }
-              }
-              if (returnType != null) {
-                  return returnType;
-              }
-          }
+               }
+            }
+            if (returnType != null) {
+               return returnType;
+            }
+         }
       }
 
       throw new IllegalStateException(Messages.MESSAGES.couldNotFindTypeForBean(name));
    }
 
-   private static boolean isSingleton(BeanDefinition beanDef)
-   {
-      try
-      {
+   private static boolean isSingleton(BeanDefinition beanDef) {
+      try {
          return beanDef.isSingleton();
-      }
-      catch (NoSuchBeanDefinitionException nsbde)
-      {
+      } catch (NoSuchBeanDefinitionException nsbde) {
          // cannot distinguish between singleton & prototype
          return false;
       }
    }
 
-   private static Class<?> getBeanClass(final String beanClassName)
-   {
-      try
-      {
+   private static Class<?> getBeanClass(final String beanClassName) {
+      try {
          return ClassUtils.forName(beanClassName, Thread.currentThread().getContextClassLoader());
-      }
-      catch (final ClassNotFoundException e)
-      {
+      } catch (final ClassNotFoundException e) {
          throw new IllegalStateException(Messages.MESSAGES.couldNotConvertBeanToClass(beanClassName), e);
       }
+   }
+
+   @Required
+   public Registry getRegistry() {
+      return registry;
+   }
+
+   public void setRegistry(Registry registry) {
+      this.registry = registry;
+   }
+
+   public ResteasyProviderFactory getProviderFactory() {
+      return providerFactory;
+   }
+
+   public void setProviderFactory(ResteasyProviderFactory providerFactory) {
+      this.providerFactory = providerFactory;
+   }
+
+   public Dispatcher getDispatcher() {
+      return dispatcher;
+   }
+
+   public void setDispatcher(Dispatcher dispatcher) {
+      this.dispatcher = dispatcher;
+   }
+
+   /**
+    * <p>
+    * This method keeps track of @Provider and resources for future use. It also
+    * registers the RESTEasy Registry, ProviderFactry, and Dispatcher for @Autowire
+    * injection.
+    * </p>
+    * <p>
+    * Beyond tracking, this will ensure that non-MessageBody(Reader|Writer) @Providers
+    * are created by Spring before any resources by having the resources
+    * "depends-on" the @Providers.
+    * </p>
+    *
+    * @param beanFactory bean factory
+    */
+   public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)
+           throws BeansException {
+      beanFactory.registerResolvableDependency(Registry.class, getRegistry());
+      beanFactory.registerResolvableDependency(ResteasyProviderFactory.class, getProviderFactory());
+      if (dispatcher != null) {
+         beanFactory.registerResolvableDependency(Dispatcher.class, getDispatcher());
+      }
+      beanFactory.addBeanPostProcessor(new ResteasyBeanPostProcessor(beanFactory));
+
+      List<String> dependsOnBeans = new ArrayList<String>();
+      for (String name : beanFactory.getBeanDefinitionNames()) {
+         BeanDefinition beanDef = beanFactory.getBeanDefinition(name);
+         if ((beanDef.getBeanClassName() != null || beanDef.getFactoryBeanName() != null)
+                 && !beanDef.isAbstract())
+            processBean(beanFactory, dependsOnBeans, name, beanDef);
+      }
+
+      dependsOnBeans.addAll(registrations);
+      String[] dependsOnArray = dependsOnBeans.toArray(new String[dependsOnBeans.size()]);
+
+      if (dependsOnArray.length > 0) {
+         for (SpringResourceFactory resourceFactory : resourceFactories.values()) {
+            BeanDefinition beanDef = beanFactory.getBeanDefinition(resourceFactory.getBeanName());
+            beanDef.setDependsOn(concat(beanDef.getDependsOn(), dependsOnArray));
+         }
+      }
+   }
+
+   /**
+    * process a single @Provider or a single resource.
+    */
+   protected Class<?> processBean(final ConfigurableListableBeanFactory beanFactory,
+                                  List<String> dependsOnProviders, String name, BeanDefinition beanDef) {
+      Class<?> beanClass = getBeanClass(name, beanDef, beanFactory);
+      if (beanClass.isAnnotationPresent(Provider.class)) {
+         if (!isSingleton(beanDef)) {
+            throw new RuntimeException(Messages.MESSAGES.providerIsNotSingleton(name));
+         }
+
+         providerNames.add(name);
+
+         if (!MessageBodyWriter.class.isAssignableFrom(beanClass)
+                 && !MessageBodyReader.class.isAssignableFrom(beanClass)) {
+            dependsOnProviders.add(name);
+         }
+      }
+      if (GetRestful.isRootResource(beanClass)) {
+         resourceFactories.put(name, new SpringResourceFactory(name, beanFactory, beanClass));
+      }
+      if (beanClass == ResteasyRegistration.class) {
+         registrations.add(name);
+      }
+      return beanClass;
+   }
+
+   public String getPropertyValue(
+           MutablePropertyValues registrationPropertyValues, String propertyName) {
+      if (registrationPropertyValues == null) {
+         return null;
+      }
+      PropertyValue propertyValue = registrationPropertyValues.getPropertyValue(propertyName);
+      if (propertyValue == null) {
+         return null;
+      }
+      Object value = propertyValue.getValue();
+      if (value == null) {
+         return null;
+      }
+      if (value.getClass() == String.class) {
+         return (String) value;
+      }
+      if (value instanceof BeanReference) {
+         return ((BeanReference) value).getBeanName();
+      }
+      throw new IllegalStateException(Messages.MESSAGES.resteasyRegistrationReferences());
    }
 
    /**
     * Register all of the resources into RESTEasy only when Spring finishes it's
     * life-cycle and the spring singleton bean creation is completed.
+    *
     * @param event application event
     */
    @Override
-   public void onApplicationEvent(ApplicationEvent event)
-   {
-      for (SpringResourceFactory resourceFactory : resourceFactories.values())
-      {
+   public void onApplicationEvent(ApplicationEvent event) {
+      for (SpringResourceFactory resourceFactory : resourceFactories.values()) {
          getRegistry().removeRegistrations(resourceFactory.getScannableClass());
       }
-      
+
 //  The following code would re-process the bean factory, in case the configuration changed.
 //  However, it needs work.
 //      if (event.getSource() instanceof XmlWebApplicationContext)
@@ -520,32 +341,115 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
 //         ConfigurableListableBeanFactory beanFactory = ((XmlWebApplicationContext) event.getSource()).getBeanFactory();
 //         postProcessBeanFactory(beanFactory);
 //      }
-      for (SpringResourceFactory resourceFactory : resourceFactories.values())
-      {
+      for (SpringResourceFactory resourceFactory : resourceFactories.values()) {
          getRegistry().addResourceFactory(resourceFactory, resourceFactory.getContext());
       }
    }
 
    @Override
-   public int getOrder()
-   {
+   public int getOrder() {
       return this.order;
    }
 
-   public void setOrder(int order)
-   {
+   public void setOrder(int order) {
       this.order = order;
    }
 
    @Override
-   public boolean supportsEventType(Class<? extends ApplicationEvent> eventType)
-   {
+   public boolean supportsEventType(Class<? extends ApplicationEvent> eventType) {
       return eventType == ContextRefreshedEvent.class;
    }
 
    @Override
-   public boolean supportsSourceType(Class<?> sourceType)
-   {
+   public boolean supportsSourceType(Class<?> sourceType) {
       return ApplicationContext.class.isAssignableFrom(sourceType);
+   }
+
+   protected class ResteasyBeanPostProcessor implements BeanPostProcessor {
+      private ConfigurableListableBeanFactory beanFactory;
+
+      protected ResteasyBeanPostProcessor(ConfigurableListableBeanFactory beanFactory) {
+         this.beanFactory = beanFactory;
+      }
+
+      public Object postProcessBeforeInitialization(Object bean, String beanName)
+              throws BeansException {
+         return bean;
+      }
+
+      /**
+       * This method is invoked after postProcessBeanFactory.
+       * <p>
+       * this method is invoked when ever a new bean is created. This will
+       * perform the following:
+       * <ol>
+       * <li>RESTEasy injection of singleton @Providers, as well as @Provider
+       * registration</li>
+       * <li>either singleton or request/prototype RESTeasy injection... but not
+       * registration. The RESTEasy registration happens in the
+       * onApplicationEvent() below, which happens at the end of the Spring
+       * life-cycle</li>
+       * <li>merges the {@link ResteasyDeployment} bean with the user deployment</li>
+       * </ol>
+       *
+       * @param bean     bean
+       * @param beanName bean name
+       * @see SpringBeanProcessor#postProcessBeanFactory(ConfigurableListableBeanFactory)
+       */
+      public Object postProcessAfterInitialization(Object bean, String beanName)
+              throws BeansException {
+         if (providerNames.contains(beanName)) {
+            PropertyInjector injector = getInjector(AopUtils.getTargetClass(bean));
+            injector.inject(bean, false);
+            providerFactory.registerProviderInstance(bean);
+         } else if (registrations.contains(beanName) && bean instanceof ResteasyRegistration) {
+            ResteasyRegistration registration = (ResteasyRegistration) bean;
+            String registeredBeanName = registration.getBeanName();
+            BeanDefinition beanDef = beanFactory.getBeanDefinition(registeredBeanName);
+            Class<?> beanClass = getBeanClass(registeredBeanName, beanDef, beanFactory);
+            SpringResourceFactory resourceFactory = new SpringResourceFactory(registeredBeanName, beanFactory, beanClass);
+            resourceFactory.setContext(registration.getContext());
+            resourceFactories.put(registeredBeanName, resourceFactory);
+         } else if (bean instanceof ResteasyDeployment && deployment != null) {
+            ResteasyDeployment beanDeployment = (ResteasyDeployment) bean;
+            deployment.merge(beanDeployment);
+            deployment.start();
+         } else {
+            SpringResourceFactory resourceFactory = resourceFactories.get(beanName);
+            if (resourceFactory != null) {
+               inject(beanName, bean, getInjector(resourceFactory.getScannableClass()));
+            }
+         }
+
+         return bean;
+      }
+
+      public PropertyInjector getInjector(Class<?> clazz) {
+         return providerFactory.getInjectorFactory().createPropertyInjector(clazz, providerFactory);
+      }
+
+      public void inject(String beanName, Object bean, PropertyInjector propertyInjector) {
+         if (propertyInjector == null) {
+            return;
+         }
+         HttpRequest request = ResteasyProviderFactory.getContextData(HttpRequest.class);
+         if (request == null || isSingleton(beanName)) {
+            propertyInjector.inject(bean, false);
+         } else {
+            HttpResponse response = ResteasyProviderFactory.getContextData(HttpResponse.class);
+            propertyInjector.inject(request, response, bean, false);
+         }
+      }
+
+      private boolean isSingleton(String beanName) {
+         boolean isSingleton = false;
+         try {
+            BeanDefinition beanDef = beanFactory.getBeanDefinition(beanName);
+            isSingleton = beanDef.isSingleton();
+         } catch (org.springframework.beans.factory.NoSuchBeanDefinitionException nsbde) {
+            // cannot distinguish between singleton & prototype
+         }
+         return isSingleton;
+      }
    }
 }

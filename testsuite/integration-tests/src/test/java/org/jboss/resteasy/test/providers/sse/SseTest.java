@@ -1,26 +1,5 @@
 package org.jboss.resteasy.test.providers.sse;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Consumer;
-
-import javax.ws.rs.InternalServerErrorException;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.sse.InboundSseEvent;
-import javax.ws.rs.sse.SseEventSource;
-import javax.xml.bind.JAXBElement;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -39,16 +18,30 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.InternalServerErrorException;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.sse.InboundSseEvent;
+import javax.ws.rs.sse.SseEventSource;
+import javax.xml.bind.JAXBElement;
+import java.util.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
+
 @RunWith(Arquillian.class)
 @RunAsClient
-public class SseTest
-{
+public class SseTest {
 
    private final static Logger logger = Logger.getLogger(SseTest.class);
 
    @Deployment
-   public static Archive<?> deploy()
-   {
+   public static Archive<?> deploy() {
       WebArchive war = TestUtil.prepareArchive(SseTest.class.getSimpleName());
       war.addClass(SseTest.class);
       war.addAsWebInfResource("org/jboss/resteasy/test/providers/sse/web.xml", "web.xml");
@@ -58,18 +51,16 @@ public class SseTest
               new RuntimePermission("modifyThread")
       ), "permissions.xml");
       return TestUtil.finishContainerPrepare(war, null, SseApplication.class, GreenHouse.class, SseResource.class,
-            AnotherSseResource.class, EscapingSseResource.class, ExecutorServletContextListener.class);
+              AnotherSseResource.class, EscapingSseResource.class, ExecutorServletContextListener.class);
    }
 
-   private String generateURL(String path)
-   {
+   private String generateURL(String path) {
       return PortProviderUtil.generateURL(path, SseTest.class.getSimpleName());
    }
 
    @Test
    @InSequence(1)
-   public void testAddMessage() throws Exception
-   {
+   public void testAddMessage() throws Exception {
       final CountDownLatch latch = new CountDownLatch(5);
       final AtomicInteger errors = new AtomicInteger(0);
       final List<String> results = new ArrayList<String>();
@@ -77,8 +68,7 @@ public class SseTest
       Client client = ClientBuilder.newBuilder().build();
       WebTarget target = client.target(generateURL("/service/server-sent-events"));
       SseEventSource msgEventSource = SseEventSource.target(target).build();
-      try (SseEventSource eventSource = msgEventSource)
-      {
+      try (SseEventSource eventSource = msgEventSource) {
          Assert.assertEquals(SseEventSourceImpl.class, eventSource.getClass());
          eventSource.register(event -> {
             results.add(event.readData(String.class));
@@ -92,8 +82,7 @@ public class SseTest
 
          Client messageClient = new ResteasyClientBuilder().connectionPoolSize(10).build();
          WebTarget messageTarget = messageClient.target(generateURL("/service/server-sent-events"));
-         for (int counter = 0; counter < 5; counter++)
-         {
+         for (int counter = 0; counter < 5; counter++) {
             String msg = "message " + counter;
             sent.add(msg);
             messageTarget.request().post(Entity.text(msg));
@@ -106,8 +95,7 @@ public class SseTest
       }
       Assert.assertFalse("SseEventSource is not closed", msgEventSource.isOpen());
       Assert.assertTrue("5 messages are expected, but is : " + results.size(), results.size() == 5);
-      for (String s : sent)
-      {
+      for (String s : sent) {
          Assert.assertTrue("Sent message \"" + s + "\" not found as result.", results.contains(s));
       }
    }
@@ -115,12 +103,11 @@ public class SseTest
    //Test for Last-Event-Id. This test uses the message items stores in testAddMessage()
    @Test
    @InSequence(2)
-   public void testLastEventId() throws Exception
-   {
+   public void testLastEventId() throws Exception {
       final CountDownLatch missedEventLatch = new CountDownLatch(3);
       final List<String> missedEvents = new ArrayList<String>();
       WebTarget lastEventTarget = new ResteasyClientBuilder().connectionPoolSize(10).build()
-            .target(generateURL("/service/server-sent-events"));
+              .target(generateURL("/service/server-sent-events"));
       SseEventSourceImpl lastEventSource = (SseEventSourceImpl) SseEventSource.target(lastEventTarget).build();
       lastEventSource.register(event -> {
          missedEvents.add(event.toString());
@@ -130,19 +117,18 @@ public class SseTest
       });
       lastEventSource.open("1");
       Assert.assertTrue(
-            "Waiting for missed events to be delivered has timed our, received events :"
-                  + Arrays.toString(missedEvents.toArray(new String[]
-                  {})), missedEventLatch.await(30, TimeUnit.SECONDS));
+              "Waiting for missed events to be delivered has timed our, received events :"
+                      + Arrays.toString(missedEvents.toArray(new String[]
+                      {})), missedEventLatch.await(30, TimeUnit.SECONDS));
       Assert.assertTrue("3 messages are expected, but is : " + missedEvents.toArray(new String[]
-      {}), missedEvents.size() == 3);
+              {}), missedEvents.size() == 3);
       lastEventTarget.request().delete();
       lastEventSource.close();
    }
 
    @Test
    @InSequence(3)
-   public void testSseEvent() throws Exception
-   {
+   public void testSseEvent() throws Exception {
       final List<String> results = new ArrayList<String>();
       final CountDownLatch latch = new CountDownLatch(6);
       final AtomicInteger errors = new AtomicInteger(0);
@@ -166,23 +152,21 @@ public class SseTest
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertTrue("6 SseInboundEvent expected", results.size() == 6);
       Assert.assertTrue("Expect the last event is Done event, but it is :" + results.toArray(new String[]
-      {})[5], results.toArray(new String[]
-      {})[5].indexOf("Done") > -1);
+              {})[5], results.toArray(new String[]
+              {})[5].indexOf("Done") > -1);
       eventSource.close();
       client.close();
    }
 
    @Test
    @InSequence(4)
-   public void testBroadcast() throws Exception
-   {
+   public void testBroadcast() throws Exception {
       final CountDownLatch latch = new CountDownLatch(3);
       Client client = new ResteasyClientBuilder().build();
       WebTarget target = client.target(generateURL("/service/server-sent-events/subscribe"));
       final String textMessage = "This is broadcast message";
       Consumer<InboundSseEvent> checkConsumer = insse -> {
-         if (latch.getCount() > 0)
-         {
+         if (latch.getCount() > 0) {
             Assert.assertTrue("Unexpected sever sent event data", textMessage.equals(insse.readData()));
          }
          latch.countDown();
@@ -201,9 +185,9 @@ public class SseTest
       //Test for eventSource subscriber
 
       client.target(generateURL("/service/server-sent-events/broadcast")).request()
-            .post(Entity.entity(textMessage, MediaType.SERVER_SENT_EVENTS));
+              .post(Entity.entity(textMessage, MediaType.SERVER_SENT_EVENTS));
       client2.target(generateURL("/service/sse/broadcast")).request()
-      .post(Entity.entity(textMessage, MediaType.SERVER_SENT_EVENTS));
+              .post(Entity.entity(textMessage, MediaType.SERVER_SENT_EVENTS));
       Assert.assertTrue("Waiting for broadcast event to be delivered has timed out.", latch.await(20, TimeUnit.SECONDS));
 
       //one subscriber is closed and test if another subscriber works
@@ -216,11 +200,11 @@ public class SseTest
          latch4.countDown();
       });
       client2.target(generateURL("/service/server-sent-events/broadcast")).request()
-            .post(Entity.entity("repeat", MediaType.SERVER_SENT_EVENTS));
+              .post(Entity.entity("repeat", MediaType.SERVER_SENT_EVENTS));
       Assert.assertTrue("Waiting for repeatable broadcast events to be delivered has timed out.",
-            latch3.await(20, TimeUnit.SECONDS));
+              latch3.await(20, TimeUnit.SECONDS));
       Assert.assertTrue("Waiting for repeatable broadcast events to be delivered has timed out.",
-            latch4.await(20, TimeUnit.SECONDS));
+              latch4.await(20, TimeUnit.SECONDS));
 
       client.close();
       CountDownLatch latch5 = new CountDownLatch(5);
@@ -235,10 +219,10 @@ public class SseTest
 
       Assert.assertTrue("Eventsource should not receive event after close", latch5.getCount() == 5);
       Assert.assertTrue("Waiting for eventsource2 receive broadcast events to be delivered has timed out.",
-            latch6.await(20, TimeUnit.SECONDS));
+              latch6.await(20, TimeUnit.SECONDS));
 
       client2.target(generateURL("/service/server-sent-events/broadcast")).request()
-            .post(Entity.entity("close one subscriber", MediaType.SERVER_SENT_EVENTS));
+              .post(Entity.entity("close one subscriber", MediaType.SERVER_SENT_EVENTS));
 
       Client closeClient = new ResteasyClientBuilder().build();
       WebTarget closeTarget = closeClient.target(generateURL("/service/sse"));
@@ -251,8 +235,7 @@ public class SseTest
    //with LastEventId and receive the missed events  
    @Test
    @InSequence(5)
-   public void testReconnect() throws Exception
-   {
+   public void testReconnect() throws Exception {
       int proxyPort = 9090;
       SimpleProxyServer proxy = new SimpleProxyServer(PortProviderUtil.getHost(), PortProviderUtil.getPort(), proxyPort);
       proxy.start();
@@ -261,27 +244,20 @@ public class SseTest
       final AtomicInteger errors = new AtomicInteger(0);
       ResteasyClient client = new ResteasyClientBuilder().connectionPoolSize(10).build();
       String requestPath = PortProviderUtil.generateURL("/service/server-sent-events",
-            SseTest.class.getSimpleName(), PortProviderUtil.getHost(), proxyPort);
+              SseTest.class.getSimpleName(), PortProviderUtil.getHost(), proxyPort);
       WebTarget target = client.target(requestPath);
-      try (SseEventSource eventSource = SseEventSource.target(target).reconnectingEvery(500, TimeUnit.MILLISECONDS).build())
-      {
+      try (SseEventSource eventSource = SseEventSource.target(target).reconnectingEvery(500, TimeUnit.MILLISECONDS).build()) {
          Assert.assertEquals(SseEventSourceImpl.class, eventSource.getClass());
          eventSource.register(event -> {
             results.add(event.toString());
             latch.countDown();
-            if (latch.getCount() == 8)
-            {
-               new Thread()
-               {
-                  public void run()
-                  {
+            if (latch.getCount() == 8) {
+               new Thread() {
+                  public void run() {
                      proxy.stop();
-                     try
-                     {
+                     try {
                         Thread.sleep(300);
-                     }
-                     catch (Exception e)
-                     {
+                     } catch (Exception e) {
                         logger.error("Exception thrown when sleep some time to start proxy ", e);
                      }
                      proxy.start();
@@ -297,7 +273,7 @@ public class SseTest
 
          Client messageClient = new ResteasyClientBuilder().build();
          WebTarget messageTarget = messageClient
-               .target(generateURL("/service/server-sent-events/addMessageAndDisconnect"));
+                 .target(generateURL("/service/server-sent-events/addMessageAndDisconnect"));
          messageTarget.request().post(Entity.text("msg"));
          messageClient.close();
 
@@ -313,24 +289,19 @@ public class SseTest
 
    @Test
    @InSequence(6)
-   public void testEventSourceConsumer() throws Exception
-   {
+   public void testEventSourceConsumer() throws Exception {
       final CountDownLatch latch = new CountDownLatch(1);
       Client client = new ResteasyClientBuilder().connectionPoolSize(10).build();
       WebTarget target = client.target(generateURL("/service/server-sent-events/error"));
       List<Throwable> errorList = new ArrayList<Throwable>();
-      Thread t = new Thread(new Runnable()
-      {
+      Thread t = new Thread(new Runnable() {
          @Override
-         public void run()
-         {
-            try (SseEventSource eventSource = SseEventSource.target(target).build())
-            {
+         public void run() {
+            try (SseEventSource eventSource = SseEventSource.target(target).build()) {
                eventSource.register(event -> {
                   latch.countDown();
                }, ex -> {
-                  if (ex instanceof InternalServerErrorException)
-                  {
+                  if (ex instanceof InternalServerErrorException) {
                      errorList.add(ex);
                      latch.countDown();
                   }
@@ -340,8 +311,7 @@ public class SseTest
          }
       });
       t.start();
-      if (latch.await(30, TimeUnit.SECONDS))
-      {
+      if (latch.await(30, TimeUnit.SECONDS)) {
          t.interrupt();
       }
       Assert.assertFalse("InternalServerErrorException isn't processed in error consumer", errorList.isEmpty());
@@ -349,16 +319,14 @@ public class SseTest
 
    @Test
    @InSequence(7)
-   public void testMultipleDataFields() throws Exception
-   {
+   public void testMultipleDataFields() throws Exception {
       final CountDownLatch latch = new CountDownLatch(7);
       final AtomicInteger errors = new AtomicInteger(0);
       final SortedSet<String> results = new TreeSet<String>();
       Client client = ClientBuilder.newBuilder().build();
       WebTarget target = client.target(generateURL("/service/server-sent-events"));
       SseEventSource msgEventSource = SseEventSource.target(target).build();
-      try (SseEventSource eventSource = msgEventSource)
-      {
+      try (SseEventSource eventSource = msgEventSource) {
          Assert.assertEquals(SseEventSourceImpl.class, eventSource.getClass());
          eventSource.register(event -> {
             results.add(event.readData());
@@ -388,7 +356,7 @@ public class SseTest
       Assert.assertFalse("SseEventSource is not closed", msgEventSource.isOpen());
       Assert.assertTrue("5 messages are expected, but is : " + results.size(), results.size() == 7);
       String[] lines = results.toArray(new String[]
-      {})[1].split("\n");
+              {})[1].split("\n");
       Assert.assertTrue("3 data fields are expected, but is : " + lines.length, lines.length == 3);
       Assert.assertEquals("expect second data field value is : " + lines[1], "data1b", lines[1]);
 
@@ -396,8 +364,7 @@ public class SseTest
 
    @Test
    @InSequence(8)
-   public void testEscapedMessage() throws Exception
-   {
+   public void testEscapedMessage() throws Exception {
       final CountDownLatch latch = new CountDownLatch(3);
       final AtomicInteger errors = new AtomicInteger(0);
       final List<String> results = new ArrayList<String>();
@@ -408,8 +375,7 @@ public class SseTest
       Client client = ClientBuilder.newBuilder().build();
       WebTarget target = client.target(generateURL("/service/sse-escaping"));
       SseEventSource msgEventSource = SseEventSource.target(target).build();
-      try (SseEventSource eventSource = msgEventSource)
-      {
+      try (SseEventSource eventSource = msgEventSource) {
          Assert.assertEquals(SseEventSourceImpl.class, eventSource.getClass());
          eventSource.register(event -> {
             results.add(event.readData(String.class));
@@ -427,24 +393,21 @@ public class SseTest
       }
       Assert.assertFalse("SseEventSource is not closed", msgEventSource.isOpen());
       Assert.assertTrue("3 messages are expected, but is : " + results.size(), results.size() == 3);
-      for (String s : sent)
-      {
+      for (String s : sent) {
          Assert.assertTrue("Sent message \"" + s + "\" not found as result.", results.contains(s));
       }
    }
 
    @Test
    @InSequence(10)
-   public void testXmlEvent() throws Exception
-   {
+   public void testXmlEvent() throws Exception {
       final CountDownLatch latch = new CountDownLatch(1);
       final AtomicInteger errors = new AtomicInteger(0);
       final List<InboundSseEvent> results = new ArrayList<InboundSseEvent>();
       Client client = ClientBuilder.newBuilder().build();
       WebTarget target = client.target(generateURL("/service/server-sent-events/xmlevent"));
       SseEventSource msgEventSource = SseEventSource.target(target).build();
-      try (SseEventSource eventSource = msgEventSource)
-      {
+      try (SseEventSource eventSource = msgEventSource) {
          Assert.assertEquals(SseEventSourceImpl.class, eventSource.getClass());
          eventSource.register(event -> {
             results.add(event);
@@ -460,16 +423,14 @@ public class SseTest
          Assert.assertEquals(0, errors.get());
          Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       }
-      JAXBElement<String> jaxbElement = results.get(0).readData(new javax.ws.rs.core.GenericType<JAXBElement<String>>()
-      {
+      JAXBElement<String> jaxbElement = results.get(0).readData(new javax.ws.rs.core.GenericType<JAXBElement<String>>() {
       }, MediaType.APPLICATION_XML_TYPE);
       Assert.assertEquals("xmldata is expceted", jaxbElement.getValue(), "xmldata");
    }
 
    @Test
    @InSequence(11)
-   public void testGetSseEvent() throws Exception
-   {
+   public void testGetSseEvent() throws Exception {
       Client client = ClientBuilder.newClient();
       WebTarget target = client.target(generateURL("/service/server-sent-events/events"));
       Response response = target.request().get();
@@ -479,67 +440,57 @@ public class SseTest
       Assert.assertEquals("text/event-stream is expected", mt, MediaType.SERVER_SENT_EVENTS_TYPE);
       client.close();
    }
+
    @Test
    @InSequence(12)
-   public void testNoReconnectAfterEventSinkClose() throws Exception
-   {
+   public void testNoReconnectAfterEventSinkClose() throws Exception {
       List<String> results = new ArrayList<String>();
       Client client = new ResteasyClientBuilder().connectionPoolSize(10).build();
       WebTarget target = client.target(generateURL("/service/server-sent-events/closeAfterSent"));
-      SseEventSourceImpl sourceImpl = (SseEventSourceImpl)SseEventSource.target(target).build();
+      SseEventSourceImpl sourceImpl = (SseEventSourceImpl) SseEventSource.target(target).build();
       sourceImpl.setAlwaysReconnect(false);
-      try (SseEventSource source = sourceImpl)
-      {
+      try (SseEventSource source = sourceImpl) {
          source.register(event -> results.add(event.readData()));
          source.open();
          Thread.sleep(1000);
-      }
-      catch (InterruptedException e)
-      {
+      } catch (InterruptedException e) {
          logger.info("Thread sleep interruped", e);
       }
-     
+
       Assert.assertEquals("Received unexpected events", "[thing1, thing2, thing3]", results.toString());
       //test for [Resteasy-1863]:SseEventSourceImpl should not close Client instance
       results.clear();
       WebTarget target2 = client.target(generateURL("/service/server-sent-events/closeAfterSent"));
-      SseEventSourceImpl sourceImpl2 = (SseEventSourceImpl)SseEventSource.target(target2).build();
+      SseEventSourceImpl sourceImpl2 = (SseEventSourceImpl) SseEventSource.target(target2).build();
       sourceImpl2.setAlwaysReconnect(false);
-      try (SseEventSource source = sourceImpl2)
-      {
+      try (SseEventSource source = sourceImpl2) {
          source.register(event -> results.add(event.readData()));
          source.open();
          Thread.sleep(1000);
-      }
-      catch (InterruptedException e)
-      {
+      } catch (InterruptedException e) {
          logger.info("Thread sleep interruped", e);
       }
       Assert.assertEquals("Received unexpected events", "[thing1, thing2, thing3]", results.toString());
    }
-   
+
    @Test
    @InSequence(13)
-   public void testNoContent() throws Exception
-   {
+   public void testNoContent() throws Exception {
       Client client = ClientBuilder.newBuilder().build();
       final AtomicInteger errors = new AtomicInteger(0);
       WebTarget target = client.target(generateURL("/service/server-sent-events/noContent"));
-      SseEventSourceImpl sourceImpl = (SseEventSourceImpl)SseEventSource.target(target).build();
+      SseEventSourceImpl sourceImpl = (SseEventSourceImpl) SseEventSource.target(target).build();
       sourceImpl.setAlwaysReconnect(false);
-      try (SseEventSource source = sourceImpl)
-      {
+      try (SseEventSource source = sourceImpl) {
          source.register(event -> {
-           logger.info(event);
+            logger.info(event);
          }, ex -> {
             logger.error("Error:", ex);
             errors.incrementAndGet();
          });
          source.open();
          Thread.sleep(1000);
-      }
-      catch (InterruptedException e)
-      {
+      } catch (InterruptedException e) {
          logger.info("Thread sleep interruped", e);
       }
       Assert.assertTrue("error is not expected", errors.get() == 0);

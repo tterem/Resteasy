@@ -11,38 +11,32 @@ import java.util.Set;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class HttpContextResteasyConfiguration implements ResteasyConfiguration
-{
+public class HttpContextResteasyConfiguration implements ResteasyConfiguration {
    protected HttpContext context;
 
-   public HttpContextResteasyConfiguration(HttpContext context)
-   {
+   public HttpContextResteasyConfiguration(HttpContext context) {
       this.context = context;
    }
 
    @Override
-   public String getParameter(String name)
-   {
+   public String getParameter(String name) {
       Object val = context.getAttributes().get(name);
       if (val == null) return null;
       return val.toString();
    }
 
    @Override
-   public Set<String> getParameterNames()
-   {
+   public Set<String> getParameterNames() {
       return context.getAttributes().keySet();
    }
 
    @Override
-   public String getInitParameter(String name)
-   {
+   public String getInitParameter(String name) {
       return getParameter(name);
    }
 
    @Override
-   public Set<String> getInitParameterNames()
-   {
+   public Set<String> getInitParameterNames() {
       return getParameterNames();
    }
 }

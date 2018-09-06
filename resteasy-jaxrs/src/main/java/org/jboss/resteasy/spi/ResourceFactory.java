@@ -8,8 +8,7 @@ import java.util.concurrent.CompletionStage;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface ResourceFactory
-{
+public interface ResourceFactory {
    /**
     * Class to scan for jax-rs annotations
     *
@@ -27,9 +26,9 @@ public interface ResourceFactory
    /**
     * Called per request to obtain a resource instance to invoke http request on.
     *
-    * @param request http request
+    * @param request  http request
     * @param response http response
-    * @param factory provider factory
+    * @param factory  provider factory
     * @return resource
     */
    CompletionStage<Object> createResource(HttpRequest request, HttpResponse response, ResteasyProviderFactory factory);
@@ -38,7 +37,7 @@ public interface ResourceFactory
    /**
     * Callback when request is finished.  usable for things like @PreDestroy if the underlying factory supports it
     *
-    * @param request http request
+    * @param request  http request
     * @param response http response
     * @param resource resource
     */

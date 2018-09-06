@@ -9,26 +9,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.SecurityContext;
 
-public abstract class ResteasyWebHandlerTemplate<T>
-{
+public abstract class ResteasyWebHandlerTemplate<T> {
    protected ResteasyProviderFactory factory;
 
-   public ResteasyWebHandlerTemplate(ResteasyProviderFactory factory)
-   {
+   public ResteasyWebHandlerTemplate(ResteasyProviderFactory factory) {
       this.factory = factory;
    }
 
    public T handle(ResteasyRequestWrapper requestWrapper,
-                   HttpServletResponse httpServletResponse) throws Exception
-   {
+                   HttpServletResponse httpServletResponse) throws Exception {
 
       T result = null;
       HttpResponse response = new HttpServletResponseWrapper(httpServletResponse,
               factory);
 
       HttpServletRequest servletRequest = requestWrapper.getHttpServletRequest();
-      try
-      {
+      try {
          ResteasyProviderFactory.pushContext(HttpServletRequest.class,
                  servletRequest);
          ResteasyProviderFactory.pushContext(HttpServletResponse.class,
@@ -38,9 +34,7 @@ public abstract class ResteasyWebHandlerTemplate<T>
 
          result = handle(requestWrapper, response);
 
-      }
-      finally
-      {
+      } finally {
          ResteasyProviderFactory.clearContextData();
       }
       return result;

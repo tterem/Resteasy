@@ -1,7 +1,10 @@
 package org.jboss.resteasy.rxjava2;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.Single;
+import org.jboss.resteasy.annotations.Stream;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -9,21 +12,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
-
-import org.jboss.resteasy.annotations.Stream;
-
-import io.reactivex.BackpressureStrategy;
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
-import io.reactivex.Single;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Path("/")
-public class RxResource
-{
+public class RxResource {
    @Path("single")
    @GET
-   public Single<String> single()
-   {
+   public Single<String> single() {
       return Single.just("got it");
    }
 
@@ -31,8 +27,7 @@ public class RxResource
    @Path("observable")
    @GET
    @Stream
-   public Observable<String> observable()
-   {
+   public Observable<String> observable() {
       return Observable.fromArray("one", "two");
    }
 
@@ -40,21 +35,17 @@ public class RxResource
    @Path("flowable")
    @GET
    @Stream
-   public Flowable<String> flowable()
-   {
+   public Flowable<String> flowable() {
       return Flowable.fromArray("one", "two");
    }
 
    @Path("context/single")
    @GET
-   public Single<String> contextSingle(@Context UriInfo uriInfo)
-   {
+   public Single<String> contextSingle(@Context UriInfo uriInfo) {
       return Single.<String>create(foo -> {
          ExecutorService executor = Executors.newSingleThreadExecutor();
-         executor.submit(new Runnable()
-         {
-            public void run()
-            {
+         executor.submit(new Runnable() {
+            public void run() {
                foo.onSuccess("got it");
             }
          });
@@ -68,14 +59,11 @@ public class RxResource
    @Path("context/observable")
    @GET
    @Stream
-   public Observable<String> contextObservable(@Context UriInfo uriInfo)
-   {
+   public Observable<String> contextObservable(@Context UriInfo uriInfo) {
       return Observable.<String>create(foo -> {
          ExecutorService executor = Executors.newSingleThreadExecutor();
-         executor.submit(new Runnable()
-         {
-            public void run()
-            {
+         executor.submit(new Runnable() {
+            public void run() {
                foo.onNext("one");
                foo.onNext("two");
                foo.onComplete();
@@ -91,14 +79,11 @@ public class RxResource
    @Path("context/flowable")
    @GET
    @Stream
-   public Flowable<String> contextFlowable(@Context UriInfo uriInfo)
-   {
+   public Flowable<String> contextFlowable(@Context UriInfo uriInfo) {
       return Flowable.<String>create(foo -> {
          ExecutorService executor = Executors.newSingleThreadExecutor();
-         executor.submit(new Runnable()
-         {
-            public void run()
-            {
+         executor.submit(new Runnable() {
+            public void run() {
                foo.onNext("one");
                foo.onNext("two");
                foo.onComplete();
@@ -109,18 +94,16 @@ public class RxResource
          return str;
       });
    }
-   
+
    @Path("injection")
    @GET
-   public Single<Integer> injection(@Context Integer value)
-   {
+   public Single<Integer> injection(@Context Integer value) {
       return Single.just(value);
    }
 
    @Path("injection-async")
    @GET
-   public Single<Integer> injectionAsync(@Async @Context Integer value)
-   {
+   public Single<Integer> injectionAsync(@Async @Context Integer value) {
       return Single.just(value);
    }
 }

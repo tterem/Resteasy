@@ -32,8 +32,7 @@ import java.net.URI;
  */
 @XmlRootElement(name = "link")
 @XmlAccessorType(XmlAccessType.PROPERTY)
-public class Link extends CommonAttributes
-{
+public class Link extends CommonAttributes {
    protected URI href;
 
    protected String rel;
@@ -46,106 +45,88 @@ public class Link extends CommonAttributes
 
    protected String length;
 
-   public Link()
-   {
+   public Link() {
    }
 
-   public Link(String rel, URI href)
-   {
+   public Link(String rel, URI href) {
       this.rel = rel;
       this.href = href;
    }
 
-   public Link(String rel, URI href, MediaType type)
-   {
+   public Link(String rel, URI href, MediaType type) {
       this.rel = rel;
       this.href = href;
       this.type = type;
    }
 
-   public Link(String rel, String href)
-   {
+   public Link(String rel, String href) {
       this.rel = rel;
       this.href = URI.create(href);
    }
 
-   public Link(String rel, String href, MediaType type)
-   {
+   public Link(String rel, String href, MediaType type) {
       this.rel = rel;
       this.href = URI.create(href);
       this.type = type;
    }
 
-   public Link(String rel, String href, String type)
-   {
+   public Link(String rel, String href, String type) {
       this.rel = rel;
       this.href = URI.create(href);
       this.type = MediaType.valueOf(type);
    }
 
    @XmlAttribute(required = true)
-   public URI getHref()
-   {
+   public URI getHref() {
       return href;
    }
 
-   public void setHref(URI href)
-   {
+   public void setHref(URI href) {
       this.href = href;
    }
 
    @XmlAttribute
-   public String getRel()
-   {
+   public String getRel() {
       return rel;
    }
 
-   public void setRel(String rel)
-   {
+   public void setRel(String rel) {
       this.rel = rel;
    }
 
    @XmlAttribute
-   public MediaType getType()
-   {
+   public MediaType getType() {
       return type;
    }
 
-   public void setType(MediaType type)
-   {
+   public void setType(MediaType type) {
       this.type = type;
    }
 
    @XmlAttribute
-   public String getHreflang()
-   {
+   public String getHreflang() {
       return hreflang;
    }
 
-   public void setHreflang(String hreflang)
-   {
+   public void setHreflang(String hreflang) {
       this.hreflang = hreflang;
    }
 
    @XmlAttribute
-   public String getTitle()
-   {
+   public String getTitle() {
       return title;
    }
 
-   public void setTitle(String title)
-   {
+   public void setTitle(String title) {
       this.title = title;
    }
 
    @XmlAttribute
-   public String getLength()
-   {
+   public String getLength() {
       return length;
    }
 
-   public void setLength(String length)
-   {
+   public void setLength(String length) {
       this.length = length;
    }
 }

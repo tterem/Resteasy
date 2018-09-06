@@ -1,10 +1,5 @@
 package org.jboss.resteasy.test.providers.mbw;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -21,6 +16,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.Response;
+
 /**
  * @tpSubChapter Resteasy MessageBodyWriter<Object>
  * @tpChapter Integration tests
@@ -35,7 +35,7 @@ public class MessageBodyWriterObjectDefaultTest {
    @BeforeClass
    public static void before() throws Exception {
       client = ClientBuilder.newClient();
-      
+
    }
 
    @Deployment
@@ -45,15 +45,15 @@ public class MessageBodyWriterObjectDefaultTest {
       return TestUtil.finishContainerPrepare(war, null, MessageBodyWriterObjectResource.class, MessageBodyWriterObjectMessageBodyWriter.class);
    }
 
-   private String generateURL(String path) {
-      return PortProviderUtil.generateURL(path, MessageBodyWriterObjectDefaultTest.class.getSimpleName());
-   }
-
    @AfterClass
    public static void close() {
       client.close();
    }
-   
+
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, MessageBodyWriterObjectDefaultTest.class.getSimpleName());
+   }
+
    @Test
    public void testDefault() throws Exception {
       Invocation.Builder request = client.target(generateURL("/test")).request();
@@ -66,8 +66,9 @@ public class MessageBodyWriterObjectDefaultTest {
       response = request.get();
       Assert.assertTrue(Boolean.parseBoolean(response.readEntity(String.class)));
    }
+
    @Test
- //RESTEASY-1730: Could not find MessageBodyWriter for response object of type: java.lang.Boolean of media type: application/octet-stream
+   //RESTEASY-1730: Could not find MessageBodyWriter for response object of type: java.lang.Boolean of media type: application/octet-stream
    public void testGetBoolean() throws Exception {
       Invocation.Builder request = client.target(generateURL("/test/getbool")).request();
       Response response = request.get();

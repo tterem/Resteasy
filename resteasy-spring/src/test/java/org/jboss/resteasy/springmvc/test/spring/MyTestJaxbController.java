@@ -9,33 +9,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.Date;
 
 @Controller
-public class MyTestJaxbController
-{
-   public MyTestJaxbController()
-   {
-      
+public class MyTestJaxbController {
+   public MyTestJaxbController() {
+
    }
-   
+
    @RequestMapping(value = "/basic/spring/object/json", method =
-   { RequestMethod.GET })
-   public String testJaxbJson(ModelMap model)
-   {
+           {RequestMethod.GET})
+   public String testJaxbJson(ModelMap model) {
       updateModel(model);
       return "jsonView";
    }
 
    @RequestMapping(value = "/basic/spring/object/xml", method =
-   { RequestMethod.GET })
-   public String testJaxbXml(ModelMap model)
-   {
+           {RequestMethod.GET})
+   public String testJaxbXml(ModelMap model) {
       updateModel(model);
       return "xmlView";
    }
 
-   private void updateModel(ModelMap model)
-   {
+   private void updateModel(ModelMap model) {
       model.put("jaxbObject",
-            new BasicJaxbObject("springSomething", new Date()));
+              new BasicJaxbObject("springSomething", new Date()));
    }
 
 }

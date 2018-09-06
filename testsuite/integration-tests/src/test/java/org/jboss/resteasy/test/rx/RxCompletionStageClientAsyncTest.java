@@ -1,5 +1,24 @@
 package org.jboss.resteasy.test.rx;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.internal.CompletionStageRxInvokerProvider;
+import org.jboss.resteasy.test.rx.resource.*;
+import org.jboss.resteasy.utils.PortProviderUtil;
+import org.jboss.resteasy.utils.TestUtil;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.*;
+import org.junit.runner.RunWith;
+
+import javax.ws.rs.client.CompletionStageRxInvoker;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
@@ -8,40 +27,12 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
-import javax.ws.rs.client.CompletionStageRxInvoker;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.client.jaxrs.internal.CompletionStageRxInvokerProvider;
-import org.jboss.resteasy.test.rx.resource.RxScheduledExecutorService;
-import org.jboss.resteasy.test.rx.resource.TestException;
-import org.jboss.resteasy.test.rx.resource.TestExceptionMapper;
-import org.jboss.resteasy.test.rx.resource.Thing;
-import org.jboss.resteasy.test.rx.resource.SimpleResourceImpl;
-import org.jboss.resteasy.utils.PortProviderUtil;
-import org.jboss.resteasy.utils.TestUtil;
-import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 
 /**
  * @tpSubChapter Reactive classes
  * @tpChapter Integration tests
  * @tpSince RESTEasy 4.0
- * 
+ * <p>
  * These tests run asynchronously on client, calling a CompletionStageRxInvoker.
  * The server creates and returns objects synchronously.
  */
@@ -51,14 +42,19 @@ public class RxCompletionStageClientAsyncTest {
 
    private static ResteasyClient client;
 
-   private static List<Thing>  xThingList =  new ArrayList<Thing>();
-   private static List<Thing>  aThingList =  new ArrayList<Thing>();
+   private static List<Thing> xThingList = new ArrayList<Thing>();
+   private static List<Thing> aThingList = new ArrayList<Thing>();
    private static Entity<String> aEntity = Entity.entity("a", MediaType.TEXT_PLAIN_TYPE);
-   private static GenericType<List<Thing>> LIST_OF_THING = new GenericType<List<Thing>>() {};
+   private static GenericType<List<Thing>> LIST_OF_THING = new GenericType<List<Thing>>() {
+   };
 
    static {
-      for (int i = 0; i < 3; i++) {xThingList.add(new Thing("x"));}
-      for (int i = 0; i < 3; i++) {aThingList.add(new Thing("a"));}
+      for (int i = 0; i < 3; i++) {
+         xThingList.add(new Thing("x"));
+      }
+      for (int i = 0; i < 3; i++) {
+         aThingList.add(new Thing("a"));
+      }
    }
 
    @Deployment
@@ -92,7 +88,7 @@ public class RxCompletionStageClientAsyncTest {
       CompletionStage<Response> completionStage = invoker.get();
       Assert.assertEquals("x", completionStage.toCompletableFuture().get().readEntity(String.class));
    }
-   
+
    @Test
    public void testGetString() throws Exception {
       CompletionStageRxInvoker invoker = client.target(generateURL("/get/string")).request().rx(CompletionStageRxInvoker.class);
@@ -273,7 +269,7 @@ public class RxCompletionStageClientAsyncTest {
    }
 
    @Test
-   public void testScheduledExecutorService () throws Exception {
+   public void testScheduledExecutorService() throws Exception {
       {
          RxScheduledExecutorService.used = false;
          CompletionStageRxInvoker invoker = client.target(generateURL("/get/string")).request().rx(CompletionStageRxInvoker.class);
@@ -300,24 +296,30 @@ public class RxCompletionStageClientAsyncTest {
       CompletionStage<Thing> completionStage = (CompletionStage<Thing>) invoker.get(Thing.class);
       AtomicReference<Throwable> value = new AtomicReference<Throwable>();
       CountDownLatch latch = new CountDownLatch(1);
-      completionStage.whenComplete((Thing t1, Throwable t2) -> {value.set(t2); latch.countDown();});
+      completionStage.whenComplete((Thing t1, Throwable t2) -> {
+         value.set(t2);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertTrue(value.get().getMessage().contains("500"));
    }
-   
+
    @Test
    public void testHandledException() throws Exception {
       CompletionStageRxInvoker invoker = client.target(generateURL("/exception/handled")).request().rx(CompletionStageRxInvoker.class);
       CompletionStage<Thing> completionStage = (CompletionStage<Thing>) invoker.get(Thing.class);
       AtomicReference<Throwable> value = new AtomicReference<Throwable>();
       CountDownLatch latch = new CountDownLatch(1);
-      completionStage.whenComplete((Thing t1, Throwable t2) -> {value.set(t2); latch.countDown();});
+      completionStage.whenComplete((Thing t1, Throwable t2) -> {
+         value.set(t2);
+         latch.countDown();
+      });
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertTrue(value.get().getMessage().contains("444"));
    }
-   
+
    @Test
    public void testGetTwoClients() throws Exception {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
@@ -325,7 +327,7 @@ public class RxCompletionStageClientAsyncTest {
       ResteasyClient client1 = new ResteasyClientBuilder().build();
       client1.register(CompletionStageRxInvokerProvider.class);
       CompletionStageRxInvoker invoker1 = client1.target(generateURL("/get/string")).request().rx(CompletionStageRxInvoker.class);
-      CompletionStage<Response> completionStage1 = (CompletionStage<Response>) invoker1.get();      
+      CompletionStage<Response> completionStage1 = (CompletionStage<Response>) invoker1.get();
 
       ResteasyClient client2 = new ResteasyClientBuilder().build();
       client2.register(CompletionStageRxInvokerProvider.class);
@@ -334,7 +336,7 @@ public class RxCompletionStageClientAsyncTest {
 
       list.add(completionStage1.toCompletableFuture().get().readEntity(String.class));
       list.add(completionStage2.toCompletableFuture().get().readEntity(String.class));
-      
+
       Assert.assertEquals(2, list.size());
       for (int i = 0; i < 2; i++) {
          Assert.assertEquals("x", list.get(i));
@@ -346,7 +348,7 @@ public class RxCompletionStageClientAsyncTest {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       CompletionStageRxInvoker invoker1 = client.target(generateURL("/get/string")).request().rx(CompletionStageRxInvoker.class);
-      CompletionStage<Response> completionStage1 = (CompletionStage<Response>) invoker1.get();      
+      CompletionStage<Response> completionStage1 = (CompletionStage<Response>) invoker1.get();
 
       CompletionStageRxInvoker invoker2 = client.target(generateURL("/get/string")).request().rx(CompletionStageRxInvoker.class);
       CompletionStage<Response> completionStage2 = (CompletionStage<Response>) invoker2.get();
@@ -365,9 +367,9 @@ public class RxCompletionStageClientAsyncTest {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       CompletionStageRxInvoker invoker = client.target(generateURL("/get/string")).request().rx(CompletionStageRxInvoker.class);
-      CompletionStage<Response> completionStage1 = (CompletionStage<Response>) invoker.get();      
+      CompletionStage<Response> completionStage1 = (CompletionStage<Response>) invoker.get();
       CompletionStage<Response> completionStage2 = (CompletionStage<Response>) invoker.get();
-      
+
       list.add(completionStage1.toCompletableFuture().get().readEntity(String.class));
       list.add(completionStage2.toCompletableFuture().get().readEntity(String.class));
 

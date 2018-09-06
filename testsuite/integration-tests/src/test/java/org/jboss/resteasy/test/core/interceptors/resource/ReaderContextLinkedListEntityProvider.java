@@ -18,43 +18,43 @@ public class ReaderContextLinkedListEntityProvider implements
         MessageBodyReader<LinkedList<String>>,
         MessageBodyWriter<LinkedList<String>> {
 
-    public static final String ERROR = "This LinkedList provider should never be used";
+   public static final String ERROR = "This LinkedList provider should never be used";
 
-    @Override
-    public boolean isWriteable(Class<?> type, Type genericType,
-                               Annotation[] annotations, MediaType mediaType) {
-        return type == LinkedList.class;
-    }
-
-    @Override
-    public long getSize(LinkedList<String> t, Class<?> type, Type genericType,
-                        Annotation[] annotations, MediaType mediaType) {
-        return ERROR.length();
-    }
-
-    @Override
-    public void writeTo(LinkedList<String> t, Class<?> type, Type genericType,
-                        Annotation[] annotations, MediaType mediaType,
-                        MultivaluedMap<String, Object> httpHeaders,
-                        OutputStream entityStream) throws IOException,
-            WebApplicationException {
-        entityStream.write(ERROR.getBytes());
-    }
-
-    @Override
-    public boolean isReadable(Class<?> type, Type genericType,
+   @Override
+   public boolean isWriteable(Class<?> type, Type genericType,
                               Annotation[] annotations, MediaType mediaType) {
-        return isWriteable(type, genericType, annotations, mediaType);
-    }
+      return type == LinkedList.class;
+   }
 
-    @Override
-    public LinkedList<String> readFrom(Class<LinkedList<String>> type,
-                                       Type genericType, Annotation[] annotations, MediaType mediaType,
-                                       MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
-            throws IOException, WebApplicationException {
-        LinkedList<String> list = new LinkedList<String>();
-        list.add(ERROR);
-        return list;
-    }
+   @Override
+   public long getSize(LinkedList<String> t, Class<?> type, Type genericType,
+                       Annotation[] annotations, MediaType mediaType) {
+      return ERROR.length();
+   }
+
+   @Override
+   public void writeTo(LinkedList<String> t, Class<?> type, Type genericType,
+                       Annotation[] annotations, MediaType mediaType,
+                       MultivaluedMap<String, Object> httpHeaders,
+                       OutputStream entityStream) throws IOException,
+           WebApplicationException {
+      entityStream.write(ERROR.getBytes());
+   }
+
+   @Override
+   public boolean isReadable(Class<?> type, Type genericType,
+                             Annotation[] annotations, MediaType mediaType) {
+      return isWriteable(type, genericType, annotations, mediaType);
+   }
+
+   @Override
+   public LinkedList<String> readFrom(Class<LinkedList<String>> type,
+                                      Type genericType, Annotation[] annotations, MediaType mediaType,
+                                      MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
+           throws IOException, WebApplicationException {
+      LinkedList<String> list = new LinkedList<String>();
+      list.add(ERROR);
+      return list;
+   }
 
 }

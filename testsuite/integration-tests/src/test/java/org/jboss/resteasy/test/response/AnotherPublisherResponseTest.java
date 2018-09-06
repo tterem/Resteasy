@@ -1,19 +1,5 @@
 package org.jboss.resteasy.test.response;
 
-import java.lang.reflect.ReflectPermission;
-import java.net.SocketPermission;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PropertyPermission;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
-
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.sse.SseEventSource;
-
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.logging.Logger;
@@ -31,6 +17,18 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.sse.SseEventSource;
+import java.lang.reflect.ReflectPermission;
+import java.net.SocketPermission;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PropertyPermission;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+
 /**
  * @tpSubChapter Publisher response type
  * @tpChapter Integration tests
@@ -45,7 +43,7 @@ public class AnotherPublisherResponseTest {
       WebArchive war = TestUtil.prepareArchive(AnotherPublisherResponseTest.class.getSimpleName());
       war.addClass(AnotherPublisherResponseTest.class);
       war.setManifest(new StringAsset("Manifest-Version: 1.0\n"
-         + "Dependencies: org.jboss.resteasy.resteasy-rxjava2 services, org.reactivestreams\n"));
+              + "Dependencies: org.jboss.resteasy.resteasy-rxjava2 services, org.reactivestreams\n"));
       war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(
               new RuntimePermission("modifyThread"),
               new SocketPermission(PortProviderUtil.getHost(), "connect,resolve"),
@@ -58,7 +56,7 @@ public class AnotherPublisherResponseTest {
               new PropertyPermission("node", "read")
       ), "permissions.xml");
       return TestUtil.finishContainerPrepare(war, null, PublisherResponseResource.class,
-            AsyncResponseCallback.class, AsyncResponseExceptionMapper.class, AsyncResponseException.class, PortProviderUtil.class);
+              AsyncResponseCallback.class, AsyncResponseExceptionMapper.class, AsyncResponseException.class, PortProviderUtil.class);
    }
 
    private String generateURL(String path) {
@@ -70,26 +68,23 @@ public class AnotherPublisherResponseTest {
     * @tpSince RESTEasy 4.0
     */
    @Test
-   public void testSse() throws Exception
-   {
-      for (int i=0; i < 40; i++) {
+   public void testSse() throws Exception {
+      for (int i = 0; i < 40; i++) {
          internalTestSse(i);
       }
    }
-   public void internalTestSse(int i) throws Exception
-   {
+
+   public void internalTestSse(int i) throws Exception {
       Client client = ClientBuilder.newClient();
       WebTarget target = client.target(generateURL("/sse"));
       List<String> collector = new ArrayList<>();
       List<Throwable> errors = new ArrayList<>();
       CompletableFuture<Void> future = new CompletableFuture<Void>();
-      try (SseEventSource source = SseEventSource.target(target).build())
-      {
+      try (SseEventSource source = SseEventSource.target(target).build()) {
          source.register(evt -> {
             String data = evt.readData(String.class);
             collector.add(data);
-            if (collector.size() >= 2)
-            {
+            if (collector.size() >= 2) {
                future.complete(null);
             }
          }, t -> {

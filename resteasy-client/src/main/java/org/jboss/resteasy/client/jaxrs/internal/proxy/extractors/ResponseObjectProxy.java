@@ -15,23 +15,19 @@ import java.util.HashMap;
  */
 
 @SuppressWarnings("unchecked")
-public class ResponseObjectProxy<T> implements EntityExtractor
-{
+public class ResponseObjectProxy<T> implements EntityExtractor {
    private Class<T> returnType;
    private HashMap<Method, EntityExtractor<?>> methodHandlers;
 
-   public ResponseObjectProxy(Method method, EntityExtractorFactory extractorFactory)
-   {
+   public ResponseObjectProxy(Method method, EntityExtractorFactory extractorFactory) {
       this.returnType = (Class<T>) method.getReturnType();
       this.methodHandlers = new HashMap<Method, EntityExtractor<?>>();
-      for (Method interfaceMethod : this.returnType.getMethods())
-      {
+      for (Method interfaceMethod : this.returnType.getMethods()) {
          this.methodHandlers.put(interfaceMethod, extractorFactory.createExtractor(interfaceMethod));
       }
    }
 
-   public Object extractEntity(ClientContext context, Object... args)
-   {
+   public Object extractEntity(ClientContext context, Object... args) {
       Class<?>[] intfs = {returnType};
       ClientResponseProxy clientProxy = new ClientResponseProxy(context, methodHandlers, returnType);
       return Proxy.newProxyInstance(returnType.getClassLoader(), intfs, clientProxy);

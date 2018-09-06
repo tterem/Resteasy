@@ -1,19 +1,15 @@
 package org.jboss.resteasy.test.providers.jaxb.resource.homecontrol;
 
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
  * <p>Java-Klasse für ErrorMessageType complex type.
- *
+ * <p>
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
- *
+ * <p>
  * <pre>
  * &lt;complexType name="ErrorMessageType"&gt;
  *   &lt;complexContent&gt;
@@ -28,8 +24,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ErrorMessageType", propOrder = {
@@ -55,10 +49,8 @@ public class ErrorMessageType {
    /**
     * Ruft den Wert der type-Eigenschaft ab.
     *
-    * @return
-    *     possible object is
-    *     {@link ErrorType }
-    *
+    * @return possible object is
+    * {@link ErrorType }
     */
    public ErrorType getType() {
       return type;
@@ -67,10 +59,8 @@ public class ErrorMessageType {
    /**
     * Legt den Wert der type-Eigenschaft fest.
     *
-    * @param value
-    *     allowed object is
-    *     {@link ErrorType }
-    *
+    * @param value allowed object is
+    *              {@link ErrorType }
     */
    public void setType(ErrorType value) {
       this.type = value;
@@ -79,10 +69,8 @@ public class ErrorMessageType {
    /**
     * Ruft den Wert der domain-Eigenschaft ab.
     *
-    * @return
-    *     possible object is
-    *     {@link ErrorDomainType }
-    *
+    * @return possible object is
+    * {@link ErrorDomainType }
     */
    public ErrorDomainType getDomain() {
       return domain;
@@ -91,10 +79,8 @@ public class ErrorMessageType {
    /**
     * Legt den Wert der domain-Eigenschaft fest.
     *
-    * @param value
-    *     allowed object is
-    *     {@link ErrorDomainType }
-    *
+    * @param value allowed object is
+    *              {@link ErrorDomainType }
     */
    public void setDomain(ErrorDomainType value) {
       this.domain = value;
@@ -103,10 +89,8 @@ public class ErrorMessageType {
    /**
     * Ruft den Wert der message-Eigenschaft ab.
     *
-    * @return
-    *     possible object is
-    *     {@link String }
-    *
+    * @return possible object is
+    * {@link String }
     */
    public String getMessage() {
       return message;
@@ -115,10 +99,8 @@ public class ErrorMessageType {
    /**
     * Legt den Wert der message-Eigenschaft fest.
     *
-    * @param value
-    *     allowed object is
-    *     {@link String }
-    *
+    * @param value allowed object is
+    *              {@link String }
     */
    public void setMessage(String value) {
       this.message = value;
@@ -127,10 +109,8 @@ public class ErrorMessageType {
    /**
     * Ruft den Wert der timestamp-Eigenschaft ab.
     *
-    * @return
-    *     possible object is
-    *     {@link XMLGregorianCalendar }
-    *
+    * @return possible object is
+    * {@link XMLGregorianCalendar }
     */
    public XMLGregorianCalendar getTimestamp() {
       return timestamp;
@@ -139,10 +119,8 @@ public class ErrorMessageType {
    /**
     * Legt den Wert der timestamp-Eigenschaft fest.
     *
-    * @param value
-    *     allowed object is
-    *     {@link XMLGregorianCalendar }
-    *
+    * @param value allowed object is
+    *              {@link XMLGregorianCalendar }
     */
    public void setTimestamp(XMLGregorianCalendar value) {
       this.timestamp = value;

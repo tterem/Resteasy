@@ -12,8 +12,7 @@ import java.util.Enumeration;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface HttpRequest
-{
+public interface HttpRequest {
    HttpHeaders getHttpHeaders();
 
    MultivaluedMap<String, String> getMutableHeaders();
@@ -30,24 +29,30 @@ public interface HttpRequest
 
    /**
     * This method *MUST* always return the same instance.
+    *
     * @return uri info
     */
    ResteasyUriInfo getUri();
 
    String getHttpMethod();
+
    void setHttpMethod(String method);
 
    /**
     * Updates the object returned by {@link #getUri()}.
+    *
     * @param requestUri request uri
     */
    void setRequestUri(URI requestUri) throws IllegalStateException;
+
    /**
     * Updates the object returned by {@link #getUri()}.
-    * @param baseUri base uri
-    * @param requestUri request uri 
+    *
+    * @param baseUri    base uri
+    * @param requestUri request uri
     */
    void setRequestUri(URI baseUri, URI requestUri) throws IllegalStateException;
+
    /**
     * application/x-www-form-urlencoded parameters
     * <p>
@@ -61,6 +66,7 @@ public interface HttpRequest
 
    /**
     * Map of contextual data.  Similar to HttpServletRequest attributes
+    *
     * @param attribute attribute name
     * @return attribute
     */

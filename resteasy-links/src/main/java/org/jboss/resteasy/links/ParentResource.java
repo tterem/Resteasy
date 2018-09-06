@@ -1,10 +1,6 @@
 package org.jboss.resteasy.links;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * <p>
@@ -15,6 +11,7 @@ import java.lang.annotation.Target;
  * will use this entity's {@link javax.xml.bind.annotation.XmlID @XmlID} id, and its parent's, in
  * reverse order, to form the path parameter list (from the furthest parent, to this entity).
  * </p>
+ *
  * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
  */
 @Target({ElementType.METHOD, ElementType.FIELD})

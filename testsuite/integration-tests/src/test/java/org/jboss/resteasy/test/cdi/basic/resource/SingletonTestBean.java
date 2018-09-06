@@ -10,19 +10,19 @@ import javax.ws.rs.core.UriInfo;
 @Local({SingletonLocalIF.class})
 public class SingletonTestBean implements SingletonLocalIF {
 
-    public SingletonTestBean() {
-    }
+   @Context
+   private UriInfo ui;
 
-    public void remove() {
-    }
+   public SingletonTestBean() {
+   }
 
-    @Context
-    private UriInfo ui;
+   public void remove() {
+   }
 
-    @Override
-    @GET
-    public String get() {
-        return "GET: " + ui.getRequestUri().toASCIIString() +
-                " Hello From Singleton Local EJB Sub";
-    }
+   @Override
+   @GET
+   public String get() {
+      return "GET: " + ui.getRequestUri().toASCIIString() +
+              " Hello From Singleton Local EJB Sub";
+   }
 }

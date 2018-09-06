@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for FavoriteMovie complex type.
- *
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * <p>
  * <pre>
  * &lt;complexType name="FavoriteMovie">
  *   &lt;complexContent>
@@ -21,8 +21,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "FavoriteMovie", propOrder = {
@@ -30,27 +28,27 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class FavoriteMovie {
 
-    @XmlElement(required = true, namespace = "http://abc.com")
-    protected String title;
+   @XmlElement(required = true, namespace = "http://abc.com")
+   protected String title;
 
-    /**
-     * Gets the value of the title property.
-     *
-     * @return possible object is
-     * {@link String }
-     */
-    public String getTitle() {
-        return title;
-    }
+   /**
+    * Gets the value of the title property.
+    *
+    * @return possible object is
+    * {@link String }
+    */
+   public String getTitle() {
+      return title;
+   }
 
-    /**
-     * Sets the value of the title property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     */
-    public void setTitle(String value) {
-        this.title = value;
-    }
+   /**
+    * Sets the value of the title property.
+    *
+    * @param value allowed object is
+    *              {@link String }
+    */
+   public void setTitle(String value) {
+      this.title = value;
+   }
 
 }

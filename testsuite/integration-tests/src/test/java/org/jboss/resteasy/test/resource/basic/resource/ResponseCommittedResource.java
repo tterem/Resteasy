@@ -1,14 +1,13 @@
 package org.jboss.resteasy.test.resource.basic.resource;
 
-import java.util.Map;
+import org.jboss.resteasy.spi.HttpResponse;
+import org.jboss.resteasy.spi.ResteasyProviderFactory;
+import org.jboss.resteasy.test.resource.basic.ResponseCommittedTest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
-
-import org.jboss.resteasy.spi.HttpResponse;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
-import org.jboss.resteasy.test.resource.basic.ResponseCommittedTest;
+import java.util.Map;
 
 @Path("")
 public class ResponseCommittedResource {

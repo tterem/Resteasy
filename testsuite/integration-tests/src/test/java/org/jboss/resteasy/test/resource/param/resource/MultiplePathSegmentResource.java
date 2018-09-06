@@ -2,14 +2,13 @@ package org.jboss.resteasy.test.resource.param.resource;
 
 import org.jboss.logging.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.PathSegment;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("")
 public class MultiplePathSegmentResource {

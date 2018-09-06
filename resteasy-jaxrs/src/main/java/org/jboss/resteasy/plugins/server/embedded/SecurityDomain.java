@@ -8,8 +8,7 @@ import java.security.Principal;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface SecurityDomain
-{
+public interface SecurityDomain {
    Principal authenticate(String username, String password) throws SecurityException;
 
    boolean isUserInRole(Principal username, String role);

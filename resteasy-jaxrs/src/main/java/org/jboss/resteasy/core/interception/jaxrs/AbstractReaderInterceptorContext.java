@@ -12,7 +12,6 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.ReaderInterceptor;
 import javax.ws.rs.ext.ReaderInterceptorContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
@@ -22,10 +21,8 @@ import java.lang.reflect.Type;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public abstract class AbstractReaderInterceptorContext implements ReaderInterceptorContext
-{
+public abstract class AbstractReaderInterceptorContext implements ReaderInterceptorContext {
    protected RESTEasyTracingLogger tracingLogger;
-   private InterceptorTimestampPair<ReaderInterceptor> lastTracedInterceptor;
    protected ReaderInterceptor[] interceptors;
    protected ResteasyProviderFactory providerFactory;
    protected Class type;
@@ -35,10 +32,10 @@ public abstract class AbstractReaderInterceptorContext implements ReaderIntercep
    protected MultivaluedMap<String, String> headers;
    protected InputStream inputStream;
    protected int index = 0;
+   private InterceptorTimestampPair<ReaderInterceptor> lastTracedInterceptor;
 
    @Deprecated
-   public AbstractReaderInterceptorContext(MediaType mediaType, ResteasyProviderFactory providerFactory, Annotation[] annotations, ReaderInterceptor[] interceptors, MultivaluedMap<String, String> headers, Type genericType, Class type, InputStream inputStream)
-   {
+   public AbstractReaderInterceptorContext(MediaType mediaType, ResteasyProviderFactory providerFactory, Annotation[] annotations, ReaderInterceptor[] interceptors, MultivaluedMap<String, String> headers, Type genericType, Class type, InputStream inputStream) {
       this.mediaType = mediaType;
       this.annotations = annotations;
       this.interceptors = interceptors;
@@ -50,8 +47,7 @@ public abstract class AbstractReaderInterceptorContext implements ReaderIntercep
       this.tracingLogger = RESTEasyTracingLogger.empty();
    }
 
-   public AbstractReaderInterceptorContext(MediaType mediaType, ResteasyProviderFactory providerFactory, Annotation[] annotations, ReaderInterceptor[] interceptors, MultivaluedMap<String, String> headers, Type genericType, Class type, InputStream inputStream, RESTEasyTracingLogger logger)
-   {
+   public AbstractReaderInterceptorContext(MediaType mediaType, ResteasyProviderFactory providerFactory, Annotation[] annotations, ReaderInterceptor[] interceptors, MultivaluedMap<String, String> headers, Type genericType, Class type, InputStream inputStream, RESTEasyTracingLogger logger) {
       this.mediaType = mediaType;
       this.annotations = annotations;
       this.interceptors = interceptors;
@@ -68,13 +64,11 @@ public abstract class AbstractReaderInterceptorContext implements ReaderIntercep
 
 
    @Override
-   public Object proceed() throws IOException
-   {
+   public Object proceed() throws IOException {
       LogMessages.LOGGER.debugf("Interceptor Context: %s,  Method : proceed", getClass().getName());
-      if (interceptors == null || index >= interceptors.length)
-      {
+      if (interceptors == null || index >= interceptors.length) {
          MessageBodyReader reader = getReader();
-         if (reader!=null) {
+         if (reader != null) {
             tracingLogger.log("MBR_READ_FROM", reader.getClass().getName());
             LogMessages.LOGGER.debugf("MessageBodyReader: %s", reader.getClass().getName());
          }
@@ -92,13 +86,11 @@ public abstract class AbstractReaderInterceptorContext implements ReaderIntercep
       }
 
 
-
       // index--;  we used to pop the index, but the TCK does not like this
    }
 
    @SuppressWarnings(value = "unchecked")
-   protected Object readFrom(MessageBodyReader reader) throws IOException
-   {
+   protected Object readFrom(MessageBodyReader reader) throws IOException {
       return reader.readFrom(type, genericType, annotations, mediaType, headers, inputStream);
    }
 
@@ -120,17 +112,14 @@ public abstract class AbstractReaderInterceptorContext implements ReaderIntercep
       }
    }
 
-   protected MessageBodyReader getReader()
-   {
+   protected MessageBodyReader getReader() {
       MediaType mediaType = this.mediaType;
       // spec says set to octet stream
-      if (getHeaders() != null && getHeaders().getFirst(HttpHeaders.CONTENT_TYPE) == null && mediaType.isWildcardType())
-      {
+      if (getHeaders() != null && getHeaders().getFirst(HttpHeaders.CONTENT_TYPE) == null && mediaType.isWildcardType()) {
          mediaType = MediaType.APPLICATION_OCTET_STREAM_TYPE;
       }
       MessageBodyReader reader = resolveReader(mediaType);
-      if (reader == null)
-      {
+      if (reader == null) {
          throwReaderNotFound();
       }
       return reader;
@@ -141,73 +130,62 @@ public abstract class AbstractReaderInterceptorContext implements ReaderIntercep
    abstract protected void throwReaderNotFound();
 
    @Override
-   public InputStream getInputStream()
-   {
+   public InputStream getInputStream() {
       return inputStream;
    }
 
    @Override
-   public void setInputStream(InputStream is)
-   {
+   public void setInputStream(InputStream is) {
       this.inputStream = is;
    }
 
    @Override
-   public MultivaluedMap<String, String> getHeaders()
-   {
+   public MultivaluedMap<String, String> getHeaders() {
       return headers;
    }
 
    @Override
-   public Annotation[] getAnnotations()
-   {
+   public Annotation[] getAnnotations() {
       return annotations;
    }
 
    @Override
-   public void setAnnotations(Annotation[] annotations)
-   {
+   public void setAnnotations(Annotation[] annotations) {
       if (annotations == null) throw new NullPointerException(Messages.MESSAGES.annotationsParamNull());
       this.annotations = annotations;
    }
 
    @Override
-   public Class getType()
-   {
+   public Class getType() {
       return type;
    }
 
    @Override
-   public void setType(Class type)
-   {
+   public void setType(Class type) {
       this.type = type;
    }
 
    @Override
-   public Type getGenericType()
-   {
+   public Type getGenericType() {
       return genericType;
    }
 
    @Override
-   public void setGenericType(Type genericType)
-   {
+   public void setGenericType(Type genericType) {
       this.genericType = genericType;
    }
 
    @Override
-   public MediaType getMediaType()
-   {
+   public MediaType getMediaType() {
       return mediaType;
    }
 
    @Override
-   public void setMediaType(MediaType mediaType)
-   {
+   public void setMediaType(MediaType mediaType) {
       this.mediaType = mediaType;
    }
 
    public Object getProcessedInterceptorCount() {
-         return index;
+      return index;
    }
 }

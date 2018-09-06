@@ -19,19 +19,8 @@ import static org.junit.Assert.assertEquals;
  * The test will fail with Resteasy 3.0.8.Final, but pass with 3.0.6.Final.
  * It'll also pass if you remove the trailing slash in {@code generateURL("/test/")}.
  */
-public class ResteasyTrailingSlashTest
-{
+public class ResteasyTrailingSlashTest {
    private static NettyJaxrsServer server;
-
-   @Path("/")
-   public static class Resource {
-      @GET
-      @Path("/test/")
-      @Produces(MediaType.TEXT_PLAIN)
-      public String get() {
-         return "hello world";
-      }
-   }
 
    @BeforeClass
    public static void init() throws Exception {
@@ -58,5 +47,15 @@ public class ResteasyTrailingSlashTest
               .request().get(String.class);
       assertEquals("hello world", val);
       client.close();
+   }
+
+   @Path("/")
+   public static class Resource {
+      @GET
+      @Path("/test/")
+      @Produces(MediaType.TEXT_PLAIN)
+      public String get() {
+         return "hello world";
+      }
    }
 }

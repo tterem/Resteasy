@@ -13,8 +13,7 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Verify
-{
+public @interface Verify {
    /**
     * If there are multiple signature headers, use this attribute name to pick which signature to verify
     *

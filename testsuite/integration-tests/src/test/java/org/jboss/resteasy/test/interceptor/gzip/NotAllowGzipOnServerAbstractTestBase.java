@@ -5,12 +5,12 @@ import org.jboss.shrinkwrap.api.Archive;
 
 /**
  * Abstract base class for tests with gzip disabled on server side.
- *
+ * <p>
  * This abstract class provides deployments.
- *
+ * <p>
  * This abstract class is extended by:
- *      NotAllowGzipOnServerAllowGzipOnClientTest
- *      NotAllowGzipOnServerNotAllowGzipOnClientTest
+ * NotAllowGzipOnServerAllowGzipOnClientTest
+ * NotAllowGzipOnServerNotAllowGzipOnClientTest
  */
 public class NotAllowGzipOnServerAbstractTestBase extends GzipAbstractTestBase {
 

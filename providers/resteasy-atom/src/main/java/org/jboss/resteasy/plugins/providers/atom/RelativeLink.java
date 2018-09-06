@@ -8,7 +8,6 @@ import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import java.net.URI;
 
 /**
@@ -20,14 +19,11 @@ import java.net.URI;
  */
 @XmlRootElement(name = "link")
 @XmlAccessorType(XmlAccessType.PROPERTY)
-public class RelativeLink extends Link
-{
-   public RelativeLink()
-   {
+public class RelativeLink extends Link {
+   public RelativeLink() {
    }
 
-   public RelativeLink(String rel, String relativeLink)
-   {
+   public RelativeLink(String rel, String relativeLink) {
       UriInfo uriInfo = ResteasyProviderFactory.getContextData(UriInfo.class);
       if (uriInfo == null)
          throw new IllegalStateException(Messages.MESSAGES.consructorMustBeCalled());
@@ -36,14 +32,12 @@ public class RelativeLink extends Link
       setRel(rel);
    }
 
-   public RelativeLink(String rel, String relativeLink, MediaType mediaType)
-   {
+   public RelativeLink(String rel, String relativeLink, MediaType mediaType) {
       this(rel, relativeLink);
       this.setType(mediaType);
    }
 
-   public RelativeLink(String rel, String relativeLink, String mediaType)
-   {
+   public RelativeLink(String rel, String relativeLink, String mediaType) {
       this(rel, relativeLink);
       this.setType(MediaType.valueOf(mediaType));
    }

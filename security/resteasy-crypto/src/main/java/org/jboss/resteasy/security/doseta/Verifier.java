@@ -1,9 +1,8 @@
 package org.jboss.resteasy.security.doseta;
 
-import javax.ws.rs.core.MultivaluedMap;
-
 import org.jboss.resteasy.security.doseta.i18n.Messages;
 
+import javax.ws.rs.core.MultivaluedMap;
 import java.security.PublicKey;
 import java.security.SignatureException;
 import java.util.ArrayList;
@@ -15,30 +14,25 @@ import java.util.Map;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class Verifier
-{
+public class Verifier {
    protected KeyRepository repository;
    protected List<Verification> verifications = new ArrayList<Verification>();
 
-   public KeyRepository getRepository()
-   {
+   public KeyRepository getRepository() {
       return repository;
    }
 
-   public void setRepository(KeyRepository repository)
-   {
+   public void setRepository(KeyRepository repository) {
       this.repository = repository;
    }
 
-   public Verification addNew()
-   {
+   public Verification addNew() {
       Verification verification = new Verification();
       verifications.add(verification);
       return verification;
    }
 
-   public List<Verification> getVerifications()
-   {
+   public List<Verification> getVerifications() {
       return verifications;
    }
 
@@ -46,16 +40,14 @@ public class Verifier
     * Try to verify a set of signatures and store the results.
     *
     * @param signatures list of signatures
-    * @param headers headers map
-    * @param body body
+    * @param headers    headers map
+    * @param body       body
     * @return {@link VerificationResults}
     */
-   public VerificationResults verify(List<DKIMSignature> signatures, Map headers, byte[] body)
-   {
+   public VerificationResults verify(List<DKIMSignature> signatures, Map headers, byte[] body) {
       VerificationResults results = new VerificationResults();
       results.setVerified(true);
-      for (Verification verification : verifications)
-      {
+      for (Verification verification : verifications) {
          VerificationResultSet resultSet = new VerificationResultSet();
          results.getResults().add(resultSet);
          resultSet.setVerification(verification);
@@ -65,14 +57,11 @@ public class Verifier
          Iterator<DKIMSignature> iterator = matched.iterator();
 
 
-         while (iterator.hasNext())
-         {
+         while (iterator.hasNext()) {
             DKIMSignature sig = iterator.next();
-            if (verification.getIdentifierName() != null)
-            {
+            if (verification.getIdentifierName() != null) {
                String value = sig.getAttributes().get(verification.getIdentifierName());
-               if (value == null || !value.equals(verification.getIdentifierValue()))
-               {
+               if (value == null || !value.equals(verification.getIdentifierValue())) {
                   iterator.remove();
                   continue;
                }
@@ -80,19 +69,16 @@ public class Verifier
          }
 
          // could not find a signature to match verification
-         if (matched.isEmpty())
-         {
+         if (matched.isEmpty()) {
             results.setVerified(false);
             continue;
          }
 
          resultSet.setVerified(true);
-         for (DKIMSignature signature : matched)
-         {
+         for (DKIMSignature signature : matched) {
             VerificationResult result = verify(headers, body, verification, signature);
             resultSet.getResults().add(result);
-            if (result.isVerified() == false)
-            {
+            if (result.isVerified() == false) {
                resultSet.setVerified(false);
                results.setVerified(false);
             }
@@ -105,23 +91,19 @@ public class Verifier
    /**
     * Verify one signature and store the results.
     *
-    * @param headers headers map
-    * @param body body
+    * @param headers      headers map
+    * @param body         body
     * @param verification verification
-    * @param signature signature
+    * @param signature    signature
     * @return {@link VerificationResult}
     */
-   public VerificationResult verify(Map headers, byte[] body, Verification verification, DKIMSignature signature)
-   {
+   public VerificationResult verify(Map headers, byte[] body, Verification verification, DKIMSignature signature) {
       VerificationResult result = new VerificationResult();
       result.setSignature(signature);
-      try
-      {
+      try {
          MultivaluedMap<String, String> verifiedHeaders = verifySignature(headers, body, verification, signature);
          result.setVerifiedHeaders(verifiedHeaders);
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          result.setFailureException(e);
          return result;
       }
@@ -129,22 +111,16 @@ public class Verifier
       return result;
    }
 
-   public MultivaluedMap<String, String> verifySignature(Map headers, byte[] body, Verification verification, DKIMSignature signature) throws SignatureException
-   {
+   public MultivaluedMap<String, String> verifySignature(Map headers, byte[] body, Verification verification, DKIMSignature signature) throws SignatureException {
       PublicKey key = verification.getKey();
 
-      if (key == null)
-      {
-         if (verification.getRepository() != null)
-         {
+      if (key == null) {
+         if (verification.getRepository() != null) {
             key = verification.getRepository().findPublicKey(signature);
-         }
-         else if (repository != null)
-         {
+         } else if (repository != null) {
             key = repository.findPublicKey(signature);
          }
-         if (key == null)
-         {
+         if (key == null) {
             throw new SignatureException(Messages.MESSAGES.couldNotFindPublicKey(signature));
          }
       }

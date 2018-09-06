@@ -23,48 +23,39 @@ import java.util.List;
  * @author Norman Maurer
  * @version $Revision: 1 $
  */
-public class RequestDispatcher
-{
+public class RequestDispatcher {
    protected final SynchronousDispatcher dispatcher;
    protected final ResteasyProviderFactory providerFactory;
    protected final SecurityDomain domain;
 
-   public RequestDispatcher(SynchronousDispatcher dispatcher, ResteasyProviderFactory providerFactory, SecurityDomain domain)
-   {
+   public RequestDispatcher(SynchronousDispatcher dispatcher, ResteasyProviderFactory providerFactory, SecurityDomain domain) {
       this.dispatcher = dispatcher;
       this.providerFactory = providerFactory;
       this.domain = domain;
    }
 
-   public SynchronousDispatcher getDispatcher()
-   {
+   public SynchronousDispatcher getDispatcher() {
       return dispatcher;
    }
 
-   public SecurityDomain getDomain()
-   {
+   public SecurityDomain getDomain() {
       return domain;
    }
 
-   public ResteasyProviderFactory getProviderFactory()
-   {
+   public ResteasyProviderFactory getProviderFactory() {
       return providerFactory;
    }
 
-   public void service(ChannelHandlerContext ctx, HttpRequest request, HttpResponse response, boolean handleNotFound) throws IOException
-   {
+   public void service(ChannelHandlerContext ctx, HttpRequest request, HttpResponse response, boolean handleNotFound) throws IOException {
 
-      try
-      {
+      try {
          ResteasyProviderFactory defaultInstance = ResteasyProviderFactory.getInstance();
-         if (defaultInstance instanceof ThreadLocalResteasyProviderFactory)
-         {
+         if (defaultInstance instanceof ThreadLocalResteasyProviderFactory) {
             ThreadLocalResteasyProviderFactory.push(providerFactory);
          }
 
          SecurityContext securityContext;
-         if (domain != null)
-         {
+         if (domain != null) {
             securityContext = basicAuthentication(request, response);
             if (securityContext == null) // not authenticated
             {
@@ -73,64 +64,47 @@ public class RequestDispatcher
          } else {
             securityContext = new NettySecurityContext();
          }
-         try
-         {
+         try {
 
             ResteasyProviderFactory.pushContext(SecurityContext.class, securityContext);
             ResteasyProviderFactory.pushContext(ChannelHandlerContext.class, ctx);
-             if (handleNotFound)
-            {
+            if (handleNotFound) {
                dispatcher.invoke(request, response);
-            }
-            else
-            {
+            } else {
                dispatcher.invokePropagateNotFound(request, response);
             }
-         }
-         finally
-         {
+         } finally {
             ResteasyProviderFactory.clearContextData();
          }
-      }
-      finally
-      {
+      } finally {
          ResteasyProviderFactory defaultInstance = ResteasyProviderFactory.getInstance();
-         if (defaultInstance instanceof ThreadLocalResteasyProviderFactory)
-         {
+         if (defaultInstance instanceof ThreadLocalResteasyProviderFactory) {
             ThreadLocalResteasyProviderFactory.pop();
          }
 
       }
    }
 
-   private SecurityContext basicAuthentication(HttpRequest request, HttpResponse response) throws IOException
-   {
+   private SecurityContext basicAuthentication(HttpRequest request, HttpResponse response) throws IOException {
       List<String> headers = request.getHttpHeaders().getRequestHeader(HttpHeaderNames.AUTHORIZATION);
       if (!headers.isEmpty()) {
          String auth = headers.get(0);
-         if (auth.length() > 5)
-         {
+         if (auth.length() > 5) {
             String type = auth.substring(0, 5);
             type = type.toLowerCase();
-            if ("basic".equals(type))
-            {
+            if ("basic".equals(type)) {
                String cookie = auth.substring(6);
                cookie = new String(Base64.decodeBase64(cookie.getBytes()));
                String[] split = cookie.split(":");
                Principal user = null;
-               try
-               {
+               try {
                   user = domain.authenticate(split[0], split[1]);
                   return new NettySecurityContext(user, domain, "BASIC", true);
-               }
-               catch (SecurityException e)
-               {
+               } catch (SecurityException e) {
                   response.sendError(HttpResponseCodes.SC_UNAUTHORIZED);
                   return null;
                }
-            }
-            else
-            {
+            } else {
                response.sendError(HttpResponseCodes.SC_UNAUTHORIZED);
                return null;
             }

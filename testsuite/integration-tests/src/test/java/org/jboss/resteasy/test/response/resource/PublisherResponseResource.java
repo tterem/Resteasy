@@ -1,27 +1,25 @@
 package org.jboss.resteasy.test.response.resource;
 
-import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
+import io.reactivex.Flowable;
+import org.jboss.logging.Logger;
+import org.jboss.resteasy.annotations.Stream;
+import org.jboss.resteasy.spi.HttpRequest;
+import org.reactivestreams.Publisher;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-
-import org.jboss.logging.Logger;
-import org.jboss.resteasy.annotations.Stream;
-import org.jboss.resteasy.spi.HttpRequest;
-import org.reactivestreams.Publisher;
-
-import io.reactivex.Flowable;
+import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 @Path("")
 public class PublisherResponseResource {
 
-   private static boolean terminated = false;
    private static final Logger LOG = Logger.getLogger(PublisherResponseResource.class);
-   
+   private static boolean terminated = false;
+
    @GET
    @Path("text")
    @Produces("application/json")

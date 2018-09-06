@@ -16,15 +16,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
-
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Reader;
+import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
@@ -39,22 +31,25 @@ import java.util.Map;
 @Provider
 @Produces({"application/json", "application/*+json"})
 @Consumes({"application/json", "application/*+json"})
-public class JsonMapProvider extends MapProvider
-{
+public class JsonMapProvider extends MapProvider {
+
+   public static String getCharset(MediaType mediaType) {
+      if (mediaType != null) {
+         String charset = mediaType.getParameters().get("charset");
+         if (charset != null) return charset;
+      }
+      return StandardCharsets.UTF_8.name();
+   }
 
    @SuppressWarnings("unchecked")
-   public Object readFrom(Class<Object> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, String> httpHeaders, InputStream entityStream) throws IOException, WebApplicationException
-   {
+   public Object readFrom(Class<Object> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, String> httpHeaders, InputStream entityStream) throws IOException, WebApplicationException {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom", getClass().getName());
       Class baseType = Types.getMapValueType(genericType);
       Reader reader = null;
       String charset = mediaType.getParameters().get("charset");
-      if (charset != null)
-      {
+      if (charset != null) {
          reader = new BufferedReader(new InputStreamReader(entityStream, charset));
-      }
-      else
-      {
+      } else {
          reader = new BufferedReader(new InputStreamReader(entityStream));
       }
 
@@ -63,18 +58,15 @@ public class JsonMapProvider extends MapProvider
       if (c != '{') throw new JAXBUnmarshalException(Messages.MESSAGES.expectingJsonArray());
       c = JsonParsing.eatWhitspace(reader, true);
       HashMap map = new HashMap();
-      if (c != '}')
-      {
+      if (c != '}') {
          MessageBodyReader messageReader = providers.getMessageBodyReader(baseType, null, annotations, mediaType);
          LogMessages.LOGGER.debugf("MessageBodyReader: %s", messageReader.getClass().getName());
 
-         do
-         {
+         do {
             String key = JsonParsing.getJsonString(reader);
             c = JsonParsing.eatWhitspace(reader, false);
 
-            if (c != ':')
-            {
+            if (c != ':') {
                throw new JAXBUnmarshalException(Messages.MESSAGES.expectingColonMap());
             }
 
@@ -89,8 +81,7 @@ public class JsonMapProvider extends MapProvider
 
             if (c == '}') break;
 
-            if (c != ',')
-            {
+            if (c != ',') {
                throw new JAXBUnmarshalException(Messages.MESSAGES.expectingCommaJsonArray());
             }
             c = JsonParsing.eatWhitspace(reader, true);
@@ -99,23 +90,11 @@ public class JsonMapProvider extends MapProvider
       return map;
    }
 
-   public static String getCharset(MediaType mediaType)
-   {
-      if (mediaType != null)
-      {
-         String charset = mediaType.getParameters().get("charset");
-         if (charset != null) return charset;
-      }
-      return StandardCharsets.UTF_8.name();
-   }
-
    @SuppressWarnings("unchecked")
-   public void writeTo(Object target, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException
-   {
+   public void writeTo(Object target, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : writeTo", getClass().getName());
       JAXBContextFinder finder = getFinder(mediaType);
-      if (finder == null)
-      {
+      if (finder == null) {
          throw new JAXBMarshalException(Messages.MESSAGES.unableToFindJAXBContext(mediaType));
       }
       Class valueType = Types.getMapValueType(genericType);
@@ -126,8 +105,7 @@ public class JsonMapProvider extends MapProvider
       writer.write('{');
       Map<Object, Object> targetMap = (Map) target;
       Iterator<Map.Entry<Object, Object>> it = targetMap.entrySet().iterator();
-      while (it.hasNext())
-      {
+      while (it.hasNext()) {
          Map.Entry mapEntry = it.next();
          writer.write('"');
          writer.write(mapEntry.getKey().toString());
@@ -135,8 +113,7 @@ public class JsonMapProvider extends MapProvider
          writer.write(':');
          writer.flush();
          messageWriter.writeTo(mapEntry.getValue(), valueType, null, annotations, mediaType, httpHeaders, entityStream);
-         if (it.hasNext())
-         {
+         if (it.hasNext()) {
             writer.write(',');
             writer.flush();
          }

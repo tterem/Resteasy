@@ -13,7 +13,6 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface NoCache
-{
+public @interface NoCache {
    String[] fields() default {};
 }

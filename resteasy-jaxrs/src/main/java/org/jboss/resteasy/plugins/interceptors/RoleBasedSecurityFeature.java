@@ -12,14 +12,11 @@ import java.lang.reflect.Method;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class RoleBasedSecurityFeature implements DynamicFeature
-{
+public class RoleBasedSecurityFeature implements DynamicFeature {
    @SuppressWarnings(value = "unchecked")
    @Override
-   public void configure(ResourceInfo resourceInfo, FeatureContext configurable)
-   {
-      @SuppressWarnings("rawtypes")
-      final Class declaring = resourceInfo.getResourceClass();
+   public void configure(ResourceInfo resourceInfo, FeatureContext configurable) {
+      @SuppressWarnings("rawtypes") final Class declaring = resourceInfo.getResourceClass();
       final Method method = resourceInfo.getResourceMethod();
 
       if (declaring == null || method == null) return;
@@ -30,8 +27,7 @@ public class RoleBasedSecurityFeature implements DynamicFeature
       RolesAllowed allowed = (RolesAllowed) declaring.getAnnotation(RolesAllowed.class);
       RolesAllowed methodAllowed = method.getAnnotation(RolesAllowed.class);
       if (methodAllowed != null) allowed = methodAllowed;
-      if (allowed != null)
-      {
+      if (allowed != null) {
          rolesAllowed = allowed.value();
       }
 
@@ -43,8 +39,7 @@ public class RoleBasedSecurityFeature implements DynamicFeature
               && method.isAnnotationPresent(RolesAllowed.class) == false
               && method.isAnnotationPresent(DenyAll.class) == false) || method.isAnnotationPresent(PermitAll.class);
 
-      if (rolesAllowed != null || denyAll || permitAll)
-      {
+      if (rolesAllowed != null || denyAll || permitAll) {
          RoleBasedSecurityFilter filter = new RoleBasedSecurityFilter(rolesAllowed, denyAll, permitAll);
          configurable.register(filter);
       }

@@ -1,12 +1,11 @@
 package org.jboss.resteasy.specimpl;
 
 
+import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
+
 import javax.ws.rs.core.Link;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriBuilderException;
-
-import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
-
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,18 +14,16 @@ import java.util.Map;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class LinkBuilderImpl implements Link.Builder
-{
+public class LinkBuilderImpl implements Link.Builder {
    /**
-    * A map for all the link parameters such as "rel", "type", etc.	
+    * A map for all the link parameters such as "rel", "type", etc.
     */
    protected final Map<String, String> map = new HashMap<String, String>();
    protected UriBuilder uriBuilder;
    protected URI baseUri;
 
    @Override
-   public Link.Builder link(Link link)
-   {
+   public Link.Builder link(Link link) {
       uriBuilder = UriBuilder.fromUri(link.getUri());
       this.map.clear();
       this.map.putAll(link.getParams());
@@ -34,15 +31,13 @@ public class LinkBuilderImpl implements Link.Builder
    }
 
    @Override
-   public Link.Builder link(String link)
-   {
+   public Link.Builder link(String link) {
       Link l = LinkImpl.valueOf(link);
       return link(l);
    }
 
    @Override
-   public Link.Builder uriBuilder(UriBuilder uriBuilder)
-   {
+   public Link.Builder uriBuilder(UriBuilder uriBuilder) {
       this.uriBuilder = uriBuilder.clone();
       return this;
    }
@@ -93,28 +88,22 @@ public class LinkBuilderImpl implements Link.Builder
    }
 
    @Override
-   public Link build(Object... values) throws UriBuilderException
-   {
+   public Link build(Object... values) throws UriBuilderException {
       if (values == null) throw new IllegalArgumentException(Messages.MESSAGES.valuesParamWasNull());
       URI built = null;
-      if (uriBuilder == null)
-      {
-        built = baseUri;
+      if (uriBuilder == null) {
+         built = baseUri;
+      } else {
+         built = this.uriBuilder.build(values);
       }
-      else
-      {
-        built = this.uriBuilder.build(values);
-      }
-      if (!built.isAbsolute() && baseUri != null)
-      {
-        built = baseUri.resolve(built);
+      if (!built.isAbsolute() && baseUri != null) {
+         built = baseUri.resolve(built);
       }
       return new LinkImpl(built, this.map);
    }
 
    @Override
-   public Link buildRelativized(URI uri, Object... values)
-   {
+   public Link buildRelativized(URI uri, Object... values) {
       if (uri == null) throw new IllegalArgumentException(Messages.MESSAGES.uriParamNull());
       if (values == null) throw new IllegalArgumentException(Messages.MESSAGES.valuesParamWasNull());
       URI built = uriBuilder.build(values);
@@ -124,15 +113,13 @@ public class LinkBuilderImpl implements Link.Builder
    }
 
    @Override
-   public Link.Builder baseUri(URI uri)
-   {
+   public Link.Builder baseUri(URI uri) {
       this.baseUri = uri;
       return this;
    }
 
    @Override
-   public Link.Builder baseUri(String uri)
-   {
+   public Link.Builder baseUri(String uri) {
       this.baseUri = URI.create(uri);
       return this;
    }

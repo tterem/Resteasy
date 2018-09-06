@@ -1,79 +1,63 @@
 package org.jboss.resteasy.test.providers.sse;
 
+import org.jboss.resteasy.plugins.providers.sse.OutboundSseEventImpl;
+import org.jboss.resteasy.plugins.providers.sse.SseBroadcasterImpl;
+import org.junit.Assert;
+import org.junit.Test;
+
+import javax.ws.rs.sse.OutboundSseEvent;
+import javax.ws.rs.sse.SseEventSink;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import javax.ws.rs.sse.OutboundSseEvent;
-import javax.ws.rs.sse.SseEventSink;
-
-import org.jboss.resteasy.plugins.providers.sse.OutboundSseEventImpl;
-import org.jboss.resteasy.plugins.providers.sse.SseBroadcasterImpl;
-import org.junit.Assert;
-import org.junit.Test;
-
 /***
- * 
+ *
  * @author Nicolas NESMON
  *
  */
-public class SseBroadcasterTest
-{
+public class SseBroadcasterTest {
 
    // We are expecting this test to throw an IllegalStateException every time a
    // method from SseBroadcasterImpl is invoked on a closed instance.
    @Test
-   public void testIllegalStateExceptionForClosedBroadcaster() throws Exception
-   {
+   public void testIllegalStateExceptionForClosedBroadcaster() throws Exception {
       SseBroadcasterImpl sseBroadcasterImpl = new SseBroadcasterImpl();
       sseBroadcasterImpl.close();
 
-      try
-      {
+      try {
          sseBroadcasterImpl.broadcast(new OutboundSseEventImpl.BuilderImpl().data("Test").build());
          Assert.fail("Should have thrown IllegalStateException");
-      }
-      catch (IllegalStateException e)
-      {
+      } catch (IllegalStateException e) {
       }
 
-      try
-      {
+      try {
          sseBroadcasterImpl.onClose(sseEventSink -> {
          });
          Assert.fail("Should have thrown IllegalStateException");
-      }
-      catch (IllegalStateException e)
-      {
+      } catch (IllegalStateException e) {
       }
 
-      try
-      {
+      try {
          sseBroadcasterImpl.onError((sseEventSink, error) -> {
          });
          Assert.fail("Should have thrown IllegalStateException");
-      }
-      catch (IllegalStateException e)
-      {
+      } catch (IllegalStateException e) {
       }
 
-      try
-      {
+      try {
          sseBroadcasterImpl.register(newSseEventSink());
          Assert.fail("Should have thrown IllegalStateException");
-      }
-      catch (IllegalStateException e)
-      {
+      } catch (IllegalStateException e) {
       }
    }
 
    // We are expecting this test to close all registered event sinks and invoke
    // close listeners when broadcaster is closed
    @Test
-   public void testClose() throws Exception
-   {
+   public void testClose() throws Exception {
       SseBroadcasterImpl sseBroadcasterImpl = new SseBroadcasterImpl();
 
       SseEventSink sseEventSink1 = newSseEventSink();
@@ -90,8 +74,7 @@ public class SseBroadcasterTest
       });
 
       sseBroadcasterImpl.close();
-      if (!countDownLatch.await(3, TimeUnit.SECONDS))
-      {
+      if (!countDownLatch.await(3, TimeUnit.SECONDS)) {
          Assert.fail("All close listeners should have been notified");
       }
       Assert.assertTrue(sseEventSink1.isClosed());
@@ -101,8 +84,7 @@ public class SseBroadcasterTest
    // We are expecting this test to invoke both close and error listeners when
    // event sink has been closed on server side
    @Test
-   public void testCloseAndErrorListenersForClosedEventSink() throws Exception
-   {
+   public void testCloseAndErrorListenersForClosedEventSink() throws Exception {
       SseBroadcasterImpl sseBroadcasterImpl = new SseBroadcasterImpl();
 
       SseEventSink sseEventSink = newSseEventSink();
@@ -122,8 +104,7 @@ public class SseBroadcasterTest
       });
 
       sseBroadcasterImpl.broadcast(new OutboundSseEventImpl.BuilderImpl().data("Test").build());
-      if (!countDownLatch.await(3, TimeUnit.SECONDS))
-      {
+      if (!countDownLatch.await(3, TimeUnit.SECONDS)) {
          Assert.fail("All close and error listeners should have been notified");
       }
    }
@@ -131,8 +112,7 @@ public class SseBroadcasterTest
    // We are expecting this test to invoke both close and error listeners when
    // event sink has been closed on client side (disconnected)
    @Test
-   public void testCloseAndErrorListenersForDisconnectedEventSink() throws Exception
-   {
+   public void testCloseAndErrorListenersForDisconnectedEventSink() throws Exception {
       SseBroadcasterImpl sseBroadcasterImpl = new SseBroadcasterImpl();
 
       SseEventSink sseEventSink = newSseEventSink(new IOException());
@@ -151,8 +131,7 @@ public class SseBroadcasterTest
       });
 
       sseBroadcasterImpl.broadcast(new OutboundSseEventImpl.BuilderImpl().data("Test").build());
-      if (!countDownLatch.await(3, TimeUnit.SECONDS))
-      {
+      if (!countDownLatch.await(3, TimeUnit.SECONDS)) {
          Assert.fail("All close and error listeners should have been notified");
       }
    }
@@ -160,8 +139,7 @@ public class SseBroadcasterTest
    // We are expecting this test to only invoke error listeners on broadcasting
    // error other than IOException
    @Test
-   public void testErrorListeners() throws Exception
-   {
+   public void testErrorListeners() throws Exception {
       SseBroadcasterImpl sseBroadcasterImpl = new SseBroadcasterImpl();
 
       SseEventSink sseEventSink = newSseEventSink(new RuntimeException());
@@ -180,52 +158,41 @@ public class SseBroadcasterTest
       });
 
       sseBroadcasterImpl.broadcast(new OutboundSseEventImpl.BuilderImpl().data("Test").build());
-      if (!countDownLatch.await(5, TimeUnit.SECONDS))
-      {
+      if (!countDownLatch.await(5, TimeUnit.SECONDS)) {
          Assert.fail("All error listeners should have been notified");
       }
    }
 
-   private SseEventSink newSseEventSink()
-   {
+   private SseEventSink newSseEventSink() {
       return newSseEventSink(null);
    }
 
-   private SseEventSink newSseEventSink(Throwable error)
-   {
-      return new SseEventSink()
-      {
+   private SseEventSink newSseEventSink(Throwable error) {
+      return new SseEventSink() {
 
          private boolean closed;
 
          @Override
-         public CompletionStage<?> send(OutboundSseEvent event)
-         {
-            if (closed)
-            {
+         public CompletionStage<?> send(OutboundSseEvent event) {
+            if (closed) {
                throw new IllegalStateException();
             }
             CompletableFuture<Object> completableFuture = new CompletableFuture<>();
-            if (error == null)
-            {
+            if (error == null) {
                completableFuture.complete(null);
-            }
-            else
-            {
+            } else {
                completableFuture.completeExceptionally(error);
             }
             return completableFuture;
          }
 
          @Override
-         public boolean isClosed()
-         {
+         public boolean isClosed() {
             return closed;
          }
 
          @Override
-         public void close()
-         {
+         public void close() {
             closed = true;
          }
       };

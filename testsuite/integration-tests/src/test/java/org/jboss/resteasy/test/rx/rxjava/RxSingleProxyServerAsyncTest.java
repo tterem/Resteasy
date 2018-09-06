@@ -1,21 +1,12 @@
 package org.jboss.resteasy.test.rx.rxjava;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PropertyPermission;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.internal.CompletionStageRxInvokerProvider;
-import org.jboss.resteasy.test.rx.resource.RxScheduledExecutorService;
-import org.jboss.resteasy.test.rx.resource.SimpleResource;
-import org.jboss.resteasy.test.rx.resource.TestException;
-import org.jboss.resteasy.test.rx.resource.TestExceptionMapper;
-import org.jboss.resteasy.test.rx.resource.Thing;
+import org.jboss.resteasy.test.rx.resource.*;
 import org.jboss.resteasy.test.rx.rxjava.resource.RxSingleResourceImpl;
 import org.jboss.resteasy.utils.PermissionUtil;
 import org.jboss.resteasy.utils.PortProviderUtil;
@@ -29,12 +20,17 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PropertyPermission;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 
 /**
  * @tpSubChapter Reactive classes
  * @tpChapter Integration tests
  * @tpSince RESTEasy 4.0
- * 
+ * <p>
  * In these tests, the server creates and returns a Single<T>.
  * The client uses a proxy to do a synchronous invocation to get an object of type T.
  */
@@ -45,12 +41,16 @@ public class RxSingleProxyServerAsyncTest {
    private static ResteasyClient client;
    private static SimpleResource proxy;
 
-   private static List<Thing>  xThingList =  new ArrayList<Thing>();
-   private static List<Thing>  aThingList =  new ArrayList<Thing>();
+   private static List<Thing> xThingList = new ArrayList<Thing>();
+   private static List<Thing> aThingList = new ArrayList<Thing>();
 
    static {
-      for (int i = 0; i < 3; i++) {xThingList.add(new Thing("x"));}
-      for (int i = 0; i < 3; i++) {aThingList.add(new Thing("a"));}
+      for (int i = 0; i < 3; i++) {
+         xThingList.add(new Thing("x"));
+      }
+      for (int i = 0; i < 3; i++) {
+         aThingList.add(new Thing("a"));
+      }
    }
 
    @Deployment
@@ -62,7 +62,7 @@ public class RxSingleProxyServerAsyncTest {
       war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(
               new PropertyPermission("*", "read,write")
       ), "permissions.xml");
-      
+
       TestUtilRxJava.addRxJavaLibraries(war);
       return TestUtil.finishContainerPrepare(war, null, RxSingleResourceImpl.class, TestExceptionMapper.class);
    }
@@ -84,7 +84,17 @@ public class RxSingleProxyServerAsyncTest {
    }
 
    //////////////////////////////////////////////////////////////////////////////
-   
+
+   private static boolean throwableContains(Throwable t, String s) {
+      while (t != null) {
+         if (t.getMessage().contains(s)) {
+            return true;
+         }
+         t = t.getCause();
+      }
+      return false;
+   }
+
    @Test
    public void testGet() throws Exception {
       String s = proxy.get();
@@ -183,13 +193,12 @@ public class RxSingleProxyServerAsyncTest {
       List<Thing> list = proxy.optionsThingList();
       Assert.assertEquals(xThingList, list);
    }
-   
+
    @Test
    public void testUnhandledException() throws Exception {
       try {
          proxy.getThing();
-      } catch (Exception e)
-      {
+      } catch (Exception e) {
          Assert.assertTrue(e.getMessage().contains("500"));
       }
    }
@@ -202,7 +211,7 @@ public class RxSingleProxyServerAsyncTest {
          Assert.assertTrue(e.getMessage().contains("444"));
       }
    }
-   
+
    @Test
    public void testGetTwoClients() throws Exception {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
@@ -210,18 +219,17 @@ public class RxSingleProxyServerAsyncTest {
       ResteasyClient client1 = new ResteasyClientBuilder().build();
       client1.register(CompletionStageRxInvokerProvider.class);
       SimpleResource proxy1 = client1.target(generateURL("/")).proxy(SimpleResource.class);
-      String s1 = proxy1.get();   
+      String s1 = proxy1.get();
 
       ResteasyClient client2 = new ResteasyClientBuilder().build();
       client2.register(CompletionStageRxInvokerProvider.class);
-      SimpleResource  proxy2 = client2.target(generateURL("/")).proxy(SimpleResource.class);
+      SimpleResource proxy2 = client2.target(generateURL("/")).proxy(SimpleResource.class);
       String s2 = proxy2.get();
 
       list.add(s1);
       list.add(s2);
       Assert.assertEquals(2, list.size());
-      for (int i = 0; i < 2; i++)
-      {
+      for (int i = 0; i < 2; i++) {
          Assert.assertEquals("x", list.get(i));
       }
    }
@@ -230,24 +238,23 @@ public class RxSingleProxyServerAsyncTest {
    public void testGetTwoProxies() throws Exception {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
-      SimpleResource  proxy1 = client.target(generateURL("/")).proxy(SimpleResource.class);
-      String s1 = proxy1.get();   
+      SimpleResource proxy1 = client.target(generateURL("/")).proxy(SimpleResource.class);
+      String s1 = proxy1.get();
 
-      SimpleResource  proxy2 = client.target(generateURL("/")).proxy(SimpleResource.class);
+      SimpleResource proxy2 = client.target(generateURL("/")).proxy(SimpleResource.class);
       String s2 = proxy2.get();
 
       list.add(s1);
       list.add(s2);
       Assert.assertEquals(2, list.size());
-      for (int i = 0; i < 2; i++)
-      {
+      for (int i = 0; i < 2; i++) {
          Assert.assertEquals("x", list.get(i));
       }
    }
-   
+
    @Test
    public void testGetTwoCompletionStages() throws Exception {
-      CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();   
+      CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       String s1 = proxy.get();
       String s2 = proxy.get();
@@ -255,20 +262,8 @@ public class RxSingleProxyServerAsyncTest {
       list.add(s1);
       list.add(s2);
       Assert.assertEquals(2, list.size());
-      for (int i = 0; i < 2; i++)
-      {
+      for (int i = 0; i < 2; i++) {
          Assert.assertEquals("x", list.get(i));
       }
-   }
-   
-   private static boolean throwableContains(Throwable t, String s) {
-      while (t != null) {
-         if (t.getMessage().contains(s))
-         {
-            return true;
-         }
-         t = t.getCause();
-      }
-      return false;
    }
 }

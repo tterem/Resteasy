@@ -6,10 +6,8 @@ import java.util.HashMap;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class HeaderParameterParser
-{
-   static int getEndName(String params, int start)
-   {
+public class HeaderParameterParser {
+   static int getEndName(String params, int start) {
       int equals = params.indexOf('=', start);
       int semicolon = params.indexOf(';', start);
       if (equals == -1 && semicolon == -1) return params.length();
@@ -19,8 +17,7 @@ public class HeaderParameterParser
       return end;
    }
 
-   public static int setParam(HashMap<String, String> typeParams, String params, int start)
-   {
+   public static int setParam(HashMap<String, String> typeParams, String params, int start) {
       boolean quote = false;
       boolean backslash = false;
 
@@ -30,50 +27,37 @@ public class HeaderParameterParser
 
       StringBuilder buffer = new StringBuilder(params.length() - end);
       int i = end;
-      for (; i < params.length(); i++)
-      {
+      for (; i < params.length(); i++) {
          char c = params.charAt(i);
 
-         switch (c)
-         {
-            case '"':
-            {
-               if (backslash)
-               {
+         switch (c) {
+            case '"': {
+               if (backslash) {
                   backslash = false;
                   buffer.append(c);
-               }
-               else
-               {
+               } else {
                   quote = !quote;
                }
                break;
             }
-            case '\\':
-            {
-               if (backslash)
-               {
+            case '\\': {
+               if (backslash) {
                   backslash = false;
                   buffer.append(c);
                }
                break;
             }
-            case ';':
-            {
-               if (!quote)
-               {
+            case ';': {
+               if (!quote) {
                   String value = buffer.toString().trim();
                   typeParams.put(name, value);
                   return i + 1;
-               }
-               else
-               {
+               } else {
                   buffer.append(c);
                }
                break;
             }
-            default:
-            {
+            default: {
                buffer.append(c);
                break;
             }

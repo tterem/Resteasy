@@ -13,26 +13,13 @@ import org.jboss.resteasy.util.HttpHeaderNames;
 import org.jboss.resteasy.util.HttpResponseCodes;
 import org.jboss.resteasy.util.WeightedMediaType;
 
-import javax.ws.rs.NotAcceptableException;
-import javax.ws.rs.NotAllowedException;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.NotSupportedException;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,40 +27,77 @@ import java.util.regex.Pattern;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class SegmentNode
-{
+public class SegmentNode {
    public static final String RESTEASY_CHOSEN_ACCEPT = "RESTEASY_CHOSEN_ACCEPT";
    public static final String RESTEASY_SERVER_HAS_PRODUCES = "RESTEASY-SERVER-HAS-PRODUCES";
    public static final MediaType[] WILDCARD_ARRAY = {MediaType.WILDCARD_TYPE};
    public static final List<MediaType> DEFAULT_ACCEPTS = new ArrayList<MediaType>();
 
-   static
-   {
+   static {
       DEFAULT_ACCEPTS.add(MediaType.WILDCARD_TYPE);
    }
+
    protected String segment;
    protected Map<String, SegmentNode> children = new HashMap<String, SegmentNode>();
    protected List<MethodExpression> targets = new ArrayList<MethodExpression>();
 
-   public SegmentNode(String segment)
-   {
+   public SegmentNode(String segment) {
       this.segment = segment;
    }
 
-   protected static class Match
-   {
-      MethodExpression expression;
-      Matcher matcher;
-
-      public Match(MethodExpression expression, Matcher matcher)
-      {
-         this.expression = expression;
-         this.matcher = matcher;
+   public static SortFactor createSortFactor(MediaType client, MediaType server) {
+      SortFactor sortFactor = new SortFactor();
+      if (client.isWildcardType() != server.isWildcardType()) {
+         sortFactor.type = (client.isWildcardType()) ? server.getType() : client.getType();
+         sortFactor.d++;
+      } else {
+         sortFactor.type = client.getType();
       }
+      if (client.isWildcardSubtype() != server.isWildcardSubtype()) {
+         sortFactor.subtype = (client.isWildcardSubtype()) ? server.getSubtype() : client.getSubtype();
+         sortFactor.d++;
+      } else {
+         sortFactor.subtype = client.getSubtype();
+      }
+      String q = client.getParameters().get("q");
+      if (q != null) sortFactor.q = Float.parseFloat(q);
+      String qs = server.getParameters().get("qs");
+      if (qs != null) sortFactor.qs = Float.parseFloat(qs);
+
+      sortFactor.dm = 0;
+      for (Map.Entry<String, String> entry : client.getParameters().entrySet()) {
+         String name = entry.getKey();
+         if ("q".equals(name)
+                 || "qs".equals(name)) continue;
+         String val = server.getParameters().get(name);
+         if (val == null) {
+            sortFactor.dm++;
+            continue;
+         }
+         if (!val.equals(entry.getValue())) {
+            sortFactor.dm++;
+            continue;
+         }
+      }
+
+      for (Map.Entry<String, String> entry : server.getParameters().entrySet()) {
+         String name = entry.getKey();
+         if ("q".equals(name)
+                 || "qs".equals(name)) continue;
+         String val = client.getParameters().get(name);
+         if (val == null) {
+            sortFactor.dm++;
+            continue;
+         }
+         if (!val.equals(entry.getValue())) {
+            sortFactor.dm++;
+            continue;
+         }
+      }
+      return sortFactor;
    }
 
-   public ResourceInvoker match(HttpRequest request, int start)
-   {
+   public ResourceInvoker match(HttpRequest request, int start) {
       String path = request.getUri().getMatchingPath();
       RESTEasyTracingLogger logger = RESTEasyTracingLogger.getInstance(request);
       logger.log("MATCH_PATH_FIND", request.getUri().getMatchingPath());
@@ -85,8 +109,7 @@ public class SegmentNode
 
       boolean expressionMatched = false;
       List<Match> matches = new ArrayList<Match>();
-      for (MethodExpression expression : potentials)
-      {
+      for (MethodExpression expression : potentials) {
          // We ignore locators if the first match was a resource method as per the spec Section 3, Step 2(h)
          if (expressionMatched && expression.isLocator()) {
             logger.log("MATCH_PATH_SKIPPED", expression.getRegex());
@@ -97,21 +120,16 @@ public class SegmentNode
          Matcher matcher = pattern.matcher(path);
          matcher.region(start, path.length());
 
-         if (matcher.matches())
-         {
+         if (matcher.matches()) {
             expressionMatched = true;
             ResourceInvoker invoker = expression.getInvoker();
-            if (invoker instanceof ResourceLocatorInvoker)
-            {
+            if (invoker instanceof ResourceLocatorInvoker) {
                ResteasyUriInfo uriInfo = (ResteasyUriInfo) request.getUri();
                int length = matcher.start(expression.getNumGroups() + 1);
-               if (length == -1)
-               {
+               if (length == -1) {
                   uriInfo.pushMatchedPath(path);
                   uriInfo.pushMatchedURI(path);
-               }
-               else
-               {
+               } else {
                   // must find the end of the matched pattern
                   // and get the substring from 1st char thru end
                   // of matched chars
@@ -119,7 +137,7 @@ public class SegmentNode
                   Matcher m = p.matcher(path);
                   m.region(start, path.length());
                   String substring = path;
-                  while(m.find()) {
+                  while (m.find()) {
                      String endText = m.group(m.groupCount());
                      if (endText != null && !endText.isEmpty()) {
                         int indx = path.indexOf(endText, length);
@@ -135,9 +153,7 @@ public class SegmentNode
                expression.populatePathParams(request, matcher, path);
                logger.log("MATCH_LOCATOR", invoker.getMethod());
                return invoker;
-            }
-            else
-            {
+            } else {
 
                matches.add(new Match(expression, matcher));
             }
@@ -145,8 +161,7 @@ public class SegmentNode
             logger.log("MATCH_PATH_NOT_MATCHED", expression.getRegex());
          }
       }
-      if (matches.size() == 0)
-      {
+      if (matches.size() == 0) {
          throw new NotFoundException(Messages.MESSAGES.couldNotFindResourceForFullPath(request.getUri().getRequestUri()));
       }
       Match match = match(matches, request.getHttpMethod(), request);
@@ -156,40 +171,215 @@ public class SegmentNode
 
    }
 
-   public void potentials(String path, int start, List<MethodExpression> matches)
-   {
+   public void potentials(String path, int start, List<MethodExpression> matches) {
       if (start == path.length()) // we've reached end of string
       {
          matches.addAll(targets);
          return;
       }
 
-      if (start < path.length())
-      {
+      if (start < path.length()) {
          String simpleSegment = null;
          int endOfSegmentIndex = path.indexOf('/', start);
          if (endOfSegmentIndex > -1) simpleSegment = path.substring(start, endOfSegmentIndex);
          else simpleSegment = path.substring(start);
          SegmentNode child = children.get(simpleSegment);
-         if (child != null)
-         {
+         if (child != null) {
             int next = start + simpleSegment.length();
             if (endOfSegmentIndex > -1) next++; // go past '/'
             child.potentials(path, next, matches);
          }
       }
-      for (MethodExpression exp : targets)
-      {
+      for (MethodExpression exp : targets) {
          // skip any static matches as they will not match anyways
-         if (exp.getNumGroups() > 0 || exp.getInvoker() instanceof ResourceLocatorInvoker)
-         {
+         if (exp.getNumGroups() > 0 || exp.getInvoker() instanceof ResourceLocatorInvoker) {
             matches.add(exp);
          }
       }
    }
 
-   public static class SortFactor
-   {
+   public Match match(List<Match> matches, String httpMethod, HttpRequest request) {
+      MediaType contentType = request.getHttpHeaders().getMediaType();
+
+      List<MediaType> requestAccepts = request.getHttpHeaders().getAcceptableMediaTypes();
+      List<WeightedMediaType> weightedAccepts = new ArrayList<WeightedMediaType>();
+      for (MediaType accept : requestAccepts) weightedAccepts.add(WeightedMediaType.parse(accept));
+
+      List<Match> list = new ArrayList<Match>();
+      boolean methodMatch = false;
+      boolean consumeMatch = false;
+
+      // make a list of all compatible ResourceMethods
+      for (Match match : matches) {
+
+         ResourceMethodInvoker invoker = (ResourceMethodInvoker) match.expression.getInvoker();
+         if (invoker.getHttpMethods().contains(httpMethod.toUpperCase())) {
+            methodMatch = true;
+            if (invoker.doesConsume(contentType)) {
+               consumeMatch = true;
+               if (invoker.doesProduce(weightedAccepts)) {
+                  list.add(match);
+               }
+            }
+
+         }
+      }
+
+      if (list.size() == 0) {
+         if (!methodMatch) {
+            HashSet<String> allowed = new HashSet<String>();
+            for (Match match : matches) {
+               allowed.addAll(((ResourceMethodInvoker) match.expression.getInvoker()).getHttpMethods());
+            }
+
+            if (httpMethod.equalsIgnoreCase("HEAD") && allowed.contains("GET")) {
+               return match(matches, "GET", request);
+            }
+
+            if (allowed.contains("GET")) allowed.add("HEAD");
+            allowed.add("OPTIONS");
+            StringBuilder allowHeaders = new StringBuilder("");
+            boolean first = true;
+            for (String allow : allowed) {
+               if (first) first = false;
+               else allowHeaders.append(", ");
+               allowHeaders.append(allow);
+            }
+            String allowHeaderValue = allowHeaders.toString();
+
+            if (httpMethod.equals("OPTIONS")) {
+
+               ResponseBuilder resBuilder = Response.ok(allowHeaderValue.toString(), MediaType.TEXT_PLAIN_TYPE).header(HttpHeaderNames.ALLOW, allowHeaderValue.toString());
+
+               if (allowed.contains("PATCH")) {
+                  Set<MediaType> patchAccepts = new HashSet<MediaType>(8);
+                  for (Match match : matches) {
+                     if (((ResourceMethodInvoker) match.expression.getInvoker()).getHttpMethods().contains("PATCH")) {
+                        patchAccepts.addAll(Arrays.asList(((ResourceMethodInvoker) match.expression.getInvoker())
+                                .getConsumes()));
+                     }
+                  }
+                  StringBuilder acceptPatch = new StringBuilder("");
+                  first = true;
+                  for (MediaType mediaType : patchAccepts) {
+                     if (first)
+                        first = false;
+                     else
+                        acceptPatch.append(", ");
+                     acceptPatch.append(mediaType.toString());
+                  }
+                  resBuilder.header(HttpHeaderNames.ACCEPT_PATCH, acceptPatch.toString());
+               }
+               throw new DefaultOptionsMethodException(Messages.MESSAGES.noResourceMethodFoundForOptions(), resBuilder.build());
+            } else {
+               Response res = Response.status(HttpResponseCodes.SC_METHOD_NOT_ALLOWED).header(HttpHeaderNames.ALLOW, allowHeaderValue).build();
+               throw new NotAllowedException(Messages.MESSAGES.noResourceMethodFoundForHttpMethod(httpMethod), res);
+            }
+         } else if (!consumeMatch) {
+            throw new NotSupportedException(Messages.MESSAGES.cannotConsumeContentType());
+         }
+         throw new NotAcceptableException(Messages.MESSAGES.noMatchForAcceptHeader());
+      }
+      //if (list.size() == 1) return list.get(0); //don't do this optimization as we need to set chosen accept
+      List<SortEntry> sortList = new ArrayList<SortEntry>();
+      for (Match match : list) {
+         ResourceMethodInvoker invoker = (ResourceMethodInvoker) match.expression.getInvoker();
+         if (contentType == null) contentType = MediaType.WILDCARD_TYPE;
+
+         MediaType[] consumes = invoker.getConsumes();
+         if (consumes.length == 0) {
+            consumes = WILDCARD_ARRAY;
+         }
+         MediaType[] produces = invoker.getProduces();
+         if (produces.length == 0) {
+            produces = WILDCARD_ARRAY;
+         }
+         List<SortFactor> consumeCombo = new ArrayList<SortFactor>();
+         for (MediaType consume : consumes) {
+            consumeCombo.add(createSortFactor(contentType, consume));
+         }
+         for (MediaType produce : produces) {
+            List<MediaType> acceptableMediaTypes = requestAccepts;
+            if (acceptableMediaTypes.size() == 0) {
+               acceptableMediaTypes = DEFAULT_ACCEPTS;
+            }
+            for (MediaType accept : acceptableMediaTypes) {
+               if (accept.isCompatible(produce)) {
+                  SortFactor sortFactor = createSortFactor(accept, produce);
+
+                  for (SortFactor consume : consumeCombo) {
+                     final Method m = match.expression.getInvoker().getMethod();
+                     sortList.add(new SortEntry(match, consume, sortFactor, produce));
+                  }
+               }
+
+            }
+         }
+      }
+      Collections.sort(sortList);
+
+      SortEntry sortEntry = sortList.get(0);
+
+      String[] mm = matchingMethods(sortList);
+      if (mm != null) {
+         LogMessages.LOGGER.multipleMethodsMatch(requestToString(request), mm);
+      }
+      request.setAttribute(RESTEASY_CHOSEN_ACCEPT, sortEntry.getAcceptType());
+      return sortEntry.match;
+   }
+
+   protected void addExpression(MethodExpression expression) {
+      targets.add(expression);
+      Collections.sort(targets);
+
+   }
+
+   private String requestToString(HttpRequest request) {
+      return "\"" + request.getHttpMethod() + " " + request.getUri().getPath() + "\"";
+   }
+
+   private String[] matchingMethods(List<SortEntry> sortList) {
+      Set<Method> s = null;
+      Iterator<SortEntry> it = sortList.iterator();
+      SortEntry a;
+      SortEntry b = it.next();
+      Method first = b.match.expression.getInvoker().getMethod();
+      while (it.hasNext()) {
+         a = b;
+         b = it.next();
+         if (a.compareTo(b) == 0) {
+            if (s == null) {
+               s = new HashSet<>();
+               s.add(first);
+            }
+            s.add(b.match.expression.getInvoker().getMethod());
+         } else {
+            break;
+         }
+      }
+      if (s != null && s.size() > 1) {
+         String[] names = new String[s.size()];
+         Iterator<Method> iterator = s.iterator();
+         int i = 0;
+         while (iterator.hasNext()) {
+            names[i++] = iterator.next().toString();
+         }
+         return names;
+      }
+      return null;
+   }
+
+   protected static class Match {
+      MethodExpression expression;
+      Matcher matcher;
+
+      public Match(MethodExpression expression, Matcher matcher) {
+         this.expression = expression;
+         this.matcher = matcher;
+      }
+   }
+
+   public static class SortFactor {
       public float q = 1.0f;
       public float qs = 1.0f;
       public int d;
@@ -198,104 +388,34 @@ public class SegmentNode
       public String subtype;
       public Map<String, String> params;
 
-      public boolean isWildcardType()
-      {
+      public boolean isWildcardType() {
          return type.equals(MediaType.MEDIA_TYPE_WILDCARD);
       }
-      public boolean isWildcardSubtype()
-      {
+
+      public boolean isWildcardSubtype() {
          return subtype.equals(MediaType.MEDIA_TYPE_WILDCARD);
       }
 
    }
 
-   public static SortFactor createSortFactor(MediaType client, MediaType server)
-   {
-      SortFactor sortFactor = new SortFactor();
-      if (client.isWildcardType() != server.isWildcardType())
-      {
-         sortFactor.type = (client.isWildcardType()) ? server.getType() : client.getType();
-         sortFactor.d++;
-      }
-      else
-      {
-         sortFactor.type = client.getType();
-      }
-      if (client.isWildcardSubtype() != server.isWildcardSubtype())
-      {
-         sortFactor.subtype = (client.isWildcardSubtype()) ? server.getSubtype() : client.getSubtype();
-         sortFactor.d++;
-      }
-      else
-      {
-         sortFactor.subtype = client.getSubtype();
-      }
-      String q = client.getParameters().get("q");
-      if (q != null) sortFactor.q = Float.parseFloat(q);
-      String qs = server.getParameters().get("qs");
-      if (qs != null) sortFactor.qs = Float.parseFloat(qs);
-
-      sortFactor.dm = 0;
-      for (Map.Entry<String, String> entry : client.getParameters().entrySet())
-      {
-         String name = entry.getKey();
-         if ("q".equals(name)
-                 || "qs".equals(name)) continue;
-         String val = server.getParameters().get(name);
-         if (val == null)
-         {
-            sortFactor.dm++;
-            continue;
-         }
-         if (!val.equals(entry.getValue()))
-         {
-            sortFactor.dm++;
-            continue;
-         }
-      }
-
-      for (Map.Entry<String, String> entry : server.getParameters().entrySet())
-      {
-         String name = entry.getKey();
-         if ("q".equals(name)
-                 || "qs".equals(name)) continue;
-         String val = client.getParameters().get(name);
-         if (val == null)
-         {
-            sortFactor.dm++;
-            continue;
-         }
-         if (!val.equals(entry.getValue()))
-         {
-            sortFactor.dm++;
-            continue;
-         }
-      }
-      return sortFactor;
-   }
-
-   protected class SortEntry implements Comparable<SortEntry>
-   {
+   protected class SortEntry implements Comparable<SortEntry> {
       Match match;
       MediaType serverProduce;
       SortFactor consumes;
       SortFactor produces;
 
-      public SortEntry(Match match, SortFactor consumes, SortFactor produces, MediaType serverProduce)
-      {
+      public SortEntry(Match match, SortFactor consumes, SortFactor produces, MediaType serverProduce) {
          this.serverProduce = serverProduce;
          this.match = match;
          this.consumes = consumes;
          this.produces = produces;
       }
 
-      public MediaType getAcceptType()
-      {
+      public MediaType getAcceptType() {
          // take params from produce and type and subtype from sort factor
          // to define the returned media type
          Map<String, String> params = new HashMap<String, String>();
-         for (Map.Entry<String, String> entry : serverProduce.getParameters().entrySet())
-         {
+         for (Map.Entry<String, String> entry : serverProduce.getParameters().entrySet()) {
             String name = entry.getKey();
             if ("q".equals(name)
                     || "qs".equals(name)) continue;
@@ -303,37 +423,30 @@ public class SegmentNode
          }
          Annotation[] annotations = match.expression.invoker.getMethod().getAnnotations();
          boolean hasProduces = false;
-         for (Annotation annotation : annotations)
-         {
-            if (annotation instanceof Produces)
-            {
+         for (Annotation annotation : annotations) {
+            if (annotation instanceof Produces) {
                hasProduces = true;
                break;
             }
          }
-         if (!hasProduces)
-         {
+         if (!hasProduces) {
             annotations = match.expression.invoker.getMethod().getClass().getAnnotations();
-            for (Annotation annotation : annotations)
-            {
-               if (annotation instanceof Produces)
-               {
+            for (Annotation annotation : annotations) {
+               if (annotation instanceof Produces) {
                   hasProduces = true;
                   break;
                }
             }
          }
-         if (hasProduces)
-         {
-            params.put(RESTEASY_SERVER_HAS_PRODUCES, "true"); 
+         if (hasProduces) {
+            params.put(RESTEASY_SERVER_HAS_PRODUCES, "true");
          }
          return new MediaType(produces.type, produces.subtype, params);
       }
 
 
       @Override
-      public int compareTo(SortEntry o)
-      {
+      public int compareTo(SortEntry o) {
          if (consumes.isWildcardType() && !o.consumes.isWildcardType()) return 1;
          if (!consumes.isWildcardType() && o.consumes.isWildcardType()) return -1;
          if (consumes.isWildcardSubtype() && !o.consumes.isWildcardSubtype()) return 1;
@@ -370,212 +483,5 @@ public class SegmentNode
 
          return match.expression.compareTo(o.match.expression);
       }
-   }
-
-   public Match match(List<Match> matches, String httpMethod, HttpRequest request)
-   {
-      MediaType contentType = request.getHttpHeaders().getMediaType();
-
-      List<MediaType> requestAccepts = request.getHttpHeaders().getAcceptableMediaTypes();
-      List<WeightedMediaType> weightedAccepts = new ArrayList<WeightedMediaType>();
-      for (MediaType accept : requestAccepts) weightedAccepts.add(WeightedMediaType.parse(accept));
-
-      List<Match> list = new ArrayList<Match>();
-      boolean methodMatch = false;
-      boolean consumeMatch = false;
-
-      // make a list of all compatible ResourceMethods
-      for (Match match : matches)
-      {
-
-         ResourceMethodInvoker invoker = (ResourceMethodInvoker) match.expression.getInvoker();
-         if (invoker.getHttpMethods().contains(httpMethod.toUpperCase()))
-         {
-            methodMatch = true;
-            if (invoker.doesConsume(contentType))
-            {
-               consumeMatch = true;
-               if (invoker.doesProduce(weightedAccepts))
-               {
-                  list.add(match);
-               }
-            }
-
-         }
-      }
-
-      if (list.size() == 0)
-      {
-         if (!methodMatch)
-         {
-            HashSet<String> allowed = new HashSet<String>();
-            for (Match match : matches)
-            {
-               allowed.addAll(((ResourceMethodInvoker) match.expression.getInvoker()).getHttpMethods());
-            }
-
-            if (httpMethod.equalsIgnoreCase("HEAD") && allowed.contains("GET"))
-            {
-               return match(matches, "GET", request);
-            }
-
-            if (allowed.contains("GET")) allowed.add("HEAD");
-            allowed.add("OPTIONS");
-            StringBuilder allowHeaders = new StringBuilder("");
-            boolean first = true;
-            for (String allow : allowed)
-            {
-               if (first) first = false;
-               else allowHeaders.append(", ");
-               allowHeaders.append(allow);
-            }
-            String allowHeaderValue = allowHeaders.toString();
-            
-            if (httpMethod.equals("OPTIONS"))
-            {
-              
-               ResponseBuilder resBuilder =  Response.ok(allowHeaderValue.toString(),  MediaType.TEXT_PLAIN_TYPE).header(HttpHeaderNames.ALLOW, allowHeaderValue.toString());
-               
-               if (allowed.contains("PATCH"))
-               {  
-                  Set<MediaType> patchAccepts = new HashSet<MediaType>(8);
-                  for (Match match : matches)
-                  {
-                     if (((ResourceMethodInvoker) match.expression.getInvoker()).getHttpMethods().contains("PATCH"))
-                     {
-                        patchAccepts.addAll(Arrays.asList(((ResourceMethodInvoker) match.expression.getInvoker())
-                              .getConsumes()));
-                     }
-                  }
-                  StringBuilder acceptPatch = new StringBuilder("");
-                  first = true;
-                  for (MediaType mediaType : patchAccepts)
-                  {
-                     if (first)
-                        first = false;
-                     else
-                        acceptPatch.append(", ");
-                     acceptPatch.append(mediaType.toString());
-                  }
-                  resBuilder.header(HttpHeaderNames.ACCEPT_PATCH, acceptPatch.toString());
-               }
-               throw new DefaultOptionsMethodException(Messages.MESSAGES.noResourceMethodFoundForOptions(), resBuilder.build());
-            }
-            else
-            {
-               Response res = Response.status(HttpResponseCodes.SC_METHOD_NOT_ALLOWED).header(HttpHeaderNames.ALLOW, allowHeaderValue).build();
-               throw new NotAllowedException(Messages.MESSAGES.noResourceMethodFoundForHttpMethod(httpMethod), res);
-            }
-         }
-         else if (!consumeMatch)
-         {
-            throw new NotSupportedException(Messages.MESSAGES.cannotConsumeContentType());
-         }
-         throw new NotAcceptableException(Messages.MESSAGES.noMatchForAcceptHeader());
-      }
-      //if (list.size() == 1) return list.get(0); //don't do this optimization as we need to set chosen accept
-      List<SortEntry> sortList = new ArrayList<SortEntry>();
-      for (Match match : list)
-      {
-         ResourceMethodInvoker invoker = (ResourceMethodInvoker) match.expression.getInvoker();
-         if (contentType == null) contentType = MediaType.WILDCARD_TYPE;
-
-         MediaType[] consumes = invoker.getConsumes();
-         if (consumes.length == 0)
-         {
-            consumes = WILDCARD_ARRAY;
-         }
-         MediaType[] produces = invoker.getProduces();
-         if (produces.length == 0)
-         {
-            produces = WILDCARD_ARRAY;
-         }
-         List<SortFactor> consumeCombo = new ArrayList<SortFactor>();
-         for (MediaType consume : consumes)
-         {
-            consumeCombo.add(createSortFactor(contentType, consume));
-         }
-         for (MediaType produce : produces)
-         {
-            List<MediaType> acceptableMediaTypes = requestAccepts;
-            if (acceptableMediaTypes.size() == 0)
-            {
-               acceptableMediaTypes = DEFAULT_ACCEPTS;
-            }
-            for (MediaType accept : acceptableMediaTypes)
-            {
-               if (accept.isCompatible(produce))
-               {
-                  SortFactor sortFactor = createSortFactor(accept, produce);
-
-                  for (SortFactor consume : consumeCombo)
-                  {
-                     final Method m = match.expression.getInvoker().getMethod();
-                     sortList.add(new SortEntry(match, consume, sortFactor, produce));
-                  }
-               }
-
-            }
-         }
-      }
-      Collections.sort(sortList);
-
-      SortEntry sortEntry = sortList.get(0);
-
-      String[] mm = matchingMethods(sortList);
-      if (mm != null)
-      {
-         LogMessages.LOGGER.multipleMethodsMatch(requestToString(request), mm);
-      }
-      request.setAttribute(RESTEASY_CHOSEN_ACCEPT, sortEntry.getAcceptType());
-      return sortEntry.match;
-   }
-
-   protected void addExpression(MethodExpression expression)
-   {
-      targets.add(expression);
-      Collections.sort(targets);
-
-   }
-
-   private String requestToString(HttpRequest request) {
-      return "\"" + request.getHttpMethod() + " " + request.getUri().getPath() + "\"";
-   }
-
-   private String[] matchingMethods(List<SortEntry> sortList)
-   {
-      Set<Method> s = null;
-      Iterator<SortEntry> it = sortList.iterator();
-      SortEntry a;
-      SortEntry b = it.next();
-      Method first = b.match.expression.getInvoker().getMethod();
-      while (it.hasNext())
-      {
-         a = b;
-         b = it.next();
-         if (a.compareTo(b) == 0)
-         {
-            if (s == null) {
-               s = new HashSet<>();
-               s.add(first);
-            }
-            s.add(b.match.expression.getInvoker().getMethod());
-         }
-         else
-         {
-            break;
-         }
-      }
-      if (s != null && s.size() > 1) {
-         String[] names = new String[s.size()];
-         Iterator<Method> iterator = s.iterator();
-         int i = 0;
-         while (iterator.hasNext())
-         {
-            names[i++] = iterator.next().toString();
-         }
-         return names;
-      }
-      return null;
    }
 }

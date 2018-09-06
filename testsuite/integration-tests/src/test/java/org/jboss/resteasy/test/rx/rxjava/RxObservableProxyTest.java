@@ -1,5 +1,29 @@
 package org.jboss.resteasy.test.rx.rxjava;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.rxjava.ObservableRxInvokerProvider;
+import org.jboss.resteasy.test.client.resource.TestResource.TRACE;
+import org.jboss.resteasy.test.rx.resource.*;
+import org.jboss.resteasy.test.rx.rxjava.resource.RxObservableResource;
+import org.jboss.resteasy.test.rx.rxjava.resource.RxObservableResourceImpl;
+import org.jboss.resteasy.utils.PermissionUtil;
+import org.jboss.resteasy.utils.PortProviderUtil;
+import org.jboss.resteasy.utils.TestUtil;
+import org.jboss.resteasy.utils.TestUtilRxJava;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import rx.Observable;
+
+import javax.ws.rs.ClientErrorException;
+import javax.ws.rs.InternalServerErrorException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,82 +34,57 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-import javax.ws.rs.ClientErrorException;
-import javax.ws.rs.InternalServerErrorException;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.rxjava.ObservableRxInvokerProvider;
-import org.jboss.resteasy.test.client.resource.TestResource.TRACE;
-import org.jboss.resteasy.test.rx.resource.Bytes;
-import org.jboss.resteasy.test.rx.resource.RxScheduledExecutorService;
-import org.jboss.resteasy.test.rx.resource.TestException;
-import org.jboss.resteasy.test.rx.resource.TestExceptionMapper;
-import org.jboss.resteasy.test.rx.resource.Thing;
-import org.jboss.resteasy.test.rx.rxjava.resource.RxObservableResource;
-import org.jboss.resteasy.test.rx.rxjava.resource.RxObservableResourceImpl;
-import org.jboss.resteasy.utils.PermissionUtil;
-import org.jboss.resteasy.utils.PortProviderUtil;
-import org.jboss.resteasy.utils.TestUtil;
-import org.jboss.resteasy.utils.TestUtilRxJava;
-import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import rx.Observable;
-
 
 /**
  * @tpSubChapter Reactive classes
  * @tpChapter Integration tests
  * @tpSince RESTEasy 4.0
- * 
+ * <p>
  * In these tests, the server uses Observables to create results asynchronously and streams the elements
  * of the Observables as they are created.
- * 
+ * <p>
  * The client uses a proxy that calls an ObservableRxInvoker.
  */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RxObservableProxyTest {
 
+   private final static List<String> xStringList = new ArrayList<String>();
+   private final static List<String> aStringList = new ArrayList<String>();
+   private final static List<Thing> xThingList = new ArrayList<Thing>();
+   private final static List<Thing> aThingList = new ArrayList<Thing>();
+   private final static List<List<Thing>> xThingListList = new ArrayList<List<Thing>>();
+   private final static List<List<Thing>> aThingListList = new ArrayList<List<Thing>>();
+   private static final Logger LOG = LogManager.getLogger(RxObservableProxyTest.class);
    private static ResteasyClient client;
    private static RxObservableResource proxy;
    private static CountDownLatch latch;
    private static AtomicInteger errors;
-
    private static AtomicReference<Object> value = new AtomicReference<Object>();
    private static List<String> stringList = new ArrayList<String>();
-   private static List<Thing>  thingList = new ArrayList<Thing>();
+   private static List<Thing> thingList = new ArrayList<Thing>();
    private static List<List<Thing>> thingListList = new ArrayList<List<Thing>>();
    private static List<byte[]> bytesList = new ArrayList<byte[]>();
 
-   private final static List<String> xStringList = new ArrayList<String>();
-   private final static List<String> aStringList = new ArrayList<String>();
-   private final static List<Thing>  xThingList =  new ArrayList<Thing>();
-   private final static List<Thing>  aThingList =  new ArrayList<Thing>();
-   private final static List<List<Thing>> xThingListList = new ArrayList<List<Thing>>();
-   private final static List<List<Thing>> aThingListList = new ArrayList<List<Thing>>();
-   private static final Logger LOG = LogManager.getLogger(RxObservableProxyTest.class);
-
    static {
-      for (int i = 0; i < 3; i++) {xStringList.add("x");}
-      for (int i = 0; i < 3; i++) {aStringList.add("a");}
-      for (int i = 0; i < 3; i++) {xThingList.add(new Thing("x"));}
-      for (int i = 0; i < 3; i++) {aThingList.add(new Thing("a"));}
-      for (int i = 0; i < 2; i++) {xThingListList.add(xThingList);}
-      for (int i = 0; i < 2; i++) {aThingListList.add(aThingList);}
+      for (int i = 0; i < 3; i++) {
+         xStringList.add("x");
+      }
+      for (int i = 0; i < 3; i++) {
+         aStringList.add("a");
+      }
+      for (int i = 0; i < 3; i++) {
+         xThingList.add(new Thing("x"));
+      }
+      for (int i = 0; i < 3; i++) {
+         aThingList.add(new Thing("a"));
+      }
+      for (int i = 0; i < 2; i++) {
+         xThingListList.add(xThingList);
+      }
+      for (int i = 0; i < 2; i++) {
+         aThingListList.add(aThingList);
+      }
    }
 
    @Deployment
@@ -120,6 +119,16 @@ public class RxObservableProxyTest {
       client.close();
    }
 
+   private static boolean throwableContains(Throwable t, String s) {
+      while (t != null) {
+         if (t.getMessage().contains(s)) {
+            return true;
+         }
+         t = t.getCause();
+      }
+      return false;
+   }
+
    @Before
    public void before() throws Exception {
       stringList.clear();
@@ -136,9 +145,9 @@ public class RxObservableProxyTest {
    public void testGet() throws Exception {
       Observable<String> observable = proxy.get();
       observable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -149,9 +158,9 @@ public class RxObservableProxyTest {
    public void testGetThing() throws Exception {
       Observable<Thing> observable = proxy.getThing();
       observable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing o) -> thingList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -162,9 +171,9 @@ public class RxObservableProxyTest {
    public void testGetThingList() throws Exception {
       Observable<List<Thing>> observable = proxy.getThingList();
       observable.subscribe(
-         (List<Thing> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<Thing> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -175,9 +184,9 @@ public class RxObservableProxyTest {
    public void testGetBytes() throws Exception {
       Observable<byte[]> observable = proxy.getBytes();
       observable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -191,9 +200,9 @@ public class RxObservableProxyTest {
    public void testPut() throws Exception {
       Observable<String> observable = proxy.put("a");
       observable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -204,9 +213,9 @@ public class RxObservableProxyTest {
    public void testPutThing() throws Exception {
       Observable<Thing> observable = proxy.putThing("a");
       observable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing o) -> thingList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -217,9 +226,9 @@ public class RxObservableProxyTest {
    public void testPutThingList() throws Exception {
       Observable<List<Thing>> observable = proxy.putThingList("a");
       observable.subscribe(
-         (List<Thing> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<Thing> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -230,9 +239,9 @@ public class RxObservableProxyTest {
    public void testPutBytes() throws Exception {
       Observable<byte[]> observable = proxy.putBytes("3");
       observable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -246,9 +255,9 @@ public class RxObservableProxyTest {
    public void testPost() throws Exception {
       Observable<String> observable = proxy.post("a");
       observable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -259,9 +268,9 @@ public class RxObservableProxyTest {
    public void testPostThing() throws Exception {
       Observable<Thing> observable = proxy.postThing("a");
       observable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing o) -> thingList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -272,9 +281,9 @@ public class RxObservableProxyTest {
    public void testPostThingList() throws Exception {
       Observable<List<Thing>> observable = proxy.postThingList("a");
       observable.subscribe(
-         (List<Thing> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<Thing> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -285,9 +294,9 @@ public class RxObservableProxyTest {
    public void testPostBytes() throws Exception {
       Observable<byte[]> observable = proxy.postBytes("3");
       observable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -301,9 +310,9 @@ public class RxObservableProxyTest {
    public void testDelete() throws Exception {
       Observable<String> observable = proxy.delete();
       observable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -314,9 +323,9 @@ public class RxObservableProxyTest {
    public void testDeleteThing() throws Exception {
       Observable<Thing> observable = proxy.deleteThing();
       observable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing o) -> thingList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -327,9 +336,9 @@ public class RxObservableProxyTest {
    public void testDeleteThingList() throws Exception {
       Observable<List<Thing>> observable = proxy.deleteThingList();
       observable.subscribe(
-         (List<Thing> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<Thing> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -340,9 +349,9 @@ public class RxObservableProxyTest {
    public void testDeleteBytes() throws Exception {
       Observable<byte[]> observable = proxy.deleteBytes();
       observable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -356,8 +365,8 @@ public class RxObservableProxyTest {
    public void testHead() throws Exception {
       Observable<String> observable = proxy.head();
       observable.subscribe(
-         (String s) -> LOG.info(s), // HEAD - no body
-         (Throwable t) -> throwableContains(t, "Input stream was empty"));
+              (String s) -> LOG.info(s), // HEAD - no body
+              (Throwable t) -> throwableContains(t, "Input stream was empty"));
 
       Assert.assertNull(value.get());
    }
@@ -366,9 +375,9 @@ public class RxObservableProxyTest {
    public void testOptions() throws Exception {
       Observable<String> observable = proxy.options();
       observable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -379,9 +388,9 @@ public class RxObservableProxyTest {
    public void testOptionsThing() throws Exception {
       Observable<Thing> observable = proxy.optionsThing();
       observable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing o) -> thingList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -392,9 +401,9 @@ public class RxObservableProxyTest {
    public void testOptionsThingList() throws Exception {
       Observable<List<Thing>> observable = proxy.optionsThingList();
       observable.subscribe(
-         (List<Thing> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<Thing> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -405,9 +414,9 @@ public class RxObservableProxyTest {
    public void testOptionsBytes() throws Exception {
       Observable<byte[]> observable = proxy.optionsBytes();
       observable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -422,9 +431,9 @@ public class RxObservableProxyTest {
    public void testTrace() throws Exception {
       Observable<String> observable = proxy.trace();
       observable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (String o) -> stringList.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -436,9 +445,9 @@ public class RxObservableProxyTest {
    public void testTraceThing() throws Exception {
       Observable<Thing> observable = proxy.traceThing();
       observable.subscribe(
-         (Thing t) -> thingList.add(t),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (Thing t) -> thingList.add(t),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -450,9 +459,9 @@ public class RxObservableProxyTest {
    public void testTraceThingList() throws Exception {
       Observable<List<Thing>> observable = proxy.traceThingList();
       observable.subscribe(
-         (List<Thing> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (List<Thing> l) -> thingListList.add(l),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -464,9 +473,9 @@ public class RxObservableProxyTest {
    public void testTraceBytes() throws Exception {
       Observable<byte[]> observable = proxy.traceBytes();
       observable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
+              (byte[] b) -> bytesList.add(b),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -477,14 +486,14 @@ public class RxObservableProxyTest {
    }
 
    @Test
-   public void testScheduledExecutorService () throws Exception {
+   public void testScheduledExecutorService() throws Exception {
       {
          RxScheduledExecutorService.used = false;
          Observable<String> observable = proxy.get();
          observable.subscribe(
-            (String o) -> stringList.add(o),
-            (Throwable t) -> errors.incrementAndGet(),
-            () -> latch.countDown());
+                 (String o) -> stringList.add(o),
+                 (Throwable t) -> errors.incrementAndGet(),
+                 () -> latch.countDown());
          boolean waitResult = latch.await(30, TimeUnit.SECONDS);
          Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
          Assert.assertEquals(0, errors.get());
@@ -502,9 +511,9 @@ public class RxObservableProxyTest {
          RxObservableResource proxy = client.target(generateURL("/")).proxy(RxObservableResource.class);
          Observable<String> observable = proxy.get();
          observable.subscribe(
-            (String o) -> stringList.add(o),
-            (Throwable t) -> errors.incrementAndGet(),
-            () -> latch.countDown());
+                 (String o) -> stringList.add(o),
+                 (Throwable t) -> errors.incrementAndGet(),
+                 () -> latch.countDown());
          boolean waitResult = latch.await(30, TimeUnit.SECONDS);
          Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
          Assert.assertEquals(0, errors.get());
@@ -518,9 +527,12 @@ public class RxObservableProxyTest {
       Observable<Thing> observable = proxy.exceptionUnhandled();
       AtomicReference<Object> value = new AtomicReference<Object>();
       observable.subscribe(
-         (Thing t) -> thingList.add(t),
-         (Throwable t) -> {value.set(t); latch.countDown();},
-         () -> latch.countDown());
+              (Thing t) -> thingList.add(t),
+              (Throwable t) -> {
+                 value.set(t);
+                 latch.countDown();
+              },
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -534,9 +546,12 @@ public class RxObservableProxyTest {
       Observable<Thing> observable = proxy.exceptionHandled();
       AtomicReference<Object> value = new AtomicReference<Object>();
       observable.subscribe(
-         (Thing t) -> thingList.add(t),
-         (Throwable t) -> {value.set(t); latch.countDown();},
-         () -> latch.countDown());
+              (Thing t) -> thingList.add(t),
+              (Throwable t) -> {
+                 value.set(t);
+                 latch.countDown();
+              },
+              () -> latch.countDown());
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
@@ -553,7 +568,7 @@ public class RxObservableProxyTest {
       ResteasyClient client1 = new ResteasyClientBuilder().build();
       client1.register(ObservableRxInvokerProvider.class);
       RxObservableResource proxy1 = client1.target(generateURL("/")).proxy(RxObservableResource.class);
-      Observable<String> observable1 = proxy1.get();   
+      Observable<String> observable1 = proxy1.get();
 
       ResteasyClient client2 = new ResteasyClientBuilder().build();
       client2.register(ObservableRxInvokerProvider.class);
@@ -561,14 +576,14 @@ public class RxObservableProxyTest {
       Observable<String> observable2 = proxy2.get();
 
       observable1.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+              (String o) -> list.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> cdl.countDown());
 
       observable2.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+              (String o) -> list.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> cdl.countDown());
 
       cdl.await();
       Assert.assertEquals(0, errors.get());
@@ -581,7 +596,7 @@ public class RxObservableProxyTest {
    @Test
    public void testGetTwoProxies() throws Exception {
       CountDownLatch cdl = new CountDownLatch(2);
-      CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();   
+      CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       RxObservableResource proxy1 = client.target(generateURL("/")).proxy(RxObservableResource.class);
       RxObservableResource proxy2 = client.target(generateURL("/")).proxy(RxObservableResource.class);
@@ -590,14 +605,14 @@ public class RxObservableProxyTest {
       Observable<String> observable2 = proxy2.get();
 
       observable1.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+              (String o) -> list.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> cdl.countDown());
 
       observable2.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+              (String o) -> list.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> cdl.countDown());
 
       cdl.await();
       Assert.assertEquals(0, errors.get());
@@ -610,20 +625,20 @@ public class RxObservableProxyTest {
    @Test
    public void testGetTwoObservables() throws Exception {
       CountDownLatch cdl = new CountDownLatch(2);
-      CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();   
+      CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       Observable<String> observable1 = proxy.get();
       Observable<String> observable2 = proxy.get();
 
       observable1.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+              (String o) -> list.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> cdl.countDown());
 
       observable2.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+              (String o) -> list.add(o),
+              (Throwable t) -> errors.incrementAndGet(),
+              () -> cdl.countDown());
 
       cdl.await();
       Assert.assertEquals(0, errors.get());
@@ -631,16 +646,5 @@ public class RxObservableProxyTest {
       for (int i = 0; i < 6; i++) {
          Assert.assertEquals("x", list.get(i));
       }
-   }
-
-   private static boolean throwableContains(Throwable t, String s) {
-      while (t != null) {
-         if (t.getMessage().contains(s))
-         {
-            return true;
-         }
-         t = t.getCause();
-      }
-      return false;
    }
 }

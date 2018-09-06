@@ -1,4 +1,5 @@
 package org.jboss.resteasy.jsapi.testing;
+
 import javax.ws.rs.Path;
 
 /**
@@ -7,5 +8,5 @@ import javax.ws.rs.Path;
  * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
  */
 @Path("minus")
-public interface Minus extends  Operation{
+public interface Minus extends Operation {
 }

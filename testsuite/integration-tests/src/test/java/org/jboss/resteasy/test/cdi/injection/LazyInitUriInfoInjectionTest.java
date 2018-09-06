@@ -1,7 +1,5 @@
 package org.jboss.resteasy.test.cdi.injection;
 
-import java.net.URI;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -18,6 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ws.rs.client.WebTarget;
+import java.net.URI;
 
 
 /**
@@ -30,31 +29,32 @@ import javax.ws.rs.client.WebTarget;
 @RunAsClient
 public class LazyInitUriInfoInjectionTest {
 
-    @Deployment
-    public static Archive<?> deploySimpleResource() {
-        WebArchive war = TestUtil.prepareArchive(LazyInitUriInfoInjectionTest.class.getSimpleName());
-        return TestUtil.finishContainerPrepare(war, null, LazyInitUriInfoInjectionSingletonResource.class, LazyInitUriInfoInjectionResource.class);
-    }
-    @ArquillianResource
-    URI baseUri;
+   @ArquillianResource
+   URI baseUri;
 
-    private String generateURL(String path) {
-        return baseUri.resolve(path).toString();
-    }
+   @Deployment
+   public static Archive<?> deploySimpleResource() {
+      WebArchive war = TestUtil.prepareArchive(LazyInitUriInfoInjectionTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, LazyInitUriInfoInjectionSingletonResource.class, LazyInitUriInfoInjectionResource.class);
+   }
 
-    /**
-     * @tpTestDetails Repeat client request without query parameter
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testDup() throws Exception {
-        ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget base = client.target(generateURL("test?h=world"));
-        String val = base.request().get().readEntity(String.class);
-        Assert.assertEquals(val, "world");
+   private String generateURL(String path) {
+      return baseUri.resolve(path).toString();
+   }
 
-        base = client.target(generateURL("test"));
-        val = base.request().get().readEntity(String.class);
-        Assert.assertEquals(val, "");
-    }
+   /**
+    * @tpTestDetails Repeat client request without query parameter
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testDup() throws Exception {
+      ResteasyClient client = new ResteasyClientBuilder().build();
+      WebTarget base = client.target(generateURL("test?h=world"));
+      String val = base.request().get().readEntity(String.class);
+      Assert.assertEquals(val, "world");
+
+      base = client.target(generateURL("test"));
+      val = base.request().get().readEntity(String.class);
+      Assert.assertEquals(val, "");
+   }
 }

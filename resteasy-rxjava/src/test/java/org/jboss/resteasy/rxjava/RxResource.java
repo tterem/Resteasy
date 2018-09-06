@@ -1,7 +1,9 @@
 package org.jboss.resteasy.rxjava;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import org.jboss.resteasy.annotations.Stream;
+import rx.Emitter.BackpressureMode;
+import rx.Observable;
+import rx.Single;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -9,21 +11,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
-
-import org.jboss.resteasy.annotations.Stream;
-
-import rx.Emitter.BackpressureMode;
-import rx.Observable;
-import rx.Single;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Path("/")
-public class RxResource
-{
+public class RxResource {
 
    @Path("single")
    @GET
-   public Single<String> single()
-   {
+   public Single<String> single() {
       return Single.just("got it");
    }
 
@@ -31,22 +27,18 @@ public class RxResource
    @Path("observable")
    @Stream
    @GET
-   public Observable<String> observable()
-   {
+   public Observable<String> observable() {
       return Observable.from(new String[]
-      {"one", "two"});
+              {"one", "two"});
    }
 
    @Path("context/single")
    @GET
-   public Single<String> contextSingle(@Context UriInfo uriInfo)
-   {
+   public Single<String> contextSingle(@Context UriInfo uriInfo) {
       return Single.<String>fromEmitter(foo -> {
          ExecutorService executor = Executors.newSingleThreadExecutor();
-         executor.submit(new Runnable()
-         {
-            public void run()
-            {
+         executor.submit(new Runnable() {
+            public void run() {
                foo.onSuccess("got it");
             }
          });
@@ -60,14 +52,11 @@ public class RxResource
    @Path("context/observable")
    @Stream
    @GET
-   public Observable<String> contextObservable(@Context UriInfo uriInfo)
-   {
+   public Observable<String> contextObservable(@Context UriInfo uriInfo) {
       return Observable.<String>create(foo -> {
          ExecutorService executor = Executors.newSingleThreadExecutor();
-         executor.submit(new Runnable()
-         {
-            public void run()
-            {
+         executor.submit(new Runnable() {
+            public void run() {
                foo.onNext("one");
                foo.onNext("two");
                foo.onCompleted();
@@ -81,15 +70,13 @@ public class RxResource
 
    @Path("injection")
    @GET
-   public Single<Integer> injection(@Context Integer value)
-   {
+   public Single<Integer> injection(@Context Integer value) {
       return Single.just(value);
    }
 
    @Path("injection-async")
    @GET
-   public Single<Integer> injectionAsync(@Async @Context Integer value)
-   {
+   public Single<Integer> injectionAsync(@Async @Context Integer value) {
       return Single.just(value);
    }
 }

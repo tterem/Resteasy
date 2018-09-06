@@ -7,14 +7,7 @@ import org.jboss.resteasy.util.PathHelper;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.Reader;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -25,14 +18,12 @@ import java.util.zip.GZIPOutputStream;
 /**
  * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
  */
-public class JSAPIWriter
-{
+public class JSAPIWriter {
 
    private static final long serialVersionUID = -1985015444704126795L;
 
    public void writeJavaScript(String base, HttpServletRequest req, HttpServletResponse resp,
-                               Map<String, ServiceRegistry> serviceRegistries) throws IOException
-   {
+                               Map<String, ServiceRegistry> serviceRegistries) throws IOException {
       LogMessages.LOGGER.debug(Messages.MESSAGES.startResteasyClient());
 
       // RESTEASY-776
@@ -42,14 +33,12 @@ public class JSAPIWriter
       String etag = generateEtag(serviceRegistries);
       resp.setHeader("Etag", etag);
 
-      if (ifNoneMatch != null && ifNoneMatch.equals(etag))
-      {
+      if (ifNoneMatch != null && ifNoneMatch.equals(etag)) {
          resp.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
          return;
       }
 
-      for (Map.Entry<String, ServiceRegistry> entry : serviceRegistries.entrySet())
-      {
+      for (Map.Entry<String, ServiceRegistry> entry : serviceRegistries.entrySet()) {
          String uri = base;
          if (entry.getKey() != null) uri += entry.getKey();
 
@@ -59,8 +48,7 @@ public class JSAPIWriter
          writer.flush();
          writer.close();
 
-         if (clientIsGzipSupported(req))
-         {
+         if (clientIsGzipSupported(req)) {
             ByteArrayOutputStream compressedContent = new ByteArrayOutputStream();
             GZIPOutputStream gzipstream = new GZIPOutputStream(compressedContent);
             gzipstream.write(stringWriter.toString().getBytes());
@@ -78,9 +66,7 @@ public class JSAPIWriter
             output.flush();
             output.close();
 
-         }
-         else
-         {
+         } else {
             ServletOutputStream output = resp.getOutputStream();
             byte[] bytes = stringWriter.toString().getBytes();
             resp.setContentLength(bytes.length);
@@ -92,15 +78,13 @@ public class JSAPIWriter
 
    }
 
-   private boolean clientIsGzipSupported(HttpServletRequest req)
-   {
+   private boolean clientIsGzipSupported(HttpServletRequest req) {
       String encoding = req.getHeader("Accept-Encoding");
       return encoding != null && encoding.contains("gzip");
    }
 
    public void writeJavaScript(String uri, PrintWriter writer,
-                               ServiceRegistry serviceRegistry) throws IOException
-   {
+                               ServiceRegistry serviceRegistry) throws IOException {
       copyResource("/resteasy-client.js", writer);
       LogMessages.LOGGER.debug(Messages.MESSAGES.startJaxRsApi());
       LogMessages.LOGGER.debug(Messages.MESSAGES.restApiUrl(uri));
@@ -111,25 +95,20 @@ public class JSAPIWriter
    }
 
 
-   private String generateEtag(Map<String, ServiceRegistry> serviceRegistries)
-   {
+   private String generateEtag(Map<String, ServiceRegistry> serviceRegistries) {
       StringBuilder etagBuilder = new StringBuilder();
-      for (Map.Entry<String, ServiceRegistry> entry : serviceRegistries.entrySet())
-      {
+      for (Map.Entry<String, ServiceRegistry> entry : serviceRegistries.entrySet()) {
          if (entry.getKey() != null) etagBuilder.append(entry.getKey()).append(':');
          generateEtag(entry.getValue(), etagBuilder);
       }
       return String.valueOf(Math.abs(etagBuilder.toString().hashCode()));
    }
 
-   private void generateEtag(ServiceRegistry serviceRegistry, StringBuilder etagBuilder)
-   {
-      for (MethodMetaData methodMetaData : serviceRegistry.getMethodMetaData())
-      {
+   private void generateEtag(ServiceRegistry serviceRegistry, StringBuilder etagBuilder) {
+      for (MethodMetaData methodMetaData : serviceRegistry.getMethodMetaData()) {
          etagBuilder.append(methodMetaData.hashCode());
 
-         for (ServiceRegistry subService : serviceRegistry.getLocators())
-         {
+         for (ServiceRegistry subService : serviceRegistry.getLocators()) {
             generateEtag(subService, etagBuilder);
          }
 
@@ -137,19 +116,16 @@ public class JSAPIWriter
    }
 
    private void printService(PrintWriter writer,
-                             ServiceRegistry serviceRegistry, Set<String> declaredPrefixes)
-   {
+                             ServiceRegistry serviceRegistry, Set<String> declaredPrefixes) {
 
 
-      for (MethodMetaData methodMetaData : serviceRegistry.getMethodMetaData())
-      {
+      for (MethodMetaData methodMetaData : serviceRegistry.getMethodMetaData()) {
          LogMessages.LOGGER.debug(Messages.MESSAGES.path(methodMetaData.getUri()));
          LogMessages.LOGGER.debug(Messages.MESSAGES.invoker(methodMetaData.getInvoker()));
          String declaringPrefix = methodMetaData.getFunctionPrefix(); // TODO Add prefix path segment
          declarePrefix(writer, declaringPrefix, declaredPrefixes);
 
-         for (String httpMethod : methodMetaData.getHttpMethods())
-         {
+         for (String httpMethod : methodMetaData.getHttpMethods()) {
             print(writer, httpMethod, methodMetaData);
          }
       }
@@ -157,15 +133,12 @@ public class JSAPIWriter
          printService(writer, subService, declaredPrefixes);
    }
 
-   private void declarePrefix(PrintWriter writer, String declaringPrefix, Set<String> declaredPrefixes)
-   {
-      if (declaredPrefixes.add(declaringPrefix))
-      {
+   private void declarePrefix(PrintWriter writer, String declaringPrefix, Set<String> declaredPrefixes) {
+      if (declaredPrefixes.add(declaringPrefix)) {
          int lastDot = declaringPrefix.lastIndexOf(".");
          if (lastDot == -1)
             writer.println("var " + declaringPrefix + " = {};");
-         else
-         {
+         else {
             declarePrefix(writer, declaringPrefix.substring(0, lastDot), declaredPrefixes);
             writer.println(declaringPrefix + " = {};");
          }
@@ -174,22 +147,19 @@ public class JSAPIWriter
    }
 
    private void copyResource(String name, PrintWriter writer)
-           throws IOException
-   {
+           throws IOException {
       Reader reader = new InputStreamReader(getClass()
               .getResourceAsStream(name));
       char[] array = new char[1024];
       int read;
-      while ((read = reader.read(array)) >= 0)
-      {
+      while ((read = reader.read(array)) >= 0) {
          writer.write(array, 0, read);
       }
       reader.close();
    }
 
    private void print(PrintWriter writer, String httpMethod,
-                      MethodMetaData methodMetaData)
-   {
+                      MethodMetaData methodMetaData) {
       String uri = methodMetaData.getUri();
       writer.println("// " + httpMethod + " " + uri);
       writer
@@ -199,12 +169,9 @@ public class JSAPIWriter
       writer.println(" request.setMethod('" + httpMethod + "');");
       writer
               .println(" var uri = params.$apiURL ? params.$apiURL : REST.apiURL;");
-      if (uri.contains("{"))
-      {
+      if (uri.contains("{")) {
          printURIParams(uri, writer);
-      }
-      else
-      {
+      } else {
          writer.println(" uri += '" + uri + "';");
       }
       printOtherParams(methodMetaData, writer);
@@ -214,8 +181,7 @@ public class JSAPIWriter
               .println("  request.setCredentials(params.$username, params.$password);");
       writer.println(" if(params.$accepts)");
       writer.println("  request.setAccepts(params.$accepts);");
-      if (methodMetaData.getWants() != null)
-      {
+      if (methodMetaData.getWants() != null) {
          writer.println(" else");
          writer.println("  request.setAccepts('" + methodMetaData.getWants()
                  + "');");
@@ -249,20 +215,16 @@ public class JSAPIWriter
    }
 
    private void printOtherParams(MethodMetaData methodMetaData,
-                                 PrintWriter writer)
-   {
+                                 PrintWriter writer) {
       List<MethodParamMetaData> params = methodMetaData.getParameters();
-      for (MethodParamMetaData methodParamMetaData : params)
-      {
+      for (MethodParamMetaData methodParamMetaData : params) {
          printParameter(methodParamMetaData, writer);
       }
    }
 
    private void printParameter(MethodParamMetaData metaData,
-                               PrintWriter writer)
-   {
-      switch (metaData.getParamType())
-      {
+                               PrintWriter writer) {
+      switch (metaData.getParamType()) {
          case QUERY_PARAMETER:
             print(metaData, writer, "QueryParameter");
             break;
@@ -292,22 +254,18 @@ public class JSAPIWriter
    }
 
    private void print(MethodParamMetaData metaData, PrintWriter writer,
-                      String type)
-   {
+                      String type) {
       String paramName = metaData.getParamName();
       writer.println(String.format(" if(Object.prototype.hasOwnProperty.call(params, '%s'))\n  request.add%s('%s', params.%s);", paramName, type, paramName, paramName));
    }
 
 
-   private void printURIParams(String uri, PrintWriter writer)
-   {
+   private void printURIParams(String uri, PrintWriter writer) {
       String replacedCurlyURI = PathHelper.replaceEnclosedCurlyBraces(uri);
       Matcher matcher = PathHelper.URI_PARAM_PATTERN.matcher(replacedCurlyURI);
       int i = 0;
-      while (matcher.find())
-      {
-         if (matcher.start() > i)
-         {
+      while (matcher.find()) {
+         if (matcher.start() > i) {
             writer.println(" uri += '"
                     + replacedCurlyURI.substring(i, matcher.start()) + "';");
          }

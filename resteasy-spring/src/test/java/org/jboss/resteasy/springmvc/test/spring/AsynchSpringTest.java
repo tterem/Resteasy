@@ -2,12 +2,10 @@ package org.jboss.resteasy.springmvc.test.spring;
 
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.core.AsynchronousDispatcher;
-import org.jboss.resteasy.spi.ResteasyDeployment;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -22,7 +20,6 @@ import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
-
 import java.net.URI;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -34,50 +31,15 @@ import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations =
-{ "classpath:/spring-test-async.xml" })
+        {"classpath:/spring-test-async.xml"})
 @DirtiesContext
 @Ignore
-public class AsynchSpringTest
-{
+public class AsynchSpringTest {
    private static CountDownLatch latch;
-
-   @Path("/")
-   public static class MyResource
-   {
-      @POST
-      public String post(String content) throws Exception
-      {
-         Thread.sleep(1500);
-         latch.countDown();
-
-         return content;
-      }
-
-      @PUT
-      public void put(String content) throws Exception
-      {
-//         System.out.println("IN PUT!!!!");
-         Assert.assertEquals("content", content);
-         Thread.sleep(500);
-//         System.out.println("******* countdown ****");
-         latch.countDown();
-      }
-   }
-
    AsynchronousDispatcher dispatcher;
 
-//   @Autowired
-//   public void setServer(TJWSEmbeddedSpringMVCServerBean server)
-//   {
-//      ResteasyDeployment deployment = (ResteasyDeployment)server.getServer()
-//            .getApplicationContext().getBeansOfType(
-//                  ResteasyDeployment.class).values().iterator().next();
-//      dispatcher = (AsynchronousDispatcher)deployment.getDispatcher();
-//   }
-
    @Test
-   public void testOneway() throws Exception
-   {
+   public void testOneway() throws Exception {
       latch = new CountDownLatch(1);
       Client client = ResteasyClientBuilder.newClient();
       WebTarget target = client.target("http://localhost:9091?oneway=true");
@@ -89,10 +51,18 @@ public class AsynchSpringTest
       Assert.assertTrue(latch.await(2, TimeUnit.SECONDS));
       response.close();
    }
-   
+
+//   @Autowired
+//   public void setServer(TJWSEmbeddedSpringMVCServerBean server)
+//   {
+//      ResteasyDeployment deployment = (ResteasyDeployment)server.getServer()
+//            .getApplicationContext().getBeansOfType(
+//                  ResteasyDeployment.class).values().iterator().next();
+//      dispatcher = (AsynchronousDispatcher)deployment.getDispatcher();
+//   }
+
    @Test
-   public void testAsynch() throws Exception
-   {
+   public void testAsynch() throws Exception {
       Client client = ResteasyClientBuilder.newClient();
       Response response = null;
       {
@@ -104,7 +74,7 @@ public class AsynchSpringTest
          String jobUrl = response.getHeaderString(HttpHeaders.LOCATION);
 //         System.out.println("JOB: " + jobUrl);
          response.close();
-         
+
          Builder jobBuilder = client.target(jobUrl).request();
          response = jobBuilder.get();
          Assert.assertEquals(HttpServletResponse.SC_ACCEPTED, response.getStatus());
@@ -119,7 +89,7 @@ public class AsynchSpringTest
          response = client.target(newUri).request().get();
          Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
          Assert.assertEquals("content", response.readEntity(String.class));
-         
+
          // test its still there
          response = jobBuilder.get();
          Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
@@ -127,8 +97,8 @@ public class AsynchSpringTest
 
          // delete and test delete
          response = jobBuilder.delete();
-         Assert.assertEquals(HttpServletResponse.SC_NO_CONTENT, response.getStatus());      
-         
+         Assert.assertEquals(HttpServletResponse.SC_NO_CONTENT, response.getStatus());
+
          response = jobBuilder.get();
          Assert.assertEquals(HttpServletResponse.SC_GONE, response.getStatus());
          response.close();
@@ -152,7 +122,7 @@ public class AsynchSpringTest
          Assert.assertTrue(latch.await(3, TimeUnit.SECONDS));
          Assert.assertTrue(!jobUrl1.equals(jobUrl2));
          response.close();
-         
+
          builder = client.target(jobUrl1).request();
          response = builder.get();
          Assert.assertEquals(HttpServletResponse.SC_GONE, response.getStatus());
@@ -164,16 +134,16 @@ public class AsynchSpringTest
          response = builder.get();
          Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
          Assert.assertEquals("content", response.readEntity(String.class));
-         
+
          // delete and test delete
          response = builder.delete();
-         Assert.assertEquals(HttpServletResponse.SC_NO_CONTENT, response.getStatus());         
+         Assert.assertEquals(HttpServletResponse.SC_NO_CONTENT, response.getStatus());
 
          response = builder.get();
          Assert.assertEquals(HttpServletResponse.SC_GONE, response.getStatus());
          response.close();
       }
-      
+
       // test readAndRemove
       {
          dispatcher.setMaxCacheSize(10);
@@ -192,11 +162,31 @@ public class AsynchSpringTest
          response = builder.post(Entity.entity("content", "text/plain"));
          Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
          Assert.assertEquals("content", response.readEntity(String.class));
-         
+
          builder = client.target(jobUrl2).request();
          response = builder.get();
          Assert.assertEquals(HttpServletResponse.SC_GONE, response.getStatus());
          response.close();
+      }
+   }
+
+   @Path("/")
+   public static class MyResource {
+      @POST
+      public String post(String content) throws Exception {
+         Thread.sleep(1500);
+         latch.countDown();
+
+         return content;
+      }
+
+      @PUT
+      public void put(String content) throws Exception {
+//         System.out.println("IN PUT!!!!");
+         Assert.assertEquals("content", content);
+         Thread.sleep(500);
+//         System.out.println("******* countdown ****");
+         latch.countDown();
       }
    }
 }

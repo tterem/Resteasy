@@ -8,34 +8,18 @@ import java.io.Serializable;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface BrowserCache
-{
-   class Header implements Serializable
-   {
-      private static final long serialVersionUID = 4145981086454860081L;
+public interface BrowserCache {
+   Entry getAny(String key);
 
-      private String name;
-      private String value;
+   Entry get(String key, MediaType accept);
 
-      public Header(String name, String value)
-      {
-         this.name = name;
-         this.value = value;
-      }
+   Entry put(String key, MediaType mediaType, MultivaluedMap<String, String> headers, byte[] cached, int expires, String etag, String lastModified);
 
-      public String getName()
-      {
-         return name;
-      }
+   Entry remove(String key, MediaType type);
 
-      public String getValue()
-      {
-         return value;
-      }
-   }
+   void clear();
 
-   interface Entry
-   {
+   interface Entry {
       MultivaluedMap<String, String> getHeaders();
 
       boolean expired();
@@ -47,14 +31,24 @@ public interface BrowserCache
       MediaType getMediaType();
    }
 
-   Entry getAny(String key);
+   class Header implements Serializable {
+      private static final long serialVersionUID = 4145981086454860081L;
 
-   Entry get(String key, MediaType accept);
+      private String name;
+      private String value;
 
-   Entry put(String key, MediaType mediaType, MultivaluedMap<String, String> headers, byte[] cached, int expires, String etag, String lastModified);
+      public Header(String name, String value) {
+         this.name = name;
+         this.value = value;
+      }
 
-   Entry remove(String key, MediaType type);
+      public String getName() {
+         return name;
+      }
 
-   void clear();
+      public String getValue() {
+         return value;
+      }
+   }
 
 }

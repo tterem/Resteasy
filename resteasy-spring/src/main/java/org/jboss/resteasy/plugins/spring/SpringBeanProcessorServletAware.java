@@ -15,46 +15,38 @@ import javax.servlet.ServletContext;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class SpringBeanProcessorServletAware extends SpringBeanProcessor implements ServletContextAware
-{
+public class SpringBeanProcessorServletAware extends SpringBeanProcessor implements ServletContextAware {
    protected ServletContext servletContext;
 
-   public void setServletContext(ServletContext servletContext)
-   {
+   public void setServletContext(ServletContext servletContext) {
       this.servletContext = servletContext;
    }
 
    @Override
-   public Registry getRegistry()
-   {
+   public Registry getRegistry() {
       if (registry != null) return registry;
       ResteasyDeployment deployment = (ResteasyDeployment) servletContext.getAttribute(ResteasyDeployment.class.getName());
-      if (deployment != null)
-      {
+      if (deployment != null) {
          registry = deployment.getRegistry();
       }
       return registry;
    }
 
    @Override
-   public ResteasyProviderFactory getProviderFactory()
-   {
+   public ResteasyProviderFactory getProviderFactory() {
       if (providerFactory != null) return providerFactory;
       ResteasyDeployment deployment = (ResteasyDeployment) servletContext.getAttribute(ResteasyDeployment.class.getName());
-      if (deployment != null)
-      {
+      if (deployment != null) {
          providerFactory = deployment.getProviderFactory();
       }
       return providerFactory;
    }
 
    @Override
-   public Dispatcher getDispatcher()
-   {
+   public Dispatcher getDispatcher() {
       if (dispatcher != null) return dispatcher;
       ResteasyDeployment deployment = (ResteasyDeployment) servletContext.getAttribute(ResteasyDeployment.class.getName());
-      if (deployment != null)
-      {
+      if (deployment != null) {
          dispatcher = deployment.getDispatcher();
       }
       return dispatcher;

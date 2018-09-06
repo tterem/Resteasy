@@ -7,8 +7,7 @@ import org.jboss.resteasy.spi.metadata.ResourceClass;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface Registry
-{
+public interface Registry {
    /**
     * Add a JAX-RS endpoint.  Objects of clazz will be created and destroy and the beginning/end of every request.
     *
@@ -19,7 +18,7 @@ public interface Registry
    /**
     * Add a JAX-RS endpoint.  Objects of clazz will be created and destroy and the beginning/end of every request.
     *
-    * @param clazz class
+    * @param clazz    class
     * @param basePath prefix path of resource
     */
    void addPerRequestResource(Class<?> clazz, String basePath);
@@ -36,7 +35,7 @@ public interface Registry
     * Add a JAX-RS endpoint.
     *
     * @param singleton resource
-    * @param basePath prefix path of resource
+    * @param basePath  prefix path of resource
     */
    void addSingletonResource(Object singleton, String basePath);
 
@@ -65,7 +64,7 @@ public interface Registry
    /**
     * Add a custom resource implementation endpoint.
     *
-    * @param ref resource factory
+    * @param ref      resource factory
     * @param basePath prefix path of resource
     */
    void addResourceFactory(ResourceFactory ref, String basePath);
@@ -74,14 +73,14 @@ public interface Registry
     * ResourceFactory.getScannableClass() is not used, only the clazz parameter and not any implemented interfaces
     * of the clazz parameter.
     *
-    * @param ref resource factory
-    * @param base    base URI path for any resources provided by the factory, in addition to rootPath
-    * @param clazz   specific class
+    * @param ref   resource factory
+    * @param base  base URI path for any resources provided by the factory, in addition to rootPath
+    * @param clazz specific class
     */
    void addResourceFactory(ResourceFactory ref, String base, Class<?> clazz);
 
    void addResourceFactory(ResourceFactory ref, String base, Class<?>[] classes);
-   
+
    void removeRegistrations(Class<?> clazz);
 
    void removeRegistrations(Class<?> clazz, String base);

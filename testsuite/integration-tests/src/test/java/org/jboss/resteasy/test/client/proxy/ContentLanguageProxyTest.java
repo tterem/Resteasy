@@ -21,38 +21,32 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 @RunAsClient
 //Test for RESTEASY-1537:Client proxy framework clears previously set Content-Language header when setting POST message body entity
-public class ContentLanguageProxyTest
-{
+public class ContentLanguageProxyTest {
    private static ResteasyClient client;
 
    @BeforeClass
-   public static void before() throws Exception
-   {
+   public static void before() throws Exception {
       client = new ResteasyClientBuilder().build();
    }
 
    @AfterClass
-   public static void after() throws Exception
-   {
+   public static void after() throws Exception {
       client.close();
    }
 
    @Deployment
-   public static Archive<?> deployUriInfoSimpleResource()
-   {
+   public static Archive<?> deployUriInfoSimpleResource() {
       WebArchive war = TestUtil.prepareArchive(ContentLanguageProxyTest.class.getSimpleName());
       war.addClasses(ContentLanguageInterface.class);
       return TestUtil.finishContainerPrepare(war, null, ContentLanguageResource.class);
    }
 
-   private static String generateBaseUrl()
-   {
+   private static String generateBaseUrl() {
       return PortProviderUtil.generateBaseUrl(ContentLanguageProxyTest.class.getSimpleName());
    }
 
    @Test
-   public void testProxy() throws Exception
-   {
+   public void testProxy() throws Exception {
       ResteasyWebTarget target = client.target(generateBaseUrl());
       ContentLanguageInterface proxy = target.proxy(ContentLanguageInterface.class);
       String contentLangFirst = proxy.contentLang1("fr", "subject");

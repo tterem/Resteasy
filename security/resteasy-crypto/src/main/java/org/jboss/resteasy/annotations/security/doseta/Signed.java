@@ -26,8 +26,7 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Signed
-{
+public @interface Signed {
    String algorithm() default "";
 
    /**

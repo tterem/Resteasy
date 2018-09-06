@@ -1,8 +1,8 @@
 package org.jboss.resteasy.spi;
 
-import java.util.concurrent.CompletionStage;
-
 import org.jboss.resteasy.core.ValueInjector;
+
+import java.util.concurrent.CompletionStage;
 
 /**
  * Will invoke a method in the context of an HTTP request.  Does all the parameter injection for you.
@@ -10,14 +10,13 @@ import org.jboss.resteasy.core.ValueInjector;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface MethodInjector
-{
+public interface MethodInjector {
    /**
     * Invoke on a method in the context of an HTTP request. Does all JAX-RS parameter injection.
     *
-    * @param request http request
+    * @param request  http request
     * @param response http response
-    * @param target target object
+    * @param target   target object
     * @return returned object
     * @throws Failure if application failure occurred
     */
@@ -26,7 +25,7 @@ public interface MethodInjector
    /**
     * Create the arguments that would be used to invoke the method in the context of an HTTP request.
     *
-    * @param request http request
+    * @param request  http request
     * @param response http response
     * @return array of arguments
     * @throws Failure if application failure occurred

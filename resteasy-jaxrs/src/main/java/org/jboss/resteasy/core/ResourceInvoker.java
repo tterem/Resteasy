@@ -11,9 +11,9 @@ import java.util.concurrent.CompletionStage;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface ResourceInvoker
-{
+public interface ResourceInvoker {
    CompletionStage<BuiltResponse> invoke(HttpRequest request, HttpResponse response);
+
    CompletionStage<BuiltResponse> invoke(HttpRequest request, HttpResponse response, Object target);
 
    Method getMethod();

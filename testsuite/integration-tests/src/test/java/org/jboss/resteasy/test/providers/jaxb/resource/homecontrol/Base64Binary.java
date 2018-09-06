@@ -1,18 +1,13 @@
 package org.jboss.resteasy.test.providers.jaxb.resource.homecontrol;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java-Klasse für base64Binary complex type.
- *
+ * <p>
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
- *
+ * <p>
  * <pre>
  * &lt;complexType name="base64Binary"&gt;
  *   &lt;simpleContent&gt;
@@ -22,8 +17,6 @@ import javax.xml.bind.annotation.XmlValue;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "base64Binary", propOrder = {
@@ -42,9 +35,8 @@ public class Base64Binary {
    /**
     * Ruft den Wert der value-Eigenschaft ab.
     *
-    * @return
-    *     possible object is
-    *     byte[]
+    * @return possible object is
+    * byte[]
     */
    public byte[] getValue() {
       return value;
@@ -53,9 +45,8 @@ public class Base64Binary {
    /**
     * Legt den Wert der value-Eigenschaft fest.
     *
-    * @param value
-    *     allowed object is
-    *     byte[]
+    * @param value allowed object is
+    *              byte[]
     */
    public void setValue(byte[] value) {
       this.value = value;
@@ -64,10 +55,8 @@ public class Base64Binary {
    /**
     * Ruft den Wert der contentType-Eigenschaft ab.
     *
-    * @return
-    *     possible object is
-    *     {@link String }
-    *
+    * @return possible object is
+    * {@link String }
     */
    public String getContentType() {
       return contentType;
@@ -76,10 +65,8 @@ public class Base64Binary {
    /**
     * Legt den Wert der contentType-Eigenschaft fest.
     *
-    * @param value
-    *     allowed object is
-    *     {@link String }
-    *
+    * @param value allowed object is
+    *              {@link String }
     */
    public void setContentType(String value) {
       this.contentType = value;

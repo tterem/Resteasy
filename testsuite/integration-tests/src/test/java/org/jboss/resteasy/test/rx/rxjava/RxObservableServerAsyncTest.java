@@ -1,29 +1,11 @@
 package org.jboss.resteasy.test.rx.rxjava;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.PropertyPermission;
-
-import javax.ws.rs.ClientErrorException;
-import javax.ws.rs.InternalServerErrorException;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.test.rx.resource.Bytes;
-import org.jboss.resteasy.test.rx.resource.RxScheduledExecutorService;
-import org.jboss.resteasy.test.rx.resource.TRACE;
-import org.jboss.resteasy.test.rx.resource.TestException;
-import org.jboss.resteasy.test.rx.resource.TestExceptionMapper;
-import org.jboss.resteasy.test.rx.resource.Thing;
+import org.jboss.resteasy.test.rx.resource.*;
 import org.jboss.resteasy.test.rx.rxjava.resource.RxObservableResourceNoStreamImpl;
 import org.jboss.resteasy.utils.PermissionUtil;
 import org.jboss.resteasy.utils.PortProviderUtil;
@@ -32,25 +14,31 @@ import org.jboss.resteasy.utils.TestUtilRxJava;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
+
+import javax.ws.rs.ClientErrorException;
+import javax.ws.rs.InternalServerErrorException;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation.Builder;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.PropertyPermission;
 
 
 /**
  * @tpSubChapter Reactive classes
  * @tpChapter Integration tests
  * @tpSince RESTEasy 4.0
- * 
+ * <p>
  * In these tests, the server uses Observables to build objects asynchronously, then collects the
  * results and returns then in one transmission.
- * 
+ * <p>
  * The client makes synchronous calls.
  */
 @RunWith(Arquillian.class)
@@ -58,33 +46,47 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RxObservableServerAsyncTest {
 
-   private static ResteasyClient client;
-
    private final static List<String> xStringList = new ArrayList<String>();
-   private final static List<String> aStringList = new ArrayList<String>();   
-   private final static List<Thing>  xThingList =  new ArrayList<Thing>();
-   private final static List<Thing>  aThingList =  new ArrayList<Thing>();
+   private final static List<String> aStringList = new ArrayList<String>();
+   private final static List<Thing> xThingList = new ArrayList<Thing>();
+   private final static List<Thing> aThingList = new ArrayList<Thing>();
    private final static List<List<Thing>> xThingListList = new ArrayList<List<Thing>>();
    private final static List<List<Thing>> aThingListList = new ArrayList<List<Thing>>();
    private final static Entity<String> aEntity = Entity.entity("a", MediaType.TEXT_PLAIN_TYPE);
    private final static Entity<String> threeEntity = Entity.entity("3", MediaType.TEXT_PLAIN_TYPE);
-
+   private static ResteasyClient client;
    private static ArrayList<String> stringList = new ArrayList<String>();
-   private static ArrayList<Thing>  thingList = new ArrayList<Thing>();
+   private static ArrayList<Thing> thingList = new ArrayList<Thing>();
    private static ArrayList<List<?>> thingListList = new ArrayList<List<?>>();
    private static ArrayList<byte[]> bytesList = new ArrayList<byte[]>();
-   private static GenericType<List<String>> LIST_OF_STRING = new GenericType<List<String>>() {};
-   private static GenericType<List<Thing>> LIST_OF_THING = new GenericType<List<Thing>>() {};
-   private static GenericType<List<List<Thing>>> LIST_OF_LIST_OF_THING = new GenericType<List<List<Thing>>>() {};
-   private static GenericType<List<byte[]>> LIST_OF_BYTE_ARRAYS = new GenericType<List<byte[]>>() {};
+   private static GenericType<List<String>> LIST_OF_STRING = new GenericType<List<String>>() {
+   };
+   private static GenericType<List<Thing>> LIST_OF_THING = new GenericType<List<Thing>>() {
+   };
+   private static GenericType<List<List<Thing>>> LIST_OF_LIST_OF_THING = new GenericType<List<List<Thing>>>() {
+   };
+   private static GenericType<List<byte[]>> LIST_OF_BYTE_ARRAYS = new GenericType<List<byte[]>>() {
+   };
 
    static {
-      for (int i = 0; i < 3; i++) {xStringList.add("x");}
-      for (int i = 0; i < 3; i++) {aStringList.add("a");}
-      for (int i = 0; i < 3; i++) {xThingList.add(new Thing("x"));}
-      for (int i = 0; i < 3; i++) {aThingList.add(new Thing("a"));}
-      for (int i = 0; i < 2; i++) {xThingListList.add(xThingList);}
-      for (int i = 0; i < 2; i++) {aThingListList.add(aThingList);}
+      for (int i = 0; i < 3; i++) {
+         xStringList.add("x");
+      }
+      for (int i = 0; i < 3; i++) {
+         aStringList.add("a");
+      }
+      for (int i = 0; i < 3; i++) {
+         xThingList.add(new Thing("x"));
+      }
+      for (int i = 0; i < 3; i++) {
+         aThingList.add(new Thing("a"));
+      }
+      for (int i = 0; i < 2; i++) {
+         xThingListList.add(xThingList);
+      }
+      for (int i = 0; i < 2; i++) {
+         aThingListList.add(aThingList);
+      }
    }
 
    @Deployment
@@ -101,7 +103,7 @@ public class RxObservableServerAsyncTest {
       ), "permissions.xml");
       TestUtilRxJava.addRxJavaLibraries(war);
       war.setManifest(new StringAsset("Manifest-Version: 1.0\n"
-         + "Dependencies: org.reactivestreams services, org.jboss.resteasy.resteasy-json-binding-provider services\n"));
+              + "Dependencies: org.reactivestreams services, org.jboss.resteasy.resteasy-json-binding-provider services\n"));
       return TestUtil.finishContainerPrepare(war, null, RxObservableResourceNoStreamImpl.class, TestExceptionMapper.class);
    }
 
@@ -115,17 +117,17 @@ public class RxObservableServerAsyncTest {
       client = new ResteasyClientBuilder().build();
    }
 
+   @AfterClass
+   public static void after() throws Exception {
+      client.close();
+   }
+
    @Before
    public void before() throws Exception {
       stringList.clear();
       thingList.clear();
       thingListList.clear();
       bytesList.clear();
-   }
-
-   @AfterClass
-   public static void after() throws Exception {
-      client.close();
    }
 
    //////////////////////////////////////////////////////////////////////////////
@@ -392,8 +394,7 @@ public class RxObservableServerAsyncTest {
    @Test
    public void testUnhandledException() throws Exception {
       Builder request = client.target(generateURL("/exception/unhandled")).request();
-      try
-      {
+      try {
          request.get(Thing.class);
          Assert.fail("expecting Exception");
       } catch (Exception e) {
@@ -405,8 +406,7 @@ public class RxObservableServerAsyncTest {
    @Test
    public void testHandledException() throws Exception {
       Builder request = client.target(generateURL("/exception/handled")).request();
-      try
-      {
+      try {
          request.get(Thing.class);
          Assert.fail("expecting Exception");
       } catch (Exception e) {
@@ -420,12 +420,12 @@ public class RxObservableServerAsyncTest {
       ResteasyClient client1 = new ResteasyClientBuilder().build();
       Builder request1 = client1.target(generateURL("/get/string")).request();
       Response response1 = request1.get();
-      List<String> list1 = response1.readEntity(LIST_OF_STRING);      
+      List<String> list1 = response1.readEntity(LIST_OF_STRING);
 
       ResteasyClient client2 = new ResteasyClientBuilder().build();
       Builder request2 = client2.target(generateURL("/get/string")).request();
       Response response2 = request2.get();
-      List<String> list2 = response2.readEntity(LIST_OF_STRING); 
+      List<String> list2 = response2.readEntity(LIST_OF_STRING);
 
       list1.addAll(list2);
       Assert.assertEquals(6, list1.size());
@@ -437,12 +437,12 @@ public class RxObservableServerAsyncTest {
    @Test
    public void testGetTwoRequests() throws Exception {
       Builder request1 = client.target(generateURL("/get/string")).request();
-      Response response1 = request1.get();  
-      List<String> list1 = response1.readEntity(LIST_OF_STRING); 
+      Response response1 = request1.get();
+      List<String> list1 = response1.readEntity(LIST_OF_STRING);
 
       Builder request2 = client.target(generateURL("/get/string")).request();
-      Response response2 = request2.get();  
-      List<String> list2 = response2.readEntity(LIST_OF_STRING); 
+      Response response2 = request2.get();
+      List<String> list2 = response2.readEntity(LIST_OF_STRING);
 
       list1.addAll(list2);
       Assert.assertEquals(6, list1.size());
@@ -454,11 +454,11 @@ public class RxObservableServerAsyncTest {
    @Test
    public void testGetTwoLists() throws Exception {
       Builder request = client.target(generateURL("/get/string")).request();
-      Response response1 = request.get();      
-      List<String> list1 = response1.readEntity(LIST_OF_STRING);  
+      Response response1 = request.get();
+      List<String> list1 = response1.readEntity(LIST_OF_STRING);
 
-      Response response2 = request.get();      
-      List<String> list2 = response2.readEntity(LIST_OF_STRING);  
+      Response response2 = request.get();
+      List<String> list2 = response2.readEntity(LIST_OF_STRING);
 
       list1.addAll(list2);
       Assert.assertEquals(6, list1.size());

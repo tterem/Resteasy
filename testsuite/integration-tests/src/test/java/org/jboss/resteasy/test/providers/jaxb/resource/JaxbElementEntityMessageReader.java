@@ -14,25 +14,25 @@ import java.lang.reflect.Type;
 public class JaxbElementEntityMessageReader implements
         MessageBodyReader<JaxbElementReadableWritableEntity> {
 
-    @Override
-    public boolean isReadable(Class<?> type, Type genericType,
-                              Annotation[] annotations, MediaType mediaType) {
-        return JaxbElementReadableWritableEntity.class.isAssignableFrom(type);
-    }
+   @Override
+   public boolean isReadable(Class<?> type, Type genericType,
+                             Annotation[] annotations, MediaType mediaType) {
+      return JaxbElementReadableWritableEntity.class.isAssignableFrom(type);
+   }
 
-    @Override
-    public JaxbElementReadableWritableEntity readFrom(Class<JaxbElementReadableWritableEntity> arg0,
-                                                           Type arg1, Annotation[] annotations, MediaType mediaType,
-                                                           MultivaluedMap<String, String> arg4, InputStream entityStream)
-            throws IOException, WebApplicationException {
-        String entity = readInputStream(entityStream);
-        return JaxbElementReadableWritableEntity.fromString(entity);
-    }
+   @Override
+   public JaxbElementReadableWritableEntity readFrom(Class<JaxbElementReadableWritableEntity> arg0,
+                                                     Type arg1, Annotation[] annotations, MediaType mediaType,
+                                                     MultivaluedMap<String, String> arg4, InputStream entityStream)
+           throws IOException, WebApplicationException {
+      String entity = readInputStream(entityStream);
+      return JaxbElementReadableWritableEntity.fromString(entity);
+   }
 
-    String readInputStream(InputStream is) throws IOException {
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
-        return br.readLine();
-    }
+   String readInputStream(InputStream is) throws IOException {
+      InputStreamReader isr = new InputStreamReader(is);
+      BufferedReader br = new BufferedReader(isr);
+      return br.readLine();
+   }
 
 }

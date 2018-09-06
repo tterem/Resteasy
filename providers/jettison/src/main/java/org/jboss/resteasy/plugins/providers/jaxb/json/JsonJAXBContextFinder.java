@@ -21,8 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Provider
 @Produces({"application/json", "application/*+json"})
-public class JsonJAXBContextFinder extends AbstractJAXBContextFinder implements ContextResolver<JAXBContextFinder>
-{
+public class JsonJAXBContextFinder extends AbstractJAXBContextFinder implements ContextResolver<JAXBContextFinder> {
    private ConcurrentHashMap<Class<?>, JAXBContext> mappedCache = new ConcurrentHashMap<Class<?>, JAXBContext>();
    private ConcurrentHashMap<Class<?>, JAXBContext> badgerCache = new ConcurrentHashMap<Class<?>, JAXBContext>();
    private ConcurrentHashMap<CacheKey, JAXBContext> mappedCollectionCache = new ConcurrentHashMap<CacheKey, JAXBContext>();
@@ -30,51 +29,39 @@ public class JsonJAXBContextFinder extends AbstractJAXBContextFinder implements 
    private ConcurrentHashMap<CacheKey, JAXBContext> badgerCollectionCache = new ConcurrentHashMap<CacheKey, JAXBContext>();
    private ConcurrentHashMap<CacheKey, JAXBContext> badgerXmlTypeCollectionCache = new ConcurrentHashMap<CacheKey, JAXBContext>();
 
-   protected JAXBContext createContextObject(Annotation[] annotations, Class... classes) throws JAXBException
-   {
+   protected JAXBContext createContextObject(Annotation[] annotations, Class... classes) throws JAXBException {
       Mapped mapped = FindAnnotation.findAnnotation(annotations, Mapped.class);
       BadgerFish badger = FindAnnotation.findAnnotation(annotations, BadgerFish.class);
-      if (badger != null)
-      {
+      if (badger != null) {
          return new BadgerContext(classes);
-      }
-      else
-      {
+      } else {
          return new JettisonMappedContext(mapped, classes);
       }
    }
 
    @Override
-   protected JAXBContext createContextObject(Annotation[] annotations, String contextPath) throws JAXBException
-   {
+   protected JAXBContext createContextObject(Annotation[] annotations, String contextPath) throws JAXBException {
       Mapped mapped = FindAnnotation.findAnnotation(annotations, Mapped.class);
       BadgerFish badger = FindAnnotation.findAnnotation(annotations, BadgerFish.class);
-      if (badger != null)
-      {
+      if (badger != null) {
          return new BadgerContext(contextPath);
-      }
-      else
-      {
+      } else {
          return new JettisonMappedContext(mapped, contextPath);
       }
    }
 
    @Override
-   public JAXBContext findCacheXmlTypeContext(MediaType mediaType, Annotation[] annotations, Class... classes) throws JAXBException
-   {
+   public JAXBContext findCacheXmlTypeContext(MediaType mediaType, Annotation[] annotations, Class... classes) throws JAXBException {
       CacheKey key = new CacheKey(classes);
       Mapped mapped = FindAnnotation.findAnnotation(annotations, Mapped.class);
       BadgerFish badger = FindAnnotation.findAnnotation(annotations, BadgerFish.class);
-      if (badger != null)
-      {
+      if (badger != null) {
          JAXBContext ctx = badgerXmlTypeCollectionCache.get(key);
          if (ctx != null) return ctx;
          ctx = createXmlTypeContext(annotations, classes);
          badgerXmlTypeCollectionCache.put(key, ctx);
          return ctx;
-      }
-      else
-      {
+      } else {
          JAXBContext ctx = mappedXmlTypeCollectionCache.get(key);
          if (ctx != null) return ctx;
          ctx = createXmlTypeContext(annotations, classes);
@@ -83,36 +70,28 @@ public class JsonJAXBContextFinder extends AbstractJAXBContextFinder implements 
       }
    }
 
-   public JAXBContext findCachedContext(Class type, MediaType mediaType, Annotation[] annotations) throws JAXBException
-   {
+   public JAXBContext findCachedContext(Class type, MediaType mediaType, Annotation[] annotations) throws JAXBException {
       Mapped mapped = FindAnnotation.findAnnotation(type, annotations, Mapped.class);
       BadgerFish badger = FindAnnotation.findAnnotation(type, annotations, BadgerFish.class);
-      if (badger != null)
-      {
+      if (badger != null) {
          return find(type, mediaType, badgerCache, mapped, badger);
 
-      }
-      else
-      {
+      } else {
          return find(type, mediaType, mappedCache, mapped, badger);
       }
    }
 
-   public JAXBContext findCacheContext(MediaType mediaType, Annotation[] annotations, Class... classes) throws JAXBException
-   {
+   public JAXBContext findCacheContext(MediaType mediaType, Annotation[] annotations, Class... classes) throws JAXBException {
       CacheKey key = new CacheKey(classes);
       Mapped mapped = FindAnnotation.findAnnotation(annotations, Mapped.class);
       BadgerFish badger = FindAnnotation.findAnnotation(annotations, BadgerFish.class);
-      if (badger != null)
-      {
+      if (badger != null) {
          JAXBContext ctx = badgerCollectionCache.get(key);
          if (ctx != null) return ctx;
          ctx = new BadgerContext(classes);
          badgerCollectionCache.put(key, ctx);
          return ctx;
-      }
-      else
-      {
+      } else {
          JAXBContext ctx = mappedCollectionCache.get(key);
          if (ctx != null) return ctx;
          ctx = new JettisonMappedContext(mapped, classes);
@@ -122,27 +101,19 @@ public class JsonJAXBContextFinder extends AbstractJAXBContextFinder implements 
    }
 
    protected JAXBContext find(Class<?> type, MediaType mediaType, ConcurrentHashMap<Class<?>, JAXBContext> cache, Mapped mapped, BadgerFish badger)
-           throws JAXBException
-   {
+           throws JAXBException {
       JAXBContext jaxb;
       jaxb = cache.get(type);
-      if (jaxb != null)
-      {
+      if (jaxb != null) {
          return jaxb;
       }
       jaxb = findProvidedJAXBContext(type, mediaType);
-      if (jaxb == null)
-      {
-         if (badger != null)
-         {
+      if (jaxb == null) {
+         if (badger != null) {
             jaxb = new BadgerContext(type);
-         }
-         else if (mapped != null)
-         {
+         } else if (mapped != null) {
             jaxb = new JettisonMappedContext(mapped, type);
-         }
-         else
-         {
+         } else {
             jaxb = new JettisonMappedContext(type);
          }
       }

@@ -4,10 +4,9 @@ package org.jboss.resteasy.util;
  * A list of Http Header names.
  *
  * @author Ryan J. McDonough
- *         Feb 25, 2007
+ * Feb 25, 2007
  */
-public interface HttpHeaderNames
-{
+public interface HttpHeaderNames {
    String ACCEPT = "Accept";
    String ACCEPT_CHARSET = "Accept-Charset";
    String ACCEPT_ENCODING = "Accept-Encoding";

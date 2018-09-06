@@ -25,12 +25,11 @@ import java.net.URI;
  * p:serviceInterface=&quot;a.b.c.Echo&quot; p:baseUri=&quot;http://server.far.far.away:8080/echo&quot; /&gt;
  * </pre>
  *
- * @author Attila Kiraly
  * @param <T> The type representing the client interface.
+ * @author Attila Kiraly
  */
 public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
-        InitializingBean
-{
+        InitializingBean {
    private Class<T> serviceInterface;
    private URI baseUri;
    private T client;
@@ -39,57 +38,49 @@ public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
    private ResteasyProviderFactory resteasyProviderFactory;
 
    /*
-     * (non-Javadoc)
-     *
-     * @see org.springframework.beans.factory.FactoryBean#getObject()
-     */
-   public T getObject() throws Exception
-   {
+    * (non-Javadoc)
+    *
+    * @see org.springframework.beans.factory.FactoryBean#getObject()
+    */
+   public T getObject() throws Exception {
       return client;
    }
 
    /*
-     * (non-Javadoc)
-     *
-     * @see org.springframework.beans.factory.FactoryBean#getObjectType()
-     */
-   public Class<T> getObjectType()
-   {
+    * (non-Javadoc)
+    *
+    * @see org.springframework.beans.factory.FactoryBean#getObjectType()
+    */
+   public Class<T> getObjectType() {
       return serviceInterface;
    }
 
    /*
-     * (non-Javadoc)
-     *
-     * @see org.springframework.beans.factory.FactoryBean#isSingleton()
-     */
-   public boolean isSingleton()
-   {
+    * (non-Javadoc)
+    *
+    * @see org.springframework.beans.factory.FactoryBean#isSingleton()
+    */
+   public boolean isSingleton() {
       return true;
    }
 
    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
-     */
-   public void afterPropertiesSet() throws Exception
-   {
+    * (non-Javadoc)
+    *
+    * @see
+    * org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
+    */
+   public void afterPropertiesSet() throws Exception {
       if (resteasyProviderFactory == null)
          resteasyProviderFactory = ResteasyProviderFactory.getInstance();
       RegisterBuiltin.register(resteasyProviderFactory);
       ResteasyClientBuilder clientBuilder = new ResteasyClientBuilder();
       clientBuilder.providerFactory(resteasyProviderFactory);
-      
-      if (clientEngine == null)
-      {
-         if (httpClient == null)
-         {
+
+      if (clientEngine == null) {
+         if (httpClient == null) {
             clientEngine = new ApacheHttpClient4Engine();
-         }
-         else
-         {
+         } else {
             clientEngine = new ApacheHttpClient4Engine(httpClient);
          }
       }
@@ -97,8 +88,7 @@ public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
       client = target.proxy(serviceInterface);
    }
 
-   public Class<T> getServiceInterface()
-   {
+   public Class<T> getServiceInterface() {
       return serviceInterface;
    }
 
@@ -107,13 +97,11 @@ public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
     *
     * @param serviceInterface the interface for which a proxy is needed to be generated.
     */
-   public void setServiceInterface(Class<T> serviceInterface)
-   {
+   public void setServiceInterface(Class<T> serviceInterface) {
       this.serviceInterface = serviceInterface;
    }
 
-   public URI getBaseUri()
-   {
+   public URI getBaseUri() {
       return baseUri;
    }
 
@@ -122,13 +110,11 @@ public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
     *
     * @param baseUri the remote service base address.
     */
-   public void setBaseUri(URI baseUri)
-   {
+   public void setBaseUri(URI baseUri) {
       this.baseUri = baseUri;
    }
 
-   public HttpClient getHttpClient()
-   {
+   public HttpClient getHttpClient() {
       return httpClient;
    }
 
@@ -143,13 +129,11 @@ public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
     *
     * @param httpClient the instance to be used by proxy generation
     */
-   public void setHttpClient(HttpClient httpClient)
-   {
+   public void setHttpClient(HttpClient httpClient) {
       this.httpClient = httpClient;
    }
 
-   public ClientHttpEngine getClientEngine()
-   {
+   public ClientHttpEngine getClientEngine() {
       return clientEngine;
    }
 
@@ -160,13 +144,11 @@ public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
     *
     * @param clientEngine the instance to be used by proxy generation
     */
-   public void setClientExecutor(ClientHttpEngine clientEngine)
-   {
+   public void setClientExecutor(ClientHttpEngine clientEngine) {
       this.clientEngine = clientEngine;
    }
 
-   public ResteasyProviderFactory getResteasyProviderFactory()
-   {
+   public ResteasyProviderFactory getResteasyProviderFactory() {
       return resteasyProviderFactory;
    }
 
@@ -177,8 +159,7 @@ public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
     * @param resteasyProviderFactory the instance to be used by proxy generation.
     */
    public void setResteasyProviderFactory(
-           ResteasyProviderFactory resteasyProviderFactory)
-   {
+           ResteasyProviderFactory resteasyProviderFactory) {
       this.resteasyProviderFactory = resteasyProviderFactory;
    }
 

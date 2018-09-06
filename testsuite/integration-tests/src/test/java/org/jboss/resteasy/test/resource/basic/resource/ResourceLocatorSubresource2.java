@@ -1,18 +1,18 @@
 package org.jboss.resteasy.test.resource.basic.resource;
 
+import org.jboss.logging.Logger;
+import org.junit.Assert;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 
-import org.jboss.logging.Logger;
-import org.junit.Assert;
-
-public class ResourceLocatorSubresource2{
+public class ResourceLocatorSubresource2 {
 
    private static final Logger LOG = Logger.getLogger(ResourceLocatorSubresource2.class);
-   
+
    @GET
    @Path("stuff/{param}/bar")
    public String doGet(@PathParam("param") String param, @Context UriInfo uri) {

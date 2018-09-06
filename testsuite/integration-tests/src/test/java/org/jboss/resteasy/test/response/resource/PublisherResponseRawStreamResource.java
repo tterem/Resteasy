@@ -1,16 +1,14 @@
 package org.jboss.resteasy.test.response.resource;
 
-import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
+import io.reactivex.Flowable;
+import org.jboss.resteasy.annotations.Stream;
+import org.reactivestreams.Publisher;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-
-import org.jboss.resteasy.annotations.Stream;
-import org.reactivestreams.Publisher;
-
-import io.reactivex.Flowable;
+import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 @Path("")
 public class PublisherResponseRawStreamResource {

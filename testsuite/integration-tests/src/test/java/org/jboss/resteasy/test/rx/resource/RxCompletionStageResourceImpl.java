@@ -1,27 +1,28 @@
 package org.jboss.resteasy.test.rx.resource;
 
+import io.reactivex.Single;
+import org.jboss.resteasy.rxjava2.SingleProvider;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
-
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.HEAD;
-import javax.ws.rs.OPTIONS;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
-import io.reactivex.Single;
-import org.jboss.resteasy.rxjava2.SingleProvider;
 
 @Path("")
 public class RxCompletionStageResourceImpl {
 
    private static SingleProvider singleProvider = new SingleProvider();
-   
+
+   @SuppressWarnings("unchecked")
+   static CompletionStage<List<Thing>> buildCompletionStageThingList(String s, int listSize) {
+      List<Thing> list = new ArrayList<Thing>();
+      for (int i = 0; i < listSize; i++) {
+         list.add(new Thing(s));
+      }
+      return (CompletionStage<List<Thing>>) singleProvider.toCompletionStage(Single.just(list));
+   }
+
    @SuppressWarnings("unchecked")
    @GET
    @Path("get/string")
@@ -145,15 +146,6 @@ public class RxCompletionStageResourceImpl {
       return buildCompletionStageThingList("x", 3);
    }
 
-   @SuppressWarnings("unchecked")
-   static CompletionStage<List<Thing>> buildCompletionStageThingList(String s, int listSize) {
-      List<Thing> list = new ArrayList<Thing>();
-      for (int i = 0; i < listSize; i++) {
-         list.add(new Thing(s));
-      }
-      return (CompletionStage<List<Thing>>) singleProvider.toCompletionStage(Single.just(list));
-   }
-   
    @GET
    @Path("exception/unhandled")
    public CompletionStage<Thing> exceptionUnhandled() throws Exception {

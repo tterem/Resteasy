@@ -17,18 +17,15 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractURITemplateAnnotationResolver implements
-        URIResolver
-{
+        URIResolver {
 
    @SuppressWarnings("unchecked")
-   public boolean handles(Class type)
-   {
+   public boolean handles(Class type) {
       return AnnotationResolver.getClassWithAnnotation(type, getAnnotationType()) != null;
    }
 
    @SuppressWarnings("unchecked")
-   public String resolveURI(Object object)
-   {
+   public String resolveURI(Object object) {
       Class<? extends Object> clazz = AnnotationResolver
               .getClassWithAnnotation(object.getClass(), getAnnotationType());
       ResteasyUriBuilder uriBuilderImpl = getUriBuilder(clazz);
@@ -43,53 +40,41 @@ public abstract class AbstractURITemplateAnnotationResolver implements
    protected abstract ResteasyUriBuilder getUriBuilder(Class<? extends Object> clazz);
 
    private List<Object> getValues(Object object,
-                                  Map<String, PropertyDescriptor> descriptors, List<String> params)
-   {
+                                  Map<String, PropertyDescriptor> descriptors, List<String> params) {
       List<Object> values = new ArrayList<Object>();
-      for (String param : params)
-      {
+      for (String param : params) {
          PropertyDescriptor propertyDescriptor = descriptors.get(param);
-         if (propertyDescriptor == null)
-         {
-            throw new RuntimeException(Messages.MESSAGES.couldNotFindGetterForParam(param));  
+         if (propertyDescriptor == null) {
+            throw new RuntimeException(Messages.MESSAGES.couldNotFindGetterForParam(param));
          }
 
          Method readMethod = propertyDescriptor.getReadMethod();
-         if (!Modifier.isPublic(readMethod.getDeclaringClass().getModifiers()))
-         {
+         if (!Modifier.isPublic(readMethod.getDeclaringClass().getModifiers())) {
             readMethod.setAccessible(true);
          }
 
-         try
-         {
+         try {
             values.add(readMethod.invoke(object, new Object[0]));
-         }
-         catch (Exception e)
-         {
-            throw new RuntimeException(Messages.MESSAGES.couldNotGetAValue(param), e);  
+         } catch (Exception e) {
+            throw new RuntimeException(Messages.MESSAGES.couldNotGetAValue(param), e);
          }
       }
       return values;
    }
 
    private Map<String, PropertyDescriptor> getPropertyDescriptors(
-           Class<? extends Object> clazz)
-   {
-      try
-      {
+           Class<? extends Object> clazz) {
+      try {
          BeanInfo beanInfo = Introspector.getBeanInfo(clazz);
          HashMap<String, PropertyDescriptor> results = new HashMap<String, PropertyDescriptor>();
          PropertyDescriptor[] propertyDescriptors = beanInfo
                  .getPropertyDescriptors();
-         for (PropertyDescriptor propertyDescriptor : propertyDescriptors)
-         {
+         for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
             results.put(propertyDescriptor.getName(), propertyDescriptor);
          }
          return results;
-      }
-      catch (IntrospectionException e)
-      {
-         throw new RuntimeException(Messages.MESSAGES.couldNotIntrospectClass(clazz.getName()), e);  
+      } catch (IntrospectionException e) {
+         throw new RuntimeException(Messages.MESSAGES.couldNotIntrospectClass(clazz.getName()), e);
       }
    }
 }

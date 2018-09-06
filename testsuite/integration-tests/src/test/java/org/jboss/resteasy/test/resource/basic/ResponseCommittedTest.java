@@ -1,10 +1,5 @@
 package org.jboss.resteasy.test.resource.basic;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -19,6 +14,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.Response;
+
 /**
  * @tpSubChapter Resource
  * @tpChapter Integration tests
@@ -27,36 +27,32 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class ResponseCommittedTest
-{
+public class ResponseCommittedTest {
    public static int TEST_STATUS = 444;
    private static Client client;
 
    @Deployment
-   public static Archive<?> deploy() throws Exception
-   {
+   public static Archive<?> deploy() throws Exception {
       WebArchive war = TestUtil.prepareArchive(ResponseCommittedTest.class.getSimpleName());
       return TestUtil.finishContainerPrepare(war, null, ResponseCommittedResource.class);
    }
 
-   private String generateBaseUrl()
-   {
-      return PortProviderUtil.generateBaseUrl(ResponseCommittedTest.class.getSimpleName());
-   }
-   
    @BeforeClass
    public static void setup() {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void close() {
-       client.close();
+      client.close();
+   }
+
+   private String generateBaseUrl() {
+      return PortProviderUtil.generateBaseUrl(ResponseCommittedTest.class.getSimpleName());
    }
 
    @Test
-   public void testWorks() throws Exception
-   {
+   public void testWorks() throws Exception {
       Invocation.Builder request = client.target(generateBaseUrl()).request();
       Response response = request.get();
       Assert.assertEquals(TEST_STATUS, response.getStatus());

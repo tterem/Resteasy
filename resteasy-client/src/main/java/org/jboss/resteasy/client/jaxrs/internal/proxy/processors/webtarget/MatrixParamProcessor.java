@@ -6,17 +6,14 @@ import javax.ws.rs.client.WebTarget;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class MatrixParamProcessor extends AbstractWebTargetCollectionProcessor
-{
+public class MatrixParamProcessor extends AbstractWebTargetCollectionProcessor {
 
-   public MatrixParamProcessor(String paramName)
-   {
+   public MatrixParamProcessor(String paramName) {
       super(paramName);
    }
 
    @Override
-   protected WebTarget apply(WebTarget target, Object object)
-   {
+   protected WebTarget apply(WebTarget target, Object object) {
       return target.matrixParam(paramName, object);
    }
 

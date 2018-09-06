@@ -8,8 +8,7 @@ package org.jboss.resteasy.spi.touri;
  * @version $Revision: 1 $
  */
 
-public interface URIResolver
-{
+public interface URIResolver {
    boolean handles(Class<?> type);
 
    String resolveURI(Object object);

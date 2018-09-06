@@ -6,12 +6,7 @@ import org.jboss.resteasy.core.ThreadLocalResteasyProviderFactory;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.LogMessages;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 import org.jboss.resteasy.specimpl.ResteasyHttpHeaders;
-import org.jboss.resteasy.spi.HttpRequest;
-import org.jboss.resteasy.spi.HttpResponse;
-import org.jboss.resteasy.spi.Registry;
-import org.jboss.resteasy.spi.ResteasyDeployment;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
-import org.jboss.resteasy.spi.ResteasyUriInfo;
+import org.jboss.resteasy.spi.*;
 import org.jboss.resteasy.util.GetRestful;
 
 import javax.servlet.ServletContext;
@@ -21,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.SecurityContext;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
@@ -32,23 +26,24 @@ import java.util.Map;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class ServletContainerDispatcher
-{
+public class ServletContainerDispatcher {
    protected Dispatcher dispatcher;
    protected ResteasyProviderFactory providerFactory;
-   private String servletMappingPrefix = "";
    protected ResteasyDeployment deployment = null;
    protected HttpRequestFactory requestFactory;
    protected HttpResponseFactory responseFactory;
+   private String servletMappingPrefix = "";
 
-   public Dispatcher getDispatcher()
-   {
+   public Dispatcher getDispatcher() {
       return dispatcher;
    }
 
+   public void setDispatcher(Dispatcher dispatcher) {
+      this.dispatcher = dispatcher;
+   }
+
    @SuppressWarnings(value = "unchecked")
-   public void init(ServletContext servletContext, ConfigurationBootstrap bootstrap, HttpRequestFactory requestFactory, HttpResponseFactory responseFactory) throws ServletException
-   {
+   public void init(ServletContext servletContext, ConfigurationBootstrap bootstrap, HttpRequestFactory requestFactory, HttpResponseFactory responseFactory) throws ServletException {
       this.requestFactory = requestFactory;
       this.responseFactory = responseFactory;
       ResteasyDeployment ctxDeployment = (ResteasyDeployment) servletContext.getAttribute(ResteasyDeployment.class.getName());
@@ -68,17 +63,14 @@ public class ServletContainerDispatcher
 
       // use global is backward compatible with 2.3.x and earlier and will store and/or use the dispatcher and provider factory
       // in the servlet context
-      if (useGlobal)
-      {
+      if (useGlobal) {
          providerFactory = globalFactory;
          dispatcher = globalDispatcher;
-         if ((providerFactory != null && dispatcher == null) || (providerFactory == null && dispatcher != null))
-         {
+         if ((providerFactory != null && dispatcher == null) || (providerFactory == null && dispatcher != null)) {
             throw new ServletException(Messages.MESSAGES.unknownStateListener());
          }
          // We haven't been initialized by an external entity so bootstrap ourselves
-         if (providerFactory == null)
-         {
+         if (providerFactory == null) {
             deployment = bootstrap.createDeployment();
             deployment.start();
 
@@ -89,22 +81,16 @@ public class ServletContainerDispatcher
             dispatcher = deployment.getDispatcher();
             providerFactory = deployment.getProviderFactory();
 
-         }
-         else
-         {
+         } else {
             // ResteasyBootstrap inited us.  Check to see if the servlet defines an Application class
-            if (application != null)
-            {
-               try
-               {
+            if (application != null) {
+               try {
                   Map contextDataMap = ResteasyProviderFactory.getContextDataMap();
                   contextDataMap.putAll(dispatcher.getDefaultContextObjects());
                   Application app = ResteasyDeployment.createApplication(application.trim(), dispatcher, providerFactory);
                   // push context data so we can inject it
                   processApplication(app);
-               }
-               finally
-               {
+               } finally {
                   ResteasyProviderFactory.removeContextDataLevel();
                }
             }
@@ -112,9 +98,7 @@ public class ServletContainerDispatcher
          servletMappingPrefix = bootstrap.getParameter(ResteasyContextParameters.RESTEASY_SERVLET_MAPPING_PREFIX);
          if (servletMappingPrefix == null) servletMappingPrefix = "";
          servletMappingPrefix = servletMappingPrefix.trim();
-      }
-      else
-      {
+      } else {
          deployment = bootstrap.createDeployment();
          deployment.start();
          dispatcher = deployment.getDispatcher();
@@ -126,48 +110,35 @@ public class ServletContainerDispatcher
       }
    }
 
-   public void destroy()
-   {
-      if (deployment != null)
-      {
+   public void destroy() {
+      if (deployment != null) {
          deployment.stop();
       }
    }
 
-   protected void processApplication(Application config)
-   {
+   protected void processApplication(Application config) {
       LogMessages.LOGGER.deployingApplication(Application.class.getName(), config.getClass());
       ArrayList<Class> actualResourceClasses = new ArrayList<Class>();
       ArrayList<Class> actualProviderClasses = new ArrayList<Class>();
       ArrayList<Object> resources = new ArrayList<>();
       ArrayList<Object> providers = new ArrayList<>();
-      if (config.getClasses() != null)
-      {
-         for (Class clazz : config.getClasses())
-         {
-            if (GetRestful.isRootResource(clazz))
-            {
+      if (config.getClasses() != null) {
+         for (Class clazz : config.getClasses()) {
+            if (GetRestful.isRootResource(clazz)) {
                LogMessages.LOGGER.addingClassResource(clazz.getName(), config.getClass());
                actualResourceClasses.add(clazz);
-            }
-            else
-            {
+            } else {
                LogMessages.LOGGER.addingProviderClass(clazz.getName(), config.getClass());
                actualProviderClasses.add(clazz);
             }
          }
       }
-      if (config.getSingletons() != null)
-      {
-         for (Object obj : config.getSingletons())
-         {
-            if (GetRestful.isRootResource(obj.getClass()))
-            {
+      if (config.getSingletons() != null) {
+         for (Object obj : config.getSingletons()) {
+            if (GetRestful.isRootResource(obj.getClass())) {
                LogMessages.LOGGER.addingSingletonResource(obj.getClass().getName(), config.getClass());
                resources.add(obj);
-            }
-            else
-            {
+            } else {
                LogMessages.LOGGER.addingSingletonProvider(obj.getClass().getName(), config.getClass());
                providers.add(obj);
             }
@@ -179,67 +150,46 @@ public class ServletContainerDispatcher
       for (Object obj : resources) dispatcher.getRegistry().addSingletonResource(obj);
    }
 
-
-   public void setDispatcher(Dispatcher dispatcher)
-   {
-      this.dispatcher = dispatcher;
-   }
-
-   public void service(String httpMethod, HttpServletRequest request, HttpServletResponse response, boolean handleNotFound) throws IOException, NotFoundException
-   {
-      try
-      {
+   public void service(String httpMethod, HttpServletRequest request, HttpServletResponse response, boolean handleNotFound) throws IOException, NotFoundException {
+      try {
          //logger.info(httpMethod + " " + request.getRequestURL().toString());
          //logger.info("***PATH: " + request.getRequestURL());
          // classloader/deployment aware RestasyProviderFactory.  Used to have request specific
          // ResteasyProviderFactory.getInstance()
          ResteasyProviderFactory defaultInstance = ResteasyProviderFactory.getInstance();
-         if (defaultInstance instanceof ThreadLocalResteasyProviderFactory)
-         {
+         if (defaultInstance instanceof ThreadLocalResteasyProviderFactory) {
             ThreadLocalResteasyProviderFactory.push(providerFactory);
          }
          ResteasyHttpHeaders headers = null;
          ResteasyUriInfo uriInfo = null;
-         try
-         {
+         try {
             headers = ServletUtil.extractHttpHeaders(request);
             uriInfo = ServletUtil.extractUriInfo(request, servletMappingPrefix);
-         }
-         catch (Exception e)
-         {
+         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             // made it warn so that people can filter this.
             LogMessages.LOGGER.failedToParseRequest(e);
             return;
          }
 
-         try (HttpResponse theResponse = responseFactory.createResteasyHttpResponse(response))
-         {
+         try (HttpResponse theResponse = responseFactory.createResteasyHttpResponse(response)) {
             HttpRequest in = requestFactory.createResteasyHttpRequest(httpMethod, request, headers, uriInfo, theResponse, response);
 
             ResteasyProviderFactory.pushContext(HttpServletRequest.class, request);
             ResteasyProviderFactory.pushContext(HttpServletResponse.class, response);
 
             ResteasyProviderFactory.pushContext(SecurityContext.class, new ServletSecurityContext(request));
-            if (handleNotFound)
-            {
+            if (handleNotFound) {
                dispatcher.invoke(in, theResponse);
-            }
-            else
-            {
+            } else {
                ((SynchronousDispatcher) dispatcher).invokePropagateNotFound(in, theResponse);
             }
-         }
-         finally
-         {
+         } finally {
             ResteasyProviderFactory.clearContextData();
          }
-      }
-      finally
-      {
+      } finally {
          ResteasyProviderFactory defaultInstance = ResteasyProviderFactory.getInstance();
-         if (defaultInstance instanceof ThreadLocalResteasyProviderFactory)
-         {
+         if (defaultInstance instanceof ThreadLocalResteasyProviderFactory) {
             ThreadLocalResteasyProviderFactory.pop();
          }
 

@@ -10,11 +10,7 @@ import org.jboss.resteasy.test.interceptor.resource.PreMatchingClientResource;
 import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
@@ -33,10 +29,9 @@ import javax.ws.rs.core.Response;
 @RunAsClient
 public class PreMatchingClientRequestFilterTest extends ClientTestBase {
 
+   static Client client;
    @Rule
    public ExpectedException thrown = ExpectedException.none();
-
-   static Client client;
 
    @Deployment
    public static Archive<?> deploy() {
@@ -57,7 +52,7 @@ public class PreMatchingClientRequestFilterTest extends ClientTestBase {
 
    /**
     * @tpTestDetails Test that annotation @PreMatching on an implementation of ClientRequestFilter
-    *                is ignored. This annotation is only valid on ContainerRequestFilter implementations.
+    * is ignored. This annotation is only valid on ContainerRequestFilter implementations.
     * @tpSince RESTEasy 4.0.0
     */
    @Test

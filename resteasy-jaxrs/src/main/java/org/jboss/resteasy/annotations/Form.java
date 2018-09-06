@@ -1,10 +1,6 @@
 package org.jboss.resteasy.annotations;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * This can be used as a value object for incoming/outgoing request/responses.
@@ -24,8 +20,7 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.PARAMETER, ElementType.METHOD, ElementType.FIELD})
-public @interface Form
-{
+public @interface Form {
    /**
     * This is a form parameter prefix you want applied to any @FormParam variables in the object
     * See documentation for more details.

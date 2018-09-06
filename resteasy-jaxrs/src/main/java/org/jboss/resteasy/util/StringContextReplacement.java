@@ -18,8 +18,7 @@ import java.util.regex.Pattern;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class StringContextReplacement
-{
+public class StringContextReplacement {
    private static final Pattern basepath = Pattern.compile("\\$\\{basepath\\}");
    private static final Pattern absolutepath = Pattern.compile("\\$\\{absolutepath\\}");
    private static final Pattern absoluteUri = Pattern.compile("\\$\\{absoluteuri\\}");
@@ -38,11 +37,9 @@ public class StringContextReplacement
     * @param original original string
     * @return string with replaced expression
     */
-   public static String replace(String original)
-   {
+   public static String replace(String original) {
       UriInfo uriInfo = ResteasyProviderFactory.getContextData(UriInfo.class);
-      if (uriInfo != null)
-      {
+      if (uriInfo != null) {
          String base = uriInfo.getBaseUri().getRawPath();
          String abs = uriInfo.getAbsolutePath().getRawPath();
          String absU = uriInfo.getAbsolutePath().toString();
@@ -55,8 +52,7 @@ public class StringContextReplacement
 
       }
       HttpServletRequest request = ResteasyProviderFactory.getContextData(HttpServletRequest.class);
-      if (request != null)
-      {
+      if (request != null) {
          original = contextPath.matcher(original).replaceAll(request.getContextPath());
 
       }

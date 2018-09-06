@@ -1,13 +1,5 @@
 package org.jboss.resteasy.test.client.exception;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -24,6 +16,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation.Builder;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 /**
  * @tpSubChapter Resteasy-client
  * @tpChapter Client tests
@@ -32,32 +32,29 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class ClientErrorTest
-{
+public class ClientErrorTest {
    private static Client client;
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(ClientErrorTest.class.getSimpleName());
-       war.addClass(PortProviderUtil.class);
-       war.addClass(TestUtil.class);
-       return TestUtil.finishContainerPrepare(war, null, ClientErrorResource.class);
-   }
-
-   private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, ClientErrorTest.class.getSimpleName());
+      WebArchive war = TestUtil.prepareArchive(ClientErrorTest.class.getSimpleName());
+      war.addClass(PortProviderUtil.class);
+      war.addClass(TestUtil.class);
+      return TestUtil.finishContainerPrepare(war, null, ClientErrorResource.class);
    }
 
    @BeforeClass
-   public static void before() throws Exception
-   {
+   public static void before() throws Exception {
       client = ClientBuilder.newClient();
    }
 
    @AfterClass
-   public static void after() throws Exception
-   {
+   public static void after() throws Exception {
       client.close();
+   }
+
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, ClientErrorTest.class.getSimpleName());
    }
 
    /**
@@ -65,22 +62,16 @@ public class ClientErrorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
-   public void testComplex()
-   {
+   public void testComplex() {
       Builder builder = client.target(generateURL("/complex/match")).request();
       builder.header(HttpHeaderNames.ACCEPT, "text/xml");
       Response response = null;
-      try
-      {
+      try {
          response = builder.get();
          Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new RuntimeException(e);
-      }
-      finally
-      {
+      } finally {
          response.close();
       }
    }
@@ -90,22 +81,16 @@ public class ClientErrorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
-   public void testNotFound()
-   {
+   public void testNotFound() {
       Builder builder = client.target(generateURL("/foo/notthere")).request();
       builder.header(HttpHeaderNames.ACCEPT, "application/foo");
       Response response = null;
-      try
-      {
+      try {
          response = builder.get();
          Assert.assertEquals(HttpServletResponse.SC_NOT_FOUND, response.getStatus());
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new RuntimeException(e);
-      }
-      finally
-      {
+      } finally {
          response.close();
       }
    }
@@ -115,22 +100,16 @@ public class ClientErrorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
-   public void testMethodNotAllowed()
-   {
+   public void testMethodNotAllowed() {
       Builder builder = client.target(generateURL("")).request();
       builder.header(HttpHeaderNames.ACCEPT, "application/foo");
       Response response = null;
-      try
-      {
+      try {
          response = builder.get();
          Assert.assertEquals(HttpServletResponse.SC_METHOD_NOT_ALLOWED, response.getStatus());
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new RuntimeException(e);
-      }
-      finally
-      {
+      } finally {
          response.close();
       }
    }
@@ -140,22 +119,16 @@ public class ClientErrorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
-   public void testNotAcceptable()
-   {
+   public void testNotAcceptable() {
       Builder builder = client.target(generateURL("")).request();
       builder.header(HttpHeaderNames.ACCEPT, "application/bar");
       Response response = null;
-      try
-      {
+      try {
          response = builder.post(Entity.entity("content", "application/bar"));
          Assert.assertEquals(HttpServletResponse.SC_NOT_ACCEPTABLE, response.getStatus());
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new RuntimeException(e);
-      }
-      finally
-      {
+      } finally {
          response.close();
       }
    }
@@ -165,21 +138,15 @@ public class ClientErrorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
-   public void testNoContentPost()
-   {
+   public void testNoContentPost() {
       Builder builder = client.target(generateURL("/nocontent")).request();
       Response response = null;
-      try
-      {
+      try {
          response = builder.post(Entity.entity("content", "text/plain"));
          Assert.assertEquals(HttpServletResponse.SC_NO_CONTENT, response.getStatus());
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new RuntimeException(e);
-      }
-      finally
-      {
+      } finally {
          response.close();
       }
    }
@@ -189,21 +156,15 @@ public class ClientErrorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
-   public void testNoContent()
-   {
+   public void testNoContent() {
       Builder builder = client.target(generateURL("")).request();
       Response response = null;
-      try
-      {
+      try {
          response = builder.delete();
          Assert.assertEquals(HttpServletResponse.SC_NO_CONTENT, response.getStatus());
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new RuntimeException(e);
-      }  
-      finally
-      {
+      } finally {
          response.close();
       }
    }
@@ -213,22 +174,16 @@ public class ClientErrorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
-   public void testUnsupportedMediaType()
-   {
+   public void testUnsupportedMediaType() {
       Builder builder = client.target(generateURL("")).request();
       builder.header(HttpHeaderNames.ACCEPT, "application/foo");
       Response response = null;
-      try
-      {
+      try {
          response = builder.post(Entity.entity("content", "text/plain"));
          Assert.assertEquals(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, response.getStatus());
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new RuntimeException(e);
-      }
-      finally
-      {
+      } finally {
          response.close();
       }
    }
@@ -238,22 +193,16 @@ public class ClientErrorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
-   public void testBadAcceptMediaTypeNoSubType()
-   {
+   public void testBadAcceptMediaTypeNoSubType() {
       Builder builder = client.target(generateURL("/complex/match")).request();
       builder.header(HttpHeaderNames.ACCEPT, "text");
       Response response = null;
-      try
-      {
+      try {
          response = builder.get();
          Assert.assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new RuntimeException(e);
-      }
-      finally
-      {
+      } finally {
          response.close();
       }
    }
@@ -263,32 +212,23 @@ public class ClientErrorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
-   public void testBadAcceptMediaTypeNonNumericQualityValue()
-   {
+   public void testBadAcceptMediaTypeNonNumericQualityValue() {
       Builder builder = client.target(generateURL("/complex/match")).request();
       builder.header(HttpHeaderNames.ACCEPT, "text/plain; q=bad");
       Response response = null;
-      try
-      {
+      try {
          response = builder.get();
          Assert.assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new RuntimeException(e);
-      }
-      finally
-      {
+      } finally {
          response.close();
       }
    }
-   
-   static class TestMediaTypeHeaderDelegate extends MediaTypeHeaderDelegate
-   {
-      public static MediaType parse(String type)
-      {
-         if ("text".equals(type))
-         {
+
+   static class TestMediaTypeHeaderDelegate extends MediaTypeHeaderDelegate {
+      public static MediaType parse(String type) {
+         if ("text".equals(type)) {
             return new MediaType("text", "");
          }
          return MediaTypeHeaderDelegate.parse(type);

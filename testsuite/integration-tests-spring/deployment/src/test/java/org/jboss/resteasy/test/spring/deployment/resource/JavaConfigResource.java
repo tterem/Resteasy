@@ -14,24 +14,23 @@ import javax.ws.rs.core.MediaType;
 @Path("/")
 public class JavaConfigResource {
 
-    private static Logger logger = Logger.getLogger(JavaConfigResource.class);
-    JavaConfigService service;
+   private static Logger logger = Logger.getLogger(JavaConfigResource.class);
+   JavaConfigService service;
 
-    @Autowired
-    public void setService(JavaConfigService service) {
-        logger.info("*** service injected=" + service);
-        this.service = service;
-    }
+   public JavaConfigResource() {
+      logger.info("*** resource created:" + super.toString());
+   }
 
-    public JavaConfigResource() {
-        logger.info("*** resource created:" + super.toString());
-    }
+   @Autowired
+   public void setService(JavaConfigService service) {
+      logger.info("*** service injected=" + service);
+      this.service = service;
+   }
 
-
-    @GET
-    @Path("invoke")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String invoke() {
-        return service.invoke();
-    }
+   @GET
+   @Path("invoke")
+   @Produces(MediaType.TEXT_PLAIN)
+   public String invoke() {
+      return service.invoke();
+   }
 }

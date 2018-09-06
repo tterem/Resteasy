@@ -1,13 +1,6 @@
 package org.jboss.resteasy.test.providers.jaxb.resource;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
@@ -24,254 +17,249 @@ import static java.util.Calendar.YEAR;
 })
 @XmlAccessorType(XmlAccessType.FIELD)
 public abstract class AbstractJaxbClassCustomer implements java.io.Serializable {
-    private static final long serialVersionUID = 8488010636885492122L;
+   public static final int NACHNAME_LENGTH_MIN = 2;
+   public static final int NACHNAME_LENGTH_MAX = 32;
+   public static final int VORNAME_LENGTH_MAX = 32;
+   public static final int CUSTOMERNNR_LENGTH_MAX = 32;
+   public static final int DETAILS_LENGTH_MAX = 128 * 1024;
+   public static final int PASSWORD_LENGTH_MAX = 256;
+   public static final String PRIVATCUSTOMER = "P";
+   public static final String COMPANYCUSTOMER = "F";
+   static final String FIND_CUSTOMERS = "findcustomers";
+   static final String FIND_CUSTOMERS_BY_NACHNAME = "findCustomersByNachname";
+   static final String FIND_CUSTOMERS_BY_NACHNAME_FETCH_BESTELLUNGEN = "findCustomersByNachnameFetchBestellungen";
+   static final String FIND_CUSTOMER_BY_ID_FETCH_BESTELLUNGEN = "findCustomersByIdFetchBestellungen";
+   static final String FIND_CUSTOMERS_BY_PLZ = "findCustomersByPlz";
+   static final String PARAM_CUSTOMER_ID = "customerId";
+   static final String PARAM_CUSTOMER_NACHNAME = "nachname";
+   static final String PARAM_CUSTOMER_ADRESSE_PLZ = "plz";
+   private static final long serialVersionUID = 8488010636885492122L;
+   // Alternativen: TABLE, SEQUENCE, IDENTITY, AUTO, NONE (=default)
+   @XmlAttribute(name = "id", required = true)
+   protected Long id = -1L;
 
-    public static final int NACHNAME_LENGTH_MIN = 2;
-    public static final int NACHNAME_LENGTH_MAX = 32;
-    public static final int VORNAME_LENGTH_MAX = 32;
-    public static final int CUSTOMERNNR_LENGTH_MAX = 32;
-    public static final int DETAILS_LENGTH_MAX = 128 * 1024;
-    public static final int PASSWORD_LENGTH_MAX = 256;
+   @XmlTransient
+   protected int version = 0;
 
-    public static final String PRIVATCUSTOMER = "P";
-    public static final String COMPANYCUSTOMER = "F";
+   @XmlElement(required = true)
+   protected String nachname = "";
 
-    static final String FIND_CUSTOMERS = "findcustomers";
-    static final String FIND_CUSTOMERS_BY_NACHNAME = "findCustomersByNachname";
-    static final String FIND_CUSTOMERS_BY_NACHNAME_FETCH_BESTELLUNGEN = "findCustomersByNachnameFetchBestellungen";
-    static final String FIND_CUSTOMER_BY_ID_FETCH_BESTELLUNGEN = "findCustomersByIdFetchBestellungen";
-    static final String FIND_CUSTOMERS_BY_PLZ = "findCustomersByPlz";
+   protected String vorname = "";
 
-    static final String PARAM_CUSTOMER_ID = "customerId";
-    static final String PARAM_CUSTOMER_NACHNAME = "nachname";
-    static final String PARAM_CUSTOMER_ADRESSE_PLZ = "plz";
+   @XmlAttribute(required = true)
+   protected String customersnr = "NnVn-001";
 
-    // Alternativen: TABLE, SEQUENCE, IDENTITY, AUTO, NONE (=default)
-    @XmlAttribute(name = "id", required = true)
-    protected Long id = -1L;
+   protected Date seit = null;
 
-    @XmlTransient
-    protected int version = 0;
+   @XmlTransient
+   protected int anzJahre;
 
-    @XmlElement(required = true)
-    protected String nachname = "";
+   @XmlElement(name = "betreuer")
+   protected String betreuerKey;
 
-    protected String vorname = "";
+   @XmlElementWrapper(name = "bestellungen")
+   @XmlElement(name = "bestellung")
+   protected List<String> bestellungenKeys;
 
-    @XmlAttribute(required = true)
-    protected String customersnr = "NnVn-001";
+   protected String details;
 
-    protected Date seit = null;
+   @XmlTransient
+   protected String password = "";
 
-    @XmlTransient
-    protected int anzJahre;
+   @XmlTransient
+   protected Date erzeugt = null;
 
-    @XmlElement(name = "betreuer")
-    protected String betreuerKey;
+   @XmlTransient
+   protected Date aktualisiert = null;
 
-    @XmlElementWrapper(name = "bestellungen")
-    @XmlElement(name = "bestellung")
-    protected List<String> bestellungenKeys;
+   public AbstractJaxbClassCustomer() {
+      super();
+   }
 
-    protected String details;
+   public Long getId() {
+      return id;
+   }
 
-    @XmlTransient
-    protected String password = "";
+   public void setId(Long id) {
+      this.id = id;
+   }
 
-    @XmlTransient
-    protected Date erzeugt = null;
+   public int getVersion() {
+      return version;
+   }
 
-    @XmlTransient
-    protected Date aktualisiert = null;
+   public void setVersion(int version) {
+      this.version = version;
+   }
 
-    public AbstractJaxbClassCustomer() {
-        super();
-    }
+   public String getNachname() {
+      return nachname;
+   }
 
-    public Long getId() {
-        return id;
-    }
+   public void setNachname(String nachname) {
+      this.nachname = nachname;
+   }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+   public String getVorname() {
+      return vorname;
+   }
 
-    public int getVersion() {
-        return version;
-    }
+   public void setVorname(String vorname) {
+      this.vorname = vorname;
+   }
 
-    public void setVersion(int version) {
-        this.version = version;
-    }
+   public String getCustomersnr() {
+      return customersnr;
+   }
 
-    public String getNachname() {
-        return nachname;
-    }
+   public void setCustomersnr(String customersnr) {
+      this.customersnr = customersnr;
+   }
 
-    public void setNachname(String nachname) {
-        this.nachname = nachname;
-    }
+   public Date getSeit() {
+      return seit;
+   }
 
-    public String getVorname() {
-        return vorname;
-    }
+   public void setSeit(Date seit) {
+      this.seit = seit;
+   }
 
-    public void setVorname(String vorname) {
-        this.vorname = vorname;
-    }
+   public int getAnzJahre() {
+      final GregorianCalendar now = new GregorianCalendar();
+      final GregorianCalendar seitCal = new GregorianCalendar();
+      Date temp = seit;
+      if (temp == null) {
+         temp = new Date();
+      }
+      seitCal.setTime(temp);
 
-    public String getCustomersnr() {
-        return customersnr;
-    }
+      anzJahre = now.get(YEAR) - seitCal.get(YEAR);
 
-    public void setCustomersnr(String customersnr) {
-        this.customersnr = customersnr;
-    }
+      return anzJahre;
+   }
 
-    public Date getSeit() {
-        return seit;
-    }
+   public String getSeitAsString(int style, Locale locale) {
+      Date temp = seit;
+      if (temp == null) {
+         temp = new Date();
+      }
+      final DateFormat f = DateFormat.getDateInstance(style, locale);
+      return f.format(temp);
+   }
 
-    public void setSeit(Date seit) {
-        this.seit = seit;
-    }
+   public void setSeit(String seit, int style, Locale locale) {
+      final DateFormat f = DateFormat.getDateInstance(style, locale);
+      try {
+         this.seit = f.parse(seit);
+      } catch (ParseException e) {
+      }
+   }
 
-    public int getAnzJahre() {
-        final GregorianCalendar now = new GregorianCalendar();
-        final GregorianCalendar seitCal = new GregorianCalendar();
-        Date temp = seit;
-        if (temp == null) {
-            temp = new Date();
-        }
-        seitCal.setTime(temp);
+   public String getBetreuerKey() {
+      return betreuerKey;
+   }
 
-        anzJahre = now.get(YEAR) - seitCal.get(YEAR);
+   public void setBetreuerKey(String betreuerKey) {
+      this.betreuerKey = betreuerKey;
+   }
 
-        return anzJahre;
-    }
+   public List<String> getBestellungenKeys() {
+      return bestellungenKeys;
+   }
 
-    public String getSeitAsString(int style, Locale locale) {
-        Date temp = seit;
-        if (temp == null) {
-            temp = new Date();
-        }
-        final DateFormat f = DateFormat.getDateInstance(style, locale);
-        return f.format(temp);
-    }
+   public void setBestellungenKeys(List<String> bestellungenKeys) {
+      this.bestellungenKeys = bestellungenKeys;
+   }
 
-    public void setSeit(String seit, int style, Locale locale) {
-        final DateFormat f = DateFormat.getDateInstance(style, locale);
-        try {
-            this.seit = f.parse(seit);
-        } catch (ParseException e) {
-        }
-    }
+   public abstract String getArt();
 
-    public String getBetreuerKey() {
-        return betreuerKey;
-    }
+   public String getDetails() {
+      return details;
+   }
 
-    public void setBetreuerKey(String betreuerKey) {
-        this.betreuerKey = betreuerKey;
-    }
+   public void setDetails(String details) {
+      this.details = details;
+   }
 
-    public List<String> getBestellungenKeys() {
-        return bestellungenKeys;
-    }
+   public String getPassword() {
+      return password;
+   }
 
-    public void setBestellungenKeys(List<String> bestellungenKeys) {
-        this.bestellungenKeys = bestellungenKeys;
-    }
+   public void setPassword(String passwort) {
+      this.password = passwort;
+   }
 
-    public abstract String getArt();
+   public Date getAktualisiert() {
+      return aktualisiert;
+   }
 
-    public String getDetails() {
-        return details;
-    }
+   public void setAktualisiert(Date aktualisiert) {
+      this.aktualisiert = aktualisiert;
+   }
 
-    public void setDetails(String details) {
-        this.details = details;
-    }
+   public Date getErzeugt() {
+      return erzeugt;
+   }
 
-    public String getPassword() {
-        return password;
-    }
+   public void setErzeugt(Date erzeugt) {
+      this.erzeugt = erzeugt;
+   }
 
-    public void setPassword(String passwort) {
-        this.password = passwort;
-    }
+   @Override
+   public String toString() {
+      return "id=" + id + ", version=" + version +
+              ", nachname=" + nachname + ", vorname=" + vorname +
+              ", nr=" + customersnr +
+              ", seit=" + getSeitAsString(DateFormat.MEDIUM, Locale.GERMANY) +
+              ", anzJahre=" + getAnzJahre() +
+              ", password=" + password +
+              ", erzeugt=" + erzeugt +
+              ", aktualisiert=" + aktualisiert;
+   }
 
-    public Date getAktualisiert() {
-        return aktualisiert;
-    }
+   @Override
+   public int hashCode() {
+      final int PRIME = 31;
+      int result = 1;
+      result = PRIME * result + ((nachname == null) ? 0 : nachname.hashCode());
+      result = PRIME * result + ((seit == null) ? 0 : seit.hashCode());
+      result = PRIME * result + ((vorname == null) ? 0 : vorname.hashCode());
+      return result;
+   }
 
-    public void setAktualisiert(Date aktualisiert) {
-        this.aktualisiert = aktualisiert;
-    }
-
-    public Date getErzeugt() {
-        return erzeugt;
-    }
-
-    public void setErzeugt(Date erzeugt) {
-        this.erzeugt = erzeugt;
-    }
-
-    @Override
-    public String toString() {
-        return "id=" + id + ", version=" + version +
-                ", nachname=" + nachname + ", vorname=" + vorname +
-                ", nr=" + customersnr +
-                ", seit=" + getSeitAsString(DateFormat.MEDIUM, Locale.GERMANY) +
-                ", anzJahre=" + getAnzJahre() +
-                ", password=" + password +
-                ", erzeugt=" + erzeugt +
-                ", aktualisiert=" + aktualisiert;
-    }
-
-    @Override
-    public int hashCode() {
-        final int PRIME = 31;
-        int result = 1;
-        result = PRIME * result + ((nachname == null) ? 0 : nachname.hashCode());
-        result = PRIME * result + ((seit == null) ? 0 : seit.hashCode());
-        result = PRIME * result + ((vorname == null) ? 0 : vorname.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+   @Override
+   public boolean equals(Object obj) {
+      if (this == obj) {
+         return true;
+      }
+      if (obj == null) {
+         return false;
+      }
+      if (getClass() != obj.getClass()) {
+         return false;
+      }
+      final AbstractJaxbClassCustomer other = (AbstractJaxbClassCustomer) obj;
+      if (nachname == null) {
+         if (other.nachname != null) {
             return false;
-        }
-        if (getClass() != obj.getClass()) {
+         }
+      } else if (!nachname.equals(other.nachname)) {
+         return false;
+      }
+      if (seit == null) {
+         if (other.seit != null) {
             return false;
-        }
-        final AbstractJaxbClassCustomer other = (AbstractJaxbClassCustomer) obj;
-        if (nachname == null) {
-            if (other.nachname != null) {
-                return false;
-            }
-        } else if (!nachname.equals(other.nachname)) {
+         }
+      } else if (!seit.equals(other.seit)) {
+         return false;
+      }
+      if (vorname == null) {
+         if (other.vorname != null) {
             return false;
-        }
-        if (seit == null) {
-            if (other.seit != null) {
-                return false;
-            }
-        } else if (!seit.equals(other.seit)) {
-            return false;
-        }
-        if (vorname == null) {
-            if (other.vorname != null) {
-                return false;
-            }
-        } else if (!vorname.equals(other.vorname)) {
-            return false;
-        }
-        return true;
-    }
+         }
+      } else if (!vorname.equals(other.vorname)) {
+         return false;
+      }
+      return true;
+   }
 }

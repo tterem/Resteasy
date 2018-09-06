@@ -14,18 +14,16 @@ import java.io.IOException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations =
-{ "classpath:spring-test-client.xml" })
+        {"classpath:spring-test-client.xml"})
 @DirtiesContext
 @Ignore
-public class BasicSpringTest
-{
+public class BasicSpringTest {
 
    @Autowired
    private BasicResource br;
 
    @Test
-   public void testBasic() throws HttpException, IOException
-   {
+   public void testBasic() throws HttpException, IOException {
 //      ClientResponse<BasicJaxbObject> result = br.getWrongContentTypeBasicObject();
 //      Assert.assertEquals(-1, result.getStatus());
       Assert.assertEquals("/basic/url", br.getURL());
@@ -44,8 +42,8 @@ public class BasicSpringTest
       Assert.assertEquals("text/plain", br.getContentTypeHeader());
 
       Integer interceptorCount = br
-            .getSpringInterceptorCount("afterCompletion");
-      
+              .getSpringInterceptorCount("afterCompletion");
+
       Assert.assertEquals(new Integer(9), interceptorCount);
       Assert.assertEquals("text/plain", br.getContentTypeHeader());
       Assert.assertEquals("springSomething", br.testSpringXml().getSomething());

@@ -1,10 +1,6 @@
 package org.jboss.resteasy.plugins.providers.atom;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.*;
 import java.net.URI;
 
 /**
@@ -23,8 +19,7 @@ import java.net.URI;
  */
 @XmlRootElement(name = "generator")
 @XmlAccessorType(XmlAccessType.PROPERTY)
-public class Generator
-{
+public class Generator {
    private URI uri;
 
    private String version;
@@ -36,57 +31,47 @@ public class Generator
    private URI base;
 
    @XmlAttribute(name = "lang")
-   public String getLanguage()
-   {
+   public String getLanguage() {
       return language;
    }
 
-   public void setLanguage(String language)
-   {
+   public void setLanguage(String language) {
       this.language = language;
    }
 
    @XmlAttribute
-   public URI getBase()
-   {
+   public URI getBase() {
       return base;
    }
 
-   public void setBase(URI base)
-   {
+   public void setBase(URI base) {
       this.base = base;
    }
 
    @XmlAttribute
-   public URI getUri()
-   {
+   public URI getUri() {
       return uri;
    }
 
-   public void setUri(URI uri)
-   {
+   public void setUri(URI uri) {
       this.uri = uri;
    }
 
    @XmlAttribute
-   public String getVersion()
-   {
+   public String getVersion() {
       return version;
    }
 
-   public void setVersion(String version)
-   {
+   public void setVersion(String version) {
       this.version = version;
    }
 
    @XmlValue
-   public String getText()
-   {
+   public String getText() {
       return text;
    }
 
-   public void setText(String text)
-   {
+   public void setText(String text) {
       this.text = text;
    }
 }

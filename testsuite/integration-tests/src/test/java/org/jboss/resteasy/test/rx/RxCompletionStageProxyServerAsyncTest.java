@@ -1,21 +1,12 @@
 package org.jboss.resteasy.test.rx;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.internal.CompletionStageRxInvokerProvider;
-import org.jboss.resteasy.test.rx.resource.RxCompletionStageResourceImpl;
-import org.jboss.resteasy.test.rx.resource.RxScheduledExecutorService;
-import org.jboss.resteasy.test.rx.resource.SimpleResource;
-import org.jboss.resteasy.test.rx.resource.TestException;
-import org.jboss.resteasy.test.rx.resource.TestExceptionMapper;
-import org.jboss.resteasy.test.rx.resource.Thing;
+import org.jboss.resteasy.test.rx.resource.*;
 import org.jboss.resteasy.utils.PortProviderUtil;
 import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.shrinkwrap.api.Archive;
@@ -27,12 +18,16 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 
 /**
  * @tpSubChapter Reactive classes
  * @tpChapter Integration tests
  * @tpSince RESTEasy 4.0
- * 
+ * <p>
  * These tests run synchronously on client, calling a proxy which does a synchronous invocation.
  * The server creates and returns CompletionStages which run asynchronously.
  */
@@ -43,12 +38,16 @@ public class RxCompletionStageProxyServerAsyncTest {
    private static ResteasyClient client;
    private static SimpleResource proxy;
 
-   private static List<Thing>  xThingList =  new ArrayList<Thing>();
-   private static List<Thing>  aThingList =  new ArrayList<Thing>();
+   private static List<Thing> xThingList = new ArrayList<Thing>();
+   private static List<Thing> aThingList = new ArrayList<Thing>();
 
    static {
-      for (int i = 0; i < 3; i++) {xThingList.add(new Thing("x"));}
-      for (int i = 0; i < 3; i++) {aThingList.add(new Thing("a"));}
+      for (int i = 0; i < 3; i++) {
+         xThingList.add(new Thing("x"));
+      }
+      for (int i = 0; i < 3; i++) {
+         aThingList.add(new Thing("a"));
+      }
    }
 
    @Deployment
@@ -79,7 +78,17 @@ public class RxCompletionStageProxyServerAsyncTest {
    }
 
    //////////////////////////////////////////////////////////////////////////////
-   
+
+   private static boolean throwableContains(Throwable t, String s) {
+      while (t != null) {
+         if (t.getMessage().contains(s)) {
+            return true;
+         }
+         t = t.getCause();
+      }
+      return false;
+   }
+
    @Test
    public void testGet() throws Exception {
       String s = proxy.get();
@@ -178,7 +187,7 @@ public class RxCompletionStageProxyServerAsyncTest {
       List<Thing> list = proxy.optionsThingList();
       Assert.assertEquals(xThingList, list);
    }
-   
+
    @Test
    public void testUnhandledException() throws Exception {
       try {
@@ -198,7 +207,7 @@ public class RxCompletionStageProxyServerAsyncTest {
          Assert.assertTrue(e.getMessage().contains("444"));
       }
    }
-   
+
    @Test
    public void testGetTwoClients() throws Exception {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
@@ -206,18 +215,17 @@ public class RxCompletionStageProxyServerAsyncTest {
       ResteasyClient client1 = new ResteasyClientBuilder().build();
       client1.register(CompletionStageRxInvokerProvider.class);
       SimpleResource proxy1 = client1.target(generateURL("/")).proxy(SimpleResource.class);
-      String s1 = proxy1.get();   
+      String s1 = proxy1.get();
 
       ResteasyClient client2 = new ResteasyClientBuilder().build();
       client2.register(CompletionStageRxInvokerProvider.class);
-      SimpleResource  proxy2 = client2.target(generateURL("/")).proxy(SimpleResource.class);
+      SimpleResource proxy2 = client2.target(generateURL("/")).proxy(SimpleResource.class);
       String s2 = proxy2.get();
 
       list.add(s1);
       list.add(s2);
       Assert.assertEquals(2, list.size());
-      for (int i = 0; i < 2; i++)
-      {
+      for (int i = 0; i < 2; i++) {
          Assert.assertEquals("x", list.get(i));
       }
    }
@@ -226,24 +234,23 @@ public class RxCompletionStageProxyServerAsyncTest {
    public void testGetTwoProxies() throws Exception {
       CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
-      SimpleResource  proxy1 = client.target(generateURL("/")).proxy(SimpleResource.class);
-      String s1 = proxy1.get();   
+      SimpleResource proxy1 = client.target(generateURL("/")).proxy(SimpleResource.class);
+      String s1 = proxy1.get();
 
-      SimpleResource  proxy2 = client.target(generateURL("/")).proxy(SimpleResource.class);
+      SimpleResource proxy2 = client.target(generateURL("/")).proxy(SimpleResource.class);
       String s2 = proxy2.get();
 
       list.add(s1);
       list.add(s2);
       Assert.assertEquals(2, list.size());
-      for (int i = 0; i < 2; i++)
-      {
+      for (int i = 0; i < 2; i++) {
          Assert.assertEquals("x", list.get(i));
       }
    }
-   
+
    @Test
    public void testGetTwoCompletionStages() throws Exception {
-      CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();   
+      CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
 
       String s1 = proxy.get();
       String s2 = proxy.get();
@@ -251,20 +258,8 @@ public class RxCompletionStageProxyServerAsyncTest {
       list.add(s1);
       list.add(s2);
       Assert.assertEquals(2, list.size());
-      for (int i = 0; i < 2; i++)
-      {
+      for (int i = 0; i < 2; i++) {
          Assert.assertEquals("x", list.get(i));
       }
-   }
-   
-   private static boolean throwableContains(Throwable t, String s) {
-      while (t != null) {
-         if (t.getMessage().contains(s))
-         {
-            return true;
-         }
-         t = t.getCause();
-      }
-      return false;
    }
 }

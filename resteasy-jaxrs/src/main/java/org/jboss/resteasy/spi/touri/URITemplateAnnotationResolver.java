@@ -5,16 +5,13 @@ import org.jboss.resteasy.specimpl.ResteasyUriBuilder;
 import java.lang.annotation.Annotation;
 
 public class URITemplateAnnotationResolver extends
-        AbstractURITemplateAnnotationResolver
-{
+        AbstractURITemplateAnnotationResolver {
 
-   protected Class<? extends Annotation> getAnnotationType()
-   {
+   protected Class<? extends Annotation> getAnnotationType() {
       return URITemplate.class;
    }
 
-   protected ResteasyUriBuilder getUriBuilder(Class<? extends Object> clazz)
-   {
+   protected ResteasyUriBuilder getUriBuilder(Class<? extends Object> clazz) {
       String uriTemplate = clazz.getAnnotation(URITemplate.class).value();
       ResteasyUriBuilder uriBuilderImpl = new ResteasyUriBuilder();
       uriBuilderImpl.replacePath(uriTemplate);

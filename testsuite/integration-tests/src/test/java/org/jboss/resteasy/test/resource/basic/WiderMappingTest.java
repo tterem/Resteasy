@@ -35,10 +35,6 @@ public class WiderMappingTest {
 
    static Client client;
 
-   private String generateURL(String path) {
-      return PortProviderUtil.generateURL(path, WiderMappingNegativeTest.class.getSimpleName());
-   }
-
    @Deployment
    public static Archive<?> deployUriInfoSimpleResource() {
       WebArchive war = TestUtil.prepareArchive(WiderMappingNegativeTest.class.getSimpleName());
@@ -49,7 +45,6 @@ public class WiderMappingTest {
       return TestUtil.finishContainerPrepare(war, contextParam, WiderMappingResource.class, WiderMappingDefaultOptions.class);
    }
 
-
    @BeforeClass
    public static void setup() {
       client = ClientBuilder.newClient();
@@ -58,6 +53,10 @@ public class WiderMappingTest {
    @AfterClass
    public static void cleanup() {
       client.close();
+   }
+
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, WiderMappingNegativeTest.class.getSimpleName());
    }
 
    /**

@@ -9,7 +9,6 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.WriterInterceptor;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -26,74 +25,62 @@ import java.util.Map;
  */
 
 @SuppressWarnings("unchecked")
-public abstract class WriterUtility
-{
+public abstract class WriterUtility {
    private ResteasyProviderFactory factory;
    private WriterInterceptor[] interceptors;
 
+   public WriterUtility() {
+      this(ResteasyProviderFactory.getInstance(), null);
+   }
+
+   public WriterUtility(ResteasyProviderFactory factory,
+                        WriterInterceptor[] interceptors) {
+      this.factory = factory;
+      this.interceptors = interceptors;
+   }
+
    public static String asString(Object toOutput, String contentType)
-           throws IOException
-   {
+           throws IOException {
       return new String(getBytes(toOutput, contentType));
    }
 
    public static byte[] getBytes(Object toOutput, String contentType)
-           throws IOException
-   {
+           throws IOException {
       ByteArrayOutputStream bos = new ByteArrayOutputStream();
       write(toOutput, MediaType.valueOf(contentType), bos);
       return bos.toByteArray();
    }
 
    public static void write(Object toOutput, MediaType mt, OutputStream os)
-           throws IOException
-   {
-      new WriterUtility()
-      {
+           throws IOException {
+      new WriterUtility() {
          @Override
          public RuntimeException createWriterNotFound(Type genericType,
-                                                      MediaType mediaType)
-         {
+                                                      MediaType mediaType) {
             throw new RuntimeException(Messages.MESSAGES.couldNotReadType(genericType, mediaType));
          }
       }.doWrite(toOutput, mt, os);
    }
 
-   public WriterUtility()
-   {
-      this(ResteasyProviderFactory.getInstance(), null);
-   }
-
-   public WriterUtility(ResteasyProviderFactory factory,
-                        WriterInterceptor[] interceptors)
-   {
-      this.factory = factory;
-      this.interceptors = interceptors;
-   }
-
    public void doWrite(Object toOutput, MediaType mediaType, OutputStream os)
-           throws IOException
-   {
+           throws IOException {
       doWrite(toOutput, toOutput.getClass(), mediaType, os);
    }
 
 
    public void doWrite(Object toOutput, Class type, MediaType mediaType, OutputStream os)
-           throws IOException
-   {
+           throws IOException {
       doWrite(toOutput, type, type, mediaType, null, null, os);
    }
 
    public void doWrite(Object toOutput, Class type, Type genericType, MediaType mediaType,
                        MultivaluedMap<String, Object> requestHeaders, OutputStream os)
-           throws IOException
-   {
+           throws IOException {
       doWrite(toOutput, type, genericType, mediaType, null, requestHeaders, os);
    }
 
    public void doWrite(HttpResponse response, Object toOutput, Class type, Type genericType,
-                       Annotation[] annotations, MediaType mediaType) throws IOException
-   {
+                       Annotation[] annotations, MediaType mediaType) throws IOException {
       doWrite(toOutput, type, genericType, mediaType, annotations, response
               .getOutputHeaders(), response.getOutputStream());
    }
@@ -101,8 +88,7 @@ public abstract class WriterUtility
    public void doWrite(Object toOutput, Class type, Type genericType,
                        MediaType mediaType, Annotation[] annotations,
                        MultivaluedMap<String, Object> requestHeaders,
-                       OutputStream outputStream) throws IOException
-   {
+                       OutputStream outputStream) throws IOException {
       final Map<String, Object> attributes = new HashMap<String, Object>();
       AbstractWriterInterceptorContext messageBodyWriterContext = new ClientWriterInterceptorContext(interceptors, factory, toOutput, type,
               genericType, annotations, mediaType, requestHeaders, outputStream, attributes);

@@ -7,42 +7,30 @@ import org.jboss.resteasy.annotations.security.doseta.Signed;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class AbstractDigitalSigningHeaderDecorator
-{
+public class AbstractDigitalSigningHeaderDecorator {
    protected Signed signed;
 
-   protected DKIMSignature createHeader(KeyRepository repository)
-   {
+   protected DKIMSignature createHeader(KeyRepository repository) {
       DKIMSignature header = new DKIMSignature();
-      if (signed.domain() != null && !signed.domain().equals(""))
-      {
+      if (signed.domain() != null && !signed.domain().equals("")) {
          header.setDomain(signed.domain());
-      }
-      else
-      {
-         if (repository != null)
-         {
+      } else {
+         if (repository != null) {
             header.setDomain(repository.getDefaultPrivateDomain());
          }
       }
-      if (signed.algorithm() != null && !signed.algorithm().equals(""))
-      {
+      if (signed.algorithm() != null && !signed.algorithm().equals("")) {
          header.setAlgorithm(signed.algorithm());
       }
-      if (signed.selector() != null && !signed.selector().equals(""))
-      {
+      if (signed.selector() != null && !signed.selector().equals("")) {
          header.setSelector(signed.selector());
-      }
-      else
-      {
-         if (repository != null)
-         {
+      } else {
+         if (repository != null) {
             header.setSelector(repository.getDefaultPrivateSelector());
          }
 
       }
-      if (signed.timestamped())
-      {
+      if (signed.timestamped()) {
          header.setTimestamp();
       }
 
@@ -52,8 +40,7 @@ public class AbstractDigitalSigningHeaderDecorator
               || after.hours() > 0
               || after.days() > 0
               || after.months() > 0
-              || after.years() > 0)
-      {
+              || after.years() > 0) {
          header.setExpiration(after.seconds(), after.minutes(), after.hours(), after.days(), after.months(), after.years());
       }
       return header;

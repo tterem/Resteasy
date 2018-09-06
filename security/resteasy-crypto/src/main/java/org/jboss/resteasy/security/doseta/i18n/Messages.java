@@ -6,15 +6,13 @@ import org.jboss.logging.annotations.MessageBundle;
 import org.jboss.resteasy.security.doseta.DKIMSignature;
 
 /**
- * 
  * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
  * @version $Revision: 1.1 $
- *
+ * <p>
  * Copyright Aug 29, 2015
  */
 @MessageBundle(projectCode = "RESTEASY")
-public interface Messages
-{
+public interface Messages {
    Messages MESSAGES = org.jboss.logging.Messages.getBundle(Messages.class);
    int BASE = 13500;
 
@@ -23,7 +21,7 @@ public interface Messages
 
    @Message(id = BASE + 5, value = "Certificate nor public key properties set")
    String certificateNorPublicKeySet();
-   
+
    @Message(id = BASE + 10, value = "The certificate object was not set.")
    String certificateObjectNotSet();
 
@@ -32,17 +30,17 @@ public interface Messages
 
    @Message(id = BASE + 20, value = "Could not find a message body reader for type: %s")
    String couldNotFindMessageBodyReader(String className);
-   
+
    @Message(id = BASE + 25, value = "Could not find PublicKey for DKIMSignature %s")
    String couldNotFindPublicKey(DKIMSignature signature);
-   
+
    @Message(id = BASE + 30, value = ">>>> DNS found record: %s")
    String dnsRecordFound(String record);
 
    @Message(id = BASE + 35, value = "domain attribute is required in header to find a key.")
    String domainAttributeIsRequired();
 
-   @Message(id = BASE + 40, value = "Expected value ''{0}'' got ''{1}'' for attribute ''{2}''", format=Format.MESSAGE_FORMAT)
+   @Message(id = BASE + 40, value = "Expected value ''{0}'' got ''{1}'' for attribute ''{2}''", format = Format.MESSAGE_FORMAT)
    String expectedValue(String expectedValue, String value, String attribute);
 
    @Message(id = BASE + 45, value = "Failed to find public key in DNS %s")
@@ -58,20 +56,20 @@ public interface Messages
    String failedToSign();
 
    @Message(id = BASE + 65, value = "Failed to verify signature.")
-   String failedToVerifySignature(); 
-   
+   String failedToVerifySignature();
+
    @Message(id = BASE + 70, value = "Failed to verify signatures:")
    String failedToVerifySignatures();
- 
+
    @Message(id = BASE + 75, value = "Malformed %s header")
    String malformedSignatureHeader(String signature);
-   
+
    @Message(id = BASE + 80, value = "No key to verify with.")
    String noKeyToVerifyWith();
 
    @Message(id = BASE + 85, value = "No p entry in text record.")
    String noPEntry();
-   
+
    @Message(id = BASE + 90, value = "pem: %s")
    String pem(String pem);
 
@@ -86,14 +84,14 @@ public interface Messages
 
    @Message(id = BASE + 110, value = "Signature is stale")
    String signatureIsStale();
-   
+
    @Message(id = BASE + 115, value = "There was no body hash (bh) in header")
    String thereWasNoBodyHash();
-   
+
    @Message(id = BASE + 120, value = "There was no %s header")
    String thereWasNoSignatureHeader(String signature);
 
-   @Message(id = BASE + 125, value = "Unable to find header {0} {1} to sign header with", format=Format.MESSAGE_FORMAT)
+   @Message(id = BASE + 125, value = "Unable to find header {0} {1} to sign header with", format = Format.MESSAGE_FORMAT)
    String unableToFindHeader(String header, String index);
 
    @Message(id = BASE + 130, value = "Unable to find key to sign message. Repository returned null. ")

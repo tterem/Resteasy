@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 /**
  * Annotation PreMatching is not valid for ClientRequestFilterImpl.
  * This test confirms RESTEasy ignores the annotation and logs a warning msg.
- *
+ * <p>
  * Created by rsearls on 8/21/17.
  */
 @PreMatching

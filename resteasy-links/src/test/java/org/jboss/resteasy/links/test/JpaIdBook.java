@@ -4,16 +4,16 @@ import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class JpaIdBook extends IdBook{
+public class JpaIdBook extends IdBook {
 
-	@Id
-	private String name;
-	
-	public JpaIdBook() {
-	}
+   @Id
+   private String name;
 
-	public JpaIdBook(String name) {
-		this.name = name;
-	}
+   public JpaIdBook() {
+   }
+
+   public JpaIdBook(String name) {
+      this.name = name;
+   }
 
 }

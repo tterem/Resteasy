@@ -1,11 +1,5 @@
 package org.jboss.resteasy.test.response;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.NewCookie;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -20,6 +14,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.NewCookie;
+import javax.ws.rs.core.Response;
+
 /**
  * @tpSubChapter NewCookie httponly flag is processed
  * @tpChapter Integration tests
@@ -33,25 +33,25 @@ public class HttponlyCookieTest {
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(HttponlyCookieTest.class.getSimpleName());
-       return TestUtil.finishContainerPrepare(war, null, HttponlyCookieResource.class);
-   }
-
-   private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, HttponlyCookieTest.class.getSimpleName());
+      WebArchive war = TestUtil.prepareArchive(HttponlyCookieTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, HttponlyCookieResource.class);
    }
 
    @BeforeClass
    public static void setup() {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void close() {
-       client.close();
-       client = null;
+      client.close();
+      client = null;
    }
-   
+
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, HttponlyCookieTest.class.getSimpleName());
+   }
+
    @Test
    public void testHttponlyTrue() {
       WebTarget target = client.target(generateURL("/cookie/true"));

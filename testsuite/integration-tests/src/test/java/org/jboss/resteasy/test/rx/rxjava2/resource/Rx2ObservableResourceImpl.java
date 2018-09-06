@@ -1,33 +1,83 @@
 package org.jboss.resteasy.test.rx.rxjava2.resource;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.HEAD;
-import javax.ws.rs.OPTIONS;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import org.jboss.resteasy.annotations.Stream;
 import org.jboss.resteasy.test.rx.resource.Bytes;
 import org.jboss.resteasy.test.rx.resource.TRACE;
 import org.jboss.resteasy.test.rx.resource.TestException;
 import org.jboss.resteasy.test.rx.resource.Thing;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Path("")
 public class Rx2ObservableResourceImpl {
+
+   static <T> Observable<String> buildObservableString(String s, int n) {
+      return Observable.create(
+              new ObservableOnSubscribe<String>() {
+
+                 @Override
+                 public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                    for (int i = 0; i < n; i++) {
+                       emitter.onNext(s);
+                    }
+                    emitter.onComplete();
+                 }
+              });
+   }
+
+   static Observable<Thing> buildObservableThing(String s, int n) {
+      return Observable.create(
+              new ObservableOnSubscribe<Thing>() {
+
+                 @Override
+                 public void subscribe(ObservableEmitter<Thing> emitter) throws Exception {
+                    for (int i = 0; i < n; i++) {
+                       emitter.onNext(new Thing(s));
+                    }
+                    emitter.onComplete();
+                 }
+              });
+   }
+
+   static Observable<List<Thing>> buildObservableThingList(String s, int listSize, int elementSize) {
+      return Observable.create(
+              new ObservableOnSubscribe<List<Thing>>() {
+
+                 @Override
+                 public void subscribe(ObservableEmitter<List<Thing>> emitter) throws Exception {
+                    for (int i = 0; i < listSize; i++) {
+                       List<Thing> list = new ArrayList<Thing>();
+                       for (int j = 0; j < elementSize; j++) {
+                          list.add(new Thing(s));
+                       }
+                       emitter.onNext(list);
+                    }
+                    emitter.onComplete();
+                 }
+              });
+   }
+
+   static Observable<byte[]> buildObservableBytes(int n) {
+      return Observable.create(
+              new ObservableOnSubscribe<byte[]>() {
+
+                 @Override
+                 public void subscribe(ObservableEmitter<byte[]> emitter) throws Exception {
+                    for (int i = 0; i < n; i++) {
+                       emitter.onNext(Bytes.BYTES);
+                    }
+                    emitter.onComplete();
+                 }
+              });
+   }
 
    @GET
    @Path("get/string")
@@ -249,65 +299,5 @@ public class Rx2ObservableResourceImpl {
    @Path("exception/handled")
    public Observable<Thing> exceptionHandled() throws Exception {
       throw new TestException("handled");
-   }
-
-   static <T> Observable<String> buildObservableString(String s, int n) {
-      return Observable.create(
-         new ObservableOnSubscribe<String>() {
-
-            @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-               for (int i = 0; i < n; i++)   {
-                  emitter.onNext(s);
-               }
-               emitter.onComplete();
-            }
-         });
-   }
-
-   static Observable<Thing> buildObservableThing(String s, int n) {
-      return Observable.create(
-         new ObservableOnSubscribe<Thing>() {
-
-            @Override
-            public void subscribe(ObservableEmitter<Thing> emitter) throws Exception {
-               for (int i = 0; i < n; i++) {
-                  emitter.onNext(new Thing(s));
-               }
-               emitter.onComplete();
-            }
-         });
-   }
-
-   static Observable<List<Thing>> buildObservableThingList(String s, int listSize, int elementSize) {
-      return Observable.create(
-         new ObservableOnSubscribe<List<Thing>>() {
-
-            @Override
-            public void subscribe(ObservableEmitter<List<Thing>> emitter) throws Exception {
-               for (int i = 0; i < listSize; i++) {
-                  List<Thing> list = new ArrayList<Thing>();
-                  for (int j = 0; j < elementSize; j++) {
-                     list.add(new Thing(s));
-                  }
-                  emitter.onNext(list);
-               }
-               emitter.onComplete();
-            }
-         });
-   }
-
-   static Observable<byte[]> buildObservableBytes(int n) {
-      return Observable.create(
-         new ObservableOnSubscribe<byte[]>() {
-
-            @Override
-            public void subscribe(ObservableEmitter<byte[]> emitter) throws Exception {
-               for (int i = 0; i < n; i++) {
-                  emitter.onNext(Bytes.BYTES);
-               }
-               emitter.onComplete();
-            }
-         });
    }
 }

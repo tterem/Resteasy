@@ -16,78 +16,71 @@ import java.util.zip.InflaterInputStream;
  * @author Vladimir Dzhuvinov
  * @version $version$ (2013-04-16)
  */
-public class DeflateUtils
-{
+public class DeflateUtils {
 
 
-	/**
-	 * Omit headers and CRC fields from output, as specified by RFC 1950.
-	 * Note that the Deflater JavaDocs are incorrect, see
-	 * http://stackoverflow.com/questions/11076060/decompressing-gzipped-data-with-inflater-in-java
-	 */
-	private static final boolean NOWRAP = true;
+   /**
+    * Omit headers and CRC fields from output, as specified by RFC 1950.
+    * Note that the Deflater JavaDocs are incorrect, see
+    * http://stackoverflow.com/questions/11076060/decompressing-gzipped-data-with-inflater-in-java
+    */
+   private static final boolean NOWRAP = true;
 
 
-	/**
-	 * Compresses the specified byte array according to the DEFLATE 
-	 * specification (RFC 1951).
-	 *
-	 * @param bytes The byte array to compress. Must not be {@code null}.
-	 *
-	 * @return The compressed bytes.
-	 *
-	 * @throws java.io.IOException If compression failed.
-	 */
-	public static byte[] compress(final byte[] bytes)
-		throws IOException {
+   /**
+    * Prevents public instantiation.
+    */
+   private DeflateUtils() {
 
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
+   }
 
-		DeflaterOutputStream def = new DeflaterOutputStream(out, new Deflater(Deflater.DEFLATED, NOWRAP));
-		def.write(bytes);
-		def.close();
+   /**
+    * Compresses the specified byte array according to the DEFLATE
+    * specification (RFC 1951).
+    *
+    * @param bytes The byte array to compress. Must not be {@code null}.
+    * @return The compressed bytes.
+    * @throws java.io.IOException If compression failed.
+    */
+   public static byte[] compress(final byte[] bytes)
+           throws IOException {
 
-		return out.toByteArray();
-	}
+      ByteArrayOutputStream out = new ByteArrayOutputStream();
 
+      DeflaterOutputStream def = new DeflaterOutputStream(out, new Deflater(Deflater.DEFLATED, NOWRAP));
+      def.write(bytes);
+      def.close();
 
-	/**
-	 * Decompresses the specified byte array according to the DEFLATE
-	 * specification (RFC 1951).
-	 *
-	 * @param bytes The byte array to decompress. Must not be {@code null}.
-	 *
-	 * @return The decompressed bytes.
-	 *
-	 * @throws java.io.IOException If decompression failed.
-	 */
-	public static byte[] decompress(final byte[] bytes)
-		throws IOException {
+      return out.toByteArray();
+   }
 
-		InflaterInputStream inf = new InflaterInputStream(new ByteArrayInputStream(bytes), new Inflater(NOWRAP));
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
+   /**
+    * Decompresses the specified byte array according to the DEFLATE
+    * specification (RFC 1951).
+    *
+    * @param bytes The byte array to decompress. Must not be {@code null}.
+    * @return The decompressed bytes.
+    * @throws java.io.IOException If decompression failed.
+    */
+   public static byte[] decompress(final byte[] bytes)
+           throws IOException {
 
-		// Transfer bytes from the compressed array to the output
-		byte[] buf = new byte[1024];
+      InflaterInputStream inf = new InflaterInputStream(new ByteArrayInputStream(bytes), new Inflater(NOWRAP));
+      ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-		int len;
+      // Transfer bytes from the compressed array to the output
+      byte[] buf = new byte[1024];
 
-		while ((len = inf.read(buf)) > 0) {
+      int len;
 
-			out.write(buf, 0, len);
-		}
+      while ((len = inf.read(buf)) > 0) {
 
-		inf.close();
-		out.close();
+         out.write(buf, 0, len);
+      }
 
-		return out.toByteArray();
-	}
+      inf.close();
+      out.close();
 
-
-	/**
-	 * Prevents public instantiation.
-	 */
-	private DeflateUtils() {
-
-	}
+      return out.toByteArray();
+   }
 }

@@ -15,11 +15,13 @@ import java.lang.reflect.Type;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface InjectorFactory
-{
+public interface InjectorFactory {
    ConstructorInjector createConstructor(Constructor constructor, ResteasyProviderFactory factory);
+
    PropertyInjector createPropertyInjector(Class resourceClass, ResteasyProviderFactory factory);
+
    ValueInjector createParameterExtractor(Class injectTargetClass, AccessibleObject injectTarget, String defaultName, Class type, Type genericType, Annotation[] annotations, ResteasyProviderFactory factory);
+
    ValueInjector createParameterExtractor(Class injectTargetClass, AccessibleObject injectTarget, String defaultName, Class type, Type genericType, Annotation[] annotations, boolean useDefault, ResteasyProviderFactory factory);
 
    ValueInjector createParameterExtractor(Parameter parameter, ResteasyProviderFactory providerFactory);

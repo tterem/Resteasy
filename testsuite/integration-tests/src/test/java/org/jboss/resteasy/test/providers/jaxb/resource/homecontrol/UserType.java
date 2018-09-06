@@ -1,19 +1,15 @@
 package org.jboss.resteasy.test.providers.jaxb.resource.homecontrol;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 /**
  * <p>Java-Klasse für UserType complex type.
- *
+ * <p>
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
- *
+ * <p>
  * <pre>
  * &lt;complexType name="UserType"&gt;
  *   &lt;complexContent&gt;
@@ -48,8 +44,6 @@ import java.util.List;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "UserType", propOrder = {
@@ -69,10 +63,8 @@ public class UserType {
    /**
     * Ruft den Wert der id-Eigenschaft ab.
     *
-    * @return
-    *     possible object is
-    *     {@link String }
-    *
+    * @return possible object is
+    * {@link String }
     */
    public String getId() {
       return id;
@@ -81,10 +73,8 @@ public class UserType {
    /**
     * Legt den Wert der id-Eigenschaft fest.
     *
-    * @param value
-    *     allowed object is
-    *     {@link String }
-    *
+    * @param value allowed object is
+    *              {@link String }
     */
    public void setId(String value) {
       this.id = value;
@@ -93,10 +83,8 @@ public class UserType {
    /**
     * Ruft den Wert der credentials-Eigenschaft ab.
     *
-    * @return
-    *     possible object is
-    *     {@link UserType.Credentials }
-    *
+    * @return possible object is
+    * {@link UserType.Credentials }
     */
    public UserType.Credentials getCredentials() {
       return credentials;
@@ -105,10 +93,8 @@ public class UserType {
    /**
     * Legt den Wert der credentials-Eigenschaft fest.
     *
-    * @param value
-    *     allowed object is
-    *     {@link UserType.Credentials }
-    *
+    * @param value allowed object is
+    *              {@link UserType.Credentials }
     */
    public void setCredentials(UserType.Credentials value) {
       this.credentials = value;
@@ -125,9 +111,9 @@ public class UserType {
 
    /**
     * <p>Java-Klasse für anonymous complex type.
-    *
+    * <p>
     * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
-    *
+    * <p>
     * <pre>
     * &lt;complexType&gt;
     *   &lt;complexContent&gt;
@@ -140,8 +126,6 @@ public class UserType {
     *   &lt;/complexContent&gt;
     * &lt;/complexType&gt;
     * </pre>
-    *
-    *
     */
    @XmlAccessorType(XmlAccessType.FIELD)
    @XmlType(name = "", propOrder = {
@@ -157,10 +141,8 @@ public class UserType {
       /**
        * Ruft den Wert der loginId-Eigenschaft ab.
        *
-       * @return
-       *     possible object is
-       *     {@link String }
-       *
+       * @return possible object is
+       * {@link String }
        */
       public String getLoginId() {
          return loginId;
@@ -169,10 +151,8 @@ public class UserType {
       /**
        * Legt den Wert der loginId-Eigenschaft fest.
        *
-       * @param value
-       *     allowed object is
-       *     {@link String }
-       *
+       * @param value allowed object is
+       *              {@link String }
        */
       public void setLoginId(String value) {
          this.loginId = value;
@@ -181,10 +161,8 @@ public class UserType {
       /**
        * Ruft den Wert der password-Eigenschaft ab.
        *
-       * @return
-       *     possible object is
-       *     {@link String }
-       *
+       * @return possible object is
+       * {@link String }
        */
       public String getPassword() {
          return password;
@@ -193,10 +171,8 @@ public class UserType {
       /**
        * Legt den Wert der password-Eigenschaft fest.
        *
-       * @param value
-       *     allowed object is
-       *     {@link String }
-       *
+       * @param value allowed object is
+       *              {@link String }
        */
       public void setPassword(String value) {
          this.password = value;

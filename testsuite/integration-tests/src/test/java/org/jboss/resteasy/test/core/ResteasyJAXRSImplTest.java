@@ -1,8 +1,5 @@
 package org.jboss.resteasy.test.core;
 
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.ext.RuntimeDelegate;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -14,13 +11,15 @@ import org.jboss.resteasy.utils.PermissionUtil;
 import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Assert;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.ext.RuntimeDelegate;
 import java.lang.reflect.ReflectPermission;
 import java.util.PropertyPermission;
 
@@ -31,12 +30,12 @@ import java.util.PropertyPermission;
  * @tpSince RESTEasy 3.1.0
  */
 @RunWith(Arquillian.class)
-public class ResteasyJAXRSImplTest
-{
+public class ResteasyJAXRSImplTest {
+
+   private ResteasyProviderFactory factory;
 
    @Deployment
-   public static Archive<?> deploy()
-   {
+   public static Archive<?> deploy() {
       WebArchive war = TestUtil.prepareArchive(ResteasyJAXRSImplTest.class.getSimpleName());
       war.addClass(NotForForwardCompatibility.class);
       war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(
@@ -47,8 +46,6 @@ public class ResteasyJAXRSImplTest
       return TestUtil.finishContainerPrepare(war, null, (Class<?>[]) null);
    }
 
-
-   private ResteasyProviderFactory factory;
    @Before
    public void setup() {
       // Create an instance and set it as the singleton to use
@@ -56,6 +53,7 @@ public class ResteasyJAXRSImplTest
       ResteasyProviderFactory.setInstance(factory);
       RegisterBuiltin.register(factory);
    }
+
    @After
    public void cleanup() {
       // Clear the singleton
@@ -68,8 +66,7 @@ public class ResteasyJAXRSImplTest
     */
    @Test
    @RunAsClient
-   public void testClientBuilder() throws Exception
-   {
+   public void testClientBuilder() throws Exception {
       testClientBuilderNewBuilder();
    }
 
@@ -79,8 +76,7 @@ public class ResteasyJAXRSImplTest
     * @tpSince RESTEasy 3.1.0
     */
    @Test
-   public void testInContainerClientBuilder() throws Exception
-   {
+   public void testInContainerClientBuilder() throws Exception {
       testClientBuilderNewBuilder();
    }
 
@@ -90,8 +86,7 @@ public class ResteasyJAXRSImplTest
     */
    @Test
    @RunAsClient
-   public void testRuntimeDelegate() throws Exception
-   {
+   public void testRuntimeDelegate() throws Exception {
       testRuntimeDelegateGetInstance();
       testResteasyProviderFactoryGetInstance();
       testResteasyProviderFactoryNewInstance();
@@ -103,25 +98,24 @@ public class ResteasyJAXRSImplTest
     */
    @Test
    @Category({NotForForwardCompatibility.class})
-   public void testInContainerRuntimeDelegate() throws Exception
-   {
+   public void testInContainerRuntimeDelegate() throws Exception {
       testRuntimeDelegateGetInstance();
       testResteasyProviderFactoryGetInstance();
       testResteasyProviderFactoryNewInstance();
    }
-   
+
    private void testClientBuilderNewBuilder() {
       ClientBuilder client = ClientBuilder.newBuilder();
       Assert.assertEquals(ResteasyClientBuilder.class.getName(), client.getClass().getName());
    }
-   
+
    private void testRuntimeDelegateGetInstance() {
       RuntimeDelegate.setInstance(null);
       RuntimeDelegate rd = RuntimeDelegate.getInstance();
       Assert.assertEquals(ResteasyProviderFactory.class.getName(), rd.getClass().getName());
       RuntimeDelegate.setInstance(null);
    }
-   
+
    private void testResteasyProviderFactoryGetInstance() {
       ResteasyProviderFactory.setInstance(null);
       ResteasyProviderFactory rpf = ResteasyProviderFactory.getInstance();
@@ -133,7 +127,7 @@ public class ResteasyJAXRSImplTest
       Assert.assertNotEquals(rpf, rpf2);
       ResteasyProviderFactory.setInstance(null);
    }
-   
+
    private void testResteasyProviderFactoryNewInstance() {
       ResteasyProviderFactory.setInstance(null);
       ResteasyProviderFactory rpf = ResteasyProviderFactory.newInstance();
@@ -148,7 +142,7 @@ public class ResteasyJAXRSImplTest
       Assert.assertNotEquals(rpf, rpf2);
       Assert.assertNotEquals(rpf, rpf3);
       Assert.assertNotEquals(rpf2, rpf3);
-      
+
       ResteasyProviderFactory rpfGI = ResteasyProviderFactory.getInstance();
       Assert.assertEquals(ResteasyProviderFactory.class, rpfGI.getClass());
       Assert.assertNotEquals(rpfGI, rpf3);

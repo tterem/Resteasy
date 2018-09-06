@@ -2,24 +2,16 @@ package org.jboss.resteasy.specimpl;
 
 import javax.ws.rs.core.MultivaluedMap;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class MultivaluedTreeMap<K, V> implements MultivaluedMap<K, V>, Serializable
-{
+public class MultivaluedTreeMap<K, V> implements MultivaluedMap<K, V>, Serializable {
    private final Map<K, List<V>> map;
 
-   public MultivaluedTreeMap()
-   {
+   public MultivaluedTreeMap() {
       map = new TreeMap<K, List<V>>();
    }
 
@@ -29,75 +21,25 @@ public class MultivaluedTreeMap<K, V> implements MultivaluedMap<K, V>, Serializa
     * @param keyComparator key comparator
     */
 
-   public MultivaluedTreeMap(Comparator<K> keyComparator)
-   {
+   public MultivaluedTreeMap(Comparator<K> keyComparator) {
       map = new TreeMap<K, List<V>>(keyComparator);
    }
 
-   public MultivaluedTreeMap(Map<K, V> map)
-   {
+   public MultivaluedTreeMap(Map<K, V> map) {
       this();
-      for (K key : map.keySet())
-      {
+      for (K key : map.keySet()) {
          add(key, map.get(key));
       }
    }
 
-   public void add(K key, V value)
-   {
-      List<V> list = getOrCreate(key);
-      list.add(value);
-   }
-
-   public V getFirst(K key)
-   {
-      List<V> list = get(key);
-      if (list == null || list.size() == 0)
-      {
-         return null;
-      }
-      return list.get(0);
-   }
-
-   public void putSingle(K key, V value)
-   {
-      List<V> list = getOrCreate(key);
-      list.clear();
-      list.add(value);
-   }
-
-   private List<V> getOrCreate(K key)
-   {
-      List<V> list = this.get(key);
-      if (list == null)
-      {
-         list = createValueList(key);
-         this.put(key, list);
-      }
-      return list;
-   }
-
-   private List<V> createValueList(K key)
-   {
-      return new ArrayList<V>();
-   }
-
-   public MultivaluedTreeMap<K, V> clone()
-   {
-      return clone(this);
-   }
-
-   public static <K, V> MultivaluedTreeMap<K, V> clone(MultivaluedMap<K, V> src)
-   {
+   public static <K, V> MultivaluedTreeMap<K, V> clone(MultivaluedMap<K, V> src) {
       MultivaluedTreeMap<K, V> clone = new MultivaluedTreeMap<K, V>();
       copy(src, clone);
       return clone;
    }
 
-   public static <K, V> void copy(MultivaluedMap<K, V> src, MultivaluedMap<K, V> dest)
-   {
-      for (K key : src.keySet())
-      {
+   public static <K, V> void copy(MultivaluedMap<K, V> src, MultivaluedMap<K, V> dest) {
+      for (K key : src.keySet()) {
          List<V> value = src.get(key);
          List<V> newValue = new ArrayList<V>();
          newValue.addAll(value);
@@ -105,14 +47,11 @@ public class MultivaluedTreeMap<K, V> implements MultivaluedMap<K, V>, Serializa
       }
    }
 
-   public static <K, V> void addAll(MultivaluedMap<K, V> src, MultivaluedMap<K, V> dest)
-   {
-      for (K key : src.keySet())
-      {
+   public static <K, V> void addAll(MultivaluedMap<K, V> src, MultivaluedMap<K, V> dest) {
+      for (K key : src.keySet()) {
          List<V> srcList = src.get(key);
          List<V> destList = dest.get(key);
-         if (destList == null)
-         {
+         if (destList == null) {
             destList = new ArrayList<V>(srcList.size());
             dest.put(key, destList);
          }
@@ -120,32 +59,19 @@ public class MultivaluedTreeMap<K, V> implements MultivaluedMap<K, V>, Serializa
       }
    }
 
-   @Override
-   public String toString()
-   {
-      return "[" + toString(this, ",") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-   }
-
-   public static String toString(MultivaluedMap<?, ?> map, String delimiter)
-   {
+   public static String toString(MultivaluedMap<?, ?> map, String delimiter) {
       StringBuilder result = new StringBuilder();
       MultivaluedMap<?, ?> params = map;
       String delim = ""; //$NON-NLS-1$
-      for (Object name : params.keySet())
-      {
-         for (Object value : params.get(name))
-         {
+      for (Object name : params.keySet()) {
+         for (Object value : params.get(name)) {
             result.append(delim);
-            if (name == null)
-            {
+            if (name == null) {
                result.append("null"); //$NON-NLS-1$
-            }
-            else
-            {
+            } else {
                result.append(name.toString());
             }
-            if (value != null)
-            {
+            if (value != null) {
                result.append('=');
                result.append(value.toString());
             }
@@ -155,132 +81,144 @@ public class MultivaluedTreeMap<K, V> implements MultivaluedMap<K, V>, Serializa
       return result.toString();
    }
 
-   public void clear()
-   {
+   public void add(K key, V value) {
+      List<V> list = getOrCreate(key);
+      list.add(value);
+   }
+
+   public V getFirst(K key) {
+      List<V> list = get(key);
+      if (list == null || list.size() == 0) {
+         return null;
+      }
+      return list.get(0);
+   }
+
+   public void putSingle(K key, V value) {
+      List<V> list = getOrCreate(key);
+      list.clear();
+      list.add(value);
+   }
+
+   private List<V> getOrCreate(K key) {
+      List<V> list = this.get(key);
+      if (list == null) {
+         list = createValueList(key);
+         this.put(key, list);
+      }
+      return list;
+   }
+
+   private List<V> createValueList(K key) {
+      return new ArrayList<V>();
+   }
+
+   public MultivaluedTreeMap<K, V> clone() {
+      return clone(this);
+   }
+
+   @Override
+   public String toString() {
+      return "[" + toString(this, ",") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+   }
+
+   public void clear() {
       map.clear();
    }
 
-   public boolean containsKey(Object key)
-   {
+   public boolean containsKey(Object key) {
       return map.containsKey(key);
    }
 
-   public boolean containsValue(Object value)
-   {
+   public boolean containsValue(Object value) {
       return map.containsValue(value);
    }
 
-   public Set<Entry<K, List<V>>> entrySet()
-   {
+   public Set<Entry<K, List<V>>> entrySet() {
       return map.entrySet();
    }
 
-   public boolean equals(Object o)
-   {
+   public boolean equals(Object o) {
       return map.equals(o);
    }
 
-   public List<V> get(Object key)
-   {
+   public List<V> get(Object key) {
       return map.get(key);
    }
 
-   public int hashCode()
-   {
+   public int hashCode() {
       return map.hashCode();
    }
 
-   public boolean isEmpty()
-   {
+   public boolean isEmpty() {
       return map.isEmpty();
    }
 
-   public Set<K> keySet()
-   {
+   public Set<K> keySet() {
       return map.keySet();
    }
 
-   public List<V> put(K key, List<V> value)
-   {
+   public List<V> put(K key, List<V> value) {
       return map.put(key, value);
    }
 
-   public void putAll(Map<? extends K, ? extends List<V>> t)
-   {
+   public void putAll(Map<? extends K, ? extends List<V>> t) {
       map.putAll(t);
    }
 
-   public List<V> remove(Object key)
-   {
+   public List<V> remove(Object key) {
       return map.remove(key);
    }
 
-   public int size()
-   {
+   public int size() {
       return map.size();
    }
 
-   public Collection<List<V>> values()
-   {
+   public Collection<List<V>> values() {
       return map.values();
    }
 
    @SuppressWarnings(value = "unchecked")
    @Override
-   public void addAll(K key, V... newValues)
-   {
-      for (V value : newValues)
-      {
+   public void addAll(K key, V... newValues) {
+      for (V value : newValues) {
          add(key, value);
       }
    }
 
    @Override
-   public void addAll(K key, List<V> valueList)
-   {
-      for (V value : valueList)
-      {
+   public void addAll(K key, List<V> valueList) {
+      for (V value : valueList) {
          add(key, value);
       }
    }
 
    @Override
-   public void addFirst(K key, V value)
-   {
+   public void addFirst(K key, V value) {
       List<V> list = get(key);
-      if (list == null)
-      {
+      if (list == null) {
          add(key, value);
          return;
-      }
-      else
-      {
+      } else {
          list.add(0, value);
       }
    }
 
    @Override
-   public boolean equalsIgnoreValueOrder(MultivaluedMap<K, V> omap)
-   {
-      if (this == omap)
-      {
+   public boolean equalsIgnoreValueOrder(MultivaluedMap<K, V> omap) {
+      if (this == omap) {
          return true;
       }
-      if (!keySet().equals(omap.keySet()))
-      {
+      if (!keySet().equals(omap.keySet())) {
          return false;
       }
-      for (Map.Entry<K, List<V>> e : entrySet())
-      {
+      for (Map.Entry<K, List<V>> e : entrySet()) {
          List<V> olist = omap.get(e.getKey());
-         if (e.getValue().size() != olist.size())
-         {
+         if (e.getValue().size() != olist.size()) {
             return false;
          }
-         for (V v : e.getValue())
-         {
-            if (!olist.contains(v))
-            {
+         for (V v : e.getValue()) {
+            if (!olist.contains(v)) {
                return false;
             }
          }

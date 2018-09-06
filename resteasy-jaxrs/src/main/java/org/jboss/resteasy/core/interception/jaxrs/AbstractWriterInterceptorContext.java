@@ -12,7 +12,6 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.WriterInterceptor;
 import javax.ws.rs.ext.WriterInterceptorContext;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.annotation.Annotation;
@@ -22,8 +21,7 @@ import java.lang.reflect.Type;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public abstract class AbstractWriterInterceptorContext implements WriterInterceptorContext
-{
+public abstract class AbstractWriterInterceptorContext implements WriterInterceptorContext {
    protected RESTEasyTracingLogger tracingLogger;
    protected WriterInterceptor[] interceptors;
    protected Object entity;
@@ -33,20 +31,13 @@ public abstract class AbstractWriterInterceptorContext implements WriterIntercep
    protected MediaType mediaType;
    protected MultivaluedMap<String, Object> headers;
    protected OutputStream outputStream;
-
-   public int getProcessedInterceptorCount() {
-      return index;
-   }
-
    protected int index = 0;
    protected ResteasyProviderFactory providerFactory;
    private InterceptorTimestampPair<WriterInterceptor> lastTracedInterceptor;
-
    // We need tracing logger to log the proceed event.
    // So the new constructor with logger should be used.
    @Deprecated
-   public AbstractWriterInterceptorContext(WriterInterceptor[] interceptors, Annotation[] annotations, Object entity, Type genericType, MediaType mediaType, Class type, OutputStream outputStream, ResteasyProviderFactory providerFactory, MultivaluedMap<String, Object> headers)
-   {
+   public AbstractWriterInterceptorContext(WriterInterceptor[] interceptors, Annotation[] annotations, Object entity, Type genericType, MediaType mediaType, Class type, OutputStream outputStream, ResteasyProviderFactory providerFactory, MultivaluedMap<String, Object> headers) {
       this.providerFactory = providerFactory;
       this.interceptors = interceptors;
       this.annotations = annotations;
@@ -75,87 +66,74 @@ public abstract class AbstractWriterInterceptorContext implements WriterIntercep
       }
    }
 
-   public Object getEntity()
-   {
+   public int getProcessedInterceptorCount() {
+      return index;
+   }
+
+   public Object getEntity() {
       return entity;
    }
 
-   public void setEntity(Object entity)
-   {
+   public void setEntity(Object entity) {
       this.entity = entity;
    }
 
-   public Class getType()
-   {
+   public Class getType() {
       return type;
    }
 
-   public void setType(Class type)
-   {
+   public void setType(Class type) {
       this.type = type;
    }
 
-   public Type getGenericType()
-   {
+   public Type getGenericType() {
       return genericType;
    }
 
-   public void setGenericType(Type genericType)
-   {
+   public void setGenericType(Type genericType) {
       this.genericType = genericType;
    }
 
-   public Annotation[] getAnnotations()
-   {
+   public Annotation[] getAnnotations() {
       return annotations;
    }
 
-   public void setAnnotations(Annotation[] annotations)
-   {
+   public void setAnnotations(Annotation[] annotations) {
       if (annotations == null) throw new NullPointerException(Messages.MESSAGES.annotationsParamNull());
       this.annotations = annotations;
    }
 
-   public MediaType getMediaType()
-   {
+   public MediaType getMediaType() {
       return mediaType;
    }
 
-   public void setMediaType(MediaType mediaType)
-   {
+   public void setMediaType(MediaType mediaType) {
       this.mediaType = mediaType;
    }
 
-   public MultivaluedMap<String, Object> getHeaders()
-   {
+   public MultivaluedMap<String, Object> getHeaders() {
       return headers;
    }
 
-   public OutputStream getOutputStream()
-   {
+   public OutputStream getOutputStream() {
       return outputStream;
    }
 
-   public void setOutputStream(OutputStream outputStream)
-   {
+   public void setOutputStream(OutputStream outputStream) {
       this.outputStream = outputStream;
    }
 
-   public void proceed() throws IOException, WebApplicationException
-   {
+   public void proceed() throws IOException, WebApplicationException {
       LogMessages.LOGGER.debugf("Interceptor Context: %s,  Method : proceed", getClass().getName());
 
-      if (interceptors == null || index >= interceptors.length)
-      {
+      if (interceptors == null || index >= interceptors.length) {
          MessageBodyWriter writer = getWriter();
-         if (writer!=null) {
+         if (writer != null) {
             tracingLogger.log("MBW_WRITE_TO", writer.getClass().getName());
             LogMessages.LOGGER.debugf("MessageBodyWriter: %s", writer.getClass().getName());
          }
          writeTo(writer);
-      }
-      else
-      {
+      } else {
          LogMessages.LOGGER.debugf("WriterInterceptor: %s", interceptors[index].getClass().getName());
          int x = index;
          traceBefore(interceptors[x]);
@@ -188,17 +166,14 @@ public abstract class AbstractWriterInterceptorContext implements WriterIntercep
    }
 
    @SuppressWarnings(value = "unchecked")
-   protected void writeTo(MessageBodyWriter writer) throws IOException
-   {
+   protected void writeTo(MessageBodyWriter writer) throws IOException {
       writer.writeTo(entity, type, genericType, annotations, mediaType, headers, outputStream);
    }
 
-   protected MessageBodyWriter getWriter()
-   {
+   protected MessageBodyWriter getWriter() {
       MessageBodyWriter writer = resolveWriter();
 
-      if (writer == null)
-      {
+      if (writer == null) {
          throwWriterNotFoundException();
       }
       return writer;

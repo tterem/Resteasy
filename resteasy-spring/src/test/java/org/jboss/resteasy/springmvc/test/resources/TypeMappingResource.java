@@ -5,37 +5,30 @@ import javax.ws.rs.Path;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Path("/test")
-public class TypeMappingResource
-{
+public class TypeMappingResource {
    @GET
    @Path("/noproduces")
-   public TestBean get()
-   {
+   public TestBean get() {
       return new TestBean("name");
    }
 
    @XmlRootElement
-   public static class TestBean
-   {
+   public static class TestBean {
       private String name;
 
-      public TestBean()
-      {
+      public TestBean() {
 
       }
 
-      public TestBean(String name)
-      {
+      public TestBean(String name) {
          this.name = name;
       }
 
-      public String getName()
-      {
+      public String getName() {
          return name;
       }
 
-      public void setName(String name)
-      {
+      public void setName(String name) {
          this.name = name;
       }
 

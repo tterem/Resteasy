@@ -1,14 +1,13 @@
 package org.jboss.resteasy.rxjava2;
 
+import io.reactivex.Single;
+
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.RxInvoker;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
-import io.reactivex.Single;
-
-public interface SingleRxInvoker extends RxInvoker<Single<?>>
-{
+public interface SingleRxInvoker extends RxInvoker<Single<?>> {
    @Override
    Single<Response> get();
 

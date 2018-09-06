@@ -14,7 +14,6 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
-
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -30,57 +29,48 @@ import java.util.Set;
  * @version $Revision: 1 $
  * @see org.jboss.resteasy.client.jaxrs.internal.proxy.extractors.EntityExtractor , ResponseObjectEntityExtractor
  */
-public class ResponseObjectEntityExtractorFactory extends DefaultEntityExtractorFactory
-{
+public class ResponseObjectEntityExtractorFactory extends DefaultEntityExtractorFactory {
+
+   private static boolean isInvokerMethod(Method method) {
+      Set<String> httpMethods = IsHttpMethod.getHttpMethods(method);
+      return httpMethods != null && httpMethods.size() == 1;
+   }
 
    @SuppressWarnings("unchecked")
-   public EntityExtractor createExtractor(final Method method)
-   {
+   public EntityExtractor createExtractor(final Method method) {
       final Class<?> returnType = method.getReturnType();
-      if (method.isAnnotationPresent(Status.class))
-      {
-         if (returnType == Integer.class || returnType == int.class)
-         {
+      if (method.isAnnotationPresent(Status.class)) {
+         if (returnType == Integer.class || returnType == int.class) {
 
-            return new EntityExtractor<Integer>()
-            {
-               public Integer extractEntity(ClientContext context, Object... args)
-               {
+            return new EntityExtractor<Integer>() {
+               public Integer extractEntity(ClientContext context, Object... args) {
                   return context.getClientResponse().getStatus();
                }
             };
-         }
-         else if (returnType == Response.Status.class)
-         {
+         } else if (returnType == Response.Status.class) {
             return createStatusExtractor(false);
          }
       }
 
-      if (method.isAnnotationPresent(Body.class))
-      {
+      if (method.isAnnotationPresent(Body.class)) {
          return new BodyEntityExtractor(method);
       }
 
       final HeaderParam headerParam = method.getAnnotation(HeaderParam.class);
-      if (headerParam != null)
-      {
-         return new EntityExtractor()
-         {
-            public Object extractEntity(ClientContext context, Object... args)
-            {
+      if (headerParam != null) {
+         return new EntityExtractor() {
+            public Object extractEntity(ClientContext context, Object... args) {
                return context.getClientResponse().getHeaderString(headerParam.value());
             }
          };
       }
 
       final LinkHeaderParam link = method.getAnnotation(LinkHeaderParam.class);
-      if (link != null)
-      {
+      if (link != null) {
          return processLinkHeader(method, returnType, link);
       }
 
-      if (Response.class.isAssignableFrom(returnType))
-      {
+      if (Response.class.isAssignableFrom(returnType)) {
          return clientResponseExtractor;
       }
 
@@ -88,34 +78,25 @@ public class ResponseObjectEntityExtractorFactory extends DefaultEntityExtractor
    }
 
    private EntityExtractor processLinkHeader(final Method method, final Class<?> returnType,
-                                             final LinkHeaderParam link)
-   {
-      if ("".equals(link.rel()) && "".equals(link.title()))
-      {
+                                             final LinkHeaderParam link) {
+      if ("".equals(link.rel()) && "".equals(link.title())) {
          throw new RuntimeException(Messages.MESSAGES.mustSetLinkHeaderParam(method.getClass().getName(), method.getName()));
       }
-      if (!"".equals(link.rel()) && !"".equals(link.title()))
-      {
+      if (!"".equals(link.rel()) && !"".equals(link.title())) {
          throw new RuntimeException(Messages.MESSAGES.canOnlySetOneLinkHeaderParam(method.getClass().getName(), method.getName()));
       }
 
-      if (returnType == Link.class)
-      {
-         return new EntityExtractor()
-         {
-            public Object extractEntity(ClientContext context, Object... args)
-            {
+      if (returnType == Link.class) {
+         return new EntityExtractor() {
+            public Object extractEntity(ClientContext context, Object... args) {
                return getLink(link, context);
             }
          };
       }
 
-      if (isInvokerMethod(method))
-      {
-         return new EntityExtractor()
-         {
-            public Object extractEntity(ClientContext context, Object... args)
-            {
+      if (isInvokerMethod(method)) {
+         return new EntityExtractor() {
+            public Object extractEntity(ClientContext context, Object... args) {
                URI uri = getURI(method, link, context);
                if (uri == null)
                   return null;
@@ -125,56 +106,41 @@ public class ResponseObjectEntityExtractorFactory extends DefaultEntityExtractor
          };
       }
 
-      if (returnType == String.class)
-      {
-         return new EntityExtractor<String>()
-         {
-            public String extractEntity(ClientContext context, Object... args)
-            {
+      if (returnType == String.class) {
+         return new EntityExtractor<String>() {
+            public String extractEntity(ClientContext context, Object... args) {
                Link link2 = getLink(link, context);
                return link2 == null ? null : link2.getUri().toString();
             }
          };
       }
 
-      if (returnType == URL.class)
-      {
-         return new EntityExtractor<URL>()
-         {
-            public URL extractEntity(ClientContext context, Object... args)
-            {
+      if (returnType == URL.class) {
+         return new EntityExtractor<URL>() {
+            public URL extractEntity(ClientContext context, Object... args) {
                return getURL(method, link, context);
             }
          };
       }
-      if (returnType == URI.class)
-      {
-         return new EntityExtractor<URI>()
-         {
-            public URI extractEntity(ClientContext context, Object... args)
-            {
+      if (returnType == URI.class) {
+         return new EntityExtractor<URI>() {
+            public URI extractEntity(ClientContext context, Object... args) {
                return getURI(method, link, context);
             }
          };
       }
 
-      if (returnType.equals(Invocation.Builder.class))
-      {
-         return new EntityExtractor<Invocation.Builder>()
-         {
-            public Invocation.Builder extractEntity(ClientContext context, Object... args)
-            {
+      if (returnType.equals(Invocation.Builder.class)) {
+         return new EntityExtractor<Invocation.Builder>() {
+            public Invocation.Builder extractEntity(ClientContext context, Object... args) {
                return context.getInvocation().getClient().target(getLink(link, context)).request();
             }
          };
       }
 
-      if (returnType.equals(WebTarget.class))
-      {
-         return new EntityExtractor<WebTarget>()
-         {
-            public WebTarget extractEntity(ClientContext context, Object... args)
-            {
+      if (returnType.equals(WebTarget.class)) {
+         return new EntityExtractor<WebTarget>() {
+            public WebTarget extractEntity(ClientContext context, Object... args) {
                return context.getInvocation().getClient().target(getLink(link, context));
             }
          };
@@ -183,7 +149,7 @@ public class ResponseObjectEntityExtractorFactory extends DefaultEntityExtractor
    }
 
    private ClientInvoker createClientInvoker(ClientContext context, URI uri, Method method) {
-      ClientInvoker clientInvoker = new ClientInvoker((ResteasyWebTarget)(context.getInvocation().getClient().target(uri)),
+      ClientInvoker clientInvoker = new ClientInvoker((ResteasyWebTarget) (context.getInvocation().getClient().target(uri)),
               method.getDeclaringClass(),
               method,
               new ProxyConfig(Thread.currentThread().getContextClassLoader(), null, null));
@@ -193,40 +159,26 @@ public class ResponseObjectEntityExtractorFactory extends DefaultEntityExtractor
       return clientInvoker;
    }
 
-   private static boolean isInvokerMethod(Method method)
-   {
-      Set<String> httpMethods = IsHttpMethod.getHttpMethods(method);
-      return httpMethods != null && httpMethods.size() == 1;
-   }
-
-   private Link getLink(final LinkHeaderParam link, ClientContext context)
-   {
+   private Link getLink(final LinkHeaderParam link, ClientContext context) {
       return context.getClientResponse().getLink(link.rel());
    }
 
-   private URI getURI(final Method method, Link link)
-   {
-      if (link == null)
-      {
+   private URI getURI(final Method method, Link link) {
+      if (link == null) {
          return null;
       }
       return link.getUri();
    }
 
-   private URI getURI(final Method method, final LinkHeaderParam link, ClientContext context)
-   {
+   private URI getURI(final Method method, final LinkHeaderParam link, ClientContext context) {
       return getURI(method, getLink(link, context));
    }
 
-   private URL getURL(final Method method, final LinkHeaderParam link, ClientContext context)
-   {
+   private URL getURL(final Method method, final LinkHeaderParam link, ClientContext context) {
       URI uri = getURI(method, link, context);
-      try
-      {
+      try {
          return uri == null ? null : uri.toURL();
-      }
-      catch (MalformedURLException e)
-      {
+      } catch (MalformedURLException e) {
          throw new RuntimeException(Messages.MESSAGES.couldNotCreateURL(uri.toASCIIString(), method.getClass().getName(), method.getName()), e);
       }
    }

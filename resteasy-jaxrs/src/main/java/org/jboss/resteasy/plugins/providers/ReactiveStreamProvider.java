@@ -7,8 +7,7 @@ public class ReactiveStreamProvider implements AsyncStreamProvider<Publisher<?>>
 
    @SuppressWarnings("rawtypes")
    @Override
-   public Publisher toAsyncStream(Publisher<?> asyncResponse)
-   {
+   public Publisher toAsyncStream(Publisher<?> asyncResponse) {
       return asyncResponse;
    }
 

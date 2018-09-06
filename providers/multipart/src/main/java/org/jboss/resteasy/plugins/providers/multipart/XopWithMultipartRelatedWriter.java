@@ -24,18 +24,15 @@ import java.lang.reflect.Type;
 @Provider
 @Produces("multipart/related")
 public class XopWithMultipartRelatedWriter extends
-        AbstractMultipartRelatedWriter implements MessageBodyWriter<Object>
-{
+        AbstractMultipartRelatedWriter implements MessageBodyWriter<Object> {
 
    public long getSize(Object t, Class<?> type, Type genericType,
-                       Annotation[] annotations, MediaType mediaType)
-   {
+                       Annotation[] annotations, MediaType mediaType) {
       return -1;
    }
 
    public boolean isWriteable(Class<?> type, Type genericType,
-                              Annotation[] annotations, MediaType mediaType)
-   {
+                              Annotation[] annotations, MediaType mediaType) {
       return FindAnnotation.findAnnotation(annotations,
               XopWithMultipartRelated.class) != null
               || type.isAnnotationPresent(XopWithMultipartRelated.class);
@@ -45,8 +42,7 @@ public class XopWithMultipartRelatedWriter extends
                        Annotation[] annotations, MediaType mediaType,
                        MultivaluedMap<String, Object> httpHeaders,
                        OutputStream entityStream) throws IOException,
-           WebApplicationException
-   {
+           WebApplicationException {
 
       MultipartRelatedOutput xopPackage = new MultipartRelatedOutput();
 

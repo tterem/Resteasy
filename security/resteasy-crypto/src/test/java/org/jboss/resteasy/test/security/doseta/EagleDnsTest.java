@@ -15,14 +15,12 @@ import java.util.Hashtable;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class EagleDnsTest
-{
+public class EagleDnsTest {
    private static Logger log = Logger.getLogger(EagleDnsTest.class);
    private static EagleDNS dns;
 
    @Test
-   public void testBoot() throws Exception
-   {
+   public void testBoot() throws Exception {
 
       log.info("HELLO!!!!!!");
       final URL path = Thread.currentThread().getContextClassLoader().getResource("dns/conf/config.xml");
@@ -38,8 +36,7 @@ public class EagleDnsTest
       dns.shutdown();
    }
 
-   public void checkDNS(String domain) throws Exception
-   {
+   public void checkDNS(String domain) throws Exception {
       log.info("IN CHECK DNS!!!!");
       Hashtable<String, String> env = new Hashtable<String, String>();
       env.put("java.naming.factory.initial", "com.sun.jndi.dns.DnsContextFactory");

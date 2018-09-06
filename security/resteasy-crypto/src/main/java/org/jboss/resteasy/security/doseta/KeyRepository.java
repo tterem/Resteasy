@@ -7,8 +7,7 @@ import java.security.PublicKey;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface KeyRepository
-{
+public interface KeyRepository {
    PrivateKey findPrivateKey(DKIMSignature header);
 
    PublicKey findPublicKey(DKIMSignature header);

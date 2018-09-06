@@ -17,8 +17,7 @@ import java.security.PublicKey;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class ConfiguredDosetaKeyRepository implements KeyRepository
-{
+public class ConfiguredDosetaKeyRepository implements KeyRepository {
    /**
     * Context parameter.
     * <p>
@@ -75,15 +74,7 @@ public class ConfiguredDosetaKeyRepository implements KeyRepository
 
    protected DosetaKeyRepository keyRepository = new DosetaKeyRepository();
 
-   private static String getVariable(ResteasyConfiguration config, String name)
-   {
-      String variable = config.getParameter(name);
-      if (variable != null) variable = variable.trim();
-      return variable;
-   }
-
-   public ConfiguredDosetaKeyRepository(@Context ResteasyConfiguration config)
-   {
+   public ConfiguredDosetaKeyRepository(@Context ResteasyConfiguration config) {
       String password = getVariable(config, RESTEASY_KEY_STORE_PASSWORD);
       keyRepository.setKeyStorePassword(password);
 
@@ -95,20 +86,17 @@ public class ConfiguredDosetaKeyRepository implements KeyRepository
 
 
       String principal = getVariable(config, RESTEASY_DOSETA_PRINCIPAL_FOR_PRIVATE);
-      if (principal != null)
-      {
+      if (principal != null) {
          keyRepository.setUserPrincipalAsPrivateSelector(Boolean.parseBoolean(principal));
       }
 
       String useDns = getVariable(config, RESTEASY_DOSETA_USE_DNS);
-      if (useDns != null)
-      {
+      if (useDns != null) {
          keyRepository.setUseDns(Boolean.parseBoolean(useDns));
       }
 
       String dnsUri = getVariable(config, RESTEASY_DOSETA_DNS_URI);
-      if (dnsUri != null)
-      {
+      if (dnsUri != null) {
          keyRepository.setDnsUri(dnsUri.trim());
       }
 
@@ -116,8 +104,7 @@ public class ConfiguredDosetaKeyRepository implements KeyRepository
       keyRepository.setDefaultPrivateDomain(defaultDomain);
 
       String timeout = getVariable(config, RESTEASY_DOSETA_CACHE_TIMEOUT);
-      if (timeout != null)
-      {
+      if (timeout != null) {
          keyRepository.setCacheTimeout(Long.parseLong(timeout.trim()));
       }
 
@@ -126,23 +113,25 @@ public class ConfiguredDosetaKeyRepository implements KeyRepository
 
    }
 
-   public PrivateKey findPrivateKey(DKIMSignature header)
-   {
+   private static String getVariable(ResteasyConfiguration config, String name) {
+      String variable = config.getParameter(name);
+      if (variable != null) variable = variable.trim();
+      return variable;
+   }
+
+   public PrivateKey findPrivateKey(DKIMSignature header) {
       return keyRepository.findPrivateKey(header);
    }
 
-   public PublicKey findPublicKey(DKIMSignature header)
-   {
+   public PublicKey findPublicKey(DKIMSignature header) {
       return keyRepository.findPublicKey(header);
    }
 
-   public String getDefaultPrivateSelector()
-   {
+   public String getDefaultPrivateSelector() {
       return keyRepository.getDefaultPrivateSelector();
    }
 
-   public String getDefaultPrivateDomain()
-   {
+   public String getDefaultPrivateDomain() {
       return keyRepository.getDefaultPrivateDomain();
    }
 }

@@ -1,26 +1,25 @@
 package org.jboss.resteasy.test.rx.rxjava2.resource;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.HEAD;
-import javax.ws.rs.OPTIONS;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
+import io.reactivex.Single;
 import org.jboss.resteasy.test.rx.resource.TRACE;
 import org.jboss.resteasy.test.rx.resource.TestException;
 import org.jboss.resteasy.test.rx.resource.Thing;
 
-import io.reactivex.Single;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("")
 public class Rx2SingleResourceImpl {
+
+   static Single<List<Thing>> buildSingleThingList(String s, int listSize) {
+      List<Thing> list = new ArrayList<Thing>();
+      for (int i = 0; i < listSize; i++) {
+         list.add(new Thing(s));
+      }
+      return Single.just(list);
+   }
 
    @GET
    @Path("get/string")
@@ -160,18 +159,10 @@ public class Rx2SingleResourceImpl {
    public Single<Thing> exceptionUnhandled() throws Exception {
       throw new Exception("unhandled");
    }
-   
+
    @GET
    @Path("exception/handled")
    public Single<Thing> exceptionHandled() throws Exception {
       throw new TestException("handled");
-   }
-
-   static Single<List<Thing>> buildSingleThingList(String s, int listSize) {
-      List<Thing> list = new ArrayList<Thing>();
-      for (int i = 0; i < listSize; i++) {
-         list.add(new Thing(s));
-      }
-      return Single.just(list);
    }
 }

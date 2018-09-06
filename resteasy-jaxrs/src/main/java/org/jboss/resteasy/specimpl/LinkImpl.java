@@ -4,39 +4,30 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.ext.RuntimeDelegate;
 import java.net.URI;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class LinkImpl extends Link
-{
+public class LinkImpl extends Link {
+   protected static final RuntimeDelegate.HeaderDelegate<Link> delegate =
+           RuntimeDelegate.getInstance().createHeaderDelegate(Link.class);
    protected final URI uri;
-
    /**
     * A map for all the link parameters such as "rel", "type", etc.
     */
    protected final Map<String, String> map;
 
-   protected static final RuntimeDelegate.HeaderDelegate<Link> delegate =
-           RuntimeDelegate.getInstance().createHeaderDelegate(Link.class);
+   LinkImpl(URI uri, Map<String, String> map) {
+      this.uri = uri;
+      this.map = map.isEmpty() ? Collections.<String, String>emptyMap() : Collections
+              .unmodifiableMap(new HashMap<String, String>(map));
+   }
 
-   public static Link valueOf(String value)
-   {
+   public static Link valueOf(String value) {
       return delegate.fromString(value);
    }
-   
-   LinkImpl(URI uri, Map<String, String> map) 
-   {
-	  this.uri = uri;
-	  this.map = map.isEmpty() ? Collections.<String, String> emptyMap() : Collections
-		.unmodifiableMap(new HashMap<String, String>(map));
-	}
 
    @Override
    public URI getUri() {

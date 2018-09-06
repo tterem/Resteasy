@@ -31,8 +31,7 @@ import java.nio.charset.StandardCharsets;
  * @author Vladimir Dzhuvinov
  * @version $version$ (2013-05-29)
  */
-public class DirectDecrypter
-{
+public class DirectDecrypter {
    public static byte[] decrypt(final SecretKey key,
                                 final JWEHeader readOnlyJWEHeader,
                                 final String encodedHeader,
@@ -40,24 +39,20 @@ public class DirectDecrypter
                                 final String encodedIv,
                                 final String encodedCipherText,
                                 final String encodedAuthTag
-                               )
-   {
+   ) {
 
       // Validate required JWE parts
-      if (encryptedKey != null)
-      {
+      if (encryptedKey != null) {
 
          throw new RuntimeException(Messages.MESSAGES.unexpectedEncryptedKey());
       }
 
-      if (encodedIv == null)
-      {
+      if (encodedIv == null) {
 
          throw new RuntimeException(Messages.MESSAGES.initializationVectorMustNotBeNull());
       }
 
-      if (encodedAuthTag == null)
-      {
+      if (encodedAuthTag == null) {
 
          throw new RuntimeException(Messages.MESSAGES.authenticationTagMustNotBeNull());
       }
@@ -65,14 +60,13 @@ public class DirectDecrypter
 
       Algorithm alg = readOnlyJWEHeader.getAlgorithm();
 
-      if (!alg.equals(Algorithm.dir))
-      {
+      if (!alg.equals(Algorithm.dir)) {
 
          throw new RuntimeException(Messages.MESSAGES.unsupportedAlgorithm());
       }
 
       // Compose the AAD
-      byte[] aad =  encodedHeader.getBytes(StandardCharsets.UTF_8);
+      byte[] aad = encodedHeader.getBytes(StandardCharsets.UTF_8);
       byte[] iv = Base64Url.decode(encodedIv);
       byte[] cipherText = Base64Url.decode(encodedCipherText);
       byte[] authTag = Base64Url.decode(encodedAuthTag);
@@ -82,20 +76,15 @@ public class DirectDecrypter
 
       byte[] plainText;
 
-      if (enc.equals(EncryptionMethod.A128CBC_HS256) || enc.equals(EncryptionMethod.A256CBC_HS512))
-      {
+      if (enc.equals(EncryptionMethod.A128CBC_HS256) || enc.equals(EncryptionMethod.A256CBC_HS512)) {
 
          plainText = AESCBC.decryptAuthenticated(key, iv, cipherText, aad, authTag);
 
-      }
-      else if (enc.equals(EncryptionMethod.A128GCM) || enc.equals(EncryptionMethod.A256GCM))
-      {
+      } else if (enc.equals(EncryptionMethod.A128GCM) || enc.equals(EncryptionMethod.A256GCM)) {
 
          plainText = AESGCM.decrypt(key, iv, cipherText, aad, authTag);
 
-      }
-      else
-      {
+      } else {
 
          throw new RuntimeException("Unsupported encryption method, must be A128CBC_HS256, A256CBC_HS512, A128GCM or A128GCM");
       }

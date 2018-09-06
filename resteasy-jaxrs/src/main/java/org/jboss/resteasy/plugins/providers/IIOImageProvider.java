@@ -7,11 +7,7 @@ import org.jboss.resteasy.annotations.providers.img.ImageWriterParams;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.LogMessages;
 import org.jboss.resteasy.util.FindAnnotation;
 
-import javax.imageio.IIOImage;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
+import javax.imageio.*;
 import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
 import javax.imageio.stream.ImageOutputStream;
 import javax.ws.rs.Consumes;
@@ -34,8 +30,7 @@ import java.util.Locale;
 @Provider
 @Consumes("image/*")
 @Produces("image/*")
-public class IIOImageProvider extends AbstractEntityProvider<IIOImage>
-{
+public class IIOImageProvider extends AbstractEntityProvider<IIOImage> {
    /**
     * Ascertain if the MessageBodyReader can produce an instance of a
     * particular type. The {@code type} parameter gives the
@@ -61,8 +56,7 @@ public class IIOImageProvider extends AbstractEntityProvider<IIOImage>
     *                    used.
     * @return {@code true} if the type is supported, otherwise {@code false}.
     */
-   public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return IIOImage.class.equals(type);
    }
 
@@ -95,33 +89,28 @@ public class IIOImageProvider extends AbstractEntityProvider<IIOImage>
     *                     entity has been consumed. The implementation should not close the input
     *                     stream.
     * @return the type that was read from the stream. In case the entity input stream is empty, the reader
-    *         is expected to either return an instance representing a zero-length entity or throw
-    *         a {@link javax.ws.rs.core.NoContentException} in case no zero-length entity representation is
-    *         defined for the supported Java type.
-    * @throws java.io.IOException if an IO error arises. In case the entity input stream is empty
-    *                             and the reader is not able to produce a Java representation for
-    *                             a zero-length entity, {@code NoContentException} is expected to
-    *                             be thrown.
-    * @throws javax.ws.rs.WebApplicationException
-    *                             if a specific HTTP error response needs to be produced.
-    *                             Only effective if thrown prior to the response being committed.
+    * is expected to either return an instance representing a zero-length entity or throw
+    * a {@link javax.ws.rs.core.NoContentException} in case no zero-length entity representation is
+    * defined for the supported Java type.
+    * @throws java.io.IOException                 if an IO error arises. In case the entity input stream is empty
+    *                                             and the reader is not able to produce a Java representation for
+    *                                             a zero-length entity, {@code NoContentException} is expected to
+    *                                             be thrown.
+    * @throws javax.ws.rs.WebApplicationException if a specific HTTP error response needs to be produced.
+    *                                             Only effective if thrown prior to the response being committed.
     */
    public IIOImage readFrom(Class<IIOImage> type,
                             Type genericType,
                             Annotation[] annotations,
                             MediaType mediaType,
                             MultivaluedMap<String, String> httpHeaders,
-                            InputStream entityStream) throws IOException
-   {
+                            InputStream entityStream) throws IOException {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom", getClass().getName());
       ImageReader reader = IIOImageProviderHelper.getImageReaderByMediaType(mediaType);
-      try
-      {
+      try {
          IIOImage image = IIOImageProviderHelper.readImage(entityStream, reader, 0);
          return image;
-      }
-      finally
-      {
+      } finally {
          reader.dispose();
       }
 
@@ -139,8 +128,7 @@ public class IIOImageProvider extends AbstractEntityProvider<IIOImage>
     * @param mediaType   the media type of the HTTP entity.
     * @return {@code true} if the type is supported, otherwise {@code false}.
     */
-   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
       return IIOImage.class.equals(type);
    }
 
@@ -158,10 +146,9 @@ public class IIOImageProvider extends AbstractEntityProvider<IIOImage>
     * @param httpHeaders  a mutable map of the HTTP message headers.
     * @param entityStream the {@link OutputStream} for the HTTP entity. The
     *                     implementation should not close the output stream.
-    * @throws java.io.IOException if an IO error arises.
-    * @throws javax.ws.rs.WebApplicationException
-    *                             if a specific HTTP error response needs to be produced.
-    *                             Only effective if thrown prior to the message being committed.
+    * @throws java.io.IOException                 if an IO error arises.
+    * @throws javax.ws.rs.WebApplicationException if a specific HTTP error response needs to be produced.
+    *                                             Only effective if thrown prior to the message being committed.
     */
    public void writeTo(IIOImage t,
                        Class<?> type,
@@ -169,49 +156,38 @@ public class IIOImageProvider extends AbstractEntityProvider<IIOImage>
                        Annotation[] annotations,
                        MediaType mediaType,
                        MultivaluedMap<String, Object> httpHeaders,
-                       OutputStream entityStream) throws IOException
-   {
+                       OutputStream entityStream) throws IOException {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : writeTo", getClass().getName());
       ImageWriter writer = IIOImageProviderHelper.getImageWriterByMediaType(mediaType);
       ImageWriteParam param;
-      if (mediaType.equals(MediaType.valueOf("image/jpeg")))
-      {
+      if (mediaType.equals(MediaType.valueOf("image/jpeg"))) {
          param = new JPEGImageWriteParam(Locale.US);
-      }
-      else
-      {
+      } else {
          param = writer.getDefaultWriteParam();
       }
 
       /*
-      * If the image output type supports compression, set it to the highest
-      * maximum
-      */
+       * If the image output type supports compression, set it to the highest
+       * maximum
+       */
       ImageWriterParams writerParams = FindAnnotation.findAnnotation(annotations,
               ImageWriterParams.class);
-      if (writerParams != null)
-      {
-         if (param.canWriteCompressed())
-         {
+      if (writerParams != null) {
+         if (param.canWriteCompressed()) {
             param.setCompressionMode(writerParams.compressionMode());
             param.setCompressionQuality(writerParams.compressionQuality());
          }
-      }
-      else if (param.canWriteCompressed())
-      {
+      } else if (param.canWriteCompressed()) {
          param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
          param.setCompressionQuality(1.0f);
       }
       BufferedOutputStream buff = new BufferedOutputStream(entityStream, 2048);
       ImageOutputStream ios = ImageIO.createImageOutputStream(buff);
-      try
-      {
+      try {
          writer.setOutput(ios);
          IIOImage img = new IIOImage(t.getRenderedImage(), null, null);
          writer.write(null, img, param);
-      }
-      finally
-      {
+      } finally {
          writer.dispose();
       }
    }

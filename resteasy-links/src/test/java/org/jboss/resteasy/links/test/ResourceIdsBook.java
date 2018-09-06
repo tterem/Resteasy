@@ -6,16 +6,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @ResourceIDs({"namea", "nameb"})
-public class ResourceIdsBook extends IdBook{
+public class ResourceIdsBook extends IdBook {
 
-	private String namea;
-	private String nameb;
-	public ResourceIdsBook() {
-	}
+   private String namea;
+   private String nameb;
 
-	public ResourceIdsBook(String namea, String nameb) {
-		this.namea = namea;
-		this.nameb = nameb;
-	}
+   public ResourceIdsBook() {
+   }
+
+   public ResourceIdsBook(String namea, String nameb) {
+      this.namea = namea;
+      this.nameb = nameb;
+   }
 
 }

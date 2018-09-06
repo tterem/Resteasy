@@ -14,25 +14,21 @@ import java.util.Map;
 @Path("/student")
 @Produces("application/student")
 @Consumes("application/student")
-public class GenericResourceStudentCrudResource extends GenericResourceCrudResource<GenericResourceStudent, Integer>
-{
+public class GenericResourceStudentCrudResource extends GenericResourceCrudResource<GenericResourceStudent, Integer> {
 
    private static Map<Integer, GenericResourceStudent> students = new HashMap<Integer, GenericResourceStudent>();
 
-   public GenericResourceStudentCrudResource()
-   {
+   public GenericResourceStudentCrudResource() {
       students.put(1, new GenericResourceStudent("Jozef Hartinger"));
    }
 
    @Override
-   GenericResourceStudent getEntity(Integer id)
-   {
+   GenericResourceStudent getEntity(Integer id) {
       return students.get(id);
    }
 
    @Override
-   void setEntity(Integer id, GenericResourceStudent entity)
-   {
+   void setEntity(Integer id, GenericResourceStudent entity) {
       students.put(id, entity);
    }
 }

@@ -12,7 +12,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Providers;
-
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
@@ -22,8 +21,7 @@ import java.security.PrivateKey;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class JWSBuilder
-{
+public class JWSBuilder {
    String type;
    String contentType;
    Object content;
@@ -31,49 +29,41 @@ public class JWSBuilder
    MediaType marshalTo;
    Providers providers;
 
-   public JWSBuilder()
-   {
+   public JWSBuilder() {
       this(ResteasyProviderFactory.getInstance());
    }
 
-   public JWSBuilder(Providers providers)
-   {
+   public JWSBuilder(Providers providers) {
       this.providers = providers;
    }
 
-   public JWSBuilder type(String type)
-   {
+   public JWSBuilder type(String type) {
       this.type = type;
       return this;
    }
 
-   public JWSBuilder contentType(String type)
-   {
+   public JWSBuilder contentType(String type) {
       this.contentType = type;
       return this;
    }
 
-   public JWSBuilder contentType(MediaType type)
-   {
+   public JWSBuilder contentType(MediaType type) {
       this.contentType = type.toString();
       return this;
    }
 
-   public EncodingBuilder content(byte[] bytes)
-   {
+   public EncodingBuilder content(byte[] bytes) {
       this.contentBytes = bytes;
       return new EncodingBuilder();
    }
 
-   public EncodingBuilder content(Object object, MediaType marshalTo)
-   {
+   public EncodingBuilder content(Object object, MediaType marshalTo) {
       this.content = object;
       this.marshalTo = marshalTo;
       return new EncodingBuilder();
    }
 
-   protected String encodeHeader(Algorithm alg)
-   {
+   protected String encodeHeader(Algorithm alg) {
       StringBuilder builder = new StringBuilder("{");
       builder.append("\"alg\":\"").append(alg.toString()).append("\"");
 
@@ -83,31 +73,27 @@ public class JWSBuilder
       return Base64Url.encode(builder.toString().getBytes(StandardCharsets.UTF_8));
    }
 
-   protected String encode(Algorithm alg, byte[] data, byte[] signature)
-   {
+   protected String encode(Algorithm alg, byte[] data, byte[] signature) {
       StringBuffer encoding = new StringBuffer();
       encoding.append(encodeHeader(alg));
       encoding.append('.');
       encoding.append(Base64Url.encode(data));
       encoding.append('.');
-      if (alg != Algorithm.none)
-      {
+      if (alg != Algorithm.none) {
          encoding.append(Base64Url.encode(signature));
       }
       return encoding.toString();
    }
 
    @SuppressWarnings({"rawtypes", "unchecked"})
-   protected byte[] marshalContent()
-   {
+   protected byte[] marshalContent() {
       if (contentBytes != null) return contentBytes;
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       Class<?> type = content.getClass();
       Type genericType = null;
       Object obj = content;
-      if (content instanceof GenericEntity)
-      {
-         GenericEntity<?> ge = (GenericEntity<?>)content;
+      if (content instanceof GenericEntity) {
+         GenericEntity<?> ge = (GenericEntity<?>) content;
          obj = ge.getEntity();
          type = ge.getRawType();
          genericType = ge.getType();
@@ -116,88 +102,74 @@ public class JWSBuilder
 
       MessageBodyWriter writer = providers.getMessageBodyWriter(type, genericType, null, marshalTo);
       if (writer == null) throw new IllegalStateException(Messages.MESSAGES.unableToFindMessageBodyWriter());
-      try
-      {
+      try {
          writer.writeTo(obj, type, genericType, null, marshalTo, new MultivaluedHashMap<String, Object>(), baos);
-      }
-      catch (Exception e)
-      {
+      } catch (Exception e) {
          throw new RuntimeException(e);
       }
       return baos.toByteArray();
    }
 
-   public class EncodingBuilder
-   {
-      public String none()
-      {
+   public class EncodingBuilder {
+      public String none() {
          byte[] data = marshalContent();
          return encode(Algorithm.none, data, null);
       }
-      public String rsa256(PrivateKey privateKey)
-      {
+
+      public String rsa256(PrivateKey privateKey) {
          byte[] data = marshalContent();
          byte[] signature = RSAProvider.sign(data, Algorithm.RS256, privateKey);
          return encode(Algorithm.RS256, data, signature);
       }
-      public String rsa384(PrivateKey privateKey)
-      {
+
+      public String rsa384(PrivateKey privateKey) {
          byte[] data = marshalContent();
          byte[] signature = RSAProvider.sign(data, Algorithm.RS384, privateKey);
          return encode(Algorithm.RS384, data, signature);
       }
-      public String rsa512(PrivateKey privateKey)
-      {
+
+      public String rsa512(PrivateKey privateKey) {
          byte[] data = marshalContent();
          byte[] signature = RSAProvider.sign(data, Algorithm.RS512, privateKey);
          return encode(Algorithm.RS512, data, signature);
       }
 
 
-      public String hmac256(byte[] sharedSecret)
-      {
+      public String hmac256(byte[] sharedSecret) {
          byte[] data = marshalContent();
          byte[] signature = HMACProvider.sign(data, Algorithm.HS256, sharedSecret);
          return encode(Algorithm.HS256, data, signature);
       }
 
-      public String hmac384(byte[] sharedSecret)
-      {
+      public String hmac384(byte[] sharedSecret) {
          byte[] data = marshalContent();
          byte[] signature = HMACProvider.sign(data, Algorithm.HS384, sharedSecret);
          return encode(Algorithm.HS384, data, signature);
       }
 
-      public String hmac512(byte[] sharedSecret)
-      {
+      public String hmac512(byte[] sharedSecret) {
          byte[] data = marshalContent();
          byte[] signature = HMACProvider.sign(data, Algorithm.HS512, sharedSecret);
          return encode(Algorithm.HS512, data, signature);
       }
 
-      public String hmac256(SecretKey sharedSecret)
-      {
+      public String hmac256(SecretKey sharedSecret) {
          byte[] data = marshalContent();
          byte[] signature = HMACProvider.sign(data, Algorithm.HS256, sharedSecret);
          return encode(Algorithm.HS256, data, signature);
       }
 
-      public String hmac384(SecretKey sharedSecret)
-      {
+      public String hmac384(SecretKey sharedSecret) {
          byte[] data = marshalContent();
          byte[] signature = HMACProvider.sign(data, Algorithm.HS384, sharedSecret);
          return encode(Algorithm.HS384, data, signature);
       }
 
-      public String hmac512(SecretKey sharedSecret)
-      {
+      public String hmac512(SecretKey sharedSecret) {
          byte[] data = marshalContent();
          byte[] signature = HMACProvider.sign(data, Algorithm.HS512, sharedSecret);
          return encode(Algorithm.HS512, data, signature);
       }
-
-
-
 
 
    }

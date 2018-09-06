@@ -9,13 +9,13 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = ProxyWithGenericReturnTypeJacksonType2.class, name = "type2")})
 public abstract class ProxyWithGenericReturnTypeJacksonAbstractParent {
 
-    protected long id;
+   protected long id;
 
-    public long getId() {
-        return id;
-    }
+   public long getId() {
+      return id;
+   }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+   public void setId(long id) {
+      this.id = id;
+   }
 }

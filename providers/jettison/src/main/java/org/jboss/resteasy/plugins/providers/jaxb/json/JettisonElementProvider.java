@@ -13,11 +13,9 @@ import javax.ws.rs.ext.Provider;
 @Provider
 @Produces({"application/json", "application/*+json"})
 @Consumes({"application/json", "application/*+json"})
-public class JettisonElementProvider extends JAXBElementProvider
-{
+public class JettisonElementProvider extends JAXBElementProvider {
    @Override
-   protected boolean needsSecurity()
-   {
+   protected boolean needsSecurity() {
       return false;
    }
 }

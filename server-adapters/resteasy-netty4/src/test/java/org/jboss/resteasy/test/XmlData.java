@@ -7,26 +7,21 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @version $Revision: 1 $
  */
 @XmlRootElement(name = "data")
-public class XmlData
-{
+public class XmlData {
    protected String name;
 
-   public XmlData(String data)
-   {
+   public XmlData(String data) {
       this.name = data;
    }
 
-   public XmlData()
-   {
+   public XmlData() {
    }
 
-   public String getName()
-   {
+   public String getName() {
       return name;
    }
 
-   public void setName(String name)
-   {
+   public void setName(String name) {
       this.name = name;
    }
 

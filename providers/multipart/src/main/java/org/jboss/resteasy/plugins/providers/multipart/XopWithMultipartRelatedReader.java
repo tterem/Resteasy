@@ -12,7 +12,6 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.Provider;
 import javax.ws.rs.ext.Providers;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
@@ -27,15 +26,13 @@ import java.lang.reflect.Type;
  */
 @Provider
 @Consumes("multipart/related")
-public class XopWithMultipartRelatedReader implements MessageBodyReader<Object>
-{
+public class XopWithMultipartRelatedReader implements MessageBodyReader<Object> {
    protected
    @Context
    Providers workers;
 
    public boolean isReadable(Class<?> type, Type genericType,
-                             Annotation[] annotations, MediaType mediaType)
-   {
+                             Annotation[] annotations, MediaType mediaType) {
       return FindAnnotation.findAnnotation(annotations,
               XopWithMultipartRelated.class) != null
               || type.isAnnotationPresent(XopWithMultipartRelated.class);
@@ -44,8 +41,7 @@ public class XopWithMultipartRelatedReader implements MessageBodyReader<Object>
    public Object readFrom(Class<Object> type, Type genericType,
                           Annotation[] annotations, MediaType mediaType,
                           MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
-           throws IOException, WebApplicationException
-   {
+           throws IOException, WebApplicationException {
       String boundary = mediaType.getParameters().get("boundary");
       if (boundary == null)
          throw new IOException(Messages.MESSAGES.unableToGetBoundary());

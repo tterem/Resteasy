@@ -1,19 +1,5 @@
 package org.jboss.resteasy.test.providers.custom;
 
-import java.io.IOException;
-import java.util.Set;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.ClientRequestContext;
-import javax.ws.rs.client.ClientRequestFilter;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Configuration;
-import javax.ws.rs.core.MediaType;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -25,55 +11,32 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.client.*;
+import javax.ws.rs.core.Configuration;
+import javax.ws.rs.core.MediaType;
+import java.io.IOException;
+import java.util.Set;
+
 @RunWith(Arquillian.class)
 @RunAsClient
-public class RetrieveRegisteredClassesTest
-{
-
-   @Path("/testResource")
-   @Produces(MediaType.APPLICATION_XML)
-   public static final class TestResource
-   {
-
-      @GET
-      public String get()
-      {
-         return TestResource.class.getName();
-      }
-
-   }
-
-   private static class MyFilter implements ClientRequestFilter
-   {
-
-      // To discard empty constructor
-      private MyFilter(Object value)
-      {
-      }
-
-      @Override
-      public void filter(ClientRequestContext clientRequestContext) throws IOException
-      {
-      }
-
-   }
+public class RetrieveRegisteredClassesTest {
 
    @Deployment
-   public static Archive<?> deploy()
-   {
+   public static Archive<?> deploy() {
       WebArchive war = TestUtil.prepareArchive(RetrieveRegisteredClassesTest.class.getSimpleName());
       return TestUtil.finishContainerPrepare(war, null, TestResource.class);
    }
 
    @Test
-   public void test()
-   {
+   public void test() {
 
       Client client = ClientBuilder.newClient();
-      try
-      {
+      try {
          String uri = PortProviderUtil
-               .generateURL("/testResource", RetrieveRegisteredClassesTest.class.getSimpleName());
+                 .generateURL("/testResource", RetrieveRegisteredClassesTest.class.getSimpleName());
          MyFilter myFilter = new MyFilter(new Object());
 
          WebTarget firstWebTarget = client.target(uri).register(myFilter);
@@ -86,17 +49,13 @@ public class RetrieveRegisteredClassesTest
 
          WebTarget secondWebTarget = client.target(uri);
          Configuration secondWebTargetConfiguration = secondWebTarget.getConfiguration();
-         for (Class<?> classz : classes)
-         {
-            if (!secondWebTargetConfiguration.isRegistered(classz))
-            {
+         for (Class<?> classz : classes) {
+            if (!secondWebTargetConfiguration.isRegistered(classz)) {
                secondWebTarget.register(classz);
             }
          }
-         for (Object instance : instances)
-         {
-            if (!secondWebTargetConfiguration.isRegistered(instance.getClass()))
-            {
+         for (Object instance : instances) {
+            if (!secondWebTargetConfiguration.isRegistered(instance.getClass())) {
                secondWebTarget.register(instance);
             }
          }
@@ -106,10 +65,31 @@ public class RetrieveRegisteredClassesTest
          Assert.assertFalse(classes.contains(MyFilter.class));
          Assert.assertTrue(instances.contains(myFilter));
          Assert.assertEquals(firstResult, secondeResult);
-      }
-      finally
-      {
+      } finally {
          client.close();
+      }
+
+   }
+
+   @Path("/testResource")
+   @Produces(MediaType.APPLICATION_XML)
+   public static final class TestResource {
+
+      @GET
+      public String get() {
+         return TestResource.class.getName();
+      }
+
+   }
+
+   private static class MyFilter implements ClientRequestFilter {
+
+      // To discard empty constructor
+      private MyFilter(Object value) {
+      }
+
+      @Override
+      public void filter(ClientRequestContext clientRequestContext) throws IOException {
       }
 
    }

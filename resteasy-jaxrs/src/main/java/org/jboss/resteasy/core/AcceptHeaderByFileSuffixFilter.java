@@ -20,47 +20,38 @@ import java.util.Map;
  */
 @Provider
 @PreMatching
-public class AcceptHeaderByFileSuffixFilter implements ContainerRequestFilter
-{
+public class AcceptHeaderByFileSuffixFilter implements ContainerRequestFilter {
    private final Map<String, String> mediaTypeMappings = new HashMap<String, String>();
    private final Map<String, String> languageMappings = new HashMap<String, String>();
 
-   public void setMediaTypeMappings(Map<String, MediaType> mediaTypeMappings)
-   {
+   public void setMediaTypeMappings(Map<String, MediaType> mediaTypeMappings) {
       this.mediaTypeMappings.clear();
-      for (Map.Entry<String, MediaType> entry : mediaTypeMappings.entrySet())
-      {
+      for (Map.Entry<String, MediaType> entry : mediaTypeMappings.entrySet()) {
          this.mediaTypeMappings.put(entry.getKey(), entry.getValue().toString());
       }
    }
 
-   public void setLanguageMappings(Map<String, String> languageMappings)
-   {
+   public void setLanguageMappings(Map<String, String> languageMappings) {
       this.languageMappings.clear();
-      for (Map.Entry<String, String> entry : languageMappings.entrySet())
-      {
+      for (Map.Entry<String, String> entry : languageMappings.entrySet()) {
          this.languageMappings.put(entry.getKey(), entry.getValue());
       }
    }
 
    @Override
-   public void filter(ContainerRequestContext requestContext) throws IOException
-   {
-      if (mediaTypeMappings == null && languageMappings == null)
-      {
+   public void filter(ContainerRequestContext requestContext) throws IOException {
+      if (mediaTypeMappings == null && languageMappings == null) {
          return;
       }
 
       URI uri = requestContext.getUriInfo().getRequestUri();
       String rawPath = uri.getRawPath();
       int lastSegment = rawPath.lastIndexOf('/');
-      if (lastSegment < 0)
-      {
+      if (lastSegment < 0) {
          lastSegment = 0;
       }
       int index = rawPath.indexOf('.', lastSegment);
-      if (index < 0)
-      {
+      if (index < 0) {
          return;
       }
 
@@ -70,23 +61,18 @@ public class AcceptHeaderByFileSuffixFilter implements ContainerRequestFilter
       String[] extensions = extension.split("\\.");
 
       StringBuilder rebuilt = new StringBuilder();
-      for (String ext : extensions)
-      {
-         if (mediaTypeMappings != null)
-         {
+      for (String ext : extensions) {
+         if (mediaTypeMappings != null) {
             String match = mediaTypeMappings.get(ext);
-            if (match != null)
-            {
+            if (match != null) {
                requestContext.getHeaders().addFirst(HttpHeaders.ACCEPT, match);
                preprocessed = true;
                continue;
             }
          }
-         if (languageMappings != null)
-         {
+         if (languageMappings != null) {
             String match = languageMappings.get(ext);
-            if (match != null)
-            {
+            if (match != null) {
                requestContext.getHeaders().add(HttpHeaders.ACCEPT_LANGUAGE, match);
                preprocessed = true;
                continue;
@@ -104,17 +90,14 @@ public class AcceptHeaderByFileSuffixFilter implements ContainerRequestFilter
 
    }
 
-   private List<PathSegment> process(ContainerRequestContext in)
-   {
+   private List<PathSegment> process(ContainerRequestContext in) {
       String path = in.getUriInfo().getPath(false);
       int lastSegment = path.lastIndexOf('/');
-      if (lastSegment < 0)
-      {
+      if (lastSegment < 0) {
          lastSegment = 0;
       }
       int index = path.indexOf('.', lastSegment);
-      if (index < 0)
-      {
+      if (index < 0) {
          return null;
       }
 
@@ -124,23 +107,18 @@ public class AcceptHeaderByFileSuffixFilter implements ContainerRequestFilter
       String[] extensions = extension.split("\\.");
 
       StringBuilder rebuilt = new StringBuilder(path.substring(0, index));
-      for (String ext : extensions)
-      {
-         if (mediaTypeMappings != null)
-         {
+      for (String ext : extensions) {
+         if (mediaTypeMappings != null) {
             String match = mediaTypeMappings.get(ext);
-            if (match != null)
-            {
+            if (match != null) {
                in.getHeaders().addFirst(HttpHeaders.ACCEPT, match);
                preprocessed = true;
                continue;
             }
          }
-         if (languageMappings != null)
-         {
+         if (languageMappings != null) {
             String match = languageMappings.get(ext);
-            if (match != null)
-            {
+            if (match != null) {
                in.getHeaders().add(HttpHeaders.ACCEPT_LANGUAGE, match);
                preprocessed = true;
                continue;
@@ -149,8 +127,7 @@ public class AcceptHeaderByFileSuffixFilter implements ContainerRequestFilter
          rebuilt.append(".").append(ext);
       }
       List<PathSegment> segments = null;
-      if (preprocessed)
-      {
+      if (preprocessed) {
          segments = PathSegmentImpl.parseSegments(rebuilt.toString(), false);
       }
       return segments;

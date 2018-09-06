@@ -1,9 +1,9 @@
 package org.jboss.resteasy.test.cdi.basic.resource.resteasy1082;
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.ext.Provider;
+import java.util.HashSet;
+import java.util.Set;
 
 @Provider
 public class TestApplication extends Application {

@@ -5,69 +5,52 @@ import org.jboss.resteasy.spi.HttpResponse;
 import org.jboss.resteasy.spi.ResourceFactory;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class JndiResourceFactory implements ResourceFactory
-{
+public class JndiResourceFactory implements ResourceFactory {
    private String jndiName;
    private InitialContext ctx;
 
-   public JndiResourceFactory(String jndiName)
-   {
+   public JndiResourceFactory(String jndiName) {
       this.jndiName = jndiName;
-      try
-      {
+      try {
          this.ctx = new InitialContext();
-      }
-      catch (NamingException e)
-      {
+      } catch (NamingException e) {
          throw new RuntimeException(e);
       }
    }
 
-   public void registered(ResteasyProviderFactory factory)
-   {
+   public void registered(ResteasyProviderFactory factory) {
    }
 
-   public CompletionStage<Object> createResource(HttpRequest request, HttpResponse response, ResteasyProviderFactory factory)
-   {
-      try
-      {
+   public CompletionStage<Object> createResource(HttpRequest request, HttpResponse response, ResteasyProviderFactory factory) {
+      try {
          return CompletableFuture.completedFuture(ctx.lookup(jndiName));
-      }
-      catch (NamingException e)
-      {
+      } catch (NamingException e) {
          throw new RuntimeException(e);
       }
    }
 
-   public void unregistered()
-   {
+   public void unregistered() {
    }
 
-   public Class<?> getScannableClass()
-   {
-      try
-      {
+   public Class<?> getScannableClass() {
+      try {
          Object obj = ctx.lookup(jndiName);
          return obj.getClass();
-      }
-      catch (NamingException e)
-      {
+      } catch (NamingException e) {
          throw new RuntimeException(e);
       }
    }
 
-   public void requestFinished(HttpRequest request, HttpResponse response, Object resource)
-   {
+   public void requestFinished(HttpRequest request, HttpResponse response, Object resource) {
    }
 }
 

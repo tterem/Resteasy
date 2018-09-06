@@ -3,11 +3,7 @@ package org.jboss.resteasy.test.providers.jaxb.resource;
 import org.jboss.resteasy.test.providers.jaxb.resource.homecontrol.ObjectFactory;
 import org.jboss.resteasy.test.providers.jaxb.resource.homecontrol.UserType;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
@@ -26,7 +22,7 @@ public class HomecontrolService {
    }
 
    @GET
-   public Response get () {
+   public Response get() {
       return Response.ok().build();
    }
 }

@@ -1,28 +1,28 @@
 package org.jboss.resteasy.test.providers.jaxb.resource;
 
 public class JaxbElementReadableWritableEntity {
-    private String entity;
-    public static final String NAME = "READABLEWRITEABLE";
-    private static final String PREFIX = "<" + NAME + ">";
-    private static final String SUFFIX = "</" + NAME + ">";
+   public static final String NAME = "READABLEWRITEABLE";
+   private static final String PREFIX = "<" + NAME + ">";
+   private static final String SUFFIX = "</" + NAME + ">";
+   private String entity;
 
-    public JaxbElementReadableWritableEntity(final String entity) {
-        this.entity = entity;
-    }
+   public JaxbElementReadableWritableEntity(final String entity) {
+      this.entity = entity;
+   }
 
-    public String toXmlString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX).append(entity).append(SUFFIX);
-        return sb.toString();
-    }
+   public static JaxbElementReadableWritableEntity fromString(String stream) {
+      String entity = stream.replaceAll(PREFIX, "").replaceAll(SUFFIX, "");
+      return new JaxbElementReadableWritableEntity(entity);
+   }
 
-    @Override
-    public String toString() {
-        return entity;
-    }
+   public String toXmlString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append(PREFIX).append(entity).append(SUFFIX);
+      return sb.toString();
+   }
 
-    public static JaxbElementReadableWritableEntity fromString(String stream) {
-        String entity = stream.replaceAll(PREFIX, "").replaceAll(SUFFIX, "");
-        return new JaxbElementReadableWritableEntity(entity);
-    }
+   @Override
+   public String toString() {
+      return entity;
+   }
 }

@@ -6,11 +6,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.test.providers.jaxb.resource.GenericResourceModel;
-import org.jboss.resteasy.test.providers.jaxb.resource.GenericResourceResource;
-import org.jboss.resteasy.test.providers.jaxb.resource.GenericResourceResource2;
-import org.jboss.resteasy.test.providers.jaxb.resource.GenericResourceOtherAbstractResource;
-import org.jboss.resteasy.test.providers.jaxb.resource.GenericResourceAbstractResource;
+import org.jboss.resteasy.test.providers.jaxb.resource.*;
 import org.jboss.resteasy.util.HttpResponseCodes;
 import org.jboss.resteasy.utils.PortProviderUtil;
 import org.jboss.resteasy.utils.TestUtil;
@@ -37,59 +33,58 @@ import javax.ws.rs.core.Response;
 @RunAsClient
 public class GenericResourceTest {
 
-    String str = "<genericResourceModel></genericResourceModel>";
+   protected static final Logger logger = Logger.getLogger(KeepCharsetTest.class.getName());
+   static ResteasyClient client;
+   String str = "<genericResourceModel></genericResourceModel>";
 
-    static ResteasyClient client;
-    protected static final Logger logger = Logger.getLogger(KeepCharsetTest.class.getName());
+   @Deployment
+   public static Archive<?> deploy() {
+      WebArchive war = TestUtil.prepareArchive(GenericResourceTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, GenericResourceResource.class, GenericResourceResource2.class,
+              GenericResourceModel.class, GenericResourceOtherAbstractResource.class, GenericResourceAbstractResource.class);
+   }
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(GenericResourceTest.class.getSimpleName());
-        return TestUtil.finishContainerPrepare(war, null, GenericResourceResource.class, GenericResourceResource2.class,
-                GenericResourceModel.class, GenericResourceOtherAbstractResource.class, GenericResourceAbstractResource.class);
-    }
+   @Before
+   public void init() {
+      client = new ResteasyClientBuilder().build();
+   }
 
-    @Before
-    public void init() {
-        client = new ResteasyClientBuilder().build();
-    }
+   @After
+   public void after() throws Exception {
+      client.close();
+   }
 
-    @After
-    public void after() throws Exception {
-        client.close();
-    }
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, GenericResourceTest.class.getSimpleName());
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, GenericResourceTest.class.getSimpleName());
-    }
+   /**
+    * @tpTestDetails Tests Jaxb object with resource using inheritance, generics and abstract classes
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testGenericInheritingResource() throws Exception {
+      WebTarget target = client.target(generateURL("/test"));
+      Response response = target.request().post(Entity.entity(str, "application/xml"));
+      logger.info("status: " + response.getStatus());
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      String answer = response.readEntity(String.class);
+      Assert.assertEquals("The response from the server is not the expected one", "Success!", answer);
+      logger.info(answer);
+   }
 
-    /**
-     * @tpTestDetails Tests Jaxb object with resource using inheritance, generics and abstract classes
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testGenericInheritingResource() throws Exception {
-        WebTarget target = client.target(generateURL("/test"));
-        Response response = target.request().post(Entity.entity(str, "application/xml"));
-        logger.info("status: " + response.getStatus());
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-        String answer = response.readEntity(String.class);
-        Assert.assertEquals("The response from the server is not the expected one", "Success!", answer);
-        logger.info(answer);
-    }
-
-    /**
-     * @tpTestDetails Tests Jaxb object with resource using inheritance, generics and abstract classes
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testGenericResource() throws Exception {
-        WebTarget target = client.target(generateURL("/test2"));
-        Response response = target.request().post(Entity.entity(str, "application/xml"));
-        logger.info("status: " + response.getStatus());
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-        String answer = response.readEntity(String.class);
-        Assert.assertEquals("The response from the server is not the expected one", "Success!", answer);
-        logger.info(answer);
-    }
+   /**
+    * @tpTestDetails Tests Jaxb object with resource using inheritance, generics and abstract classes
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testGenericResource() throws Exception {
+      WebTarget target = client.target(generateURL("/test2"));
+      Response response = target.request().post(Entity.entity(str, "application/xml"));
+      logger.info("status: " + response.getStatus());
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      String answer = response.readEntity(String.class);
+      Assert.assertEquals("The response from the server is not the expected one", "Success!", answer);
+      logger.info(answer);
+   }
 }

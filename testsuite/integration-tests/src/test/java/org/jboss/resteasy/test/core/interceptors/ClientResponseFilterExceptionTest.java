@@ -1,11 +1,8 @@
 package org.jboss.resteasy.test.core.interceptors;
 
-import java.util.concurrent.CompletionStage;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.Single;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -30,9 +27,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
-import io.reactivex.Single;
+import java.util.concurrent.CompletionStage;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * @tpSubChapter Interceptors
@@ -46,39 +45,56 @@ public class ClientResponseFilterExceptionTest {
 
    private static ResteasyClient client;
    private static ClientResponseFilterExceptionResource service;
-   private static CountDownLatch latch;;
+   private static CountDownLatch latch;
+   ;
 
    @Deployment
    public static Archive<?> deploySimpleResource() {
       WebArchive war = TestUtil.prepareArchive(ClientResponseFilterExceptionTest.class.getSimpleName());
       war.addClass(ClientResponseFilterExceptionResource.class);
       war.setManifest(new StringAsset("Manifest-Version: 1.0\n"
-         + "Dependencies: org.jboss.resteasy.resteasy-rxjava2 services\n"));
+              + "Dependencies: org.jboss.resteasy.resteasy-rxjava2 services\n"));
       return TestUtil.finishContainerPrepare(war, null, ClientResponseFilterExceptionFilter.class, ClientResponseFilterExceptionResourceImpl.class);
    }
 
    private static String generateURL(String path) {
       return PortProviderUtil.generateURL(path, ClientResponseFilterExceptionTest.class.getSimpleName());
    }
-   
+
+   ///////////////////////////////////////////////////////////////////////////////////
+   static void incr(Throwable t) {
+      if (t.getMessage().contains("ClientResponseFilterExceptionFilter")) {
+         latch.countDown();
+      }
+   }
+
+   static <T> boolean doTest(Supplier<T> supplier, Consumer<T> consumer) throws InterruptedException {
+      int i = 0;
+      for (i = 0; i < 10; i++) {
+         T o = supplier.get();
+         consumer.accept(o);
+      }
+      latch.await(10, TimeUnit.SECONDS);
+      return latch.getCount() == 0;
+   }
+
    @Before
    public void before() {
       RequestConfig requestConfig = RequestConfig.custom()
-         .setConnectionRequestTimeout(1000)
-         .setSocketTimeout(1000)
-         .setConnectTimeout(1000)
-         .build();
+              .setConnectionRequestTimeout(1000)
+              .setSocketTimeout(1000)
+              .setConnectTimeout(1000)
+              .build();
 
       HttpClientBuilder httpClientBuilder = HttpClientBuilder.create()
-         .setDefaultRequestConfig(requestConfig)
-         .setMaxConnPerRoute(2)
-         .setMaxConnTotal(2);
+              .setDefaultRequestConfig(requestConfig)
+              .setMaxConnPerRoute(2)
+              .setMaxConnTotal(2);
 
       ClientHttpEngine engine = ApacheHttpClient4EngineFactory.create(httpClientBuilder.build(), true);
 
       ResteasyClientBuilder clientBuilder = new ResteasyClientBuilder().httpEngine(engine)
-         .register(ClientResponseFilterExceptionFilter.class)
-         ;
+              .register(ClientResponseFilterExceptionFilter.class);
 
       client = clientBuilder.build();
       ResteasyWebTarget target = client.target(generateURL("/"));
@@ -115,10 +131,16 @@ public class ClientResponseFilterExceptionTest {
    @Test
    public void testCompletionStage() throws Exception {
       Assert.assertTrue(
-         doTest(
-            () ->  service.cs(),
-            (CompletionStage<String> cs) -> {try {cs.toCompletableFuture().get();} catch (Exception e) {incr(e);}}
-            ));
+              doTest(
+                      () -> service.cs(),
+                      (CompletionStage<String> cs) -> {
+                         try {
+                            cs.toCompletableFuture().get();
+                         } catch (Exception e) {
+                            incr(e);
+                         }
+                      }
+              ));
    }
 
    /**
@@ -128,12 +150,13 @@ public class ClientResponseFilterExceptionTest {
    @Test
    public void testSingle() throws Exception {
       Assert.assertTrue(
-         doTest(
-            () ->  service.single(),
-            (Single<String> single) -> single.subscribe(o -> {}, t -> incr(t))
-            ));
+              doTest(
+                      () -> service.single(),
+                      (Single<String> single) -> single.subscribe(o -> {
+                      }, t -> incr(t))
+              ));
    }
-      
+
    /**
     * @tpTestDetails test asynchronous call: Observable
     * @tpSince RESTEasy 4.0
@@ -141,10 +164,11 @@ public class ClientResponseFilterExceptionTest {
    @Test
    public void testObservable() throws Exception {
       Assert.assertTrue(
-         doTest(
-            () ->  service.observable(),
-            (Observable<String> observable) -> observable.subscribe(o -> {}, t -> incr(t))
-            ));
+              doTest(
+                      () -> service.observable(),
+                      (Observable<String> observable) -> observable.subscribe(o -> {
+                      }, t -> incr(t))
+              ));
    }
 
    /**
@@ -154,26 +178,10 @@ public class ClientResponseFilterExceptionTest {
    @Test
    public void testFlowable() throws Exception {
       Assert.assertTrue(
-         doTest(
-            () ->  service.flowable(),
-            (Flowable<String> flowable) -> flowable.subscribe(o -> {}, t -> incr(t))
-            ));
-   }
-
-   ///////////////////////////////////////////////////////////////////////////////////
-   static void incr(Throwable t) {
-      if (t.getMessage().contains("ClientResponseFilterExceptionFilter")) {
-         latch.countDown();
-      }
-   }
-
-   static <T> boolean doTest(Supplier<T> supplier, Consumer<T> consumer) throws InterruptedException {
-      int i = 0;
-      for (i = 0; i < 10; i++) {
-         T o = supplier.get();
-         consumer.accept(o);
-      }
-      latch.await(10, TimeUnit.SECONDS);
-      return latch.getCount() == 0;
+              doTest(
+                      () -> service.flowable(),
+                      (Flowable<String> flowable) -> flowable.subscribe(o -> {
+                      }, t -> incr(t))
+              ));
    }
 }
