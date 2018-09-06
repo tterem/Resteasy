@@ -106,22 +106,22 @@ public class StringParameterInjector
 		@Override
 		public Iterator<E> iterator() {
             return new Iterator<E>() {
-                private final Iterator<? extends E> iterator = UnmodifiableArrayList.super.iterator();
+            private final Iterator<? extends E> iterator = UnmodifiableArrayList.super.iterator();
 
-                @Override
-                public boolean hasNext() {
-                	return iterator.hasNext();
-                }
-                @Override
-                public E next() {
-                	return iterator.next();
-                }
-                @Override
-                public void remove() {throw new UnsupportedOperationException();}
-                @Override
-                public void forEachRemaining(Consumer<? super E> action) {
-                	iterator.forEachRemaining(action);
-                }
+            @Override
+            public boolean hasNext() {
+            	return iterator.hasNext();
+            }
+            @Override
+            public E next() {
+            	return iterator.next();
+            }
+            @Override
+            public void remove() {throw new UnsupportedOperationException();}
+            @Override
+            public void forEachRemaining(Consumer<? super E> action) {
+            	iterator.forEachRemaining(action);
+            }
             };
 		}
 		
@@ -133,44 +133,44 @@ public class StringParameterInjector
 		@Override
 		public ListIterator<E> listIterator(int index) {
             return new ListIterator<E>() {
-                private final ListIterator<? extends E> iterator = UnmodifiableArrayList.super.listIterator(index);
+            private final ListIterator<? extends E> iterator = UnmodifiableArrayList.super.listIterator(index);
 
-                @Override
-                public boolean hasNext() {
-                	return iterator.hasNext();
-                }
-                @Override
-                public E next() {
-                	return iterator.next();
-                }
-                @Override
-                public boolean hasPrevious() {
-                	return iterator.hasPrevious();
-                }
-                @Override
-                public E previous() {
-                	return iterator.previous();
-                }
-                @Override
-                public int nextIndex() {
-                	return iterator.nextIndex();
-                }
-                @Override
-                public int previousIndex() {
-                	return iterator.previousIndex();
-                }
-                @Override
-                public void remove() {throw new UnsupportedOperationException();}
-                @Override
-                public void set(E e) {throw new UnsupportedOperationException();}
-                @Override
-                public void add(E e) {throw new UnsupportedOperationException();}
-                @Override
-                public void forEachRemaining(Consumer<? super E> action) {
-                	iterator.forEachRemaining(action);
-                }
+            @Override
+            public boolean hasNext() {
+            	return iterator.hasNext();
+            }
+            @Override
+            public E next() {
+            	return iterator.next();
+            }
+            @Override
+            public boolean hasPrevious() {
+            	return iterator.hasPrevious();
+            }
+            @Override
+            public E previous() {
+            	return iterator.previous();
+            }
+            @Override
+            public int nextIndex() {
+            	return iterator.nextIndex();
+            }
+            @Override
+            public int previousIndex() {
+            	return iterator.previousIndex();
+            }
+            @Override
+            public void remove() {throw new UnsupportedOperationException();}
+            @Override
+            public void set(E e) {throw new UnsupportedOperationException();}
+            @Override
+            public void add(E e) {throw new UnsupportedOperationException();}
+            @Override
+            public void forEachRemaining(Consumer<? super E> action) {
+            	iterator.forEachRemaining(action);
+            }
             };
-        
+      
 		}
 		
 	}
@@ -217,22 +217,22 @@ public class StringParameterInjector
 		@Override
 		public Iterator<E> iterator() {
             return new Iterator<E>() {
-                private final Iterator<? extends E> iterator = UnmodifiableHashSet.super.iterator();
+            private final Iterator<? extends E> iterator = UnmodifiableHashSet.super.iterator();
 
-                @Override
-                public boolean hasNext() {
-                	return iterator.hasNext();
-                }
-                @Override
-                public E next() {
-                	return iterator.next();
-                }
-                @Override
-                public void remove() {throw new UnsupportedOperationException();}
-                @Override
-                public void forEachRemaining(Consumer<? super E> action) {
-                	iterator.forEachRemaining(action);
-                }
+            @Override
+            public boolean hasNext() {
+            	return iterator.hasNext();
+            }
+            @Override
+            public E next() {
+            	return iterator.next();
+            }
+            @Override
+            public void remove() {throw new UnsupportedOperationException();}
+            @Override
+            public void forEachRemaining(Consumer<? super E> action) {
+            	iterator.forEachRemaining(action);
+            }
             };
 		}
 		
@@ -326,44 +326,44 @@ public class StringParameterInjector
 		@Override
 		public Iterator<E> iterator() {
             return new Iterator<E>() {
-                private final Iterator<? extends E> iterator = UnmodifiableTreeSet.super.iterator();
+            private final Iterator<? extends E> iterator = UnmodifiableTreeSet.super.iterator();
 
-                @Override
-                public boolean hasNext() {
-                	return iterator.hasNext();
-                }
-                @Override
-                public E next() {
-                	return iterator.next();
-                }
-                @Override
-                public void remove() {throw new UnsupportedOperationException();}
-                @Override
-                public void forEachRemaining(Consumer<? super E> action) {
-                	iterator.forEachRemaining(action);
-                }
+            @Override
+            public boolean hasNext() {
+            	return iterator.hasNext();
+            }
+            @Override
+            public E next() {
+            	return iterator.next();
+            }
+            @Override
+            public void remove() {throw new UnsupportedOperationException();}
+            @Override
+            public void forEachRemaining(Consumer<? super E> action) {
+            	iterator.forEachRemaining(action);
+            }
             };
 		}
 		
 		@Override
 		public Iterator<E> descendingIterator() {
             return new Iterator<E>() {
-                private final Iterator<? extends E> iterator = UnmodifiableTreeSet.super.descendingIterator();
+            private final Iterator<? extends E> iterator = UnmodifiableTreeSet.super.descendingIterator();
 
-                @Override
-                public boolean hasNext() {
-                	return iterator.hasNext();
-                }
-                @Override
-                public E next() {
-                	return iterator.next();
-                }
-                @Override
-                public void remove() {throw new UnsupportedOperationException();}
-                @Override
-                public void forEachRemaining(Consumer<? super E> action) {
-                	iterator.forEachRemaining(action);
-                }
+            @Override
+            public boolean hasNext() {
+            	return iterator.hasNext();
+            }
+            @Override
+            public E next() {
+            	return iterator.next();
+            }
+            @Override
+            public void remove() {throw new UnsupportedOperationException();}
+            @Override
+            public void forEachRemaining(Consumer<? super E> action) {
+            	iterator.forEachRemaining(action);
+            }
             };
 		}
 		
@@ -415,25 +415,25 @@ public class StringParameterInjector
       //Step 1: try to find a conversion mechanism using the type as it is
       if(initialize(annotations, factory))
       {
-    	  return;
+   	  return;
       }
       
       //Step2: try to find a conversion mechanism if the type is an array type
 	  if (type.isArray())
       {
 		  isArray = true;
-    	  baseType = type.getComponentType();
-    	  if(initialize(annotations, factory))
-    	  {
-    		  return ;
-    	  }
+   	  baseType = type.getComponentType();
+   	  if(initialize(annotations, factory))
+   	  {
+   		  return ;
+   	  }
       }
 	  
 	  //Step 3: try to find a conversion mechanism if the type is a collection type
 	  collectionType = convertParameterTypeToCollectionType();
 	  if (collectionType != null)
 	  {
-    	 isCollection = true;
+   	 isCollection = true;
          if (genericType instanceof ParameterizedType)
          {
             ParameterizedType zType = (ParameterizedType) baseGenericType;
@@ -447,7 +447,7 @@ public class StringParameterInjector
          }
          if(initialize(annotations, factory))
          {
-        	 return;
+      	 return;
          }
 	  }
       
@@ -485,15 +485,15 @@ public class StringParameterInjector
           {
              try
              {
-                unmarshaller = binder.value().newInstance();
+            unmarshaller = binder.value().newInstance();
              }
              catch (InstantiationException e)
              {
-                throw new RuntimeException(e.getCause());
+            throw new RuntimeException(e.getCause());
              }
              catch (IllegalAccessException e)
              {
-                throw new RuntimeException(e);
+            throw new RuntimeException(e);
              }
              factory.injectProperties(unmarshaller);
              unmarshaller.setAnnotations(annotations);
@@ -507,7 +507,7 @@ public class StringParameterInjector
           delegate = factory.getHeaderDelegate(baseType);
           if (delegate != null)
           {
-        	  return true;
+      	  return true;
           }
        }
        
@@ -517,11 +517,11 @@ public class StringParameterInjector
           constructor = baseType.getConstructor(String.class);
           if (!Modifier.isPublic(constructor.getModifiers())) 
           {
-        	  constructor = null;
+      	  constructor = null;
           }
           else
           {
-        	  return true;
+      	  return true;
           }
        }
        catch (NoSuchMethodException ignored)

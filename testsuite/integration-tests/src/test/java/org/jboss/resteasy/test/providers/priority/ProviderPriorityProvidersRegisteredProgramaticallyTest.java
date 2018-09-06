@@ -88,10 +88,10 @@ public class ProviderPriorityProvidersRegisteredProgramaticallyTest {
    }
 
    /**
-    * @tpTestDetails Tests that Programatically registered ExceptionMappers and
-    *                ParamConverterProviders are sorted by priority
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails Tests that Programatically registered ExceptionMappers and
+   *                ParamConverterProviders are sorted by priority
+   * @tpSince RESTEasy 4.0.0
+   */
    @Test
    public void testProgramaticRegistration() throws Exception {
       WebTarget base = client.target(generateURL(""));

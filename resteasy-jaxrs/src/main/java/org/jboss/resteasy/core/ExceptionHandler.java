@@ -43,13 +43,13 @@ public class ExceptionHandler
    }
 
    /**
-    * If there exists an Exception mapper for exception, execute it, otherwise, do NOT recurse up class hierarchy
-    * of exception.
-    *
-    * @param exception
-    * @param logger
-    * @return response
-    */
+   * If there exists an Exception mapper for exception, execute it, otherwise, do NOT recurse up class hierarchy
+   * of exception.
+   *
+   * @param exception
+   * @param logger
+   * @return response
+   */
    @SuppressWarnings(value = "unchecked")
    protected Response executeExactExceptionMapper(Throwable exception, RESTEasyTracingLogger logger) {
        if (logger == null)
@@ -106,11 +106,11 @@ public class ExceptionHandler
    }
 
    /**
-    * Execute an ExceptionMapper if one exists for the given exception.  Recurse to base class if not found.
-    *
-    * @param exception exception
-    * @return true if an ExceptionMapper was found and executed
-    */
+   * Execute an ExceptionMapper if one exists for the given exception.  Recurse to base class if not found.
+   *
+   * @param exception exception
+   * @return true if an ExceptionMapper was found and executed
+   */
    @SuppressWarnings(value = "unchecked")
    protected Response executeExceptionMapper(Throwable exception, RESTEasyTracingLogger logger)
    {

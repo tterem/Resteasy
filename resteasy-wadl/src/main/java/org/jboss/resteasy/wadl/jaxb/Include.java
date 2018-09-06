@@ -45,19 +45,19 @@ import javax.xml.namespace.QName;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "doc"
+   "doc"
 })
 @XmlRootElement(name = "include")
 public class Include {
 
-    protected List<Doc> doc;
-    @XmlAttribute(name = "href")
-    @XmlSchemaType(name = "anyURI")
-    protected String href;
-    @XmlAnyAttribute
-    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+   protected List<Doc> doc;
+   @XmlAttribute(name = "href")
+   @XmlSchemaType(name = "anyURI")
+   protected String href;
+   @XmlAnyAttribute
+   private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
-    /**
+   /**
      * Gets the value of the doc property.
      * 
      * <p>
@@ -79,14 +79,14 @@ public class Include {
      * 
      * 
      */
-    public List<Doc> getDoc() {
-        if (doc == null) {
-            doc = new ArrayList<Doc>();
-        }
-        return this.doc;
-    }
+   public List<Doc> getDoc() {
+      if (doc == null) {
+         doc = new ArrayList<Doc>();
+      }
+      return this.doc;
+   }
 
-    /**
+   /**
      * Gets the value of the href property.
      * 
      * @return
@@ -94,11 +94,11 @@ public class Include {
      *     {@link String }
      *     
      */
-    public String getHref() {
-        return href;
-    }
+   public String getHref() {
+      return href;
+   }
 
-    /**
+   /**
      * Sets the value of the href property.
      * 
      * @param value
@@ -106,11 +106,11 @@ public class Include {
      *     {@link String }
      *     
      */
-    public void setHref(String value) {
-        this.href = value;
-    }
+   public void setHref(String value) {
+      this.href = value;
+   }
 
-    /**
+   /**
      * Gets a map that contains attributes that aren't bound to any typed property on this class.
      * 
      * <p>
@@ -124,8 +124,8 @@ public class Include {
      * @return
      *     always non-null
      */
-    public Map<QName, String> getOtherAttributes() {
-        return otherAttributes;
-    }
+   public Map<QName, String> getOtherAttributes() {
+      return otherAttributes;
+   }
 
 }

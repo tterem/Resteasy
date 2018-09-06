@@ -14,16 +14,16 @@ public interface KeyRepository
    PublicKey findPublicKey(DKIMSignature header);
 
    /**
-    * What should be the default domain to use when creating signature header
-    *
-    * @return null if none
-    */
+   * What should be the default domain to use when creating signature header
+   *
+   * @return null if none
+   */
    String getDefaultPrivateDomain();
 
    /**
-    * What should be the default selector to use when creating signature header
-    *
-    * @return null if none
-    */
+   * What should be the default selector to use when creating signature header
+   *
+   * @return null if none
+   */
    String getDefaultPrivateSelector();
 }

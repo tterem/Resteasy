@@ -30,48 +30,48 @@ import org.junit.runner.RunWith;
 @RunAsClient
 public class DefaultCharsetTest {
 
-    protected enum ADD_CHARSET {TRUE, FALSE, DEFAULT};
+   protected enum ADD_CHARSET {TRUE, FALSE, DEFAULT};
 
-    static ResteasyClient client;
+   static ResteasyClient client;
 
-    @Deployment(name = "true") // "resteasy.add.charset" set to true
-    public static Archive<?> deploy_charset() {
-        WebArchive war = TestUtil.prepareArchive(DefaultCharsetTest.class.getSimpleName() + "_true");
-        war.addAsWebInfResource(DefaultCharsetTest.class.getPackage(), "DefaultCharsetTestWeb_true.xml", "web.xml");
-        return TestUtil.finishContainerPrepare(war, null, DefaultCharsetResource.class);
-    }
+   @Deployment(name = "true") // "resteasy.add.charset" set to true
+   public static Archive<?> deploy_charset() {
+      WebArchive war = TestUtil.prepareArchive(DefaultCharsetTest.class.getSimpleName() + "_true");
+      war.addAsWebInfResource(DefaultCharsetTest.class.getPackage(), "DefaultCharsetTestWeb_true.xml", "web.xml");
+      return TestUtil.finishContainerPrepare(war, null, DefaultCharsetResource.class);
+   }
     
-    @Deployment(name = "false") // "resteasy.add.charset" set to false
-    public static Archive<?> deploy_nocharset() {
-        WebArchive war = TestUtil.prepareArchive(DefaultCharsetTest.class.getSimpleName() + "_false");
-        war.addAsWebInfResource(DefaultCharsetTest.class.getPackage(), "DefaultCharsetTestWeb_false.xml", "web.xml");
-        return TestUtil.finishContainerPrepare(war, null, DefaultCharsetResource.class);
-    }
+   @Deployment(name = "false") // "resteasy.add.charset" set to false
+   public static Archive<?> deploy_nocharset() {
+      WebArchive war = TestUtil.prepareArchive(DefaultCharsetTest.class.getSimpleName() + "_false");
+      war.addAsWebInfResource(DefaultCharsetTest.class.getPackage(), "DefaultCharsetTestWeb_false.xml", "web.xml");
+      return TestUtil.finishContainerPrepare(war, null, DefaultCharsetResource.class);
+   }
     
-    @Deployment(name = "default") // "resteasy.add.charset" not set
-    public static Archive<?> deploy_default() {
-        WebArchive war = TestUtil.prepareArchive(DefaultCharsetTest.class.getSimpleName() + "_default");
-        war.addAsWebInfResource(DefaultCharsetTest.class.getPackage(), "DefaultCharsetTestWeb_default.xml", "web.xml");
-        return TestUtil.finishContainerPrepare(war, null, DefaultCharsetResource.class);
-    }
+   @Deployment(name = "default") // "resteasy.add.charset" not set
+   public static Archive<?> deploy_default() {
+      WebArchive war = TestUtil.prepareArchive(DefaultCharsetTest.class.getSimpleName() + "_default");
+      war.addAsWebInfResource(DefaultCharsetTest.class.getPackage(), "DefaultCharsetTestWeb_default.xml", "web.xml");
+      return TestUtil.finishContainerPrepare(war, null, DefaultCharsetResource.class);
+   }
 
-    @Before
-    public void init() {
-        client = new ResteasyClientBuilder().build();
-    }
+   @Before
+   public void init() {
+      client = new ResteasyClientBuilder().build();
+   }
 
-    @After
-    public void after() throws Exception {
-        client.close();
-        client = null;
-    }
+   @After
+   public void after() throws Exception {
+      client.close();
+      client = null;
+   }
 
-    private String generateURL(String suffix, String context, String path) {
-        return PortProviderUtil.generateURL(context + path, DefaultCharsetTest.class.getSimpleName() + suffix);
-    }
+   private String generateURL(String suffix, String context, String path) {
+      return PortProviderUtil.generateURL(context + path, DefaultCharsetTest.class.getSimpleName() + suffix);
+   }
     
-    @Test
-    public void testCharset() throws Exception {
+   @Test
+   public void testCharset() throws Exception {
        doTest("_true",    "/true",    "/nocharset",     "UTF-8");  // "resteasy.add.charset" set to true, text media type, charset not set
        doTest("_true",    "/true",    "/charset",       "UTF-16"); // "resteasy.add.charset" set to true, text media type, charset already set
        doTest("_true",    "/true",    "/nomediatype",   null);     // "resteasy.add.charset" set to true, no mediatype set in response
@@ -95,13 +95,13 @@ public class DefaultCharsetTest {
        doTest("_default", "/default",  "/xml_charset",   "UTF-16"); // "resteasy.add.charset" not set, application/xml media type, charset already set
        doTest("_default", "/default",  "/external",      "UTF-8");  // "resteasy.add.charset" not set, application/xml-... media type, charset not set
        doTest("_default", "/default",  "/json",          null);     // "resteasy.add.charset" not set, application/json media type, charset not set
-    }
+   }
 
-    void doTest(String suffix, String mapping, String path, String expectedMediaType) throws Exception {
+   void doTest(String suffix, String mapping, String path, String expectedMediaType) throws Exception {
        WebTarget target = client.target(generateURL(suffix, mapping, path));
        Response response = target.request().get();
        Assert.assertEquals(200, response.getStatus());
        Assert.assertEquals(expectedMediaType, response.getMediaType().getParameters().get(MediaType.CHARSET_PARAMETER));
        response.close();
-    }
+   }
 }

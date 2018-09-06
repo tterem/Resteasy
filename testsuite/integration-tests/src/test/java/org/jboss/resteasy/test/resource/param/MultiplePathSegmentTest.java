@@ -52,9 +52,9 @@ public class MultiplePathSegmentTest {
    }
    
    /**
-    * @tpTestDetails Array of PathSegments captured by wildcard
-    * @tpSince RESTEasy 3.1.3.Final
-    */
+   * @tpTestDetails Array of PathSegments captured by wildcard
+   * @tpSince RESTEasy 3.1.3.Final
+   */
    @Test
    public void testWildcardArray() throws Exception
    {
@@ -65,9 +65,9 @@ public class MultiplePathSegmentTest {
    }
 
    /**
-    * @tpTestDetails List of PathSegments captured by wildcard
-    * @tpSince RESTEasy 3.1.3.Final
-    */
+   * @tpTestDetails List of PathSegments captured by wildcard
+   * @tpSince RESTEasy 3.1.3.Final
+   */
    @Test
    public void testWildcardList() throws Exception
    {
@@ -78,9 +78,9 @@ public class MultiplePathSegmentTest {
    }
 
    /**
-    * @tpTestDetails ArrayList of PathSegments captured by wildcard
-    * @tpSince RESTEasy 3.1.3.Final
-    */
+   * @tpTestDetails ArrayList of PathSegments captured by wildcard
+   * @tpSince RESTEasy 3.1.3.Final
+   */
    @Test
    public void testWildcardArrayList() throws Exception
    {
@@ -91,9 +91,9 @@ public class MultiplePathSegmentTest {
    }
 
    /**
-    * @tpTestDetails Array of PathSegments captured by two separate segments with the same name
-    * @tpSince RESTEasy 3.1.3.Final
-    */
+   * @tpTestDetails Array of PathSegments captured by two separate segments with the same name
+   * @tpSince RESTEasy 3.1.3.Final
+   */
    @Test
    public void testTwoSegmentsArray() throws Exception
    {
@@ -104,9 +104,9 @@ public class MultiplePathSegmentTest {
    }
 
    /**
-    * @tpTestDetails List of PathSegments captured by two separate segments with the same name
-    * @tpSince RESTEasy 3.1.3.Final
-    */
+   * @tpTestDetails List of PathSegments captured by two separate segments with the same name
+   * @tpSince RESTEasy 3.1.3.Final
+   */
    @Test
    public void testTwoSegmentsList() throws Exception
    {
@@ -117,9 +117,9 @@ public class MultiplePathSegmentTest {
    }
 
    /**
-    * @tpTestDetails ArrayList of PathSegments captured by two separate segments with the same name
-    * @tpSince RESTEasy 3.1.3.Final
-    */
+   * @tpTestDetails ArrayList of PathSegments captured by two separate segments with the same name
+   * @tpSince RESTEasy 3.1.3.Final
+   */
    @Test
    public void testTwoSegmentsArrayList() throws Exception
    {

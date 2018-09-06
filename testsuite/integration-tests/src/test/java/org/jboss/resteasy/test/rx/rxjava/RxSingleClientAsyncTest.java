@@ -497,13 +497,13 @@ public class RxSingleClientAsyncTest {
       return null;
    }
 
-    private static boolean throwableContains(Throwable t, String s) {
-        while (t != null) {
+   private static boolean throwableContains(Throwable t, String s) {
+      while (t != null) {
             if (t.getMessage().contains(s)) {
-                return true;
+            return true;
             }
             t = t.getCause();
-        }
-        return false;
+      }
+      return false;
    }
 }

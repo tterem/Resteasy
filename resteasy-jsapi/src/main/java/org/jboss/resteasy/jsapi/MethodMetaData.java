@@ -110,7 +110,7 @@ public class MethodMetaData
 		PathParam uriParam;
 		CookieParam cookie;
 		FormParam formParam;
-        Form form;
+      Form form;
 
 		// boolean isEncoded = FindAnnotation.findAnnotation(annotations,
 		// Encoded.class) != null;
@@ -148,11 +148,11 @@ public class MethodMetaData
 		} else if ((form = FindAnnotation.findAnnotation(annotations, Form.class)) != null)
 		{
             if (type == Map.class || type == List.class) {
-                addParameter(type, annotations, MethodParamType.FORM, form.prefix());
-                this.wantsForm = true;
+            addParameter(type, annotations, MethodParamType.FORM, form.prefix());
+            this.wantsForm = true;
             } else
-                walkForm(type);
-        } else if ((FindAnnotation.findAnnotation(annotations, Context.class)) != null)
+            walkForm(type);
+      } else if ((FindAnnotation.findAnnotation(annotations, Context.class)) != null)
 		{
 			// righfully ignore
 		} else if (useBody)
@@ -177,7 +177,7 @@ public class MethodMetaData
 		}
 		if (type.getSuperclass() != null) {
 			walkForm(type.getSuperclass());
-        }
+      }
 	}
 
 	private void addParameter(Class<?> type, Annotation[] annotations,

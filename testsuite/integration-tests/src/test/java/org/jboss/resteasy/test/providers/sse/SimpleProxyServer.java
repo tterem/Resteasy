@@ -42,13 +42,13 @@ public class SimpleProxyServer
    private ServerSocket ss = null;
 
    /**
-    * Create a new SimpleProxyServer.
-    *
-    * @param host
-    * @param remotePort
-    * @param localPort
-    * @param debugCommunication
-    */
+   * Create a new SimpleProxyServer.
+   *
+   * @param host
+   * @param remotePort
+   * @param localPort
+   * @param debugCommunication
+   */
 
    public SimpleProxyServer(String host, int remotePort, int localPort)
    {
@@ -58,8 +58,8 @@ public class SimpleProxyServer
    }
 
    /**
-    * Start proxy
-    */
+   * Start proxy
+   */
    public void start()
    {
       log.info("Starting proxy " + this);
@@ -69,17 +69,17 @@ public class SimpleProxyServer
          this.terminateRequest = false;
          new Thread(new Runnable()
          {
-            public void run()
-            {
+         public void run()
+         {
                runServer();
-            }
+         }
          }, "ProxyServer").start();
       }
    }
 
    /**
-    * Stop proxy
-    */
+   * Stop proxy
+   */
    public void stop()
    {
       log.info("Stop proxy " + this);
@@ -89,19 +89,19 @@ public class SimpleProxyServer
       {
          try
          {
-            ss.close();
+         ss.close();
          }
          catch (IOException e)
          {
-            // TODO Auto-generated catch block
-            log.error("Error:", e);
+         // TODO Auto-generated catch block
+         log.error("Error:", e);
          }
       }
       while (!this.terminated)
       {
          try
          {
-            Thread.yield();
+         Thread.yield();
          }
          catch (Exception e)
          {
@@ -110,8 +110,8 @@ public class SimpleProxyServer
    }
 
    /**
-    * Method runs thread with proxy which waits for connection
-    */
+   * Method runs thread with proxy which waits for connection
+   */
    private void runServer()
    {
 
@@ -121,15 +121,15 @@ public class SimpleProxyServer
          log.info("Running proxy server on localport " + String.valueOf(this.localPort));
          while (!this.terminateRequest)
          {
-            ss.setSoTimeout(500);
-            try
-            {
+         ss.setSoTimeout(500);
+         try
+         {
                new ProxyThread(ss.accept(), this.host, this.remotePort, this).start();
-            }
-            catch (SocketTimeoutException ex)
-            {
+         }
+         catch (SocketTimeoutException ex)
+         {
                // Just ignore this exception
-            }
+         }
          }
       }
       catch (Exception e)
@@ -140,14 +140,14 @@ public class SimpleProxyServer
       {
          if (ss != null)
          {
-            try
-            {
+         try
+         {
                ss.close();
-            }
-            catch (IOException e)
-            {
+         }
+         catch (IOException e)
+         {
                log.error(e.getMessage(), e);
-            }
+         }
          }
          this.terminated = true;
       }
@@ -164,11 +164,11 @@ public class SimpleProxyServer
    }
 
    /**
-    * Connection thread
-    *
-    * @author <a href="pslavice@jboss.com">Pavel Slavicek</a>
-    * @version $Revision: 1.1 $
-    */
+   * Connection thread
+   *
+   * @author <a href="pslavice@jboss.com">Pavel Slavicek</a>
+   * @version $Revision: 1.1 $
+   */
    private static class ProxyThread extends Thread
    {
 
@@ -211,21 +211,21 @@ public class SimpleProxyServer
 
          if (this.clientSocket == null)
          {
-            log.error("Cannot open connection for null client socket!");
-            return;
+         log.error("Cannot open connection for null client socket!");
+         return;
          }
          try
          {
-            final InputStream from_client = clientSocket.getInputStream();
-            final OutputStream to_client = clientSocket.getOutputStream();
+         final InputStream from_client = clientSocket.getInputStream();
+         final OutputStream to_client = clientSocket.getOutputStream();
 
-            try
-            {
+         try
+         {
                serverSocket = new Socket(host, this.remotePort);
                serverSocket.setKeepAlive(true);
-            }
-            catch (IOException e)
-            {
+         }
+         catch (IOException e)
+         {
                String msg = "Proxy server cannot connect to " + host + ":" + this.remotePort + ":\n" + e + "\n";
                PrintWriter out = new PrintWriter(to_client);
                out.print(msg);
@@ -234,13 +234,13 @@ public class SimpleProxyServer
                this.controllableProxy.setTerminateRequest();
                log.error(msg);
                return;
-            }
+         }
 
-            // Get server streams.
-            final InputStream from_server = serverSocket.getInputStream();
-            final OutputStream to_server = serverSocket.getOutputStream();
-            Thread t = new Thread()
-            {
+         // Get server streams.
+         final InputStream from_server = serverSocket.getInputStream();
+         final OutputStream to_server = serverSocket.getOutputStream();
+         Thread t = new Thread()
+         {
 
                @Override
                public void run()
@@ -250,17 +250,17 @@ public class SimpleProxyServer
                   {
                      while ((bytes_read = from_client.read(request)) != -1 && !controllableProxy.isTerminateRequest())
                      {
-                        try
-                        {
+                  try
+                  {
 
                            to_server.write(request, 0, bytes_read);
                            to_server.flush();
 
-                        }
-                        catch (IOException e)
-                        {
+                  }
+                  catch (IOException e)
+                  {
                            log.error(e.getMessage(), e);
-                        }
+                  }
                      }
                   }
                   catch (IOException e)
@@ -272,11 +272,11 @@ public class SimpleProxyServer
                   {
                      if (!clientSocket.isClosed())
                      {
-                        clientSocket.close();
+                  clientSocket.close();
                      }
                      if (!serverSocket.isClosed())
                      {
-                        serverSocket.close();
+                  serverSocket.close();
                      }
 
                   }
@@ -285,27 +285,27 @@ public class SimpleProxyServer
                      log.error(e.getMessage(), e);
                   }
                }
-            };
-            t.start();
+         };
+         t.start();
 
-            int bytes_read;
-            while ((bytes_read = from_server.read(reply)) != -1 && !controllableProxy.isTerminateRequest())
-            {
+         int bytes_read;
+         while ((bytes_read = from_server.read(reply)) != -1 && !controllableProxy.isTerminateRequest())
+         {
                to_client.write(reply, 0, bytes_read);
                to_client.flush();
-            }
-            if (!clientSocket.isClosed())
-            {
+         }
+         if (!clientSocket.isClosed())
+         {
                clientSocket.close();
-            }
-            if (!serverSocket.isClosed())
-            {
+         }
+         if (!serverSocket.isClosed())
+         {
                serverSocket.close();
-            }
+         }
          }
          catch (IOException e)
          {
-            log.info("connection is closed");
+         log.info("connection is closed");
          }
       }
    }

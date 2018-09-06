@@ -55,10 +55,10 @@ public class HttpContextBuilder
    }
 
    /**
-    * Path to bind context
-    *
-    * @param path
-    */
+   * Path to bind context
+   *
+   * @param path
+   */
    public void setPath(String path)
    {
       this.path = path;
@@ -74,10 +74,10 @@ public class HttpContextBuilder
    }
 
    /**
-    * Will turn on Basic Authentication
-    *
-    * @param securityDomain
-    */
+   * Will turn on Basic Authentication
+   *
+   * @param securityDomain
+   */
    public void setSecurityDomain(SecurityDomain securityDomain)
    {
       this.securityDomain = securityDomain;

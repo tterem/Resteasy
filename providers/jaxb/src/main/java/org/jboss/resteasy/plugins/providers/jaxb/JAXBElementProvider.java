@@ -57,8 +57,8 @@ public class JAXBElementProvider extends AbstractJAXBProvider<JAXBElement<?>>
    }
 
    /**
-    *
-    */
+   *
+   */
    public JAXBElement<?> readFrom(Class<JAXBElement<?>> type,
                                   Type genericType,
                                   Annotation[] annotations,

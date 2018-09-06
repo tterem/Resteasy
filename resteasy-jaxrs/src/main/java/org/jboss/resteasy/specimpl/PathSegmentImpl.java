@@ -19,9 +19,9 @@ public class PathSegmentImpl implements PathSegment
    private boolean hasMatrixParams;
 
    /**
-    * @param segment encoded path segment
-    * @param decode whether or not to decode values
-    */
+   * @param segment encoded path segment
+   * @param decode whether or not to decode values
+   */
    public PathSegmentImpl(String segment, boolean decode)
    {
       this.original = segment;
@@ -37,9 +37,9 @@ public class PathSegmentImpl implements PathSegment
          String[] params = matrixParams.split(";");
          for (String param : params)
          {
-            String[] namevalue = param.split("=");
-            if (namevalue != null && namevalue.length > 0)
-            {
+         String[] namevalue = param.split("=");
+         if (namevalue != null && namevalue.length > 0)
+         {
                String name = namevalue[0];
                if (decode) name = Encode.decodePath(name);
                String value = null;
@@ -49,16 +49,16 @@ public class PathSegmentImpl implements PathSegment
                }
                if (decode && value != null) value = Encode.decodePath(value);
                matrixParameters.add(name, value);
-            }
+         }
          }
       }
       if (decode) this.path = Encode.decodePath(this.path);
    }
 
    /**
-    * NOTE: Used for optimization in ResteasyUriInfo
-    * @return true if path segment contains matrix parameters
-    */
+   * NOTE: Used for optimization in ResteasyUriInfo
+   * @return true if path segment contains matrix parameters
+   */
    public boolean hasMatrixParams()
    {
       return hasMatrixParams;
@@ -91,10 +91,10 @@ public class PathSegmentImpl implements PathSegment
       {
          for (String name : matrixParameters.keySet())
          {
-            for (String value : matrixParameters.get(name))
-            {
+         for (String value : matrixParameters.get(name))
+         {
                buf.append(";").append(name).append("=").append(value);
-            }
+         }
          }
       }
       return buf.toString();
@@ -106,9 +106,9 @@ public class PathSegmentImpl implements PathSegment
    }
 
    /**
-    * Used when creating the matching path in ResteasyUriInfo
-    *
-    */
+   * Used when creating the matching path in ResteasyUriInfo
+   *
+   */
    public static class SegmentParse
    {
       public List<PathSegment> segments;
@@ -118,11 +118,11 @@ public class PathSegmentImpl implements PathSegment
    }
 
    /**
-    *
-    * @param path encoded full path
-    * @param decode whether or not to decode each segment
-    * @return {@link SegmentParse}
-    */
+   *
+   * @param path encoded full path
+   * @param decode whether or not to decode each segment
+   * @return {@link SegmentParse}
+   */
    public static SegmentParse parseSegmentsOptimization(String path, boolean decode)
    {
       SegmentParse parse = new SegmentParse();
@@ -137,13 +137,13 @@ public class PathSegmentImpl implements PathSegment
          int slash = path.indexOf('/', start);
          if (slash < 0)
          {
-            p = path.substring(start);
-            start = length;
+         p = path.substring(start);
+         start = length;
          }
          else
          {
-            p = path.substring(start, slash);
-            start = slash + 1;
+         p = path.substring(start, slash);
+         start = slash + 1;
          }
          PathSegmentImpl pathSegment = new PathSegmentImpl(p, decode);
          parse.hasMatrixParams |= pathSegment.hasMatrixParams();

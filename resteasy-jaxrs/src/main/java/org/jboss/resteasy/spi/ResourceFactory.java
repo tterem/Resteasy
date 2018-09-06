@@ -11,37 +11,37 @@ import java.util.concurrent.CompletionStage;
 public interface ResourceFactory
 {
    /**
-    * Class to scan for jax-rs annotations
-    *
-    * @return class
-    */
+   * Class to scan for jax-rs annotations
+   *
+   * @return class
+   */
    Class<?> getScannableClass();
 
    /**
-    * Callback after registration has been completed.
-    *
-    * @param factory allows singleton factories to pre-inject things like @Context references into the singleton instance
-    */
+   * Callback after registration has been completed.
+   *
+   * @param factory allows singleton factories to pre-inject things like @Context references into the singleton instance
+   */
    void registered(ResteasyProviderFactory factory);
 
    /**
-    * Called per request to obtain a resource instance to invoke http request on.
-    *
-    * @param request http request
-    * @param response http response
-    * @param factory provider factory
-    * @return resource
-    */
+   * Called per request to obtain a resource instance to invoke http request on.
+   *
+   * @param request http request
+   * @param response http response
+   * @param factory provider factory
+   * @return resource
+   */
    CompletionStage<Object> createResource(HttpRequest request, HttpResponse response, ResteasyProviderFactory factory);
 
 
    /**
-    * Callback when request is finished.  usable for things like @PreDestroy if the underlying factory supports it
-    *
-    * @param request http request
-    * @param response http response
-    * @param resource resource
-    */
+   * Callback when request is finished.  usable for things like @PreDestroy if the underlying factory supports it
+   *
+   * @param request http request
+   * @param response http response
+   * @param resource resource
+   */
    void requestFinished(HttpRequest request, HttpResponse response, Object resource);
 
    void unregistered();

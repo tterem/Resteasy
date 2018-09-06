@@ -13,16 +13,16 @@ import javax.net.ssl.SSLContext;
 public interface ClientHttpEngine
 {
    /**
-    * Needed for Client.getSslContext();
-    * @return {@link SSLContext}
-    */
+   * Needed for Client.getSslContext();
+   * @return {@link SSLContext}
+   */
    SSLContext getSslContext();
 
    /**
-    * Needed for Client.getHostnameVerifier()
-    *
-    * @return {@link HostnameVerifier}
-    */
+   * Needed for Client.getHostnameVerifier()
+   *
+   * @return {@link HostnameVerifier}
+   */
    HostnameVerifier getHostnameVerifier();
    ClientResponse invoke(ClientInvocation request);
    void close();

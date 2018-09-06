@@ -124,35 +124,35 @@ public class SseEventProvider implements MessageBodyWriter<OutboundSseEvent>, Me
                      {
                         if (textLike)
                         {
-                            if (b == '\n' || b == '\r')
-                            {
+                     if (b == '\n' || b == '\r')
+                     {
                                if (!isNewLine)
                                {
                                   entityStream.write(SseConstants.EOL);
                                }
                                isNewLine = true;
-                            }
-                            else
-                            {
+                     }
+                     else
+                     {
                                if (isNewLine)
                                {
                                   entityStream.write(SseConstants.DATA_LEAD);
                                }
                                entityStream.write(b);
                                isNewLine = false;
-                            }   
+                     }   
                         }
                         else
                         {
-                            if (escape && (b == '\n' || b == '\r' || b == '\\'))
-                            {
-                                entityStream.write('\\');
-                                entityStream.write(b);
-                            }
-                            else
-                            {
-                                entityStream.write(b);
-                            }
+                     if (escape && (b == '\n' || b == '\r' || b == '\\'))
+                     {
+                        entityStream.write('\\');
+                        entityStream.write(b);
+                     }
+                     else
+                     {
+                        entityStream.write(b);
+                     }
                         }
                      }
 
@@ -167,7 +167,7 @@ public class SseEventProvider implements MessageBodyWriter<OutboundSseEvent>, Me
                      {
                         if (!textLike)
                         {
-                            entityStream.write(SseConstants.EOL);
+                     entityStream.write(SseConstants.EOL);
                         }
                         entityStream.close();
                      }
@@ -196,12 +196,12 @@ public class SseEventProvider implements MessageBodyWriter<OutboundSseEvent>, Me
      MediaType streamType = mediaType;
      if (mediaType.getParameters() != null)
      {
-        Map<String, String> map = mediaType.getParameters();
-        String elementType = map.get(SseConstants.SSE_ELEMENT_MEDIA_TYPE);
-        if (elementType != null)
-        {
+      Map<String, String> map = mediaType.getParameters();
+      String elementType = map.get(SseConstants.SSE_ELEMENT_MEDIA_TYPE);
+      if (elementType != null)
+      {
            mediaType = MediaType.valueOf(elementType);
-        }
+      }
      }
       return new SseEventInputImpl(annotations, streamType, mediaType, httpHeaders, entityStream);
    }

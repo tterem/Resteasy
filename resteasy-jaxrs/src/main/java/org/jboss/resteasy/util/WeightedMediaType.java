@@ -63,8 +63,8 @@ public class WeightedMediaType extends MediaType implements Comparable<WeightedM
    }
 
    /**
-    * Non-equal properties should not be compatible
-    */
+   * Non-equal properties should not be compatible
+   */
    @Override
    public boolean isCompatible(MediaType other)
    {

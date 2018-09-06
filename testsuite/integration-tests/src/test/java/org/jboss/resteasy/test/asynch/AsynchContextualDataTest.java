@@ -64,12 +64,12 @@ public class AsynchContextualDataTest {
       client.close();
    }
 
-    /**
+   /**
      * @tpTestDetails Test stack handling of context data map
      * @tpSince RESTEasy 3.1.1.Final
      */
-    @Test
-    public void testContextualData() throws Exception {
+   @Test
+   public void testContextualData() throws Exception {
        String id = "334";
 
        //Start the request to the waiting endpoint, but don't block
@@ -94,5 +94,5 @@ public class AsynchContextualDataTest {
 
        response.get().close();
        resResponse.close();
-    }
+   }
 }

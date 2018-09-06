@@ -99,10 +99,10 @@ public class PriorityEqualityTest {
    //////////////////////////////////////////////////////////////////////////////
 
    /**
-    * @tpTestDetails ResteasyProviderFactory should store multiple ParamConvertProviders
-    *                with the same @Priority.
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails ResteasyProviderFactory should store multiple ParamConvertProviders
+   *                with the same @Priority.
+   * @tpSince RESTEasy 4.0.0
+   */
    @Test
    public void testParamConverterProvidersFromClass() throws Exception {
       ResteasyProviderFactory factory = ResteasyProviderFactory.newInstance();
@@ -117,10 +117,10 @@ public class PriorityEqualityTest {
    }
 
    /**
-    * @tpTestDetails ResteasyProviderFactory should store multiple ParamConvertProviders
-    *                with the same @Priority.
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails ResteasyProviderFactory should store multiple ParamConvertProviders
+   *                with the same @Priority.
+   * @tpSince RESTEasy 4.0.0
+   */
    @Test
    public void testParamConverterProvidersObjects() throws Exception {
       ResteasyProviderFactory factory = ResteasyProviderFactory.newInstance();
@@ -138,10 +138,10 @@ public class PriorityEqualityTest {
    }
 
    /**
-    * @tpTestDetails ResteasyProviderFactory should store a single ExceptionMapper for
-    *                a given Exception and @Priority.
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails ResteasyProviderFactory should store a single ExceptionMapper for
+   *                a given Exception and @Priority.
+   * @tpSince RESTEasy 4.0.0
+   */
    @Test
    public void testExceptionMappersFromClass() throws Exception {
       ResteasyProviderFactory factory = ResteasyProviderFactory.newInstance();
@@ -151,10 +151,10 @@ public class PriorityEqualityTest {
    }
    
    /**
-    * @tpTestDetails ResteasyProviderFactory should store a single ExceptionMapper for
-    *                a given Exception and @Priority.
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails ResteasyProviderFactory should store a single ExceptionMapper for
+   *                a given Exception and @Priority.
+   * @tpSince RESTEasy 4.0.0
+   */
    @Test
    public void testExceptionObjects() throws Exception {
       ResteasyProviderFactory factory = ResteasyProviderFactory.newInstance();

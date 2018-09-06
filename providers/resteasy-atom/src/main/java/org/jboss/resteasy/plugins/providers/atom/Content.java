@@ -118,10 +118,10 @@ public class Content extends CommonAttributes
    }
 
    /**
-    * Mime type of the content.
-    *
-    * @return media type
-    */
+   * Mime type of the content.
+   *
+   * @return media type
+   */
    @XmlTransient
    public MediaType getType()
    {
@@ -158,10 +158,10 @@ public class Content extends CommonAttributes
 
 
    /**
-    * If content is text, return it as a String.  Otherwise, if content is not text this will return null.
-    *
-    * @return text
-    */
+   * If content is text, return it as a String.  Otherwise, if content is not text this will return null.
+   *
+   * @return text
+   */
    @XmlTransient
    public String getText()
    {
@@ -178,10 +178,10 @@ public class Content extends CommonAttributes
    }
 
    /**
-    * Set content as text.
-    *
-    * @param text text
-    */
+   * Set content as text.
+   *
+   * @param text text
+   */
    public void setText(String text)
    {
       if (value == null) value = new ArrayList<Object>();
@@ -191,10 +191,10 @@ public class Content extends CommonAttributes
    }
 
    /**
-    * Get content as an XML Element if the content is XML.  Otherwise, this will just return null.
-    *
-    * @return {@link Element}
-    */
+   * Get content as an XML Element if the content is XML.  Otherwise, this will just return null.
+   *
+   * @return {@link Element}
+   */
    @XmlTransient
    public Element getElement()
    {
@@ -204,18 +204,18 @@ public class Content extends CommonAttributes
       {
          if (obj instanceof Element)
          {
-            element = (Element) obj;
-            return element;
+         element = (Element) obj;
+         return element;
          }
       }
       return null;
    }
 
    /**
-    * Set the content to an XML Element.
-    *
-    * @param element {@link Element}
-    */
+   * Set the content to an XML Element.
+   *
+   * @param element {@link Element}
+   */
    public void setElement(Element element)
    {
       if (value == null) value = new ArrayList<Object>();
@@ -226,18 +226,18 @@ public class Content extends CommonAttributes
    }
 
    /**
-    * Extract the content as the provided JAXB annotated type.
-    * <p>
-    * This method will use a cached JAXBContext used by the Resteasy JAXB providers
-    * or, if those are not existent, it will create a new JAXBContext from scratch
-    * using the class.
-    *
-    * @param <T> type
-    * @param clazz                class type you are expecting
-    * @param otherPossibleClasses Other classe you want to create the JAXBContext with
-    * @return null if there is no XML content
-    * @throws JAXBException jaxb exception
-    */
+   * Extract the content as the provided JAXB annotated type.
+   * <p>
+   * This method will use a cached JAXBContext used by the Resteasy JAXB providers
+   * or, if those are not existent, it will create a new JAXBContext from scratch
+   * using the class.
+   *
+   * @param <T> type
+   * @param clazz                class type you are expecting
+   * @param otherPossibleClasses Other classe you want to create the JAXBContext with
+   * @return null if there is no XML content
+   * @throws JAXBException jaxb exception
+   */
    @SuppressWarnings(value = "unchecked")
    public <T> T getJAXBObject(Class<T> clazz, Class... otherPossibleClasses) throws JAXBException
    {
@@ -267,15 +267,15 @@ public class Content extends CommonAttributes
       {
          final JAXBContext smCtx = ctx;
          try {
-            obj = AccessController.doPrivileged(new PrivilegedExceptionAction<Object>() {
+         obj = AccessController.doPrivileged(new PrivilegedExceptionAction<Object>() {
                @Override
                public Object run() throws Exception {
                   return smCtx.createUnmarshaller().unmarshal(getElement());
                }
-            });
+         });
          } catch (PrivilegedActionException pae)
          {
-            throw new JAXBException(pae);
+         throw new JAXBException(pae);
          }
       }
 
@@ -292,11 +292,11 @@ public class Content extends CommonAttributes
    }
 
    /**
-    * Returns previous extracted jaxbobject from a call to getJAXBObject(Class{@literal <}T{@literal >} clazz)
-    * or value passed in through a previous setJAXBObject().
-    *
-    * @return jaxb object
-    */
+   * Returns previous extracted jaxbobject from a call to getJAXBObject(Class{@literal <}T{@literal >} clazz)
+   * or value passed in through a previous setJAXBObject().
+   *
+   * @return jaxb object
+   */
    @XmlTransient
    public Object getJAXBObject()
    {

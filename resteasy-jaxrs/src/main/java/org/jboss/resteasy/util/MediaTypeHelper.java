@@ -53,9 +53,9 @@ public class MediaTypeHelper
       {
          if (defaultProduces != null)
          {
-            return new MediaType[]{defaultProduces};
+         return new MediaType[]{defaultProduces};
          } else {
-            return null;
+         return null;
          }
       }
       MediaType[] mediaTypes = new MediaType[consume.value().length];
@@ -79,39 +79,39 @@ public class MediaTypeHelper
          String val = type.getParameters().get("q");
          try
          {
-            if (val != null)
-            {
+         if (val != null)
+         {
                float rtn = Float.valueOf(val);
                if (rtn > 1.0F)
                   throw new LoggableFailure(Messages.MESSAGES.mediaTypeQGreaterThan1(type.toString()), HttpResponseCodes.SC_BAD_REQUEST);
                return rtn;
-            }
+         }
          }
          catch (NumberFormatException e)
          {
-            throw new RuntimeException(Messages.MESSAGES.mediaTypeQMustBeFloat(type), e);
+         throw new RuntimeException(Messages.MESSAGES.mediaTypeQMustBeFloat(type), e);
          }
       }
       return 2.0f;
    }
 
    /**
-    * subtypes like application/*+xml
-    *
-    * @param subtype subtype
-    * @return true if subtype is composite
-    */
+   * subtypes like application/*+xml
+   *
+   * @param subtype subtype
+   * @return true if subtype is composite
+   */
    public static boolean isCompositeWildcardSubtype(String subtype)
    {
       return subtype.startsWith("*+");
    }
 
    /**
-    * subtypes like application/*+xml
-    *
-    * @param subtype subtype
-    * @return true if subtype is wildcard composite
-    */
+   * subtypes like application/*+xml
+   *
+   * @param subtype subtype
+   * @return true if subtype is wildcard composite
+   */
    public static boolean isWildcardCompositeSubtype(String subtype)
    {
       return subtype.endsWith("+*");
@@ -146,30 +146,30 @@ public class MediaTypeHelper
          if (mediaType.isWildcardSubtype() && !mediaType2.isWildcardSubtype()) return -1;
          if (!mediaType.isWildcardSubtype() && mediaType2.isWildcardSubtype()) return 1;
          if (isComposite(mediaType.getSubtype()) && !isComposite(mediaType2.getSubtype()))
-            return -1;
+         return -1;
          if (!isComposite(mediaType.getSubtype()) && isComposite(mediaType2.getSubtype()))
-            return 1;
+         return 1;
          if (isCompositeWildcardSubtype(mediaType.getSubtype()) && !isCompositeWildcardSubtype(mediaType2.getSubtype()))
-            return -1;
+         return -1;
          if (!isCompositeWildcardSubtype(mediaType.getSubtype()) && isCompositeWildcardSubtype(mediaType2.getSubtype()))
-            return 1;
+         return 1;
          if (isWildcardCompositeSubtype(mediaType.getSubtype()) && !isWildcardCompositeSubtype(mediaType2.getSubtype()))
-            return -1;
+         return -1;
          if (!isWildcardCompositeSubtype(mediaType.getSubtype()) && isWildcardCompositeSubtype(mediaType2.getSubtype()))
-            return 1;
+         return 1;
 
          int numNonQ = 0;
          if (mediaType.getParameters() != null)
          {
-            numNonQ = mediaType.getParameters().size();
-            if (wasQ) numNonQ--;
+         numNonQ = mediaType.getParameters().size();
+         if (wasQ) numNonQ--;
          }
 
          int numNonQ2 = 0;
          if (mediaType2.getParameters() != null)
          {
-            numNonQ2 = mediaType2.getParameters().size();
-            if (wasQ2) numNonQ2--;
+         numNonQ2 = mediaType2.getParameters().size();
+         if (wasQ2) numNonQ2--;
          }
 
          if (numNonQ < numNonQ2) return -1;
@@ -211,7 +211,7 @@ public class MediaTypeHelper
       {
          for (MediaType provide : provided)
          {
-            if (provide.isCompatible(desire)) return provide;
+         if (provide.isCompatible(desire)) return provide;
          }
       }
       return null;
@@ -270,7 +270,7 @@ public class MediaTypeHelper
    public static boolean isTextLike(MediaType mediaType)
    {
       return "text".equalsIgnoreCase(mediaType.getType())
-            || ("application".equalsIgnoreCase(mediaType.getType())
+         || ("application".equalsIgnoreCase(mediaType.getType())
                   && mediaType.getSubtype().toLowerCase().startsWith("xml"));
    }
 }

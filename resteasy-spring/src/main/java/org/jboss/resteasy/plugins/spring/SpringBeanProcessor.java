@@ -117,35 +117,35 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
       {
          if (providerNames.contains(beanName))
          {
-            PropertyInjector injector = getInjector(AopUtils.getTargetClass(bean));
-            injector.inject(bean, false);
-            providerFactory.registerProviderInstance(bean);
+         PropertyInjector injector = getInjector(AopUtils.getTargetClass(bean));
+         injector.inject(bean, false);
+         providerFactory.registerProviderInstance(bean);
          }
 
          else if(registrations.contains(beanName) && bean instanceof ResteasyRegistration)
          {
-            ResteasyRegistration registration = (ResteasyRegistration)bean;
-            String registeredBeanName = registration.getBeanName();
-            BeanDefinition beanDef = beanFactory.getBeanDefinition(registeredBeanName);
-            Class<?> beanClass = getBeanClass(registeredBeanName, beanDef, beanFactory);
-            SpringResourceFactory resourceFactory = new SpringResourceFactory(registeredBeanName, beanFactory, beanClass);
-            resourceFactory.setContext(registration.getContext());
-            resourceFactories.put(registeredBeanName, resourceFactory);
+         ResteasyRegistration registration = (ResteasyRegistration)bean;
+         String registeredBeanName = registration.getBeanName();
+         BeanDefinition beanDef = beanFactory.getBeanDefinition(registeredBeanName);
+         Class<?> beanClass = getBeanClass(registeredBeanName, beanDef, beanFactory);
+         SpringResourceFactory resourceFactory = new SpringResourceFactory(registeredBeanName, beanFactory, beanClass);
+         resourceFactory.setContext(registration.getContext());
+         resourceFactories.put(registeredBeanName, resourceFactory);
          }
 
          else if (bean instanceof ResteasyDeployment && deployment != null) {
-            ResteasyDeployment beanDeployment = (ResteasyDeployment) bean;
-            deployment.merge(beanDeployment);
-            deployment.start();
+         ResteasyDeployment beanDeployment = (ResteasyDeployment) bean;
+         deployment.merge(beanDeployment);
+         deployment.start();
          }
 
          else 
          {
-            SpringResourceFactory resourceFactory = resourceFactories.get(beanName);
-            if (resourceFactory != null)
-            {
+         SpringResourceFactory resourceFactory = resourceFactories.get(beanName);
+         if (resourceFactory != null)
+         {
                inject(beanName, bean, getInjector(resourceFactory.getScannableClass()));
-            }
+         }
          }
 
          return bean;
@@ -160,17 +160,17 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
       {
          if (propertyInjector == null)
          {
-            return;
+         return;
          }
          HttpRequest request = ResteasyProviderFactory.getContextData(HttpRequest.class);
          if (request == null || isSingleton(beanName))
          {
-            propertyInjector.inject(bean, false);
+         propertyInjector.inject(bean, false);
          }
          else
          {
-            HttpResponse response = ResteasyProviderFactory.getContextData(HttpResponse.class);
-            propertyInjector.inject(request, response, bean, false);
+         HttpResponse response = ResteasyProviderFactory.getContextData(HttpResponse.class);
+         propertyInjector.inject(request, response, bean, false);
          }
       }
 
@@ -179,12 +179,12 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
          boolean isSingleton = false;
          try
          {
-            BeanDefinition beanDef = beanFactory.getBeanDefinition(beanName);
-            isSingleton = beanDef.isSingleton();
+         BeanDefinition beanDef = beanFactory.getBeanDefinition(beanName);
+         isSingleton = beanDef.isSingleton();
          }
          catch (org.springframework.beans.factory.NoSuchBeanDefinitionException nsbde)
          {
-            // cannot distinguish between singleton & prototype
+         // cannot distinguish between singleton & prototype
          }
          return isSingleton;
       }
@@ -245,19 +245,19 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
    }
 
    /**
-    * <p>
-    * This method keeps track of @Provider and resources for future use. It also
-    * registers the RESTEasy Registry, ProviderFactry, and Dispatcher for @Autowire
-    * injection.
-    * </p>
-    * <p>
-    * Beyond tracking, this will ensure that non-MessageBody(Reader|Writer) @Providers
-    * are created by Spring before any resources by having the resources
-    * "depends-on" the @Providers.
-    * </p>
-    * 
-    * @param beanFactory bean factory
-    */
+   * <p>
+   * This method keeps track of @Provider and resources for future use. It also
+   * registers the RESTEasy Registry, ProviderFactry, and Dispatcher for @Autowire
+   * injection.
+   * </p>
+   * <p>
+   * Beyond tracking, this will ensure that non-MessageBody(Reader|Writer) @Providers
+   * are created by Spring before any resources by having the resources
+   * "depends-on" the @Providers.
+   * </p>
+   * 
+   * @param beanFactory bean factory
+   */
    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)
            throws BeansException
    {
@@ -285,15 +285,15 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
       {
          for (SpringResourceFactory resourceFactory : resourceFactories.values())
          {
-            BeanDefinition beanDef = beanFactory.getBeanDefinition(resourceFactory.getBeanName());
-            beanDef.setDependsOn(concat(beanDef.getDependsOn(), dependsOnArray));
+         BeanDefinition beanDef = beanFactory.getBeanDefinition(resourceFactory.getBeanName());
+         beanDef.setDependsOn(concat(beanDef.getDependsOn(), dependsOnArray));
          }
       }
    }
 
    /**
-    * process a single @Provider or a single resource.
-    */
+   * process a single @Provider or a single resource.
+   */
    protected Class<?> processBean(final ConfigurableListableBeanFactory beanFactory,
                                   List<String> dependsOnProviders, String name, BeanDefinition beanDef)
    {
@@ -302,7 +302,7 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
       {
          if (!isSingleton(beanDef))
          {
-            throw new RuntimeException(Messages.MESSAGES.providerIsNotSingleton(name));
+         throw new RuntimeException(Messages.MESSAGES.providerIsNotSingleton(name));
          }
 
          providerNames.add(name);
@@ -310,7 +310,7 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
          if (!MessageBodyWriter.class.isAssignableFrom(beanClass)
                  && !MessageBodyReader.class.isAssignableFrom(beanClass))
          {
-            dependsOnProviders.add(name);
+         dependsOnProviders.add(name);
          }
       }
       if (GetRestful.isRootResource(beanClass))
@@ -353,12 +353,12 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
    }
 
    /**
-    * merge two arrays.
-    *
-    * @param dependsOn first array
-    * @param dependsOnProviders second array
-    * @return merged array
-    */
+   * merge two arrays.
+   *
+   * @param dependsOn first array
+   * @param dependsOnProviders second array
+   * @return merged array
+   */
    private static String[] concat(String[] dependsOn, String[] dependsOnProviders)
    {
       if (dependsOn == null || dependsOn.length == 0)
@@ -375,28 +375,28 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
    }
 
    /**
-    * Get the bean class, and take @Configuration @Beans into consideration.
-    *
-    * @param beanDef {@link BeanDefinition}
-    * @param beanFactory bean factory
-    * @return bean class
-    */
+   * Get the bean class, and take @Configuration @Beans into consideration.
+   *
+   * @param beanDef {@link BeanDefinition}
+   * @param beanFactory bean factory
+   * @return bean class
+   */
    private static Class<?> getBeanClass(String name, BeanDefinition beanDef,
-                                        ConfigurableListableBeanFactory beanFactory)
+                              ConfigurableListableBeanFactory beanFactory)
    {
       if (beanDef instanceof RootBeanDefinition)
       {
          RootBeanDefinition rootBeanDef = (RootBeanDefinition) beanDef;
          try
          {
-            if (rootBeanDef.getBeanClass() != null)
-            {
+         if (rootBeanDef.getBeanClass() != null)
+         {
                return rootBeanDef.getBeanClass();
-            }
+         }
          }
          catch (IllegalStateException e)
          {
-            // do nothing. This gets thrown for factory beans
+         // do nothing. This gets thrown for factory beans
          }
       }
 
@@ -414,20 +414,20 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
 
          if (beanDef instanceof AnnotatedBeanDefinition)
          {
-            factoryClassName = ((AnnotatedBeanDefinition) beanDef).getMetadata().getClassName();
+         factoryClassName = ((AnnotatedBeanDefinition) beanDef).getMetadata().getClassName();
          }
          else
          {
-            // Checks if beanDefinition has a factorybean defined. If so, lookup the classname of that bean
-            // definition and use that as the factory class name.
-            if (beanDef.getFactoryBeanName() != null)
-            {
+         // Checks if beanDefinition has a factorybean defined. If so, lookup the classname of that bean
+         // definition and use that as the factory class name.
+         if (beanDef.getFactoryBeanName() != null)
+         {
                factoryClassName = beanFactory.getBeanDefinition(beanDef.getFactoryBeanName()).getBeanClassName();
-            }
-            else
-            {
+         }
+         else
+         {
                factoryClassName = beanDef.getBeanClassName();
-            }
+         }
          }
 
           final Class<?> beanClass = getBeanClass(factoryClassName);
@@ -439,20 +439,20 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
           }
 
          /*
-            https://github.com/resteasy/Resteasy/issues/585
+         https://github.com/resteasy/Resteasy/issues/585
 
-            If we haven't found the correct factoryMethod using the previous method,
-            fallback to the default FactoryBean getObject method.
+         If we haven't found the correct factoryMethod using the previous method,
+         fallback to the default FactoryBean getObject method.
 
-            Case in which this tends to happen:
+         Case in which this tends to happen:
 
-            1. A bean (Bean A) exists which provides factoryMethods for retrieving 1 or more other beans (Bean B, Bean C, ...)
-                example: <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean"/>
-            2. Bean B is retrieved by telling Spring that the Factory-Bean is Bean A and that there is a method X to retrieve Bean B.
-                example: <bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService"/>
-            3. When resteasy has to inject Bean B it tries to lookup method X on Bean A instead of Bean B using the above code.
+         1. A bean (Bean A) exists which provides factoryMethods for retrieving 1 or more other beans (Bean B, Bean C, ...)
+            example: <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean"/>
+         2. Bean B is retrieved by telling Spring that the Factory-Bean is Bean A and that there is a method X to retrieve Bean B.
+            example: <bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService"/>
+         3. When resteasy has to inject Bean B it tries to lookup method X on Bean A instead of Bean B using the above code.
 
-            As a fix for this, we retrieve the return type for Bean A from the FactoryBean, which later on can be used to retrieve the other beans.
+         As a fix for this, we retrieve the return type for Bean A from the FactoryBean, which later on can be used to retrieve the other beans.
 
          */
           if (FactoryBean.class.isAssignableFrom(beanClass)) {
@@ -501,10 +501,10 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
    }
 
    /**
-    * Register all of the resources into RESTEasy only when Spring finishes it's
-    * life-cycle and the spring singleton bean creation is completed.
-    * @param event application event
-    */
+   * Register all of the resources into RESTEasy only when Spring finishes it's
+   * life-cycle and the spring singleton bean creation is completed.
+   * @param event application event
+   */
    @Override
    public void onApplicationEvent(ApplicationEvent event)
    {

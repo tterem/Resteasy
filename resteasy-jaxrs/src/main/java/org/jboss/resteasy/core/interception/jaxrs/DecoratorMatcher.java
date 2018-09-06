@@ -22,14 +22,14 @@ import java.util.List;
 public class DecoratorMatcher
 {
    /**
-    * @param targetClass i.e. Marshaller
-    * @param target target object
-    * @param type        i.e. a JAXB annotated class
-    * @param annotations i.e. method or parameter annotations
-    * @param mediaType media type
-    * @param <T> type
-    * @return decorated target object
-    */
+   * @param targetClass i.e. Marshaller
+   * @param target target object
+   * @param type        i.e. a JAXB annotated class
+   * @param annotations i.e. method or parameter annotations
+   * @param mediaType media type
+   * @param <T> type
+   * @return decorated target object
+   */
    @SuppressWarnings(value = "unchecked")
    public <T> T decorate(Class<T> targetClass, T target, Class type, Annotation[] annotations, MediaType mediaType)
    {

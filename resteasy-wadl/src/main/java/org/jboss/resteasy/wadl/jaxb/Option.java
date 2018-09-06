@@ -48,23 +48,23 @@ import org.w3c.dom.Element;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "doc",
-    "any"
+   "doc",
+   "any"
 })
 @XmlRootElement(name = "option")
 public class Option {
 
-    protected List<Doc> doc;
-    @XmlAnyElement(lax = true)
-    protected List<Object> any;
-    @XmlAttribute(name = "value", required = true)
-    protected String value;
-    @XmlAttribute(name = "mediaType")
-    protected String mediaType;
-    @XmlAnyAttribute
-    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+   protected List<Doc> doc;
+   @XmlAnyElement(lax = true)
+   protected List<Object> any;
+   @XmlAttribute(name = "value", required = true)
+   protected String value;
+   @XmlAttribute(name = "mediaType")
+   protected String mediaType;
+   @XmlAnyAttribute
+   private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
-    /**
+   /**
      * Gets the value of the doc property.
      * 
      * <p>
@@ -86,14 +86,14 @@ public class Option {
      * 
      * 
      */
-    public List<Doc> getDoc() {
-        if (doc == null) {
-            doc = new ArrayList<Doc>();
-        }
-        return this.doc;
-    }
+   public List<Doc> getDoc() {
+      if (doc == null) {
+         doc = new ArrayList<Doc>();
+      }
+      return this.doc;
+   }
 
-    /**
+   /**
      * Gets the value of the any property.
      * 
      * <p>
@@ -116,14 +116,14 @@ public class Option {
      * 
      * 
      */
-    public List<Object> getAny() {
-        if (any == null) {
-            any = new ArrayList<Object>();
-        }
-        return this.any;
-    }
+   public List<Object> getAny() {
+      if (any == null) {
+         any = new ArrayList<Object>();
+      }
+      return this.any;
+   }
 
-    /**
+   /**
      * Gets the value of the value property.
      * 
      * @return
@@ -131,11 +131,11 @@ public class Option {
      *     {@link String }
      *     
      */
-    public String getValue() {
-        return value;
-    }
+   public String getValue() {
+      return value;
+   }
 
-    /**
+   /**
      * Sets the value of the value property.
      * 
      * @param value
@@ -143,11 +143,11 @@ public class Option {
      *     {@link String }
      *     
      */
-    public void setValue(String value) {
-        this.value = value;
-    }
+   public void setValue(String value) {
+      this.value = value;
+   }
 
-    /**
+   /**
      * Gets the value of the mediaType property.
      * 
      * @return
@@ -155,11 +155,11 @@ public class Option {
      *     {@link String }
      *     
      */
-    public String getMediaType() {
-        return mediaType;
-    }
+   public String getMediaType() {
+      return mediaType;
+   }
 
-    /**
+   /**
      * Sets the value of the mediaType property.
      * 
      * @param value
@@ -167,11 +167,11 @@ public class Option {
      *     {@link String }
      *     
      */
-    public void setMediaType(String value) {
-        this.mediaType = value;
-    }
+   public void setMediaType(String value) {
+      this.mediaType = value;
+   }
 
-    /**
+   /**
      * Gets a map that contains attributes that aren't bound to any typed property on this class.
      * 
      * <p>
@@ -185,8 +185,8 @@ public class Option {
      * @return
      *     always non-null
      */
-    public Map<QName, String> getOtherAttributes() {
-        return otherAttributes;
-    }
+   public Map<QName, String> getOtherAttributes() {
+      return otherAttributes;
+   }
 
 }

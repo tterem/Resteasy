@@ -53,9 +53,9 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "UserType", propOrder = {
-        "id",
-        "credentials",
-        "roles"
+      "id",
+      "credentials",
+      "roles"
 })
 public class UserType {
    @XmlElement(namespace = "http://creaity.de/homecontrol/rest/types/v1")
@@ -67,49 +67,49 @@ public class UserType {
    protected List<RoleType> roles = new ArrayList<RoleType>();
 
    /**
-    * Ruft den Wert der id-Eigenschaft ab.
-    *
-    * @return
-    *     possible object is
-    *     {@link String }
-    *
-    */
+   * Ruft den Wert der id-Eigenschaft ab.
+   *
+   * @return
+   *     possible object is
+   *     {@link String }
+   *
+   */
    public String getId() {
       return id;
    }
 
    /**
-    * Legt den Wert der id-Eigenschaft fest.
-    *
-    * @param value
-    *     allowed object is
-    *     {@link String }
-    *
-    */
+   * Legt den Wert der id-Eigenschaft fest.
+   *
+   * @param value
+   *     allowed object is
+   *     {@link String }
+   *
+   */
    public void setId(String value) {
       this.id = value;
    }
 
    /**
-    * Ruft den Wert der credentials-Eigenschaft ab.
-    *
-    * @return
-    *     possible object is
-    *     {@link UserType.Credentials }
-    *
-    */
+   * Ruft den Wert der credentials-Eigenschaft ab.
+   *
+   * @return
+   *     possible object is
+   *     {@link UserType.Credentials }
+   *
+   */
    public UserType.Credentials getCredentials() {
       return credentials;
    }
 
    /**
-    * Legt den Wert der credentials-Eigenschaft fest.
-    *
-    * @param value
-    *     allowed object is
-    *     {@link UserType.Credentials }
-    *
-    */
+   * Legt den Wert der credentials-Eigenschaft fest.
+   *
+   * @param value
+   *     allowed object is
+   *     {@link UserType.Credentials }
+   *
+   */
    public void setCredentials(UserType.Credentials value) {
       this.credentials = value;
    }
@@ -124,25 +124,25 @@ public class UserType {
 
 
    /**
-    * <p>Java-Klasse für anonymous complex type.
-    *
-    * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
-    *
-    * <pre>
-    * &lt;complexType&gt;
-    *   &lt;complexContent&gt;
-    *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
-    *       &lt;sequence&gt;
-    *         &lt;element name="loginId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
-    *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
-    *       &lt;/sequence&gt;
-    *     &lt;/restriction&gt;
-    *   &lt;/complexContent&gt;
-    * &lt;/complexType&gt;
-    * </pre>
-    *
-    *
-    */
+   * <p>Java-Klasse für anonymous complex type.
+   *
+   * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+   *
+   * <pre>
+   * &lt;complexType&gt;
+   *   &lt;complexContent&gt;
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+   *       &lt;sequence&gt;
+   *         &lt;element name="loginId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+   *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+   *       &lt;/sequence&gt;
+   *     &lt;/restriction&gt;
+   *   &lt;/complexContent&gt;
+   * &lt;/complexType&gt;
+   * </pre>
+   *
+   *
+   */
    @XmlAccessorType(XmlAccessType.FIELD)
    @XmlType(name = "", propOrder = {
            "loginId",

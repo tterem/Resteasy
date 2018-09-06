@@ -13,8 +13,8 @@ public class MediaTypeEditor extends PropertyEditorSupport
 {
 
    /**
-    * {@inheritDoc}
-    */
+   * {@inheritDoc}
+   */
    @Override
    public String getAsText()
    {
@@ -22,8 +22,8 @@ public class MediaTypeEditor extends PropertyEditorSupport
    }
 
    /**
-    * {@inheritDoc}
-    */
+   * {@inheritDoc}
+   */
    @Override
    public void setAsText(String text) throws IllegalArgumentException
    {

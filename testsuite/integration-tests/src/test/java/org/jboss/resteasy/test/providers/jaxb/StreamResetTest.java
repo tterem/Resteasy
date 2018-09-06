@@ -33,75 +33,75 @@ import javax.ws.rs.core.Response;
 @RunAsClient
 public class StreamResetTest {
 
-    private final Logger logger = Logger.getLogger(StreamResetTest.class);
+   private final Logger logger = Logger.getLogger(StreamResetTest.class);
 
-    static ResteasyClient client;
+   static ResteasyClient client;
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(StreamResetTest.class.getSimpleName());
-        war.addClass(StreamResetTest.class);
-        return TestUtil.finishContainerPrepare(war, null, StreamResetPlace.class, StreamResetPerson.class,
-                StreamResetResource.class);
-    }
+   @Deployment
+   public static Archive<?> deploy() {
+      WebArchive war = TestUtil.prepareArchive(StreamResetTest.class.getSimpleName());
+      war.addClass(StreamResetTest.class);
+      return TestUtil.finishContainerPrepare(war, null, StreamResetPlace.class, StreamResetPerson.class,
+            StreamResetResource.class);
+   }
 
-    @Before
-    public void init() {
-        client = new ResteasyClientBuilder().build();
-    }
+   @Before
+   public void init() {
+      client = new ResteasyClientBuilder().build();
+   }
 
-    @After
-    public void after() throws Exception {
-        client.close();
-        client = null;
-    }
+   @After
+   public void after() throws Exception {
+      client.close();
+      client = null;
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, StreamResetTest.class.getSimpleName());
-    }
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, StreamResetTest.class.getSimpleName());
+   }
 
-    /**
+   /**
      * @tpTestDetails Regression test for JBEAP-2138.  BufferEntity method is called.
      * @tpSince RESTEasy 3.0.16
      */
-    @Test
-    public void testJBEAP2138() throws Exception {
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target(generateURL("/test"));
-        Response response = target.request().get();
+   @Test
+   public void testJBEAP2138() throws Exception {
+      Client client = ClientBuilder.newClient();
+      WebTarget target = client.target(generateURL("/test"));
+      Response response = target.request().get();
 
-        response.bufferEntity();
+      response.bufferEntity();
 
-        try {
-            response.readEntity(StreamResetPlace.class);
-        } catch (Exception e) {
-        }
+      try {
+         response.readEntity(StreamResetPlace.class);
+      } catch (Exception e) {
+      }
 
-        response.readEntity(StreamResetPerson.class);
-    }
+      response.readEntity(StreamResetPerson.class);
+   }
 
-    /**
+   /**
      * @tpTestDetails Regression test for JBEAP-2138.  BufferEntity method is not called.
      * @tpSince RESTEasy 3.0.16
      */
-    @Test
-    public void testJBEAP2138WithoutBufferedEntity() throws Exception {
-        try {
-            Client client = ClientBuilder.newClient();
-            WebTarget target = client.target(generateURL("/test"));
-            Response response = target.request().get();
+   @Test
+   public void testJBEAP2138WithoutBufferedEntity() throws Exception {
+      try {
+         Client client = ClientBuilder.newClient();
+         WebTarget target = client.target(generateURL("/test"));
+         Response response = target.request().get();
 
-            try {
-                response.readEntity(StreamResetPlace.class);
-            } catch (Exception e) {
-            }
+         try {
+            response.readEntity(StreamResetPlace.class);
+         } catch (Exception e) {
+         }
 
-            response.readEntity(StreamResetPerson.class);
+         response.readEntity(StreamResetPerson.class);
 
-            Assert.fail();
-        } catch (IllegalStateException e) {
-            logger.info("Expected IllegalStateException was thrown");
-        }
-    }
+         Assert.fail();
+      } catch (IllegalStateException e) {
+         logger.info("Expected IllegalStateException was thrown");
+      }
+   }
 
 }

@@ -17,11 +17,11 @@ public @interface ValidationExceptionCrazyConstraint {
 	
 	String DEFAULT_MESSAGE="a[][]][][b";
 	
-    String message() default DEFAULT_MESSAGE;
+   String message() default DEFAULT_MESSAGE;
 
-    Class<?>[] groups() default {};
+   Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+   Class<? extends Payload>[] payload() default {};
 
-    String value() default "";
+   String value() default "";
 }

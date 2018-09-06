@@ -25,8 +25,8 @@ public final class TypeConverter
    private static final String VALUE_OF_METHOD = "valueOf";
 
    /**
-    * A map of primitive to objects.
-    */
+   * A map of primitive to objects.
+   */
    private static final Map<Class<?>, Class<?>> PRIMITIVES;
 
    static
@@ -46,13 +46,13 @@ public final class TypeConverter
    }
 
    /**
-    * A generic method that returns the {@link String} as the specified Java type.
-    *
-    * @param <T>        the type to return
-    * @param source     the string value to convert
-    * @param targetType target type
-    * @return the object instance
-    */
+   * A generic method that returns the {@link String} as the specified Java type.
+   *
+   * @param <T>        the type to return
+   * @param source     the string value to convert
+   * @param targetType target type
+   * @return the object instance
+   */
    @SuppressWarnings(value = "unchecked")
    public static <T> T getType(final Class<T> targetType, final String source)
    {
@@ -80,19 +80,19 @@ public final class TypeConverter
          else c = new Character(source.charAt(0));
          try
          {
-            return (T)Character.class.getMethod("charValue").invoke(c);
+         return (T)Character.class.getMethod("charValue").invoke(c);
          }
          catch (IllegalAccessException e)
          {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
          }
          catch (InvocationTargetException e)
          {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
          }
          catch (NoSuchMethodException e)
          {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
          }
 
       }
@@ -103,26 +103,26 @@ public final class TypeConverter
          Boolean booleanValue = getBooleanValue(source);
          if (Boolean.class.equals(targetType))
          {
-            return targetType.cast(booleanValue);
+         return targetType.cast(booleanValue);
          }
          else
          {
-            try
-            {
+         try
+         {
                return (T)Boolean.class.getMethod("booleanValue").invoke(booleanValue);
-            }
-            catch (IllegalAccessException e)
-            {
+         }
+         catch (IllegalAccessException e)
+         {
                throw new RuntimeException(e);
-            }
-            catch (InvocationTargetException e)
-            {
+         }
+         catch (InvocationTargetException e)
+         {
                throw new RuntimeException(e);
-            }
-            catch (NoSuchMethodException e)
-            {
+         }
+         catch (NoSuchMethodException e)
+         {
                throw new RuntimeException(e);
-            }
+         }
          }
       }
       try
@@ -138,13 +138,13 @@ public final class TypeConverter
    }
 
    /**
-    * Tests if the class can safely be converted from a String to the
-    * specified type.
-    *
-    * @param targetType the type to convert to
-    * @return true if the class possesses either a "valueOf()" method or a constructor with a String
-    *         parameter.
-    */
+   * Tests if the class can safely be converted from a String to the
+   * specified type.
+   *
+   * @param targetType the type to convert to
+   * @return true if the class possesses either a "valueOf()" method or a constructor with a String
+   *         parameter.
+   */
    public static boolean isConvertable(final Class<?> targetType)
    {
       if (Boolean.class.equals(targetType))
@@ -169,41 +169,41 @@ public final class TypeConverter
       {
          try
          {
-            targetType.getDeclaredConstructor(String.class);
-            return true;
+         targetType.getDeclaredConstructor(String.class);
+         return true;
          }
 
          catch (NoSuchMethodException e1)
          {
-            return false;
+         return false;
          }
       }
    }
 
    /**
-    * <p>
-    * Returns a Boolean value from a String. Unlike {@link Boolean#valueOf(String)}, this
-    * method takes more String options. The following String values will return true:
-    * </p>
-    * <ul>
-    * <li>Yes</li>
-    * <li>Y</li>
-    * <li>T</li>
-    * <li>1</li>
-    * </ul>
-    * <p>
-    * While the following values will return false:
-    * </p>
-    * <ul>
-    * <li>No</li>
-    * <li>N</li>
-    * <li>F</li>
-    * <li>0</li>
-    * </ul>
-    *
-    * @param source source string
-    * @return boolean value from string
-    */
+   * <p>
+   * Returns a Boolean value from a String. Unlike {@link Boolean#valueOf(String)}, this
+   * method takes more String options. The following String values will return true:
+   * </p>
+   * <ul>
+   * <li>Yes</li>
+   * <li>Y</li>
+   * <li>T</li>
+   * <li>1</li>
+   * </ul>
+   * <p>
+   * While the following values will return false:
+   * </p>
+   * <ul>
+   * <li>No</li>
+   * <li>N</li>
+   * <li>F</li>
+   * <li>0</li>
+   * </ul>
+   *
+   * @param source source string
+   * @return boolean value from string
+   */
    public static Boolean getBooleanValue(final String source)
    {
       if ("Y".equalsIgnoreCase(source) || "T".equalsIgnoreCase(source)
@@ -220,12 +220,12 @@ public final class TypeConverter
    }
 
    /**
-    * @param <T> type
-    * @param source source string
-    * @param targetType target type
-    * @return object instance of type T
-    * @throws NoSuchMethodException if method was not found
-    */
+   * @param <T> type
+   * @param source source string
+   * @param targetType target type
+   * @return object instance of type T
+   * @throws NoSuchMethodException if method was not found
+   */
    @SuppressWarnings("unchecked")
    public static <T> T getTypeViaValueOfMethod(final String source, final Class<T> targetType)
            throws NoSuchMethodException
@@ -247,15 +247,15 @@ public final class TypeConverter
          Object value = valueOf.invoke(null, source);
          if (actualTarget.equals(targetType) && targetType.isInstance(value))
          {
-            result = targetType.cast(value);
+         result = targetType.cast(value);
          }
          /*
           * handle the primitive case
           */
          else if (!actualTarget.equals(targetType) && actualTarget.isInstance(value))
          {
-            // because you can't use targetType.cast() with primitives.
-            result = (T) value;
+         // because you can't use targetType.cast() with primitives.
+         result = (T) value;
          }
       }
       catch (IllegalAccessException e)
@@ -270,15 +270,15 @@ public final class TypeConverter
    }
 
    /**
-    * @param <T> type
-    * @param source source string
-    * @param targetType target type
-    * @return object instance of type T
-    * @throws IllegalArgumentException if not suitable constructor was found
-    * @throws InstantiationException if the underlying constructor represents an abstract class
-    * @throws IllegalAccessException if the underlying constructor is not accessible 
-    * @throws InvocationTargetException if the underlying constructor throws exception
-    */
+   * @param <T> type
+   * @param source source string
+   * @param targetType target type
+   * @return object instance of type T
+   * @throws IllegalArgumentException if not suitable constructor was found
+   * @throws InstantiationException if the underlying constructor represents an abstract class
+   * @throws IllegalAccessException if the underlying constructor is not accessible 
+   * @throws InvocationTargetException if the underlying constructor throws exception
+   */
    private static <T> T getTypeViaStringConstructor(String source, Class<T> targetType)
    {
       T result = null;

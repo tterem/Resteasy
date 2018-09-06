@@ -24,7 +24,7 @@ import java.lang.reflect.Type;
 @Provider
 @Produces("multipart/related")
 public class XopWithMultipartRelatedWriter extends
-        AbstractMultipartRelatedWriter implements MessageBodyWriter<Object>
+      AbstractMultipartRelatedWriter implements MessageBodyWriter<Object>
 {
 
    public long getSize(Object t, Class<?> type, Type genericType,

@@ -66,9 +66,9 @@ public class AnotherPublisherResponseTest {
    }
 
    /**
-    * @tpTestDetails Resource method returns Publisher<String>.
-    * @tpSince RESTEasy 4.0
-    */
+   * @tpTestDetails Resource method returns Publisher<String>.
+   * @tpSince RESTEasy 4.0
+   */
    @Test
    public void testSse() throws Exception
    {

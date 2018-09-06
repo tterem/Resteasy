@@ -11,13 +11,13 @@ import java.io.InputStream;
 public class ReadFromStream
 {
    /**
-    * Stuff the contents of a InputStream into a byte buffer.  Reads until EOF (-1).
-    *
-    * @param bufferSize buffer size
-    * @param entityStream entity input stream
-    * @return bytes read
-    * @throws IOException if I/O error occurred
-    */
+   * Stuff the contents of a InputStream into a byte buffer.  Reads until EOF (-1).
+   *
+   * @param bufferSize buffer size
+   * @param entityStream entity input stream
+   * @return bytes read
+   * @throws IOException if I/O error occurred
+   */
    public static byte[] readFromStream(int bufferSize, InputStream entityStream)
            throws IOException
    {
@@ -30,7 +30,7 @@ public class ReadFromStream
          wasRead = entityStream.read(buffer);
          if (wasRead > 0)
          {
-            baos.write(buffer, 0, wasRead);
+         baos.write(buffer, 0, wasRead);
          }
       } while (wasRead > -1);
       return baos.toByteArray();

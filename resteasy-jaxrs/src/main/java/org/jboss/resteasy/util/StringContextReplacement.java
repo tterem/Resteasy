@@ -27,17 +27,17 @@ public class StringContextReplacement
    private static final Pattern contextPath = Pattern.compile("\\$\\{contextpath\\}");
 
    /**
-    * Utility to replace predefined expressions within a string with values from the HTTP request;
-    * <p>
-    * ${basepath} - UriInfo.getBaseUri().getRawPath()
-    * ${absolutepath} - UriInfo.getAbsolutePath().getRawPath()
-    * ${absoluteuri} - UriInfo.getAbsolutePath().toString()
-    * ${baseuri} - UriInfo.getBaseUri().toString()
-    * ${contextpath} - HttpServletRequest.getContextPath()
-    *
-    * @param original original string
-    * @return string with replaced expression
-    */
+   * Utility to replace predefined expressions within a string with values from the HTTP request;
+   * <p>
+   * ${basepath} - UriInfo.getBaseUri().getRawPath()
+   * ${absolutepath} - UriInfo.getAbsolutePath().getRawPath()
+   * ${absoluteuri} - UriInfo.getAbsolutePath().toString()
+   * ${baseuri} - UriInfo.getBaseUri().toString()
+   * ${contextpath} - HttpServletRequest.getContextPath()
+   *
+   * @param original original string
+   * @return string with replaced expression
+   */
    public static String replace(String original)
    {
       UriInfo uriInfo = ResteasyProviderFactory.getContextData(UriInfo.class);

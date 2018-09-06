@@ -165,19 +165,19 @@ public class ServerResponseWriter
 	  MediaType mt = null;
       if (jaxrsResponse.getEntity() != null)
       {
-        if ((mt = jaxrsResponse.getMediaType()) == null)
-        {
+      if ((mt = jaxrsResponse.getMediaType()) == null)
+      {
            mt = getDefaultContentType(request, jaxrsResponse, providerFactory, method);
-        }
-        
-        boolean addCharset = true;
-        ResteasyDeployment deployment = ResteasyProviderFactory.getContextData(ResteasyDeployment.class);
-        if (deployment != null)
-        {
+      }
+      
+      boolean addCharset = true;
+      ResteasyDeployment deployment = ResteasyProviderFactory.getContextData(ResteasyDeployment.class);
+      if (deployment != null)
+      {
            addCharset = deployment.isAddCharset();
-        }
-        if (addCharset)
-        {
+      }
+      if (addCharset)
+      {
            if (!mt.getParameters().containsKey(MediaType.CHARSET_PARAMETER))
            {
               if (MediaTypeHelper.isTextLike(mt))
@@ -185,7 +185,7 @@ public class ServerResponseWriter
                  mt = mt.withCharset(StandardCharsets.UTF_8.toString());
               }
            }
-        }
+      }
       }
       return mt;
    }
@@ -209,7 +209,7 @@ public class ServerResponseWriter
       {
          ResponseContainerRequestContext requestContext = new ResponseContainerRequestContext(request);
          ContainerResponseContextImpl responseContext = new ContainerResponseContextImpl(request, response, jaxrsResponse, 
-        		 requestContext, responseFilters, onComplete, continuation);
+      		 requestContext, responseFilters, onComplete, continuation);
 
          RESTEasyTracingLogger logger = RESTEasyTracingLogger.getInstance(request);
 
@@ -564,8 +564,8 @@ public class ServerResponseWriter
    }
    
    /**
-    * m1, m2 are compatible
-    */
+   * m1, m2 are compatible
+   */
    private static SortableMediaType selectMostSpecific(SortableMediaType m1, SortableMediaType m2)
    {
       if (m1.getType().equals("*"))

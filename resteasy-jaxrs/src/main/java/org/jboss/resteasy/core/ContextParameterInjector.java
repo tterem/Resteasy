@@ -70,9 +70,9 @@ public class ContextParameterInjector implements ValueInjector
          // FIXME: do not unwrap if we have no request?
          if(request != null )
          {
-            boolean resolved = ((CompletionStage<Object>) contextData).toCompletableFuture().isDone();
-            if(!resolved)
-            {
+         boolean resolved = ((CompletionStage<Object>) contextData).toCompletableFuture().isDone();
+         if(!resolved)
+         {
                // make request async
                if(!request.getAsyncContext().isSuspended())
                   request.getAsyncContext().suspend();
@@ -83,7 +83,7 @@ public class ContextParameterInjector implements ValueInjector
                   ResteasyProviderFactory.pushContextDataMap(contextDataMap);
                   return value;
                });
-            }
+         }
          }
          return (CompletionStage<Object>) contextData;
       }
@@ -97,9 +97,9 @@ public class ContextParameterInjector implements ValueInjector
          try
          {
            
-            Object delegate = factory.getContextData(rawType, genericType, annotations, false);
-            if (delegate == null)
-            {
+         Object delegate = factory.getContextData(rawType, genericType, annotations, false);
+         if (delegate == null)
+         {
                String name = method.getName();
                if (o instanceof ResourceInfo && ("getResourceMethod".equals(name) || "getResourceClass".equals(name)))
                {
@@ -111,20 +111,20 @@ public class ContextParameterInjector implements ValueInjector
                   return method.invoke(factory, objects);
                }
                throw new LoggableFailure(Messages.MESSAGES.unableToFindContextualData(rawType.getName()));
-            }
-            return method.invoke(delegate, objects);
+         }
+         return method.invoke(delegate, objects);
          }
          catch (IllegalAccessException e)
          {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
          }
          catch (IllegalArgumentException e)
          {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
          }
          catch (InvocationTargetException e)
          {
-            throw e.getCause();
+         throw e.getCause();
          }
       }
    }
@@ -151,21 +151,21 @@ public class ContextParameterInjector implements ValueInjector
       return CompletableFuture.completedFuture(createProxy());
    }
 
-    protected Object createProxy()
-    {
-        if (proxy != null)
-        {
-            try
-            {
-                return proxy.getConstructors()[0].newInstance(new GenericDelegatingProxy());
-            }
-            catch (Exception e)
-            {
-                throw new RuntimeException(e);
-            }
-        }
-        else
-        {
+   protected Object createProxy()
+   {
+      if (proxy != null)
+      {
+         try
+         {
+            return proxy.getConstructors()[0].newInstance(new GenericDelegatingProxy());
+         }
+         catch (Exception e)
+         {
+            throw new RuntimeException(e);
+         }
+      }
+      else
+      {
            Class[] intfs = {rawType};
            ClassLoader clazzLoader = null;
            final SecurityManager sm = System.getSecurityManager();
@@ -178,11 +178,11 @@ public class ContextParameterInjector implements ValueInjector
               clazzLoader = AccessController.doPrivileged(new PrivilegedAction<ClassLoader>() {
                  @Override
                  public ClassLoader run() {
-                    return rawType.getClassLoader();
+               return rawType.getClassLoader();
                  }
               });
            }
            return Proxy.newProxyInstance(clazzLoader, intfs, new GenericDelegatingProxy());
-        }
-    }
+      }
+   }
 }

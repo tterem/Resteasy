@@ -15,14 +15,14 @@ import java.io.IOException;
 public interface Renderable
 {
    /**
-    * Called to do the actual work of rendering a view.  Note that while ServletException
-    * can be thrown, WebApplicationException is preferred.
-    * @param request http request
-    * @param response http response
-    * @throws IOException if I/O error occurred
-    * @throws ServletException if servlet error occurred
-    * @throws WebApplicationException if application error occurred
-    */
+   * Called to do the actual work of rendering a view.  Note that while ServletException
+   * can be thrown, WebApplicationException is preferred.
+   * @param request http request
+   * @param response http response
+   * @throws IOException if I/O error occurred
+   * @throws ServletException if servlet error occurred
+   * @throws WebApplicationException if application error occurred
+   */
    void render(HttpServletRequest request, HttpServletResponse response)
        throws IOException, ServletException, WebApplicationException;
 

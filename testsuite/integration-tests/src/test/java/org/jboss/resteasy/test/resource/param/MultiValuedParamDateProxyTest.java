@@ -53,32 +53,32 @@ import org.junit.runner.RunWith;
 @RunAsClient
 public class MultiValuedParamDateProxyTest {
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(MultiValuedParamDateProxyTest.class.getSimpleName());
-        war.addClass(MultiValuedParam.class);
-        war.addClass(ParamWrapper.class);
-        war.addClass(MultiValuedCookieParam.class);
-        war.addClass(CookieParamWrapper.class);
-        war.addClass(MultiValuedPathParam.class);
-        war.addClass(PathParamWrapper.class);
-        war.addClass(DateParamConverter.class);
-        war.addClass(MultiValuedParamConverter.class);
-        war.addClass(ParamWrapperArrayConverter.class);
-        war.addClass(MultiValuedCookieParamConverter.class);
-        war.addClass(CookieParamWrapperArrayConverter.class);
-        war.addClass(MultiValuedPathParamConverter.class);
-        war.addClass(PathParamWrapperArrayConverter.class);
-        war.addClass(MultiValuedParamResourceClient.class);
+   @Deployment
+   public static Archive<?> deploy() {
+      WebArchive war = TestUtil.prepareArchive(MultiValuedParamDateProxyTest.class.getSimpleName());
+      war.addClass(MultiValuedParam.class);
+      war.addClass(ParamWrapper.class);
+      war.addClass(MultiValuedCookieParam.class);
+      war.addClass(CookieParamWrapper.class);
+      war.addClass(MultiValuedPathParam.class);
+      war.addClass(PathParamWrapper.class);
+      war.addClass(DateParamConverter.class);
+      war.addClass(MultiValuedParamConverter.class);
+      war.addClass(ParamWrapperArrayConverter.class);
+      war.addClass(MultiValuedCookieParamConverter.class);
+      war.addClass(CookieParamWrapperArrayConverter.class);
+      war.addClass(MultiValuedPathParamConverter.class);
+      war.addClass(PathParamWrapperArrayConverter.class);
+      war.addClass(MultiValuedParamResourceClient.class);
 		return TestUtil.finishContainerPrepare(war, null, MultiValuedParamConverterProvider.class,
 				MultiValuedParamResource.class,  MultiValuedParamResource.QueryParamResource.class, MultiValuedParamResource.HeaderParamResource.class,
 				MultiValuedParamResource.PathParamResource.class, MultiValuedParamResource.CookieParamResource.class,
 				MultiValuedParamResource.MatrixParamResource.class, MultiValuedParamResource.FormParamResource.class);
-    }
+   }
 
-    private String generateBaseUrl() {
-        return PortProviderUtil.generateBaseUrl(MultiValuedParamDateProxyTest.class.getSimpleName());
-    }
+   private String generateBaseUrl() {
+      return PortProviderUtil.generateBaseUrl(MultiValuedParamDateProxyTest.class.getSimpleName());
+   }
 
 	String date1 = "20161217";
 	String date2 = "20161218";
@@ -86,12 +86,12 @@ public class MultiValuedParamDateProxyTest {
 	List<String> dates = Arrays.asList(date1, date2, date3);
 	String expectedResponse = date1 + "," + date2 + "," + date3;
 
-    /**
+   /**
      * @tpTestDetails QueryParam test
      * @tpSince RESTEasy 4.0.0
      */
-    @Test
-    public void testQueryParam() {
+   @Test
+   public void testQueryParam() {
 		ResteasyClient client = new ResteasyClientBuilder().build();
 		try {
 			QueryParamResourceClient queryParamResourceClient = client.target(generateBaseUrl()).proxy(MultiValuedParamResourceClient.class).queryParam();
@@ -112,15 +112,15 @@ public class MultiValuedParamDateProxyTest {
 		} finally {
 			client.close();
 		}
-    }
+   }
     
 
-    /**
+   /**
      * @tpTestDetails HeaderParam test
      * @tpSince RESTEasy 4.0.0
      */
-    @Test
-    public void testHeaderParam() {
+   @Test
+   public void testHeaderParam() {
 		ResteasyClient client = new ResteasyClientBuilder().build();
 		try {
 			HeaderParamResourceClient headerParamResourceClient = client.target(generateBaseUrl()).proxy(MultiValuedParamResourceClient.class).headerParam();
@@ -141,14 +141,14 @@ public class MultiValuedParamDateProxyTest {
 		} finally {
 			client.close();
 		}
-    }
+   }
     
-    /**
+   /**
      * @tpTestDetails MatrixParam test
      * @tpSince RESTEasy 4.0.0
      */
-    @Test
-    public void testMatrixParam() {
+   @Test
+   public void testMatrixParam() {
 		ResteasyClient client = new ResteasyClientBuilder().build();
 		try {
 			MatrixParamResourceClient matrixParamResourceClient = client.target(generateBaseUrl()).proxy(MultiValuedParamResourceClient.class).matrixParam();
@@ -169,14 +169,14 @@ public class MultiValuedParamDateProxyTest {
 		} finally {
 			client.close();
 		}
-    }
+   }
 
-    /**
+   /**
      * @tpTestDetails CoookieParam test
      * @tpSince RESTEasy 4.0.0
      */
-    @Test
-    public void testCookieParam() {
+   @Test
+   public void testCookieParam() {
 		ResteasyClient client = new ResteasyClientBuilder().build();
 		try {
 			CookieParamResourceClient cookieParamResourceClient = client.target(generateBaseUrl()).proxy(MultiValuedParamResourceClient.class).cookieParam();
@@ -197,14 +197,14 @@ public class MultiValuedParamDateProxyTest {
 		} finally {
 			client.close();
 		}
-    }
+   }
     
-    /**
+   /**
      * @tpTestDetails FormParam test
      * @tpSince RESTEasy 4.0.0
      */
-    @Test
-    public void testFormParam() {
+   @Test
+   public void testFormParam() {
 		ResteasyClient client = new ResteasyClientBuilder().build();
 		try {
 			FormParamResourceClient formParamResourceClient = client.target(generateBaseUrl()).proxy(MultiValuedParamResourceClient.class).formParam();
@@ -226,14 +226,14 @@ public class MultiValuedParamDateProxyTest {
 		} finally {
 			client.close();
 		}
-    }
+   }
     
-    /**
+   /**
      * @tpTestDetails PathParam test
      * @tpSince RESTEasy 4.0.0
      */
-    @Test
-    public void testPathParam() {
+   @Test
+   public void testPathParam() {
 		ResteasyClient client = new ResteasyClientBuilder().build();
 		try {
 			PathParamResourceClient pathParamResourceClient = client.target(generateBaseUrl()).proxy(MultiValuedParamResourceClient.class).pathParam();
@@ -254,6 +254,6 @@ public class MultiValuedParamDateProxyTest {
 		} finally {
 			client.close();
 		}
-    }
+   }
     
 }

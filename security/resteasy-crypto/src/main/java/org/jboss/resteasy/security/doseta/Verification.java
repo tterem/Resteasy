@@ -192,17 +192,17 @@ public class Verification
    }
 
    /**
-    * Headers can be a {@literal Map<String, Object> or a Map<String, List<Object>>}.  This gives some compatibility with
-    * JAX-RS's MultivaluedMap.   If a map of lists, every value of each header duplicate will be added.
+   * Headers can be a {@literal Map<String, Object> or a Map<String, List<Object>>}.  This gives some compatibility with
+   * JAX-RS's MultivaluedMap.   If a map of lists, every value of each header duplicate will be added.
 
-    *
-    * @param signature signature
-    * @param headers headers map
-    * @param body body
-    * @param publicKey public key
-    * @return map of validated headers and their values
-    * @throws SignatureException if verification fails
-    */
+   *
+   * @param signature signature
+   * @param headers headers map
+   * @param body body
+   * @param publicKey public key
+   * @return map of validated headers and their values
+   * @throws SignatureException if verification fails
+   */
    public MultivaluedMap<String, String> verify(DKIMSignature signature, Map headers, byte[] body, PublicKey publicKey) throws SignatureException
    {
       if (publicKey == null) publicKey = key;
@@ -214,7 +214,7 @@ public class Verification
       {
          if (signature.isExpired())
          {
-            throw new SignatureException(Messages.MESSAGES.signatureExpired());
+         throw new SignatureException(Messages.MESSAGES.signatureExpired());
          }
       }
       if (isStaleCheck())
@@ -226,7 +226,7 @@ public class Verification
                  getStaleMonths(),
                  getStaleYears()))
          {
-            throw new SignatureException(Messages.MESSAGES.signatureIsStale());
+         throw new SignatureException(Messages.MESSAGES.signatureIsStale());
          }
       }
 
@@ -235,7 +235,7 @@ public class Verification
          String value = signature.getAttributes().get(required.getKey());
          if (!value.equals(required.getValue()))
          {
-            throw new SignatureException(Messages.MESSAGES.expectedValue(required.getValue(), value, required.getKey()));
+         throw new SignatureException(Messages.MESSAGES.expectedValue(required.getValue(), value, required.getKey()));
          }
       }
 

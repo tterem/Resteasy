@@ -35,9 +35,9 @@ public class ClientDigitalSigningHeaderDecoratorFeature implements DynamicFeatur
    }
 
    /**
-    * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-    * @version $Revision: 1 $
-    */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
    @Priority(Priorities.HEADER_DECORATOR)
    public static class DigitalSigningHeaderDecorator extends AbstractDigitalSigningHeaderDecorator implements ClientRequestFilter
    {

@@ -13,7 +13,7 @@ public class ValidationExceptionSubResourceWithInvalidOverride extends Validatio
 	public static class ConstraintDeclarationExceptionMapper extends ValidationExceptionMapper<ConstraintDeclarationException> {
 	}
 	
-    @POST
-    public void test(@Size(max = 3) String s) {
-    }
+   @POST
+   public void test(@Size(max = 3) String s) {
+   }
 }

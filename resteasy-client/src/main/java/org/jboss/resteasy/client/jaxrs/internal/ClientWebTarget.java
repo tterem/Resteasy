@@ -54,13 +54,13 @@ public class ClientWebTarget implements ResteasyWebTarget
    }
    
    /**
-    * Get a new UriBuilder explicitly using RESTEasy implementation
-    * (instead of running UriBuilder.fromUri(uri) which relies on
-    * current registered JAX-RS implementation)
-    * 
-    * @param uri
-    * @return
-    */
+   * Get a new UriBuilder explicitly using RESTEasy implementation
+   * (instead of running UriBuilder.fromUri(uri) which relies on
+   * current registered JAX-RS implementation)
+   * 
+   * @param uri
+   * @return
+   */
    private static UriBuilder uriBuilderFromUri(URI uri)
    {
        return new ResteasyUriBuilder().uri(uri);

@@ -14,10 +14,10 @@ public class ValidationExceptionResourceWithInvalidConstraintGroup {
 	public static class GroupDefinitionExceptionMapper extends ValidationExceptionMapper<GroupDefinitionException> {
 	}
 	
-    private String s;
+   private String s;
 
-    @GET
-    public String test() {
-        return s;
-    }
+   @GET
+   public String test() {
+      return s;
+   }
 }

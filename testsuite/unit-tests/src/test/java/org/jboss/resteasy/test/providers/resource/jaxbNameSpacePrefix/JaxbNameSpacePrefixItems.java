@@ -27,14 +27,14 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "JaxbNameSpacePrefixItems", propOrder = {
-        "jaxbNameSpacePrefixItem"
+      "jaxbNameSpacePrefixItem"
 })
 public class JaxbNameSpacePrefixItems {
 
-    @XmlElement(required = true)
-    protected List<JaxbNameSpacePrefixItem> jaxbNameSpacePrefixItem;
+   @XmlElement(required = true)
+   protected List<JaxbNameSpacePrefixItem> jaxbNameSpacePrefixItem;
 
-    /**
+   /**
      * Gets the value of the jaxbNameSpacePrefixItem property.
      * <p>
      * <p>
@@ -54,11 +54,11 @@ public class JaxbNameSpacePrefixItems {
      * Objects of the following type(s) are allowed in the list
      * {@link JaxbNameSpacePrefixItem }
      */
-    public List<JaxbNameSpacePrefixItem> getJaxbNameSpacePrefixItem() {
-        if (jaxbNameSpacePrefixItem == null) {
-            jaxbNameSpacePrefixItem = new ArrayList<JaxbNameSpacePrefixItem>();
-        }
-        return this.jaxbNameSpacePrefixItem;
-    }
+   public List<JaxbNameSpacePrefixItem> getJaxbNameSpacePrefixItem() {
+      if (jaxbNameSpacePrefixItem == null) {
+         jaxbNameSpacePrefixItem = new ArrayList<JaxbNameSpacePrefixItem>();
+      }
+      return this.jaxbNameSpacePrefixItem;
+   }
 
 }

@@ -20,57 +20,57 @@ import java.security.PublicKey;
 public class ConfiguredDosetaKeyRepository implements KeyRepository
 {
    /**
-    * Context parameter.
-    * <p>
-    * Hardcoded file path to your keystore
-    */
+   * Context parameter.
+   * <p>
+   * Hardcoded file path to your keystore
+   */
    public static String RESTEASY_KEY_STORE_FILE_NAME = "resteasy.doseta.keystore.filename";
 
    /**
-    * Context parameter.
-    * <p>
-    * Find the java keystore by searching the classpath.  This points to a file on the classpath
-    */
+   * Context parameter.
+   * <p>
+   * Find the java keystore by searching the classpath.  This points to a file on the classpath
+   */
    public static String RESTEASY_KEY_STORE_CLASSPATH = "resteasy.doseta.keystore.classpath";
 
    /**
-    * Context parameter.
-    * <p>
-    * Password of the java keystore.
-    */
+   * Context parameter.
+   * <p>
+   * Password of the java keystore.
+   */
    public static String RESTEASY_KEY_STORE_PASSWORD = "resteasy.doseta.keystore.password";
 
    /**
-    * Context parameter.
-    * <p>
-    * true|false.  Whether or not to use DNS to discover public keys.  By default looks in keystore
-    */
+   * Context parameter.
+   * <p>
+   * true|false.  Whether or not to use DNS to discover public keys.  By default looks in keystore
+   */
    public static String RESTEASY_DOSETA_USE_DNS = "resteasy.doseta.use.dns";
 
    /**
-    * Context parameter.
-    * <p>
-    * If you need to retrieve from a specific DNS server specify the url
-    * <p>
-    * dns://hostname:port
-    */
+   * Context parameter.
+   * <p>
+   * If you need to retrieve from a specific DNS server specify the url
+   * <p>
+   * dns://hostname:port
+   */
    public static String RESTEASY_DOSETA_DNS_URI = "resteasy.doseta.dns.uri";
 
    /**
-    * Context parameter.
-    * <p>
-    * When signing, if no domain is specified, use this domain.
-    */
+   * Context parameter.
+   * <p>
+   * When signing, if no domain is specified, use this domain.
+   */
    public static String RESTEASY_DOSETA_DEFAULT_PRIVATE_DOMAIN = "resteasy.doseta.default.private.domain";
 
    /**
-    * Public keys are cached.  Specify a timeout for these keys.
-    */
+   * Public keys are cached.  Specify a timeout for these keys.
+   */
    public static String RESTEASY_DOSETA_CACHE_TIMEOUT = "resteasy.doseta.cache.timeout";
 
    /**
-    * true|false.  When signing, if no selector is specified, use the user principal as the selector value.
-    */
+   * true|false.  When signing, if no selector is specified, use the user principal as the selector value.
+   */
    public static String RESTEASY_DOSETA_PRINCIPAL_FOR_PRIVATE = "resteasy.doseta.principal.for.private";
 
    protected DosetaKeyRepository keyRepository = new DosetaKeyRepository();

@@ -29,15 +29,15 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "favoriteMovieXmlType", propOrder = {
-    "title"
+   "title"
 })
 @NoJackson
 public class FavoriteMovieXmlType {
 
-    @XmlElement(required = true)
-    protected String title;
+   @XmlElement(required = true)
+   protected String title;
 
-    /**
+   /**
      * Gets the value of the title property.
      * 
      * @return
@@ -45,11 +45,11 @@ public class FavoriteMovieXmlType {
      *     {@link String }
      *     
      */
-    public String getTitle() {
-        return title;
-    }
+   public String getTitle() {
+      return title;
+   }
 
-    /**
+   /**
      * Sets the value of the title property.
      * 
      * @param value
@@ -57,8 +57,8 @@ public class FavoriteMovieXmlType {
      *     {@link String }
      *     
      */
-    public void setTitle(String value) {
-        this.title = value;
-    }
+   public void setTitle(String value) {
+      this.title = value;
+   }
 
 }

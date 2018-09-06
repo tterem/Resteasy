@@ -164,10 +164,10 @@ public class ResteasyUriInfo implements UriInfo
    }
 
    /**
-    * Matching path without matrix parameters.
-    *
-    * @param encodedPathSegments list of path segments
-    */
+   * Matching path without matrix parameters.
+   *
+   * @param encodedPathSegments list of path segments
+   */
    protected void extractMatchingPath(List<PathSegment> encodedPathSegments)
    {
       StringBuilder preprocessedPath = new StringBuilder();
@@ -179,20 +179,20 @@ public class ResteasyUriInfo implements UriInfo
    }
 
    /**
-    * Encoded path without matrix parameters.
-    *
-    * @return matching path
-    */
+   * Encoded path without matrix parameters.
+   *
+   * @return matching path
+   */
    public String getMatchingPath()
    {
       return matchingPath;
    }
 
    /**
-    * Create a UriInfo from the baseURI.
-    *
-    * @param relative relative uri
-    */
+   * Create a UriInfo from the baseURI.
+   *
+   * @param relative relative uri
+   */
    public void setRequestUri(URI relative)
    {
       setUri(baseURI, relative);

@@ -198,15 +198,15 @@ public class FlowableRxInvokerImpl implements FlowableRxInvoker
 
 	@Override
 	public BackpressureStrategy getBackpressureStrategy() {
-        return backpressureStrategy;
-    }
+      return backpressureStrategy;
+   }
 
 	@Override
-    public void setBackpressureStrategy(BackpressureStrategy backpressureStrategy) {
-        this.backpressureStrategy = backpressureStrategy;
-    }
+   public void setBackpressureStrategy(BackpressureStrategy backpressureStrategy) {
+      this.backpressureStrategy = backpressureStrategy;
+   }
 
-    private <T> Flowable<T> eventSourceToObservable(SseEventSourceImpl sseEventSource, Class<T> clazz, String verb, Entity<?> entity, MediaType[] mediaTypes)
+   private <T> Flowable<T> eventSourceToObservable(SseEventSourceImpl sseEventSource, Class<T> clazz, String verb, Entity<?> entity, MediaType[] mediaTypes)
 	{
 		Flowable<T> flowable = Flowable.create(
 				new FlowableOnSubscribe<T>() {

@@ -53,10 +53,10 @@ public class SeamFunctionMapper extends FunctionMapper
       }
    }
 
-    @Override
-    public void mapFunction(String prefix, String localName, Method meth) {
-        super.mapFunction(prefix, localName, meth);
-    }
+   @Override
+   public void mapFunction(String prefix, String localName, Method meth) {
+      super.mapFunction(prefix, localName, meth);
+   }
 
    /* @Override
    public Method resolveFunction(String prefix, String localName, int paramCount) 
@@ -66,10 +66,10 @@ public class SeamFunctionMapper extends FunctionMapper
          List<Method> methods = methodCache.get(localName);
          if (methods != null)
          {
-            for (Method m : methods)
-            {
+         for (Method m : methods)
+         {
                if (m.getParameterTypes().length == paramCount) return m;
-            }
+         }
          }
 
          return null;
@@ -93,12 +93,12 @@ public class SeamFunctionMapper extends FunctionMapper
          List<Method> methods;
          if (methodCache.containsKey(localName))
          {
-            methods = methodCache.get(localName);
+         methods = methodCache.get(localName);
          }
          else
          {
-            methods = new ArrayList<Method>();
-            methodCache.put(localName, methods);
+         methods = new ArrayList<Method>();
+         methodCache.put(localName, methods);
          }
          
          methods.add(m);         

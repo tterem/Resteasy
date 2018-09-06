@@ -50,9 +50,9 @@ public class PartialAnnotationResourceTest
    }
 
    /**
-    * @tpTestDetails Test basic functionality of test resource
-    * @tpSince RESTEasy 3.5.1
-    */
+   * @tpTestDetails Test basic functionality of test resource
+   * @tpSince RESTEasy 3.5.1
+   */
    @Test
    public void test()
    {

@@ -58,9 +58,9 @@ public class ViolationsContainer<T> implements Serializable
 
    public void addViolations(Set<? extends ResteasyConstraintViolation> set)
    {
-    Iterator<? extends ResteasyConstraintViolation> it = set.iterator();
-    while (it.hasNext())
-    {
+   Iterator<? extends ResteasyConstraintViolation> it = set.iterator();
+   while (it.hasNext())
+   {
        ResteasyConstraintViolation violation = it.next();
        switch (violation.getConstraintType())
        {
@@ -84,7 +84,7 @@ public class ViolationsContainer<T> implements Serializable
              returnValueViolations.add(violation);
              break;
        }
-    }
+   }
    }
    
    public void addFieldViolation(ResteasyConstraintViolation v)

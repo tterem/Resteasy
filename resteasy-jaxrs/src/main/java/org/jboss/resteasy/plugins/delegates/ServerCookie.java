@@ -37,7 +37,7 @@ public class ServerCookie implements Serializable
          char c = value.charAt(i);
 
          if (tspecials.indexOf(c) != -1)
-            return false;
+         return false;
       }
       return true;
    }
@@ -51,9 +51,9 @@ public class ServerCookie implements Serializable
          char c = value.charAt(i);
          if (c < 0x20 || c >= 0x7f)
          {
-            if (c == 0x09)
+         if (c == 0x09)
                continue; //allow horizontal tabs
-            return true;
+         return true;
          }
       }
       return false;
@@ -69,16 +69,16 @@ public class ServerCookie implements Serializable
       {
          char c = value.charAt(i);
          if (tspecials2.indexOf(c) != -1)
-            return false;
+         return false;
       }
       return true;
    }
 
    /**
-    * @deprecated Not used: Deprecated in the original org.apache.tomcat.util.http.ServerCookie class.
-    * @param name name
-    * @return boolean flag
-    */
+   * @deprecated Not used: Deprecated in the original org.apache.tomcat.util.http.ServerCookie class.
+   * @param name name
+   * @return boolean flag
+   */
    public static boolean checkName(String name)
    {
       if (!isToken(name)
@@ -102,10 +102,10 @@ public class ServerCookie implements Serializable
 
 
    /**
-    * Return the header name to set the cookie, based on cookie version.
-    * @param version cookie version
-    * @return cookie header name
-    */
+   * Return the header name to set the cookie, based on cookie version.
+   * @param version cookie version
+   * @return cookie header name
+   */
    public static String getCookieHeaderName(int version)
    {
       // TODO Re-enable logging when RFC2965 is implemented
@@ -128,17 +128,17 @@ public class ServerCookie implements Serializable
    }
 
    /**
-    * US locale - all HTTP dates are in english
-    */
+   * US locale - all HTTP dates are in english
+   */
    private final static Locale LOCALE_US = Locale.US;
 
    /**
-    * GMT timezone - all HTTP dates are on GMT
-    */
+   * GMT timezone - all HTTP dates are on GMT
+   */
    public final static TimeZone GMT_ZONE = TimeZone.getTimeZone("GMT");
    /**
-    * Pattern used for old cookies
-    */
+   * Pattern used for old cookies
+   */
    private final static String OLD_COOKIE_PATTERN = "EEE, dd-MMM-yyyy HH:mm:ss z";
 
 
@@ -169,14 +169,14 @@ public class ServerCookie implements Serializable
 
    // TODO RFC2965 fields also need to be passed
    public static void appendCookieValue(StringBuffer headerBuf,
-                                        int version,
-                                        String name,
-                                        String value,
-                                        String path,
-                                        String domain,
-                                        String comment,
-                                        int maxAge,
-                                        boolean isSecure)
+                              int version,
+                              String name,
+                              String value,
+                              String path,
+                              String domain,
+                              String comment,
+                              int maxAge,
+                              boolean isSecure)
    {
       StringBuffer buf = new StringBuffer();
       // Servlet implementation checks name
@@ -195,8 +195,8 @@ public class ServerCookie implements Serializable
          // Comment=comment
          if (comment != null)
          {
-            buf.append("; Comment=");
-            maybeQuote2(version, buf, comment);
+         buf.append("; Comment=");
+         maybeQuote2(version, buf, comment);
          }
       }
 
@@ -213,12 +213,12 @@ public class ServerCookie implements Serializable
       {
          if (version == 0)
          {
-            // Wdy, DD-Mon-YY HH:MM:SS GMT ( Expires Netscape format )
-            buf.append("; Expires=");
-            // To expire immediately we need to set the time in past
-            if (maxAge == 0)
+         // Wdy, DD-Mon-YY HH:MM:SS GMT ( Expires Netscape format )
+         buf.append("; Expires=");
+         // To expire immediately we need to set the time in past
+         if (maxAge == 0)
                buf.append(ancientDate);
-            else
+         else
                formatOldCookie
                        (new Date(System.currentTimeMillis() +
                                maxAge * 1000L), buf,
@@ -227,8 +227,8 @@ public class ServerCookie implements Serializable
          }
          else
          {
-            buf.append("; Max-Age=");
-            buf.append(maxAge);
+         buf.append("; Max-Age=");
+         buf.append(maxAge);
          }
       }
 
@@ -255,12 +255,12 @@ public class ServerCookie implements Serializable
    }
 
    /**
-    * Quotes values using rules that vary depending on Cookie version.
-    *
-    * @param version cookie version
-    * @param buf buffer
-    * @param value value
-    */
+   * Quotes values using rules that vary depending on Cookie version.
+   *
+   * @param version cookie version
+   * @param buf buffer
+   * @param value value
+   */
    public static void maybeQuote2(int version, StringBuffer buf, String value)
    {
       if (value == null || value.length() == 0)
@@ -295,13 +295,13 @@ public class ServerCookie implements Serializable
 
 
    /**
-    * Escapes any double quotes in the given string.
-    *
-    * @param s          the input string
-    * @param beginIndex start index inclusive
-    * @param endIndex   exclusive
-    * @return The (possibly) escaped string
-    */
+   * Escapes any double quotes in the given string.
+   *
+   * @param s          the input string
+   * @param beginIndex start index inclusive
+   * @param endIndex   exclusive
+   * @return The (possibly) escaped string
+   */
    private static String escapeDoubleQuotes(String s, int beginIndex, int endIndex)
    {
 
@@ -316,15 +316,15 @@ public class ServerCookie implements Serializable
          char c = s.charAt(i);
          if (c == '\\')
          {
-            b.append(c);
-            //ignore the character after an escape, just append it
-            if (++i >= endIndex) throw new IllegalArgumentException(Messages.MESSAGES.invalidEscapeCharacterInCookieValue());
-            b.append(s.charAt(i));
+         b.append(c);
+         //ignore the character after an escape, just append it
+         if (++i >= endIndex) throw new IllegalArgumentException(Messages.MESSAGES.invalidEscapeCharacterInCookieValue());
+         b.append(s.charAt(i));
          }
          else if (c == '"')
-            b.append('\\').append('"');
+         b.append('\\').append('"');
          else
-            b.append(c);
+         b.append(c);
       }
 
       return b.toString();

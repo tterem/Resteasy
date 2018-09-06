@@ -11,123 +11,123 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "itemtype", propOrder = {
-        "title",
-        "note",
-        "quantity",
-        "price"
+      "title",
+      "note",
+      "quantity",
+      "price"
 })
 public class Item {
-    @XmlElement(required = true)
-    private String title;
+   @XmlElement(required = true)
+   private String title;
 
-    private String note;
+   private String note;
 
-    @XmlElement(required = true)
-    private Integer quantity;
+   @XmlElement(required = true)
+   private Integer quantity;
 
-    @XmlElement(required = true)
-    private Double price;
+   @XmlElement(required = true)
+   private Double price;
 
-    @XmlTransient
-    private Order order;
+   @XmlTransient
+   private Order order;
 
-    /**
+   /**
      * Get the order.
      *
      * @return the order.
      */
-    public Order getOrder() {
-        return order;
-    }
+   public Order getOrder() {
+      return order;
+   }
 
-    /**
+   /**
      * Set the order.
      *
      * @param order The order to set.
      */
-    public void setOrder(Order order) {
-        this.order = order;
-    }
+   public void setOrder(Order order) {
+      this.order = order;
+   }
 
-    /**
+   /**
      * Get the title.
      *
      * @return the title.
      */
-    public String getTitle() {
-        return title;
-    }
+   public String getTitle() {
+      return title;
+   }
 
-    /**
+   /**
      * Set the title.
      *
      * @param title The title to set.
      */
-    public void setTitle(String title) {
-        this.title = title;
-    }
+   public void setTitle(String title) {
+      this.title = title;
+   }
 
-    /**
+   /**
      * Get the note.
      *
      * @return the note.
      */
-    public String getNote() {
-        return note;
-    }
+   public String getNote() {
+      return note;
+   }
 
-    /**
+   /**
      * Set the note.
      *
      * @param note The note to set.
      */
-    public void setNote(String note) {
-        this.note = note;
-    }
+   public void setNote(String note) {
+      this.note = note;
+   }
 
-    /**
+   /**
      * Get the quantity.
      *
      * @return the quantity.
      */
-    public Integer getQuantity() {
-        return quantity;
-    }
+   public Integer getQuantity() {
+      return quantity;
+   }
 
-    /**
+   /**
      * Set the quantity.
      *
      * @param quantity The quantity to set.
      */
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
+   public void setQuantity(Integer quantity) {
+      this.quantity = quantity;
+   }
 
-    /**
+   /**
      * Get the price.
      *
      * @return the price.
      */
-    public Double getPrice() {
-        return price;
-    }
+   public Double getPrice() {
+      return price;
+   }
 
-    /**
+   /**
      * Set the price.
      *
      * @param price The price to set.
      */
-    public void setPrice(Double price) {
-        this.price = price;
-    }
+   public void setPrice(Double price) {
+      this.price = price;
+   }
 
-    /**
+   /**
      * JAXB Callback method used to reassociate the item with the owning Order.
      *
      * @param unmarshaller the JAXB {@link Unmarshaller}.
      * @param parent       the owning {@link Contact} instance.
      */
-    public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
-        this.setOrder((Order) order);
-    }
+   public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
+      this.setOrder((Order) order);
+   }
 }

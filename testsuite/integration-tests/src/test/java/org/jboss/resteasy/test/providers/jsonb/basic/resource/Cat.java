@@ -19,8 +19,8 @@ public class Cat {
    private boolean domesticated;
 
    /**
-    * This variable should be processed by Jackson2, but this variable should be ignored by JSON-B.
-    */
+   * This variable should be processed by Jackson2, but this variable should be ignored by JSON-B.
+   */
    @JsonbTransient
    private int transientVar;
 
@@ -88,4 +88,3 @@ public class Cat {
               CUSTOM_TO_STRING_FORMAT, name, sort, color, domesticated, transientVar);
    }
 }
-

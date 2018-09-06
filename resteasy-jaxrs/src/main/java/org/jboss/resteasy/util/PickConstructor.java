@@ -18,13 +18,13 @@ public class PickConstructor
 {
 
    /**
-    * Pick best constructor for a provider or resource class
-    * <p>
-    * Picks constructor with most parameters.  Will ignore constructors that have parameters with no @Context annotation
-    *
-    * @param clazz class
-    * @return constructor
-    */
+   * Pick best constructor for a provider or resource class
+   * <p>
+   * Picks constructor with most parameters.  Will ignore constructors that have parameters with no @Context annotation
+   *
+   * @param clazz class
+   * @return constructor
+   */
    public static Constructor pickSingletonConstructor(Class clazz)
    {
       Constructor<?>[] constructors = clazz.getConstructors();
@@ -37,17 +37,17 @@ public class PickConstructor
       {
          if (Modifier.isPublic(con.getModifiers()) == false)
          {
-            continue;
+         continue;
          }
 
          if (con.getParameterTypes().length >= numParameters)
          {
-            if (con.getParameterTypes().length > numParameters) {
-                potentialConflict = false;
-            }
-            boolean noContextAnnotation = false;
-            if (con.getParameterAnnotations() != null)
-            {
+         if (con.getParameterTypes().length > numParameters) {
+            potentialConflict = false;
+         }
+         boolean noContextAnnotation = false;
+         if (con.getParameterAnnotations() != null)
+         {
                for (Annotation[] ann : con.getParameterAnnotations())
                {
                   if (FindAnnotation.findAnnotation(ann, Context.class) == null)
@@ -55,13 +55,13 @@ public class PickConstructor
                      noContextAnnotation = true;
                   }
                }
-            }
-            if (noContextAnnotation) continue;
-            if (con.getParameterTypes().length == numParameters && numParameters != 0) {
-                potentialConflict = true;
-            }
-            numParameters = con.getParameterTypes().length;
-            pick = con;
+         }
+         if (noContextAnnotation) continue;
+         if (con.getParameterTypes().length == numParameters && numParameters != 0) {
+            potentialConflict = true;
+         }
+         numParameters = con.getParameterTypes().length;
+         pick = con;
 
          }
       }
@@ -72,13 +72,13 @@ public class PickConstructor
    }
 
    /**
-    * Pick best constructor for a provider or resource class
-    * <p>
-    * Picks constructor with most parameters.  Will ignore constructors that have parameters with no @Context annotation
-    *
-    * @param clazz class
-    * @return constructor
-    */
+   * Pick best constructor for a provider or resource class
+   * <p>
+   * Picks constructor with most parameters.  Will ignore constructors that have parameters with no @Context annotation
+   *
+   * @param clazz class
+   * @return constructor
+   */
    public static Constructor pickPerRequestConstructor(Class clazz)
    {
       Constructor<?>[] constructors = clazz.getConstructors();
@@ -92,17 +92,17 @@ public class PickConstructor
       {
          if (Modifier.isPublic(con.getModifiers()) == false)
          {
-            continue;
+         continue;
          }
          if (con.getParameterTypes().length >= numParameters)
          {
-            if (con.getParameterTypes().length > numParameters) {
-                potentialConflict = false;
-            }
+         if (con.getParameterTypes().length > numParameters) {
+            potentialConflict = false;
+         }
 
-            boolean noContextAnnotation = false;
-            if (con.getParameterAnnotations() != null)
-            {
+         boolean noContextAnnotation = false;
+         if (con.getParameterAnnotations() != null)
+         {
                for (Annotation[] ann : con.getParameterAnnotations())
                {
                   if (FindAnnotation.findJaxRSAnnotations(ann).length == 0)
@@ -110,13 +110,13 @@ public class PickConstructor
                      noContextAnnotation = true;
                   }
                }
-            }
-            if (noContextAnnotation) continue;
-            if (con.getParameterTypes().length == numParameters && numParameters != 0) {
-                potentialConflict = true;
-            }
-            numParameters = con.getParameterTypes().length;
-            pick = con;
+         }
+         if (noContextAnnotation) continue;
+         if (con.getParameterTypes().length == numParameters && numParameters != 0) {
+            potentialConflict = true;
+         }
+         numParameters = con.getParameterTypes().length;
+         pick = con;
          }
       }
 

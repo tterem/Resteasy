@@ -230,12 +230,12 @@ public class MockHttpRequest extends BaseHttpRequest
    }
 
    /**
-    * Set CONTENT-TYPE to ""application/x-www-form-urlencoded"
-    *
-    * @param name form param name
-    * @param value form param value
-    * @return {@link MockHttpRequest}
-    */
+   * Set CONTENT-TYPE to ""application/x-www-form-urlencoded"
+   *
+   * @param name form param name
+   * @param value form param value
+   * @return {@link MockHttpRequest}
+   */
    public MockHttpRequest addFormHeader(String name, String value)
    {
       if (decodedFormParameters == null)
@@ -306,13 +306,13 @@ public class MockHttpRequest extends BaseHttpRequest
          @Override
          public boolean hasMoreElements()
          {
-            return it.hasNext();
+         return it.hasNext();
          }
 
          @Override
          public String nextElement()
          {
-            return it.next();
+         return it.next();
          }
       };
       return en;
@@ -327,31 +327,31 @@ public class MockHttpRequest extends BaseHttpRequest
          @Override
          public boolean isSuspended()
          {
-            return false;
+         return false;
          }
 
          @Override
          public ResteasyAsynchronousResponse getAsyncResponse()
          {
-            return null;
+         return null;
          }
 
          @Override
          public ResteasyAsynchronousResponse suspend() throws IllegalStateException
          {
-            return null;
+         return null;
          }
 
          @Override
          public ResteasyAsynchronousResponse suspend(long millis) throws IllegalStateException
          {
-            return null;
+         return null;
          }
 
          @Override
          public ResteasyAsynchronousResponse suspend(long time, TimeUnit unit) throws IllegalStateException
          {
-            return null;
+         return null;
          }
       };
    }

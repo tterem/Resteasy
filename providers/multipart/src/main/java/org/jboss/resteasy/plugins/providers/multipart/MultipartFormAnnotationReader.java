@@ -92,7 +92,7 @@ public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
          {
             FormParam param = method.getAnnotation(FormParam.class);
             List<InputPart> list = input.getFormDataMap()
-                    .get(param.value());
+               .get(param.value());
             if (list == null || list.isEmpty())
                continue;
             InputPart part = list.get(0);
@@ -104,16 +104,16 @@ public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
             Class<?> type1 = method.getParameterTypes()[0];
             Object data;
             if (InputPart.class.equals(type1)) {
-                hasInputStream = true;
-                data = part;
+            hasInputStream = true;
+            data = part;
             }
             else
             {
-                if (InputStream.class.equals(type1))
-                {
+            if (InputStream.class.equals(type1))
+            {
                    hasInputStream = true;
-                }
-                data = part.getBody(type1,
+            }
+            data = part.getBody(type1,
                         method.getGenericParameterTypes()[0]);
             }
             try
@@ -138,7 +138,7 @@ public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
    }
 
    protected boolean setFields(Class<?> type, MultipartFormDataInputImpl input,
-                            Object obj) throws IOException
+                     Object obj) throws IOException
    {
       boolean hasInputStream = false;
       for (Field field : type.getDeclaredFields())
@@ -148,7 +148,7 @@ public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
             AccessController.doPrivileged(new FieldEnablerPrivilegedAction(field));
             FormParam param = field.getAnnotation(FormParam.class);
             List<InputPart> list = input.getFormDataMap()
-                    .get(param.value());
+               .get(param.value());
             if (list == null || list.isEmpty())
                continue;
             InputPart part = list.get(0);
@@ -159,16 +159,16 @@ public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
                continue;
             Object data;
             if (InputPart.class.equals(field.getType())) {
-                hasInputStream = true;
-                data = part;
+            hasInputStream = true;
+            data = part;
             }
             else
             {
-                if (InputStream.class.equals(field.getType()))
-                {
-                    hasInputStream = true;
-                }
-                data = part.getBody(field.getType(), field
+            if (InputStream.class.equals(field.getType()))
+            {
+               hasInputStream = true;
+            }
+            data = part.getBody(field.getType(), field
                         .getGenericType());
             }
             try

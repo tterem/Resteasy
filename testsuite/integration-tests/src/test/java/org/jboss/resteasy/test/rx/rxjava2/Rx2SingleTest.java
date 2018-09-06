@@ -379,7 +379,7 @@ public class Rx2SingleTest {
       }
 
       {
-        latch = new CountDownLatch(1);
+      latch = new CountDownLatch(1);
          RxScheduledExecutorService.used = false;
          RxScheduledExecutorService executor = new RxScheduledExecutorService();
          ResteasyClient client = ((ResteasyClientBuilder) new ResteasyClientBuilder().executorService(executor)).build();

@@ -21,20 +21,20 @@ import java.lang.annotation.Target;
 public @interface WrappedMap
 {
    /**
-    * map element name
-    */
+   * map element name
+   */
    String map() default "map";
 
    /**
-    * entry element name 
-    * @return entry
-    */
+   * entry element name 
+   * @return entry
+   */
    String entry() default "entry";
 
    /**
-    * entry's key attribute name
-    * @return key
-    */
+   * entry's key attribute name
+   * @return key
+   */
    String key() default "key";
 
    String namespace() default "";

@@ -30,7 +30,7 @@ public class LinkHeaders
          LinkHeader linkHeader = new LinkHeaderDelegate().fromString(val);
          for (Link link : linkHeader.getLinks())
          {
-            addLink(link);
+         addLink(link);
          }
       }
       return this;
@@ -45,8 +45,8 @@ public class LinkHeaders
          if (val instanceof Link) addLink((Link)val);
          else
          {
-            String str = factory.toHeaderString(val);
-            addLink(Link.valueOf(str));
+         String str = factory.toHeaderString(val);
+         addLink(Link.valueOf(str));
          }
       }
       return this;
@@ -74,30 +74,30 @@ public class LinkHeaders
    }
 
    /**
-    * Index of links by relationship "rel" or "rev".
-    *
-    * @return map
-    */
+   * Index of links by relationship "rel" or "rev".
+   *
+   * @return map
+   */
    public Map<String, Link> getLinksByRelationship()
    {
       return linksByRelationship;
    }
 
    /**
-    * Index of links by title.
-    *
-    * @return map
-    */
+   * Index of links by title.
+   *
+   * @return map
+   */
    public Map<String, Link> getLinksByTitle()
    {
       return linksByTitle;
    }
 
    /**
-    * All the links defined.
-    *
-    * @return links
-    */
+   * All the links defined.
+   *
+   * @return links
+   */
    public List<Link> getLinks()
    {
       return links;

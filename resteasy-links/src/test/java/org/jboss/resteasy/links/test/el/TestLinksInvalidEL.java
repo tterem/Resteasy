@@ -83,7 +83,7 @@ public class TestLinksInvalidEL
 	}
 
 	@SuppressWarnings("deprecation")
-    @After
+   @After
 	public void after(){
 		// TJWS does not support chunk encodings well so I need to kill kept
 		// alive connections

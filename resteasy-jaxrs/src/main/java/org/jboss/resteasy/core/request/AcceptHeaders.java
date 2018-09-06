@@ -20,12 +20,12 @@ public class AcceptHeaders
 {
 
    /**
-    * Gets the strings from a comma-separated list.
-    * All "*" entries are replaced with {@code null} keys.
-    *
-    * @param header the header value.
-    * @return the listed items in order of appearance or {@code null} if the header didn't contain any entries.
-    */
+   * Gets the strings from a comma-separated list.
+   * All "*" entries are replaced with {@code null} keys.
+   *
+   * @param header the header value.
+   * @return the listed items in order of appearance or {@code null} if the header didn't contain any entries.
+   */
    public static Map<String, QualityValue> getStringQualityValues(String header)
    {
       if (header == null)
@@ -41,37 +41,37 @@ public class AcceptHeaders
          int endIndex = header.indexOf(',', offset);
          String content;
          if (endIndex < 0)
-            content = header.substring(offset);
+         content = header.substring(offset);
          else
-            content = header.substring(offset, endIndex);
+         content = header.substring(offset, endIndex);
 
          QualityValue qualityValue = QualityValue.DEFAULT;
          int qualityIndex = content.indexOf(';');
          if (qualityIndex >= 0)
          {
-            String parameter = content.substring(qualityIndex + 1);
-            content = content.substring(0, qualityIndex);
+         String parameter = content.substring(qualityIndex + 1);
+         content = content.substring(0, qualityIndex);
 
-            int equalsIndex = parameter.indexOf('=');
-            if (equalsIndex < 0)
+         int equalsIndex = parameter.indexOf('=');
+         if (equalsIndex < 0)
                throw new BadRequestException(Messages.MESSAGES.malformedParameter(parameter));
-            String name = parameter.substring(0, equalsIndex).trim();
-            if (!"q".equals(name))
+         String name = parameter.substring(0, equalsIndex).trim();
+         if (!"q".equals(name))
                throw new BadRequestException(Messages.MESSAGES.unsupportedParameter(name));
-            String value = parameter.substring(equalsIndex + 1).trim();
-            qualityValue = QualityValue.valueOf(value);
+         String value = parameter.substring(equalsIndex + 1).trim();
+         qualityValue = QualityValue.valueOf(value);
          }
 
          content = content.trim();
          if (content.length() == 0)
-            throw new BadRequestException(Messages.MESSAGES.emptyFieldInHeader(header));
+         throw new BadRequestException(Messages.MESSAGES.emptyFieldInHeader(header));
          if (content.equals("*"))
-            result.put(null, qualityValue);
+         result.put(null, qualityValue);
          else
-            result.put(content, qualityValue);
+         result.put(content, qualityValue);
 
          if (endIndex < 0)
-            break;
+         break;
          offset = endIndex + 1;
       }
 
@@ -82,12 +82,12 @@ public class AcceptHeaders
 
 
    /**
-    * Gets the locales from a comma-separated list.
-    * Any "*" entries are replaced with {@code null} keys.
-    *
-    * @param header the header value.
-    * @return the listed items in order of appearance or {@code null} if the header didn't contain any entries.
-    */
+   * Gets the locales from a comma-separated list.
+   * Any "*" entries are replaced with {@code null} keys.
+   *
+   * @param header the header value.
+   * @return the listed items in order of appearance or {@code null} if the header didn't contain any entries.
+   */
    public static Map<Locale, QualityValue> getLocaleQualityValues(String header)
    {
       Map<String, QualityValue> stringResult = getStringQualityValues(header);
@@ -102,22 +102,22 @@ public class AcceptHeaders
          String value = entry.getKey();
          if (value != null)
          {
-            int length = value.length();
-            if (length == 2)
-            {
+         int length = value.length();
+         if (length == 2)
+         {
                locale = new Locale(value);
-            }
-            else if (length == 5 && value.charAt(2) == '-')
-            {
+         }
+         else if (length == 5 && value.charAt(2) == '-')
+         {
                String language = value.substring(0, 2);
                String country = value.substring(3, 5);
                locale = new Locale(language, country);
-            }
-            else
-            {
+         }
+         else
+         {
                LogMessages.LOGGER.ignoringUnsupportedLocale(value);
                continue;
-            }
+         }
          }
          result.put(locale, quality);
       }
@@ -128,11 +128,11 @@ public class AcceptHeaders
 
 
    /**
-    * Gets the media types from a comma-separated list.
-    *
-    * @param header the header value.
-    * @return the listed items in order of appearance or {@code null} if the header didn't contain any entries.
-    */
+   * Gets the media types from a comma-separated list.
+   *
+   * @param header the header value.
+   * @return the listed items in order of appearance or {@code null} if the header didn't contain any entries.
+   */
    public static Map<MediaType, QualityValue> getMediaTypeQualityValues(String header)
    {
       if (header == null)
@@ -147,7 +147,7 @@ public class AcceptHeaders
       {
          int slashIndex = header.indexOf('/', offset);
          if (slashIndex < 0)
-            throw new BadRequestException(Messages.MESSAGES.malformedMediaType(header));
+         throw new BadRequestException(Messages.MESSAGES.malformedMediaType(header));
          String type = header.substring(offset, slashIndex);
          String subtype;
          Map<String, String> parameters = null;
@@ -158,22 +158,22 @@ public class AcceptHeaders
          int itemEndIndex = header.indexOf(',', offset);
          if (parameterStartIndex == itemEndIndex)
          {
-            assert itemEndIndex == -1;
-            subtype = header.substring(offset);
-            offset = -1;
+         assert itemEndIndex == -1;
+         subtype = header.substring(offset);
+         offset = -1;
          }
          else if (itemEndIndex < 0 || (parameterStartIndex >= 0 && parameterStartIndex < itemEndIndex))
          {
-            subtype = header.substring(offset, parameterStartIndex);
-            offset = parameterStartIndex + 1;
-            parameters = new LinkedHashMap<String, String>();
-            offset = parseParameters(parameters, header, offset);
-            qualityValue = evaluateAcceptParameters(parameters);
+         subtype = header.substring(offset, parameterStartIndex);
+         offset = parameterStartIndex + 1;
+         parameters = new LinkedHashMap<String, String>();
+         offset = parseParameters(parameters, header, offset);
+         qualityValue = evaluateAcceptParameters(parameters);
          }
          else
          {
-            subtype = header.substring(offset, itemEndIndex);
-            offset = itemEndIndex + 1;
+         subtype = header.substring(offset, itemEndIndex);
+         offset = itemEndIndex + 1;
          }
          result.put(new MediaType(type.trim(), subtype.trim(), parameters), qualityValue);
       }
@@ -189,84 +189,84 @@ public class AcceptHeaders
       {
          int equalsIndex = header.indexOf('=', offset);
          if (equalsIndex < 0)
-            throw new BadRequestException(Messages.MESSAGES.malformedParameters(header));
+         throw new BadRequestException(Messages.MESSAGES.malformedParameters(header));
          String name = header.substring(offset, equalsIndex).trim();
          offset = equalsIndex + 1;
          if (header.charAt(offset) == '"')
          {
-            int end = offset;
-            ++offset;
-            do
-            {
+         int end = offset;
+         ++offset;
+         do
+         {
                end = header.indexOf('"', ++end);
                if (end < 0)
                   throw new BadRequestException(Messages.MESSAGES.quotedStringIsNotClosed(header));
-            } while (header.charAt(end - 1) == '\\');
-            String value = header.substring(offset, end);
-            parameters.put(name, value);
-            offset = end + 1;
+         } while (header.charAt(end - 1) == '\\');
+         String value = header.substring(offset, end);
+         parameters.put(name, value);
+         offset = end + 1;
 
-            int parameterEndIndex = header.indexOf(';', offset);
-            int itemEndIndex = header.indexOf(',', offset);
-            if (parameterEndIndex == itemEndIndex)
-            {
+         int parameterEndIndex = header.indexOf(';', offset);
+         int itemEndIndex = header.indexOf(',', offset);
+         if (parameterEndIndex == itemEndIndex)
+         {
                assert itemEndIndex == -1;
                if (header.substring(offset).trim().length() != 0)
                   throw new BadRequestException(Messages.MESSAGES.tailingGarbage(header));
                return -1;
-            }
-            else if (parameterEndIndex < 0 || (itemEndIndex >= 0 && itemEndIndex < parameterEndIndex))
-            {
+         }
+         else if (parameterEndIndex < 0 || (itemEndIndex >= 0 && itemEndIndex < parameterEndIndex))
+         {
                if (header.substring(offset, itemEndIndex).trim().length() != 0)
                   throw new BadRequestException(Messages.MESSAGES.garbageAfterQuotedString(header));
                return itemEndIndex + 1;
-            }
-            else
-            {
-               if (header.substring(offset, parameterEndIndex).trim().length() != 0)
-                  throw new BadRequestException(Messages.MESSAGES.garbageAfterQuotedString(header));
-               offset = parameterEndIndex + 1;
-            }
          }
          else
          {
-            int parameterEndIndex = header.indexOf(';', offset);
-            int itemEndIndex = header.indexOf(',', offset);
-            if (parameterEndIndex == itemEndIndex)
-            {
+               if (header.substring(offset, parameterEndIndex).trim().length() != 0)
+                  throw new BadRequestException(Messages.MESSAGES.garbageAfterQuotedString(header));
+               offset = parameterEndIndex + 1;
+         }
+         }
+         else
+         {
+         int parameterEndIndex = header.indexOf(';', offset);
+         int itemEndIndex = header.indexOf(',', offset);
+         if (parameterEndIndex == itemEndIndex)
+         {
                assert itemEndIndex == -1;
                String value = header.substring(offset).trim();
                parameters.put(name, value);
                return -1;
-            }
-            else if (parameterEndIndex < 0 || (itemEndIndex >= 0 && itemEndIndex < parameterEndIndex))
-            {
+         }
+         else if (parameterEndIndex < 0 || (itemEndIndex >= 0 && itemEndIndex < parameterEndIndex))
+         {
                String value = header.substring(offset, itemEndIndex).trim();
                parameters.put(name, value);
                return itemEndIndex + 1;
-            }
-            else
-            {
+         }
+         else
+         {
                String value = header.substring(offset, parameterEndIndex).trim();
                parameters.put(name, value);
                offset = parameterEndIndex + 1;
-            }
+         }
          }
       }
    }
 
 
    /**
-    * Evaluates and removes the accept parameters.
-    * <pre>
-    * accept-params  = ";" "q" "=" qvalue *( accept-extension )
-    * accept-extension = ";" token [ "=" ( token | quoted-string ) ]
-    * </pre>
-    *
-    * @param parameters all parameters in order of appearance.
-    * @return the qvalue.
-    * @see "accept-params
-    */
+   * Evaluates and removes the accept parameters.
+   * <pre>
+   * accept-params  = ";" "q" "=" qvalue *( accept-extension )
+   * accept-extension = ";" token [ "=" ( token | quoted-string ) ]
+   * </pre>
+   *
+   * @param parameters all parameters in order of appearance.
+   * @return the qvalue.
+   * @see "accept-params
+   */
    private static QualityValue evaluateAcceptParameters(Map<String, String> parameters)
    {
       Iterator<String> i = parameters.keySet().iterator();
@@ -275,8 +275,8 @@ public class AcceptHeaders
          String name = i.next();
          if ("q".equals(name))
          {
-            if (i.hasNext())
-            {
+         if (i.hasNext())
+         {
                LogMessages.LOGGER.acceptExtensionsNotSupported();
                i.remove();
                do
@@ -285,13 +285,13 @@ public class AcceptHeaders
                   i.remove();
                } while (i.hasNext());
                return QualityValue.NOT_ACCEPTABLE;
-            }
-            else
-            {
+         }
+         else
+         {
                String value = parameters.get(name);
                i.remove();
                return QualityValue.valueOf(value);
-            }
+         }
          }
       }
       return QualityValue.DEFAULT;

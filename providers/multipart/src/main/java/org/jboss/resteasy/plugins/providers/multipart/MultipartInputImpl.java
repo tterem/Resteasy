@@ -88,16 +88,16 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
       {
          try
          {
-            expectMethod = MessageBuilder.class.getDeclaredMethod("expect", Class.class);
-            expectMethod.setAccessible(true);
-            bodyFactoryField = MessageBuilder.class.getDeclaredField("bodyFactory");
-            bodyFactoryField.setAccessible(true);
-            stackField = MessageBuilder.class.getDeclaredField("stack");
-            stackField.setAccessible(true);
+         expectMethod = MessageBuilder.class.getDeclaredMethod("expect", Class.class);
+         expectMethod.setAccessible(true);
+         bodyFactoryField = MessageBuilder.class.getDeclaredField("bodyFactory");
+         bodyFactoryField.setAccessible(true);
+         stackField = MessageBuilder.class.getDeclaredField("stack");
+         stackField.setAccessible(true);
          }
          catch (Exception e)
          {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
          }
       }
 
@@ -120,11 +120,11 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
          // the only thing different from the superclass is that we just return a BinaryBody no matter what
          try
          {
-            expectMethod.invoke(this, Entity.class);
+         expectMethod.invoke(this, Entity.class);
          }
          catch (Exception e)
          {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
          }
 
          final String enc = bd.getTransferEncoding();
@@ -133,21 +133,21 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
 
          final InputStream decodedStream;
          if (MimeUtil.ENC_BASE64.equals(enc)) {
-            decodedStream = new Base64InputStream(is);
+         decodedStream = new Base64InputStream(is);
          } else if (MimeUtil.ENC_QUOTED_PRINTABLE.equals(enc)) {
-            decodedStream = new QuotedPrintableInputStream(is);
+         decodedStream = new QuotedPrintableInputStream(is);
          } else {
-            decodedStream = is;
+         decodedStream = is;
          }
 
          BodyFactory factory;
          try
          {
-            factory = (BodyFactory)bodyFactoryField.get(this);
+         factory = (BodyFactory)bodyFactoryField.get(this);
          }
          catch (Exception e)
          {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
          }
 
          body = factory.binaryBody(decodedStream);
@@ -155,11 +155,11 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
          Stack<Object> st;
          try
          {
-            st = (Stack<Object>)stackField.get(this);
+         st = (Stack<Object>)stackField.get(this);
          }
          catch (Exception e)
          {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
          }
          Entity entity = ((Entity) st.peek());
          entity.setBody(body);
@@ -171,19 +171,19 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
       private BinaryMessage(InputStream is) throws IOException, MimeIOException
       {
          try {
-            MimeStreamParser parser = new MimeStreamParser(null);
+         MimeStreamParser parser = new MimeStreamParser(null);
             
-            StorageProvider storageProvider;
-            if (System.getProperty(DefaultStorageProvider.DEFAULT_STORAGE_PROVIDER_PROPERTY) != null) {
+         StorageProvider storageProvider;
+         if (System.getProperty(DefaultStorageProvider.DEFAULT_STORAGE_PROVIDER_PROPERTY) != null) {
                storageProvider = DefaultStorageProvider.getInstance();
-            } else {
+         } else {
                StorageProvider backend = new CustomTempFileStorageProvider();
                storageProvider = new ThresholdStorageProvider(backend, 1024);
-            }
-            parser.setContentHandler(new BinaryOnlyMessageBuilder(this, storageProvider));
-            parser.parse(is);
+         }
+         parser.setContentHandler(new BinaryOnlyMessageBuilder(this, storageProvider));
+         parser.parse(is);
          } catch (MimeException e) {
-            throw new MimeIOException(e);
+         throw new MimeIOException(e);
          }
 
       }
@@ -200,12 +200,12 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
          String defaultContentType = (String) httpRequest
                  .getAttribute(InputPart.DEFAULT_CONTENT_TYPE_PROPERTY);
          if (defaultContentType != null)
-            this.defaultPartContentType = MediaType
-                    .valueOf(defaultContentType);
+         this.defaultPartContentType = MediaType
+               .valueOf(defaultContentType);
          this.defaultPartCharset = (String) httpRequest.getAttribute(InputPart.DEFAULT_CHARSET_PROPERTY);
          if (defaultPartCharset != null)
          {
-            this.defaultPartContentType = getMediaTypeWithDefaultCharset(this.defaultPartContentType);
+         this.defaultPartContentType = getMediaTypeWithDefaultCharset(this.defaultPartContentType);
          }
       }
    }
@@ -285,25 +285,25 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
          this.bodyPart = bodyPart;
          for (Field field : bodyPart.getHeader())
          {
-            headers.add(field.getName(), field.getBody());
-            if (field instanceof ContentTypeField)
-            {
+         headers.add(field.getName(), field.getBody());
+         if (field instanceof ContentTypeField)
+         {
                contentType = MediaType.valueOf(field.getBody());
                contentTypeFromMessage = true;
-            }
+         }
          }
          if (contentType == null)
-            contentType = defaultPartContentType;
+         contentType = defaultPartContentType;
          if (getCharset(contentType) == null)
          {
-            if (defaultPartCharset != null)
-            {
+         if (defaultPartCharset != null)
+         {
                contentType = getMediaTypeWithDefaultCharset(contentType);
-            }
-            else if (contentType.getType().equalsIgnoreCase("text"))
-            {
+         }
+         else if (contentType.getType().equalsIgnoreCase("text"))
+         {
                contentType = getMediaTypeWithCharset(contentType, "us-ascii");
-            }
+         }
          }
       }
 
@@ -321,33 +321,33 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
       {
          if (MultipartInput.class.equals(type))
          {
-            if (bodyPart.getBody() instanceof Multipart)
-            {
+         if (bodyPart.getBody() instanceof Multipart)
+         {
                return (T) new MultipartInputImpl(Multipart.class.cast(bodyPart.getBody()), workers);
-            }
+         }
          }
          try
          {
-            if (savedProviders != null)
-            {
+         if (savedProviders != null)
+         {
                ResteasyProviderFactory.pushContext(Providers.class, savedProviders);  
-            }
-            MessageBodyReader<T> reader = workers.getMessageBodyReader(type, genericType, empty, contentType);
-            if (reader == null)
-            {
+         }
+         MessageBodyReader<T> reader = workers.getMessageBodyReader(type, genericType, empty, contentType);
+         if (reader == null)
+         {
                throw new RuntimeException(Messages.MESSAGES.unableToFindMessageBodyReader(contentType, type.getName()));
-            }
+         }
 
-            LogMessages.LOGGER.debugf("MessageBodyReader: %s", reader.getClass().getName());
+         LogMessages.LOGGER.debugf("MessageBodyReader: %s", reader.getClass().getName());
 
-            return reader.readFrom(type, genericType, empty, contentType, headers, getBody());
+         return reader.readFrom(type, genericType, empty, contentType, headers, getBody());
          }
          finally
          {
-            if (savedProviders != null)
-            {
+         if (savedProviders != null)
+         {
                ResteasyProviderFactory.popContextData(Providers.class);
-            }
+         }
          }
       }
 
@@ -363,25 +363,25 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
          InputStream result = null;
          if (body instanceof TextBody)
          {
-            throw new UnsupportedOperationException();
-            /*
-            InputStreamReader reader = (InputStreamReader)((TextBody) body).getReader();
-            StringBuilder inputBuilder = new StringBuilder();
-            char[] buffer = new char[1024];
-            while (true) {
+         throw new UnsupportedOperationException();
+         /*
+         InputStreamReader reader = (InputStreamReader)((TextBody) body).getReader();
+         StringBuilder inputBuilder = new StringBuilder();
+         char[] buffer = new char[1024];
+         while (true) {
                int readCount = reader.read(buffer);
                if (readCount < 0) {
                   break;
                }
                inputBuilder.append(buffer, 0, readCount);
-            }
-            String str = inputBuilder.toString();
-            return new ByteArrayInputStream(str.getBytes(reader.getEncoding()));
-            */
+         }
+         String str = inputBuilder.toString();
+         return new ByteArrayInputStream(str.getBytes(reader.getEncoding()));
+         */
          }
          else if (body instanceof BinaryBody)
          {
-            return ((BinaryBody)body).getInputStream();
+         return ((BinaryBody)body).getInputStream();
          }
          return result;
       }
@@ -455,7 +455,7 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
       {
          try
          {
-            mimeMessage.dispose();
+         mimeMessage.dispose();
          }
          catch (Exception e)
          {
@@ -476,7 +476,7 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
          String key = it.next();
          if ("charset".equalsIgnoreCase(key))
          {
-            return mediaType.getParameters().get(key);
+         return mediaType.getParameters().get(key);
          }
       }
       return null;
@@ -498,7 +498,7 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
          String key = it.next();
          if (!"charset".equalsIgnoreCase(key))
          {
-            newParams.put(key, params.get(key));
+         newParams.put(key, params.get(key));
          }
       }
       return new MediaType(mediaType.getType(), mediaType.getSubtype(), newParams);
@@ -511,10 +511,10 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
    }
 
    /**
-    * A custom TempFileStorageProvider that do no set deleteOnExit on temp files,
-    * to avoid memory leaks (see https://issues.apache.org/jira/browse/MIME4J-251)
-    *
-    */
+   * A custom TempFileStorageProvider that do no set deleteOnExit on temp files,
+   * to avoid memory leaks (see https://issues.apache.org/jira/browse/MIME4J-251)
+   *
+   */
    private static class CustomTempFileStorageProvider extends AbstractStorageProvider
    {
 
@@ -534,10 +534,10 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
       CustomTempFileStorageProvider(String prefix, String suffix, File directory)
       {
          if (prefix == null || prefix.length() < 3)
-            throw new IllegalArgumentException("invalid prefix");
+         throw new IllegalArgumentException("invalid prefix");
 
          if (directory != null && !directory.isDirectory() && !directory.mkdirs())
-            throw new IllegalArgumentException("invalid directory");
+         throw new IllegalArgumentException("invalid directory");
 
          this.prefix = prefix;
          this.suffix = suffix;
@@ -559,28 +559,28 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
 
          TempFileStorageOutputStream(File file) throws IOException
          {
-            this.file = file;
-            this.out = new FileOutputStream(file);
+         this.file = file;
+         this.out = new FileOutputStream(file);
          }
 
          @Override
          public void close() throws IOException
          {
-            super.close();
-            out.close();
+         super.close();
+         out.close();
          }
 
          @Override
          protected void write0(byte[] buffer, int offset, int length) throws IOException
          {
-            out.write(buffer, offset, length);
+         out.write(buffer, offset, length);
          }
 
          @Override
          protected Storage toStorage0() throws IOException
          {
-            // out has already been closed because toStorage calls close
-            return new TempFileStorage(file);
+         // out has already been closed because toStorage calls close
+         return new TempFileStorage(file);
          }
       }
 
@@ -593,21 +593,21 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
 
          TempFileStorage(File file)
          {
-            this.file = file;
+         this.file = file;
          }
 
          public void delete()
          {
-            // deleting a file might not immediately succeed if there are still
-            // streams left open (especially under Windows). so we keep track of
-            // the files that have to be deleted and try to delete all these
-            // files each time this method gets invoked.
+         // deleting a file might not immediately succeed if there are still
+         // streams left open (especially under Windows). so we keep track of
+         // the files that have to be deleted and try to delete all these
+         // files each time this method gets invoked.
 
-            // a better but more complicated solution would be to start a
-            // separate thread that tries to delete the files periodically.
+         // a better but more complicated solution would be to start a
+         // separate thread that tries to delete the files periodically.
 
-            synchronized (filesToDelete)
-            {
+         synchronized (filesToDelete)
+         {
                if (file != null)
                {
                   filesToDelete.add(file);
@@ -622,15 +622,15 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
                      iterator.remove();
                   }
                }
-            }
+         }
          }
 
          public InputStream getInputStream() throws IOException
          {
-            if (file == null)
+         if (file == null)
                throw new IllegalStateException("storage has been deleted");
 
-            return new BufferedInputStream(new FileInputStream(file));
+         return new BufferedInputStream(new FileInputStream(file));
          }
 
       }

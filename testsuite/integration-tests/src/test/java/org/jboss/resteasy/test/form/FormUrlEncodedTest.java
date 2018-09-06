@@ -40,50 +40,50 @@ import org.junit.runner.RunWith;
 @RunAsClient
 public class FormUrlEncodedTest {
 
-    private static Client client;
-    
-    @Deployment
-    public static Archive<?> createTestArchive() {
-        WebArchive war = TestUtil.prepareArchive(FormUrlEncodedTest.class.getSimpleName());
-        return TestUtil.finishContainerPrepare(war, null, FormUrlEncodedResource.class);
-    }
-
-    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, FormUrlEncodedTest.class.getSimpleName());
-    }
-
-    @BeforeClass
-    public static void before() throws Exception {
-       client = ClientBuilder.newClient();
-    }
-
-    @AfterClass
-    public static void after() throws Exception {
-       client.close();
-    }
+   private static Client client;
    
-    /**
+   @Deployment
+   public static Archive<?> createTestArchive() {
+      WebArchive war = TestUtil.prepareArchive(FormUrlEncodedTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, FormUrlEncodedResource.class);
+   }
+
+   private String generateURL(String path) {
+       return PortProviderUtil.generateURL(path, FormUrlEncodedTest.class.getSimpleName());
+   }
+
+   @BeforeClass
+   public static void before() throws Exception {
+       client = ClientBuilder.newClient();
+   }
+
+   @AfterClass
+   public static void after() throws Exception {
+       client.close();
+   }
+   
+   /**
      * @tpTestDetails Get form parameter from resource using InputStream and StreamingOutput
      * @tpSince RESTEasy 3.0.16
      */
-    @Test
-    public void testPost() {
-        WebTarget base = client.target(generateURL("/simple"));
-        Response response = base.request().post(Entity.form(new Form().param("hello", "world")));
+   @Test
+   public void testPost() {
+      WebTarget base = client.target(generateURL("/simple"));
+      Response response = base.request().post(Entity.form(new Form().param("hello", "world")));
 
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-        String body = response.readEntity(String.class);
-        Assert.assertEquals("Wrong response content", "hello=world", body);
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      String body = response.readEntity(String.class);
+      Assert.assertEquals("Wrong response content", "hello=world", body);
 
-        response.close();
-    }
-    
-    /**
+      response.close();
+   }
+   
+   /**
      * @tpTestDetails Send form with an empty parameter value.
      * @tpSince RESTEasy 3.0.20
      */
-    @Test
-    public void testResteasy109() {
+   @Test
+   public void testResteasy109() {
        Builder builder = client.target(generateURL("/RESTEASY-109")).request();
        Response response = null;
        try
@@ -99,14 +99,14 @@ public class FormUrlEncodedTest {
        {
           response.close();
        }
-    }
+   }
 
-    /**
+   /**
      * @tpTestDetails Send form with a missing query parameter.
      * @tpSince RESTEasy 3.0.20
      */
-    @Test
-    public void testQueryParamIsNull() {
+   @Test
+   public void testQueryParamIsNull() {
        Builder builder = client.target(generateURL("/simple")).request();
        try
        {
@@ -118,14 +118,14 @@ public class FormUrlEncodedTest {
        {
           throw new RuntimeException(e);
        }
-    }
-    
-    /**
+   }
+   
+   /**
      * @tpTestDetails Send form with two parameters.
      * @tpSince RESTEasy 3.0.20
      */
-    @Test
-    public void testPostTwoParameters() {
+   @Test
+   public void testPostTwoParameters() {
        Builder builder = client.target(generateURL("/form/twoparams")).request();
        try
        {
@@ -139,10 +139,10 @@ public class FormUrlEncodedTest {
        {
           throw new RuntimeException(e);
        }
-    }
-    
-    @Path("/")
-    public interface TestProxy {
+   }
+   
+   @Path("/")
+   public interface TestProxy {
        @Path("/form")
        @POST
        @Produces("application/x-www-form-urlencoded")
@@ -154,14 +154,14 @@ public class FormUrlEncodedTest {
        @Produces("application/x-www-form-urlencoded")
        @Consumes("application/x-www-form-urlencoded")
        MultivaluedMap<String, String> post2(MultivaluedMap<String, String> form);
-    }
+   }
 
-    /**
+   /**
      * @tpTestDetails Send form by proxy.
      * @tpSince RESTEasy 3.0.20
      */
-    @Test
-    public void testProxy() {
+   @Test
+   public void testProxy() {
        ResteasyWebTarget target = (ResteasyWebTarget) client.target(generateURL(""));
        TestProxy proxy = target.proxy(TestProxy.class);
        MultivaluedMapImpl<String, String> form = new MultivaluedMapImpl<String, String>();
@@ -171,5 +171,5 @@ public class FormUrlEncodedTest {
 
        MultivaluedMap<String, String> rtn = proxy.post2(form);
        Assert.assertEquals(rtn.getFirst("hello"), "world");
-    }
+   }
 }

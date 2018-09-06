@@ -145,9 +145,9 @@ public class SecureUnmarshaller implements Unmarshaller {
    }
 
    /**
-    * @deprecated This method is deprecated as of JAXB 2.0 - please use the new
+   * @deprecated This method is deprecated as of JAXB 2.0 - please use the new
      * {@link #getSchema()} API.
-    */
+   */
    @Deprecated
    public boolean isValidating() throws JAXBException {
       return delegate.isValidating();
@@ -184,8 +184,8 @@ public class SecureUnmarshaller implements Unmarshaller {
    }
 
    /**
-    * @deprecated since JAXB2.0, please see {@link #getSchema()}
-    */
+   * @deprecated since JAXB2.0, please see {@link #getSchema()}
+   */
    @Deprecated
    public void setValidating(boolean validating) throws JAXBException {
       delegate.setValidating(validating);
@@ -196,8 +196,8 @@ public class SecureUnmarshaller implements Unmarshaller {
    }
 
    /**
-    * Turns off expansion of external entities.
-    */
+   * Turns off expansion of external entities.
+   */
    public Object unmarshal(InputStream is) throws JAXBException {
       return unmarshal(new InputSource(is));
    }
@@ -211,8 +211,8 @@ public class SecureUnmarshaller implements Unmarshaller {
    }
 
    /**
-    * Turns off expansion of external entities.
-    */
+   * Turns off expansion of external entities.
+   */
    public Object unmarshal(InputSource source) throws JAXBException
    {
        try

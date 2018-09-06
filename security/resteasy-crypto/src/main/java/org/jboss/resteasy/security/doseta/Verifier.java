@@ -43,13 +43,13 @@ public class Verifier
    }
 
    /**
-    * Try to verify a set of signatures and store the results.
-    *
-    * @param signatures list of signatures
-    * @param headers headers map
-    * @param body body
-    * @return {@link VerificationResults}
-    */
+   * Try to verify a set of signatures and store the results.
+   *
+   * @param signatures list of signatures
+   * @param headers headers map
+   * @param body body
+   * @return {@link VerificationResults}
+   */
    public VerificationResults verify(List<DKIMSignature> signatures, Map headers, byte[] body)
    {
       VerificationResults results = new VerificationResults();
@@ -67,35 +67,35 @@ public class Verifier
 
          while (iterator.hasNext())
          {
-            DKIMSignature sig = iterator.next();
-            if (verification.getIdentifierName() != null)
-            {
+         DKIMSignature sig = iterator.next();
+         if (verification.getIdentifierName() != null)
+         {
                String value = sig.getAttributes().get(verification.getIdentifierName());
                if (value == null || !value.equals(verification.getIdentifierValue()))
                {
                   iterator.remove();
                   continue;
                }
-            }
+         }
          }
 
          // could not find a signature to match verification
          if (matched.isEmpty())
          {
-            results.setVerified(false);
-            continue;
+         results.setVerified(false);
+         continue;
          }
 
          resultSet.setVerified(true);
          for (DKIMSignature signature : matched)
          {
-            VerificationResult result = verify(headers, body, verification, signature);
-            resultSet.getResults().add(result);
-            if (result.isVerified() == false)
-            {
+         VerificationResult result = verify(headers, body, verification, signature);
+         resultSet.getResults().add(result);
+         if (result.isVerified() == false)
+         {
                resultSet.setVerified(false);
                results.setVerified(false);
-            }
+         }
          }
 
       }
@@ -103,14 +103,14 @@ public class Verifier
    }
 
    /**
-    * Verify one signature and store the results.
-    *
-    * @param headers headers map
-    * @param body body
-    * @param verification verification
-    * @param signature signature
-    * @return {@link VerificationResult}
-    */
+   * Verify one signature and store the results.
+   *
+   * @param headers headers map
+   * @param body body
+   * @param verification verification
+   * @param signature signature
+   * @return {@link VerificationResult}
+   */
    public VerificationResult verify(Map headers, byte[] body, Verification verification, DKIMSignature signature)
    {
       VerificationResult result = new VerificationResult();
@@ -137,15 +137,15 @@ public class Verifier
       {
          if (verification.getRepository() != null)
          {
-            key = verification.getRepository().findPublicKey(signature);
+         key = verification.getRepository().findPublicKey(signature);
          }
          else if (repository != null)
          {
-            key = repository.findPublicKey(signature);
+         key = repository.findPublicKey(signature);
          }
          if (key == null)
          {
-            throw new SignatureException(Messages.MESSAGES.couldNotFindPublicKey(signature));
+         throw new SignatureException(Messages.MESSAGES.couldNotFindPublicKey(signature));
          }
       }
 

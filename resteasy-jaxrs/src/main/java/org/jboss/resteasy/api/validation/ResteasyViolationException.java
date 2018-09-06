@@ -54,9 +54,9 @@ public class ResteasyViolationException extends ConstraintViolationException
    private boolean suppressPath;
    
    /**
-    * New constructor
-    * @param constraintViolations set of constraint violations
-    */
+   * New constructor
+   * @param constraintViolations set of constraint violations
+   */
    public ResteasyViolationException(Set<? extends ConstraintViolation<?>> constraintViolations)
    {
       super(constraintViolations);
@@ -66,11 +66,11 @@ public class ResteasyViolationException extends ConstraintViolationException
    }
    
    /**
-    * New constructor
-    * 
-    * @param constraintViolations set of constraint violations
-    * @param accept list of accept media types
-    */
+   * New constructor
+   * 
+   * @param constraintViolations set of constraint violations
+   * @param accept list of accept media types
+   */
    public ResteasyViolationException(Set<? extends ConstraintViolation<?>> constraintViolations, List<MediaType> accept)
    {
       super(constraintViolations);
@@ -79,10 +79,10 @@ public class ResteasyViolationException extends ConstraintViolationException
    }
    
    /**
-    * New constructor
-    * 
-    * @param container violation container
-    */
+   * New constructor
+   * 
+   * @param container violation container
+   */
    public ResteasyViolationException(SimpleViolationsContainer container)
    {
       this(container.getViolations());
@@ -90,11 +90,11 @@ public class ResteasyViolationException extends ConstraintViolationException
    }
    
    /**
-    * New constructor
-    * 
-    * @param container violation container
-    * @param accept list of accept media types
-    */
+   * New constructor
+   * 
+   * @param container violation container
+   * @param accept list of accept media types
+   */
    
    public ResteasyViolationException(SimpleViolationsContainer container, List<MediaType> accept)
    {
@@ -212,7 +212,7 @@ public class ResteasyViolationException extends ConstraintViolationException
          List<ResteasyConstraintViolation> violations = it.next();
          for (Iterator<ResteasyConstraintViolation> it2 = violations.iterator(); it2.hasNext(); )
          {
-            sb.append(it2.next().toString()).append('\r');
+         sb.append(it2.next().toString()).append('\r');
          }
       }
       return sb.toString();
@@ -249,17 +249,17 @@ public class ResteasyViolationException extends ConstraintViolationException
          line = br.readLine();
          while (line != null )
          {
-            ConstraintType.Type type = ConstraintType.Type.valueOf(line.substring(1, line.length() - 1));
-            line = br.readLine();
-            String path = line.substring(1, line.length() - 1);
-            line = br.readLine();
-            String message = line.substring(1, line.length() - 1);
-            line = br.readLine();
-            String value = line.substring(1, line.length() - 1);
-            ResteasyConstraintViolation rcv = new ResteasyConstraintViolation(type, path, message, value);
+         ConstraintType.Type type = ConstraintType.Type.valueOf(line.substring(1, line.length() - 1));
+         line = br.readLine();
+         String path = line.substring(1, line.length() - 1);
+         line = br.readLine();
+         String message = line.substring(1, line.length() - 1);
+         line = br.readLine();
+         String value = line.substring(1, line.length() - 1);
+         ResteasyConstraintViolation rcv = new ResteasyConstraintViolation(type, path, message, value);
             
-            switch (type)
-            {
+         switch (type)
+         {
                case FIELD:
                   fieldViolations.add(rcv);
                   break;
@@ -282,9 +282,9 @@ public class ResteasyViolationException extends ConstraintViolationException
                   
                default:
                   throw new RuntimeException(Messages.MESSAGES.unexpectedViolationType(type));
-            }
-            line = br.readLine(); // consume ending '\r'
-            line = br.readLine();
+         }
+         line = br.readLine(); // consume ending '\r'
+         line = br.readLine();
          }
       }
       catch (IOException e)
@@ -314,15 +314,15 @@ public class ResteasyViolationException extends ConstraintViolationException
          char c = line.charAt(index);
          if (c == '[')
          {
-            bracketCount++;
+         bracketCount++;
          }
          else if (c == ']')
          {
-            bracketCount--;
+         bracketCount--;
          }
          if (bracketCount == 0)
          {
-            break;
+         break;
          }
       }
       if (bracketCount != 0)
@@ -340,7 +340,7 @@ public class ResteasyViolationException extends ConstraintViolationException
          String s = context.getParameter(SUPPRESS_VIOLATION_PATH);
          if (s != null)
          {
-            suppressPath = Boolean.parseBoolean(s);
+         suppressPath = Boolean.parseBoolean(s);
          }
       }
    }
@@ -362,9 +362,9 @@ public class ResteasyViolationException extends ConstraintViolationException
       {
          for (Iterator<ConstraintViolation<?>> it = getConstraintViolations().iterator(); it.hasNext(); )
          {
-            ResteasyConstraintViolation rcv = convertViolation(it.next());
-            switch (rcv.getConstraintType())
-            {
+         ResteasyConstraintViolation rcv = convertViolation(it.next());
+         switch (rcv.getConstraintType())
+         {
                case FIELD:
                   fieldViolations.add(rcv);
                   break;
@@ -387,7 +387,7 @@ public class ResteasyViolationException extends ConstraintViolationException
 
                default:
                   throw new RuntimeException(Messages.MESSAGES.unexpectedViolationType(rcv.getConstraintType()));
-            }
+         }
          }
       }
       
@@ -415,7 +415,7 @@ public class ResteasyViolationException extends ConstraintViolationException
          StringBuffer sb = new StringBuffer("[").append(convertArrayToString(array[0]));
          for (int i = 1; i < array.length; i++)
          {
-            sb.append(", ").append(convertArrayToString(array[i]));
+         sb.append(", ").append(convertArrayToString(array[i]));
          }
          sb.append("]");
          result = sb.toString();
@@ -428,10 +428,10 @@ public class ResteasyViolationException extends ConstraintViolationException
    }
    
    /**
-    * It seems that EJB3 wants to clone ResteasyViolationException,
-    * and MediaType is not serializable.
-    *
-    */
+   * It seems that EJB3 wants to clone ResteasyViolationException,
+   * and MediaType is not serializable.
+   *
+   */
    static class CloneableMediaType implements Serializable
    {
       public static final CloneableMediaType TEXT_PLAIN_TYPE = new CloneableMediaType("plain", "text");  

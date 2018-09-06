@@ -80,11 +80,11 @@ public class ResteasyClientBuilder extends ClientBuilder
    protected List<String> sniHostNames = new ArrayList<>();
 
    /**
-    * Changing the providerFactory will wipe clean any registered components or properties.
-    *
-    * @param providerFactory provider factory
-    * @return an updated client builder instance
-    */
+   * Changing the providerFactory will wipe clean any registered components or properties.
+   *
+   * @param providerFactory provider factory
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilder providerFactory(ResteasyProviderFactory providerFactory)
    {
       this.providerFactory = providerFactory;
@@ -92,12 +92,12 @@ public class ResteasyClientBuilder extends ClientBuilder
    }
 
    /**
-    * Executor to use to run AsyncInvoker invocations.
-    *
-    * @param asyncExecutor executor service
-    * @return an updated client builder instance
-    * @deprecated use {@link ResteasyClientBuilder#executorService(ExecutorService)} instead
-    */
+   * Executor to use to run AsyncInvoker invocations.
+   *
+   * @param asyncExecutor executor service
+   * @return an updated client builder instance
+   * @deprecated use {@link ResteasyClientBuilder#executorService(ExecutorService)} instead
+   */
    @Deprecated
    public ResteasyClientBuilder asyncExecutor(ExecutorService asyncExecutor)
    {
@@ -105,12 +105,12 @@ public class ResteasyClientBuilder extends ClientBuilder
    }
 
    /**
-    * Executor to use to run AsyncInvoker invocations.
-    *
-    * @param asyncExecutor executor service
-    * @param cleanupExecutor true if the Client should close the executor when it is closed
-    * @return an updated client builder instance
-    */
+   * Executor to use to run AsyncInvoker invocations.
+   *
+   * @param asyncExecutor executor service
+   * @param cleanupExecutor true if the Client should close the executor when it is closed
+   * @return an updated client builder instance
+   */
    @Deprecated
    public ResteasyClientBuilder asyncExecutor(ExecutorService asyncExecutor, boolean cleanupExecutor)
    {
@@ -120,12 +120,12 @@ public class ResteasyClientBuilder extends ClientBuilder
    }
 
    /**
-    * If there is a connection pool, set the time to live in the pool.
-    *
-    * @param ttl time to live
-    * @param unit the time unit of the ttl argument
-    * @return an updated client builder instance
-    */
+   * If there is a connection pool, set the time to live in the pool.
+   *
+   * @param ttl time to live
+   * @param unit the time unit of the ttl argument
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilder connectionTTL(long ttl, TimeUnit unit)
    {
       this.connectionTTL = ttl;
@@ -142,12 +142,12 @@ public class ResteasyClientBuilder extends ClientBuilder
    }
 
    /**
-    * The timeout for waiting for data. A timeout value of zero is interpreted as an infinite timeout
-    *
-    * @param timeout the maximum time to wait
-    * @param unit the time unit of the timeout argument
-    * @return an updated client builder instance
-    */
+   * The timeout for waiting for data. A timeout value of zero is interpreted as an infinite timeout
+   *
+   * @param timeout the maximum time to wait
+   * @param unit the time unit of the timeout argument
+   * @return an updated client builder instance
+   */
    @Deprecated
    public ResteasyClientBuilder socketTimeout(long timeout, TimeUnit unit)
    {
@@ -163,12 +163,12 @@ public class ResteasyClientBuilder extends ClientBuilder
    }
 
    /**
-    * When trying to make an initial socket connection, what is the timeout?
-    *
-    * @param timeout the maximum time to wait
-    * @param unit the time unit of the timeout argument
-    * @return an updated client builder instance
-    */
+   * When trying to make an initial socket connection, what is the timeout?
+   *
+   * @param timeout the maximum time to wait
+   * @param unit the time unit of the timeout argument
+   * @return an updated client builder instance
+   */
    @Deprecated
    public ResteasyClientBuilder establishConnectionTimeout(long timeout, TimeUnit unit)
    {
@@ -177,11 +177,11 @@ public class ResteasyClientBuilder extends ClientBuilder
 
 
    /**
-    * If connection pooling enabled, how many connections to pool per url?
-    *
-    * @param maxPooledPerRoute max pool size per url
-    * @return an updated client builder instance
-    */
+   * If connection pooling enabled, how many connections to pool per url?
+   *
+   * @param maxPooledPerRoute max pool size per url
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilder maxPooledPerRoute(int maxPooledPerRoute)
    {
       this.maxPooledPerRoute = maxPooledPerRoute;
@@ -189,11 +189,11 @@ public class ResteasyClientBuilder extends ClientBuilder
    }
 
    /**
-    * If connection pooling is enabled, how long will we wait to get a connection?
-    * @param timeout the timeout
-    * @param unit the units the timeout is in
-    * @return an updated client builder instance
-    */
+   * If connection pooling is enabled, how long will we wait to get a connection?
+   * @param timeout the timeout
+   * @param unit the units the timeout is in
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilder connectionCheckoutTimeout(long timeout, TimeUnit unit)
    {
        this.connectionCheckoutTimeoutMs = (int) TimeUnit.MILLISECONDS.convert(timeout, unit);
@@ -201,11 +201,11 @@ public class ResteasyClientBuilder extends ClientBuilder
    }
 
    /**
-    * Number of connections allowed to pool.
-    *
-    * @param connectionPoolSize connection pool size
-    * @return an updated client builder instance
-    */
+   * Number of connections allowed to pool.
+   *
+   * @param connectionPoolSize connection pool size
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilder connectionPoolSize(int connectionPoolSize)
    {
       this.connectionPoolSize = connectionPoolSize;
@@ -213,12 +213,12 @@ public class ResteasyClientBuilder extends ClientBuilder
    }
 
    /**
-    * Response stream is wrapped in a BufferedInputStream.  Default is 8192.  Value of 0 will not wrap it.
-    * Value of -1 will use a SelfExpandingBufferedInputStream.
-    *
-    * @param size response buffer size
-    * @return an updated client builder instance
-    */
+   * Response stream is wrapped in a BufferedInputStream.  Default is 8192.  Value of 0 will not wrap it.
+   * Value of -1 will use a SelfExpandingBufferedInputStream.
+   *
+   * @param size response buffer size
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilder responseBufferSize(int size)
    {
       this.responseBufferSize = size;
@@ -227,11 +227,11 @@ public class ResteasyClientBuilder extends ClientBuilder
 
 
    /**
-    * Disable trust management and hostname verification.  <i>NOTE</i> this is a security
-    * hole, so only set this option if you cannot or do not want to verify the identity of the
-    * host you are communicating with.
-    * @return an updated client builder instance
-    */
+   * Disable trust management and hostname verification.  <i>NOTE</i> this is a security
+   * hole, so only set this option if you cannot or do not want to verify the identity of the
+   * host you are communicating with.
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilder disableTrustManager()
    {
       this.disableTrustManager = true;
@@ -239,11 +239,11 @@ public class ResteasyClientBuilder extends ClientBuilder
    }
 
    /**
-    * SSL policy used to verify hostnames
-    *
-    * @param policy SSL policy
-    * @return an updated client builder instance
-    */
+   * SSL policy used to verify hostnames
+   *
+   * @param policy SSL policy
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilder hostnameVerification(HostnameVerificationPolicy policy)
    {
       this.policy = policy;
@@ -251,11 +251,11 @@ public class ResteasyClientBuilder extends ClientBuilder
    }
 
    /**
-    * Negates all ssl and connection specific configuration
-    *
-    * @param httpEngine http engine
-    * @return an updated client builder instance
-    */
+   * Negates all ssl and connection specific configuration
+   *
+   * @param httpEngine http engine
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilder httpEngine(ClientHttpEngine httpEngine)
    {
       this.httpEngine = httpEngine;
@@ -305,7 +305,7 @@ public class ResteasyClientBuilder extends ClientBuilder
       return this;
    }
 
-    /**
+   /**
      * Adds a TLS/SSL SNI Host Name for authentication.
      *
      * @param sniHostNames host names
@@ -317,36 +317,36 @@ public class ResteasyClientBuilder extends ClientBuilder
    }
 
    /**
-    * Specify a default proxy.  Default port and schema will be used.
-    *
-    * @param hostname host name
-    * @return an updated client builder instance
-    */
+   * Specify a default proxy.  Default port and schema will be used.
+   *
+   * @param hostname host name
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilder defaultProxy(String hostname)
    {
       return defaultProxy(hostname, -1, null);
    }
 
    /**
-    * Specify a default proxy host and port.  Default schema will be used.
-    *
-    * @param hostname host name
-    * @param port port
-    * @return an updated client builder instance
-    */
+   * Specify a default proxy host and port.  Default schema will be used.
+   *
+   * @param hostname host name
+   * @param port port
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilder defaultProxy(String hostname, int port)
    {
       return defaultProxy(hostname, port, null);
    }
 
    /**
-    * Specify default proxy.
-    *
-    * @param hostname host name
-    * @param port port
-    * @param scheme scheme
-    * @return an updated client builder instance
-    */
+   * Specify default proxy.
+   *
+   * @param hostname host name
+   * @param port port
+   * @param scheme scheme
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilder defaultProxy(String hostname, int port, final String scheme)
    {
       this.defaultProxy = new HttpHost(hostname, port, scheme);

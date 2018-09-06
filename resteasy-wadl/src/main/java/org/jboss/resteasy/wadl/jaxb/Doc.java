@@ -48,22 +48,22 @@ import org.w3c.dom.Element;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "content"
+   "content"
 })
 @XmlRootElement(name = "doc")
 public class Doc {
 
-    @XmlMixed
-    @XmlAnyElement(lax = true)
-    protected List<Object> content;
-    @XmlAttribute(name = "title")
-    protected String title;
-    @XmlAttribute(name = "lang", namespace = "http://www.w3.org/XML/1998/namespace")
-    protected String lang;
-    @XmlAnyAttribute
-    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+   @XmlMixed
+   @XmlAnyElement(lax = true)
+   protected List<Object> content;
+   @XmlAttribute(name = "title")
+   protected String title;
+   @XmlAttribute(name = "lang", namespace = "http://www.w3.org/XML/1998/namespace")
+   protected String lang;
+   @XmlAnyAttribute
+   private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
-    /**
+   /**
      * Gets the value of the content property.
      * 
      * <p>
@@ -87,14 +87,14 @@ public class Doc {
      * 
      * 
      */
-    public List<Object> getContent() {
-        if (content == null) {
-            content = new ArrayList<Object>();
-        }
-        return this.content;
-    }
+   public List<Object> getContent() {
+      if (content == null) {
+         content = new ArrayList<Object>();
+      }
+      return this.content;
+   }
 
-    /**
+   /**
      * Gets the value of the title property.
      * 
      * @return
@@ -102,11 +102,11 @@ public class Doc {
      *     {@link String }
      *     
      */
-    public String getTitle() {
-        return title;
-    }
+   public String getTitle() {
+      return title;
+   }
 
-    /**
+   /**
      * Sets the value of the title property.
      * 
      * @param value
@@ -114,11 +114,11 @@ public class Doc {
      *     {@link String }
      *     
      */
-    public void setTitle(String value) {
-        this.title = value;
-    }
+   public void setTitle(String value) {
+      this.title = value;
+   }
 
-    /**
+   /**
      * Gets the value of the lang property.
      * 
      * @return
@@ -126,11 +126,11 @@ public class Doc {
      *     {@link String }
      *     
      */
-    public String getLang() {
-        return lang;
-    }
+   public String getLang() {
+      return lang;
+   }
 
-    /**
+   /**
      * Sets the value of the lang property.
      * 
      * @param value
@@ -138,11 +138,11 @@ public class Doc {
      *     {@link String }
      *     
      */
-    public void setLang(String value) {
-        this.lang = value;
-    }
+   public void setLang(String value) {
+      this.lang = value;
+   }
 
-    /**
+   /**
      * Gets a map that contains attributes that aren't bound to any typed property on this class.
      * 
      * <p>
@@ -156,8 +156,8 @@ public class Doc {
      * @return
      *     always non-null
      */
-    public Map<QName, String> getOtherAttributes() {
-        return otherAttributes;
-    }
+   public Map<QName, String> getOtherAttributes() {
+      return otherAttributes;
+   }
 
 }

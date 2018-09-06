@@ -20,12 +20,12 @@ public class LocaleHelper
    }
 
    /**
-    * HTTP 1.1 has different String format for language than what java.util.Locale does '-' instead of '_'
-    * as a separator
-    *
-    * @param value locale
-    * @return converted language format string
-    */
+   * HTTP 1.1 has different String format for language than what java.util.Locale does '-' instead of '_'
+   * as a separator
+   *
+   * @param value locale
+   * @return converted language format string
+   */
    public static String toLanguageString(Locale value)
    {
       StringBuffer buf = new StringBuffer(value.getLanguage().toLowerCase());

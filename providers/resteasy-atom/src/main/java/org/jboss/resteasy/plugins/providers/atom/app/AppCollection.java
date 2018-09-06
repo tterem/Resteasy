@@ -58,51 +58,51 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "collection", propOrder = { "href", "title", "accept",
-        "categories", "any" })
+      "categories", "any" })
 public class AppCollection extends AppCommonAttributes {
 
-    private static final long serialVersionUID = 3466473348035916400L;
-    @XmlAttribute
-    @XmlSchemaType(name = "anyURI")
-    protected String href;
-    @XmlElement(namespace = "http://www.w3.org/2005/Atom", required = true)
-    protected String title;
-    protected List<AppAccept> accept;
-    protected List<AppCategories> categories;
-    @XmlAnyElement(lax = true)
-    protected List<Object> any;
+   private static final long serialVersionUID = 3466473348035916400L;
+   @XmlAttribute
+   @XmlSchemaType(name = "anyURI")
+   protected String href;
+   @XmlElement(namespace = "http://www.w3.org/2005/Atom", required = true)
+   protected String title;
+   protected List<AppAccept> accept;
+   protected List<AppCategories> categories;
+   @XmlAnyElement(lax = true)
+   protected List<Object> any;
 
  
-    public AppCollection() {}
+   public AppCollection() {}
     
-    public AppCollection(String href, String title) {
-        super();
-        this.href = href;
-        this.title = title;
-    }
+   public AppCollection(String href, String title) {
+      super();
+      this.href = href;
+      this.title = title;
+   }
 
-    /**
+   /**
      * Gets the value of the title property.
      * 
      * @return possible object is {@link String }
      * 
      */
-    public String getTitle() {
-        return title;
-    }
+   public String getTitle() {
+      return title;
+   }
 
-    /**
+   /**
      * Sets the value of the title property.
      * 
      * @param value
      *            allowed object is {@link String }
      * 
      */
-    public void setTitle(String value) {
-        this.title = value;
-    }
+   public void setTitle(String value) {
+      this.title = value;
+   }
 
-    /**
+   /**
      * Gets the value of the accept property.
      * 
      * <p>
@@ -124,14 +124,14 @@ public class AppCollection extends AppCommonAttributes {
      * 
      *  @return list of {@link AppAccept}
      */
-    public List<AppAccept> getAccept() {
-        if (accept == null) {
-            accept = new ArrayList<AppAccept>();
-        }
-        return this.accept;
-    }
+   public List<AppAccept> getAccept() {
+      if (accept == null) {
+         accept = new ArrayList<AppAccept>();
+      }
+      return this.accept;
+   }
 
-    /**
+   /**
      * Gets the value of the categories property.
      * 
      * <p>
@@ -155,14 +155,14 @@ public class AppCollection extends AppCommonAttributes {
      * @return list of {@link AppCategories}
      * 
      */
-    public List<AppCategories> getCategories() {
-        if (categories == null) {
-            categories = new ArrayList<AppCategories>();
-        }
-        return this.categories;
-    }
+   public List<AppCategories> getCategories() {
+      if (categories == null) {
+         categories = new ArrayList<AppCategories>();
+      }
+      return this.categories;
+   }
 
-    /**
+   /**
      * Gets the value of the any property.
      * 
      * <p>
@@ -186,32 +186,32 @@ public class AppCollection extends AppCommonAttributes {
      * @return list of objects
      * 
      */
-    public List<Object> getAny() {
-        if (any == null) {
-            any = new ArrayList<Object>();
-        }
-        return this.any;
-    }
+   public List<Object> getAny() {
+      if (any == null) {
+         any = new ArrayList<Object>();
+      }
+      return this.any;
+   }
 
-    /**
+   /**
      * Gets the value of the href property.
      * 
      * @return possible object is {@link String }
      * 
      */
-    public String getHref() {
-        return href;
-    }
+   public String getHref() {
+      return href;
+   }
 
-    /**
+   /**
      * Sets the value of the href property.
      * 
      * @param value
      *            allowed object is {@link String }
      * 
      */
-    public void setHref(String value) {
-        this.href = value;
-    }
+   public void setHref(String value) {
+      this.href = value;
+   }
 
 }

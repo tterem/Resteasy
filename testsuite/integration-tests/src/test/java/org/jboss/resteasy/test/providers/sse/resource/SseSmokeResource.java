@@ -11,25 +11,25 @@ import javax.ws.rs.sse.SseEventSink;
 @Path("/sse")
 public class SseSmokeResource {
 
-    @GET
-    @Path("/events")
-    @Produces(MediaType.SERVER_SENT_EVENTS)
-    public void sentEvents(@Context SseEventSink sseEventSink, @Context Sse sse) {
+   @GET
+   @Path("/events")
+   @Produces(MediaType.SERVER_SENT_EVENTS)
+   public void sentEvents(@Context SseEventSink sseEventSink, @Context Sse sse) {
 
-        try (SseEventSink sink = sseEventSink) {
+      try (SseEventSink sink = sseEventSink) {
          sseEventSink.send(sse.newEventBuilder()
                  .name("customObj")
                  .data(new SseSmokeUser("Zeytin", "zeytin@resteasy.org")).build());
-        }
-    }
+      }
+   }
 
-    @GET
-    @Path("/eventssimple")
-    @Produces(MediaType.SERVER_SENT_EVENTS)
-    public void sentSimpleEvents(@Context SseEventSink sseEventSink, @Context Sse sse) {
+   @GET
+   @Path("/eventssimple")
+   @Produces(MediaType.SERVER_SENT_EVENTS)
+   public void sentSimpleEvents(@Context SseEventSink sseEventSink, @Context Sse sse) {
 
-        try (SseEventSink sink = sseEventSink) {
-            sseEventSink.send(sse.newEvent("data"));
-        }
-    }
+      try (SseEventSink sink = sseEventSink) {
+         sseEventSink.send(sse.newEvent("data"));
+      }
+   }
 }

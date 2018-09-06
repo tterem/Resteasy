@@ -41,7 +41,7 @@ public class ResponseExceptionMapperRuntimeExceptionTest {
    /**
      * @tpTestDetails Check ExceptionMapper for WebApplicationException
      * @tpSince RESTEasy 3.6.0
-    */
+   */
    @Test
    public void testRuntimeApplicationException() throws Exception {
        ResponseExceptionMapperRuntimeExceptionResourceInterface service = MicroprofileClientBuilderResolver.instance()

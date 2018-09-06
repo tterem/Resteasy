@@ -53,7 +53,7 @@ public class ProcessorFactory
          Annotation[] annotations = method.getParameterAnnotations()[i];
          Type genericType = method.getGenericParameterTypes()[i];
          if (TypeVariable.class.isInstance(genericType) && declaringClass.isInterface() && !declaringClass.equals(method.getDeclaringClass())) {
-        	 genericType = getTypeArgument((TypeVariable)genericType, declaringClass, method.getDeclaringClass());
+      	 genericType = getTypeArgument((TypeVariable)genericType, declaringClass, method.getDeclaringClass());
          }
          AccessibleObject target = method;
          params[i] = ProcessorFactory.createProcessor(declaringClass, configuration, type, annotations, genericType, target, defaultConsumes, false);
@@ -144,7 +144,7 @@ public class ProcessorFactory
       {
          MediaType mediaType = MediaTypeHelper.getConsumes(declaring, target);
          if(mediaType == null)
-        	 mediaType = defaultConsumes;
+      	 mediaType = defaultConsumes;
          if (mediaType == null)
          {
             throw new RuntimeException(Messages.MESSAGES.mustDefineConsumesType());

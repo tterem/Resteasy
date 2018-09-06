@@ -16,20 +16,20 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 public class HttpRequestParameterInjectorParamFactoryImpl extends InjectorFactoryImpl {
-    @SuppressWarnings("unchecked")
-    @Override
-    public ValueInjector createParameterExtractor(Class injectTargetClass,
+   @SuppressWarnings("unchecked")
+   @Override
+   public ValueInjector createParameterExtractor(Class injectTargetClass,
                                                   AccessibleObject injectTarget, String defaultName, Class type, Type genericType, Annotation[] annotations, ResteasyProviderFactory factory) {
-        final HttpRequestParameterInjectorClassicParam param = FindAnnotation.findAnnotation(annotations, HttpRequestParameterInjectorClassicParam.class);
-        if (param == null) {
-            return super.createParameterExtractor(injectTargetClass, injectTarget, defaultName, type,
-                    genericType, annotations, factory);
-        } else {
-            return new ValueInjector() {
+      final HttpRequestParameterInjectorClassicParam param = FindAnnotation.findAnnotation(annotations, HttpRequestParameterInjectorClassicParam.class);
+      if (param == null) {
+         return super.createParameterExtractor(injectTargetClass, injectTarget, defaultName, type,
+               genericType, annotations, factory);
+      } else {
+         return new ValueInjector() {
                @Override
                public CompletionStage<Object> inject(HttpRequest request, HttpResponse response, boolean unwrapAsync) {
                   return CompletableFuture.completedFuture(ResteasyProviderFactory.getContextData(HttpServletRequest.class)
-                        .getParameter(param.value()));
+                  .getParameter(param.value()));
                }
 
                @Override
@@ -37,21 +37,21 @@ public class HttpRequestParameterInjectorParamFactoryImpl extends InjectorFactor
                   // do nothing.
                   return CompletableFuture.completedFuture(null);
                }
-            };
-        }
-    }
+         };
+      }
+   }
 
-    @Override
-    public ValueInjector createParameterExtractor(Parameter parameter, ResteasyProviderFactory providerFactory) {
-        final HttpRequestParameterInjectorClassicParam param = FindAnnotation.findAnnotation(parameter.getAnnotations(), HttpRequestParameterInjectorClassicParam.class);
-        if (param == null) {
-            return super.createParameterExtractor(parameter, providerFactory);
-        } else {
-            return new ValueInjector() {
+   @Override
+   public ValueInjector createParameterExtractor(Parameter parameter, ResteasyProviderFactory providerFactory) {
+      final HttpRequestParameterInjectorClassicParam param = FindAnnotation.findAnnotation(parameter.getAnnotations(), HttpRequestParameterInjectorClassicParam.class);
+      if (param == null) {
+         return super.createParameterExtractor(parameter, providerFactory);
+      } else {
+         return new ValueInjector() {
                @Override
                public CompletionStage<Object> inject(HttpRequest request, HttpResponse response, boolean unwrapAsync) {
                   return CompletableFuture.completedFuture(ResteasyProviderFactory.getContextData(HttpServletRequest.class)
-                        .getParameter(param.value()));
+                  .getParameter(param.value()));
                }
 
                @Override
@@ -59,7 +59,7 @@ public class HttpRequestParameterInjectorParamFactoryImpl extends InjectorFactor
                   // do nothing.
                   return CompletableFuture.completedFuture(null);
                }
-            };
-        }
-    }
+         };
+      }
+   }
 }

@@ -62,49 +62,49 @@ import org.w3c.dom.Element;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "doc",
-    "option",
-    "link",
-    "any"
+   "doc",
+   "option",
+   "link",
+   "any"
 })
 @XmlRootElement(name = "param")
 public class Param {
 
-    protected List<Doc> doc;
-    protected List<Option> option;
-    protected Link link;
-    @XmlAnyElement(lax = true)
-    protected List<Object> any;
-    @XmlAttribute(name = "href")
-    @XmlSchemaType(name = "anyURI")
-    protected String href;
-    @XmlAttribute(name = "name")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "NMTOKEN")
-    protected String name;
-    @XmlAttribute(name = "style")
-    protected ParamStyle style;
-    @XmlAttribute(name = "id")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlID
-    @XmlSchemaType(name = "ID")
-    protected String id;
-    @XmlAttribute(name = "type")
-    protected QName type;
-    @XmlAttribute(name = "default")
-    protected String _default;
-    @XmlAttribute(name = "required")
-    protected Boolean required;
-    @XmlAttribute(name = "repeating")
-    protected Boolean repeating;
-    @XmlAttribute(name = "fixed")
-    protected String fixed;
-    @XmlAttribute(name = "path")
-    protected String path;
-    @XmlAnyAttribute
-    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+   protected List<Doc> doc;
+   protected List<Option> option;
+   protected Link link;
+   @XmlAnyElement(lax = true)
+   protected List<Object> any;
+   @XmlAttribute(name = "href")
+   @XmlSchemaType(name = "anyURI")
+   protected String href;
+   @XmlAttribute(name = "name")
+   @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+   @XmlSchemaType(name = "NMTOKEN")
+   protected String name;
+   @XmlAttribute(name = "style")
+   protected ParamStyle style;
+   @XmlAttribute(name = "id")
+   @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+   @XmlID
+   @XmlSchemaType(name = "ID")
+   protected String id;
+   @XmlAttribute(name = "type")
+   protected QName type;
+   @XmlAttribute(name = "default")
+   protected String _default;
+   @XmlAttribute(name = "required")
+   protected Boolean required;
+   @XmlAttribute(name = "repeating")
+   protected Boolean repeating;
+   @XmlAttribute(name = "fixed")
+   protected String fixed;
+   @XmlAttribute(name = "path")
+   protected String path;
+   @XmlAnyAttribute
+   private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
-    /**
+   /**
      * Gets the value of the doc property.
      * 
      * <p>
@@ -126,14 +126,14 @@ public class Param {
      * 
      * 
      */
-    public List<Doc> getDoc() {
-        if (doc == null) {
-            doc = new ArrayList<Doc>();
-        }
-        return this.doc;
-    }
+   public List<Doc> getDoc() {
+      if (doc == null) {
+         doc = new ArrayList<Doc>();
+      }
+      return this.doc;
+   }
 
-    /**
+   /**
      * Gets the value of the option property.
      * 
      * <p>
@@ -155,14 +155,14 @@ public class Param {
      * 
      * 
      */
-    public List<Option> getOption() {
-        if (option == null) {
-            option = new ArrayList<Option>();
-        }
-        return this.option;
-    }
+   public List<Option> getOption() {
+      if (option == null) {
+         option = new ArrayList<Option>();
+      }
+      return this.option;
+   }
 
-    /**
+   /**
      * Gets the value of the link property.
      * 
      * @return
@@ -170,11 +170,11 @@ public class Param {
      *     {@link Link }
      *     
      */
-    public Link getLink() {
-        return link;
-    }
+   public Link getLink() {
+      return link;
+   }
 
-    /**
+   /**
      * Sets the value of the link property.
      * 
      * @param value
@@ -182,11 +182,11 @@ public class Param {
      *     {@link Link }
      *     
      */
-    public void setLink(Link value) {
-        this.link = value;
-    }
+   public void setLink(Link value) {
+      this.link = value;
+   }
 
-    /**
+   /**
      * Gets the value of the any property.
      * 
      * <p>
@@ -209,14 +209,14 @@ public class Param {
      * 
      * 
      */
-    public List<Object> getAny() {
-        if (any == null) {
-            any = new ArrayList<Object>();
-        }
-        return this.any;
-    }
+   public List<Object> getAny() {
+      if (any == null) {
+         any = new ArrayList<Object>();
+      }
+      return this.any;
+   }
 
-    /**
+   /**
      * Gets the value of the href property.
      * 
      * @return
@@ -224,11 +224,11 @@ public class Param {
      *     {@link String }
      *     
      */
-    public String getHref() {
-        return href;
-    }
+   public String getHref() {
+      return href;
+   }
 
-    /**
+   /**
      * Sets the value of the href property.
      * 
      * @param value
@@ -236,11 +236,11 @@ public class Param {
      *     {@link String }
      *     
      */
-    public void setHref(String value) {
-        this.href = value;
-    }
+   public void setHref(String value) {
+      this.href = value;
+   }
 
-    /**
+   /**
      * Gets the value of the name property.
      * 
      * @return
@@ -248,11 +248,11 @@ public class Param {
      *     {@link String }
      *     
      */
-    public String getName() {
-        return name;
-    }
+   public String getName() {
+      return name;
+   }
 
-    /**
+   /**
      * Sets the value of the name property.
      * 
      * @param value
@@ -260,11 +260,11 @@ public class Param {
      *     {@link String }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
-    }
+   public void setName(String value) {
+      this.name = value;
+   }
 
-    /**
+   /**
      * Gets the value of the style property.
      * 
      * @return
@@ -272,11 +272,11 @@ public class Param {
      *     {@link ParamStyle }
      *     
      */
-    public ParamStyle getStyle() {
-        return style;
-    }
+   public ParamStyle getStyle() {
+      return style;
+   }
 
-    /**
+   /**
      * Sets the value of the style property.
      * 
      * @param value
@@ -284,11 +284,11 @@ public class Param {
      *     {@link ParamStyle }
      *     
      */
-    public void setStyle(ParamStyle value) {
-        this.style = value;
-    }
+   public void setStyle(ParamStyle value) {
+      this.style = value;
+   }
 
-    /**
+   /**
      * Gets the value of the id property.
      * 
      * @return
@@ -296,11 +296,11 @@ public class Param {
      *     {@link String }
      *     
      */
-    public String getId() {
-        return id;
-    }
+   public String getId() {
+      return id;
+   }
 
-    /**
+   /**
      * Sets the value of the id property.
      * 
      * @param value
@@ -308,11 +308,11 @@ public class Param {
      *     {@link String }
      *     
      */
-    public void setId(String value) {
-        this.id = value;
-    }
+   public void setId(String value) {
+      this.id = value;
+   }
 
-    /**
+   /**
      * Gets the value of the type property.
      * 
      * @return
@@ -320,15 +320,15 @@ public class Param {
      *     {@link QName }
      *     
      */
-    public QName getType() {
-        if (type == null) {
-            return new QName("http://www.w3.org/2001/XMLSchema", "string", "xs");
-        } else {
-            return type;
-        }
-    }
+   public QName getType() {
+      if (type == null) {
+         return new QName("http://www.w3.org/2001/XMLSchema", "string", "xs");
+      } else {
+         return type;
+      }
+   }
 
-    /**
+   /**
      * Sets the value of the type property.
      * 
      * @param value
@@ -336,11 +336,11 @@ public class Param {
      *     {@link QName }
      *     
      */
-    public void setType(QName value) {
-        this.type = value;
-    }
+   public void setType(QName value) {
+      this.type = value;
+   }
 
-    /**
+   /**
      * Gets the value of the default property.
      * 
      * @return
@@ -348,11 +348,11 @@ public class Param {
      *     {@link String }
      *     
      */
-    public String getDefault() {
-        return _default;
-    }
+   public String getDefault() {
+      return _default;
+   }
 
-    /**
+   /**
      * Sets the value of the default property.
      * 
      * @param value
@@ -360,11 +360,11 @@ public class Param {
      *     {@link String }
      *     
      */
-    public void setDefault(String value) {
-        this._default = value;
-    }
+   public void setDefault(String value) {
+      this._default = value;
+   }
 
-    /**
+   /**
      * Gets the value of the required property.
      * 
      * @return
@@ -372,15 +372,15 @@ public class Param {
      *     {@link Boolean }
      *     
      */
-    public boolean isRequired() {
-        if (required == null) {
-            return false;
-        } else {
-            return required;
-        }
-    }
+   public boolean isRequired() {
+      if (required == null) {
+         return false;
+      } else {
+         return required;
+      }
+   }
 
-    /**
+   /**
      * Sets the value of the required property.
      * 
      * @param value
@@ -388,11 +388,11 @@ public class Param {
      *     {@link Boolean }
      *     
      */
-    public void setRequired(Boolean value) {
-        this.required = value;
-    }
+   public void setRequired(Boolean value) {
+      this.required = value;
+   }
 
-    /**
+   /**
      * Gets the value of the repeating property.
      * 
      * @return
@@ -400,15 +400,15 @@ public class Param {
      *     {@link Boolean }
      *     
      */
-    public boolean isRepeating() {
-        if (repeating == null) {
-            return false;
-        } else {
-            return repeating;
-        }
-    }
+   public boolean isRepeating() {
+      if (repeating == null) {
+         return false;
+      } else {
+         return repeating;
+      }
+   }
 
-    /**
+   /**
      * Sets the value of the repeating property.
      * 
      * @param value
@@ -416,11 +416,11 @@ public class Param {
      *     {@link Boolean }
      *     
      */
-    public void setRepeating(Boolean value) {
-        this.repeating = value;
-    }
+   public void setRepeating(Boolean value) {
+      this.repeating = value;
+   }
 
-    /**
+   /**
      * Gets the value of the fixed property.
      * 
      * @return
@@ -428,11 +428,11 @@ public class Param {
      *     {@link String }
      *     
      */
-    public String getFixed() {
-        return fixed;
-    }
+   public String getFixed() {
+      return fixed;
+   }
 
-    /**
+   /**
      * Sets the value of the fixed property.
      * 
      * @param value
@@ -440,11 +440,11 @@ public class Param {
      *     {@link String }
      *     
      */
-    public void setFixed(String value) {
-        this.fixed = value;
-    }
+   public void setFixed(String value) {
+      this.fixed = value;
+   }
 
-    /**
+   /**
      * Gets the value of the path property.
      * 
      * @return
@@ -452,11 +452,11 @@ public class Param {
      *     {@link String }
      *     
      */
-    public String getPath() {
-        return path;
-    }
+   public String getPath() {
+      return path;
+   }
 
-    /**
+   /**
      * Sets the value of the path property.
      * 
      * @param value
@@ -464,11 +464,11 @@ public class Param {
      *     {@link String }
      *     
      */
-    public void setPath(String value) {
-        this.path = value;
-    }
+   public void setPath(String value) {
+      this.path = value;
+   }
 
-    /**
+   /**
      * Gets a map that contains attributes that aren't bound to any typed property on this class.
      * 
      * <p>
@@ -482,8 +482,8 @@ public class Param {
      * @return
      *     always non-null
      */
-    public Map<QName, String> getOtherAttributes() {
-        return otherAttributes;
-    }
+   public Map<QName, String> getOtherAttributes() {
+      return otherAttributes;
+   }
 
 }

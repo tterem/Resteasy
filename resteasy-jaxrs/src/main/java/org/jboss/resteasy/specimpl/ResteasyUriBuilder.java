@@ -129,11 +129,11 @@ public class ResteasyUriBuilder extends UriBuilder
    }
 
    /**
-    * You may put path parameters anywhere within the uriTemplate except port.
-    *
-    * @param uriTemplate uri template
-    * @return uri builder
-    */
+   * You may put path parameters anywhere within the uriTemplate except port.
+   *
+   * @param uriTemplate uri template
+   * @return uri builder
+   */
    public static UriBuilder fromTemplate(String uriTemplate)
    {
       ResteasyUriBuilder impl = new ResteasyUriBuilder();
@@ -142,11 +142,11 @@ public class ResteasyUriBuilder extends UriBuilder
    }
 
    /**
-    * You may put path parameters anywhere within the uriTemplate except port.
-    *
-    * @param uriTemplate uri template
-    * @return uri builder
-    */
+   * You may put path parameters anywhere within the uriTemplate except port.
+   *
+   * @param uriTemplate uri template
+   * @return uri builder
+   */
    public UriBuilder uriTemplate(CharSequence uriTemplate)
    {
       if (uriTemplate == null) throw new IllegalArgumentException(Messages.MESSAGES.uriTemplateParameterNull());
@@ -522,13 +522,13 @@ public class ResteasyUriBuilder extends UriBuilder
    }
 
    /**
-    * Only replace path params in path of URI.  This changes state of URIBuilder.
-    *
-    * @param name parameter name
-    * @param value parameter value
-    * @param isEncoded encoded flag
-    * @return uri builder
-    */
+   * Only replace path params in path of URI.  This changes state of URIBuilder.
+   *
+   * @param name parameter name
+   * @param value parameter value
+   * @param isEncoded encoded flag
+   * @return uri builder
+   */
    public UriBuilder substitutePathParam(String name, Object value, boolean isEncoded)
    {
       if (path != null)
@@ -606,7 +606,7 @@ public class ResteasyUriBuilder extends UriBuilder
       }
       if (path != null)
       {
-    	 StringBuilder tmp = new StringBuilder();
+   	 StringBuilder tmp = new StringBuilder();
          replaceParameter(paramMap, fromEncodedMap, isTemplate, path, tmp, encodeSlash);
          if (userInfo != null || host != null)
          {
@@ -673,7 +673,7 @@ public class ResteasyUriBuilder extends UriBuilder
       int start = 0;
       while (matcher.find())
       {
-    	 builder.append(string, start, matcher.start());
+   	 builder.append(string, start, matcher.start());
          String param = matcher.group(1);
 		 boolean containsValueForParam = paramMap.containsKey(param);
 		 if (!containsValueForParam)
@@ -722,7 +722,7 @@ public class ResteasyUriBuilder extends UriBuilder
       int start = 0;
       while (matcher.find())
       {
-    	 builder.append(string, start, matcher.start());
+   	 builder.append(string, start, matcher.start());
          String param = matcher.group(1);
 		 boolean containsValueForParam = paramMap.containsKey(param);
 		 if (!containsValueForParam)
@@ -760,10 +760,10 @@ public class ResteasyUriBuilder extends UriBuilder
    }
 
    /**
-    * Return a unique order list of path params.
-    *
-    * @return list of path parameters
-    */
+   * Return a unique order list of path params.
+   *
+   * @return list of path parameters
+   */
    public List<String> getPathParamNamesInDeclarationOrder()
    {
       List<String> params = new ArrayList<String>();
@@ -855,7 +855,7 @@ public class ResteasyUriBuilder extends UriBuilder
       int from = 0;
       while (matcher.find())
       {
-    	 newSegment.append(pathWithoutEnclosedCurlyBraces, from, matcher.start());
+   	 newSegment.append(pathWithoutEnclosedCurlyBraces, from, matcher.start());
          foundParam = true;
          String group = matcher.group();
          pathParams.add(PathHelper.recoverEnclosedCurlyBraces(group));
@@ -926,33 +926,33 @@ public class ResteasyUriBuilder extends UriBuilder
    }
 
    /**
-    * Called by ClientRequest.getUri() to add a query parameter for
-    * {@code @QueryParam} parameters. We do not use UriBuilder.queryParam()
-    * because
-    * <ul>
-    * <li> queryParam() supports URI template processing and this method must
-    * always encode braces (for parameter substitution is not possible for
-    * {@code @QueryParam} parameters).
-    * <li> queryParam() supports "contextual URI encoding" (i.e., it does not
-    * encode {@code %} characters that are followed by two hex characters).
-    * The JavaDoc for {@code @QueryParam.value()} explicitly states that
-    * the value is specified in decoded format and that "any percent
-    * encoded literals within the value will not be decoded and will
-    * instead be treated as literal text". This means that it is an
-    * explicit bug to perform contextual URI encoding of this method's
-    * name parameter; hence, we must always encode said parameter. This
-    * method also foregoes contextual URI encoding on this method's value
-    * parameter because it represents arbitrary data passed to a
-    * {@code QueryParam} parameter of a client proxy (since the client
-    * proxy is nothing more than a transport layer, it should not be
-    * "interpreting" such data; instead, it should faithfully transmit
-    * this data over the wire).
-    * </ul>
-    *
-    * @param name  the name of the query parameter.
-    * @param value the value of the query parameter.
-    * @return Returns this instance to allow call chaining.
-    */
+   * Called by ClientRequest.getUri() to add a query parameter for
+   * {@code @QueryParam} parameters. We do not use UriBuilder.queryParam()
+   * because
+   * <ul>
+   * <li> queryParam() supports URI template processing and this method must
+   * always encode braces (for parameter substitution is not possible for
+   * {@code @QueryParam} parameters).
+   * <li> queryParam() supports "contextual URI encoding" (i.e., it does not
+   * encode {@code %} characters that are followed by two hex characters).
+   * The JavaDoc for {@code @QueryParam.value()} explicitly states that
+   * the value is specified in decoded format and that "any percent
+   * encoded literals within the value will not be decoded and will
+   * instead be treated as literal text". This means that it is an
+   * explicit bug to perform contextual URI encoding of this method's
+   * name parameter; hence, we must always encode said parameter. This
+   * method also foregoes contextual URI encoding on this method's value
+   * parameter because it represents arbitrary data passed to a
+   * {@code QueryParam} parameter of a client proxy (since the client
+   * proxy is nothing more than a transport layer, it should not be
+   * "interpreting" such data; instead, it should faithfully transmit
+   * this data over the wire).
+   * </ul>
+   *
+   * @param name  the name of the query parameter.
+   * @param value the value of the query parameter.
+   * @return Returns this instance to allow call chaining.
+   */
    public UriBuilder clientQueryParam(String name, Object value) throws IllegalArgumentException
    {
       if (name == null) throw new IllegalArgumentException(Messages.MESSAGES.nameParameterNull());

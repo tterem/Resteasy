@@ -305,8 +305,8 @@ public class Rx2SingleProxyTest {
    public void testUnhandledException() throws Exception {
       Single<Thing> single = (Single<Thing>) proxy.exceptionUnhandled();
       single.subscribe(
-            (Thing t) -> {},
-            (Throwable t) -> {value.set(t); latch.countDown();});
+         (Thing t) -> {},
+         (Throwable t) -> {value.set(t); latch.countDown();});
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Throwable t = unwrap((Throwable) value.get(), InternalServerErrorException.class);
@@ -318,8 +318,8 @@ public class Rx2SingleProxyTest {
    public void testHandledException() throws Exception {
       Single<Thing> single = (Single<Thing>) proxy.exceptionHandled();
       single.subscribe(
-            (Thing t) -> {},
-            (Throwable t) -> {value.set(t); latch.countDown();});
+         (Thing t) -> {},
+         (Throwable t) -> {value.set(t); latch.countDown();});
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Throwable t = unwrap((Throwable) value.get(), ClientErrorException.class);
@@ -397,20 +397,20 @@ public class Rx2SingleProxyTest {
    private Throwable unwrap(Throwable t, Class<?> clazz) {
       while (t != null) {
          if (t.getClass().equals(clazz)) {
-            return t;
+         return t;
          }
          t = t.getCause();
       }
       return null;
    }
 
-    private static boolean throwableContains(Throwable t, String s) {
-        while (t != null) {
-            if (t.getMessage().contains(s)) {
-                return true;
-            }
-            t = t.getCause();
-        }
-        return false;
-    }
+   private static boolean throwableContains(Throwable t, String s) {
+      while (t != null) {
+         if (t.getMessage().contains(s)) {
+            return true;
+         }
+         t = t.getCause();
+      }
+      return false;
+   }
 }

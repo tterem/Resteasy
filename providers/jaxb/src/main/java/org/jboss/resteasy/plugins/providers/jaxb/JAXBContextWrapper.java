@@ -80,13 +80,13 @@ public class JAXBContextWrapper extends JAXBContext
    private final ThreadLocal<Unmarshaller> unmarshaller = new ThreadLocal<Unmarshaller>();
 
    /**
-    * An optional namespace mapper that is used to apply prefixes to elements with a given namespace.
-    */
+   * An optional namespace mapper that is used to apply prefixes to elements with a given namespace.
+   */
    private Object mapper;
 
    /**
-    * The optional Schema that is bound to this context
-    */
+   * The optional Schema that is bound to this context
+   */
    private Schema schema;
 
    public JAXBContextWrapper(JAXBContext wrappedContext, JAXBConfig config) throws JAXBException
@@ -96,13 +96,13 @@ public class JAXBContextWrapper extends JAXBContext
    }
 
    /**
-    * Create a new JAXBContextWrapper.
-    *
-    * @param classes classes
-    * @param properties properties map
-    * @param config jaxb configuration
-    * @throws JAXBException jaxb exception
-    */
+   * Create a new JAXBContextWrapper.
+   *
+   * @param classes classes
+   * @param properties properties map
+   * @param config jaxb configuration
+   * @throws JAXBException jaxb exception
+   */
    public JAXBContextWrapper(final Class<?>[] classes, final Map<String, Object> properties, JAXBConfig config) throws JAXBException
    {
       processConfig(config);
@@ -131,12 +131,12 @@ public class JAXBContextWrapper extends JAXBContext
    }
 
    /**
-    * Create a new JAXBContextWrapper.
-    *
-    * @param contextPath context path
-    * @param config jaxb config
-    * @throws JAXBException jaxb exception
-    */
+   * Create a new JAXBContextWrapper.
+   *
+   * @param contextPath context path
+   * @param config jaxb config
+   * @throws JAXBException jaxb exception
+   */
    public JAXBContextWrapper(final String contextPath, JAXBConfig config) throws JAXBException
    {
       processConfig(config);
@@ -165,22 +165,22 @@ public class JAXBContextWrapper extends JAXBContext
    }
 
    /**
-    * Create a new JAXBContextWrapper.
-    *
-    * @param classes classes
-    * @param config jaxb config
-    * @throws JAXBException jaxb exception
-    */
+   * Create a new JAXBContextWrapper.
+   *
+   * @param classes classes
+   * @param config jaxb config
+   * @throws JAXBException jaxb exception
+   */
    public JAXBContextWrapper(JAXBConfig config, Class<?>... classes) throws JAXBException
    {
       this(classes, Collections.<String, Object>emptyMap(), config);
    }
 
    /**
-    * FIXME Comment this
-    *
-    * @param config jaxb config
-    */
+   * FIXME Comment this
+   *
+   * @param config jaxb config
+   */
    private void processConfig(JAXBConfig config) throws JAXBException
    {
       if (config != null)
@@ -219,59 +219,59 @@ public class JAXBContextWrapper extends JAXBContext
    }
 
    /**
-    * Get the schema.
-    *
-    * @return the schema.
-    */
+   * Get the schema.
+   *
+   * @return the schema.
+   */
    public Schema getSchema()
    {
       return schema;
    }
 
    /**
-    * Set the schema.
-    *
-    * @param schema The schema to set.
-    */
+   * Set the schema.
+   *
+   * @param schema The schema to set.
+   */
    public void setSchema(Schema schema)
    {
       this.schema = schema;
    }
 
    /**
-    * @return {@link Binder}
-    * @see javax.xml.bind.JAXBContext#createBinder()
-    */
+   * @return {@link Binder}
+   * @see javax.xml.bind.JAXBContext#createBinder()
+   */
    public Binder<Node> createBinder()
    {
       return wrappedContext.createBinder();
    }
 
    /**
-    * @param <T> type
-    * @param domType dom class
-    * @return {@link Binder}
-    * @see javax.xml.bind.JAXBContext#createBinder(java.lang.Class)
-    */
+   * @param <T> type
+   * @param domType dom class
+   * @return {@link Binder}
+   * @see javax.xml.bind.JAXBContext#createBinder(java.lang.Class)
+   */
    public <T> Binder<T> createBinder(Class<T> domType)
    {
       return wrappedContext.createBinder(domType);
    }
 
    /**
-    * @return {@link JAXBIntrospector}
-    * @see javax.xml.bind.JAXBContext#createJAXBIntrospector()
-    */
+   * @return {@link JAXBIntrospector}
+   * @see javax.xml.bind.JAXBContext#createJAXBIntrospector()
+   */
    public JAXBIntrospector createJAXBIntrospector()
    {
       return wrappedContext.createJAXBIntrospector();
    }
 
    /**
-    * @return jaxb marshaller
-    * @throws JAXBException jaxb exception
-    * @see javax.xml.bind.JAXBContext#createMarshaller()
-    */
+   * @return jaxb marshaller
+   * @throws JAXBException jaxb exception
+   * @see javax.xml.bind.JAXBContext#createMarshaller()
+   */
    public Marshaller createMarshaller() throws JAXBException
    {
       Marshaller marshaller = wrappedContext.createMarshaller();
@@ -290,10 +290,10 @@ public class JAXBContextWrapper extends JAXBContext
    }
 
    /**
-    * @return jaxb unmarshaller
-    * @throws JAXBException jaxb exception
-    * @see javax.xml.bind.JAXBContext#createUnmarshaller()
-    */
+   * @return jaxb unmarshaller
+   * @throws JAXBException jaxb exception
+   * @see javax.xml.bind.JAXBContext#createUnmarshaller()
+   */
    public Unmarshaller createUnmarshaller() throws JAXBException
    {
       Unmarshaller u = unmarshaller.get();
@@ -306,21 +306,21 @@ public class JAXBContextWrapper extends JAXBContext
    }
 
    /**
-    * @return xml validator
-    * @throws JAXBException jaxb exception
-    * @see javax.xml.bind.JAXBContext#createValidator()
-    * @deprecated See javax.xml.bind.JAXBContext#createValidator().
-    */
+   * @return xml validator
+   * @throws JAXBException jaxb exception
+   * @see javax.xml.bind.JAXBContext#createValidator()
+   * @deprecated See javax.xml.bind.JAXBContext#createValidator().
+   */
    public Validator createValidator() throws JAXBException
    {
       return wrappedContext.createValidator();
    }
 
    /**
-    * @param outputResolver xml schema resolver
-    * @throws IOException if I/O error occurred
-    * @see javax.xml.bind.JAXBContext#generateSchema(javax.xml.bind.SchemaOutputResolver)
-    */
+   * @param outputResolver xml schema resolver
+   * @throws IOException if I/O error occurred
+   * @see javax.xml.bind.JAXBContext#generateSchema(javax.xml.bind.SchemaOutputResolver)
+   */
    public void generateSchema(SchemaOutputResolver outputResolver) throws IOException
    {
       wrappedContext.generateSchema(outputResolver);

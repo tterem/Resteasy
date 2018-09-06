@@ -14,33 +14,33 @@ import java.util.List;
 public class GetRestful
 {
    /**
-    * Given a class, search itself and implemented interfaces for jax-rs annotations.
-    *
-    * @param clazz class
-    * @return list of class and intertfaces that have jax-rs annotations
-    */
+   * Given a class, search itself and implemented interfaces for jax-rs annotations.
+   *
+   * @param clazz class
+   * @return list of class and intertfaces that have jax-rs annotations
+   */
    public static Class getRootResourceClass(Class clazz)
    {
       return AnnotationResolver.getClassWithAnnotation(clazz, Path.class);
    }
 
    /**
-    * Given a class, search itself and implemented interfaces for jax-rs annotations.
-    *
-    * @param clazz class
-    * @return list of class and interfaces that have jax-rs annotations
-    */
+   * Given a class, search itself and implemented interfaces for jax-rs annotations.
+   *
+   * @param clazz class
+   * @return list of class and interfaces that have jax-rs annotations
+   */
    public static boolean isSubResourceClass(Class clazz)
    {
       // check class & superclasses for JAX-RS annotations
       for (Class<?> actualClass = clazz; isTopObject(actualClass); actualClass = actualClass.getSuperclass())
       {
          if (hasJAXRSAnnotations(actualClass))
-            return true;
+         return true;
          // ok, no @Path or @HttpMethods so look in interfaces.
          for (Class intf : actualClass.getInterfaces())
          {
-            if (hasJAXRSAnnotations(intf))
+         if (hasJAXRSAnnotations(intf))
                return true;
          }
       }
@@ -49,35 +49,35 @@ public class GetRestful
    }
    
    /**
-    * Given a class, search itself and implemented interfaces for jax-rs annotations.
-    *
-    * @param clazz class
-    * @return list of class and interfaces that have jax-rs annotations
-    */
+   * Given a class, search itself and implemented interfaces for jax-rs annotations.
+   *
+   * @param clazz class
+   * @return list of class and interfaces that have jax-rs annotations
+   */
    public static Class getSubResourceClass(Class clazz)
    {
       // check class & superclasses for JAX-RS annotations
       for (Class<?> actualClass = clazz; isTopObject(actualClass); actualClass = actualClass.getSuperclass())
       {
          if (hasJAXRSAnnotations(actualClass))
-            return actualClass;
+         return actualClass;
       }
 
       // ok, no @Path or @HttpMethods so look in interfaces.
       for (Class intf : clazz.getInterfaces())
       {
          if (hasJAXRSAnnotations(intf))
-            return intf;
+         return intf;
       }
       return null;
    }
 
    /**
-    * Given a class, search itself and implemented interfaces for jax-rs annotations.
-    *
-    * @param clazz class
-    * @return list of class and interfaces that have jax-rs annotations
-    */
+   * Given a class, search itself and implemented interfaces for jax-rs annotations.
+   *
+   * @param clazz class
+   * @return list of class and interfaces that have jax-rs annotations
+   */
    public static Class<?>[] getSubResourceClasses(Class<?> clazz)
    {
        List<Class<?>> classes = new ArrayList<Class<?>>();
@@ -110,14 +110,14 @@ public class GetRestful
       {
          if (method.isAnnotationPresent(Path.class))
          {
-            return true;
+         return true;
          }
          for (Annotation ann : method.getAnnotations())
          {
-            if (ann.annotationType().isAnnotationPresent(HttpMethod.class))
-            {
+         if (ann.annotationType().isAnnotationPresent(HttpMethod.class))
+         {
                return true;
-            }
+         }
          }
       }
       return false;

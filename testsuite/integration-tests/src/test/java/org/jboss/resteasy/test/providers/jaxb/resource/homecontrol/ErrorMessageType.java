@@ -33,10 +33,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ErrorMessageType", propOrder = {
-        "type",
-        "domain",
-        "message",
-        "timestamp"
+      "type",
+      "domain",
+      "message",
+      "timestamp"
 })
 public class ErrorMessageType {
 
@@ -53,97 +53,97 @@ public class ErrorMessageType {
    protected XMLGregorianCalendar timestamp;
 
    /**
-    * Ruft den Wert der type-Eigenschaft ab.
-    *
-    * @return
-    *     possible object is
-    *     {@link ErrorType }
-    *
-    */
+   * Ruft den Wert der type-Eigenschaft ab.
+   *
+   * @return
+   *     possible object is
+   *     {@link ErrorType }
+   *
+   */
    public ErrorType getType() {
       return type;
    }
 
    /**
-    * Legt den Wert der type-Eigenschaft fest.
-    *
-    * @param value
-    *     allowed object is
-    *     {@link ErrorType }
-    *
-    */
+   * Legt den Wert der type-Eigenschaft fest.
+   *
+   * @param value
+   *     allowed object is
+   *     {@link ErrorType }
+   *
+   */
    public void setType(ErrorType value) {
       this.type = value;
    }
 
    /**
-    * Ruft den Wert der domain-Eigenschaft ab.
-    *
-    * @return
-    *     possible object is
-    *     {@link ErrorDomainType }
-    *
-    */
+   * Ruft den Wert der domain-Eigenschaft ab.
+   *
+   * @return
+   *     possible object is
+   *     {@link ErrorDomainType }
+   *
+   */
    public ErrorDomainType getDomain() {
       return domain;
    }
 
    /**
-    * Legt den Wert der domain-Eigenschaft fest.
-    *
-    * @param value
-    *     allowed object is
-    *     {@link ErrorDomainType }
-    *
-    */
+   * Legt den Wert der domain-Eigenschaft fest.
+   *
+   * @param value
+   *     allowed object is
+   *     {@link ErrorDomainType }
+   *
+   */
    public void setDomain(ErrorDomainType value) {
       this.domain = value;
    }
 
    /**
-    * Ruft den Wert der message-Eigenschaft ab.
-    *
-    * @return
-    *     possible object is
-    *     {@link String }
-    *
-    */
+   * Ruft den Wert der message-Eigenschaft ab.
+   *
+   * @return
+   *     possible object is
+   *     {@link String }
+   *
+   */
    public String getMessage() {
       return message;
    }
 
    /**
-    * Legt den Wert der message-Eigenschaft fest.
-    *
-    * @param value
-    *     allowed object is
-    *     {@link String }
-    *
-    */
+   * Legt den Wert der message-Eigenschaft fest.
+   *
+   * @param value
+   *     allowed object is
+   *     {@link String }
+   *
+   */
    public void setMessage(String value) {
       this.message = value;
    }
 
    /**
-    * Ruft den Wert der timestamp-Eigenschaft ab.
-    *
-    * @return
-    *     possible object is
-    *     {@link XMLGregorianCalendar }
-    *
-    */
+   * Ruft den Wert der timestamp-Eigenschaft ab.
+   *
+   * @return
+   *     possible object is
+   *     {@link XMLGregorianCalendar }
+   *
+   */
    public XMLGregorianCalendar getTimestamp() {
       return timestamp;
    }
 
    /**
-    * Legt den Wert der timestamp-Eigenschaft fest.
-    *
-    * @param value
-    *     allowed object is
-    *     {@link XMLGregorianCalendar }
-    *
-    */
+   * Legt den Wert der timestamp-Eigenschaft fest.
+   *
+   * @param value
+   *     allowed object is
+   *     {@link XMLGregorianCalendar }
+   *
+   */
    public void setTimestamp(XMLGregorianCalendar value) {
       this.timestamp = value;
    }

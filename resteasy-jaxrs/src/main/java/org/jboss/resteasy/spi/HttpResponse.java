@@ -33,8 +33,8 @@ public interface HttpResponse extends Closeable
    boolean isCommitted();
 
    /**
-    * reset status and headers.  Will fail if response is committed
-    */
+   * reset status and headers.  Will fail if response is committed
+   */
    void reset();
    
    default void close() throws IOException {

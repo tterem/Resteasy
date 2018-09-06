@@ -85,8 +85,8 @@ public class DocumentProvider extends AbstractEntityProvider<Document>
    }
 
    public Document readFrom(Class<Document> clazz, Type type,
-                            Annotation[] annotations, MediaType mediaType,
-                            MultivaluedMap<String, String> headers, InputStream input)
+                     Annotation[] annotations, MediaType mediaType,
+                     MultivaluedMap<String, String> headers, InputStream input)
            throws IOException, WebApplicationException
    {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom", getClass().getName());

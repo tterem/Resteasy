@@ -167,7 +167,7 @@ public class ClientInvoker implements MethodInvoker
 
       ClientConfiguration parentConfiguration=(ClientConfiguration) target.getConfiguration();
       ClientInvocation clientInvocation = new ClientInvocation(this.webTarget.getResteasyClient(), target.getUri(),
-    		  new ClientRequestHeaders(parentConfiguration), parentConfiguration);
+   		  new ClientRequestHeaders(parentConfiguration), parentConfiguration);
       clientInvocation.setClientInvoker(this);
       if (accepts != null)
       {

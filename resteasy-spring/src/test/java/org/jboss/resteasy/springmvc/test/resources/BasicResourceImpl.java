@@ -24,8 +24,8 @@ public class BasicResourceImpl
    private UriInfo uri;
 
    /**
-    * really simple test
-    */
+   * really simple test
+   */
    @GET
    @Produces("text/plain")
    public String getBasicString()
@@ -42,8 +42,8 @@ public class BasicResourceImpl
    }
 
    /**
-    * WOOHOO!  SpringMVC ModelAndView in action
-    */
+   * WOOHOO!  SpringMVC ModelAndView in action
+   */
    @GET
    @Produces("application/custom")
    @Path("/custom-rep")
@@ -63,8 +63,8 @@ public class BasicResourceImpl
    }
 
    /**
-    * the dao knows the path via an @Context inject value
-    */
+   * the dao knows the path via an @Context inject value
+   */
    @GET
    @Produces("text/plain")
    @Path("/url")

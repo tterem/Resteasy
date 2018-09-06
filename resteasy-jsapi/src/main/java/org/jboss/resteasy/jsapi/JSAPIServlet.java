@@ -99,7 +99,7 @@ public class JSAPIServlet extends HttpServlet
          {
             ResourceMethodRegistry registry = (ResourceMethodRegistry) entry.getValue().getRegistry();
             ResteasyProviderFactory providerFactory =
-                    (ResteasyProviderFactory) entry.getValue().getProviderFactory();
+               (ResteasyProviderFactory) entry.getValue().getProviderFactory();
             ServiceRegistry service = new ServiceRegistry(null, registry, providerFactory, null);
             services.put(entry.getKey(), service);
          }

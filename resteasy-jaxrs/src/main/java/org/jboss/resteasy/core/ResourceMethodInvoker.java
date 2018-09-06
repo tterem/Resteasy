@@ -145,13 +145,13 @@ public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorR
       
       asyncResponseProvider = resourceMethodProviderFactory.getAsyncResponseProvider(method.getReturnType());
       if(asyncResponseProvider == null){
-    	  asyncStreamProvider = resourceMethodProviderFactory.getAsyncStreamProvider(method.getReturnType());
+   	  asyncStreamProvider = resourceMethodProviderFactory.getAsyncStreamProvider(method.getReturnType());
       }
       
       if (isSseResourceMethod(method)) 
       {
-    	  isSse = true;
-    	  method.markAsynchronous();
+   	  isSse = true;
+   	  method.markAsynchronous();
       }
    }
    
@@ -254,10 +254,10 @@ public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorR
    }
 
    /**
-    * Key is httpMethod called.
-    *
-    * @return statistics map
-    */
+   * Key is httpMethod called.
+   *
+   * @return statistics map
+   */
    public Map<String, AtomicLong> getStats()
    {
       return stats;
@@ -354,7 +354,7 @@ public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorR
       }
       catch (RuntimeException ex)
       {
-        throw new ProcessingException(ex);
+      throw new ProcessingException(ex);
 
       }
       return rtn;
@@ -404,7 +404,7 @@ public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorR
       }
       else if (asyncStreamProvider != null)
       {
-    	 asyncResponseConsumer = AsyncResponseConsumer.makeAsyncResponseConsumer(this, asyncStreamProvider);
+   	 asyncResponseConsumer = AsyncResponseConsumer.makeAsyncResponseConsumer(this, asyncStreamProvider);
       }
       else
       {

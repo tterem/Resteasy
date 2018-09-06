@@ -63,9 +63,9 @@ public class ResteasyJAXRSImplTest
    }
 
    /**
-    * @tpTestDetails Tests that ResteasyClientBuilder implementation corresponds to JAXRS spec ClientBuilder
-    * @tpSince RESTEasy 3.1.0
-    */
+   * @tpTestDetails Tests that ResteasyClientBuilder implementation corresponds to JAXRS spec ClientBuilder
+   * @tpSince RESTEasy 3.1.0
+   */
    @Test
    @RunAsClient
    public void testClientBuilder() throws Exception
@@ -74,10 +74,10 @@ public class ResteasyJAXRSImplTest
    }
 
    /**
-    * @tpTestDetails Tests that ResteasyClientBuilder implementation corresponds to JAXRS spec ClientBuilder. Tested client
-    * is bundled in the server.
-    * @tpSince RESTEasy 3.1.0
-    */
+   * @tpTestDetails Tests that ResteasyClientBuilder implementation corresponds to JAXRS spec ClientBuilder. Tested client
+   * is bundled in the server.
+   * @tpSince RESTEasy 3.1.0
+   */
    @Test
    public void testInContainerClientBuilder() throws Exception
    {
@@ -85,9 +85,9 @@ public class ResteasyJAXRSImplTest
    }
 
    /**
-    * @tpTestDetails Tests RuntimeDelegate instance implementation with ResteasyProviderFactory
-    * @tpSince RESTEasy 3.1.0
-    */
+   * @tpTestDetails Tests RuntimeDelegate instance implementation with ResteasyProviderFactory
+   * @tpSince RESTEasy 3.1.0
+   */
    @Test
    @RunAsClient
    public void testRuntimeDelegate() throws Exception
@@ -98,9 +98,9 @@ public class ResteasyJAXRSImplTest
    }
 
    /**
-    * @tpTestDetails Tests RuntimeDelegate instance implementation with ResteasyProviderFactory in the container.
-    * @tpSince RESTEasy 3.1.0
-    */
+   * @tpTestDetails Tests RuntimeDelegate instance implementation with ResteasyProviderFactory in the container.
+   * @tpSince RESTEasy 3.1.0
+   */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testInContainerRuntimeDelegate() throws Exception

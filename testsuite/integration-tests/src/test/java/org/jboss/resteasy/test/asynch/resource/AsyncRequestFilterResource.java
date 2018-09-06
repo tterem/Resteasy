@@ -19,9 +19,9 @@ import org.jboss.resteasy.spi.HttpRequest;
 @Path("/")
 public class AsyncRequestFilterResource {
 
-    private static final Logger LOG = Logger.getLogger(AsyncRequestFilterResource.class);
-    @GET
-    public Response threeSyncRequestFilters(@Context HttpRequest request,
+   private static final Logger LOG = Logger.getLogger(AsyncRequestFilterResource.class);
+   @GET
+   public Response threeSyncRequestFilters(@Context HttpRequest request,
           @HeaderParam("Filter1") @DefaultValue("") String filter1,
           @HeaderParam("Filter2") @DefaultValue("") String filter2,
           @HeaderParam("Filter3") @DefaultValue("") String filter3,
@@ -37,11 +37,11 @@ public class AsyncRequestFilterResource {
        if(async != request.getAsyncContext().isSuspended())
           return Response.serverError().entity("Request suspention is wrong").build();
        return Response.ok("resource").build();
-    }
+   }
 
-    @Path("non-response")
-    @GET
-    public String threeSyncRequestFiltersNonResponse(@Context HttpRequest request,
+   @Path("non-response")
+   @GET
+   public String threeSyncRequestFiltersNonResponse(@Context HttpRequest request,
           @HeaderParam("Filter1") @DefaultValue("") String filter1,
           @HeaderParam("Filter2") @DefaultValue("") String filter2,
           @HeaderParam("Filter3") @DefaultValue("") String filter3,
@@ -57,42 +57,42 @@ public class AsyncRequestFilterResource {
        if(async != request.getAsyncContext().isSuspended())
           throw new WebApplicationException(Response.serverError().entity("Request suspention is wrong").build());
        return "resource";
-    }
+   }
 
-    @Path("async")
-    @GET
-    public CompletionStage<Response> async() {
+   @Path("async")
+   @GET
+   public CompletionStage<Response> async() {
        ExecutorService executor = Executors.newSingleThreadExecutor();
        CompletableFuture<Response> resp = new CompletableFuture<>();
        executor.submit(() -> {
           try
          {
-            Thread.sleep(2000);
+         Thread.sleep(2000);
          } catch (InterruptedException e)
          {
-            // TODO Auto-generated catch block
-            LOG.error("Error:", e);
+         // TODO Auto-generated catch block
+         LOG.error("Error:", e);
          }
           resp.complete(Response.ok("resource").build());
        });
        return resp;
-    }
+   }
 
-    @Path("callback")
-    @GET
-    public String callback() {
+   @Path("callback")
+   @GET
+   public String callback() {
        return "hello";
-    }
+   }
 
-    @Path("callback-async")
-    @GET
-    public CompletionStage<String> callbackAsync() {
+   @Path("callback-async")
+   @GET
+   public CompletionStage<String> callbackAsync() {
        return CompletableFuture.completedFuture("hello");
-    }
+   }
 
    private boolean isAsync(String filter)
    {
       return filter.equals("async-pass")
-            || filter.equals("async-fail");
+         || filter.equals("async-fail");
    }
 }

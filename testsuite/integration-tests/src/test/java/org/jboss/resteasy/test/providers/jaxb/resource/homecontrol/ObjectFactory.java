@@ -28,73 +28,73 @@ public class ObjectFactory {
    private final static QName _Id_QNAME = new QName("http://creaity.de/homecontrol/rest/types/v1", "id");
 
    /**
-    * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: de.creaity.homecontrol.service.rest.jaxb.v1
-    *
-    */
+   * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: de.creaity.homecontrol.service.rest.jaxb.v1
+   *
+   */
    public ObjectFactory() {
    }
 
    /**
-    * Create an instance of {@link UserType }
-    *
-    */
+   * Create an instance of {@link UserType }
+   *
+   */
    public UserType createUserType() {
       return new UserType();
    }
 
    /**
-    * Create an instance of {@link ErrorMessageType }
-    *
-    */
+   * Create an instance of {@link ErrorMessageType }
+   *
+   */
    public ErrorMessageType createErrorMessageType() {
       return new ErrorMessageType();
    }
 
    /**
-    * Create an instance of {@link IDType }
-    */
+   * Create an instance of {@link IDType }
+   */
    public IDType createIDType() {
       return new IDType();
    }
 
    /**
-    * Create an instance of {@link BinaryType }
-    *
-    */
+   * Create an instance of {@link BinaryType }
+   *
+   */
    public BinaryType createBinaryType() {
       return new BinaryType();
    }
 
    /**
-    * Create an instance of {@link UserType.Credentials }
-    *
-    */
+   * Create an instance of {@link UserType.Credentials }
+   *
+   */
    public UserType.Credentials createUserTypeCredentials() {
       return new UserType.Credentials();
    }
 
    /**
-    * Create an instance of {@link JAXBElement }{@code <}{@link UserType }{@code >}}
-    *
-    */
+   * Create an instance of {@link JAXBElement }{@code <}{@link UserType }{@code >}}
+   *
+   */
    @XmlElementDecl(namespace = "http://creaity.de/homecontrol/rest/types/v1", name = "user")
    public JAXBElement<UserType> createUser(UserType value) {
       return new JAXBElement<UserType>(_User_QNAME, UserType.class, null, value);
    }
 
    /**
-    * Create an instance of {@link JAXBElement }{@code <}{@link ErrorMessageType }{@code >}}
-    *
-    */
+   * Create an instance of {@link JAXBElement }{@code <}{@link ErrorMessageType }{@code >}}
+   *
+   */
    @XmlElementDecl(namespace = "http://creaity.de/homecontrol/rest/types/v1", name = "error")
    public JAXBElement<ErrorMessageType> createError(ErrorMessageType value) {
       return new JAXBElement<ErrorMessageType>(_Error_QNAME, ErrorMessageType.class, null, value);
    }
 
    /**
-    * Create an instance of {@link JAXBElement }{@code <}{@link IDType }{@code >}}
-    *
-    */
+   * Create an instance of {@link JAXBElement }{@code <}{@link IDType }{@code >}}
+   *
+   */
    @XmlElementDecl(namespace = "http://creaity.de/homecontrol/rest/types/v1", name = "id")
    public JAXBElement<IDType> createId(IDType value) {
       return new JAXBElement<IDType>(_Id_QNAME, IDType.class, null, value);

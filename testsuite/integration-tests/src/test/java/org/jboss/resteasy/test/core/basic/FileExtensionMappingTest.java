@@ -55,9 +55,9 @@ public class FileExtensionMappingTest
    }
    
    /**
-    * @tpTestDetails Map suffix .txt to Accept: text/plain
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Map suffix .txt to Accept: text/plain
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testFileExtensionMappingPlain() throws Exception {
       Response response = client.target(generateURL("/test.txt")).queryParam("query", "whosOnFirst").request().get();
@@ -67,9 +67,9 @@ public class FileExtensionMappingTest
    }
    
    /**
-    * @tpTestDetails Map suffix .html to Accept: text/html
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Map suffix .html to Accept: text/html
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testFileExtensionMappingHtml() throws Exception
    {

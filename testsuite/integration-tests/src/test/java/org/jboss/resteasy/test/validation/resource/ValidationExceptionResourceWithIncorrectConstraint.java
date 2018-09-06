@@ -13,7 +13,7 @@ public class ValidationExceptionResourceWithIncorrectConstraint {
 	public static class ConstraintDefinitionExceptionMapper extends ValidationExceptionMapper<ConstraintDefinitionException> {
 	}
 	
-    @POST
-    public void test() {
-    }
+   @POST
+   public void test() {
+   }
 }

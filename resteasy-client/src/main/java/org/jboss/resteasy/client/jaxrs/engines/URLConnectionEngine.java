@@ -26,33 +26,33 @@ import java.util.Map;
 public class URLConnectionEngine implements ClientHttpEngine
 {
 
-    protected SSLContext sslContext;
-    protected HostnameVerifier hostnameVerifier;
+   protected SSLContext sslContext;
+   protected HostnameVerifier hostnameVerifier;
 
-    /**
+   /**
      * {@inheritDoc}
      */
-    @Override
-    public ClientResponse invoke(ClientInvocation request)
-    {
+   @Override
+   public ClientResponse invoke(ClientInvocation request)
+   {
 
-        final HttpURLConnection connection;
+      final HttpURLConnection connection;
 
-        final int status;
-        try
-        {
+      final int status;
+      try
+      {
 
-            connection = createConnection(request);
+         connection = createConnection(request);
 
-            executeRequest(request, connection);
+         executeRequest(request, connection);
 
-            status = connection.getResponseCode();
-        } catch (IOException e)
-        {
+         status = connection.getResponseCode();
+      } catch (IOException e)
+      {
            throw new ProcessingException(Messages.MESSAGES.unableToInvokeRequest(), e);
-        }
+      }
 
-        //Creating response with stream content
+      //Creating response with stream content
       ClientResponse response = new ClientResponse(request.getClientConfiguration())
       {
          private InputStream stream;
@@ -60,8 +60,8 @@ public class URLConnectionEngine implements ClientHttpEngine
          @Override
          protected InputStream getInputStream()
          {
-            if (stream == null)
-            {
+         if (stream == null)
+         {
                try
                {
                   stream = (status < 300) ? connection.getInputStream() : connection.getErrorStream();
@@ -70,30 +70,30 @@ public class URLConnectionEngine implements ClientHttpEngine
                {
                   throw new RuntimeException(e);
                }
-            }
+         }
 
-            return stream;
+         return stream;
          }
 
          @Override
          protected void setInputStream(InputStream is)
          {
-            stream = is;
-            resetEntity();
+         stream = is;
+         resetEntity();
          }
 
          @Override
          public void releaseConnection() throws IOException
          {
-            releaseConnection(false);
+         releaseConnection(false);
          }
 
          @Override
          public void releaseConnection(boolean consumeInputStream) throws IOException
          {
-            InputStream is = getInputStream();
-            if (is != null)
-            {
+         InputStream is = getInputStream();
+         if (is != null)
+         {
                // https://docs.oracle.com/javase/8/docs/technotes/guides/net/http-keepalive.html
                if (consumeInputStream)
                {
@@ -102,147 +102,146 @@ public class URLConnectionEngine implements ClientHttpEngine
                   }
                }
                is.close();
-            }
-            connection.disconnect();
+         }
+         connection.disconnect();
          }
 
       };
 
-        //Setting attributes
-        response.setStatus(status);
-        response.setHeaders(getHeaders(connection));
+      //Setting attributes
+      response.setStatus(status);
+      response.setHeaders(getHeaders(connection));
 
-        return response;
-    }
+      return response;
+   }
 
-    /**
+   /**
      * Create map with response headers.
      *
      * @param connection - HttpURLConnection
      * @return map key - list of values
      */
-    protected MultivaluedMap<String, String> getHeaders(
-            final HttpURLConnection connection)
-    {
-        MultivaluedMap<String, String> headers = new CaseInsensitiveMap<String>();
+   protected MultivaluedMap<String, String> getHeaders(
+         final HttpURLConnection connection)
+   {
+      MultivaluedMap<String, String> headers = new CaseInsensitiveMap<String>();
 
-        for (Map.Entry<String, List<String>> header : connection.getHeaderFields()
-                .entrySet())
-        {
-            if (header.getKey() != null)
+      for (Map.Entry<String, List<String>> header : connection.getHeaderFields()
+            .entrySet())
+      {
+         if (header.getKey() != null)
+         {
+            for (String value : header.getValue())
             {
-                for (String value : header.getValue())
-                {
-                    headers.add(header.getKey(), value);
-                }
+               headers.add(header.getKey(), value);
             }
-        }
-        return headers;
-    }
+         }
+      }
+      return headers;
+   }
 
-    @Override
-    public void close()
-    {
-        //empty
-    }
+   @Override
+   public void close()
+   {
+      //empty
+   }
 
-    /**
+   /**
      * Create HttpUrlConnection from ClientInvorcation and set request method.
      * @param request ClientInvocation
      * @return HttpURLConnection with method {@literal &} url already set
      * @throws IOException if url or io exceptions
      */
-    protected HttpURLConnection createConnection(final ClientInvocation request) throws IOException
-    {
-        HttpURLConnection connection = (HttpURLConnection) request.getUri().toURL().openConnection();
-        connection.setRequestMethod(request.getMethod());
+   protected HttpURLConnection createConnection(final ClientInvocation request) throws IOException
+   {
+      HttpURLConnection connection = (HttpURLConnection) request.getUri().toURL().openConnection();
+      connection.setRequestMethod(request.getMethod());
 
-        return connection;
-    }
+      return connection;
+   }
 
-    /**
+   /**
      * Execute request using HttpURLConnection with body from invocation if needed.
      *
      * @param request ClientInvocation
      * @param connection HttpURLConnection
      */
-    protected void executeRequest(final ClientInvocation request, HttpURLConnection connection)
-    {
-        connection.setInstanceFollowRedirects(request.getMethod().equals("GET"));
+   protected void executeRequest(final ClientInvocation request, HttpURLConnection connection)
+   {
+      connection.setInstanceFollowRedirects(request.getMethod().equals("GET"));
 
-        if (request.getEntity() != null)
-        {
+      if (request.getEntity() != null)
+      {
            if (request.getMethod().equals("GET")) throw new ProcessingException(Messages.MESSAGES.getRequestCannotHaveBody());
 
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            request.getDelegatingOutputStream().setDelegate(baos);
-            try
-            {
+         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+         request.getDelegatingOutputStream().setDelegate(baos);
+         try
+         {
 
-                request.writeRequestBody(request.getEntityStream());
-                baos.close();
-                commitHeaders(request, connection);
-                connection.setDoOutput(true);
-                OutputStream os = connection.getOutputStream();
-                os.write(baos.toByteArray());
-                os.flush();
-                os.close();
-            }
-            catch (IOException e)
-            {
-                throw new RuntimeException(e);
-            }
-        }
-        else // no body
-        {
+            request.writeRequestBody(request.getEntityStream());
+            baos.close();
             commitHeaders(request, connection);
-        }
-    }
+            connection.setDoOutput(true);
+            OutputStream os = connection.getOutputStream();
+            os.write(baos.toByteArray());
+            os.flush();
+            os.close();
+         }
+         catch (IOException e)
+         {
+            throw new RuntimeException(e);
+         }
+      }
+      else // no body
+      {
+         commitHeaders(request, connection);
+      }
+   }
 
-    /**
+   /**
      * Add headers to HttpURLConnection from ClientInvocation. Should be executed before writing body.
      * @param request ClientInvocation
      * @param connection HttpURLConnection
      */
-    protected void commitHeaders(ClientInvocation request, HttpURLConnection connection)
-    {
-        MultivaluedMap<String, String> headers = request.getHeaders().asMap();
-        for (Map.Entry<String, List<String>> header : headers.entrySet())
-        {
-            List<String> values = header.getValue();
-            for (String value : values)
-            {
-                connection.addRequestProperty(header.getKey(), value);
-            }
-        }
-    }
+   protected void commitHeaders(ClientInvocation request, HttpURLConnection connection)
+   {
+      MultivaluedMap<String, String> headers = request.getHeaders().asMap();
+      for (Map.Entry<String, List<String>> header : headers.entrySet())
+      {
+         List<String> values = header.getValue();
+         for (String value : values)
+         {
+            connection.addRequestProperty(header.getKey(), value);
+         }
+      }
+   }
 
-    /**
+   /**
      * {inheritDoc}
      */
-    @Override
-    public SSLContext getSslContext()
-    {
-        return sslContext;
-    }
+   @Override
+   public SSLContext getSslContext()
+   {
+      return sslContext;
+   }
 
-    /**
+   /**
      * {inheritDoc}
      */
-    @Override
-    public HostnameVerifier getHostnameVerifier()
-    {
-        return hostnameVerifier;
-    }
+   @Override
+   public HostnameVerifier getHostnameVerifier()
+   {
+      return hostnameVerifier;
+   }
 
-    public void setSslContext(SSLContext sslContext)
-    {
-        this.sslContext = sslContext;
-    }
+   public void setSslContext(SSLContext sslContext)
+   {
+      this.sslContext = sslContext;
+   }
 
-    public void setHostnameVerifier(HostnameVerifier hostnameVerifier)
-    {
-        this.hostnameVerifier = hostnameVerifier;
-    }
+   public void setHostnameVerifier(HostnameVerifier hostnameVerifier)
+   {
+      this.hostnameVerifier = hostnameVerifier;
+   }
 }
-

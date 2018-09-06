@@ -28,100 +28,100 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "shiptotype", propOrder = {
-        "name",
-        "address",
-        "city",
-        "country"
+      "name",
+      "address",
+      "city",
+      "country"
 })
 public class Shiptotype {
 
-    @XmlElement(required = true)
-    protected String name;
-    @XmlElement(required = true)
-    protected String address;
-    @XmlElement(required = true)
-    protected String city;
-    @XmlElement(required = true)
-    protected String country;
+   @XmlElement(required = true)
+   protected String name;
+   @XmlElement(required = true)
+   protected String address;
+   @XmlElement(required = true)
+   protected String city;
+   @XmlElement(required = true)
+   protected String country;
 
-    /**
+   /**
      * Gets the value of the name property.
      *
      * @return possible object is
      * {@link String }
      */
-    public String getName() {
-        return name;
-    }
+   public String getName() {
+      return name;
+   }
 
-    /**
+   /**
      * Sets the value of the name property.
      *
      * @param value allowed object is
      *              {@link String }
      */
-    public void setName(String value) {
-        this.name = value;
-    }
+   public void setName(String value) {
+      this.name = value;
+   }
 
-    /**
+   /**
      * Gets the value of the address property.
      *
      * @return possible object is
      * {@link String }
      */
-    public String getAddress() {
-        return address;
-    }
+   public String getAddress() {
+      return address;
+   }
 
-    /**
+   /**
      * Sets the value of the address property.
      *
      * @param value allowed object is
      *              {@link String }
      */
-    public void setAddress(String value) {
-        this.address = value;
-    }
+   public void setAddress(String value) {
+      this.address = value;
+   }
 
-    /**
+   /**
      * Gets the value of the city property.
      *
      * @return possible object is
      * {@link String }
      */
-    public String getCity() {
-        return city;
-    }
+   public String getCity() {
+      return city;
+   }
 
-    /**
+   /**
      * Sets the value of the city property.
      *
      * @param value allowed object is
      *              {@link String }
      */
-    public void setCity(String value) {
-        this.city = value;
-    }
+   public void setCity(String value) {
+      this.city = value;
+   }
 
-    /**
+   /**
      * Gets the value of the country property.
      *
      * @return possible object is
      * {@link String }
      */
-    public String getCountry() {
-        return country;
-    }
+   public String getCountry() {
+      return country;
+   }
 
-    /**
+   /**
      * Sets the value of the country property.
      *
      * @param value allowed object is
      *              {@link String }
      */
-    public void setCountry(String value) {
-        this.country = value;
-    }
+   public void setCountry(String value) {
+      this.country = value;
+   }
 
 }

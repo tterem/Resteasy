@@ -74,7 +74,7 @@ public class Text extends CommonAttributes
 
   public Text(String text)
   {
-    setText(text);
+   setText(text);
   }  
   
   protected void setFinder(JAXBContextFinder finder)
@@ -104,10 +104,10 @@ public class Text extends CommonAttributes
   {
      if (mediaType == null)
      {
-        if (type.equals("html")) mediaType = MediaType.TEXT_HTML_TYPE;
-        else if (type.equals("text")) mediaType = MediaType.TEXT_PLAIN_TYPE;
-        else if (type.equals("xhtml")) mediaType = MediaType.APPLICATION_XHTML_XML_TYPE;
-        else mediaType = MediaType.valueOf(type);
+      if (type.equals("html")) mediaType = MediaType.TEXT_HTML_TYPE;
+      else if (type.equals("text")) mediaType = MediaType.TEXT_PLAIN_TYPE;
+      else if (type.equals("xhtml")) mediaType = MediaType.APPLICATION_XHTML_XML_TYPE;
+      else mediaType = MediaType.valueOf(type);
      }
      return mediaType;
   }
@@ -146,7 +146,7 @@ public class Text extends CommonAttributes
      StringBuffer buf = new StringBuffer();
      for (Object obj : value)
      {
-        if (obj instanceof String) buf.append(obj.toString());
+      if (obj instanceof String) buf.append(obj.toString());
      }
      text = buf.toString();
      return text;
@@ -177,11 +177,11 @@ public class Text extends CommonAttributes
      if (element != null) return element;
      for (Object obj : value)
      {
-        if (obj instanceof Element)
-        {
+      if (obj instanceof Element)
+      {
            element = (Element) obj;
            return element;
-        }
+      }
      }
      return null;
   }
@@ -219,29 +219,29 @@ public class Text extends CommonAttributes
      Class[] classes = {clazz};
      if (otherPossibleClasses != null && otherPossibleClasses.length > 0)
      {
-        classes = new Class[1 + otherPossibleClasses.length];
-        classes[0] = clazz;
-        for (int i = 0; i < otherPossibleClasses.length; i++) classes[i + 1] = otherPossibleClasses[i];
+      classes = new Class[1 + otherPossibleClasses.length];
+      classes[0] = clazz;
+      for (int i = 0; i < otherPossibleClasses.length; i++) classes[i + 1] = otherPossibleClasses[i];
      }
      if (finder != null)
      {
-        ctx = finder.findCacheContext(MediaType.APPLICATION_XML_TYPE, null, classes);
+      ctx = finder.findCacheContext(MediaType.APPLICATION_XML_TYPE, null, classes);
      }
      else
      {
-        ctx = JAXBContext.newInstance(classes);
+      ctx = JAXBContext.newInstance(classes);
      }
      if (getElement() == null) return null;
      Object obj = ctx.createUnmarshaller().unmarshal(getElement());
      if (obj instanceof JAXBElement)
      {
-        jaxbObject = ((JAXBElement) obj).getValue();
-        return (T) jaxbObject;
+      jaxbObject = ((JAXBElement) obj).getValue();
+      return (T) jaxbObject;
      }
      else
      {
-        jaxbObject = obj;
-        return (T) obj;
+      jaxbObject = obj;
+      return (T) obj;
      }
   }
 
@@ -263,11 +263,11 @@ public class Text extends CommonAttributes
      if (jaxbObject != null && value != null) value.clear();
      if (!obj.getClass().isAnnotationPresent(XmlRootElement.class) && obj.getClass().isAnnotationPresent(XmlType.class))
      {
-        value.add(JAXBXmlTypeProvider.wrapInJAXBElement(obj, obj.getClass()));
+      value.add(JAXBXmlTypeProvider.wrapInJAXBElement(obj, obj.getClass()));
      }
      else
      {
-        value.add(obj);
+      value.add(obj);
      }
      jaxbObject = obj;
   }  

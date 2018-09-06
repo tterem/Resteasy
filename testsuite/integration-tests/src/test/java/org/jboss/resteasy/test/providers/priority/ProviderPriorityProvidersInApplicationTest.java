@@ -88,9 +88,9 @@ public class ProviderPriorityProvidersInApplicationTest {
    }
 
    /**
-    * @tpTestDetails Tests that ExceptionMappers are sorted by priority
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails Tests that ExceptionMappers are sorted by priority
+   * @tpSince RESTEasy 4.0.0
+   */
 //   @Test
    public void testExceptionMapper() throws Exception {
       WebTarget base = client.target(generateURL("/exception"));
@@ -100,9 +100,9 @@ public class ProviderPriorityProvidersInApplicationTest {
    }
    
    /**
-    * @tpTestDetails Tests that ParamConverterProviders are sorted by priority
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails Tests that ParamConverterProviders are sorted by priority
+   * @tpSince RESTEasy 4.0.0
+   */
    @Test
    public void testParamConverterProvider() throws Exception {
       WebTarget base = client.target(generateURL("/paramconverter/dummy"));

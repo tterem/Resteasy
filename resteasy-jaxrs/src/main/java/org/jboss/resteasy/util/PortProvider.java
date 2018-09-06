@@ -38,11 +38,11 @@ public class PortProvider
 
    /**
    /**
-    * Look up the configured port number, first checking an environment variable (RESTEASY_PORT),
-    * then a system property (org.jboss.resteasy.port), and finally the default port (8081).
-    *
-    * @return the port number specified in either the environment or system properties
-    */
+   * Look up the configured port number, first checking an environment variable (RESTEASY_PORT),
+   * then a system property (org.jboss.resteasy.port), and finally the default port (8081).
+   *
+   * @return the port number specified in either the environment or system properties
+   */
    public static int getPort()
    {
       int port = -1;
@@ -51,7 +51,7 @@ public class PortProvider
       {
          try
          {
-            port = Integer.parseInt(property);
+         port = Integer.parseInt(property);
          }
          catch (NumberFormatException e)
          {
@@ -63,13 +63,13 @@ public class PortProvider
          property = System.getProperty(PROPERTY_NAME);
          if (property != null)
          {
-            try
-            {
+         try
+         {
                port = Integer.parseInt(property);
-            }
-            catch (NumberFormatException e)
-            {
-            }
+         }
+         catch (NumberFormatException e)
+         {
+         }
          }
       }
 
@@ -81,11 +81,11 @@ public class PortProvider
    }
    
    /**
-    * Look up the configured hostname, first checking an environment variable (RESTEASY_HOST),
-    * then a system property (org.jboss.resteasy.host), and finally the default hostname (localhost).
-    *
-    * @return the host specified in either the environment or system properties
-    */
+   * Look up the configured hostname, first checking an environment variable (RESTEASY_HOST),
+   * then a system property (org.jboss.resteasy.host), and finally the default hostname (localhost).
+   *
+   * @return the host specified in either the environment or system properties
+   */
    public static String getHost()
    {
       String host = null;
@@ -100,7 +100,7 @@ public class PortProvider
          property = System.getProperty(PROPERTY_HOSTNAME);
          if (property != null)
          {
-            host = property;
+         host = property;
          }
       }
 

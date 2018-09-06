@@ -14,43 +14,43 @@ import java.nio.charset.Charset;
 @Path("/")
 public class CharsetResource {
 
-    private static Logger logger = Logger.getLogger(CharsetResource.class);
+   private static Logger logger = Logger.getLogger(CharsetResource.class);
 
-    @POST
-    @Path("produces/string/utf16")
-    @Consumes("text/plain")
-    @Produces("text/plain;charset=UTF-16")
-    public String stringProducesUtf16(String s) {
-        logger.info("server default charset: " + Charset.defaultCharset());
-        logger.info("s: " + s);
-        return s;
-    }
+   @POST
+   @Path("produces/string/utf16")
+   @Consumes("text/plain")
+   @Produces("text/plain;charset=UTF-16")
+   public String stringProducesUtf16(String s) {
+      logger.info("server default charset: " + Charset.defaultCharset());
+      logger.info("s: " + s);
+      return s;
+   }
 
-    @POST
-    @Path("accepts/string/default")
-    @Consumes("text/plain")
-    public String stringAcceptsDefault(String s) {
-        logger.info("s: " + s);
-        return s;
-    }
+   @POST
+   @Path("accepts/string/default")
+   @Consumes("text/plain")
+   public String stringAcceptsDefault(String s) {
+      logger.info("s: " + s);
+      return s;
+   }
 
-    @POST
-    @Path("produces/foo/utf16")
-    @Consumes("text/plain")
-    @Produces("text/plain;charset=UTF-16")
-    public CharsetFoo fooProducesUtf16(CharsetFoo foo) {
-        logger.info("foo: " + foo.valueOf());
-        return foo;
-    }
+   @POST
+   @Path("produces/foo/utf16")
+   @Consumes("text/plain")
+   @Produces("text/plain;charset=UTF-16")
+   public CharsetFoo fooProducesUtf16(CharsetFoo foo) {
+      logger.info("foo: " + foo.valueOf());
+      return foo;
+   }
 
-    @POST
-    @Path("accepts/foo/default")
-    @Consumes("text/plain")
-    @Produces("text/plain")
-    public CharsetFoo fooAcceptsDefault(CharsetFoo foo) {
-        logger.info("foo: " + foo.valueOf());
-        return foo;
-    }
+   @POST
+   @Path("accepts/foo/default")
+   @Consumes("text/plain")
+   @Produces("text/plain")
+   public CharsetFoo fooAcceptsDefault(CharsetFoo foo) {
+      logger.info("foo: " + foo.valueOf());
+      return foo;
+   }
 
      @POST
      @Path("accepts/form/default")

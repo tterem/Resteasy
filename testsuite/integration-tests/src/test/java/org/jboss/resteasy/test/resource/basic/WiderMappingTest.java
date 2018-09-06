@@ -61,9 +61,9 @@ public class WiderMappingTest {
    }
 
    /**
-    * @tpTestDetails Two resources used, more general resource should be used
-    * @tpSince RESTEasy 3.0.16
-    */
+   * @tpTestDetails Two resources used, more general resource should be used
+   * @tpSince RESTEasy 3.0.16
+   */
    @Test
    public void testOptions() {
       Response response = client.target(generateURL("/hello/int")).request().options();

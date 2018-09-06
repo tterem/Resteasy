@@ -31,62 +31,62 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ordertype", propOrder = {
-        "person",
-        "shipto",
-        "item"
+      "person",
+      "shipto",
+      "item"
 })
 public class Ordertype {
 
-    @XmlElement(required = true)
-    protected String person;
-    @XmlElement(required = true)
-    protected Shiptotype shipto;
-    @XmlElement(required = true)
-    protected List<Itemtype> item;
-    @XmlAttribute(required = true)
-    protected String orderid;
+   @XmlElement(required = true)
+   protected String person;
+   @XmlElement(required = true)
+   protected Shiptotype shipto;
+   @XmlElement(required = true)
+   protected List<Itemtype> item;
+   @XmlAttribute(required = true)
+   protected String orderid;
 
-    /**
+   /**
      * Gets the value of the person property.
      *
      * @return possible object is
      * {@link String }
      */
-    public String getPerson() {
-        return person;
-    }
+   public String getPerson() {
+      return person;
+   }
 
-    /**
+   /**
      * Sets the value of the person property.
      *
      * @param value allowed object is
      *              {@link String }
      */
-    public void setPerson(String value) {
-        this.person = value;
-    }
+   public void setPerson(String value) {
+      this.person = value;
+   }
 
-    /**
+   /**
      * Gets the value of the shipto property.
      *
      * @return possible object is
      * {@link Shiptotype }
      */
-    public Shiptotype getShipto() {
-        return shipto;
-    }
+   public Shiptotype getShipto() {
+      return shipto;
+   }
 
-    /**
+   /**
      * Sets the value of the shipto property.
      *
      * @param value allowed object is
      *              {@link Shiptotype }
      */
-    public void setShipto(Shiptotype value) {
-        this.shipto = value;
-    }
+   public void setShipto(Shiptotype value) {
+      this.shipto = value;
+   }
 
-    /**
+   /**
      * Gets the value of the item property.
      * <p>
      * <p>
@@ -106,31 +106,31 @@ public class Ordertype {
      * Objects of the following type(s) are allowed in the list
      * {@link Itemtype }
      */
-    public List<Itemtype> getItem() {
-        if (item == null) {
-            item = new ArrayList<Itemtype>();
-        }
-        return this.item;
-    }
+   public List<Itemtype> getItem() {
+      if (item == null) {
+         item = new ArrayList<Itemtype>();
+      }
+      return this.item;
+   }
 
-    /**
+   /**
      * Gets the value of the orderid property.
      *
      * @return possible object is
      * {@link String }
      */
-    public String getOrderid() {
-        return orderid;
-    }
+   public String getOrderid() {
+      return orderid;
+   }
 
-    /**
+   /**
      * Sets the value of the orderid property.
      *
      * @param value allowed object is
      *              {@link String }
      */
-    public void setOrderid(String value) {
-        this.orderid = value;
-    }
+   public void setOrderid(String value) {
+      this.orderid = value;
+   }
 
 }

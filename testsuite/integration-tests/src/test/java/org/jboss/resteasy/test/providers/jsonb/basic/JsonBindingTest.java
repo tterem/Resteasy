@@ -86,16 +86,16 @@ public class JsonBindingTest {
    }
 
    /**
-    * @tpTestDetails Client sends POST request with a JSON annotated entity. The object should be returned back by the
-    * response and should contain the same field values as original request.
-    *
-    * JSON-B is activated on both server and client side
-    * Client should not ignore @JsonbTransient annotation and should not send a value in this variable
-    * Check that server returns object without a value in variable with @JsonbTransient annotation
-    *
-    * @tpPassCrit The resource returns object with correct values
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails Client sends POST request with a JSON annotated entity. The object should be returned back by the
+   * response and should contain the same field values as original request.
+   *
+   * JSON-B is activated on both server and client side
+   * Client should not ignore @JsonbTransient annotation and should not send a value in this variable
+   * Check that server returns object without a value in variable with @JsonbTransient annotation
+   *
+   * @tpPassCrit The resource returns object with correct values
+   * @tpSince RESTEasy 4.0.0
+   */
    @Test
    public void jsonbOnServerAndClientTest() throws Exception {
       String charset = "UTF-8";
@@ -113,7 +113,7 @@ public class JsonBindingTest {
       Assert.assertEquals("JsonBindingProvider is not enabled", "{\"color\":\"ginger\",\"sort\":\"semi-british\",\"name\":\"Alfred\",\"domesticated\":true}", jsonbResponse);
    }
 
-    /**
+   /**
      * @tpTestDetails JSON-B is used on client, JSON-B is not used on server, server uses test's custom json provider
      *                client should not ignore @JsonbTransient annotation and should not send a value in this variable
      *                server verify that client doesn't sent a value in a variable with @JsonbTransient annotation
@@ -139,13 +139,13 @@ public class JsonBindingTest {
 
 
    /**
-    * @tpTestDetails JSON-B is used on client, JSON-B is not used on server, server uses test's custom json provider
-    *                Client send GET request to server
-    *                Server returns Cat object, custom provider uses toString method, that doesn't doesn't create correct JSON data
-    *                Client receive data with "json" media type, but data was created by toString method
-    *                JSON-B on client should throw user-friendly exception, because toString method doesn't create correct JSON data
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails JSON-B is used on client, JSON-B is not used on server, server uses test's custom json provider
+   *                Client send GET request to server
+   *                Server returns Cat object, custom provider uses toString method, that doesn't doesn't create correct JSON data
+   *                Client receive data with "json" media type, but data was created by toString method
+   *                JSON-B on client should throw user-friendly exception, because toString method doesn't create correct JSON data
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void negativeScenarioOnClient() throws Exception {
       // call and log get request
@@ -171,8 +171,8 @@ public class JsonBindingTest {
          logger.info("StackTrace of exception:");
          logger.info(stackTraceString);
          for (String stackTraceLine : stackTraceString.split(System.lineSeparator())) {
-            Assert.assertThat("User-unfriendly error message in JSON-B", stackTraceLine,
-                    not(containsString("Messages (implementation not found)")));
+         Assert.assertThat("User-unfriendly error message in JSON-B", stackTraceLine,
+               not(containsString("Messages (implementation not found)")));
          }
       }
    }

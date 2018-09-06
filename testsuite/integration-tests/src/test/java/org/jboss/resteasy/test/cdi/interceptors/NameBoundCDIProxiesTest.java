@@ -49,9 +49,9 @@ public class NameBoundCDIProxiesTest {
    }
 
    /**
-    * @tpTestDetails Verify that 
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails Verify that 
+   * @tpSince RESTEasy 4.0.0
+   */
    @Test
    public void testNameBoundInterceptor() throws Exception {
       Client client = ClientBuilder.newClient();

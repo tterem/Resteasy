@@ -26,7 +26,7 @@ import java.lang.reflect.Type;
 @Provider
 @Consumes("multipart/related")
 public class MultipartRelatedReader implements
-        MessageBodyReader<MultipartRelatedInput>
+      MessageBodyReader<MultipartRelatedInput>
 {
    protected
    @Context

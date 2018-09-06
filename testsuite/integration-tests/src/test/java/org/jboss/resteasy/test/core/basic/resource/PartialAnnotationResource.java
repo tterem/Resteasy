@@ -17,9 +17,9 @@ public interface PartialAnnotationResource
    String bar();
 
    /** This is not REST method.
-    * 
-    * @return 
-    */
+   * 
+   * @return 
+   */
    // @GET
    // @Produces("text/plain")
    String foo();

@@ -53,23 +53,23 @@ public class AcceptParser
 
          while (start < params.length())
          {
-            start = HeaderParameterParser.setParam(typeParams, params, start);
+         start = HeaderParameterParser.setParam(typeParams, params, start);
          }
          String qval = typeParams.get("q");
          if (qval != null)
          {
-            q = Float.valueOf(qval);
+         q = Float.valueOf(qval);
          }
       }
       return new Charset(charset, q);
    }
 
    /**
-    * Return list sorted with first most preferred
-    *
-    * @param header accept header
-    * @return a sorted list of accept header values
-    */
+   * Return list sorted with first most preferred
+   *
+   * @param header accept header
+   * @return a sorted list of accept header values
+   */
    public static List<String> parseAcceptHeader(String header)
    {
       ArrayList<Charset> set = new ArrayList<Charset>();

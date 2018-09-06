@@ -30,12 +30,12 @@ public interface InputPart {
 	 * If there is a content-type header without a charset parameter, charset=US-ASCII
 	 * is assumed.
 	 * <p>
-    * This can be overwritten by setting a different String value in
-    * {@link org.jboss.resteasy.spi.HttpRequest#setAttribute(String, Object)}
-    * with this ("resteasy.provider.multipart.inputpart.defaultCharset")
-    * String as key. It should be done in a
-    * {@link javax.ws.rs.container.ContainerRequestFilter}.
-    * </p>
+   * This can be overwritten by setting a different String value in
+   * {@link org.jboss.resteasy.spi.HttpRequest#setAttribute(String, Object)}
+   * with this ("resteasy.provider.multipart.inputpart.defaultCharset")
+   * String as key. It should be done in a
+   * {@link javax.ws.rs.container.ContainerRequestFilter}.
+   * </p>
 	 */
 	String DEFAULT_CHARSET_PROPERTY = "resteasy.provider.multipart.inputpart.defaultCharset";
 
@@ -62,9 +62,9 @@ public interface InputPart {
 	boolean isContentTypeFromMessage();
 
    /**
-    * Change the media type of the body part before you extract it.  Useful for specifying a charset.
-    *
-    * @param mediaType media type
-    */
+   * Change the media type of the body part before you extract it.  Useful for specifying a charset.
+   *
+   * @param mediaType media type
+   */
    void setMediaType(MediaType mediaType);
 }

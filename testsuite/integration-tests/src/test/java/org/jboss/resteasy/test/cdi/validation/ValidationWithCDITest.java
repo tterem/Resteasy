@@ -70,9 +70,9 @@ public class ValidationWithCDITest
    }
 
    /**
-    * @tpTestDetails Tests Bean Validation constraints on method parameters
-    * @tpSince RESTEasy 3.1.0
-    */
+   * @tpTestDetails Tests Bean Validation constraints on method parameters
+   * @tpSince RESTEasy 3.1.0
+   */
    @Test
    public void testRoot() throws Exception
    {
@@ -90,9 +90,9 @@ public class ValidationWithCDITest
    }
 
    /**
-    * @tpTestDetails Tests Bean Validation constraints on method parameters
-    * @tpSince RESTEasy 3.1.0
-    */
+   * @tpTestDetails Tests Bean Validation constraints on method parameters
+   * @tpSince RESTEasy 3.1.0
+   */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testAsynch() throws Exception

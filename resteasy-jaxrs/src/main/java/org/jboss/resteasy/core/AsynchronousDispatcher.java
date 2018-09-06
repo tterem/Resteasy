@@ -76,7 +76,7 @@ public class AsynchronousDispatcher extends SynchronousDispatcher
       {
          if (++uses > maxUses)
          {
-            reset();
+         reset();
          }
          return random.nextInt();
       }
@@ -85,7 +85,7 @@ public class AsynchronousDispatcher extends SynchronousDispatcher
       {
          if (maxUses < 0)
          {
-            maxUses = getMaxUses();
+         maxUses = getMaxUses();
          }
          random = new SecureRandom();
          random.nextBytes(new byte[20]); // Causes SecureRandom to self seed.
@@ -98,9 +98,9 @@ public class AsynchronousDispatcher extends SynchronousDispatcher
          ServletContext context = ResteasyProviderFactory.getContextData(ServletContext.class);
          if (context != null)
          {
-            String s = context.getInitParameter(ResteasyContextParameters.RESTEASY_SECURE_RANDOM_MAX_USE);
-            if (s != null)
-            {
+         String s = context.getInitParameter(ResteasyContextParameters.RESTEASY_SECURE_RANDOM_MAX_USE);
+         if (s != null)
+         {
                try
                {
                   maxUses = Integer.parseInt(s);
@@ -109,7 +109,7 @@ public class AsynchronousDispatcher extends SynchronousDispatcher
                {
                   LogMessages.LOGGER.invalidFormat(ResteasyContextParameters.RESTEASY_SECURE_RANDOM_MAX_USE, Integer.toString(DEFAULT_MAX_USES));
                }
-            }
+         }
          }
          return maxUses;
       }
@@ -138,10 +138,10 @@ public class AsynchronousDispatcher extends SynchronousDispatcher
    }
 
    /**
-    * Max response cache size default is 100.
-    *
-    * @param maxCacheSize max cache size
-    */
+   * Max response cache size default is 100.
+   *
+   * @param maxCacheSize max cache size
+   */
    public void setMaxCacheSize(int maxCacheSize)
    {
       this.maxCacheSize = maxCacheSize;
@@ -149,40 +149,40 @@ public class AsynchronousDispatcher extends SynchronousDispatcher
    }
 
    /**
-    * Maximum wait time.  This overrides any wait query parameter.
-    *
-    * @param maxWaitMilliSeconds max wait time in millis
-    */
+   * Maximum wait time.  This overrides any wait query parameter.
+   *
+   * @param maxWaitMilliSeconds max wait time in millis
+   */
    public void setMaxWaitMilliSeconds(long maxWaitMilliSeconds)
    {
       this.maxWaitMilliSeconds = maxWaitMilliSeconds;
    }
 
    /**
-    * Set the base path to find jobs.
-    *
-    * @param basePath base path
-    */
+   * Set the base path to find jobs.
+   *
+   * @param basePath base path
+   */
    public void setBasePath(String basePath)
    {
       this.basePath = basePath;
    }
 
    /**
-    * Fixed thread pool size of asynchronous delivery.
-    *
-    * @param threadPoolSize thread pool size
-    */
+   * Fixed thread pool size of asynchronous delivery.
+   *
+   * @param threadPoolSize thread pool size
+   */
    public void setThreadPoolSize(int threadPoolSize)
    {
       this.threadPoolSize = threadPoolSize;
    }
 
    /**
-    * Plug in your own executor to process requests.
-    *
-    * @param executor executor service
-    */
+   * Plug in your own executor to process requests.
+   *
+   * @param executor executor service
+   */
    public void setExecutor(ExecutorService executor)
    {
       this.executor = executor;
@@ -237,14 +237,14 @@ public class AsynchronousDispatcher extends SynchronousDispatcher
       {
          if (job.isDone())
          {
-            try
-            {
+         try
+         {
                response = job.get();
-            }
-            catch (Exception e)
-            {
+         }
+         catch (Exception e)
+         {
                return Response.serverError().build();
-            }
+         }
          }
       }
       else
@@ -252,19 +252,19 @@ public class AsynchronousDispatcher extends SynchronousDispatcher
          if (wait > maxWaitMilliSeconds) wait = maxWaitMilliSeconds;
          try 
          {
-            response = job.get(wait, TimeUnit.MILLISECONDS);
+         response = job.get(wait, TimeUnit.MILLISECONDS);
          } 
          catch (InterruptedException e) 
          {
-            return Response.serverError().build();
+         return Response.serverError().build();
          } 
          catch (ExecutionException e) 
          {
-            return Response.serverError().build();
+         return Response.serverError().build();
          } 
          catch (TimeoutException e) 
          {
-            return Response.status(Response.Status.SERVICE_UNAVAILABLE).build();
+         return Response.status(Response.Status.SERVICE_UNAVAILABLE).build();
          }
       }
       if (response == null)
@@ -278,7 +278,7 @@ public class AsynchronousDispatcher extends SynchronousDispatcher
          List values = response.getOutputHeaders().get(name);
          for (Object value : values)
          {
-            builder.header(name, value);
+         builder.header(name, value);
          }
       }
       if (eatJob) jobs.remove(jobId);
@@ -329,18 +329,18 @@ public class AsynchronousDispatcher extends SynchronousDispatcher
 
          public MockHttpResponse call() throws Exception
          {
-            MockHttpResponse theResponse = new MockHttpResponse();
+         MockHttpResponse theResponse = new MockHttpResponse();
 
-            try
-            {
+         try
+         {
                pushContextObjects(in, theResponse);
                invokeSuper(in, theResponse, invoker);
-            }
-            finally
-            {
+         }
+         finally
+         {
               clearContextData();
-            }
-            return theResponse;
+         }
+         return theResponse;
          }
 
       };
@@ -369,23 +369,23 @@ public class AsynchronousDispatcher extends SynchronousDispatcher
 
          public void run()
          {
-            LogMessages.LOGGER.runningJob();
-            MockHttpResponse theResponse = new MockHttpResponse();
+         LogMessages.LOGGER.runningJob();
+         MockHttpResponse theResponse = new MockHttpResponse();
 
 
-            try
-            {
+         try
+         {
                pushContextObjects(in, theResponse);
                invokeSuper(in, theResponse, invoker);
-            }
-            catch (Exception ignored)
-            {
+         }
+         catch (Exception ignored)
+         {
                LogMessages.LOGGER.failedToInvokeAsynchronously(ignored);
-            }
-            finally
-            {
+         }
+         finally
+         {
                clearContextData();
-            }
+         }
          }
 
       };

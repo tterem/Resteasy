@@ -535,9 +535,9 @@ public class ResteasyDeployment
    }
 
    /**
-    * @param config application
-    * @return whether application class registered anything. i.e. whether scanning metadata should be used or not
-    */
+   * @param config application
+   * @return whether application class registered anything. i.e. whether scanning metadata should be used or not
+   */
    private boolean processApplication(Application config)
    {
       LogMessages.LOGGER.deployingApplication(Application.class.getName(), config.getClass());

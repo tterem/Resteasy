@@ -79,10 +79,10 @@ public class HomecontrolCustomJAXBContextTest {
    }
 
    /**
-    * @tpTestDetails Test that a user provided JAXBContext implementation is use.
-    * @tpInfo RESTEASY-1754
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails Test that a user provided JAXBContext implementation is use.
+   * @tpInfo RESTEASY-1754
+   * @tpSince RESTEasy 4.0.0
+   */
    @Test
    public void testMarshallering() throws Exception {
 
