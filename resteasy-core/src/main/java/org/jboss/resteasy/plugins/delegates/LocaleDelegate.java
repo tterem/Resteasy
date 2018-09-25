@@ -8,9 +8,9 @@ import javax.ws.rs.ext.RuntimeDelegate;
 import java.util.Locale;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class LocaleDelegate implements RuntimeDelegate.HeaderDelegate<Locale>
 {
    public Locale fromString(String value) throws IllegalArgumentException

@@ -12,12 +12,12 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
 /**
- * 
- * @author <a href="mailto:ron.sigal@jboss.com">Ron Sigal</a>
- * @author <a href="mailto:alessio.soldano@jboss.com">Alessio Soldano</a>
- * <p>
- * Date March 9, 2016
- */
+   * 
+   * @author <a href="mailto:ron.sigal@jboss.com">Ron Sigal</a>
+   * @author <a href="mailto:alessio.soldano@jboss.com">Alessio Soldano</a>
+   * <p>
+   * Date March 9, 2016
+   */
 public class CompletionStageRxInvokerImpl implements CompletionStageRxInvoker
 {
    private final SyncInvoker builder;

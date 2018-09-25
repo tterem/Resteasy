@@ -24,11 +24,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Interceptor
- * @tpChapter Integration tests
- * @tpTestCaseDetails Tests @PreMatching annotation on ClientRequestFilter (RESTEASY-1696)
- * @tpSince RESTEasy 4.0.0
- */
+   * @tpSubChapter Interceptor
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Tests @PreMatching annotation on ClientRequestFilter (RESTEASY-1696)
+   * @tpSince RESTEasy 4.0.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PreMatchingClientRequestFilterTest extends ClientTestBase {
@@ -56,10 +56,10 @@ public class PreMatchingClientRequestFilterTest extends ClientTestBase {
    }
 
    /**
-    * @tpTestDetails Test that annotation @PreMatching on an implementation of ClientRequestFilter
-    *                is ignored. This annotation is only valid on ContainerRequestFilter implementations.
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails Test that annotation @PreMatching on an implementation of ClientRequestFilter
+   *                is ignored. This annotation is only valid on ContainerRequestFilter implementations.
+   * @tpSince RESTEasy 4.0.0
+   */
    @Test
    public void preMatchingTest() throws Exception {
       WebTarget base = client.target(generateURL("/") + "testIt");

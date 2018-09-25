@@ -19,41 +19,41 @@ import org.w3c.dom.Element;
 
 
 /**
- * <p>Java class for anonymous complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element ref="{http://wadl.dev.java.net/2009/02}doc" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;element ref="{http://wadl.dev.java.net/2009/02}include" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
- */
+   * <p>Java class for anonymous complex type.
+   * 
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * 
+   * <pre>
+   * &lt;complexType&gt;
+   *   &lt;complexContent&gt;
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+   *       &lt;sequence&gt;
+   *         &lt;element ref="{http://wadl.dev.java.net/2009/02}doc" maxOccurs="unbounded" minOccurs="0"/&gt;
+   *         &lt;element ref="{http://wadl.dev.java.net/2009/02}include" maxOccurs="unbounded" minOccurs="0"/&gt;
+   *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
+   *       &lt;/sequence&gt;
+   *     &lt;/restriction&gt;
+   *   &lt;/complexContent&gt;
+   * &lt;/complexType&gt;
+   * </pre>
+   * 
+   * 
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "doc",
-    "include",
-    "any"
+   "doc",
+   "include",
+   "any"
 })
 @XmlRootElement(name = "grammars")
 public class Grammars {
 
-    protected List<Doc> doc;
-    protected List<Include> include;
-    @XmlAnyElement(lax = true)
-    protected List<Object> any;
+   protected List<Doc> doc;
+   protected List<Include> include;
+   @XmlAnyElement(lax = true)
+   protected List<Object> any;
 
-    /**
+   /**
      * Gets the value of the doc property.
      * 
      * <p>
@@ -75,14 +75,14 @@ public class Grammars {
      * 
      * 
      */
-    public List<Doc> getDoc() {
-        if (doc == null) {
-            doc = new ArrayList<Doc>();
-        }
-        return this.doc;
-    }
+   public List<Doc> getDoc() {
+      if (doc == null) {
+         doc = new ArrayList<Doc>();
+      }
+      return this.doc;
+   }
 
-    /**
+   /**
      * Gets the value of the include property.
      * 
      * <p>
@@ -104,14 +104,14 @@ public class Grammars {
      * 
      * 
      */
-    public List<Include> getInclude() {
-        if (include == null) {
-            include = new ArrayList<Include>();
-        }
-        return this.include;
-    }
+   public List<Include> getInclude() {
+      if (include == null) {
+         include = new ArrayList<Include>();
+      }
+      return this.include;
+   }
 
-    /**
+   /**
      * Gets the value of the any property.
      * 
      * <p>
@@ -134,11 +134,11 @@ public class Grammars {
      * 
      * 
      */
-    public List<Object> getAny() {
-        if (any == null) {
-            any = new ArrayList<Object>();
-        }
-        return this.any;
-    }
+   public List<Object> getAny() {
+      if (any == null) {
+         any = new ArrayList<Object>();
+      }
+      return this.any;
+   }
 
 }

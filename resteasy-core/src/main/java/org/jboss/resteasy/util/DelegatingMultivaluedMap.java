@@ -7,12 +7,12 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * {@link javax.ws.rs.core.MultivaluedMap} implementation that delegates to another instance.
- * Convenience class for {@link javax.ws.rs.core.MultivaluedMap} enhancements that don't want to implement all methods.
- *
- * @param <K> The type of keys in the map.
- * @param <V> The type of values in the lists in the map.
- */
+   * {@link javax.ws.rs.core.MultivaluedMap} implementation that delegates to another instance.
+   * Convenience class for {@link javax.ws.rs.core.MultivaluedMap} enhancements that don't want to implement all methods.
+   *
+   * @param <K> The type of keys in the map.
+   * @param <V> The type of values in the lists in the map.
+   */
 public class DelegatingMultivaluedMap<K, V> implements MultivaluedMap<K, V>
 {
 

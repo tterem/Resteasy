@@ -8,11 +8,11 @@ import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.FactoryBean;
 
 /**
- * This resovles optional
- * 
- * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
- * @version $Revision: 1 $
- */
+   * This resovles optional
+   * 
+   * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
+   * @version $Revision: 1 $
+   */
 
 public class OptionalValueBeanFactory implements FactoryBean<Object>, BeanFactoryAware
 {

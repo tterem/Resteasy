@@ -1,6 +1,6 @@
 /**
- *
- */
+   *
+   */
 package org.jboss.resteasy.util;
 
 import org.jboss.resteasy.core.ExceptionAdapter;
@@ -15,18 +15,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A utility class that can convert a String value as a typed object.
- *
- * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
- * @version $Revision: $
- */
+   * A utility class that can convert a String value as a typed object.
+   *
+   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+   * @version $Revision: $
+   */
 public final class TypeConverter
 {
    private static final String VALUE_OF_METHOD = "valueOf";
 
    /**
-    * A map of primitive to objects.
-    */
+   * A map of primitive to objects.
+   */
    private static final Map<Class<?>, Class<?>> PRIMITIVES;
 
    static
@@ -46,13 +46,13 @@ public final class TypeConverter
    }
 
    /**
-    * A generic method that returns the {@link String} as the specified Java type.
-    *
-    * @param <T>        the type to return
-    * @param source     the string value to convert
-    * @param targetType target type
-    * @return the object instance
-    */
+   * A generic method that returns the {@link String} as the specified Java type.
+   *
+   * @param <T>        the type to return
+   * @param source     the string value to convert
+   * @param targetType target type
+   * @return the object instance
+   */
    @SuppressWarnings(value = "unchecked")
    public static <T> T getType(final Class<T> targetType, final String source)
    {
@@ -62,8 +62,8 @@ public final class TypeConverter
          return targetType.cast(source);
       }
       /*
-       * Dates are too complicated for this class.
-       */
+      * Dates are too complicated for this class.
+      */
       if (Date.class.isAssignableFrom(targetType))
       {
          throw new IllegalArgumentException(Messages.MESSAGES.dateInstancesNotSupported());
@@ -138,13 +138,13 @@ public final class TypeConverter
    }
 
    /**
-    * Tests if the class can safely be converted from a String to the
-    * specified type.
-    *
-    * @param targetType the type to convert to
-    * @return true if the class possesses either a "valueOf()" method or a constructor with a String
-    *         parameter.
-    */
+   * Tests if the class can safely be converted from a String to the
+   * specified type.
+   *
+   * @param targetType the type to convert to
+   * @return true if the class possesses either a "valueOf()" method or a constructor with a String
+   *         parameter.
+   */
    public static boolean isConvertable(final Class<?> targetType)
    {
       if (Boolean.class.equals(targetType))
@@ -181,29 +181,29 @@ public final class TypeConverter
    }
 
    /**
-    * <p>
-    * Returns a Boolean value from a String. Unlike {@link Boolean#valueOf(String)}, this
-    * method takes more String options. The following String values will return true:
-    * </p>
-    * <ul>
-    * <li>Yes</li>
-    * <li>Y</li>
-    * <li>T</li>
-    * <li>1</li>
-    * </ul>
-    * <p>
-    * While the following values will return false:
-    * </p>
-    * <ul>
-    * <li>No</li>
-    * <li>N</li>
-    * <li>F</li>
-    * <li>0</li>
-    * </ul>
-    *
-    * @param source source string
-    * @return boolean value from string
-    */
+   * <p>
+   * Returns a Boolean value from a String. Unlike {@link Boolean#valueOf(String)}, this
+   * method takes more String options. The following String values will return true:
+   * </p>
+   * <ul>
+   * <li>Yes</li>
+   * <li>Y</li>
+   * <li>T</li>
+   * <li>1</li>
+   * </ul>
+   * <p>
+   * While the following values will return false:
+   * </p>
+   * <ul>
+   * <li>No</li>
+   * <li>N</li>
+   * <li>F</li>
+   * <li>0</li>
+   * </ul>
+   *
+   * @param source source string
+   * @return boolean value from string
+   */
    public static Boolean getBooleanValue(final String source)
    {
       if ("Y".equalsIgnoreCase(source) || "T".equalsIgnoreCase(source)
@@ -220,21 +220,21 @@ public final class TypeConverter
    }
 
    /**
-    * @param <T> type
-    * @param source source string
-    * @param targetType target type
-    * @return object instance of type T
-    * @throws NoSuchMethodException if method was not found
-    */
+   * @param <T> type
+   * @param source source string
+   * @param targetType target type
+   * @return object instance of type T
+   * @throws NoSuchMethodException if method was not found
+   */
    @SuppressWarnings("unchecked")
    public static <T> T getTypeViaValueOfMethod(final String source, final Class<T> targetType)
-           throws NoSuchMethodException
+         throws NoSuchMethodException
    {
       Class<?> actualTarget = targetType;
       /*
-       * if this is a primitive type, use the Object class's "valueOf()" 
-       * method.
-       */
+      * if this is a primitive type, use the Object class's "valueOf()" 
+      * method.
+      */
       if (targetType.isPrimitive())
       {
          actualTarget = PRIMITIVES.get(targetType);
@@ -250,8 +250,8 @@ public final class TypeConverter
             result = targetType.cast(value);
          }
          /*
-          * handle the primitive case
-          */
+         * handle the primitive case
+         */
          else if (!actualTarget.equals(targetType) && actualTarget.isInstance(value))
          {
             // because you can't use targetType.cast() with primitives.
@@ -270,15 +270,15 @@ public final class TypeConverter
    }
 
    /**
-    * @param <T> type
-    * @param source source string
-    * @param targetType target type
-    * @return object instance of type T
-    * @throws IllegalArgumentException if not suitable constructor was found
-    * @throws InstantiationException if the underlying constructor represents an abstract class
-    * @throws IllegalAccessException if the underlying constructor is not accessible 
-    * @throws InvocationTargetException if the underlying constructor throws exception
-    */
+   * @param <T> type
+   * @param source source string
+   * @param targetType target type
+   * @return object instance of type T
+   * @throws IllegalArgumentException if not suitable constructor was found
+   * @throws InstantiationException if the underlying constructor represents an abstract class
+   * @throws IllegalAccessException if the underlying constructor is not accessible 
+   * @throws InvocationTargetException if the underlying constructor throws exception
+   */
    private static <T> T getTypeViaStringConstructor(String source, Class<T> targetType)
    {
       T result = null;

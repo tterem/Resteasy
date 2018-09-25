@@ -11,21 +11,21 @@ import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 /**
- * Can inject maps.
- */
+   * Can inject maps.
+   */
 public class MapFormInjector extends AbstractCollectionFormInjector<Map>
 {
 
    private final StringParameterInjector keyInjector;
 
    /**
-    * Constructor.
-    * @param collectionType collection type
-    * @param keyType key type
-    * @param valueType value type
-    * @param prefix prefix
-    * @param factory provider factory
-    */
+   * Constructor.
+   * @param collectionType collection type
+   * @param keyType key type
+   * @param valueType value type
+   * @param prefix prefix
+   * @param factory provider factory
+   */
    public MapFormInjector(Class collectionType, Class keyType, Class valueType, String prefix, ResteasyProviderFactory factory)
    {
       super(collectionType, valueType, prefix, Pattern.compile("^" + prefix + "\\[([0-9a-zA-Z_\\-\\.~]+)\\]"), factory);
@@ -33,8 +33,8 @@ public class MapFormInjector extends AbstractCollectionFormInjector<Map>
    }
 
    /**
-    * {@inheritDoc}
-    */
+   * {@inheritDoc}
+   */
    @SuppressWarnings(value = "unchecked")
    @Override
    protected Map createInstance(Class collectionType)
@@ -51,8 +51,8 @@ public class MapFormInjector extends AbstractCollectionFormInjector<Map>
    }
 
    /**
-    * {@inheritDoc}
-    */
+   * {@inheritDoc}
+   */
    @SuppressWarnings(value = "unchecked")
    @Override
    protected void addTo(Map collection, String key, Object value)

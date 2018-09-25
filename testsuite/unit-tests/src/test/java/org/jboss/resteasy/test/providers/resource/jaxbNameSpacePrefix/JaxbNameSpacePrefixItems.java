@@ -9,32 +9,32 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for JaxbNameSpacePrefixItems complex type.
- * <p>
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;complexType name="JaxbNameSpacePrefixItems">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="jaxbNameSpacePrefixItem" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}JaxbNameSpacePrefixItem" maxOccurs="unbounded"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- */
+   * <p>Java class for JaxbNameSpacePrefixItems complex type.
+   * <p>
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * <p>
+   * <pre>
+   * &lt;complexType name="JaxbNameSpacePrefixItems">
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;sequence>
+   *         &lt;element name="jaxbNameSpacePrefixItem" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}JaxbNameSpacePrefixItem" maxOccurs="unbounded"/>
+   *       &lt;/sequence>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "JaxbNameSpacePrefixItems", propOrder = {
-        "jaxbNameSpacePrefixItem"
+      "jaxbNameSpacePrefixItem"
 })
 public class JaxbNameSpacePrefixItems {
 
-    @XmlElement(required = true)
-    protected List<JaxbNameSpacePrefixItem> jaxbNameSpacePrefixItem;
+   @XmlElement(required = true)
+   protected List<JaxbNameSpacePrefixItem> jaxbNameSpacePrefixItem;
 
-    /**
+   /**
      * Gets the value of the jaxbNameSpacePrefixItem property.
      * <p>
      * <p>
@@ -54,11 +54,11 @@ public class JaxbNameSpacePrefixItems {
      * Objects of the following type(s) are allowed in the list
      * {@link JaxbNameSpacePrefixItem }
      */
-    public List<JaxbNameSpacePrefixItem> getJaxbNameSpacePrefixItem() {
-        if (jaxbNameSpacePrefixItem == null) {
-            jaxbNameSpacePrefixItem = new ArrayList<JaxbNameSpacePrefixItem>();
-        }
-        return this.jaxbNameSpacePrefixItem;
-    }
+   public List<JaxbNameSpacePrefixItem> getJaxbNameSpacePrefixItem() {
+      if (jaxbNameSpacePrefixItem == null) {
+         jaxbNameSpacePrefixItem = new ArrayList<JaxbNameSpacePrefixItem>();
+      }
+      return this.jaxbNameSpacePrefixItem;
+   }
 
 }

@@ -36,11 +36,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Integration tests
- * @tpTestCaseDetails Tests path encoding
- * @tpSince RESTEasy 3.0.20
- */
+   * @tpSubChapter Resource
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Tests path encoding
+   * @tpSince RESTEasy 3.0.20
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResourceLocatorTest
@@ -49,44 +49,44 @@ public class ResourceLocatorTest
 
    @BeforeClass
    public static void setup() {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void close() {
-       client.close();
+      client.close();
    }
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(ResourceLocatorTest.class.getSimpleName());
-       war.addClass(ResourceLocatorQueueReceiver.class)
-          .addClass(ResourceLocatorReceiver.class)
-          .addClass(ResourceLocatorRootInterface.class)
-          .addClass(ResourceLocatorSubInterface.class)
-          .addClass(ResourceLocatorSubresource3Interface.class)
-          ;
-       return TestUtil.finishContainerPrepare(war, null,
-             ResourceLocatorAbstractAnnotationFreeResouce.class,
-             ResourceLocatorAnnotationFreeSubResource.class,
-             ResourceLocatorBaseResource.class,
-             ResourceLocatorCollectionResource.class,
-             ResourceLocatorDirectory.class,
-             ResourceLocatorSubresource.class,
-             ResourceLocatorSubresource2.class,
-             ResourceLocatorSubresource3.class
-             );
+      WebArchive war = TestUtil.prepareArchive(ResourceLocatorTest.class.getSimpleName());
+      war.addClass(ResourceLocatorQueueReceiver.class)
+         .addClass(ResourceLocatorReceiver.class)
+         .addClass(ResourceLocatorRootInterface.class)
+         .addClass(ResourceLocatorSubInterface.class)
+         .addClass(ResourceLocatorSubresource3Interface.class)
+         ;
+      return TestUtil.finishContainerPrepare(war, null,
+            ResourceLocatorAbstractAnnotationFreeResouce.class,
+            ResourceLocatorAnnotationFreeSubResource.class,
+            ResourceLocatorBaseResource.class,
+            ResourceLocatorCollectionResource.class,
+            ResourceLocatorDirectory.class,
+            ResourceLocatorSubresource.class,
+            ResourceLocatorSubresource2.class,
+            ResourceLocatorSubresource3.class
+            );
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, ResourceLocatorTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, ResourceLocatorTest.class.getSimpleName());
    }
 
 
    /**
-    * @tpTestDetails Resource locator returns proxied resource.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Resource locator returns proxied resource.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testProxiedSubresource() throws Exception
    {
@@ -98,9 +98,9 @@ public class ResourceLocatorTest
 
 
    /**
-    * @tpTestDetails 1) Resource locator returns resource; 2) Resource locator returns resource locator.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails 1) Resource locator returns resource; 2) Resource locator returns resource locator.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testSubresource() throws Exception
    {
@@ -119,9 +119,9 @@ public class ResourceLocatorTest
 
 
    /**
-    * @tpTestDetails Two matching metods, one a resource locator, the other a resource method.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Two matching metods, one a resource locator, the other a resource method.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testSameUri() throws Exception
    {
@@ -132,9 +132,9 @@ public class ResourceLocatorTest
 
 
    /**
-    * @tpTestDetails Locator returns resource which inherits annotations from an interface.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Locator returns resource which inherits annotations from an interface.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testAnnotationFreeSubresource() throws Exception
    {

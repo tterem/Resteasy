@@ -48,15 +48,15 @@ import org.junit.runners.MethodSorters;
 import io.reactivex.Flowable;
 
 /**
- * @tpSubChapter Reactive classes
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- * 
- * In these tests, the server uses Flowables to create results asynchronously and streams the elements
- * of the Flowables as they are created.
- * 
- * The client makes invocations on an FlowableRxInvoker.
- */
+   * @tpSubChapter Reactive classes
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   * 
+   * In these tests, the server uses Flowables to create results asynchronously and streams the elements
+   * of the Flowables as they are created.
+   * 
+   * The client makes invocations on an FlowableRxInvoker.
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -390,8 +390,8 @@ public class Rx2FlowableTest {
       FlowableRxInvoker invoker = client.target(generateURL("/head/string")).request().rx(FlowableRxInvoker.class);
       Flowable<String> flowable = (Flowable<String>) invoker.head();
       flowable.subscribe(
-              (String s) -> value.set(s), // HEAD - no body
-              (Throwable t) -> throwableContains(t, "Input stream was empty"));
+         (String s) -> value.set(s), // HEAD - no body
+         (Throwable t) -> throwableContains(t, "Input stream was empty"));
       Assert.assertNull(value.get());
    }
 

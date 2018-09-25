@@ -42,9 +42,9 @@ import org.jboss.resteasy.spi.UnhandledException;
 import org.jboss.resteasy.tracing.RESTEasyTracingLogger;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SynchronousDispatcher implements Dispatcher
 {
@@ -93,12 +93,12 @@ public class SynchronousDispatcher implements Dispatcher
    }
 
    /*
-    * TODO: refactor this method
-    * This only used by org.jboss.restesy.springmvc.ResteasyHandlerMapping
-    * And most of the code is same with the other preprocess method.
-    * We should consider to refactor this method to reuse part of the code with
-    * another one.
-    */
+   * TODO: refactor this method
+   * This only used by org.jboss.restesy.springmvc.ResteasyHandlerMapping
+   * And most of the code is same with the other preprocess method.
+   * We should consider to refactor this method to reuse part of the code with
+   * another one.
+   */
    public Response preprocess(HttpRequest request) {
       RESTEasyTracingLogger.initTracingSupport(providerFactory, request);
       Response aborted = null;
@@ -127,12 +127,12 @@ public class SynchronousDispatcher implements Dispatcher
    }
 
    /**
-    * Call pre-process ContainerRequestFilters.
-    *
-    * @param request http request
-    * @param response http response
-    * @param continuation runnable
-    */
+   * Call pre-process ContainerRequestFilters.
+   *
+   * @param request http request
+   * @param response http response
+   * @param continuation runnable
+   */
    protected void preprocess(HttpRequest request, HttpResponse response, Runnable continuation) {
       Response aborted = null;
       PreMatchContainerRequestContext requestContext = null;
@@ -149,10 +149,10 @@ public class SynchronousDispatcher implements Dispatcher
          tracingLogger.logDuration("PRE_MATCH_SUMMARY", totalTimestamp, this.requestPreprocessors.size());
          ContainerRequestFilter[] requestFilters = providerFactory.getContainerRequestFilterRegistry().preMatch();
          requestContext = new PreMatchContainerRequestContext(request, requestFilters,
-                 () -> {
-                    continuation.run();
-                    return null;
-                 });
+            () -> {
+               continuation.run();
+               return null;
+            });
          aborted = requestContext.filter();
       } catch (Exception e) {
          //logger.error("Failed in preprocess, mapping exception", e);
@@ -265,11 +265,11 @@ public class SynchronousDispatcher implements Dispatcher
    }
 
    /**
-    * Propagate NotFoundException.  This is used for Filters.
-    *
-    * @param request http request
-    * @param response http response
-    */
+   * Propagate NotFoundException.  This is used for Filters.
+   *
+   * @param request http request
+   * @param response http response
+   */
    public void invokePropagateNotFound(HttpRequest request, HttpResponse response) throws NotFoundException
    {
       try
@@ -313,7 +313,7 @@ public class SynchronousDispatcher implements Dispatcher
    }
 
    public ResourceInvoker getInvoker(HttpRequest request)
-           throws Failure
+         throws Failure
    {
       LogMessages.LOGGER.pathInfo(request.getUri().getPath());
       if (!request.isInitial())
@@ -395,34 +395,34 @@ public class SynchronousDispatcher implements Dispatcher
 
    public void clearContextData()
    {
-	  Cleanables cleanables = ResteasyContext.getContextData(Cleanables.class);
-	  if (cleanables != null)
-	  {
-		  for (Iterator<Cleanable> it = cleanables.getCleanables().iterator(); it.hasNext(); )
-		  {
-			  try
-			  {
-				  it.next().clean();
-			  }
-			  catch(Exception e)
-			  {
-				// Empty
-			  }
-		  }
-	  }
-	  ResteasyContext.clearContextData();
+      Cleanables cleanables = ResteasyContext.getContextData(Cleanables.class);
+      if (cleanables != null)
+      {
+         for (Iterator<Cleanable> it = cleanables.getCleanables().iterator(); it.hasNext(); )
+         {
+            try
+            {
+               it.next().clean();
+            }
+            catch(Exception e)
+            {
+               // Empty
+            }
+         }
+      }
+      ResteasyContext.clearContextData();
       // just in case there were internalDispatches that need to be cleaned up
       MessageBodyParameterInjector.clearBodies();
    }
 
    /**
-    * Return a response wither from an invoke or exception handling.
-    *
-    * @param request http request
-    * @param response http response
-    * @param invoker resource invoker
-    * @return response
-    */
+   * Return a response wither from an invoke or exception handling.
+   *
+   * @param request http request
+   * @param response http response
+   * @param invoker resource invoker
+   * @return response
+   */
    public Response execute(HttpRequest request, HttpResponse response, ResourceInvoker invoker)
    {
       Response jaxrsResponse = null;
@@ -435,11 +435,11 @@ public class SynchronousDispatcher implements Dispatcher
          if (request.getAsyncContext().isSuspended())
          {
             /**
-             * Callback by the initial calling thread.  This callback will probably do nothing in an asynchronous environment
-             * but will be used to simulate AsynchronousResponse in vanilla Servlet containers that do not support
-             * asychronous HTTP.
-             *
-             */
+            * Callback by the initial calling thread.  This callback will probably do nothing in an asynchronous environment
+            * but will be used to simulate AsynchronousResponse in vanilla Servlet containers that do not support
+            * asychronous HTTP.
+            *
+            */
             request.getAsyncContext().getAsyncResponse().initialRequestThreadFinished();
             jaxrsResponse = null; // we're handing response asynchronously
          }
@@ -460,12 +460,12 @@ public class SynchronousDispatcher implements Dispatcher
    }
 
    /**
-    * Invoke and write response.
-    *
-    * @param request http request
-    * @param response http response
-    * @param invoker resource invoker
-    */
+   * Invoke and write response.
+   *
+   * @param request http request
+   * @param response http response
+   * @param invoker resource invoker
+   */
    public void invoke(HttpRequest request, HttpResponse response, ResourceInvoker invoker)
    {
 
@@ -480,11 +480,11 @@ public class SynchronousDispatcher implements Dispatcher
          if (request.getAsyncContext().isSuspended())
          {
             /**
-             * Callback by the initial calling thread.  This callback will probably do nothing in an asynchronous environment
-             * but will be used to simulate AsynchronousResponse in vanilla Servlet containers that do not support
-             * asychronous HTTP.
-             *
-             */
+            * Callback by the initial calling thread.  This callback will probably do nothing in an asynchronous environment
+            * but will be used to simulate AsynchronousResponse in vanilla Servlet containers that do not support
+            * asychronous HTTP.
+            *
+            */
             request.getAsyncContext().getAsyncResponse().initialRequestThreadFinished();
             jaxrsResponse = null; // we're handing response asynchronously
          }
@@ -574,10 +574,10 @@ public class SynchronousDispatcher implements Dispatcher
       try
       {
          ServerResponseWriter.writeNomapResponse((BuiltResponse) jaxrsResponse, request, response, providerFactory,
-               t -> {
-                  if(t != null)
-                     writeException(request, response, t, t2 -> {});
-               });
+            t -> {
+               if(t != null)
+                  writeException(request, response, t, t2 -> {});
+            });
       }
       catch (Exception e)
       {

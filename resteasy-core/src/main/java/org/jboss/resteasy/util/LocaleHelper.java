@@ -3,9 +3,9 @@ package org.jboss.resteasy.util;
 import java.util.Locale;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class LocaleHelper
 {
    public static Locale extractLocale(String lang)
@@ -20,12 +20,12 @@ public class LocaleHelper
    }
 
    /**
-    * HTTP 1.1 has different String format for language than what java.util.Locale does '-' instead of '_'
-    * as a separator
-    *
-    * @param value locale
-    * @return converted language format string
-    */
+   * HTTP 1.1 has different String format for language than what java.util.Locale does '-' instead of '_'
+   * as a separator
+   *
+   * @param value locale
+   * @return converted language format string
+   */
    public static String toLanguageString(Locale value)
    {
       StringBuffer buf = new StringBuffer(value.getLanguage().toLowerCase());

@@ -19,37 +19,37 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.NotAuthorizedException;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Regression test for RESTEASY-575
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Regression test for RESTEASY-575
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class UnauthorizedHttpCodeTest {
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(UnauthorizedHttpCodeTest.class.getSimpleName());
-        return TestUtil.finishContainerPrepare(war, null, UnauthorizedHttpCodeResource.class);
-    }
+   @Deployment
+   public static Archive<?> deploy() {
+      WebArchive war = TestUtil.prepareArchive(UnauthorizedHttpCodeTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, UnauthorizedHttpCodeResource.class);
+   }
 
-    /**
+   /**
      * @tpTestDetails Get 401 http code via proxy
      * @tpSince RESTEasy 3.0.16
      */
-    @Test
-    public void testProxy() throws Exception {
-        ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
-        UnauthorizedHttpCodeProxy proxy = client.target(PortProviderUtil.generateURL("/", UnauthorizedHttpCodeTest.class.getSimpleName())).proxy(UnauthorizedHttpCodeProxy.class);
-        try {
-            proxy.getFoo();
-        } catch (NotAuthorizedException e) {
-            Assert.assertEquals(e.getResponse().getStatus(), HttpResponseCodes.SC_UNAUTHORIZED);
-            String val = e.getResponse().readEntity(String.class);
-            Assert.assertEquals("Wrong content of response", "hello", val);
-        }
-        client.close();
-    }
+   @Test
+   public void testProxy() throws Exception {
+      ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
+      UnauthorizedHttpCodeProxy proxy = client.target(PortProviderUtil.generateURL("/", UnauthorizedHttpCodeTest.class.getSimpleName())).proxy(UnauthorizedHttpCodeProxy.class);
+      try {
+         proxy.getFoo();
+      } catch (NotAuthorizedException e) {
+         Assert.assertEquals(e.getResponse().getStatus(), HttpResponseCodes.SC_UNAUTHORIZED);
+         String val = e.getResponse().readEntity(String.class);
+         Assert.assertEquals("Wrong content of response", "hello", val);
+      }
+      client.close();
+   }
 
 }

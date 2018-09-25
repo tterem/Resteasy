@@ -16,15 +16,15 @@ import javax.servlet.http.HttpUpgradeHandler;
 import javax.servlet.http.Part;
 
 /**
- * ResteasyHttpServletRequestWrapper is introduced to support the use of
- * RequestDispatcher.forward() and RequestDispatcher.include(), which need
- * to be able to retrieve the orginal HttpServletRequest.
- * 
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * Copyright Apr 18, 2014
- */
+   * ResteasyHttpServletRequestWrapper is introduced to support the use of
+   * RequestDispatcher.forward() and RequestDispatcher.include(), which need
+   * to be able to retrieve the orginal HttpServletRequest.
+   * 
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * Copyright Apr 18, 2014
+   */
 public class ResteasyHttpServletRequestWrapper extends ServletRequestWrapper implements HttpServletRequest
 {
    private HttpServletRequest request;

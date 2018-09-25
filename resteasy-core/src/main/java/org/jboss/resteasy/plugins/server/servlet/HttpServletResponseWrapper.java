@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class HttpServletResponseWrapper implements HttpResponse
 {
    protected HttpServletResponse response;
@@ -22,9 +22,9 @@ public class HttpServletResponseWrapper implements HttpResponse
    protected OutputStream outputStream = new DeferredOutputStream();
 
    /**
-    * RESTEASY-684 wants to defer access to outputstream until a write happens
-    *
-    */
+   * RESTEASY-684 wants to defer access to outputstream until a write happens
+   *
+   */
    protected class DeferredOutputStream extends OutputStream
    {
       @Override

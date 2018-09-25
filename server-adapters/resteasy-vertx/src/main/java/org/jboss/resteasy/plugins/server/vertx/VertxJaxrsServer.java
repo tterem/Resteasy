@@ -23,15 +23,15 @@ import org.jboss.resteasy.plugins.server.embedded.SecurityDomain;
 import org.jboss.resteasy.spi.ResteasyDeployment;
 
 /**
- * An HTTP server that sends back the content of the received HTTP request
- * in a pretty plaintext form.
- *
- * @author Andy Taylor (andy.taylor@jboss.org)
- * @author <a href="http://gleamynode.net/">Trustin Lee</a>
- * @author Norman Maurer
- * @author Julien Viet
- * @version $Rev: 2080 $, $Date: 2010-01-26 18:04:19 +0900 (Tue, 26 Jan 2010) $
- */
+   * An HTTP server that sends back the content of the received HTTP request
+   * in a pretty plaintext form.
+   *
+   * @author Andy Taylor (andy.taylor@jboss.org)
+   * @author <a href="http://gleamynode.net/">Trustin Lee</a>
+   * @author Norman Maurer
+   * @author Julien Viet
+   * @version $Rev: 2080 $, $Date: 2010-01-26 18:04:19 +0900 (Tue, 26 Jan 2010) $
+   */
 public class VertxJaxrsServer implements EmbeddedJaxrsServer
 {
    private static final ConcurrentMap<String, Helper> deploymentMap = new ConcurrentHashMap<>();
@@ -70,22 +70,22 @@ public class VertxJaxrsServer implements EmbeddedJaxrsServer
    }
 
    /**
-    * Set {@link io.vertx.core.VertxOptions}.
-    *
-    * @param options the {@link io.vertx.core.VertxOptions}.
-    * @see Vertx#vertx(VertxOptions)
-    */
+   * Set {@link io.vertx.core.VertxOptions}.
+   *
+   * @param options the {@link io.vertx.core.VertxOptions}.
+   * @see Vertx#vertx(VertxOptions)
+   */
    public void setVertxOptions(VertxOptions options)
    {
       this.vertxOptions = options;
    }
 
    /**
-    * Set {@link io.vertx.core.http.HttpServerOptions}.
-    *
-    * @param options the {@link io.vertx.core.http.HttpServerOptions}.
-    * @see Vertx#createHttpServer(HttpServerOptions)
-    */
+   * Set {@link io.vertx.core.http.HttpServerOptions}.
+   *
+   * @param options the {@link io.vertx.core.http.HttpServerOptions}.
+   * @see Vertx#createHttpServer(HttpServerOptions)
+   */
    public void setServerOptions(HttpServerOptions options)
    {
       this.serverOptions = options;

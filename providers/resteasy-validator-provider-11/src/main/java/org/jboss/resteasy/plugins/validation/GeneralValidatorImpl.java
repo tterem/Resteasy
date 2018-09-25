@@ -46,19 +46,19 @@ import com.fasterxml.classmate.members.RawMethod;
 import com.fasterxml.classmate.members.ResolvedMethod;
 
 /**
- * 
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * Copyright May 23, 2013
- */
+   * 
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * Copyright May 23, 2013
+   */
 public class GeneralValidatorImpl implements GeneralValidatorCDI
 {
    public static final String SUPPRESS_VIOLATION_PATH = "resteasy.validation.suppress.path";
    
    /**
-    * Used for resolving type parameters. Thread-safe.
-    */
+   * Used for resolving type parameters. Thread-safe.
+   */
    private TypeResolver typeResolver = new TypeResolver();
    private ValidatorFactory validatorFactory;
    private boolean isExecutableValidationEnabled;
@@ -120,8 +120,8 @@ public class GeneralValidatorImpl implements GeneralValidatorCDI
    private ValidationException toValidationException(Exception exception, SimpleViolationsContainer simpleViolationsContainer)
    {
       if (exception instanceof ConstraintDeclarationException ||
-          exception instanceof ConstraintDefinitionException  ||
-          exception instanceof GroupDefinitionException)
+         exception instanceof ConstraintDefinitionException  ||
+         exception instanceof GroupDefinitionException)
       {
          return (ValidationException) exception;
       }
@@ -185,7 +185,7 @@ public class GeneralValidatorImpl implements GeneralValidatorCDI
       if ((violationsContainer.isFieldsValidated()
             || !GetRestful.isRootResource(object.getClass())
             || hasApplicationScope(object))
-          && violationsContainer.size() > 0)
+         && violationsContainer.size() > 0)
       {
          throw new ResteasyViolationExceptionImpl(violationsContainer, request.getHttpHeaders().getAcceptableMediaTypes());
       }
@@ -239,7 +239,7 @@ public class GeneralValidatorImpl implements GeneralValidatorCDI
       }
       catch (NoClassDefFoundError e)
       {
-        // Shouldn't get here. Deliberately empty.
+      // Shouldn't get here. Deliberately empty.
       }
       return true;
    }
@@ -347,41 +347,41 @@ public class GeneralValidatorImpl implements GeneralValidatorCDI
    
    protected List<ExecutableType[]> getExecutableTypesOnMethodInInterfaces(Class<?> clazz, Method method)
    {
-   	List<ExecutableType[]> typesList = new ArrayList<ExecutableType[]>();
-   	Class<?>[] interfaces = clazz.getInterfaces();
-   	for (int i = 0; i < interfaces.length; i++)
-   	{
-   	   Method interfaceMethod = getSuperMethod(method, interfaces[i]);
-   	   if (interfaceMethod != null)
-   	   {
-   	      ExecutableType[] types = getExecutableTypesOnMethod(interfaceMethod);
-   	      if (types != null)
-   	      {
-   	         typesList.add(types);
-   	      }
-   	   }
-   	   List<ExecutableType[]> superList = getExecutableTypesOnMethodInInterfaces(interfaces[i], method);
-   	   if (superList.size() > 0)
-   	   {
-   	      typesList.addAll(superList);
-   	   }
-   	}
-   	return typesList;
+      List<ExecutableType[]> typesList = new ArrayList<ExecutableType[]>();
+      Class<?>[] interfaces = clazz.getInterfaces();
+      for (int i = 0; i < interfaces.length; i++)
+      {
+         Method interfaceMethod = getSuperMethod(method, interfaces[i]);
+         if (interfaceMethod != null)
+         {
+            ExecutableType[] types = getExecutableTypesOnMethod(interfaceMethod);
+            if (types != null)
+            {
+               typesList.add(types);
+            }
+         }
+         List<ExecutableType[]> superList = getExecutableTypesOnMethodInInterfaces(interfaces[i], method);
+         if (superList.size() > 0)
+         {
+            typesList.addAll(superList);
+         }
+      }
+      return typesList;
    }
    
    static protected ExecutableType[] getExecutableTypesOnMethod(Method method)
    {
-   	ValidateOnExecution voe = method.getAnnotation(ValidateOnExecution.class);
-   	if (voe == null || voe.type().length == 0)
-   	{
-   		return null;
-   	}
-   	ExecutableType[] types = voe.type();
-   	if (types == null || types.length == 0)
-   	{
-   		return null;
-   	}
-   	return types;
+      ValidateOnExecution voe = method.getAnnotation(ValidateOnExecution.class);
+      if (voe == null || voe.type().length == 0)
+      {
+         return null;
+      }
+      ExecutableType[] types = voe.type();
+      if (types == null || types.length == 0)
+      {
+         return null;
+      }
+      return types;
    }
    
    static protected boolean isGetter(Method m)
@@ -429,10 +429,10 @@ public class GeneralValidatorImpl implements GeneralValidatorCDI
    }
    
    /**
-    * Returns a super method, if any, of a method in a class.
-    * Here, the "super" relationship is reflexive.  That is, a method
-    * is a super method of itself.
-    */
+   * Returns a super method, if any, of a method in a class.
+   * Here, the "super" relationship is reflexive.  That is, a method
+   * is a super method of itself.
+   */
    protected Method getSuperMethod(Method method, final Class<?> clazz)
    {
       Method[] methods = new Method[0];
@@ -461,18 +461,18 @@ public class GeneralValidatorImpl implements GeneralValidatorCDI
       return null;
    }
    
-	/**
-	 * Checks, whether {@code subTypeMethod} overrides {@code superTypeMethod}.
-	 * 
-	 * N.B. "Override" here is reflexive. I.e., a method overrides itself.
-	 * 
-	 * @param subTypeMethod   The sub type method (cannot be {@code null}).
-	 * @param superTypeMethod The super type method (cannot be {@code null}).
-	 * 
-	 * @return Returns {@code true} if {@code subTypeMethod} overrides {@code superTypeMethod}, {@code false} otherwise.
-	 *         
-	 * Taken from Hibernate Validator
-	 */
+   /**
+   * Checks, whether {@code subTypeMethod} overrides {@code superTypeMethod}.
+   *
+   * N.B. "Override" here is reflexive. I.e., a method overrides itself.
+   *
+   * @param subTypeMethod   The sub type method (cannot be {@code null}).
+   * @param superTypeMethod The super type method (cannot be {@code null}).
+   *
+   * @return Returns {@code true} if {@code subTypeMethod} overrides {@code superTypeMethod}, {@code false} otherwise.
+   *
+   * Taken from Hibernate Validator
+   */
    protected boolean overrides(Method subTypeMethod, Method superTypeMethod)
    {
       if (subTypeMethod == null || superTypeMethod == null)
@@ -499,8 +499,8 @@ public class GeneralValidatorImpl implements GeneralValidatorCDI
    }
 
    /**
-    * Taken from Hibernate Validator
-    */
+   * Taken from Hibernate Validator
+   */
    protected boolean parametersResolveToSameTypes(Method subTypeMethod, Method superTypeMethod)
    {
       if (subTypeMethod.getParameterTypes().length == 0)
@@ -632,12 +632,12 @@ public class GeneralValidatorImpl implements GeneralValidatorCDI
    }
    
    /**
-    * A filter implementation filtering methods matching given methods.
-    * 
-    * @author Gunnar Morling
-    * 
-    * Taken from Hibernate Validator
-    */
+   * A filter implementation filtering methods matching given methods.
+   * 
+   * @author Gunnar Morling
+   * 
+   * Taken from Hibernate Validator
+   */
    static protected class SimpleMethodFilter implements Filter<RawMethod>
    {
       private final Method method1;

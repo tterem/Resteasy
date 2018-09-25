@@ -20,11 +20,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1238
- * @tpSince RESTEasy 3.1.3.Final
- */
+   * @tpSubChapter Resource
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1238
+   * @tpSince RESTEasy 3.1.3.Final
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResponseCommittedTest
@@ -46,12 +46,12 @@ public class ResponseCommittedTest
    
    @BeforeClass
    public static void setup() {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void close() {
-       client.close();
+      client.close();
    }
 
    @Test

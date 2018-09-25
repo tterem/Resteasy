@@ -16,16 +16,16 @@ import org.jboss.resteasy.annotations.providers.multipart.XopWithMultipartRelate
 import org.jboss.resteasy.spi.util.FindAnnotation;
 
 /**
- * This provider is for writing xop packages packed as multipart/related. For
- * more information see {@link XopWithMultipartRelated}.
- *
- * @author Attila Kiraly
- * @version $Revision: 1 $
- */
+   * This provider is for writing xop packages packed as multipart/related. For
+   * more information see {@link XopWithMultipartRelated}.
+   *
+   * @author Attila Kiraly
+   * @version $Revision: 1 $
+   */
 @Provider
 @Produces("multipart/related")
 public class XopWithMultipartRelatedWriter extends
-        AbstractMultipartRelatedWriter implements MessageBodyWriter<Object>
+      AbstractMultipartRelatedWriter implements MessageBodyWriter<Object>
 {
 
    public long getSize(Object t, Class<?> type, Type genericType,
@@ -46,7 +46,7 @@ public class XopWithMultipartRelatedWriter extends
                        Annotation[] annotations, MediaType mediaType,
                        MultivaluedMap<String, Object> httpHeaders,
                        OutputStream entityStream) throws IOException,
-           WebApplicationException
+         WebApplicationException
    {
 
       MultipartRelatedOutput xopPackage = new MultipartRelatedOutput();

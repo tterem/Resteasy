@@ -42,15 +42,15 @@ import io.reactivex.Single;
 
 
 /**
- * @tpSubChapter Reactive classes
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- * 
- * In these tests, the client uses a proxy that calls a SingleRxInvoker, which returns a Single<T>
- * to which the client subscribes.
- * 
- * The server synchronously returns objects of type T.
- */
+   * @tpSubChapter Reactive classes
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   * 
+   * In these tests, the client uses a proxy that calls a SingleRxInvoker, which returns a Single<T>
+   * to which the client subscribes.
+   * 
+   * The server synchronously returns objects of type T.
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class Rx2SingleProxyClientAsyncTest {
@@ -215,8 +215,8 @@ public class Rx2SingleProxyClientAsyncTest {
    public void testHead() throws Exception {
       Single<String> single = proxy.head();
       single.subscribe(
-              (String s) -> {value.set(s); latch.countDown();},
-              (Throwable t) -> throwableContains(t, "Input stream was empty"));
+         (String s) -> {value.set(s); latch.countDown();},
+         (Throwable t) -> throwableContains(t, "Input stream was empty"));
       Assert.assertNull(value.get());
    }
 
@@ -309,8 +309,8 @@ public class Rx2SingleProxyClientAsyncTest {
    public void testUnhandledException() throws Exception {
       Single<Thing> single = (Single<Thing>) proxy.exceptionUnhandled();
       single.subscribe(
-            (Thing t) -> {},
-            (Throwable t) -> {value.set(t); latch.countDown();});
+         (Thing t) -> {},
+         (Throwable t) -> {value.set(t); latch.countDown();});
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Throwable t = unwrap((Throwable) value.get(), InternalServerErrorException.class);
@@ -322,8 +322,8 @@ public class Rx2SingleProxyClientAsyncTest {
    public void testHandledException() throws Exception {
       Single<Thing> single = (Single<Thing>) proxy.exceptionHandled();
       single.subscribe(
-            (Thing t) -> {},
-            (Throwable t) -> {value.set(t); latch.countDown();});
+         (Thing t) -> {},
+         (Throwable t) -> {value.set(t); latch.countDown();});
       boolean waitResult = latch.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Throwable t = unwrap((Throwable) value.get(), ClientErrorException.class);

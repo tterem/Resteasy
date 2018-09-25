@@ -28,13 +28,12 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations =
-{ "classpath:/spring-test-async.xml" })
+@ContextConfiguration(locations = { "classpath:/spring-test-async.xml" })
 @DirtiesContext
 @Ignore
 public class AsynchSpringTest

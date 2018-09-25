@@ -25,10 +25,10 @@ import org.junit.runners.model.InitializationError;
 import io.undertow.Undertow;
 
 /**
- * Test runner to use instead of Arquillian to run tests in the IDE
- *
- * @author Stéphane Épardaud <stef@epardaud.fr>
- */
+   * Test runner to use instead of Arquillian to run tests in the IDE
+   *
+   * @author Stéphane Épardaud <stef@epardaud.fr>
+   */
 public class UndertowTestRunner extends BlockJUnit4ClassRunner
 {
 
@@ -79,10 +79,10 @@ public class UndertowTestRunner extends BlockJUnit4ClassRunner
             .addHttpListener(8080, "localhost"));
       server.deploy(new Application() {
          @Override
-        public Set<Class<?>> getClasses()
-        {
+         public Set<Class<?>> getClasses()
+         {
             return classes;
-        }
+         }
       }, super.getTestClass().getJavaClass().getSimpleName());
       try 
       {

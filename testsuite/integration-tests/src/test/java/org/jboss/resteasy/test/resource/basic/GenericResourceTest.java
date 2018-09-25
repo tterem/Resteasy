@@ -22,11 +22,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Integration tests
- * @tpTestCaseDetails Tests generic resource class
- * @tpSince RESTEasy 3.0.20
- */
+   * @tpSubChapter Resource
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Tests generic resource class
+   * @tpSince RESTEasy 3.0.20
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GenericResourceTest {
@@ -41,15 +41,15 @@ public class GenericResourceTest {
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(GenericResourceTest.class.getSimpleName());
-       war.addClass(GenericResourceStudent.class);
-       war.addClass(GenericResourceStudentInterface.class);
-       war.addClass(GenericResourceCrudResource.class);
-       return TestUtil.finishContainerPrepare(war, null, GenericResourceStudentCrudResource.class, GenericResourceStudentReader.class, GenericResourceStudentWriter.class);
+      WebArchive war = TestUtil.prepareArchive(GenericResourceTest.class.getSimpleName());
+      war.addClass(GenericResourceStudent.class);
+      war.addClass(GenericResourceStudentInterface.class);
+      war.addClass(GenericResourceCrudResource.class);
+      return TestUtil.finishContainerPrepare(war, null, GenericResourceStudentCrudResource.class, GenericResourceStudentReader.class, GenericResourceStudentWriter.class);
    }
 
    private static String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, GenericResourceTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, GenericResourceTest.class.getSimpleName());
    }
 
    @Test

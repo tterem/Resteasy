@@ -3,9 +3,9 @@ package org.jboss.resteasy.util;
 import java.util.HashMap;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class HeaderParameterParser
 {
    static int getEndName(String params, int start)

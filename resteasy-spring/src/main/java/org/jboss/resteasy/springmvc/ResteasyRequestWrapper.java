@@ -13,9 +13,9 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 
 /**
- * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
+   * @version $Revision: 1 $
+   */
 public class ResteasyRequestWrapper
 {
 
@@ -32,7 +32,7 @@ public class ResteasyRequestWrapper
    }
 
    public ResteasyRequestWrapper(HttpServletRequest request, String httpMethod, String prefix)
-           throws ServletException, IOException
+         throws ServletException, IOException
    {
       this.httpServletRequest = request;
       ResteasyHttpHeaders headers = ServletUtil.extractHttpHeaders(request);

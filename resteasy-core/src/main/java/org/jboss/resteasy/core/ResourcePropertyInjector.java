@@ -20,9 +20,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ResourcePropertyInjector implements PropertyInjector
 {
    private static class FieldInjector
@@ -91,26 +91,26 @@ public class ResourcePropertyInjector implements PropertyInjector
                {
                   throw new InternalServerErrorException(e);
                }
-         }));
+            }));
       }
       for (SetterInjector injector : setters)
       {
          ret = ret.thenCompose(v -> 
             injector.injector.inject(request, response, unwrapAsync)
             .thenAccept(value -> {
-                     try
-                     {
-                        injector.param.getSetter().invoke(target, value);
-                     }
-                     catch (IllegalAccessException e)
-                     {
-                        throw new InternalServerErrorException(e);
-                     }
-                     catch (InvocationTargetException e)
-                     {
-                        throw new ApplicationException(e.getCause());
-                     }
-                  }));
+               try
+               {
+                  injector.param.getSetter().invoke(target, value);
+               }
+               catch (IllegalAccessException e)
+               {
+                  throw new InternalServerErrorException(e);
+               }
+               catch (InvocationTargetException e)
+               {
+                  throw new ApplicationException(e.getCause());
+               }
+            }));
       }
       return ret;
    }
@@ -132,26 +132,26 @@ public class ResourcePropertyInjector implements PropertyInjector
                {
                   throw new InternalServerErrorException(e);
                }
-         }));
+            }));
       }
       for (SetterInjector injector : setters)
       {
          ret = ret.thenCompose(v -> 
             injector.injector.inject(unwrapAsync)
             .thenAccept(value -> {
-                     try
-                     {
-                        injector.param.getSetter().invoke(target, value);
-                     }
-                     catch (IllegalAccessException e)
-                     {
-                        throw new InternalServerErrorException(e);
-                     }
-                     catch (InvocationTargetException e)
-                     {
-                        throw new ApplicationException(e.getCause());
-                     }
-                  }));
+               try
+               {
+                  injector.param.getSetter().invoke(target, value);
+               }
+               catch (IllegalAccessException e)
+               {
+                  throw new InternalServerErrorException(e);
+               }
+               catch (InvocationTargetException e)
+               {
+                  throw new ApplicationException(e.getCause());
+               }
+            }));
       }
       return ret;
    }

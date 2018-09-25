@@ -6,11 +6,11 @@ import java.util.Map;
 import javax.ws.rs.core.Application;
 
 /**
- * This class is used to configure and initialize the core components of RESTEasy.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * This class is used to configure and initialize the core components of RESTEasy.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public interface ResteasyDeployment
 {
    void start();

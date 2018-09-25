@@ -6,20 +6,20 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * {@link javax.ws.rs.core.MultivaluedMap} implementation that wraps another instance and only returns values that are prefixed with the given {@link #prefixWithDot}.
- * 
- * @param <V> The type of the values in the lists in the map.
- */
+   * {@link javax.ws.rs.core.MultivaluedMap} implementation that wraps another instance and only returns values that are prefixed with the given {@link #prefixWithDot}.
+   * 
+   * @param <V> The type of the values in the lists in the map.
+   */
 public class PrefixedMultivaluedMap<V> extends DelegatingMultivaluedMap<String, V>
 {
 
    private final String prefixWithDot;
 
    /**
-    * Constructor setting the prefix and the delegate.
-    * @param prefix prefix
-    * @param delegate delegate map
-    */
+   * Constructor setting the prefix and the delegate.
+   * @param prefix prefix
+   * @param delegate delegate map
+   */
    public PrefixedMultivaluedMap(String prefix, MultivaluedMap<String, V> delegate)
    {
       super(delegate);
@@ -27,10 +27,10 @@ public class PrefixedMultivaluedMap<V> extends DelegatingMultivaluedMap<String, 
    }
 
    /**
-    * Returns the value assigned to "<i>prefix</i>.<i>key</i>" implicitly converts the key to {@link String}.
-    * @param key key
-    * @return values
-    */
+   * Returns the value assigned to "<i>prefix</i>.<i>key</i>" implicitly converts the key to {@link String}.
+   * @param key key
+   * @return values
+   */
    @Override
    public List<V> get(Object key)
    {

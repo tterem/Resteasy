@@ -8,20 +8,20 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
 /**
- * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
- */
+   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+   */
 public class TestWADL_JAXB_Types {
 
-    @Test
-    public void testA() throws Exception {
-        ObjectFactory factory = new ObjectFactory();
-        Application app = factory.createApplication();
-        app.getResources();
-        JAXBContext context = JAXBContext.newInstance(Application.class);
-        Marshaller marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        //CHECKSTYLE.OFF: RegexpSinglelineJava
-        marshaller.marshal(app, System.out);
-        //CHECKSTYLE.ON: RegexpSinglelineJava
-    }
+   @Test
+   public void testA() throws Exception {
+      ObjectFactory factory = new ObjectFactory();
+      Application app = factory.createApplication();
+      app.getResources();
+      JAXBContext context = JAXBContext.newInstance(Application.class);
+      Marshaller marshaller = context.createMarshaller();
+      marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+      //CHECKSTYLE.OFF: RegexpSinglelineJava
+      marshaller.marshal(app, System.out);
+      //CHECKSTYLE.ON: RegexpSinglelineJava
+   }
 }

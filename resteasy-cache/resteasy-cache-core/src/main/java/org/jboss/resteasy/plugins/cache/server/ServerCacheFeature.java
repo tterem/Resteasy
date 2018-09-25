@@ -19,9 +19,9 @@ import org.jboss.resteasy.plugins.cache.server.i18n.Messages;
 import org.jboss.resteasy.spi.ResteasyConfiguration;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ServerCacheFeature implements Feature
 {
    protected ServerCache cache;

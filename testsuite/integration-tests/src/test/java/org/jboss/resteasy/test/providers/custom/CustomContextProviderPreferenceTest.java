@@ -21,46 +21,46 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Providers
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for custom ContextProvider preference.
- * @tpSince RESTEasy 3.1.2.Final
- */
+   * @tpSubChapter Providers
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for custom ContextProvider preference.
+   * @tpSince RESTEasy 3.1.2.Final
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CustomContextProviderPreferenceTest {
 
-    static ResteasyClient client;
+   static ResteasyClient client;
 
-    @Deployment
-    public static Archive<?> createTestArchive() {
-        WebArchive war = TestUtil.prepareArchive(CustomContextProviderPreferenceTest.class.getSimpleName());
-        return TestUtil.finishContainerPrepare(war, null, CustomContextProviderPreferenceResolver.class,
+   @Deployment
+   public static Archive<?> createTestArchive() {
+      WebArchive war = TestUtil.prepareArchive(CustomContextProviderPreferenceTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, CustomContextProviderPreferenceResolver.class,
               CustomContextProviderPreferenceResource.class);
-    }
+   }
 
-    @Before
-    public void init() {
-        client = (ResteasyClient)ClientBuilder.newClient();
-    }
+   @Before
+   public void init() {
+      client = (ResteasyClient)ClientBuilder.newClient();
+   }
 
-    @After
-    public void after() throws Exception {
-        client.close();
-    }
+   @After
+   public void after() throws Exception {
+      client.close();
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, CustomContextProviderPreferenceTest.class.getSimpleName());
-    }
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, CustomContextProviderPreferenceTest.class.getSimpleName());
+   }
 
-    /**
+   /**
      * @tpTestDetails Client test: RESTEASY-1609
      * @tpSince RESTEasy 3.1.2.Final
      */
-    @Test
-    public void testCustomContextProviderPreference() throws Exception {
-        Response response = client.target(generateURL("/test")).request().get();
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-        response.close();
-    }
+   @Test
+   public void testCustomContextProviderPreference() throws Exception {
+      Response response = client.target(generateURL("/test")).request().get();
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      response.close();
+   }
 }

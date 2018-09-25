@@ -18,9 +18,9 @@ import org.jboss.resteasy.plugins.providers.jackson.ResteasyJackson2Provider;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class JsonSerialization
 {
    public static byte[] toByteArray(Object token, boolean indent) throws Exception
@@ -50,7 +50,7 @@ public class JsonSerialization
       }
       finally
       {
-    	  ResteasyContext.popContextData(Providers.class);
+         ResteasyContext.popContextData(Providers.class);
          if (old != null) ResteasyContext.pushContext(Providers.class, old);
       }
    }
@@ -106,7 +106,7 @@ public class JsonSerialization
       }
       finally
       {
-    	  ResteasyContext.popContextData(Providers.class);
+         ResteasyContext.popContextData(Providers.class);
          if (old != null) ResteasyContext.pushContext(Providers.class, old);
       }
    }

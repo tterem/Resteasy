@@ -20,9 +20,9 @@ import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class PKCS7SignatureInput<T>
 {
    private PublicKey publicKey;
@@ -44,10 +44,10 @@ public class PKCS7SignatureInput<T>
    }
 
    /**
-    * Base64 encoded pks bytes.
-    *
-    * @param base64 Base64 encoded string
-    */
+   * Base64 encoded pks bytes.
+   *
+   * @param base64 Base64 encoded string
+   */
    public PKCS7SignatureInput(String base64)
    {
       try
@@ -63,10 +63,10 @@ public class PKCS7SignatureInput<T>
    }
 
    /**
-    * PKS Encoded bytes
-    *
-    * @param bytes data
-    */
+   * PKS Encoded bytes
+   *
+   * @param bytes data
+   */
    public PKCS7SignatureInput(byte[] bytes)
    {
       try

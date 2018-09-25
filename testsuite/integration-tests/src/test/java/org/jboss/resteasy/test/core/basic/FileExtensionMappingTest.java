@@ -20,11 +20,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter MediaType
- * @tpChapter Integration tests
- * @tpTestCaseDetails Mapping file extensions to media types
- * @tpSince RESTEasy 3.0.20
- */
+   * @tpSubChapter MediaType
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Mapping file extensions to media types
+   * @tpSince RESTEasy 3.0.20
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FileExtensionMappingTest
@@ -33,31 +33,31 @@ public class FileExtensionMappingTest
 
    @BeforeClass
    public static void setup() {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void close() {
-       client.close();
+      client.close();
    }
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(FileExtensionMappingTest.class.getSimpleName());
-       war.addClass(FileExtensionMappingApplication.class);
-       war.addAsWebInfResource(FileExtensionMappingTest.class.getPackage(), "FileExtensionMapping.xml", "web.xml");
-       Archive<?> archive = TestUtil.finishContainerPrepare(war, null, FileExtensionMappingResource.class);
-       return archive;
+      WebArchive war = TestUtil.prepareArchive(FileExtensionMappingTest.class.getSimpleName());
+      war.addClass(FileExtensionMappingApplication.class);
+      war.addAsWebInfResource(FileExtensionMappingTest.class.getPackage(), "FileExtensionMapping.xml", "web.xml");
+      Archive<?> archive = TestUtil.finishContainerPrepare(war, null, FileExtensionMappingResource.class);
+      return archive;
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, FileExtensionMappingTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, FileExtensionMappingTest.class.getSimpleName());
    }
    
    /**
-    * @tpTestDetails Map suffix .txt to Accept: text/plain
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Map suffix .txt to Accept: text/plain
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testFileExtensionMappingPlain() throws Exception {
       Response response = client.target(generateURL("/test.txt")).queryParam("query", "whosOnFirst").request().get();
@@ -67,9 +67,9 @@ public class FileExtensionMappingTest
    }
    
    /**
-    * @tpTestDetails Map suffix .html to Accept: text/html
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Map suffix .html to Accept: text/html
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testFileExtensionMappingHtml() throws Exception
    {

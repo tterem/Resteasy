@@ -27,55 +27,55 @@ import org.w3c.dom.Element;
 
 
 /**
- * <p>Java class for anonymous complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element ref="{http://wadl.dev.java.net/2009/02}doc" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="resource_type" type="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
- *       &lt;attribute name="rel" type="{http://www.w3.org/2001/XMLSchema}token" /&gt;
- *       &lt;attribute name="rev" type="{http://www.w3.org/2001/XMLSchema}token" /&gt;
- *       &lt;anyAttribute processContents='lax' namespace='##other'/&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
- */
+   * <p>Java class for anonymous complex type.
+   * 
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * 
+   * <pre>
+   * &lt;complexType&gt;
+   *   &lt;complexContent&gt;
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+   *       &lt;sequence&gt;
+   *         &lt;element ref="{http://wadl.dev.java.net/2009/02}doc" maxOccurs="unbounded" minOccurs="0"/&gt;
+   *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
+   *       &lt;/sequence&gt;
+   *       &lt;attribute name="resource_type" type="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
+   *       &lt;attribute name="rel" type="{http://www.w3.org/2001/XMLSchema}token" /&gt;
+   *       &lt;attribute name="rev" type="{http://www.w3.org/2001/XMLSchema}token" /&gt;
+   *       &lt;anyAttribute processContents='lax' namespace='##other'/&gt;
+   *     &lt;/restriction&gt;
+   *   &lt;/complexContent&gt;
+   * &lt;/complexType&gt;
+   * </pre>
+   * 
+   * 
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "doc",
-    "any"
+   "doc",
+   "any"
 })
 @XmlRootElement(name = "link")
 public class Link {
 
-    protected List<Doc> doc;
-    @XmlAnyElement(lax = true)
-    protected List<Object> any;
-    @XmlAttribute(name = "resource_type")
-    @XmlSchemaType(name = "anyURI")
-    protected String resourceType;
-    @XmlAttribute(name = "rel")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String rel;
-    @XmlAttribute(name = "rev")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String rev;
-    @XmlAnyAttribute
-    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+   protected List<Doc> doc;
+   @XmlAnyElement(lax = true)
+   protected List<Object> any;
+   @XmlAttribute(name = "resource_type")
+   @XmlSchemaType(name = "anyURI")
+   protected String resourceType;
+   @XmlAttribute(name = "rel")
+   @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+   @XmlSchemaType(name = "token")
+   protected String rel;
+   @XmlAttribute(name = "rev")
+   @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+   @XmlSchemaType(name = "token")
+   protected String rev;
+   @XmlAnyAttribute
+   private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
-    /**
+   /**
      * Gets the value of the doc property.
      * 
      * <p>
@@ -97,14 +97,14 @@ public class Link {
      * 
      * 
      */
-    public List<Doc> getDoc() {
-        if (doc == null) {
-            doc = new ArrayList<Doc>();
-        }
-        return this.doc;
-    }
+   public List<Doc> getDoc() {
+      if (doc == null) {
+         doc = new ArrayList<Doc>();
+      }
+      return this.doc;
+   }
 
-    /**
+   /**
      * Gets the value of the any property.
      * 
      * <p>
@@ -127,14 +127,14 @@ public class Link {
      * 
      * 
      */
-    public List<Object> getAny() {
-        if (any == null) {
-            any = new ArrayList<Object>();
-        }
-        return this.any;
-    }
+   public List<Object> getAny() {
+      if (any == null) {
+         any = new ArrayList<Object>();
+      }
+      return this.any;
+   }
 
-    /**
+   /**
      * Gets the value of the resourceType property.
      * 
      * @return
@@ -142,11 +142,11 @@ public class Link {
      *     {@link String }
      *     
      */
-    public String getResourceType() {
-        return resourceType;
-    }
+   public String getResourceType() {
+      return resourceType;
+   }
 
-    /**
+   /**
      * Sets the value of the resourceType property.
      * 
      * @param value
@@ -154,11 +154,11 @@ public class Link {
      *     {@link String }
      *     
      */
-    public void setResourceType(String value) {
-        this.resourceType = value;
-    }
+   public void setResourceType(String value) {
+      this.resourceType = value;
+   }
 
-    /**
+   /**
      * Gets the value of the rel property.
      * 
      * @return
@@ -166,11 +166,11 @@ public class Link {
      *     {@link String }
      *     
      */
-    public String getRel() {
-        return rel;
-    }
+   public String getRel() {
+      return rel;
+   }
 
-    /**
+   /**
      * Sets the value of the rel property.
      * 
      * @param value
@@ -178,11 +178,11 @@ public class Link {
      *     {@link String }
      *     
      */
-    public void setRel(String value) {
-        this.rel = value;
-    }
+   public void setRel(String value) {
+      this.rel = value;
+   }
 
-    /**
+   /**
      * Gets the value of the rev property.
      * 
      * @return
@@ -190,11 +190,11 @@ public class Link {
      *     {@link String }
      *     
      */
-    public String getRev() {
-        return rev;
-    }
+   public String getRev() {
+      return rev;
+   }
 
-    /**
+   /**
      * Sets the value of the rev property.
      * 
      * @param value
@@ -202,11 +202,11 @@ public class Link {
      *     {@link String }
      *     
      */
-    public void setRev(String value) {
-        this.rev = value;
-    }
+   public void setRev(String value) {
+      this.rev = value;
+   }
 
-    /**
+   /**
      * Gets a map that contains attributes that aren't bound to any typed property on this class.
      * 
      * <p>
@@ -220,8 +220,8 @@ public class Link {
      * @return
      *     always non-null
      */
-    public Map<QName, String> getOtherAttributes() {
-        return otherAttributes;
-    }
+   public Map<QName, String> getOtherAttributes() {
+      return otherAttributes;
+   }
 
 }

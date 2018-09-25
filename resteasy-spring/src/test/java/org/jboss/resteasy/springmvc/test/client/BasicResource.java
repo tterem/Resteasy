@@ -34,44 +34,44 @@ public interface BasicResource
    String getSpringMvcValue();
 
    /**
-    * test singleton with custom registration -- implemented in CounterResource,
-    * with bean named singletonScopedResource
-    **/
+   * test singleton with custom registration -- implemented in CounterResource,
+   * with bean named singletonScopedResource
+   **/
    @GET
    @Produces("text/plain")
    @Path("/singleton/count")
    Integer getSingletonCount();
 
    /**
-    * test prototype with custom registration -- implemented in CounterResource,
-    * with bean named prototypeScopedResource
-    **/
+   * test prototype with custom registration -- implemented in CounterResource,
+   * with bean named prototypeScopedResource
+   **/
    @GET
    @Produces("text/plain")
    @Path("/prototype/count")
    Integer getPrototypeCount();
 
    /**
-    * test getting context header via setting of an @Context object in an @Autowired
-    * constructor
-    **/
+   * test getting context header via setting of an @Context object in an @Autowired
+   * constructor
+   **/
    @GET
    @Produces("text/plain")
    @Path("/header")
    String getContentTypeHeader();
 
    /**
-    * test Spring @Context injection into a separate java object by spring -
-    * This is extended functionality, not JAX-RS core
-    **/
+   * test Spring @Context injection into a separate java object by spring -
+   * This is extended functionality, not JAX-RS core
+   **/
    @GET
    @Produces("text/plain")
    @Path("/url")
    String getURL();
 
    /**
-    * test Spring @Controllers along with
-    **/
+   * test Spring @Controllers along with
+   **/
    @GET
    @Produces("text/plain")
    @Path("interceptor-test")

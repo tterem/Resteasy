@@ -11,9 +11,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Type;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public interface InjectorFactory
 {
    ConstructorInjector createConstructor(Constructor constructor, ResteasyProviderFactory factory);

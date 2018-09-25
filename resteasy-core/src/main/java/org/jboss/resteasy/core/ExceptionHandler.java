@@ -22,9 +22,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ExceptionHandler
 {
    protected ResteasyProviderFactoryImpl providerFactory;
@@ -43,19 +43,19 @@ public class ExceptionHandler
    }
 
    /**
-    * If there exists an Exception mapper for exception, execute it, otherwise, do NOT recurse up class hierarchy
-    * of exception.
-    *
-    * @param exception
-    * @param logger
-    * @return response
-    */
+   * If there exists an Exception mapper for exception, execute it, otherwise, do NOT recurse up class hierarchy
+   * of exception.
+   *
+   * @param exception
+   * @param logger
+   * @return response
+   */
    @SuppressWarnings(value = "unchecked")
    protected Response executeExactExceptionMapper(Throwable exception, RESTEasyTracingLogger logger) {
-       if (logger == null)
-           logger = RESTEasyTracingLogger.empty();
+      if (logger == null)
+         logger = RESTEasyTracingLogger.empty();
 
-       ExceptionMapper mapper = providerFactory.getExceptionMappers().get(exception.getClass());
+      ExceptionMapper mapper = providerFactory.getExceptionMappers().get(exception.getClass());
       if (mapper == null) return null;
       mapperExecuted = true;
       long timestamp = logger.timestamp("EXCEPTION_MAPPING");
@@ -74,7 +74,7 @@ public class ExceptionHandler
    protected Response executeExceptionMapperForClass(Throwable exception, Class clazz, RESTEasyTracingLogger logger)
    {
       if (logger == null)
-          logger = RESTEasyTracingLogger.empty();
+         logger = RESTEasyTracingLogger.empty();
       ExceptionMapper mapper = providerFactory.getExceptionMappers().get(clazz);
       if (mapper == null) return null;
       mapperExecuted = true;
@@ -106,18 +106,18 @@ public class ExceptionHandler
    }
 
    /**
-    * Execute an ExceptionMapper if one exists for the given exception.  Recurse to base class if not found.
-    *
-    * @param exception exception
-    * @return true if an ExceptionMapper was found and executed
-    */
+   * Execute an ExceptionMapper if one exists for the given exception.  Recurse to base class if not found.
+   *
+   * @param exception exception
+   * @return true if an ExceptionMapper was found and executed
+   */
    @SuppressWarnings(value = "unchecked")
    protected Response executeExceptionMapper(Throwable exception, RESTEasyTracingLogger logger)
    {
-       if (logger == null)
-           logger = RESTEasyTracingLogger.empty();
+      if (logger == null)
+         logger = RESTEasyTracingLogger.empty();
 
-       ExceptionMapper mapper = null;
+      ExceptionMapper mapper = null;
 
       Class causeClass = exception.getClass();
       while (mapper == null) {
@@ -145,7 +145,7 @@ public class ExceptionHandler
    @SuppressWarnings(value = "unchecked")
    public Response executeExceptionMapper(Throwable exception)
    {
-     return executeExactExceptionMapper(exception, null);
+      return executeExactExceptionMapper(exception, null);
    }
 
 
@@ -155,13 +155,13 @@ public class ExceptionHandler
       Throwable unwrappedException = e.getCause();
 
       /*
-       * 					If the response property of the exception does not
-       * 					contain an entity and an exception mapping provider
-       * 					(see section 4.4) is available for
-       * 					WebApplicationException an implementation MUST use the
-       * 					provider to create a new Response instance, otherwise
-       * 					the response property is used directly.
-       */
+      *                If the response property of the exception does not
+      *                contain an entity and an exception mapping provider
+      *                (see section 4.4) is available for
+      *                WebApplicationException an implementation MUST use the
+      *                provider to create a new Response instance, otherwise
+      *                the response property is used directly.
+      */
 
       if (unwrappedException instanceof WebApplicationException) {
          WebApplicationException wae = (WebApplicationException) unwrappedException;
@@ -274,13 +274,13 @@ public class ExceptionHandler
       }
 
       /*
-       * 					If the response property of the exception does not
-       * 					contain an entity and an exception mapping provider
-       * 					(see section 4.4) is available for
-       * 					WebApplicationException an implementation MUST use the
-       * 					provider to create a new Response instance, otherwise
-       * 					the response property is used directly.
-       */
+      *                If the response property of the exception does not
+      *                contain an entity and an exception mapping provider
+      *                (see section 4.4) is available for
+      *                WebApplicationException an implementation MUST use the
+      *                provider to create a new Response instance, otherwise
+      *                the response property is used directly.
+      */
       if (e instanceof WebApplicationException) {
          WebApplicationException wae = (WebApplicationException) e;
          if (wae.getResponse() != null && wae.getResponse().getEntity() != null) {

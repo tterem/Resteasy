@@ -17,11 +17,11 @@ import javax.ws.rs.core.Response;
 import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 
 /**
- * Simple smoke test
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Simple smoke test
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class HttpContextTest
 {
 

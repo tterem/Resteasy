@@ -5,21 +5,21 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ReadFromStream
 {
    /**
-    * Stuff the contents of a InputStream into a byte buffer.  Reads until EOF (-1).
-    *
-    * @param bufferSize buffer size
-    * @param entityStream entity input stream
-    * @return bytes read
-    * @throws IOException if I/O error occurred
-    */
+   * Stuff the contents of a InputStream into a byte buffer.  Reads until EOF (-1).
+   *
+   * @param bufferSize buffer size
+   * @param entityStream entity input stream
+   * @return bytes read
+   * @throws IOException if I/O error occurred
+   */
    public static byte[] readFromStream(int bufferSize, InputStream entityStream)
-           throws IOException
+         throws IOException
    {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
 

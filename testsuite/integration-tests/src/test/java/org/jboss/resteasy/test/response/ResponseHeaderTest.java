@@ -23,11 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @tpSubChapter Response
- * @tpChapter Integration tests
- * @tpTestCaseDetails Check that HEADS can replace existing text with new specified text
- * @tpSince RESTEasy 3.0.23
- */
+   * @tpSubChapter Response
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Check that HEADS can replace existing text with new specified text
+   * @tpSince RESTEasy 3.0.23
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResponseHeaderTest {
@@ -44,10 +44,10 @@ public class ResponseHeaderTest {
 
 
    /**
-    * @tpTestDetails Check the response headers contain the changes made via the
-    * from custom exception mapper. Using Resteasy client.
-    * @tpSince RESTEasy 3.0.23
-    */
+   * @tpTestDetails Check the response headers contain the changes made via the
+   * from custom exception mapper. Using Resteasy client.
+   * @tpSince RESTEasy 3.0.23
+   */
    @Test
    public void testMapperWithResteasyClient() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

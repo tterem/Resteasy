@@ -7,9 +7,9 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MultivaluedMap;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public interface ResteasyWebTarget extends WebTarget
 {
    ResteasyClient getResteasyClient();
@@ -48,18 +48,18 @@ public interface ResteasyWebTarget extends WebTarget
    ResteasyWebTarget queryParams(MultivaluedMap<String, Object> parameters) throws IllegalArgumentException, NullPointerException;
 
    /**
-    * Will encode any '{}' characters and not treat them as template parameters.
-    * @param name name
-    * @param values values
-    * @return web resource target
-    */
+   * Will encode any '{}' characters and not treat them as template parameters.
+   * @param name name
+   * @param values values
+   * @return web resource target
+   */
    ResteasyWebTarget queryParamNoTemplate(String name, Object... values) throws NullPointerException;
 
    /**
-    * Will encode any '{}' characters and not treat them as template parameters.
-    * @param parameters parameters map
-    * @return web resource target
-    */
+   * Will encode any '{}' characters and not treat them as template parameters.
+   * @param parameters parameters map
+   * @return web resource target
+   */
    ResteasyWebTarget queryParamsNoTemplate(MultivaluedMap<String, Object> parameters) throws IllegalArgumentException, NullPointerException;
 
    ResteasyWebTarget path(Class<?> resource) throws IllegalArgumentException;

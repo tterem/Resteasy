@@ -6,9 +6,9 @@ import org.jboss.resteasy.client.jaxrs.internal.proxy.processors.InvocationProce
 import javax.ws.rs.core.Cookie;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class CookieParamProcessor implements InvocationProcessor
 {
    private String cookieName;
@@ -34,7 +34,7 @@ public class CookieParamProcessor implements InvocationProcessor
       }
       else
       {
-    	  invocation.getHeaders().cookie(new Cookie(cookieName, invocation.getClientConfiguration().toString(object)));
+         invocation.getHeaders().cookie(new Cookie(cookieName, invocation.getClientConfiguration().toString(object)));
       }
    }
 }

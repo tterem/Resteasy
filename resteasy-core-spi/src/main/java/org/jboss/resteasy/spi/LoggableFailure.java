@@ -3,13 +3,13 @@ package org.jboss.resteasy.spi;
 import javax.ws.rs.core.Response;
 
 /**
- * This exception should only be used by Resteasy integrators.  Applications code should use WebApplicationException
- * <p>
- * This is thrown by Resteasy runtime when a failure occurs.  It will be logged by the runtime.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * This exception should only be used by Resteasy integrators.  Applications code should use WebApplicationException
+   * <p>
+   * This is thrown by Resteasy runtime when a failure occurs.  It will be logged by the runtime.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class LoggableFailure extends Failure
 {
    public LoggableFailure(final String s, final Response response)

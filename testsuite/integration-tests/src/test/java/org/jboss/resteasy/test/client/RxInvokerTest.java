@@ -35,11 +35,11 @@ import org.wildfly.extras.creaper.core.online.operations.Operations;
 import org.wildfly.extras.creaper.core.online.operations.admin.Administration;
 
 /**
- * 
- * @author <a href="mailto:ron.sigal@jboss.com">Ron Sigal</a>
- * @author <a href="mailto:alessio.soldano@jboss.com">Alessio Soldano</a>
- * @date March 9, 2016
- */
+   * 
+   * @author <a href="mailto:ron.sigal@jboss.com">Ron Sigal</a>
+   * @author <a href="mailto:alessio.soldano@jboss.com">Alessio Soldano</a>
+   * @date March 9, 2016
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RxInvokerTest extends ClientTestBase
@@ -51,38 +51,38 @@ public class RxInvokerTest extends ClientTestBase
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(RxInvokerTest.class.getSimpleName());
-       return TestUtil.finishContainerPrepare(war, null, TestResource.class);
+      WebArchive war = TestUtil.prepareArchive(RxInvokerTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, TestResource.class);
    }
 
    @BeforeClass
    public static void setup() throws Exception {
-       OnlineManagementClient mgmtClient = TestUtil.clientInit();
-       Administration admin = new Administration(mgmtClient);
-       Operations ops = new Operations(mgmtClient);
+      OnlineManagementClient mgmtClient = TestUtil.clientInit();
+      Administration admin = new Administration(mgmtClient);
+      Operations ops = new Operations(mgmtClient);
 
-       // get original 'disallowed methods' value
-       origDisallowedMethodsValue = ops.readAttribute(ADDRESS, "disallowed-methods").value();
-       // set 'disallowed methods' to empty list to allow TRACE
-       ops.writeAttribute(ADDRESS, "disallowed-methods", new ModelNode().setEmptyList());
+      // get original 'disallowed methods' value
+      origDisallowedMethodsValue = ops.readAttribute(ADDRESS, "disallowed-methods").value();
+      // set 'disallowed methods' to empty list to allow TRACE
+      ops.writeAttribute(ADDRESS, "disallowed-methods", new ModelNode().setEmptyList());
 
-       // reload server
-       admin.reload();
-       mgmtClient.close();
+      // reload server
+      admin.reload();
+      mgmtClient.close();
    }
 
    @AfterClass
    public static void cleanup() throws Exception {
-       OnlineManagementClient mgmtClient = TestUtil.clientInit();
-       Administration admin = new Administration(mgmtClient);
-       Operations ops = new Operations(mgmtClient);
+      OnlineManagementClient mgmtClient = TestUtil.clientInit();
+      Administration admin = new Administration(mgmtClient);
+      Operations ops = new Operations(mgmtClient);
 
-       // write original 'disallowed methods' value
-       ops.writeAttribute(ADDRESS, "disallowed-methods", origDisallowedMethodsValue);
+      // write original 'disallowed methods' value
+      ops.writeAttribute(ADDRESS, "disallowed-methods", origDisallowedMethodsValue);
 
-       // reload server
-       admin.reload();
-       mgmtClient.close();
+      // reload server
+      admin.reload();
+      mgmtClient.close();
    }
    
    public static class TestRxInvokerProvider implements RxInvokerProvider<TestRxInvoker>
@@ -598,11 +598,11 @@ public class RxInvokerTest extends ClientTestBase
    }
 
    /**
-    * @tpTestDetails end-point method returns String data after some delay (3s)
-    *                client use RxInvoker. Data should not be prepared right after CompletionStage object are returned from client
-    *                CompletionStage should return correct data after 3s delay
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails end-point method returns String data after some delay (3s)
+   *                client use RxInvoker. Data should not be prepared right after CompletionStage object are returned from client
+   *                CompletionStage should return correct data after 3s delay
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void testGetDataWithDelay() throws Exception
    {
@@ -623,4 +623,3 @@ public class RxInvokerTest extends ClientTestBase
       client.close();
    }
 }
-

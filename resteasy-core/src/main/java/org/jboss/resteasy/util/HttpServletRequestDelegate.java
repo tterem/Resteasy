@@ -25,9 +25,9 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class HttpServletRequestDelegate implements HttpServletRequest
 {
    protected HttpServletRequest delegate;
@@ -184,7 +184,7 @@ public class HttpServletRequestDelegate implements HttpServletRequest
    }
 
    public void setCharacterEncoding(String s)
-           throws UnsupportedEncodingException
+         throws UnsupportedEncodingException
    {
       delegate.setCharacterEncoding(s);
    }
@@ -200,7 +200,7 @@ public class HttpServletRequestDelegate implements HttpServletRequest
    }
 
    public ServletInputStream getInputStream()
-           throws IOException
+         throws IOException
    {
       return delegate.getInputStream();
    }
@@ -246,7 +246,7 @@ public class HttpServletRequestDelegate implements HttpServletRequest
    }
 
    public BufferedReader getReader()
-           throws IOException
+         throws IOException
    {
       return delegate.getReader();
    }

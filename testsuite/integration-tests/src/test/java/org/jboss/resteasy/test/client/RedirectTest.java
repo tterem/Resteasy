@@ -25,11 +25,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.5
- * @tpTestCaseDetails https://issues.jboss.org/browse/RESTEASY-1075
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.5
+   * @tpTestCaseDetails https://issues.jboss.org/browse/RESTEASY-1075
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RedirectTest extends ClientTestBase
@@ -49,15 +49,15 @@ public class RedirectTest extends ClientTestBase
    }
 
    /**
-    * @tpTestDetails Set client to following the redirect
-    *                Do not use RESTEasy proxy
-    *                Use GET HTTP request
-    *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
-    *                Client should follow redirect URL
-    *                Client should return data from "end-point 2"
-    *                Both end-points return Response data type
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails Set client to following the redirect
+   *                Do not use RESTEasy proxy
+   *                Use GET HTTP request
+   *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
+   *                Client should follow redirect URL
+   *                Client should return data from "end-point 2"
+   *                Both end-points return Response data type
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void testRedirect()
    {
@@ -79,15 +79,15 @@ public class RedirectTest extends ClientTestBase
    }
 
    /**
-    * @tpTestDetails Set client to following the redirect
-    *                Do not use RESTEasy proxy
-    *                Use POST HTTP request
-    *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
-    *                Client should follow redirect URL
-    *                Client should return data from "end-point 2"
-    *                Both end-points return Response data type
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails Set client to following the redirect
+   *                Do not use RESTEasy proxy
+   *                Use POST HTTP request
+   *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
+   *                Client should follow redirect URL
+   *                Client should return data from "end-point 2"
+   *                Both end-points return Response data type
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void testPostRedirect()
    {
@@ -109,15 +109,15 @@ public class RedirectTest extends ClientTestBase
    }
 
    /**
-    * @tpTestDetails Set client to following the redirect
-    *                Use RESTEasy proxy
-    *                Use GET HTTP request
-    *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
-    *                Client should follow redirect URL
-    *                Client should return data from "end-point 2"
-    *                Both end-points return Response data type
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails Set client to following the redirect
+   *                Use RESTEasy proxy
+   *                Use GET HTTP request
+   *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
+   *                Client should follow redirect URL
+   *                Client should return data from "end-point 2"
+   *                Both end-points return Response data type
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void testRedirectProxy()
    {
@@ -140,15 +140,15 @@ public class RedirectTest extends ClientTestBase
    }
 
    /**
-    * @tpTestDetails Set client to following the redirect
-    *                Use RESTEasy proxy
-    *                Use GET HTTP request
-    *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
-    *                Client should follow redirect URL
-    *                Client should return data from "end-point 2"
-    *                "end-point 1" returns Response data type, "end-point 2" returns String data type
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails Set client to following the redirect
+   *                Use RESTEasy proxy
+   *                Use GET HTTP request
+   *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
+   *                Client should follow redirect URL
+   *                Client should return data from "end-point 2"
+   *                "end-point 1" returns Response data type, "end-point 2" returns String data type
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void testRedirectDirectResponseProxy()
    {
@@ -171,15 +171,15 @@ public class RedirectTest extends ClientTestBase
    }
 
    /**
-    * @tpTestDetails Set client to following the redirect
-    *                Use RESTEasy proxy
-    *                Use GET HTTP request
-    *                Send request to "end-point 1", that returns 301 HTTP code (Moved Permanently) and redirect client to another URL (handled by "end-point 2")
-    *                Client should follow redirect URL
-    *                Client should return data from "end-point 2"
-    *                "end-point 1" returns Response data type, "end-point 2" returns String data type
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails Set client to following the redirect
+   *                Use RESTEasy proxy
+   *                Use GET HTTP request
+   *                Send request to "end-point 1", that returns 301 HTTP code (Moved Permanently) and redirect client to another URL (handled by "end-point 2")
+   *                Client should follow redirect URL
+   *                Client should return data from "end-point 2"
+   *                "end-point 1" returns Response data type, "end-point 2" returns String data type
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void testMovedPermanentlyDirectResponseProxy()
    {
@@ -202,15 +202,15 @@ public class RedirectTest extends ClientTestBase
    }
 
    /**
-    * @tpTestDetails Set client to following the redirect
-    *                Use RESTEasy proxy
-    *                Use GET HTTP request
-    *                Send request to "end-point 1", that returns 302 HTTP code (Found) and redirect client to another URL (handled by "end-point 2")
-    *                Client should follow redirect URL
-    *                Client should return data from "end-point 2"
-    *                "end-point 1" returns Response data type, "end-point 2" returns String data type
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails Set client to following the redirect
+   *                Use RESTEasy proxy
+   *                Use GET HTTP request
+   *                Send request to "end-point 1", that returns 302 HTTP code (Found) and redirect client to another URL (handled by "end-point 2")
+   *                Client should follow redirect URL
+   *                Client should return data from "end-point 2"
+   *                "end-point 1" returns Response data type, "end-point 2" returns String data type
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void testFoundDirectResponseProxy()
    {
@@ -233,14 +233,14 @@ public class RedirectTest extends ClientTestBase
    }
 
    /**
-    * @tpTestDetails Do not use RESTEasy proxy
-    *                Use GET HTTP request
-    *                Do not set client to following the redirect
-    *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
-    *                Client should not follow redirect URL
-    *                Client should return 307 HTTP code
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails Do not use RESTEasy proxy
+   *                Use GET HTTP request
+   *                Do not set client to following the redirect
+   *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
+   *                Client should not follow redirect URL
+   *                Client should return 307 HTTP code
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void testNoRedirect()
    {
@@ -259,14 +259,14 @@ public class RedirectTest extends ClientTestBase
    }
 
    /**
-    * @tpTestDetails Do not use RESTEasy proxy
-    *                Use POST HTTP request
-    *                Do not set client to following the redirect
-    *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
-    *                Client should not follow redirect URL
-    *                Client should return 307 HTTP code
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails Do not use RESTEasy proxy
+   *                Use POST HTTP request
+   *                Do not set client to following the redirect
+   *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
+   *                Client should not follow redirect URL
+   *                Client should return 307 HTTP code
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void testNoPostRedirect()
    {
@@ -285,13 +285,13 @@ public class RedirectTest extends ClientTestBase
    }
 
    /**
-    * @tpTestDetails Use RESTEasy proxy
-    *                Do not set client to following the redirect
-    *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
-    *                Client should not follow redirect URL
-    *                Client should return 307 HTTP code
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails Use RESTEasy proxy
+   *                Do not set client to following the redirect
+   *                Send request to "end-point 1", that returns 307 HTTP code (Temporary Redirect) and redirect client to another URL (handled by "end-point 2")
+   *                Client should not follow redirect URL
+   *                Client should return 307 HTTP code
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void testNoRedirectProxy()
    {

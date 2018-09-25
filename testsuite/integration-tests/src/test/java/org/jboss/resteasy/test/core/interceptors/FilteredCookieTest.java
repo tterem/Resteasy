@@ -23,11 +23,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Cookies and filters
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1266
- * @tpSince RESTEasy 3.1.0.Final
- */
+   * @tpSubChapter Cookies and filters
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1266
+   * @tpSince RESTEasy 3.1.0.Final
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 @Category({NotForForwardCompatibility.class})
@@ -38,18 +38,18 @@ public class FilteredCookieTest {
 
    @Deployment
    public static Archive<?> deploySimpleResource() {
-       WebArchive war = TestUtil.prepareArchive(FilteredCookieTest.class.getSimpleName());
-       return TestUtil.finishContainerPrepare(war, null, FilteredCookieResource.class, FilteredCookieContainerRequestFilter.class);
+      WebArchive war = TestUtil.prepareArchive(FilteredCookieTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, FilteredCookieResource.class, FilteredCookieContainerRequestFilter.class);
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, FilteredCookieTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, FilteredCookieTest.class.getSimpleName());
    }
 
    /**
-    * @tpTestDetails Tests if multiple cookies are returned by the server
-    * @tpSince RESTEasy 3.1.0.Final
-    */
+   * @tpTestDetails Tests if multiple cookies are returned by the server
+   * @tpSince RESTEasy 3.1.0.Final
+   */
    @Test
    public void testServerHeaders() {
       

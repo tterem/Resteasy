@@ -6,13 +6,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Must be placed on a DecoratorProcessor class to specify the supported types
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- * @see org.jboss.resteasy.spi.DecoratorProcessor
- * @see org.jboss.resteasy.annotations.Decorator
- */
+   * Must be placed on a DecoratorProcessor class to specify the supported types
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   * @see org.jboss.resteasy.spi.DecoratorProcessor
+   * @see org.jboss.resteasy.annotations.Decorator
+   */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DecorateTypes

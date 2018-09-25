@@ -15,15 +15,15 @@ import java.util.List;
 import static org.jboss.netty.channel.Channels.pipeline;
 
 /**
- * The {@link ChannelPipelineFactory} which is used to serve HTTP Traffic.
- * 
- * 
- * @author <a href="http://www.jboss.org/netty/">The Netty Project</a>
- * @author Andy Taylor (andy.taylor@jboss.org)
- * @author <a href="http://gleamynode.net/">Trustin Lee</a>
- * @author Norman Maurer
- * @version $Rev: 2080 $, $Date: 2010-01-26 18:04:19 +0900 (Tue, 26 Jan 2010) $
- */
+   * The {@link ChannelPipelineFactory} which is used to serve HTTP Traffic.
+   * 
+   * 
+   * @author <a href="http://www.jboss.org/netty/">The Netty Project</a>
+   * @author Andy Taylor (andy.taylor@jboss.org)
+   * @author <a href="http://gleamynode.net/">Trustin Lee</a>
+   * @author Norman Maurer
+   * @version $Rev: 2080 $, $Date: 2010-01-26 18:04:19 +0900 (Tue, 26 Jan 2010) $
+   */
 public class HttpServerPipelineFactory implements ChannelPipelineFactory
 {
    private final ChannelHandler resteasyEncoder;
@@ -40,11 +40,11 @@ public class HttpServerPipelineFactory implements ChannelPipelineFactory
       this.resteasyRequestHandler = new RequestHandler(dispatcher);
       if (executorThreadCount > 0) 
       {
-          this.executionHandler = new ExecutionHandler(new OrderedMemoryAwareThreadPoolExecutor(executorThreadCount, 0L, 0L));
+         this.executionHandler = new ExecutionHandler(new OrderedMemoryAwareThreadPoolExecutor(executorThreadCount, 0L, 0L));
       } 
       else 
       {
-          this.executionHandler = null;
+         this.executionHandler = null;
       }
       this.maxRequestSize = maxRequestSize;
       this.additionalChannelHandlers = additionalChannelHandlers;
@@ -76,7 +76,7 @@ public class HttpServerPipelineFactory implements ChannelPipelineFactory
    }
    
    protected Protocol getProtocol() {
-       return Protocol.HTTP;
+      return Protocol.HTTP;
    }
 }
 

@@ -19,31 +19,31 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter RESTEASY-1565
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.1.1.Final
- */
+   * @tpSubChapter RESTEASY-1565
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.1.1.Final
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class NullHeaderTest {
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(NullHeaderTest.class.getSimpleName());
-        war.addClass(NullHeaderFilter.class);
-        return TestUtil.finishContainerPrepare(war, null, NullHeaderResource.class);
-    }
+   @Deployment
+   public static Archive<?> deploy() {
+      WebArchive war = TestUtil.prepareArchive(NullHeaderTest.class.getSimpleName());
+      war.addClass(NullHeaderFilter.class);
+      return TestUtil.finishContainerPrepare(war, null, NullHeaderResource.class);
+   }
 
-    @Test
-    public void testNullHeader() throws Exception {
-  
-       Client client = ClientBuilder.newClient();
-       WebTarget base = client.target(PortProviderUtil.generateURL("/test", NullHeaderTest.class.getSimpleName()));
-       Response response = base.register(NullHeaderFilter.class).request().header("X-Auth-User", null).get();
-       Assert.assertNotNull(response);
-       Assert.assertEquals(200, response.getStatus());
-       String serverHeader = response.getHeaderString("X-Server-Header");
-       Assert.assertTrue(serverHeader == null || "".equals(serverHeader));
-       client.close();
-    }
+   @Test
+   public void testNullHeader() throws Exception {
+   
+      Client client = ClientBuilder.newClient();
+      WebTarget base = client.target(PortProviderUtil.generateURL("/test", NullHeaderTest.class.getSimpleName()));
+      Response response = base.register(NullHeaderFilter.class).request().header("X-Auth-User", null).get();
+      Assert.assertNotNull(response);
+      Assert.assertEquals(200, response.getStatus());
+      String serverHeader = response.getHeaderString("X-Server-Header");
+      Assert.assertTrue(serverHeader == null || "".equals(serverHeader));
+      client.close();
+   }
 }

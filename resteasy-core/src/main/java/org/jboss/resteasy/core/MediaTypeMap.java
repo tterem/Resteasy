@@ -16,11 +16,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Efficient MediaType index of T.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Efficient MediaType index of T.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class MediaTypeMap<T>
 {
    public interface Typed
@@ -319,11 +319,11 @@ public class MediaTypeMap<T>
    }
 
    /**
-    * Add an object to the media type map.  This is synchronized to serialize adds.
-    *
-    * @param type media type
-    * @param obj object
-    */
+   * Add an object to the media type map.  This is synchronized to serialize adds.
+   *
+   * @param type media type
+   * @param obj object
+   */
    public synchronized void add(MediaType type, T obj)
    {
       classCache.clear();
@@ -368,12 +368,12 @@ public class MediaTypeMap<T>
    }
 
    /**
-    * Returns a list of objects sorted based on their media type where the first in the list
-    * is the best match
-    *
-    * @param accept mime to match
-    * @return list of objects
-    */
+   * Returns a list of objects sorted based on their media type where the first in the list
+   * is the best match
+   *
+   * @param accept mime to match
+   * @return list of objects
+   */
    public List<T> getPossible(MediaType accept)
    {
       accept = new MediaType(accept.getType().toLowerCase(), accept.getSubtype().toLowerCase(), accept.getParameters());
@@ -398,10 +398,10 @@ public class MediaTypeMap<T>
    }
 
    /**
-    * By default, MediaTypeMap will cache possible MediaType/Class matches.  Set this to false to turn off
-    * caching
-    *
-    */
+   * By default, MediaTypeMap will cache possible MediaType/Class matches.  Set this to false to turn off
+   * caching
+   *
+   */
    public static boolean useCache = true;
 
    public List<T> getPossible(MediaType accept, Class<?> type)

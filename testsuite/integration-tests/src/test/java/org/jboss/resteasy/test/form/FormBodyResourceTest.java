@@ -17,32 +17,32 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Form tests
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Form tests
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FormBodyResourceTest {
-    @Deployment
-    public static Archive<?> createTestArchive() {
-        WebArchive war = TestUtil.prepareArchive(FormParameterTest.class.getSimpleName());
-        war.addClasses(FormBodyResourceClient.class);
-        war.addClasses(FormBodyResourceForm.class);
-        return TestUtil.finishContainerPrepare(war, null, FormBodyResourceResource.class);
-    }
+   @Deployment
+   public static Archive<?> createTestArchive() {
+      WebArchive war = TestUtil.prepareArchive(FormParameterTest.class.getSimpleName());
+      war.addClasses(FormBodyResourceClient.class);
+      war.addClasses(FormBodyResourceForm.class);
+      return TestUtil.finishContainerPrepare(war, null, FormBodyResourceResource.class);
+   }
 
-    /**
+   /**
      * @tpTestDetails Check body of form.
      * @tpSince RESTEasy 3.0.16
      */
-    @Test
-    public void test() {
-        ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
-        FormBodyResourceClient proxy = client.target(
-                PortProviderUtil.generateBaseUrl(FormParameterTest.class.getSimpleName()))
-                .proxyBuilder(FormBodyResourceClient.class).build();
-        Assert.assertEquals("foo.gotIt", proxy.put("foo"));
-        client.close();
-    }
+   @Test
+   public void test() {
+      ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
+      FormBodyResourceClient proxy = client.target(
+            PortProviderUtil.generateBaseUrl(FormParameterTest.class.getSimpleName()))
+            .proxyBuilder(FormBodyResourceClient.class).build();
+      Assert.assertEquals("foo.gotIt", proxy.put("foo"));
+      client.close();
+   }
 }

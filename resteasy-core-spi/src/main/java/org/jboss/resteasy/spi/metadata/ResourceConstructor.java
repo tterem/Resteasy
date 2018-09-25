@@ -3,13 +3,13 @@ package org.jboss.resteasy.spi.metadata;
 import java.lang.reflect.Constructor;
 
 /**
- * @author Christian Kaltepoth
- */
+   * @author Christian Kaltepoth
+   */
 public interface ResourceConstructor
 {
-  ResourceClass getResourceClass();
+   ResourceClass getResourceClass();
 
-  Constructor getConstructor();
+   Constructor getConstructor();
 
-  ConstructorParameter[] getParams();
+   ConstructorParameter[] getParams();
 }

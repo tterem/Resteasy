@@ -22,9 +22,9 @@ import javax.ws.rs.core.Response;
 import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class NettyTest
 {
    @Path("/")
@@ -49,7 +49,7 @@ public class NettyTest
       @Path("/context")
       @Produces("text/plain")
       public String context(@Context ChannelHandlerContext context) {
-          return context.getChannel().toString();
+         return context.getChannel().toString();
       }
    }
 
@@ -96,12 +96,12 @@ public class NettyTest
       Assert.assertEquals(500, resp.getStatus());
    }
 
-    @Test
-    public void testChannelContext() throws Exception {
+   @Test
+   public void testChannelContext() throws Exception {
       Client client = ClientBuilder.newBuilder().build();
       WebTarget target = client.target(generateURL("/context"));
       String val = target.request().get(String.class);
       Assert.assertNotNull(val);
       Assert.assertFalse(val.isEmpty());
-    }
+   }
 }

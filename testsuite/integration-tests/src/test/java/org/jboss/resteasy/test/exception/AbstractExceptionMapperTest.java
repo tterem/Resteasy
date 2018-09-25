@@ -29,52 +29,52 @@ import java.lang.reflect.ReflectPermission;
 import java.lang.reflect.Type;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Regression test for RESTEASY-666
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Regression test for RESTEASY-666
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AbstractExceptionMapperTest {
 
-    private Client client;
+   private Client client;
 
-    @Deployment
-    public static Archive<?> createTestArchive() {
-        WebArchive war = TestUtil.prepareArchive(AbstractExceptionMapperTest.class.getSimpleName());
-        war.addClass(PortProviderUtil.class);
-        war.addClasses(AbstractMapper.class, AbstractMapperException.class);
-        war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(
-                new ReflectPermission("suppressAccessChecks")
-        ), "permissions.xml");
-        return TestUtil.finishContainerPrepare(war, null, AbstractMapperDefault.class,
-                AbstractMapperMyCustom.class, AbstractMapperResource.class);
-    }
+   @Deployment
+   public static Archive<?> createTestArchive() {
+      WebArchive war = TestUtil.prepareArchive(AbstractExceptionMapperTest.class.getSimpleName());
+      war.addClass(PortProviderUtil.class);
+      war.addClasses(AbstractMapper.class, AbstractMapperException.class);
+      war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(
+            new ReflectPermission("suppressAccessChecks")
+      ), "permissions.xml");
+      return TestUtil.finishContainerPrepare(war, null, AbstractMapperDefault.class,
+            AbstractMapperMyCustom.class, AbstractMapperResource.class);
+   }
 
 
-    @Before
-    public void setup() {
-        client = ClientBuilder.newClient();
-    }
+   @Before
+   public void setup() {
+      client = ClientBuilder.newClient();
+   }
 
-    @After
-    public void cleanup() {
-        client.close();
-    }
+   @After
+   public void cleanup() {
+      client.close();
+   }
 
-    /**
+   /**
      * @tpTestDetails Correct exception mapper should be chosen when ExceptionMapper implement statement is in abstract class.
      * @tpSince RESTEasy 3.0.16
      */
-    @Test
-    public void testCustomUsed() {
-        Type exceptionType = Types.getActualTypeArgumentsOfAnInterface(AbstractMapperMyCustom.class, ExceptionMapper.class)[0];
-        Assert.assertEquals(AbstractMapperException.class, exceptionType);
+   @Test
+   public void testCustomUsed() {
+      Type exceptionType = Types.getActualTypeArgumentsOfAnInterface(AbstractMapperMyCustom.class, ExceptionMapper.class)[0];
+      Assert.assertEquals(AbstractMapperException.class, exceptionType);
 
-        Response response = client.target(PortProviderUtil.generateURL("/resource/custom",
-                AbstractExceptionMapperTest.class.getSimpleName())).request().get();
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-        Assert.assertEquals("custom", response.readEntity(String.class));
-    }
+      Response response = client.target(PortProviderUtil.generateURL("/resource/custom",
+            AbstractExceptionMapperTest.class.getSimpleName())).request().get();
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      Assert.assertEquals("custom", response.readEntity(String.class));
+   }
 }

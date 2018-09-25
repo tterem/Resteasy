@@ -11,9 +11,9 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @ConstrainedTo(RuntimeType.CLIENT)
 public class ClientContentEncodingAnnotationFeature implements DynamicFeature
 {

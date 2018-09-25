@@ -17,20 +17,18 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
- * The {@link MessageBodyReader} implementation to deserialize
- * {@link MultipartRelatedInput} objects.
- *
- * @author Attila Kiraly
- * @version $Revision: 1 $
- */
+   * The {@link MessageBodyReader} implementation to deserialize
+   * {@link MultipartRelatedInput} objects.
+   *
+   * @author Attila Kiraly
+   * @version $Revision: 1 $
+   */
 @Provider
 @Consumes("multipart/related")
 public class MultipartRelatedReader implements
-        MessageBodyReader<MultipartRelatedInput>
+      MessageBodyReader<MultipartRelatedInput>
 {
-   protected
-   @Context
-   Providers workers;
+   protected @Context Providers workers;
 
    public boolean isReadable(Class<?> type, Type genericType,
                              Annotation[] annotations, MediaType mediaType)
@@ -41,7 +39,7 @@ public class MultipartRelatedReader implements
    public MultipartRelatedInput readFrom(Class<MultipartRelatedInput> type,
                                          Type genericType, Annotation[] annotations, MediaType mediaType,
                                          MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
-           throws IOException, WebApplicationException
+         throws IOException, WebApplicationException
    {
       String boundary = mediaType.getParameters().get("boundary");
       if (boundary == null)

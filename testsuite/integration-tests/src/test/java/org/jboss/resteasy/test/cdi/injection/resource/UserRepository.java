@@ -5,41 +5,41 @@ import javax.persistence.PersistenceContext;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
- * The UserRepository
- *
- */
+   * The UserRepository
+   *
+   */
 @ApplicationScoped
 public class UserRepository {
 
-    /**
+   /**
      * The entity manager provider
      */
-    @PersistenceContext
-    private EntityManager entityManager;
+   @PersistenceContext
+   private EntityManager entityManager;
 
-    /**
+   /**
      * Constructor
      */
-    public UserRepository() {
-    }
+   public UserRepository() {
+   }
 
-    /**
+   /**
      * Returns the entity manager for the persistence context
      *
      * @return the entity manager
      */
-    protected EntityManager getEntityManager() {
-        return this.entityManager;
-    }
+   protected EntityManager getEntityManager() {
+      return this.entityManager;
+   }
 
-    /**
+   /**
      * Return an object by the given id
      *
      * @param id the {@link Object } id
      * @return A persistent instance with a given id.
      */
-    public ApplicationUser find(Object id) {
-        return this.getEntityManager().find(ApplicationUser.class, id);
-    }
+   public ApplicationUser find(Object id) {
+      return this.getEntityManager().find(ApplicationUser.class, id);
+   }
 
 }

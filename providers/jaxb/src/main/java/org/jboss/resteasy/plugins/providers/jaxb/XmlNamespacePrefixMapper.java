@@ -7,21 +7,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A XmlNamespacePrefixMapper.
- *
- * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
- * @version $Revision:$
- */
+   * A XmlNamespacePrefixMapper.
+   *
+   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+   * @version $Revision:$
+   */
 public class XmlNamespacePrefixMapper extends NamespacePrefixMapper
 {
 
    private final Map<String, String> namespaceMap = new HashMap<String, String>();
 
    /**
-    * Create a new XmlNamespecePrefixMapper.
-    *
-    * @param namespaces xml namespaces
-    */
+   * Create a new XmlNamespecePrefixMapper.
+   *
+   * @param namespaces xml namespaces
+   */
    public XmlNamespacePrefixMapper(final XmlNs... namespaces)
    {
       for (XmlNs namespace : namespaces)
@@ -32,8 +32,8 @@ public class XmlNamespacePrefixMapper extends NamespacePrefixMapper
 
 
    /**
-    *
-    */
+   *
+   */
    @Override
    public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix)
    {

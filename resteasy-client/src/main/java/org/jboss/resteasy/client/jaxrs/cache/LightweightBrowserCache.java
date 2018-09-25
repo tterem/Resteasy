@@ -6,18 +6,18 @@ import javax.ws.rs.core.MultivaluedMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * In-memory BrowserCache. Uses an underlying cache, with ConcurrentMapCache as
- * the default. You specify maximum bytes you want the cache to have. The
- * default is 2Megabytes. If the cache exceeds this amount, it is wiped clean.
- * This rather draconian approach to cache reaping is to avoid synchronization
- * that you would normally have to do in a sophisticated cache.
- * <p>
- * With high concurrent access, because this is not a sophisticated cache,
- * sometimes a cache entry may be lost. It is consistent though.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * In-memory BrowserCache. Uses an underlying cache, with ConcurrentMapCache as
+   * the default. You specify maximum bytes you want the cache to have. The
+   * default is 2Megabytes. If the cache exceeds this amount, it is wiped clean.
+   * This rather draconian approach to cache reaping is to avoid synchronization
+   * that you would normally have to do in a sophisticated cache.
+   * <p>
+   * With high concurrent access, because this is not a sophisticated cache,
+   * sometimes a cache entry may be lost. It is consistent though.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class LightweightBrowserCache implements BrowserCache
 {
 
@@ -78,8 +78,8 @@ public class LightweightBrowserCache implements BrowserCache
    }
 
    public Entry put(String key, MediaType mediaType,
-                    MultivaluedMap<String, String> headers, byte[] cached, int expires,
-                    String etag, String lastModified)
+               MultivaluedMap<String, String> headers, byte[] cached, int expires,
+               String etag, String lastModified)
    {
       Entry previousValue = internalCache.get(key, mediaType);
 

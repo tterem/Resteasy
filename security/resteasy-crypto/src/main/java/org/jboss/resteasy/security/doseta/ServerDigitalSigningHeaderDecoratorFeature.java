@@ -17,9 +17,9 @@ import org.jboss.resteasy.annotations.security.doseta.Signed;
 import org.jboss.resteasy.core.ResteasyContext;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @ConstrainedTo(RuntimeType.SERVER)
 public class ServerDigitalSigningHeaderDecoratorFeature implements DynamicFeature
 {
@@ -37,9 +37,9 @@ public class ServerDigitalSigningHeaderDecoratorFeature implements DynamicFeatur
    }
 
    /**
-    * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-    * @version $Revision: 1 $
-    */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
    @Priority(Priorities.HEADER_DECORATOR)
    public static class DigitalSigningHeaderDecorator extends AbstractDigitalSigningHeaderDecorator implements ContainerResponseFilter
    {

@@ -35,10 +35,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter ExceptionMappers and ParamConverterProviders registered programatically
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0.0
- */
+   * @tpSubChapter ExceptionMappers and ParamConverterProviders registered programatically
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ProviderPriorityProvidersRegisteredProgramaticallyTest {
@@ -53,7 +53,7 @@ public class ProviderPriorityProvidersRegisteredProgramaticallyTest {
             ProviderPriorityTestException.class,
             ProviderPriorityExceptionMapperCCC.class,
             ProviderPriorityFooParamConverterProviderCCC.class
-            );
+      );
       List<Class<?>> singletons = new ArrayList<Class<?>>();
       singletons.add(ProviderPriorityExceptionMapperCCC.class);
       singletons.add(ProviderPriorityFooParamConverterProviderCCC.class);
@@ -88,10 +88,10 @@ public class ProviderPriorityProvidersRegisteredProgramaticallyTest {
    }
 
    /**
-    * @tpTestDetails Tests that Programatically registered ExceptionMappers and
-    *                ParamConverterProviders are sorted by priority
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails Tests that Programatically registered ExceptionMappers and
+   *                ParamConverterProviders are sorted by priority
+   * @tpSince RESTEasy 4.0.0
+   */
    @Test
    public void testProgramaticRegistration() throws Exception {
       WebTarget base = client.target(generateURL(""));

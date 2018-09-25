@@ -25,11 +25,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.20
- * @tpTestCaseDetails Test client error caused by bad media type
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.20
+   * @tpTestCaseDetails Test client error caused by bad media type
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ClientErrorTest
@@ -38,14 +38,14 @@ public class ClientErrorTest
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(ClientErrorTest.class.getSimpleName());
-       war.addClass(PortProviderUtil.class);
-       war.addClass(TestUtil.class);
-       return TestUtil.finishContainerPrepare(war, null, ClientErrorResource.class);
+      WebArchive war = TestUtil.prepareArchive(ClientErrorTest.class.getSimpleName());
+      war.addClass(PortProviderUtil.class);
+      war.addClass(TestUtil.class);
+      return TestUtil.finishContainerPrepare(war, null, ClientErrorResource.class);
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, ClientErrorTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, ClientErrorTest.class.getSimpleName());
    }
 
    @BeforeClass
@@ -61,9 +61,9 @@ public class ClientErrorTest
    }
 
    /**
-    * @tpTestDetails There are two methods that match path, but only one matches Accept.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails There are two methods that match path, but only one matches Accept.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testComplex()
    {
@@ -86,9 +86,9 @@ public class ClientErrorTest
    }
 
    /**
-    * @tpTestDetails No method matches path.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails No method matches path.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testNotFound()
    {
@@ -111,9 +111,9 @@ public class ClientErrorTest
    }
 
    /**
-    * @tpTestDetails Two methods match path, but neither matches HTTP method.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Two methods match path, but neither matches HTTP method.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testMethodNotAllowed()
    {
@@ -136,9 +136,9 @@ public class ClientErrorTest
    }
 
    /**
-    * @tpTestDetails There is a method that matches path but does not match Accept.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails There is a method that matches path but does not match Accept.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testNotAcceptable()
    {
@@ -161,9 +161,9 @@ public class ClientErrorTest
    }
 
    /**
-    * @tpTestDetails Matching POST method returns no entity.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Matching POST method returns no entity.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testNoContentPost()
    {
@@ -185,9 +185,9 @@ public class ClientErrorTest
    }
 
    /**
-    * @tpTestDetails Matching DELETE returns no entity.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Matching DELETE returns no entity.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testNoContent()
    {
@@ -209,9 +209,9 @@ public class ClientErrorTest
    }
 
    /**
-    * @tpTestDetails Method matches path but does not match content type.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Method matches path but does not match content type.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testUnsupportedMediaType()
    {
@@ -234,9 +234,9 @@ public class ClientErrorTest
    }
 
    /**
-    * @tpTestDetails Method matches path but not bad Accept media type with no subtype.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Method matches path but not bad Accept media type with no subtype.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testBadAcceptMediaTypeNoSubType()
    {
@@ -259,9 +259,9 @@ public class ClientErrorTest
    }
 
    /**
-    * @tpTestDetails Method matches path but not bad Accept media type with nonnumerical q value.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Method matches path but not bad Accept media type with nonnumerical q value.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testBadAcceptMediaTypeNonNumericQualityValue()
    {

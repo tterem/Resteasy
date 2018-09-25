@@ -32,11 +32,11 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * A response object not attached to a client or server invocation.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * A response object not attached to a client or server invocation.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings("rawtypes")
 public class BuiltResponse extends Response
 {
@@ -512,10 +512,10 @@ public class BuiltResponse extends Response
       }
 
       /**
-       * All the links defined.
-       *
-       * @return links
-       */
+      * All the links defined.
+      *
+      * @return links
+      */
       public List<Link> getLinks()
       {
          return links;

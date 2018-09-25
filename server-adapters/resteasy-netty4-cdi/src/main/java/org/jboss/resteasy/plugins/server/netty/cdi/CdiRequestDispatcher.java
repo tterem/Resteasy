@@ -19,36 +19,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A request dispatcher that starts a RequestContext during invocation.
- */
+   * A request dispatcher that starts a RequestContext during invocation.
+   */
 @Vetoed
 public class CdiRequestDispatcher extends RequestDispatcher {
-    private final Instance<Object> instance;
+   private final Instance<Object> instance;
 
-    public CdiRequestDispatcher(SynchronousDispatcher dispatcher, ResteasyProviderFactory providerFactory,
-          SecurityDomain domain){
-        this(dispatcher, providerFactory, domain, CDI.current());
-    }
-    public CdiRequestDispatcher(SynchronousDispatcher dispatcher, ResteasyProviderFactory providerFactory,
-          SecurityDomain domain, Instance<Object> cdi){
-        super(dispatcher, providerFactory, domain);
-        this.instance = cdi;
-    }
-    @Override
-    public void service(ChannelHandlerContext ctx, HttpRequest request, HttpResponse response, boolean handleNotFound) throws IOException {
-        BoundRequestContext context = this.instance.select(BoundRequestContext.class).get();
-        Map<String,Object> contextMap = new HashMap<String,Object>();
-        context.associate(contextMap);
-        context.activate();
-        try
-        {
-            super.service(ctx, request,response,handleNotFound);
-        }
-        finally
-        {
-            context.invalidate();
-            context.deactivate();
-            context.dissociate(contextMap);
-        }
-    }
+   public CdiRequestDispatcher(SynchronousDispatcher dispatcher, ResteasyProviderFactory providerFactory,
+         SecurityDomain domain){
+      this(dispatcher, providerFactory, domain, CDI.current());
+   }
+   public CdiRequestDispatcher(SynchronousDispatcher dispatcher, ResteasyProviderFactory providerFactory,
+         SecurityDomain domain, Instance<Object> cdi){
+      super(dispatcher, providerFactory, domain);
+      this.instance = cdi;
+   }
+   @Override
+   public void service(ChannelHandlerContext ctx, HttpRequest request, HttpResponse response, boolean handleNotFound) throws IOException {
+      BoundRequestContext context = this.instance.select(BoundRequestContext.class).get();
+      Map<String,Object> contextMap = new HashMap<String,Object>();
+      context.associate(contextMap);
+      context.activate();
+      try
+      {
+         super.service(ctx, request,response,handleNotFound);
+      }
+      finally
+      {
+         context.invalidate();
+         context.deactivate();
+         context.dissociate(contextMap);
+      }
+   }
 }

@@ -24,9 +24,9 @@ import java.security.MessageDigest;
 import java.security.interfaces.RSAPrivateKey;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class JWEInput
 {
    String wireString;
@@ -132,12 +132,12 @@ public class JWEInput
          return rawContent;
       }
       /**
-       * Defaults to '*' if there is no cty header.
-       * 
-       * @param <T> type
-       * @param type type class
-       * @return read entity of type T
-       */
+      * Defaults to '*' if there is no cty header.
+      * 
+      * @param <T> type
+      * @param type type class
+      * @return read entity of type T
+      */
       public <T> T readContent(Class<T> type)
       {
          MediaType mediaType = MediaType.WILDCARD_TYPE;

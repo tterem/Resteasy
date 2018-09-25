@@ -15,19 +15,19 @@ import java.util.Objects;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 
 /**
- * Type conversions and generic type manipulations
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Type conversions and generic type manipulations
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public final class Types
 {
    /**
-    * Is the genericType of a certain class?
-    * @param clazz class
-    * @param pType type
-    * @return boolean result
-    */
+   * Is the genericType of a certain class?
+   * @param clazz class
+   * @param pType type
+   * @return boolean result
+   */
    @SuppressWarnings(value = "unchecked")
    public static boolean isA(Class clazz, ParameterizedType pType)
    {
@@ -35,11 +35,11 @@ public final class Types
    }
 
    /**
-    * Gets the index-th type argument.
-    * @param pType type
-    * @param index index
-    * @return the type of argument at index position
-    */
+   * Gets the index-th type argument.
+   * @param pType type
+   * @param index index
+   * @return the type of argument at index position
+   */
    public static Class getArgumentType(ParameterizedType pType, int index)
    {
       return (Class) pType.getActualTypeArguments()[index];
@@ -112,12 +112,12 @@ public final class Types
    }
 
    /**
-    * See if the two methods are compatible, that is they have the same relative signature.
-    *
-    * @param method first method
-    * @param intfMethod second method
-    * @return boolean result
-    */
+   * See if the two methods are compatible, that is they have the same relative signature.
+   *
+   * @param method first method
+   * @param intfMethod second method
+   * @return boolean result
+   */
    @SuppressWarnings(value = "unchecked")
    public static boolean isCompatible(Method method, Method intfMethod)
    {
@@ -140,12 +140,12 @@ public final class Types
    }
 
    /**
-    * Given a method and a root class, find the actual method declared in the root that implements the method.
-    *
-    * @param clazz class
-    * @param intfMethod method
-    * @return method in the root class
-    */
+   * Given a method and a root class, find the actual method declared in the root that implements the method.
+   *
+   * @param clazz class
+   * @param intfMethod method
+   * @return method in the root class
+   */
    @SuppressWarnings(value = "unchecked")
    public static Method getImplementingMethod(Class clazz, Method intfMethod)
    {
@@ -216,13 +216,13 @@ public final class Types
    }
 
    /**
-    * Find the by a method implementation implemented interface method.
-    *
-    * @param root The root class of the class hierarchy.
-    * @param iface The containing interface of the implemented method in the class hierarchy.
-    * @param implementation The method implementation.
-    * @return The implemented method.
-    */
+   * Find the by a method implementation implemented interface method.
+   *
+   * @param root The root class of the class hierarchy.
+   * @param iface The containing interface of the implemented method in the class hierarchy.
+   * @param implementation The method implementation.
+   * @return The implemented method.
+   */
    public static Method getImplementedInterfaceMethod(final Class<?> root, final Class<?> iface,
          final Method implementation)
    {
@@ -246,13 +246,13 @@ public final class Types
    }
 
    /**
-    * Find the by a method implementation overridden superclass method.
-    *
-    * @param root The root class of the class hierarchy.
-    * @param superClass The containing class of the overridden method in the class hierarchy.
-    * @param implementation The method implementation.
-    * @return The overridden method.
-    */
+   * Find the by a method implementation overridden superclass method.
+   *
+   * @param root The root class of the class hierarchy.
+   * @param superClass The containing class of the overridden method in the class hierarchy.
+   * @param implementation The method implementation.
+   * @return The overridden method.
+   */
    public static Method findOverriddenMethod(final Class<?> root, final Class<?> superClass,
          final Method implementation)
    {
@@ -358,11 +358,11 @@ public final class Types
    }
 
    /**
-    * Returns the type argument from a parameterized type.
-    *
-    * @param genericType type
-    * @return null if there is no type parameter
-    */
+   * Returns the type argument from a parameterized type.
+   *
+   * @param genericType type
+   * @return null if there is no type parameter
+   */
    public static Class<?> getTypeArgument(Type genericType)
    {
       if (!(genericType instanceof ParameterizedType))
@@ -455,13 +455,13 @@ public final class Types
    }
 
    /**
-    * Finds an actual value of a type variable. The method looks in a class hierarchy for a class defining the variable
-    * and returns the value if present.
-    *
-    * @param root root class
-    * @param typeVariable type variable
-    * @return actual type of the type variable
-    */
+   * Finds an actual value of a type variable. The method looks in a class hierarchy for a class defining the variable
+   * and returns the value if present.
+   *
+   * @param root root class
+   * @param typeVariable type variable
+   * @return actual type of the type variable
+   */
    public static Type resolveTypeVariable(Class<?> root, TypeVariable<?> typeVariable)
    {
       if (typeVariable.getGenericDeclaration() instanceof Class<?>)
@@ -483,12 +483,12 @@ public final class Types
    }
 
    /**
-    * Given a class and an interfaces, go through the class hierarchy to find the interface and return its type arguments.
-    *
-    * @param classToSearch class
-    * @param interfaceToFind interface to find
-    * @return type arguments of the interface
-    */
+   * Given a class and an interfaces, go through the class hierarchy to find the interface and return its type arguments.
+   *
+   * @param classToSearch class
+   * @param interfaceToFind interface to find
+   * @return type arguments of the interface
+   */
    public static Type[] getActualTypeArgumentsOfAnInterface(Class<?> classToSearch, Class<?> interfaceToFind)
    {
       Type[] types = findParameterizedTypes(classToSearch, interfaceToFind);
@@ -501,13 +501,13 @@ public final class Types
    {};
 
    /**
-    * Search for the given interface or class within the root's class/interface hierarchy.
-    * If the searched for class/interface is a generic return an array of real types that fill it out.
-    *
-    * @param root root class
-    * @param searchedFor searched class
-    * @return for generic class/interface returns array of real types
-    */
+   * Search for the given interface or class within the root's class/interface hierarchy.
+   * If the searched for class/interface is a generic return an array of real types that fill it out.
+   *
+   * @param root root class
+   * @param searchedFor searched class
+   * @return for generic class/interface returns array of real types
+   */
    public static Type[] findParameterizedTypes(Class<?> root, Class<?> searchedFor)
    {
       if (searchedFor.isInterface())
@@ -568,12 +568,12 @@ public final class Types
    }
 
    /**
-    * Create a mapping for generic types to actual types between two classes / interfaces of a type hierarchy.
-    *
-    * @param root The root class / interface of the type hierarchy.
-    * @param superClass A superclass / interface of the type hierarchy.
-    * @return The Mapping for generic types to actual types.
-    */
+   * Create a mapping for generic types to actual types between two classes / interfaces of a type hierarchy.
+   *
+   * @param root The root class / interface of the type hierarchy.
+   * @param superClass A superclass / interface of the type hierarchy.
+   * @return The Mapping for generic types to actual types.
+   */
    public static Map<TypeVariable<?>, Type> populateParameterizedMap(final Class<?> root, final Class<?> superClass)
    {
       final Type[] types = Types.findParameterizedTypes(root, superClass);
@@ -655,12 +655,12 @@ public final class Types
    }
 
    /**
-    * Resolve generic types to actual types.
-    *
-    * @param typeVarMap The mapping for generic types to actual types.
-    * @param types The types to resolve.
-    * @return An array of resolved method parameter types in declaration order.
-    */
+   * Resolve generic types to actual types.
+   *
+   * @param typeVarMap The mapping for generic types to actual types.
+   * @param types The types to resolve.
+   * @return An array of resolved method parameter types in declaration order.
+   */
    private static Type[] extractTypeVariables(final Map<TypeVariable<?>, Type> typeVarMap, final Type[] types)
    {
       final Type[] resolvedMethodParameterTypes = new Type[types.length];

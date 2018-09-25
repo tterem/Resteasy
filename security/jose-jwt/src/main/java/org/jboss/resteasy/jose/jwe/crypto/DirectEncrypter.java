@@ -14,41 +14,41 @@ import java.security.SecureRandom;
 
 
 /**
- * Direct encrypter with a
- * shared symmetric key. This class is thread-safe.
- * <p>Supports the following JWE algorithms:
- * </p>
- * <ul>
- * <li>DIR
- * </ul>
- * <p>Supports the following encryption methods:
- * </p>
- * <ul>
- * <li>A128CBC_HS256}
- * <li>A256CBC_HS512}
- * <li>A128GCM}
- * <li>A256GCM}
- * </ul>
- *
- * @author Vladimir Dzhuvinov
- * @version $version$ (2013-05-29)
- */
+   * Direct encrypter with a
+   * shared symmetric key. This class is thread-safe.
+   * <p>Supports the following JWE algorithms:
+   * </p>
+   * <ul>
+   * <li>DIR
+   * </ul>
+   * <p>Supports the following encryption methods:
+   * </p>
+   * <ul>
+   * <li>A128CBC_HS256}
+   * <li>A256CBC_HS512}
+   * <li>A128GCM}
+   * <li>A256GCM}
+   * </ul>
+   *
+   * @author Vladimir Dzhuvinov
+   * @version $version$ (2013-05-29)
+   */
 public class DirectEncrypter
 {
 
 
    /**
-    * Random byte generator.
-    */
+   * Random byte generator.
+   */
    private static SecureRandom randomGen;
 
 
    /**
-    * Initialises the secure random byte generator.
-    *
-    * @throws RuntimeException If the secure random byte generator couldn't
-    *                          be instantiated.
-    */
+   * Initialises the secure random byte generator.
+   *
+   * @throws RuntimeException If the secure random byte generator couldn't
+   *                          be instantiated.
+   */
    private static void initSecureRandom()
    {
 

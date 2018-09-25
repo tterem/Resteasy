@@ -30,10 +30,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Publisher response type
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- */
+   * @tpSubChapter Publisher response type
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PublisherResponseRawStreamTest {
@@ -70,9 +70,9 @@ public class PublisherResponseRawStreamTest {
    }
 
    /**
-    * @tpTestDetails Resource method returns Publisher<String>.
-    * @tpSince RESTEasy 4.0
-    */
+   * @tpTestDetails Resource method returns Publisher<String>.
+   * @tpSince RESTEasy 4.0
+   */
    @Test
    public void testChunked() throws Exception
    {
@@ -84,9 +84,9 @@ public class PublisherResponseRawStreamTest {
    }
 
    /**
-    * @tpTestDetails Resource method unsubscribes on close for infinite streams.
-    * @tpSince RESTEasy 4.0
-    */
+   * @tpTestDetails Resource method unsubscribes on close for infinite streams.
+   * @tpSince RESTEasy 4.0
+   */
    @Test
    public void testInfiniteStreamsChunked() throws Exception
    {

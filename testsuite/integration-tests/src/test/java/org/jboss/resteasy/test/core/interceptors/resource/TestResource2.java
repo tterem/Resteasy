@@ -4,8 +4,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 /**
- * Created by rsearls on 9/5/17.
- */
+   * Created by rsearls on 9/5/17.
+   */
 @Path("test")
 public class TestResource2 {
 

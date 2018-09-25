@@ -34,9 +34,9 @@ import org.jboss.resteasy.spi.ResteasyAsynchronousResponse;
 import org.jboss.resteasy.tracing.RESTEasyTracingLogger;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ContainerResponseContextImpl implements SuspendableContainerResponseContext
 {
    protected final HttpRequest request;
@@ -157,7 +157,7 @@ public class ContainerResponseContextImpl implements SuspendableContainerRespons
    @Override
    public Set<String> getAllowedMethods()
    {
-     return jaxrsResponse.getAllowedMethods();
+      return jaxrsResponse.getAllowedMethods();
    }
 
    @Override
@@ -330,9 +330,9 @@ public class ContainerResponseContextImpl implements SuspendableContainerRespons
    private void writeException(Throwable t)
    {
       /*
-       * Here we cannot call AsyncResponse.resume(t) because that would invoke the response filters
-       * and we should not invoke them because we're already in them.
-       */
+      * Here we cannot call AsyncResponse.resume(t) because that would invoke the response filters
+      * and we should not invoke them because we're already in them.
+      */
       HttpResponse httpResponse = (HttpResponse) contextDataMap.get(HttpResponse.class);
       SynchronousDispatcher dispatcher = (SynchronousDispatcher) contextDataMap.get(Dispatcher.class);
       ResteasyAsynchronousResponse asyncResponse = request.getAsyncContext().getAsyncResponse();

@@ -13,12 +13,12 @@ import org.jboss.resteasy.plugins.providers.multipart.AbstractMultipartWriter;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartOutput;
 
 /**
- * 
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * Copyright Aug 25, 2015
- */
+   * 
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * Copyright Aug 25, 2015
+   */
 @MessageBundle(projectCode = "RESTEASY")
 public interface Messages
 {

@@ -5,9 +5,9 @@ import org.jboss.resteasy.jose.i18n.Messages;
 import org.jboss.resteasy.util.Base64;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class Base64Url
 {
    public static String encode(byte[] bytes)

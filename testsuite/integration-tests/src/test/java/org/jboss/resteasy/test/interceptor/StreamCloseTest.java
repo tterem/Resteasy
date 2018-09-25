@@ -25,11 +25,11 @@ import java.net.SocketPermission;
 import java.util.PropertyPermission;
 
 /**
- * @tpSubChapter Interceptors
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.1.2
- * @tpTestCaseDetails Verify outpustream close is invoked on server side (https://issues.jboss.org/browse/RESTEASY-1650)
- */
+   * @tpSubChapter Interceptors
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.1.2
+   * @tpTestCaseDetails Verify outpustream close is invoked on server side (https://issues.jboss.org/browse/RESTEASY-1650)
+   */
 @RunWith(Arquillian.class)
 public class StreamCloseTest
 {

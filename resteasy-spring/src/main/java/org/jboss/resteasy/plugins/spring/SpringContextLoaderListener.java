@@ -10,9 +10,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class SpringContextLoaderListener extends ContextLoaderListener
 {
    private SpringContextLoaderSupport springContextLoaderSupport = new SpringContextLoaderSupport();
@@ -63,8 +63,8 @@ public class SpringContextLoaderListener extends ContextLoaderListener
    }
    
    @Override
-	protected void customizeContext(ServletContext servletContext, ConfigurableWebApplicationContext configurableWebApplicationContext) {
-		super.customizeContext(servletContext, configurableWebApplicationContext);
-		this.springContextLoaderSupport.customizeContext(servletContext, configurableWebApplicationContext);
-	}
+   protected void customizeContext(ServletContext servletContext, ConfigurableWebApplicationContext configurableWebApplicationContext) {
+      super.customizeContext(servletContext, configurableWebApplicationContext);
+      this.springContextLoaderSupport.customizeContext(servletContext, configurableWebApplicationContext);
+   }
 }

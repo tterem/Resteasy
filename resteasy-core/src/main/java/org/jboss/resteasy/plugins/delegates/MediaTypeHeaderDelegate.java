@@ -9,9 +9,9 @@ import javax.ws.rs.ext.RuntimeDelegate;
 import java.util.HashMap;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class MediaTypeHeaderDelegate implements RuntimeDelegate.HeaderDelegate
 {
    public Object fromString(String type) throws IllegalArgumentException
@@ -114,7 +114,9 @@ public class MediaTypeHeaderDelegate implements RuntimeDelegate.HeaderDelegate
       for (int i = 0; i < str.length(); i++)
       {
          char c = str.charAt(i);
-         for (char q : quotedChars) if (c == q) return true;
+         for (char q : quotedChars) {
+            if (c == q) return true;
+         }
       }
       return false;
    }

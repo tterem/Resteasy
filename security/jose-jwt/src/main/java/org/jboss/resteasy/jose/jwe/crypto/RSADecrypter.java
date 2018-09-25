@@ -14,38 +14,38 @@ import java.security.interfaces.RSAPrivateKey;
 
 
 /**
- * RSA decrypter. This class
- * is thread-safe.
- * <p>Supports the following JWE algorithms:
- * </p>
- * <ul>
- * <li>RSA1_5
- * <li>RSA_OAEP
- * </ul>
- * <p>Supports the following encryption methods:
- * </p>
- * <ul>
- * <li>A128CBC_HS256
- * <li>A256CBC_HS512
- * <li>A128GCM
- * <li>A256GCM
- * </ul>
- *
- * @author David Ortiz
- * @author Vladimir Dzhuvinov
- * @version $version$ (2013-05-29)
- */
+   * RSA decrypter. This class
+   * is thread-safe.
+   * <p>Supports the following JWE algorithms:
+   * </p>
+   * <ul>
+   * <li>RSA1_5
+   * <li>RSA_OAEP
+   * </ul>
+   * <p>Supports the following encryption methods:
+   * </p>
+   * <ul>
+   * <li>A128CBC_HS256
+   * <li>A256CBC_HS512
+   * <li>A128GCM
+   * <li>A256GCM
+   * </ul>
+   *
+   * @author David Ortiz
+   * @author Vladimir Dzhuvinov
+   * @version $version$ (2013-05-29)
+   */
 public class RSADecrypter
 {
 
    public static byte[] decrypt(final JWEHeader readOnlyJWEHeader,
-                                final String encodedHeader,
-                                final String encodedEncryptedKey,
-                                final String encodedIv,
-                                final String encodedCipherText,
-                                final String encodedAuthTag,
-                                final RSAPrivateKey privateKey
-                               )
+                        final String encodedHeader,
+                        final String encodedEncryptedKey,
+                        final String encodedIv,
+                        final String encodedCipherText,
+                        final String encodedAuthTag,
+                        final RSAPrivateKey privateKey
+   )
    {
 
       // Validate required JWE parts
@@ -140,4 +140,3 @@ public class RSADecrypter
       return DeflateHelper.applyDecompression(readOnlyJWEHeader.getCompressionAlgorithm(), plainText);
    }
 }
-

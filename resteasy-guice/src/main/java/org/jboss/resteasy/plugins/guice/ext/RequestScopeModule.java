@@ -17,9 +17,9 @@ import com.google.inject.Provider;
 import com.google.inject.Scope;
 
 /**
- * Binds the {@link RequestScoped} to the current HTTP request and
- * makes all the classes available via the {@link Context} annotation injectable.
- */
+   * Binds the {@link RequestScoped} to the current HTTP request and
+   * makes all the classes available via the {@link Context} annotation injectable.
+   */
 public class RequestScopeModule extends AbstractModule
 {
    @Override

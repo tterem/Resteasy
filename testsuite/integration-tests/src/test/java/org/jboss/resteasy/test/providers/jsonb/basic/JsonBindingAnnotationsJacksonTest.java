@@ -29,10 +29,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Json-binding provider.
- * @tpChapter Integration test
- * @tpSince RESTEasy 3.5
- */
+   * @tpSubChapter Json-binding provider.
+   * @tpChapter Integration test
+   * @tpSince RESTEasy 3.5
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JsonBindingAnnotationsJacksonTest {
@@ -85,15 +85,15 @@ public class JsonBindingAnnotationsJacksonTest {
    }
 
    /**
-    * @tpTestDetails JSON-B is not used on client, JSON-B is used on server
-    *                client send a value in variable with @JsonbTransient annotation
-    *                server should not receive a value in this variable (JSON-B on server should filter it)
-    *                end-point returns a value in this variable, but server should ignore this variable
-    *                check that server returns object without variable with @JsonbTransient annotation to client
-    *
-    * @tpPassCrit The resource returns object with correct values
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails JSON-B is not used on client, JSON-B is used on server
+   *                client send a value in variable with @JsonbTransient annotation
+   *                server should not receive a value in this variable (JSON-B on server should filter it)
+   *                end-point returns a value in this variable, but server should ignore this variable
+   *                check that server returns object without variable with @JsonbTransient annotation to client
+   *
+   * @tpPassCrit The resource returns object with correct values
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void jsonbOnServerNotOnClientTest() throws Exception {
       String charset = "UTF-8";
@@ -107,12 +107,12 @@ public class JsonBindingAnnotationsJacksonTest {
               json.getTransientVar(), is(Cat.DEFAULT_TRANSIENT_VAR_VALUE));
    }
    /**
-    * @tpTestDetails JSON-B is not used on both server and client
-    *                check that @JsonbTransient annotation is ignored
-    *
-    * @tpPassCrit The resource returns object with correct values
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails JSON-B is not used on both server and client
+   *                check that @JsonbTransient annotation is ignored
+   *
+   * @tpPassCrit The resource returns object with correct values
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void jsonbNotOnServerNotOnClientTest() throws Exception {
       String charset = "UTF-8";
@@ -127,13 +127,13 @@ public class JsonBindingAnnotationsJacksonTest {
    }
 
    /**
-    * @tpTestDetails JSON-B is not used on client, JSON-B is used on server
-    *                client uses custom json provider that returns corrupted json data
-    *                client sends corrupted json data to server
-    *                JSON-B provider on server should throw relevant exception
-    *                Server should returns relevant error message in response
-    * @tpSince RESTEasy 3.5
-    */
+   * @tpTestDetails JSON-B is not used on client, JSON-B is used on server
+   *                client uses custom json provider that returns corrupted json data
+   *                client sends corrupted json data to server
+   *                JSON-B provider on server should throw relevant exception
+   *                Server should returns relevant error message in response
+   * @tpSince RESTEasy 3.5
+   */
    @Test
    public void negativeScenarioOnServer() throws Exception {
       LogCounter errorLogCounter = new LogCounter("ERROR", false, DEFAULT_CONTAINER_QUALIFIER);

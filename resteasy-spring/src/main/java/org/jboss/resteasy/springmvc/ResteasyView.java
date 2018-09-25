@@ -20,9 +20,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
+   * @version $Revision: 1 $
+   */
 
 @SuppressWarnings("rawtypes")
 public class ResteasyView implements View
@@ -97,8 +97,8 @@ public class ResteasyView implements View
                   if (responseInvoker != null)
                   {
                      ServerResponseWriter.writeNomapResponse(responseInvoker, httpRequest, response, dispatcher.getProviderFactory(), t -> {
-                    	 if(t != null)
-                    		 dispatcher.writeException(httpRequest, response, t, t2 -> {});
+                        if(t != null)
+                           dispatcher.writeException(httpRequest, response, t, t2 -> {});
                      });
                   }
                }
@@ -136,7 +136,7 @@ public class ResteasyView implements View
    }
 
    private boolean isAcceptable(List<MediaType> acceptableMediaTypes,
-                                MediaType potentialContentType)
+                        MediaType potentialContentType)
    {
       boolean isAcceptable = false;
       for (MediaType acceptableMediaType : acceptableMediaTypes)

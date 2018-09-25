@@ -19,37 +19,37 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Regression test for RESTEASY-595
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Regression test for RESTEASY-595
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExceptionMapperWebRuntimeExceptionTest {
 
-    @Deployment
-    public static Archive<?> createTestArchive() {
-        WebArchive war = TestUtil.prepareArchive(ExceptionMapperWebRuntimeExceptionTest.class.getSimpleName());
-        return TestUtil.finishContainerPrepare(war, null, ExceptionMapperWebRuntimeExceptionMapper.class,
-                ExceptionMapperWebRuntimeExceptionResource.class);
-    }
+   @Deployment
+   public static Archive<?> createTestArchive() {
+      WebArchive war = TestUtil.prepareArchive(ExceptionMapperWebRuntimeExceptionTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, ExceptionMapperWebRuntimeExceptionMapper.class,
+            ExceptionMapperWebRuntimeExceptionResource.class);
+   }
 
-    /**
+   /**
      * @tpTestDetails Check ExceptionMapper for WebApplicationException
      * @tpSince RESTEasy 3.0.16
      */
-    @Test
-    public void testWebAPplicationException() throws Exception {
-        ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
-        WebTarget base = client.target(PortProviderUtil.generateURL("/test", ExceptionMapperWebRuntimeExceptionTest.class.getSimpleName()));
-        Response response = base.request().get();
+   @Test
+   public void testWebAPplicationException() throws Exception {
+      ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
+      WebTarget base = client.target(PortProviderUtil.generateURL("/test", ExceptionMapperWebRuntimeExceptionTest.class.getSimpleName()));
+      Response response = base.request().get();
 
-        Assert.assertEquals(Response.Status.PRECONDITION_FAILED.getStatusCode(), response.getStatus());
-        Assert.assertEquals("Wrong headers", response.getHeaders().getFirst("custom"), "header");
+      Assert.assertEquals(Response.Status.PRECONDITION_FAILED.getStatusCode(), response.getStatus());
+      Assert.assertEquals("Wrong headers", response.getHeaders().getFirst("custom"), "header");
 
-        response.close();
-        client.close();
-    }
+      response.close();
+      client.close();
+   }
 
 }

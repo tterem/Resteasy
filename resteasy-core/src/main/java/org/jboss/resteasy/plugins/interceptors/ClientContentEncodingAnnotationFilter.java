@@ -11,9 +11,9 @@ import javax.ws.rs.ext.WriterInterceptorContext;
 import java.io.IOException;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @ConstrainedTo(RuntimeType.CLIENT)
 @Priority(Priorities.HEADER_DECORATOR)
 public class ClientContentEncodingAnnotationFilter implements WriterInterceptor

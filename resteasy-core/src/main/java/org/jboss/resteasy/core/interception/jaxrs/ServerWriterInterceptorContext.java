@@ -19,9 +19,9 @@ import java.util.Collection;
 import java.util.Enumeration;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings("rawtypes")
 public class ServerWriterInterceptorContext extends AbstractWriterInterceptorContext
 {

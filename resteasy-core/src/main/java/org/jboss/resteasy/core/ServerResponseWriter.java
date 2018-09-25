@@ -41,16 +41,16 @@ import java.util.Map.Entry;
 import java.util.function.Consumer;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ServerResponseWriter
 {
    @FunctionalInterface
    public interface RunnableWithIOException {
-	   void run() throws IOException;
+      void run() throws IOException;
    }
-	
+
    public static void writeNomapResponse(BuiltResponse jaxrsResponse, final HttpRequest request, final HttpResponse response, 
          final ResteasyProviderFactory providerFactory, Consumer<Throwable> onComplete) throws IOException
    {
@@ -153,46 +153,46 @@ public class ServerResponseWriter
 
    public static void setResponseMediaType(BuiltResponse jaxrsResponse, HttpRequest request, HttpResponse response, ResteasyProviderFactory providerFactory, ResourceMethodInvoker method)
    {
-	   MediaType mt = getResponseMediaType(jaxrsResponse, request, response, providerFactory, method);
-	   if (mt != null)
-	   {
-		   jaxrsResponse.getHeaders().putSingle(HttpHeaders.CONTENT_TYPE, mt.toString());
-	   }
+      MediaType mt = getResponseMediaType(jaxrsResponse, request, response, providerFactory, method);
+      if (mt != null)
+      {
+         jaxrsResponse.getHeaders().putSingle(HttpHeaders.CONTENT_TYPE, mt.toString());
+      }
    }
    
    public static MediaType getResponseMediaType(BuiltResponse jaxrsResponse, HttpRequest request, HttpResponse response, ResteasyProviderFactory providerFactory, ResourceMethodInvoker method)
    {
-	  MediaType mt = null;
+      MediaType mt = null;
       if (jaxrsResponse.getEntity() != null)
       {
-        if ((mt = jaxrsResponse.getMediaType()) == null)
-        {
-           mt = getDefaultContentType(request, jaxrsResponse, providerFactory, method);
-        }
-        
-        boolean addCharset = true;
-        ResteasyDeployment deployment = ResteasyContext.getContextData(ResteasyDeployment.class);
-        if (deployment != null)
-        {
-           addCharset = deployment.isAddCharset();
-        }
-        if (addCharset)
-        {
-           if (!mt.getParameters().containsKey(MediaType.CHARSET_PARAMETER))
-           {
-              if (MediaTypeHelper.isTextLike(mt))
-              {
-                 mt = mt.withCharset(StandardCharsets.UTF_8.toString());
-              }
-           }
-        }
+         if ((mt = jaxrsResponse.getMediaType()) == null)
+         {
+            mt = getDefaultContentType(request, jaxrsResponse, providerFactory, method);
+         }
+
+         boolean addCharset = true;
+         ResteasyDeployment deployment = ResteasyContext.getContextData(ResteasyDeployment.class);
+         if (deployment != null)
+         {
+            addCharset = deployment.isAddCharset();
+         }
+         if (addCharset)
+         {
+            if (!mt.getParameters().containsKey(MediaType.CHARSET_PARAMETER))
+            {
+               if (MediaTypeHelper.isTextLike(mt))
+               {
+                  mt = mt.withCharset(StandardCharsets.UTF_8.toString());
+               }
+            }
+         }
       }
       return mt;
    }
 
    private static void executeFilters(BuiltResponse jaxrsResponse, HttpRequest request, HttpResponse response, 
          ResteasyProviderFactory providerFactory, 
-		   ResourceMethodInvoker method, Consumer<Throwable> onComplete, RunnableWithIOException continuation) throws IOException
+         ResourceMethodInvoker method, Consumer<Throwable> onComplete, RunnableWithIOException continuation) throws IOException
    {
       ContainerResponseFilter[] responseFilters = null;
 
@@ -209,7 +209,7 @@ public class ServerResponseWriter
       {
          ResponseContainerRequestContext requestContext = new ResponseContainerRequestContext(request);
          ContainerResponseContextImpl responseContext = new ContainerResponseContextImpl(request, response, jaxrsResponse, 
-        		 requestContext, responseFilters, onComplete, continuation);
+               requestContext, responseFilters, onComplete, continuation);
 
          RESTEasyTracingLogger logger = RESTEasyTracingLogger.getInstance(request);
 
@@ -235,8 +235,8 @@ public class ServerResponseWriter
    
    protected static void setDefaultContentType(HttpRequest request, BuiltResponse jaxrsResponse, ResteasyProviderFactory providerFactory, ResourceMethodInvoker method)
    {
-	   MediaType chosen = getDefaultContentType(request, jaxrsResponse, providerFactory, method);
-	   jaxrsResponse.getHeaders().putSingle(HttpHeaders.CONTENT_TYPE, chosen);
+      MediaType chosen = getDefaultContentType(request, jaxrsResponse, providerFactory, method);
+      jaxrsResponse.getHeaders().putSingle(HttpHeaders.CONTENT_TYPE, chosen);
    }
    
    protected static MediaType getDefaultContentType(HttpRequest request, BuiltResponse jaxrsResponse, ResteasyProviderFactory providerFactory, ResourceMethodInvoker method)
@@ -564,8 +564,8 @@ public class ServerResponseWriter
    }
    
    /**
-    * m1, m2 are compatible
-    */
+   * m1, m2 are compatible
+   */
    private static SortableMediaType selectMostSpecific(SortableMediaType m1, SortableMediaType m2)
    {
       if (m1.getType().equals("*"))

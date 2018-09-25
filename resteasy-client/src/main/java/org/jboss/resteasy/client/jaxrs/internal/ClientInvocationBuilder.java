@@ -22,10 +22,10 @@ import java.net.URI;
 import java.util.Locale;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @author <a href="mailto:alessio.soldano@jboss.com">Alessio Soldano</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @author <a href="mailto:alessio.soldano@jboss.com">Alessio Soldano</a>
+   * @version $Revision: 1 $
+   */
 public class ClientInvocationBuilder implements Invocation.Builder
 {
    protected ClientInvocation invocation;
@@ -264,7 +264,7 @@ public class ClientInvocationBuilder implements Invocation.Builder
    public <T> T options(Class<T> responseType)
    {
       return build(HttpMethod.OPTIONS).invoke(responseType);
-  }
+   }
 
    @Override
    public <T> T options(GenericType<T> responseType)

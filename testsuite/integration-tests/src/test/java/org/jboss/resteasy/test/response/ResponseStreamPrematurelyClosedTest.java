@@ -1,24 +1,24 @@
 /*
- * JBoss, Home of Professional Open Source
- * Copyright 2017, Red Hat Inc., and individual contributors as indicated
- * by the @authors tag. See the copyright.txt in the distribution for a
- * full listing of individual contributors.
- *
- * This is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation; either version 2.1 of
- * the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this software; if not, write to the Free
- * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
- * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
- */
+   * JBoss, Home of Professional Open Source
+   * Copyright 2017, Red Hat Inc., and individual contributors as indicated
+   * by the @authors tag. See the copyright.txt in the distribution for a
+   * full listing of individual contributors.
+   *
+   * This is free software; you can redistribute it and/or modify it
+   * under the terms of the GNU Lesser General Public License as
+   * published by the Free Software Foundation; either version 2.1 of
+   * the License, or (at your option) any later version.
+   *
+   * This software is distributed in the hope that it will be useful,
+   * but WITHOUT ANY WARRANTY; without even the implied warranty of
+   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+   * Lesser General Public License for more details.
+   *
+   * You should have received a copy of the GNU Lesser General Public
+   * License along with this software; if not, write to the Free
+   * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+   * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+   */
 package org.jboss.resteasy.test.response;
 
 import java.io.ByteArrayOutputStream;
@@ -55,88 +55,88 @@ import org.junit.Assert;
 @RunAsClient
 public class ResponseStreamPrematurelyClosedTest {
 
-    static Client client;
+   static Client client;
 
-    @Deployment
-    public static Archive<?> deploy() throws Exception {
-        WebArchive war = TestUtil.prepareArchive(ResponseStreamPrematurelyClosedTest.class.getSimpleName());
-        return TestUtil.finishContainerPrepare(war, null, TestResourceImpl.class);
-    }
+   @Deployment
+   public static Archive<?> deploy() throws Exception {
+      WebArchive war = TestUtil.prepareArchive(ResponseStreamPrematurelyClosedTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, TestResourceImpl.class);
+   }
 
-    @BeforeClass
-    public static void init() {
-        client = ClientBuilder.newClient();
-    }
+   @BeforeClass
+   public static void init() {
+      client = ClientBuilder.newClient();
+   }
 
-    @AfterClass
-    public static void after() throws Exception {
-        client.close();
-    }
+   @AfterClass
+   public static void after() throws Exception {
+      client.close();
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, ResponseStreamPrematurelyClosedTest.class.getSimpleName());
-    }
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, ResponseStreamPrematurelyClosedTest.class.getSimpleName());
+   }
 
-    @Test
-    public void testStream() throws Exception {
-        Builder builder = client.target(generateURL("/test/document/abc/content")).request();
+   @Test
+   public void testStream() throws Exception {
+      Builder builder = client.target(generateURL("/test/document/abc/content")).request();
 
-        try (MyByteArrayOutputStream baos = new MyByteArrayOutputStream()) {
+      try (MyByteArrayOutputStream baos = new MyByteArrayOutputStream()) {
 
-            if (! TestUtil.isIbmJdk()) {
-                //builder.get().readEntity explicitly on the same line below and not saved in any temp variable
-                //to let the JVM try finalizing the ClientResponse object
-                InputStream ins = builder.get().readEntity(InputStream.class);
-                //suggest jvm to do gc and wait the gc notification
-                final CountDownLatch coutDown = new CountDownLatch(1);
+         if (! TestUtil.isIbmJdk()) {
+            //builder.get().readEntity explicitly on the same line below and not saved in any temp variable
+            //to let the JVM try finalizing the ClientResponse object
+            InputStream ins = builder.get().readEntity(InputStream.class);
+            //suggest jvm to do gc and wait the gc notification
+            final CountDownLatch coutDown = new CountDownLatch(1);
 
-                List<GarbageCollectorMXBean> gcbeans = ManagementFactory.getGarbageCollectorMXBeans();
-                NotificationListener listener = new NotificationListener() {
-                    public void handleNotification(Notification notification, Object handback) {
-                        coutDown.countDown();
-                    }
-                };
-                try {
-                    for (GarbageCollectorMXBean gcbean : gcbeans) {
-                        NotificationEmitter emitter = (NotificationEmitter) gcbean;
-                        emitter.addNotificationListener(listener, null, null);
-                    }
-                    System.gc();
-                    coutDown.await(10, TimeUnit.SECONDS);
+            List<GarbageCollectorMXBean> gcbeans = ManagementFactory.getGarbageCollectorMXBeans();
+            NotificationListener listener = new NotificationListener() {
+               public void handleNotification(Notification notification, Object handback) {
+                  coutDown.countDown();
+               }
+            };
+            try {
+               for (GarbageCollectorMXBean gcbean : gcbeans) {
+                  NotificationEmitter emitter = (NotificationEmitter) gcbean;
+                  emitter.addNotificationListener(listener, null, null);
+               }
+               System.gc();
+               coutDown.await(10, TimeUnit.SECONDS);
 
-                    IOUtils.copy(ins, baos);
-                    Assert.assertEquals("Received string: " + baos.toShortString(), 10000000, baos.size());
-                } finally {
-                    //remove the listener
-                    for (GarbageCollectorMXBean gcbean : gcbeans) {
-                        ((NotificationEmitter) gcbean).removeNotificationListener(listener);
-                    }
-                }
-            } else { // workaround for Ibm jdk - doesn't allow to use NotificationEmitter with GarbageCollectorMXBean
-                //builder.get().readEntity explicitly on the same line below and not saved in any temp variable
-                //to let the JVM try finalizing the ClientResponse object
-                IOUtils.copy(builder.get().readEntity(InputStream.class), baos);
-                Assert.assertEquals(100000000, baos.size());
+               IOUtils.copy(ins, baos);
+               Assert.assertEquals("Received string: " + baos.toShortString(), 10000000, baos.size());
+            } finally {
+               //remove the listener
+               for (GarbageCollectorMXBean gcbean : gcbeans) {
+                  ((NotificationEmitter) gcbean).removeNotificationListener(listener);
+               }
             }
-        }
-    }
+         } else { // workaround for Ibm jdk - doesn't allow to use NotificationEmitter with GarbageCollectorMXBean
+            //builder.get().readEntity explicitly on the same line below and not saved in any temp variable
+            //to let the JVM try finalizing the ClientResponse object
+            IOUtils.copy(builder.get().readEntity(InputStream.class), baos);
+            Assert.assertEquals(100000000, baos.size());
+         }
+      }
+   }
     
-    private static class MyByteArrayOutputStream extends ByteArrayOutputStream {
+   private static class MyByteArrayOutputStream extends ByteArrayOutputStream {
         
-        public String getSubstring(int from, int to) {
-            if (from < 0 || to > count) {
-                throw new IllegalArgumentException();
-            }
-            return new String(buf, from, to);
-        }
+      public String getSubstring(int from, int to) {
+         if (from < 0 || to > count) {
+            throw new IllegalArgumentException();
+         }
+         return new String(buf, from, to);
+      }
         
-        public String toShortString() {
-            int s = size();
-            if (s <= 14000) {
-                return toString();
-            } else {
-                return getSubstring(0, 1000) + "..." + getSubstring(s - 13000, 13000);
-            }
-        }
-    }
+      public String toShortString() {
+         int s = size();
+         if (s <= 14000) {
+            return toString();
+         } else {
+            return getSubstring(0, 1000) + "..." + getSubstring(s - 13000, 13000);
+         }
+      }
+   }
 }

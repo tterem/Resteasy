@@ -9,13 +9,13 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
 /**
- * Must be used in conjunction with GZIPDecodingInterceptor
- * <p>
- * Sets
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Must be used in conjunction with GZIPDecodingInterceptor
+   * <p>
+   * Sets
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @Provider
 @Priority(Priorities.HEADER_DECORATOR)
 public class AcceptEncodingGZIPFilter implements ClientRequestFilter

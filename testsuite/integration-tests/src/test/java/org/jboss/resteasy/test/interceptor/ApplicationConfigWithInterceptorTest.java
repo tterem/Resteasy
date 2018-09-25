@@ -21,10 +21,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Interceptors
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.20
- */
+   * @tpSubChapter Interceptors
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.20
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ApplicationConfigWithInterceptorTest
@@ -33,13 +33,13 @@ public class ApplicationConfigWithInterceptorTest
    
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(ApplicationConfigWithInterceptorTest.class.getSimpleName());
-       war.addClasses(TestUtil.class, PortProviderUtil.class);
-       return TestUtil.finishContainerPrepare(war, null, ApplicationConfigWithInterceptorResource.class, AddHeaderContainerResponseFilter.class);
+      WebArchive war = TestUtil.prepareArchive(ApplicationConfigWithInterceptorTest.class.getSimpleName());
+      war.addClasses(TestUtil.class, PortProviderUtil.class);
+      return TestUtil.finishContainerPrepare(war, null, ApplicationConfigWithInterceptorResource.class, AddHeaderContainerResponseFilter.class);
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, ApplicationConfigWithInterceptorTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, ApplicationConfigWithInterceptorTest.class.getSimpleName());
    }
 
    @BeforeClass

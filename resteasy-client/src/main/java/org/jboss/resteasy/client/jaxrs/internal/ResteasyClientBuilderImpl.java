@@ -30,12 +30,12 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Abstraction for creating Clients.  Allows SSL configuration.  Uses Apache Http Client under
- * the covers.  If used with other ClientHttpEngines though, all configuration options are ignored.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Abstraction for creating Clients.  Allows SSL configuration.  Uses Apache Http Client under
+   * the covers.  If used with other ClientHttpEngines though, all configuration options are ignored.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
 {
    protected KeyStore truststore;
@@ -65,11 +65,11 @@ public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
    protected List<String> sniHostNames = new ArrayList<>();
 
    /**
-    * Changing the providerFactory will wipe clean any registered components or properties.
-    *
-    * @param providerFactory provider factory
-    * @return an updated client builder instance
-    */
+   * Changing the providerFactory will wipe clean any registered components or properties.
+   *
+   * @param providerFactory provider factory
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilderImpl providerFactory(ResteasyProviderFactory providerFactory)
    {
       this.providerFactory = providerFactory;
@@ -77,12 +77,12 @@ public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
    }
 
    /**
-    * Executor to use to run AsyncInvoker invocations.
-    *
-    * @param asyncExecutor executor service
-    * @return an updated client builder instance
-    * @deprecated use {@link ResteasyClientBuilderImpl#executorService(ExecutorService)} instead
-    */
+   * Executor to use to run AsyncInvoker invocations.
+   *
+   * @param asyncExecutor executor service
+   * @return an updated client builder instance
+   * @deprecated use {@link ResteasyClientBuilderImpl#executorService(ExecutorService)} instead
+   */
    @Deprecated
    public ResteasyClientBuilderImpl asyncExecutor(ExecutorService asyncExecutor)
    {
@@ -90,12 +90,12 @@ public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
    }
 
    /**
-    * Executor to use to run AsyncInvoker invocations.
-    *
-    * @param asyncExecutor executor service
-    * @param cleanupExecutor true if the Client should close the executor when it is closed
-    * @return an updated client builder instance
-    */
+   * Executor to use to run AsyncInvoker invocations.
+   *
+   * @param asyncExecutor executor service
+   * @param cleanupExecutor true if the Client should close the executor when it is closed
+   * @return an updated client builder instance
+   */
    @Deprecated
    public ResteasyClientBuilderImpl asyncExecutor(ExecutorService asyncExecutor, boolean cleanupExecutor)
    {
@@ -105,12 +105,12 @@ public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
    }
 
    /**
-    * If there is a connection pool, set the time to live in the pool.
-    *
-    * @param ttl time to live
-    * @param unit the time unit of the ttl argument
-    * @return an updated client builder instance
-    */
+   * If there is a connection pool, set the time to live in the pool.
+   *
+   * @param ttl time to live
+   * @param unit the time unit of the ttl argument
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilderImpl connectionTTL(long ttl, TimeUnit unit)
    {
       this.connectionTTL = ttl;
@@ -135,11 +135,11 @@ public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
    }
 
    /**
-    * If connection pooling enabled, how many connections to pool per url?
-    *
-    * @param maxPooledPerRoute max pool size per url
-    * @return an updated client builder instance
-    */
+   * If connection pooling enabled, how many connections to pool per url?
+   *
+   * @param maxPooledPerRoute max pool size per url
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilderImpl maxPooledPerRoute(int maxPooledPerRoute)
    {
       this.maxPooledPerRoute = maxPooledPerRoute;
@@ -147,23 +147,23 @@ public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
    }
 
    /**
-    * If connection pooling is enabled, how long will we wait to get a connection?
-    * @param timeout the timeout
-    * @param unit the units the timeout is in
-    * @return an updated client builder instance
-    */
+   * If connection pooling is enabled, how long will we wait to get a connection?
+   * @param timeout the timeout
+   * @param unit the units the timeout is in
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilderImpl connectionCheckoutTimeout(long timeout, TimeUnit unit)
    {
-       this.connectionCheckoutTimeoutMs = (int) TimeUnit.MILLISECONDS.convert(timeout, unit);
-       return this;
+      this.connectionCheckoutTimeoutMs = (int) TimeUnit.MILLISECONDS.convert(timeout, unit);
+      return this;
    }
 
    /**
-    * Number of connections allowed to pool.
-    *
-    * @param connectionPoolSize connection pool size
-    * @return an updated client builder instance
-    */
+   * Number of connections allowed to pool.
+   *
+   * @param connectionPoolSize connection pool size
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilderImpl connectionPoolSize(int connectionPoolSize)
    {
       this.connectionPoolSize = connectionPoolSize;
@@ -171,12 +171,12 @@ public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
    }
 
    /**
-    * Response stream is wrapped in a BufferedInputStream.  Default is 8192.  Value of 0 will not wrap it.
-    * Value of -1 will use a SelfExpandingBufferedInputStream.
-    *
-    * @param size response buffer size
-    * @return an updated client builder instance
-    */
+   * Response stream is wrapped in a BufferedInputStream.  Default is 8192.  Value of 0 will not wrap it.
+   * Value of -1 will use a SelfExpandingBufferedInputStream.
+   *
+   * @param size response buffer size
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilderImpl responseBufferSize(int size)
    {
       this.responseBufferSize = size;
@@ -185,11 +185,11 @@ public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
 
 
    /**
-    * Disable trust management and hostname verification.  <i>NOTE</i> this is a security
-    * hole, so only set this option if you cannot or do not want to verify the identity of the
-    * host you are communicating with.
-    * @return an updated client builder instance
-    */
+   * Disable trust management and hostname verification.  <i>NOTE</i> this is a security
+   * hole, so only set this option if you cannot or do not want to verify the identity of the
+   * host you are communicating with.
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilderImpl disableTrustManager()
    {
       this.disableTrustManager = true;
@@ -197,11 +197,11 @@ public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
    }
 
    /**
-    * SSL policy used to verify hostnames
-    *
-    * @param policy SSL policy
-    * @return an updated client builder instance
-    */
+   * SSL policy used to verify hostnames
+   *
+   * @param policy SSL policy
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilderImpl hostnameVerification(HostnameVerificationPolicy policy)
    {
       this.policy = policy;
@@ -209,11 +209,11 @@ public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
    }
 
    /**
-    * Negates all ssl and connection specific configuration
-    *
-    * @param httpEngine http engine
-    * @return an updated client builder instance
-    */
+   * Negates all ssl and connection specific configuration
+   *
+   * @param httpEngine http engine
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilderImpl httpEngine(ClientHttpEngine httpEngine)
    {
       this.httpEngine = httpEngine;
@@ -263,7 +263,7 @@ public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
       return this;
    }
 
-    /**
+   /**
      * Adds a TLS/SSL SNI Host Name for authentication.
      *
      * @param sniHostNames host names
@@ -275,40 +275,40 @@ public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
    }
 
    /**
-    * Specify a default proxy.  Default port and schema will be used.
-    *
-    * @param hostname host name
-    * @return an updated client builder instance
-    */
+   * Specify a default proxy.  Default port and schema will be used.
+   *
+   * @param hostname host name
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilderImpl defaultProxy(String hostname)
    {
       return defaultProxy(hostname, -1, null);
    }
 
    /**
-    * Specify a default proxy host and port.  Default schema will be used.
-    *
-    * @param hostname host name
-    * @param port port
-    * @return an updated client builder instance
-    */
+   * Specify a default proxy host and port.  Default schema will be used.
+   *
+   * @param hostname host name
+   * @param port port
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilderImpl defaultProxy(String hostname, int port)
    {
       return defaultProxy(hostname, port, null);
    }
 
    /**
-    * Specify default proxy.
-    *
-    * @param hostname host name
-    * @param port port
-    * @param scheme scheme
-    * @return an updated client builder instance
-    */
+   * Specify default proxy.
+   *
+   * @param hostname host name
+   * @param port port
+   * @param scheme scheme
+   * @return an updated client builder instance
+   */
    public ResteasyClientBuilderImpl defaultProxy(String hostname, int port, final String scheme)
    {
       this.defaultProxy = new HttpHost(hostname, port, scheme);
-	   return this;
+      return this;
    }
 
    public ResteasyProviderFactory getProviderFactory()

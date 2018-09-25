@@ -28,63 +28,63 @@ import org.w3c.dom.Element;
 
 
 /**
- * <p>Java class for anonymous complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element ref="{http://wadl.dev.java.net/2009/02}doc" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;element ref="{http://wadl.dev.java.net/2009/02}param" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}ID" /&gt;
- *       &lt;attribute name="element" type="{http://www.w3.org/2001/XMLSchema}QName" /&gt;
- *       &lt;attribute name="mediaType" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="href" type="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
- *       &lt;attribute name="profile" type="{http://wadl.dev.java.net/2009/02}uriList" /&gt;
- *       &lt;anyAttribute processContents='lax' namespace='##other'/&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
- */
+   * <p>Java class for anonymous complex type.
+   * 
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * 
+   * <pre>
+   * &lt;complexType&gt;
+   *   &lt;complexContent&gt;
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+   *       &lt;sequence&gt;
+   *         &lt;element ref="{http://wadl.dev.java.net/2009/02}doc" maxOccurs="unbounded" minOccurs="0"/&gt;
+   *         &lt;element ref="{http://wadl.dev.java.net/2009/02}param" maxOccurs="unbounded" minOccurs="0"/&gt;
+   *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
+   *       &lt;/sequence&gt;
+   *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}ID" /&gt;
+   *       &lt;attribute name="element" type="{http://www.w3.org/2001/XMLSchema}QName" /&gt;
+   *       &lt;attribute name="mediaType" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+   *       &lt;attribute name="href" type="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
+   *       &lt;attribute name="profile" type="{http://wadl.dev.java.net/2009/02}uriList" /&gt;
+   *       &lt;anyAttribute processContents='lax' namespace='##other'/&gt;
+   *     &lt;/restriction&gt;
+   *   &lt;/complexContent&gt;
+   * &lt;/complexType&gt;
+   * </pre>
+   * 
+   * 
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "doc",
-    "param",
-    "any"
+   "doc",
+   "param",
+   "any"
 })
 @XmlRootElement(name = "representation")
 public class Representation {
 
-    protected List<Doc> doc;
-    protected List<Param> param;
-    @XmlAnyElement(lax = true)
-    protected List<Object> any;
-    @XmlAttribute(name = "id")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlID
-    @XmlSchemaType(name = "ID")
-    protected String id;
-    @XmlAttribute(name = "element")
-    protected QName element;
-    @XmlAttribute(name = "mediaType")
-    protected String mediaType;
-    @XmlAttribute(name = "href")
-    @XmlSchemaType(name = "anyURI")
-    protected String href;
-    @XmlAttribute(name = "profile")
-    protected List<String> profile;
-    @XmlAnyAttribute
-    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+   protected List<Doc> doc;
+   protected List<Param> param;
+   @XmlAnyElement(lax = true)
+   protected List<Object> any;
+   @XmlAttribute(name = "id")
+   @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+   @XmlID
+   @XmlSchemaType(name = "ID")
+   protected String id;
+   @XmlAttribute(name = "element")
+   protected QName element;
+   @XmlAttribute(name = "mediaType")
+   protected String mediaType;
+   @XmlAttribute(name = "href")
+   @XmlSchemaType(name = "anyURI")
+   protected String href;
+   @XmlAttribute(name = "profile")
+   protected List<String> profile;
+   @XmlAnyAttribute
+   private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
-    /**
+   /**
      * Gets the value of the doc property.
      * 
      * <p>
@@ -106,14 +106,14 @@ public class Representation {
      * 
      * 
      */
-    public List<Doc> getDoc() {
-        if (doc == null) {
-            doc = new ArrayList<Doc>();
-        }
-        return this.doc;
-    }
+   public List<Doc> getDoc() {
+      if (doc == null) {
+         doc = new ArrayList<Doc>();
+      }
+      return this.doc;
+   }
 
-    /**
+   /**
      * Gets the value of the param property.
      * 
      * <p>
@@ -135,14 +135,14 @@ public class Representation {
      * 
      * 
      */
-    public List<Param> getParam() {
-        if (param == null) {
-            param = new ArrayList<Param>();
-        }
-        return this.param;
-    }
+   public List<Param> getParam() {
+      if (param == null) {
+         param = new ArrayList<Param>();
+      }
+      return this.param;
+   }
 
-    /**
+   /**
      * Gets the value of the any property.
      * 
      * <p>
@@ -165,14 +165,14 @@ public class Representation {
      * 
      * 
      */
-    public List<Object> getAny() {
-        if (any == null) {
-            any = new ArrayList<Object>();
-        }
-        return this.any;
-    }
+   public List<Object> getAny() {
+      if (any == null) {
+         any = new ArrayList<Object>();
+      }
+      return this.any;
+   }
 
-    /**
+   /**
      * Gets the value of the id property.
      * 
      * @return
@@ -180,11 +180,11 @@ public class Representation {
      *     {@link String }
      *     
      */
-    public String getId() {
-        return id;
-    }
+   public String getId() {
+      return id;
+   }
 
-    /**
+   /**
      * Sets the value of the id property.
      * 
      * @param value
@@ -192,11 +192,11 @@ public class Representation {
      *     {@link String }
      *     
      */
-    public void setId(String value) {
-        this.id = value;
-    }
+   public void setId(String value) {
+      this.id = value;
+   }
 
-    /**
+   /**
      * Gets the value of the element property.
      * 
      * @return
@@ -204,11 +204,11 @@ public class Representation {
      *     {@link QName }
      *     
      */
-    public QName getElement() {
-        return element;
-    }
+   public QName getElement() {
+      return element;
+   }
 
-    /**
+   /**
      * Sets the value of the element property.
      * 
      * @param value
@@ -216,11 +216,11 @@ public class Representation {
      *     {@link QName }
      *     
      */
-    public void setElement(QName value) {
-        this.element = value;
-    }
+   public void setElement(QName value) {
+      this.element = value;
+   }
 
-    /**
+   /**
      * Gets the value of the mediaType property.
      * 
      * @return
@@ -228,11 +228,11 @@ public class Representation {
      *     {@link String }
      *     
      */
-    public String getMediaType() {
-        return mediaType;
-    }
+   public String getMediaType() {
+      return mediaType;
+   }
 
-    /**
+   /**
      * Sets the value of the mediaType property.
      * 
      * @param value
@@ -240,11 +240,11 @@ public class Representation {
      *     {@link String }
      *     
      */
-    public void setMediaType(String value) {
-        this.mediaType = value;
-    }
+   public void setMediaType(String value) {
+      this.mediaType = value;
+   }
 
-    /**
+   /**
      * Gets the value of the href property.
      * 
      * @return
@@ -252,11 +252,11 @@ public class Representation {
      *     {@link String }
      *     
      */
-    public String getHref() {
-        return href;
-    }
+   public String getHref() {
+      return href;
+   }
 
-    /**
+   /**
      * Sets the value of the href property.
      * 
      * @param value
@@ -264,11 +264,11 @@ public class Representation {
      *     {@link String }
      *     
      */
-    public void setHref(String value) {
-        this.href = value;
-    }
+   public void setHref(String value) {
+      this.href = value;
+   }
 
-    /**
+   /**
      * Gets the value of the profile property.
      * 
      * <p>
@@ -290,14 +290,14 @@ public class Representation {
      * 
      * 
      */
-    public List<String> getProfile() {
-        if (profile == null) {
-            profile = new ArrayList<String>();
-        }
-        return this.profile;
-    }
+   public List<String> getProfile() {
+      if (profile == null) {
+         profile = new ArrayList<String>();
+      }
+      return this.profile;
+   }
 
-    /**
+   /**
      * Gets a map that contains attributes that aren't bound to any typed property on this class.
      * 
      * <p>
@@ -311,8 +311,8 @@ public class Representation {
      * @return
      *     always non-null
      */
-    public Map<QName, String> getOtherAttributes() {
-        return otherAttributes;
-    }
+   public Map<QName, String> getOtherAttributes() {
+      return otherAttributes;
+   }
 
 }

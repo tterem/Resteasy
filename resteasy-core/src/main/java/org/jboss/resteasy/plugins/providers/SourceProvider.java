@@ -29,9 +29,9 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">BillBurke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">BillBurke</a>
+   * @version $Revision: 1 $
+   */
 @Provider
 @Produces({MediaType.TEXT_XML, "application/xml", "application/*+xml"})
 @Consumes({MediaType.TEXT_XML, "application/xml", "application/*+xml"})

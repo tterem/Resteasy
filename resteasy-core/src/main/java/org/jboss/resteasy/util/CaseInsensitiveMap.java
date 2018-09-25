@@ -5,15 +5,15 @@ import java.util.Comparator;
 import org.jboss.resteasy.specimpl.MultivaluedTreeMap;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class CaseInsensitiveMap<V> extends MultivaluedTreeMap<String, V>
 {
    public static final Comparator<String> CASE_INSENSITIVE_ORDER
-           = new CaseInsensitiveComparator();
+         = new CaseInsensitiveComparator();
    private static class CaseInsensitiveComparator
-           implements Comparator<String>, java.io.Serializable {
+         implements Comparator<String>, java.io.Serializable {
 
       public int compare(String s1, String s2) {
          if (s1 == s2) return 0;

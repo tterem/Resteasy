@@ -15,9 +15,9 @@ import org.jboss.resteasy.spi.util.FindAnnotation;
 
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @Provider
 @Produces({"text/xml", "text/*+xml", "application/xml", "application/*+xml"})
 public class XmlJAXBContextFinder extends AbstractJAXBContextFinder implements ContextResolver<JAXBContextFinder>
@@ -27,23 +27,23 @@ public class XmlJAXBContextFinder extends AbstractJAXBContextFinder implements C
    private ConcurrentHashMap<CacheKey, JAXBContext> xmlTypeCollectionCache = new ConcurrentHashMap<CacheKey, JAXBContext>();
 
 
-	@Override
+   @Override
    public JAXBContext findCachedContext(Class type, MediaType mediaType, Annotation[] parameterAnnotations) throws JAXBException
    {
-		JAXBContext jaxb = findProvidedJAXBContext(type, mediaType);
-		if (jaxb != null)
+      JAXBContext jaxb = findProvidedJAXBContext(type, mediaType);
+      if (jaxb != null)
       {
-			return jaxb;
+         return jaxb;
       }
-		jaxb = type != null ? cache.get(type) : null;
-		if (jaxb == null)
+      jaxb = type != null ? cache.get(type) : null;
+      if (jaxb == null)
       {
-			jaxb = createContext(parameterAnnotations, type);
-			if (jaxb != null && type != null) {
-				cache.putIfAbsent(type, jaxb);
-			}
+         jaxb = createContext(parameterAnnotations, type);
+         if (jaxb != null && type != null) {
+            cache.putIfAbsent(type, jaxb);
+         }
       }
-		return jaxb;
+      return jaxb;
    }
 
    protected JAXBContext createContextObject(Annotation[] parameterAnnotations, Class... classes) throws JAXBException

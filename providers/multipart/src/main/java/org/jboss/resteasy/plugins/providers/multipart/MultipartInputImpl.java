@@ -63,9 +63,9 @@ import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.util.CaseInsensitiveMap;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class MultipartInputImpl implements MultipartInput, ProvidersContextRetainer
 {
    protected MediaType contentType;
@@ -199,7 +199,7 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
                  .getAttribute(InputPart.DEFAULT_CONTENT_TYPE_PROPERTY);
          if (defaultContentType != null)
             this.defaultPartContentType = MediaType
-                    .valueOf(defaultContentType);
+               .valueOf(defaultContentType);
          this.defaultPartCharset = (String) httpRequest.getAttribute(InputPart.DEFAULT_CHARSET_PROPERTY);
          if (defaultPartCharset != null)
          {
@@ -235,13 +235,13 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
    }
 
    protected InputStream addHeaderToHeadlessStream(InputStream is)
-           throws UnsupportedEncodingException
+         throws UnsupportedEncodingException
    {
       return new SequenceInputStream(createHeaderInputStream(), is);
    }
 
    protected InputStream createHeaderInputStream()
-           throws UnsupportedEncodingException
+         throws UnsupportedEncodingException
    {
       String header = HttpHeaders.CONTENT_TYPE + ": " + contentType
               + "\r\n\r\n";
@@ -509,10 +509,10 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
    }
 
    /**
-    * A custom TempFileStorageProvider that do no set deleteOnExit on temp files,
-    * to avoid memory leaks (see https://issues.apache.org/jira/browse/MIME4J-251)
-    *
-    */
+   * A custom TempFileStorageProvider that do no set deleteOnExit on temp files,
+   * to avoid memory leaks (see https://issues.apache.org/jira/browse/MIME4J-251)
+   *
+   */
    private static class CustomTempFileStorageProvider extends AbstractStorageProvider
    {
 

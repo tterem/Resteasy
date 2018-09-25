@@ -25,45 +25,45 @@ import org.w3c.dom.Element;
 
 
 /**
- * <p>Java class for anonymous complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="title" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute ref="{http://www.w3.org/XML/1998/namespace}lang"/&gt;
- *       &lt;anyAttribute processContents='lax' namespace='##other'/&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
- */
+   * <p>Java class for anonymous complex type.
+   * 
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * 
+   * <pre>
+   * &lt;complexType&gt;
+   *   &lt;complexContent&gt;
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+   *       &lt;sequence&gt;
+   *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
+   *       &lt;/sequence&gt;
+   *       &lt;attribute name="title" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+   *       &lt;attribute ref="{http://www.w3.org/XML/1998/namespace}lang"/&gt;
+   *       &lt;anyAttribute processContents='lax' namespace='##other'/&gt;
+   *     &lt;/restriction&gt;
+   *   &lt;/complexContent&gt;
+   * &lt;/complexType&gt;
+   * </pre>
+   * 
+   * 
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "content"
+   "content"
 })
 @XmlRootElement(name = "doc")
 public class Doc {
 
-    @XmlMixed
-    @XmlAnyElement(lax = true)
-    protected List<Object> content;
-    @XmlAttribute(name = "title")
-    protected String title;
-    @XmlAttribute(name = "lang", namespace = "http://www.w3.org/XML/1998/namespace")
-    protected String lang;
-    @XmlAnyAttribute
-    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+   @XmlMixed
+   @XmlAnyElement(lax = true)
+   protected List<Object> content;
+   @XmlAttribute(name = "title")
+   protected String title;
+   @XmlAttribute(name = "lang", namespace = "http://www.w3.org/XML/1998/namespace")
+   protected String lang;
+   @XmlAnyAttribute
+   private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
-    /**
+   /**
      * Gets the value of the content property.
      * 
      * <p>
@@ -87,14 +87,14 @@ public class Doc {
      * 
      * 
      */
-    public List<Object> getContent() {
-        if (content == null) {
-            content = new ArrayList<Object>();
-        }
-        return this.content;
-    }
+   public List<Object> getContent() {
+      if (content == null) {
+         content = new ArrayList<Object>();
+      }
+      return this.content;
+   }
 
-    /**
+   /**
      * Gets the value of the title property.
      * 
      * @return
@@ -102,11 +102,11 @@ public class Doc {
      *     {@link String }
      *     
      */
-    public String getTitle() {
-        return title;
-    }
+   public String getTitle() {
+      return title;
+   }
 
-    /**
+   /**
      * Sets the value of the title property.
      * 
      * @param value
@@ -114,11 +114,11 @@ public class Doc {
      *     {@link String }
      *     
      */
-    public void setTitle(String value) {
-        this.title = value;
-    }
+   public void setTitle(String value) {
+      this.title = value;
+   }
 
-    /**
+   /**
      * Gets the value of the lang property.
      * 
      * @return
@@ -126,11 +126,11 @@ public class Doc {
      *     {@link String }
      *     
      */
-    public String getLang() {
-        return lang;
-    }
+   public String getLang() {
+      return lang;
+   }
 
-    /**
+   /**
      * Sets the value of the lang property.
      * 
      * @param value
@@ -138,11 +138,11 @@ public class Doc {
      *     {@link String }
      *     
      */
-    public void setLang(String value) {
-        this.lang = value;
-    }
+   public void setLang(String value) {
+      this.lang = value;
+   }
 
-    /**
+   /**
      * Gets a map that contains attributes that aren't bound to any typed property on this class.
      * 
      * <p>
@@ -156,8 +156,8 @@ public class Doc {
      * @return
      *     always non-null
      */
-    public Map<QName, String> getOtherAttributes() {
-        return otherAttributes;
-    }
+   public Map<QName, String> getOtherAttributes() {
+      return otherAttributes;
+   }
 
 }

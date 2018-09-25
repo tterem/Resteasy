@@ -10,9 +10,9 @@ import javax.ws.rs.core.FeatureContext;
 import java.lang.reflect.Method;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class CacheControlFeature implements DynamicFeature
 {
    @Override
@@ -78,9 +78,9 @@ public class CacheControlFeature implements DynamicFeature
    protected CacheControl initCacheControl(NoCache value)
    {
       CacheControl cacheControl = new CacheControl();
-       cacheControl.setNoCache(true);
-       cacheControl.setNoTransform(false);
-       for (String field : value.fields()) cacheControl.getNoCacheFields().add(field);
+      cacheControl.setNoCache(true);
+      cacheControl.setNoTransform(false);
+      for (String field : value.fields()) cacheControl.getNoCacheFields().add(field);
       return cacheControl;
    }
 }

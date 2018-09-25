@@ -24,43 +24,43 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression tests for RESTEASY-263 and RESTEASY-274
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resource
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression tests for RESTEASY-263 and RESTEASY-274
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ScanTest {
-    private static Client client;
+   private static Client client;
 
-    @BeforeClass
-    public static void before() throws Exception {
-        client = ClientBuilder.newClient();
-    }
+   @BeforeClass
+   public static void before() throws Exception {
+      client = ClientBuilder.newClient();
+   }
 
-    @AfterClass
-    public static void after() throws Exception {
-        client.close();
-    }
+   @AfterClass
+   public static void after() throws Exception {
+      client.close();
+   }
 
-    @Deployment
-    public static Archive<?> deployUriInfoSimpleResource() {
-        WebArchive war = TestUtil.prepareArchive(ScanTest.class.getSimpleName());
-        war.addClass(ScanProxy.class);
-        Map<String, String> contextParams = new HashMap<>();
-        contextParams.put("resteasy.scan", "true");
-        return TestUtil.finishContainerPrepare(war, contextParams, ScanResource.class, ScanSubresource.class);
-    }
+   @Deployment
+   public static Archive<?> deployUriInfoSimpleResource() {
+      WebArchive war = TestUtil.prepareArchive(ScanTest.class.getSimpleName());
+      war.addClass(ScanProxy.class);
+      Map<String, String> contextParams = new HashMap<>();
+      contextParams.put("resteasy.scan", "true");
+      return TestUtil.finishContainerPrepare(war, contextParams, ScanResource.class, ScanSubresource.class);
+   }
 
-    /**
+   /**
      * @tpTestDetails Test with new client
      * @tpSince RESTEasy 3.0.16
      */
-    @Test
-    public void testNewClient() throws Exception {
-        Response response = client.target(PortProviderUtil.generateURL("/test/doit", ScanTest.class.getSimpleName())).request().get();
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-        Assert.assertEquals("Wrong content of response", "hello world", response.readEntity(String.class));
-    }
+   @Test
+   public void testNewClient() throws Exception {
+      Response response = client.target(PortProviderUtil.generateURL("/test/doit", ScanTest.class.getSimpleName())).request().get();
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      Assert.assertEquals("Wrong content of response", "hello world", response.readEntity(String.class));
+   }
 }

@@ -12,9 +12,9 @@ import org.jboss.resteasy.spi.NotImplementedYetException;
 import java.util.concurrent.Future;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class AsynchronousInvoke implements AsyncInvoker
 {
    protected ClientInvocation invocation;

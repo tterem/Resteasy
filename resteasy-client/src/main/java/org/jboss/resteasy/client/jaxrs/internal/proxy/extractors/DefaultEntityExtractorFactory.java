@@ -8,8 +8,8 @@ import javax.ws.rs.core.Response;
 import java.lang.reflect.Method;
 
 /**
- * @author Solomon.Duskis
- */
+   * @author Solomon.Duskis
+   */
 @SuppressWarnings("unchecked")
 public class DefaultEntityExtractorFactory implements EntityExtractorFactory
 {

@@ -7,9 +7,9 @@ import javax.ws.rs.core.MultivaluedMap;
 import java.lang.reflect.Type;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class OutputPart
 {
    private MultivaluedMap<String, Object> headers = new MultivaluedMapImpl<String, Object>();
@@ -21,7 +21,7 @@ public class OutputPart
    
    public OutputPart(Object entity, Class<?> type, Type genericType, MediaType mediaType)
    {
-	   this(entity, type, genericType, mediaType, null);
+      this(entity, type, genericType, mediaType, null);
    }
 
    public OutputPart(Object entity, Class<?> type, Type genericType, MediaType mediaType, String filename)
@@ -60,6 +60,6 @@ public class OutputPart
    
    public String getFilename() 
    {
-	   return filename;
+      return filename;
    }
 }

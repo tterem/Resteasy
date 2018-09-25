@@ -7,9 +7,9 @@ import java.lang.reflect.Type;
 import org.jboss.resteasy.spi.util.Types;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class DefaultResourceLocator implements ResourceLocator
 {
    protected ResourceClass resourceClass;

@@ -38,12 +38,12 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter CDI
- * @tpChapter Integration tests
- * @tpTestCaseDetails Tests RESTEASY-1186, which reports issues with validation in
- *                    the presence of CDI.
- * @tpSince RESTEasy 3.1.0
- */
+   * @tpSubChapter CDI
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Tests RESTEASY-1186, which reports issues with validation in
+   *                    the presence of CDI.
+   * @tpSince RESTEasy 3.1.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationWithCDITest
@@ -70,9 +70,9 @@ public class ValidationWithCDITest
    }
 
    /**
-    * @tpTestDetails Tests Bean Validation constraints on method parameters
-    * @tpSince RESTEasy 3.1.0
-    */
+   * @tpTestDetails Tests Bean Validation constraints on method parameters
+   * @tpSince RESTEasy 3.1.0
+   */
    @Test
    public void testRoot() throws Exception
    {
@@ -90,9 +90,9 @@ public class ValidationWithCDITest
    }
 
    /**
-    * @tpTestDetails Tests Bean Validation constraints on method parameters
-    * @tpSince RESTEasy 3.1.0
-    */
+   * @tpTestDetails Tests Bean Validation constraints on method parameters
+   * @tpSince RESTEasy 3.1.0
+   */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testAsynch() throws Exception

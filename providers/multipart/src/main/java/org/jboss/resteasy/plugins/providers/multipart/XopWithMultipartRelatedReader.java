@@ -19,19 +19,17 @@ import org.jboss.resteasy.plugins.providers.multipart.i18n.Messages;
 import org.jboss.resteasy.spi.util.FindAnnotation;
 
 /**
- * This provider is for reading xop packages packed as multipart/related. For
- * more information see {@link XopWithMultipartRelated}.
- *
- * @author Attila Kiraly
- * @version $Revision: 1 $
- */
+   * This provider is for reading xop packages packed as multipart/related. For
+   * more information see {@link XopWithMultipartRelated}.
+   *
+   * @author Attila Kiraly
+   * @version $Revision: 1 $
+   */
 @Provider
 @Consumes("multipart/related")
 public class XopWithMultipartRelatedReader implements MessageBodyReader<Object>
 {
-   protected
-   @Context
-   Providers workers;
+   protected @Context Providers workers;
 
    public boolean isReadable(Class<?> type, Type genericType,
                              Annotation[] annotations, MediaType mediaType)
@@ -44,7 +42,7 @@ public class XopWithMultipartRelatedReader implements MessageBodyReader<Object>
    public Object readFrom(Class<Object> type, Type genericType,
                           Annotation[] annotations, MediaType mediaType,
                           MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
-           throws IOException, WebApplicationException
+         throws IOException, WebApplicationException
    {
       String boundary = mediaType.getParameters().get("boundary");
       if (boundary == null)

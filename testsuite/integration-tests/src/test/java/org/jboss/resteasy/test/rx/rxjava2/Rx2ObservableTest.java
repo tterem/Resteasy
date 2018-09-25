@@ -49,15 +49,15 @@ import org.junit.runners.MethodSorters;
 import io.reactivex.Observable;
 
 /**
- * @tpSubChapter Reactive classes
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- * 
- * In these tests, the server uses Observables to create results asynchronously and streams the elements
- * of the Observables as they are created.
- * 
- * The client makes invocations on an ObservableRxInvoker.
- */
+   * @tpSubChapter Reactive classes
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   * 
+   * In these tests, the server uses Observables to create results asynchronously and streams the elements
+   * of the Observables as they are created.
+   * 
+   * The client makes invocations on an ObservableRxInvoker.
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -391,8 +391,8 @@ public class Rx2ObservableTest {
       ObservableRxInvoker invoker = client.target(generateURL("/head/string")).request().rx(ObservableRxInvoker.class);
       Observable<String> observable = (Observable<String>) invoker.head();
       observable.subscribe(
-              (String s) -> value.set(s), // HEAD - no body
-              (Throwable t) -> throwableContains(t, "Input stream was empty"));
+         (String s) -> value.set(s), // HEAD - no body
+         (Throwable t) -> throwableContains(t, "Input stream was empty"));
       Assert.assertNull(value.get());
    }
 
@@ -755,7 +755,8 @@ public class Rx2ObservableTest {
       boolean waitResult = cdl.await(30, TimeUnit.SECONDS);
       Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
       Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(6, list.size()); for (int i = 0; i < 6; i++)
+      Assert.assertEquals(6, list.size());
+      for (int i = 0; i < 6; i++)
       {
          Assert.assertEquals("x", list.get(i));
       }

@@ -15,12 +15,12 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 /**
- *
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * Created Mar 31, 2012
- */
+   *
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * Created Mar 31, 2012
+   */
 @Provider
 public class ResteasyViolationExceptionMapper implements ExceptionMapper<ValidationException>
 {

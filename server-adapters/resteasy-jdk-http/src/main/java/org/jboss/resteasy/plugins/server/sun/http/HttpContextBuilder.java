@@ -9,12 +9,12 @@ import org.jboss.resteasy.spi.ResteasyConfiguration;
 import org.jboss.resteasy.spi.ResteasyDeployment;
 
 /**
- * Helper class to create a ResteasyDeployment and bind it to an HttpContext of an HttpServer.  Setting the SecurityDomain
- * will turn on Basic Authentication.  Right now, only BasicAuthentication is supported.
- *
- * HttpContext.getAttributes() data is available within Providers and Resources by injecting a ResteasyConfiguration interface
- *
- * <pre>
+   * Helper class to create a ResteasyDeployment and bind it to an HttpContext of an HttpServer.  Setting the SecurityDomain
+   * will turn on Basic Authentication.  Right now, only BasicAuthentication is supported.
+   *
+   * HttpContext.getAttributes() data is available within Providers and Resources by injecting a ResteasyConfiguration interface
+   *
+   * <pre>
      HttpServer httpServer = HttpServer.create(new InetSocketAddress(port), 10);
      contextBuilder = new HttpContextBuilder();
      contextBuilder.getDeployment().getActualResourceClasses().add(SimpleResource.class);
@@ -25,14 +25,14 @@ import org.jboss.resteasy.spi.ResteasyDeployment;
      contextBuilder.cleanup();
      httpServer.stop(0);
    </pre>
- * Create your HttpServer the way you want then use the org.jboss.resteasy.plugins.server.sun.http.HttpContextBuilder to initialize Resteasy
- * and bind it to an HttpContext.  The HttpContext attributes are available by injecting in a org.jboss.resteasy.spi.ResteasyConfiguration
- * interface using @Context within your provider and resource classes.
- *
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Create your HttpServer the way you want then use the org.jboss.resteasy.plugins.server.sun.http.HttpContextBuilder to initialize Resteasy
+   * and bind it to an HttpContext.  The HttpContext attributes are available by injecting in a org.jboss.resteasy.spi.ResteasyConfiguration
+   * interface using @Context within your provider and resource classes.
+   *
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class HttpContextBuilder
 {
    protected ResteasyDeployment deployment = new ResteasyDeploymentImpl();
@@ -57,10 +57,10 @@ public class HttpContextBuilder
    }
 
    /**
-    * Path to bind context
-    *
-    * @param path
-    */
+   * Path to bind context
+   *
+   * @param path
+   */
    public void setPath(String path)
    {
       this.path = path;
@@ -76,10 +76,10 @@ public class HttpContextBuilder
    }
 
    /**
-    * Will turn on Basic Authentication
-    *
-    * @param securityDomain
-    */
+   * Will turn on Basic Authentication
+   *
+   * @param securityDomain
+   */
    public void setSecurityDomain(SecurityDomain securityDomain)
    {
       this.securityDomain = securityDomain;

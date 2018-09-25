@@ -30,9 +30,9 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ClientConfiguration implements Configuration, Configurable<ClientConfiguration>, Providers, HeaderValueProcessor
 {
    protected ResteasyProviderFactory providerFactory;
@@ -68,11 +68,11 @@ public class ClientConfiguration implements Configuration, Configurable<ClientCo
    }
 
    /**
-    * Convert an object to a header string.  First try StringConverter, then HeaderDelegate, then object.toString()
-    *
-    * @param object header object
-    * @return header string
-    */
+   * Convert an object to a header string.  First try StringConverter, then HeaderDelegate, then object.toString()
+   *
+   * @param object header object
+   * @return header string
+   */
    public String toHeaderString(Object object)
    {
       if (object instanceof String) return (String)object;
@@ -83,7 +83,7 @@ public class ClientConfiguration implements Configuration, Configurable<ClientCo
    {
       MessageBodyWriter<T> writer = providerFactory.getClientMessageBodyWriter(type, genericType, annotations, mediaType);
       if (writer!=null)
-          LogMessages.LOGGER.debugf("MessageBodyWriter: %s", writer.getClass().getName());
+         LogMessages.LOGGER.debugf("MessageBodyWriter: %s", writer.getClass().getName());
       return writer;
    }
 
@@ -91,7 +91,7 @@ public class ClientConfiguration implements Configuration, Configurable<ClientCo
    {
       MessageBodyReader<T> reader = providerFactory.getClientMessageBodyReader(type, genericType, annotations, mediaType);
       if (reader!=null)
-          LogMessages.LOGGER.debugf("MessageBodyReader: %s", reader.getClass().getName());
+         LogMessages.LOGGER.debugf("MessageBodyReader: %s", reader.getClass().getName());
       return reader;
    }
 

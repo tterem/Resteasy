@@ -44,13 +44,13 @@ import rx.Single;
 
 
 /**
- * @tpSubChapter Reactive classes
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- * 
- * In these tests, the client uses a SingleRxInvoker and subscribes to instances of Single<T>.
- * The server synchronously returns objects of type T.
- */
+   * @tpSubChapter Reactive classes
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   * 
+   * In these tests, the client uses a SingleRxInvoker and subscribes to instances of Single<T>.
+   * The server synchronously returns objects of type T.
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RxSingleClientAsyncTest {
@@ -235,8 +235,8 @@ public class RxSingleClientAsyncTest {
       SingleRxInvoker invoker = client.target(generateURL("/head/string")).request().rx(SingleRxInvoker.class);
       Single<Response> single = invoker.head();
       single.subscribe(
-              (Response r) -> {value.set(r.readEntity(String.class)); latch.countDown();},
-              (Throwable t) -> throwableContains(t, "Input stream was empty"));
+         (Response r) -> {value.set(r.readEntity(String.class)); latch.countDown();},
+         (Throwable t) -> throwableContains(t, "Input stream was empty"));
       Assert.assertNull(value.get());
    }
 
@@ -498,13 +498,13 @@ public class RxSingleClientAsyncTest {
       return null;
    }
 
-    private static boolean throwableContains(Throwable t, String s) {
-        while (t != null) {
-            if (t.getMessage().contains(s)) {
-                return true;
-            }
-            t = t.getCause();
-        }
-        return false;
+   private static boolean throwableContains(Throwable t, String s) {
+      while (t != null) {
+         if (t.getMessage().contains(s)) {
+            return true;
+         }
+         t = t.getCause();
+      }
+      return false;
    }
 }

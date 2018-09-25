@@ -30,9 +30,9 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class Servlet3AsyncHttpRequest extends HttpServletInputMessage
 {
    protected HttpServletResponse response;
@@ -187,7 +187,7 @@ public class Servlet3AsyncHttpRequest extends HttpServletInputMessage
                cancelled = true;
                AsyncContext asyncContext = getAsyncContext();
                return internalResume(Response.status(Response.Status.SERVICE_UNAVAILABLE).header(HttpHeaders.RETRY_AFTER, retryAfter).build(),
-                     t -> asyncContext.complete());
+                  t -> asyncContext.complete());
             }
          }
 
@@ -202,7 +202,7 @@ public class Servlet3AsyncHttpRequest extends HttpServletInputMessage
                cancelled = true;
                AsyncContext asyncContext = getAsyncContext();
                return internalResume(Response.status(Response.Status.SERVICE_UNAVAILABLE).header(HttpHeaders.RETRY_AFTER, retryAfter).build(),
-                     t -> asyncContext.complete());
+                  t -> asyncContext.complete());
             }
          }
 

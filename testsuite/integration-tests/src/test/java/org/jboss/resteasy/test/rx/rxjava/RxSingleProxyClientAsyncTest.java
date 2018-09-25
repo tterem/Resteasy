@@ -40,15 +40,15 @@ import rx.Single;
 
 
 /**
- * @tpSubChapter Reactive classes
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- * 
- * In these tests, the client uses a proxy that calls a SingleRxInvoker, which returns a Single<T>
- * to which the client subscribes.
- * 
- * The server synchronously returns objects of type T.
- */
+   * @tpSubChapter Reactive classes
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   * 
+   * In these tests, the client uses a proxy that calls a SingleRxInvoker, which returns a Single<T>
+   * to which the client subscribes.
+   * 
+   * The server synchronously returns objects of type T.
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RxSingleProxyClientAsyncTest {
@@ -211,8 +211,8 @@ public class RxSingleProxyClientAsyncTest {
    public void testHead() throws Exception {
       Single<String> single = proxy.head();
       single.subscribe(
-              (String s) -> {value.set(s); latch.countDown();},
-              (Throwable t) -> throwableContains(t, "Input stream was empty"));
+         (String s) -> {value.set(s); latch.countDown();},
+         (Throwable t) -> throwableContains(t, "Input stream was empty"));
       Assert.assertNull(value.get());
    }
 

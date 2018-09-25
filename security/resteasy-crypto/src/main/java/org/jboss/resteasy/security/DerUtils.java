@@ -14,12 +14,12 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 /**
- * Extract PrivateKey, PublicKey, and X509Certificate from a DER encoded byte array or file.  Usually
- * generated from openssl
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Extract PrivateKey, PublicKey, and X509Certificate from a DER encoded byte array or file.  Usually
+   * generated from openssl
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class DerUtils
 {
    static
@@ -28,7 +28,7 @@ public class DerUtils
    }
 
    public static PrivateKey decodePrivateKey(InputStream is)
-           throws Exception
+         throws Exception
    {
 
       DataInputStream dis = new DataInputStream(is);

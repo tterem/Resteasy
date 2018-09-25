@@ -25,9 +25,9 @@ import org.jboss.resteasy.util.Base64;
 import org.jboss.resteasy.util.ParameterParser;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class DosetaKeyRepository implements KeyRepository
 {
 
@@ -83,12 +83,12 @@ public class DosetaKeyRepository implements KeyRepository
                   loader = Thread.currentThread().getContextClassLoader();
                } else {
                   try {
-                  loader = AccessController.doPrivileged(new PrivilegedExceptionAction<ClassLoader>() {
-                     @Override
-                     public ClassLoader run() throws Exception {
-                        return Thread.currentThread().getContextClassLoader();
-                     }
-                  });
+                     loader = AccessController.doPrivileged(new PrivilegedExceptionAction<ClassLoader>() {
+                        @Override
+                        public ClassLoader run() throws Exception {
+                           return Thread.currentThread().getContextClassLoader();
+                        }
+                     });
                   } catch (PrivilegedActionException pae) {
                      throw new RuntimeException(pae);
                   }

@@ -21,11 +21,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter CDI
- * @tpChapter Integration tests
- * @tpTestCaseDetails Name bound interceptors and Application CDI proxies
- * @tpSince RESTEasy 4.0.0
- */
+   * @tpSubChapter CDI
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Name bound interceptors and Application CDI proxies
+   * @tpSince RESTEasy 4.0.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class NameBoundCDIProxiesTest {
@@ -49,9 +49,9 @@ public class NameBoundCDIProxiesTest {
    }
 
    /**
-    * @tpTestDetails Verify that 
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails Verify that 
+   * @tpSince RESTEasy 4.0.0
+   */
    @Test
    public void testNameBoundInterceptor() throws Exception {
       Client client = ClientBuilder.newClient();

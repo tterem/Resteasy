@@ -34,9 +34,9 @@ import org.jboss.resteasy.util.InputStreamToByteArray;
 import org.jboss.resteasy.util.ThreadLocalStack;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings("rawtypes")
 public class MessageBodyParameterInjector implements ValueInjector, JaxrsInterceptorRegistryListener
 {
@@ -117,7 +117,7 @@ public class MessageBodyParameterInjector implements ValueInjector, JaxrsInterce
    public boolean isFormData(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
    {
       if (mediaType.isWildcardType() || mediaType.isWildcardSubtype() ||
-         		  !mediaType.isCompatible(MediaType.APPLICATION_FORM_URLENCODED_TYPE)) return false;
+                 !mediaType.isCompatible(MediaType.APPLICATION_FORM_URLENCODED_TYPE)) return false;
       if (!MultivaluedMap.class.isAssignableFrom(type)) return false;
       if (genericType == null) return true;
 

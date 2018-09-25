@@ -31,13 +31,13 @@ import org.junit.runner.RunWith;
 
 
 /**
- * @tpSubChapter Reactive classes
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- * 
- * In these tests, the server creates and returns a Single<T>.
- * The client uses a proxy to do a synchronous invocation to get an object of type T.
- */
+   * @tpSubChapter Reactive classes
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   * 
+   * In these tests, the server creates and returns a Single<T>.
+   * The client uses a proxy to do a synchronous invocation to get an object of type T.
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RxSingleProxyServerAsyncTest {

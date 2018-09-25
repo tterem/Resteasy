@@ -37,11 +37,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * This class is used to configure and initialize the core components of RESTEasy.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * This class is used to configure and initialize the core components of RESTEasy.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ResteasyDeploymentImpl implements ResteasyDeployment
 {
    private boolean widerRequestMatching;
@@ -542,9 +542,9 @@ public class ResteasyDeploymentImpl implements ResteasyDeployment
    }
 
    /**
-    * @param config application
-    * @return whether application class registered anything. i.e. whether scanning metadata should be used or not
-    */
+   * @param config application
+   * @return whether application class registered anything. i.e. whether scanning metadata should be used or not
+   */
    private boolean processApplication(Application config)
    {
       LogMessages.LOGGER.deployingApplication(Application.class.getName(), config.getClass());
@@ -602,19 +602,19 @@ public class ResteasyDeploymentImpl implements ResteasyDeployment
       final Map<String, Object> properties = config.getProperties();
       if (properties != null && !properties.isEmpty())
       {
-          Feature appliationPropertiesRegistrationfeature = new Feature()
-          {
-			 @Override
-			 public boolean configure(FeatureContext featureContext)
-			 {
-				for (Map.Entry<String, Object> property : properties.entrySet())
-				{
-				   featureContext = featureContext.property(property.getKey(), property.getValue());
-				}
-				return true;
-			 }
-          };
-	      this.providers.add(0, appliationPropertiesRegistrationfeature);
+         Feature appliationPropertiesRegistrationfeature = new Feature()
+         {
+            @Override
+            public boolean configure(FeatureContext featureContext)
+            {
+               for (Map.Entry<String, Object> property : properties.entrySet())
+               {
+                  featureContext = featureContext.property(property.getKey(), property.getValue());
+               }
+               return true;
+            }
+         };
+         this.providers.add(0, appliationPropertiesRegistrationfeature);
       }
       return registered;
    }

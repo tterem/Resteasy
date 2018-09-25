@@ -1,11 +1,11 @@
 package org.jboss.resteasy.util;
 
 /**
- * A list of Http Header names.
- *
- * @author Ryan J. McDonough
- *         Feb 25, 2007
- */
+   * A list of Http Header names.
+   *
+   * @author Ryan J. McDonough
+   *         Feb 25, 2007
+   */
 public interface HttpHeaderNames
 {
    String ACCEPT = "Accept";

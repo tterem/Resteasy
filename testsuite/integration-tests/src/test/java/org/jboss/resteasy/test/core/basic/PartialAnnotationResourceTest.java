@@ -18,11 +18,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Configuration
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for RESTEASY-798.
- * @tpSince RESTEasy 3.5.1
- */
+   * @tpSubChapter Configuration
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for RESTEASY-798.
+   * @tpSince RESTEasy 3.5.1
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PartialAnnotationResourceTest
@@ -50,9 +50,9 @@ public class PartialAnnotationResourceTest
    }
 
    /**
-    * @tpTestDetails Test basic functionality of test resource
-    * @tpSince RESTEasy 3.5.1
-    */
+   * @tpTestDetails Test basic functionality of test resource
+   * @tpSince RESTEasy 3.5.1
+   */
    @Test
    public void test()
    {

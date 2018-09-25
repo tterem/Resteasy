@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A utility class to provide supporting functionality to various
- * entity providers.
- *
- * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
- * @version $Revision: $
- */
+   * A utility class to provide supporting functionality to various
+   * entity providers.
+   *
+   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+   * @version $Revision: $
+   */
 public final class ProviderHelper
 {
 
@@ -29,10 +29,10 @@ public final class ProviderHelper
    }
 
    /**
-    * @param in input stream
-    * @return string data
-    * @throws IOException if I/O error occurred
-    */
+   * @param in input stream
+   * @return string data
+   * @throws IOException if I/O error occurred
+   */
    public static String readString(InputStream in) throws IOException
    {
       char[] buffer = new char[1024];
@@ -53,11 +53,11 @@ public final class ProviderHelper
    }
 
    /**
-    * @param in input stream
-    * @param mediaType media type
-    * @return string data
-    * @throws IOException if I/O error occurred
-    */
+   * @param in input stream
+   * @param mediaType media type
+   * @return string data
+   * @throws IOException if I/O error occurred
+   */
    public static String readString(InputStream in, MediaType mediaType) throws IOException
    {
       byte[] buffer = new byte[1024];
@@ -80,9 +80,9 @@ public final class ProviderHelper
    }
 
    /**
-    * @param mediaTypes string array of media types
-    * @return list of media types
-    */
+   * @param mediaTypes string array of media types
+   * @return list of media types
+   */
    public static List<MediaType> getAvailableMediaTypes(String[] mediaTypes)
    {
       List<MediaType> types = new ArrayList<MediaType>();
@@ -94,18 +94,18 @@ public final class ProviderHelper
    }
 
    /**
-    * @param mediaTypes string array of media types
-    * @return list of {@link Variant}
-    */
+   * @param mediaTypes string array of media types
+   * @return list of {@link Variant}
+   */
    public static List<Variant> getAvailableVariants(String[] mediaTypes)
    {
       return getAvailableVariants(getAvailableMediaTypes(mediaTypes));
    }
 
    /**
-    * @param mediaTypes list of media types
-    * @return list of {@link Variant}
-    */
+   * @param mediaTypes list of media types
+   * @return list of {@link Variant}
+   */
    public static List<Variant> getAvailableVariants(List<MediaType> mediaTypes)
    {
       VariantListBuilder builder = Variant.VariantListBuilder.newInstance();
@@ -115,10 +115,10 @@ public final class ProviderHelper
    }
 
    /**
-    * @param in input stream
-    * @param out output stream
-    * @throws IOException if I/O error occurred
-    */
+   * @param in input stream
+   * @param out output stream
+   * @throws IOException if I/O error occurred
+   */
    public static void writeTo(final InputStream in, final OutputStream out) throws IOException
    {
       int read;

@@ -11,11 +11,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * This wrapper allows additional metadata to be added during bootstrap.
- * 
- * @author Jozef Hartinger
- * 
- */
+   * This wrapper allows additional metadata to be added during bootstrap.
+   * 
+   * @author Jozef Hartinger
+   * 
+   */
 public class JaxrsAnnotatedType<TYPE> implements AnnotatedType<TYPE>
 {
 

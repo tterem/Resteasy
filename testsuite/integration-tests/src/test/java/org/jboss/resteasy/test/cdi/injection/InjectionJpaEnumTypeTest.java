@@ -23,53 +23,53 @@ import javax.ws.rs.core.MediaType;
 
 
 /**
- * @tpSubChapter Injection
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test based on reproducer from WFLY-7037. Enum type UserType is attribute of JPA entity ApplicationUser
- * and this attribute is returned via GET request. Note this is not a regression test since in order to reproduce the issue
- * described in WFLY-7037 is needed to examine the heapdump.
- * @tpSince RESTEasy 3.1.0
- */
+   * @tpSubChapter Injection
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test based on reproducer from WFLY-7037. Enum type UserType is attribute of JPA entity ApplicationUser
+   * and this attribute is returned via GET request. Note this is not a regression test since in order to reproduce the issue
+   * described in WFLY-7037 is needed to examine the heapdump.
+   * @tpSince RESTEasy 3.1.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InjectionJpaEnumTypeTest {
 
-    @Deployment
-    public static Archive<?> deploySimpleResource() {
-        WebArchive war = TestUtil.prepareArchive(InjectionJpaEnumTypeTest.class.getSimpleName());
-        war.addClasses(UserManager.class, UserRepository.class, UserResource.class,
-                UserType.class, ApplicationUser.class);
-        war.addAsResource(InjectionJpaEnumTypeTest.class.getPackage(), "injectionJpaEnumType/persistence.xml", "META-INF/persistence.xml");
-        war.addAsResource(InjectionJpaEnumTypeTest.class.getPackage(), "injectionJpaEnumType/create.sql", "META-INF/create.sql");
-        war.addAsResource(InjectionJpaEnumTypeTest.class.getPackage(), "injectionJpaEnumType/load.sql", "META-INF/load.sql");
-        return TestUtil.finishContainerPrepare(war, null, (Class<?>[]) null);
-    }
+   @Deployment
+   public static Archive<?> deploySimpleResource() {
+      WebArchive war = TestUtil.prepareArchive(InjectionJpaEnumTypeTest.class.getSimpleName());
+      war.addClasses(UserManager.class, UserRepository.class, UserResource.class,
+            UserType.class, ApplicationUser.class);
+      war.addAsResource(InjectionJpaEnumTypeTest.class.getPackage(), "injectionJpaEnumType/persistence.xml", "META-INF/persistence.xml");
+      war.addAsResource(InjectionJpaEnumTypeTest.class.getPackage(), "injectionJpaEnumType/create.sql", "META-INF/create.sql");
+      war.addAsResource(InjectionJpaEnumTypeTest.class.getPackage(), "injectionJpaEnumType/load.sql", "META-INF/load.sql");
+      return TestUtil.finishContainerPrepare(war, null, (Class<?>[]) null);
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, InjectionJpaEnumTypeTest.class.getSimpleName());
-    }
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, InjectionJpaEnumTypeTest.class.getSimpleName());
+   }
 
-    /**
+   /**
      * @tpTestDetails Retrieves attribute UserType from the datasource in json format
      * @tpSince RESTEasy 3.1.0
      */
-    @Test
-    public void testEnumJackson() throws Exception {
-        ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
-        WebTarget base = client.target(generateURL("/user"));
-        String val = base.request().accept(MediaType.APPLICATION_JSON_TYPE).get().readEntity(String.class);
-        Assert.assertEquals("{\"id\":1,\"userType\":\"TYPE_ONE\"}", val);
-    }
+   @Test
+   public void testEnumJackson() throws Exception {
+      ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
+      WebTarget base = client.target(generateURL("/user"));
+      String val = base.request().accept(MediaType.APPLICATION_JSON_TYPE).get().readEntity(String.class);
+      Assert.assertEquals("{\"id\":1,\"userType\":\"TYPE_ONE\"}", val);
+   }
 
-    /**
+   /**
      * @tpTestDetails Retrieves attribute UserType from the datasource in xml format
      * @tpSince RESTEasy 3.1.0
      */
-    @Test
-    public void testEnumJaxb() throws Exception {
-        ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
-        WebTarget base = client.target(generateURL("/user"));
-        String val = base.request().accept(MediaType.APPLICATION_XML_TYPE).get().readEntity(String.class);
-        Assert.assertTrue(val.contains("<applicationUser><id>1</id><userType>TYPE_ONE</userType></applicationUser>"));
-    }
+   @Test
+   public void testEnumJaxb() throws Exception {
+      ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
+      WebTarget base = client.target(generateURL("/user"));
+      String val = base.request().accept(MediaType.APPLICATION_XML_TYPE).get().readEntity(String.class);
+      Assert.assertTrue(val.contains("<applicationUser><id>1</id><userType>TYPE_ONE</userType></applicationUser>"));
+   }
 }

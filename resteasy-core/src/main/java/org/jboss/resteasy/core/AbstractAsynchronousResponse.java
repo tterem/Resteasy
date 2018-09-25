@@ -22,9 +22,9 @@ import org.jboss.resteasy.spi.HttpResponse;
 import org.jboss.resteasy.spi.ResteasyAsynchronousResponse;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public abstract class AbstractAsynchronousResponse implements ResteasyAsynchronousResponse, ResourceMethodInvokerAwareResponse
 {
    protected SynchronousDispatcher dispatcher;

@@ -28,11 +28,11 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
- * Provider that reads and writes org.w3c.dom.Document.
- *
- * @author <a href="sduskis@gmail.com">Solomon Duskis</a>
- * @version $Revision: $
- */
+   * Provider that reads and writes org.w3c.dom.Document.
+   *
+   * @author <a href="sduskis@gmail.com">Solomon Duskis</a>
+   * @version $Revision: $
+   */
 @Provider
 @Produces({"text/xml", "text/*+xml", "application/xml", "application/*+xml"})
 @Consumes({"text/xml", "text/*+xml", "application/xml", "application/*+xml"})
@@ -85,9 +85,9 @@ public class DocumentProvider extends AbstractEntityProvider<Document>
    }
 
    public Document readFrom(Class<Document> clazz, Type type,
-                            Annotation[] annotations, MediaType mediaType,
-                            MultivaluedMap<String, String> headers, InputStream input)
-           throws IOException, WebApplicationException
+                     Annotation[] annotations, MediaType mediaType,
+                     MultivaluedMap<String, String> headers, InputStream input)
+         throws IOException, WebApplicationException
    {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom", getClass().getName());
       try
@@ -125,7 +125,7 @@ public class DocumentProvider extends AbstractEntityProvider<Document>
    public void writeTo(Document document, Class<?> clazz, Type type,
                        Annotation[] annotation, MediaType mediaType,
                        MultivaluedMap<String, Object> headers, OutputStream output)
-           throws IOException, WebApplicationException
+         throws IOException, WebApplicationException
    {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : writeTo", getClass().getName());
       try

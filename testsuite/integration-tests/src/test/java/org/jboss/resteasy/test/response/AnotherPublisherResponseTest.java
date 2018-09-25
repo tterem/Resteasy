@@ -32,10 +32,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Publisher response type
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- */
+   * @tpSubChapter Publisher response type
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   */
 @RunWith(Arquillian.class)
 public class AnotherPublisherResponseTest {
    private final static Logger logger = Logger.getLogger(AnotherPublisherResponseTest.class);
@@ -66,9 +66,9 @@ public class AnotherPublisherResponseTest {
    }
 
    /**
-    * @tpTestDetails Resource method returns Publisher<String>.
-    * @tpSince RESTEasy 4.0
-    */
+   * @tpTestDetails Resource method returns Publisher<String>.
+   * @tpSince RESTEasy 4.0
+   */
    @Test
    public void testSse() throws Exception
    {
@@ -93,12 +93,12 @@ public class AnotherPublisherResponseTest {
                future.complete(null);
             }
          }, t -> {
-            logger.error(t.getMessage(), t);
-            errors.add(t);
-         }, () -> {
-            // bah, never called
-            future.complete(null);
-         });
+               logger.error(t.getMessage(), t);
+               errors.add(t);
+            }, () -> {
+               // bah, never called
+               future.complete(null);
+            });
          source.open();
          future.get(5000, TimeUnit.SECONDS);
          Assert.assertEquals(2, collector.size());

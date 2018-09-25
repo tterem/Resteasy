@@ -21,35 +21,35 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Resources
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test return value of covariant with locators.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resources
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test return value of covariant with locators.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CovariantReturnSubresourceLocatorsTest {
 
-    @Deployment
-    public static Archive<?> deployUriInfoSimpleResource() {
-        WebArchive war = TestUtil.prepareArchive(CovariantReturnSubresourceLocatorsTest.class.getSimpleName());
-        war.addClasses(CovariantReturnSubresourceLocatorsRootProxy.class, CovariantReturnSubresourceLocatorsSubProxy.class);
-        return TestUtil.finishContainerPrepare(war, null, CovariantReturnSubresourceLocatorsSubProxyRootImpl.class,
-                CovariantReturnSubresourceLocatorsSubProxySubImpl.class);
-    }
+   @Deployment
+   public static Archive<?> deployUriInfoSimpleResource() {
+      WebArchive war = TestUtil.prepareArchive(CovariantReturnSubresourceLocatorsTest.class.getSimpleName());
+      war.addClasses(CovariantReturnSubresourceLocatorsRootProxy.class, CovariantReturnSubresourceLocatorsSubProxy.class);
+      return TestUtil.finishContainerPrepare(war, null, CovariantReturnSubresourceLocatorsSubProxyRootImpl.class,
+            CovariantReturnSubresourceLocatorsSubProxySubImpl.class);
+   }
 
-    /**
+   /**
      * @tpTestDetails Test basic path
      * @tpSince RESTEasy 3.0.16
      */
-    @Test
-    public void basicTest() {
-        ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
-        Response response = client.target(PortProviderUtil.generateURL("/path/sub/xyz",
-                CovariantReturnSubresourceLocatorsTest.class.getSimpleName())).request().get();
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-        Assert.assertEquals("Wrong content of response", "Boo! - xyz", response.readEntity(String.class));
-        response.close();
-        client.close();
-    }
+   @Test
+   public void basicTest() {
+      ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
+      Response response = client.target(PortProviderUtil.generateURL("/path/sub/xyz",
+            CovariantReturnSubresourceLocatorsTest.class.getSimpleName())).request().get();
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      Assert.assertEquals("Wrong content of response", "Boo! - xyz", response.readEntity(String.class));
+      response.close();
+      client.close();
+   }
 }

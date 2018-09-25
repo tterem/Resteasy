@@ -18,9 +18,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings(value = "rawtypes")
 public class MediaTypeHelper
 {
@@ -40,7 +40,7 @@ public class MediaTypeHelper
 
    public static MediaType[] getProduces(Class declaring, Method method)
    {
-	   return getProduces(declaring, method, null);
+      return getProduces(declaring, method, null);
    }
 
    @SuppressWarnings(value = "unchecked")
@@ -98,22 +98,22 @@ public class MediaTypeHelper
    }
 
    /**
-    * subtypes like application/*+xml
-    *
-    * @param subtype subtype
-    * @return true if subtype is composite
-    */
+   * subtypes like application/*+xml
+   *
+   * @param subtype subtype
+   * @return true if subtype is composite
+   */
    public static boolean isCompositeWildcardSubtype(String subtype)
    {
       return subtype.startsWith("*+");
    }
 
    /**
-    * subtypes like application/*+xml
-    *
-    * @param subtype subtype
-    * @return true if subtype is wildcard composite
-    */
+   * subtypes like application/*+xml
+   *
+   * @param subtype subtype
+   * @return true if subtype is wildcard composite
+   */
    public static boolean isWildcardCompositeSubtype(String subtype)
    {
       return subtype.endsWith("+*");

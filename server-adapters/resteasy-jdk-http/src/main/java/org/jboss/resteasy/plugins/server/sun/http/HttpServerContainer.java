@@ -10,11 +10,11 @@ import org.jboss.resteasy.spi.ResteasyDeployment;
 import java.util.Hashtable;
 
 /**
- * Sun HttpServerContainer
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Sun HttpServerContainer
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class HttpServerContainer
 {
 
@@ -94,7 +94,7 @@ public class HttpServerContainer
    }
    
    public static void main(String[] args) throws Exception {
-	   start();
+      start();
    }
 
 }

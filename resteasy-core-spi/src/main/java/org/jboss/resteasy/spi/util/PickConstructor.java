@@ -9,22 +9,22 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 
 /**
- * Pick
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Pick
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public final class PickConstructor
 {
 
    /**
-    * Pick best constructor for a provider or resource class
-    * <p>
-    * Picks constructor with most parameters.  Will ignore constructors that have parameters with no @Context annotation
-    *
-    * @param clazz class
-    * @return constructor
-    */
+   * Pick best constructor for a provider or resource class
+   * <p>
+   * Picks constructor with most parameters.  Will ignore constructors that have parameters with no @Context annotation
+   *
+   * @param clazz class
+   * @return constructor
+   */
    public static Constructor pickSingletonConstructor(Class clazz)
    {
       Constructor<?>[] constructors = clazz.getConstructors();
@@ -43,7 +43,7 @@ public final class PickConstructor
          if (con.getParameterTypes().length >= numParameters)
          {
             if (con.getParameterTypes().length > numParameters) {
-                potentialConflict = false;
+               potentialConflict = false;
             }
             boolean noContextAnnotation = false;
             if (con.getParameterAnnotations() != null)
@@ -58,7 +58,7 @@ public final class PickConstructor
             }
             if (noContextAnnotation) continue;
             if (con.getParameterTypes().length == numParameters && numParameters != 0) {
-                potentialConflict = true;
+               potentialConflict = true;
             }
             numParameters = con.getParameterTypes().length;
             pick = con;
@@ -72,13 +72,13 @@ public final class PickConstructor
    }
 
    /**
-    * Pick best constructor for a provider or resource class
-    * <p>
-    * Picks constructor with most parameters.  Will ignore constructors that have parameters with no @Context annotation
-    *
-    * @param clazz class
-    * @return constructor
-    */
+   * Pick best constructor for a provider or resource class
+   * <p>
+   * Picks constructor with most parameters.  Will ignore constructors that have parameters with no @Context annotation
+   *
+   * @param clazz class
+   * @return constructor
+   */
    public static Constructor pickPerRequestConstructor(Class clazz)
    {
       Constructor<?>[] constructors = clazz.getConstructors();
@@ -97,7 +97,7 @@ public final class PickConstructor
          if (con.getParameterTypes().length >= numParameters)
          {
             if (con.getParameterTypes().length > numParameters) {
-                potentialConflict = false;
+               potentialConflict = false;
             }
 
             boolean noContextAnnotation = false;
@@ -113,7 +113,7 @@ public final class PickConstructor
             }
             if (noContextAnnotation) continue;
             if (con.getParameterTypes().length == numParameters && numParameters != 0) {
-                potentialConflict = true;
+               potentialConflict = true;
             }
             numParameters = con.getParameterTypes().length;
             pick = con;

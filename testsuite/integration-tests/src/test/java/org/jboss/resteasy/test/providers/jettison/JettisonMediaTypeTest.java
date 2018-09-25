@@ -23,46 +23,46 @@ import javax.ws.rs.core.Response;
 import static org.hamcrest.CoreMatchers.containsString;
 
 /**
- * @tpSubChapter Jettison provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-244
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jettison provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-244
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JettisonMediaTypeTest {
-    static ResteasyClient client;
+   static ResteasyClient client;
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(JettisonMediaTypeTest.class.getSimpleName());
-        war.addAsManifestResource("jboss-deployment-structure-no-jackson.xml", "jboss-deployment-structure.xml");
-        war.addClass(JettisonMediaTypeObject.class);
-        return TestUtil.finishContainerPrepare(war, null, JettisonMediaTypeService.class);
-    }
+   @Deployment
+   public static Archive<?> deploy() {
+      WebArchive war = TestUtil.prepareArchive(JettisonMediaTypeTest.class.getSimpleName());
+      war.addAsManifestResource("jboss-deployment-structure-no-jackson.xml", "jboss-deployment-structure.xml");
+      war.addClass(JettisonMediaTypeObject.class);
+      return TestUtil.finishContainerPrepare(war, null, JettisonMediaTypeService.class);
+   }
 
-    @Before
-    public void init() {
-        client = (ResteasyClient)ClientBuilder.newClient();
-    }
+   @Before
+   public void init() {
+      client = (ResteasyClient)ClientBuilder.newClient();
+   }
 
-    @After
-    public void after() throws Exception {
-        client.close();
-    }
+   @After
+   public void after() throws Exception {
+      client.close();
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, JettisonMediaTypeTest.class.getSimpleName());
-    }
+   private String generateURL(String path) {
+      return PortProviderUtil.generateURL(path, JettisonMediaTypeTest.class.getSimpleName());
+   }
 
-    /**
+   /**
      * @tpTestDetails Cannot provide charset MediaType with application/json
      * @tpSince RESTEasy 3.0.16
      */
-    @Test
-    public void testCharset() throws Exception {
-        Response response = client.target(generateURL("/test/bug")).request().get();
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-        Assert.assertThat("Wrong content of response", response.readEntity(String.class), containsString("bill"));
-    }
+   @Test
+   public void testCharset() throws Exception {
+      Response response = client.target(generateURL("/test/bug")).request().get();
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      Assert.assertThat("Wrong content of response", response.readEntity(String.class), containsString("bill"));
+   }
 }

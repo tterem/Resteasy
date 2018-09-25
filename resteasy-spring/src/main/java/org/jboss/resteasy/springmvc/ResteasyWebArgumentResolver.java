@@ -22,12 +22,12 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 
 /**
- * This class can be used as part of Spring's AnnotationMethodHandlerAdapter.
- * Take a look at AnnotationMethodHandlerAdapter.setCustomArgumentResolver()
- *
- * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
- * @version $Revision: 1 $
- */
+   * This class can be used as part of Spring's AnnotationMethodHandlerAdapter.
+   * Take a look at AnnotationMethodHandlerAdapter.setCustomArgumentResolver()
+   *
+   * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings("rawtypes")
 public class ResteasyWebArgumentResolver implements WebArgumentResolver
 {
@@ -71,25 +71,25 @@ public class ResteasyWebArgumentResolver implements WebArgumentResolver
             String contentType = servletRequest.getContentType();
             MediaType mediaType = MediaType.valueOf(contentType);
             MessageBodyReader reader = factory.getMessageBodyReader(type,
-                    genericType, annotations, mediaType);
+               genericType, annotations, mediaType);
             if (reader == null)
                throw new BadRequestException(Messages.MESSAGES.couldNotFindMessageBodyReader(genericType, mediaType));
             return reader.readFrom(type, genericType, annotations, mediaType,
-                    request.getHttpHeaders().getRequestHeaders(), request
-                            .getInputStream());
+               request.getHttpHeaders().getRequestHeaders(), request
+                     .getInputStream());
          }
          else if (isCookie)
          {
             CookieParam cookieParam = (CookieParam) annotation;
             DefaultValue defaultValue = FindAnnotation.findAnnotation(
-                    annotations, DefaultValue.class);
+               annotations, DefaultValue.class);
             String defaultVal = null;
             if (defaultValue != null)
                defaultVal = defaultValue.value();
 
             return new CookieParamInjector(type, genericType, method,
-                    cookieParam.value(), defaultVal, annotations, factory).inject(request,
-                    null, false);
+               cookieParam.value(), defaultVal, annotations, factory).inject(request,
+               null, false);
          }
       }
       return null;

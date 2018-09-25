@@ -6,77 +6,77 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A simple parser intended to parse sequences of name/value pairs.
- * Parameter values are exptected to be enclosed in quotes if they
- * contain unsafe characters, such as '=' characters or separators.
- * Parameter values are optional and can be omitted.
- * <p>
- * <code>param1 = value; param2 = "anything goes; really"; param3</code>
- * </p>
- *
- * @author <a href="mailto:oleg@ural.ru">Oleg Kalnichevski</a>
- */
+   * A simple parser intended to parse sequences of name/value pairs.
+   * Parameter values are exptected to be enclosed in quotes if they
+   * contain unsafe characters, such as '=' characters or separators.
+   * Parameter values are optional and can be omitted.
+   * <p>
+   * <code>param1 = value; param2 = "anything goes; really"; param3</code>
+   * </p>
+   *
+   * @author <a href="mailto:oleg@ural.ru">Oleg Kalnichevski</a>
+   */
 
 public class GroupParameterParser
 {
    /**
-    * String to be parsed.
-    */
+   * String to be parsed.
+   */
    private char[] chars = null;
 
    /**
-    * Current position in the string.
-    */
+   * Current position in the string.
+   */
    private int pos = 0;
 
    /**
-    * Maximum position in the string.
-    */
+   * Maximum position in the string.
+   */
    private int len = 0;
 
    /**
-    * Start of a token.
-    */
+   * Start of a token.
+   */
    private int i1 = 0;
 
    /**
-    * End of a token.
-    */
+   * End of a token.
+   */
    private int i2 = 0;
 
    /**
-    * Whether names stored in the map should be converted to lower case.
-    */
+   * Whether names stored in the map should be converted to lower case.
+   */
    private boolean lowerCaseNames = false;
 
    /**
-    * Default ParameterParser constructor.
-    */
+   * Default ParameterParser constructor.
+   */
    public GroupParameterParser()
    {
       super();
    }
 
    /**
-    * Are there any characters left to parse?
-    *
-    * @return <tt>true</tt> if there are unparsed characters,
-    *         <tt>false</tt> otherwise.
-    */
+   * Are there any characters left to parse?
+   *
+   * @return <tt>true</tt> if there are unparsed characters,
+   *         <tt>false</tt> otherwise.
+   */
    private boolean hasChar()
    {
       return this.pos < this.len;
    }
 
    /**
-    * A helper method to process the parsed token. This method removes
-    * leading and trailing blanks as well as enclosing quotation marks,
-    * when necessary.
-    *
-    * @param quoted <tt>true</tt> if quotation marks are expected,
-    *               <tt>false</tt> otherwise.
-    * @return the token
-    */
+   * A helper method to process the parsed token. This method removes
+   * leading and trailing blanks as well as enclosing quotation marks,
+   * when necessary.
+   *
+   * @param quoted <tt>true</tt> if quotation marks are expected,
+   *               <tt>false</tt> otherwise.
+   * @return the token
+   */
    private String getToken(boolean quoted)
    {
       // Trim leading white spaces
@@ -109,13 +109,13 @@ public class GroupParameterParser
    }
 
    /**
-    * Tests if the given character is present in the array of characters.
-    *
-    * @param ch      the character to test for presense in the array of characters
-    * @param charray the array of characters to test against
-    * @return <tt>true</tt> if the character is present in the array of
-    *         characters, <tt>false</tt> otherwise.
-    */
+   * Tests if the given character is present in the array of characters.
+   *
+   * @param ch      the character to test for presense in the array of characters
+   * @param charray the array of characters to test against
+   * @return <tt>true</tt> if the character is present in the array of
+   *         characters, <tt>false</tt> otherwise.
+   */
    private boolean isOneOf(char ch, final char[] charray)
    {
       boolean result = false;
@@ -131,13 +131,13 @@ public class GroupParameterParser
    }
 
    /**
-    * Parses out a token until any of the given terminators
-    * is encountered.
-    *
-    * @param terminators the array of terminating characters. Any of these
-    *                    characters when encountered signify the end of the token
-    * @return the token
-    */
+   * Parses out a token until any of the given terminators
+   * is encountered.
+   *
+   * @param terminators the array of terminating characters. Any of these
+   *                    characters when encountered signify the end of the token
+   * @return the token
+   */
    private String parseToken(final char[] terminators)
    {
       char ch;
@@ -157,14 +157,14 @@ public class GroupParameterParser
    }
 
    /**
-    * Parses out a token until any of the given terminators
-    * is encountered outside the quotation marks.
-    *
-    * @param terminators the array of terminating characters. Any of these
-    *                    characters when encountered outside the quotation marks signify the end
-    *                    of the token
-    * @return the token
-    */
+   * Parses out a token until any of the given terminators
+   * is encountered outside the quotation marks.
+   *
+   * @param terminators the array of terminating characters. Any of these
+   *                    characters when encountered outside the quotation marks signify the end
+   *                    of the token
+   * @return the token
+   */
    private String parseQuotedToken(final char[] terminators)
    {
       char ch;
@@ -192,40 +192,40 @@ public class GroupParameterParser
    }
 
    /**
-    * Returns <tt>true</tt> if parameter names are to be converted to lower
-    * case when name/value pairs are parsed.
-    *
-    * @return <tt>true</tt> if parameter names are to be
-    *         converted to lower case when name/value pairs are parsed.
-    *         Otherwise returns <tt>false</tt>
-    */
+   * Returns <tt>true</tt> if parameter names are to be converted to lower
+   * case when name/value pairs are parsed.
+   *
+   * @return <tt>true</tt> if parameter names are to be
+   *         converted to lower case when name/value pairs are parsed.
+   *         Otherwise returns <tt>false</tt>
+   */
    public boolean isLowerCaseNames()
    {
       return this.lowerCaseNames;
    }
 
    /**
-    * Sets the flag if parameter names are to be converted to lower case when
-    * name/value pairs are parsed.
-    *
-    * @param b <tt>true</tt> if parameter names are to be
-    *          converted to lower case when name/value pairs are parsed.
-    *          <tt>false</tt> otherwise.
-    */
+   * Sets the flag if parameter names are to be converted to lower case when
+   * name/value pairs are parsed.
+   *
+   * @param b <tt>true</tt> if parameter names are to be
+   *          converted to lower case when name/value pairs are parsed.
+   *          <tt>false</tt> otherwise.
+   */
    public void setLowerCaseNames(boolean b)
    {
       this.lowerCaseNames = b;
    }
 
    /**
-    * Extracts a map of name/value pairs from the given string. Names are
-    * expected to be unique.
-    *
-    * @param str       the string that contains a sequence of name/value pairs
-    * @param separator the name/value pairs separator
-    * @param groupSeparator group separator
-    * @return a map of name/value pairs
-    */
+   * Extracts a map of name/value pairs from the given string. Names are
+   * expected to be unique.
+   *
+   * @param str       the string that contains a sequence of name/value pairs
+   * @param separator the name/value pairs separator
+   * @param groupSeparator group separator
+   * @return a map of name/value pairs
+   */
    public List<Map<String, String>> parse(final String str, char separator, char groupSeparator)
    {
       if (str == null)
@@ -236,15 +236,15 @@ public class GroupParameterParser
    }
 
    /**
-    * Extracts a map of name/value pairs from the given array of
-    * characters. Names are expected to be unique.
-    *
-    * @param chars     the array of characters that contains a sequence of
-    *                  name/value pairs
-    * @param separator the name/value pairs separator
-    * @param groupSeparator group separator
-    * @return a map of name/value pairs
-    */
+   * Extracts a map of name/value pairs from the given array of
+   * characters. Names are expected to be unique.
+   *
+   * @param chars     the array of characters that contains a sequence of
+   *                  name/value pairs
+   * @param separator the name/value pairs separator
+   * @param groupSeparator group separator
+   * @return a map of name/value pairs
+   */
    public List<Map<String, String>> parse(final char[] chars, char separator, char groupSeparator)
    {
       if (chars == null)
@@ -255,23 +255,23 @@ public class GroupParameterParser
    }
 
    /**
-    * Extracts a map of name/value pairs from the given array of
-    * characters. Names are expected to be unique.
-    *
-    * @param chars     the array of characters that contains a sequence of
-    *                  name/value pairs
-    * @param offset    - the initial offset.
-    * @param length    - the length.
-    * @param separator the name/value pairs separator
-    * @param groupSeparator group separator
-    * @return a map of name/value pairs
-    */
+   * Extracts a map of name/value pairs from the given array of
+   * characters. Names are expected to be unique.
+   *
+   * @param chars     the array of characters that contains a sequence of
+   *                  name/value pairs
+   * @param offset    - the initial offset.
+   * @param length    - the length.
+   * @param separator the name/value pairs separator
+   * @param groupSeparator group separator
+   * @return a map of name/value pairs
+   */
    public List<Map<String, String>> parse(
-           final char[] chars,
-           int offset,
-           int length,
-           char separator,
-           char groupSeparator)
+         final char[] chars,
+         int offset,
+         int length,
+         char separator,
+         char groupSeparator)
    {
 
       if (chars == null)
@@ -289,14 +289,13 @@ public class GroupParameterParser
       String paramValue = null;
       while (hasChar())
       {
-         paramName = parseToken(new char[]{
-                 '=', separator, groupSeparator});
+         paramName = parseToken(new char[]{'=', separator, groupSeparator});
          paramValue = null;
          if (hasChar() && (chars[pos] == '='))
          {
             pos++; // skip '='
             paramValue = parseQuotedToken(new char[]{
-                    separator, groupSeparator});
+               separator, groupSeparator});
          }
          if ((paramName != null) && (paramName.length() > 0))
          {

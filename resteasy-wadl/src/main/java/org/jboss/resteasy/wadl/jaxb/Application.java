@@ -21,58 +21,58 @@ import org.w3c.dom.Element;
 
 
 /**
- * <p>Java class for anonymous complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element ref="{http://wadl.dev.java.net/2009/02}doc" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;element ref="{http://wadl.dev.java.net/2009/02}grammars" minOccurs="0"/&gt;
- *         &lt;element ref="{http://wadl.dev.java.net/2009/02}resources" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;choice maxOccurs="unbounded" minOccurs="0"&gt;
- *           &lt;element ref="{http://wadl.dev.java.net/2009/02}resource_type"/&gt;
- *           &lt;element ref="{http://wadl.dev.java.net/2009/02}method"/&gt;
- *           &lt;element ref="{http://wadl.dev.java.net/2009/02}representation"/&gt;
- *           &lt;element ref="{http://wadl.dev.java.net/2009/02}param"/&gt;
- *         &lt;/choice&gt;
- *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
- */
+   * <p>Java class for anonymous complex type.
+   * 
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * 
+   * <pre>
+   * &lt;complexType&gt;
+   *   &lt;complexContent&gt;
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+   *       &lt;sequence&gt;
+   *         &lt;element ref="{http://wadl.dev.java.net/2009/02}doc" maxOccurs="unbounded" minOccurs="0"/&gt;
+   *         &lt;element ref="{http://wadl.dev.java.net/2009/02}grammars" minOccurs="0"/&gt;
+   *         &lt;element ref="{http://wadl.dev.java.net/2009/02}resources" maxOccurs="unbounded" minOccurs="0"/&gt;
+   *         &lt;choice maxOccurs="unbounded" minOccurs="0"&gt;
+   *           &lt;element ref="{http://wadl.dev.java.net/2009/02}resource_type"/&gt;
+   *           &lt;element ref="{http://wadl.dev.java.net/2009/02}method"/&gt;
+   *           &lt;element ref="{http://wadl.dev.java.net/2009/02}representation"/&gt;
+   *           &lt;element ref="{http://wadl.dev.java.net/2009/02}param"/&gt;
+   *         &lt;/choice&gt;
+   *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
+   *       &lt;/sequence&gt;
+   *     &lt;/restriction&gt;
+   *   &lt;/complexContent&gt;
+   * &lt;/complexType&gt;
+   * </pre>
+   * 
+   * 
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "doc",
-    "grammars",
-    "resources",
-    "resourceTypeOrMethodOrRepresentation",
-    "any"
+   "doc",
+   "grammars",
+   "resources",
+   "resourceTypeOrMethodOrRepresentation",
+   "any"
 })
 @XmlRootElement(name = "application")
 public class Application {
 
-    protected List<Doc> doc;
-    protected Grammars grammars;
-    protected List<Resources> resources;
-    @XmlElements({
-        @XmlElement(name = "resource_type", type = ResourceType.class),
-        @XmlElement(name = "method", type = Method.class),
-        @XmlElement(name = "representation", type = Representation.class),
-        @XmlElement(name = "param", type = Param.class)
-    })
-    protected List<Object> resourceTypeOrMethodOrRepresentation;
-    @XmlAnyElement(lax = true)
-    protected List<Object> any;
+   protected List<Doc> doc;
+   protected Grammars grammars;
+   protected List<Resources> resources;
+   @XmlElements({
+      @XmlElement(name = "resource_type", type = ResourceType.class),
+      @XmlElement(name = "method", type = Method.class),
+      @XmlElement(name = "representation", type = Representation.class),
+      @XmlElement(name = "param", type = Param.class)
+   })
+   protected List<Object> resourceTypeOrMethodOrRepresentation;
+   @XmlAnyElement(lax = true)
+   protected List<Object> any;
 
-    /**
+   /**
      * Gets the value of the doc property.
      * 
      * <p>
@@ -94,14 +94,14 @@ public class Application {
      * 
      * 
      */
-    public List<Doc> getDoc() {
-        if (doc == null) {
-            doc = new ArrayList<Doc>();
-        }
-        return this.doc;
-    }
+   public List<Doc> getDoc() {
+      if (doc == null) {
+         doc = new ArrayList<Doc>();
+      }
+      return this.doc;
+   }
 
-    /**
+   /**
      * Gets the value of the grammars property.
      * 
      * @return
@@ -109,11 +109,11 @@ public class Application {
      *     {@link Grammars }
      *     
      */
-    public Grammars getGrammars() {
-        return grammars;
-    }
+   public Grammars getGrammars() {
+      return grammars;
+   }
 
-    /**
+   /**
      * Sets the value of the grammars property.
      * 
      * @param value
@@ -121,11 +121,11 @@ public class Application {
      *     {@link Grammars }
      *     
      */
-    public void setGrammars(Grammars value) {
-        this.grammars = value;
-    }
+   public void setGrammars(Grammars value) {
+      this.grammars = value;
+   }
 
-    /**
+   /**
      * Gets the value of the resources property.
      * 
      * <p>
@@ -147,14 +147,14 @@ public class Application {
      * 
      * 
      */
-    public List<Resources> getResources() {
-        if (resources == null) {
-            resources = new ArrayList<Resources>();
-        }
-        return this.resources;
-    }
+   public List<Resources> getResources() {
+      if (resources == null) {
+         resources = new ArrayList<Resources>();
+      }
+      return this.resources;
+   }
 
-    /**
+   /**
      * Gets the value of the resourceTypeOrMethodOrRepresentation property.
      * 
      * <p>
@@ -179,14 +179,14 @@ public class Application {
      * 
      * 
      */
-    public List<Object> getResourceTypeOrMethodOrRepresentation() {
-        if (resourceTypeOrMethodOrRepresentation == null) {
-            resourceTypeOrMethodOrRepresentation = new ArrayList<Object>();
-        }
-        return this.resourceTypeOrMethodOrRepresentation;
-    }
+   public List<Object> getResourceTypeOrMethodOrRepresentation() {
+      if (resourceTypeOrMethodOrRepresentation == null) {
+         resourceTypeOrMethodOrRepresentation = new ArrayList<Object>();
+      }
+      return this.resourceTypeOrMethodOrRepresentation;
+   }
 
-    /**
+   /**
      * Gets the value of the any property.
      * 
      * <p>
@@ -209,11 +209,11 @@ public class Application {
      * 
      * 
      */
-    public List<Object> getAny() {
-        if (any == null) {
-            any = new ArrayList<Object>();
-        }
-        return this.any;
-    }
+   public List<Object> getAny() {
+      if (any == null) {
+         any = new ArrayList<Object>();
+      }
+      return this.any;
+   }
 
 }

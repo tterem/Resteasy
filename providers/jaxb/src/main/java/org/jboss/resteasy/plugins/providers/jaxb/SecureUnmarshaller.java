@@ -38,14 +38,14 @@ import org.xml.sax.SAXNotSupportedException;
 import org.xml.sax.XMLReader;
 
 /**
- * 
- * @author <a href="mailto:ron.sigal@jboss.com">Ron Sigal</a>
- * 
- * @version $Revision: 1.1 $
- * Created Feb 1, 2012
- */
+   * 
+   * @author <a href="mailto:ron.sigal@jboss.com">Ron Sigal</a>
+   * 
+   * @version $Revision: 1.1 $
+   * Created Feb 1, 2012
+   */
 public class SecureUnmarshaller implements Unmarshaller {
-	
+
    private static class SAXParserProvider
    {
       private static final Map<ClassLoader, SAXParserProvider> saxParserProviders = Collections.synchronizedMap(new WeakHashMap<>());
@@ -66,11 +66,11 @@ public class SecureUnmarshaller implements Unmarshaller {
          } else
          {
             try {
-            tccl = AccessController.doPrivileged(new PrivilegedExceptionAction<ClassLoader>() {
-               public ClassLoader run() throws Exception {
-                  return Thread.currentThread().getContextClassLoader();
-               }
-            });
+               tccl = AccessController.doPrivileged(new PrivilegedExceptionAction<ClassLoader>() {
+                  public ClassLoader run() throws Exception {
+                     return Thread.currentThread().getContextClassLoader();
+                  }
+               });
             } catch (PrivilegedActionException e) {
                throw new SecurityException(e);
             }
@@ -103,30 +103,30 @@ public class SecureUnmarshaller implements Unmarshaller {
       }
    }
 
-	private Unmarshaller delegate;
-	boolean disableExternalEntities;
-	boolean enableSecureProcessingFeature;
-	boolean disableDTDs;
-	
-	public SecureUnmarshaller(Unmarshaller delegate, boolean disableExternalEntities, boolean enableSecureProcessingFeature, boolean disableDTDs) {
-		this.delegate = delegate;
-		this.disableExternalEntities = disableExternalEntities;
-		this.enableSecureProcessingFeature = enableSecureProcessingFeature;
-		this.disableDTDs = disableDTDs;
-	}
-	
-	@SuppressWarnings("unchecked")
-   public <A extends XmlAdapter> A getAdapter(Class<A> type) {
-		return delegate.getAdapter(type);
-	}
+   private Unmarshaller delegate;
+   boolean disableExternalEntities;
+   boolean enableSecureProcessingFeature;
+   boolean disableDTDs;
 
-	public AttachmentUnmarshaller getAttachmentUnmarshaller() {
-	   return delegate.getAttachmentUnmarshaller();
-	}
-	
-	public ValidationEventHandler getEventHandler() throws JAXBException {
-	   return delegate.getEventHandler();
-	}
+   public SecureUnmarshaller(Unmarshaller delegate, boolean disableExternalEntities, boolean enableSecureProcessingFeature, boolean disableDTDs) {
+      this.delegate = delegate;
+      this.disableExternalEntities = disableExternalEntities;
+      this.enableSecureProcessingFeature = enableSecureProcessingFeature;
+      this.disableDTDs = disableDTDs;
+   }
+
+   @SuppressWarnings("unchecked")
+   public <A extends XmlAdapter> A getAdapter(Class<A> type) {
+      return delegate.getAdapter(type);
+   }
+
+   public AttachmentUnmarshaller getAttachmentUnmarshaller() {
+      return delegate.getAttachmentUnmarshaller();
+   }
+
+   public ValidationEventHandler getEventHandler() throws JAXBException {
+      return delegate.getEventHandler();
+   }
 
    public Listener getListener() {
       return delegate.getListener();
@@ -145,9 +145,9 @@ public class SecureUnmarshaller implements Unmarshaller {
    }
 
    /**
-    * @deprecated This method is deprecated as of JAXB 2.0 - please use the new
+   * @deprecated This method is deprecated as of JAXB 2.0 - please use the new
      * {@link #getSchema()} API.
-    */
+   */
    @Deprecated
    public boolean isValidating() throws JAXBException {
       return delegate.isValidating();
@@ -184,8 +184,8 @@ public class SecureUnmarshaller implements Unmarshaller {
    }
 
    /**
-    * @deprecated since JAXB2.0, please see {@link #getSchema()}
-    */
+   * @deprecated since JAXB2.0, please see {@link #getSchema()}
+   */
    @Deprecated
    public void setValidating(boolean validating) throws JAXBException {
       delegate.setValidating(validating);
@@ -196,8 +196,8 @@ public class SecureUnmarshaller implements Unmarshaller {
    }
 
    /**
-    * Turns off expansion of external entities.
-    */
+   * Turns off expansion of external entities.
+   */
    public Object unmarshal(InputStream is) throws JAXBException {
       return unmarshal(new InputSource(is));
    }
@@ -211,20 +211,20 @@ public class SecureUnmarshaller implements Unmarshaller {
    }
 
    /**
-    * Turns off expansion of external entities.
-    */
+   * Turns off expansion of external entities.
+   */
    public Object unmarshal(InputSource source) throws JAXBException
    {
-       try
-       {
-          SAXParser sp = SAXParserProvider.getInstance().getParser(disableExternalEntities, enableSecureProcessingFeature, disableDTDs);
-          XMLReader xmlReader = sp.getXMLReader();
-          final SAXSource saxSource = new SAXSource(xmlReader, source);
-          if (System.getSecurityManager() == null) {
-             return delegate.unmarshal(saxSource);
-          }
-          else
-          {
+      try
+      {
+         SAXParser sp = SAXParserProvider.getInstance().getParser(disableExternalEntities, enableSecureProcessingFeature, disableDTDs);
+         XMLReader xmlReader = sp.getXMLReader();
+         final SAXSource saxSource = new SAXSource(xmlReader, source);
+         if (System.getSecurityManager() == null) {
+            return delegate.unmarshal(saxSource);
+         }
+         else
+         {
             return AccessController.doPrivileged(new PrivilegedExceptionAction<Object>()
             {
                @Override
@@ -233,7 +233,7 @@ public class SecureUnmarshaller implements Unmarshaller {
                   return delegate.unmarshal(saxSource);
                }
             });
-          }
+         }
       }
       catch (SAXException e)
       {

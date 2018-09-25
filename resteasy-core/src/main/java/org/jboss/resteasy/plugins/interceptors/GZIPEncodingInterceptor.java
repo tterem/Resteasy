@@ -15,9 +15,9 @@ import java.io.OutputStream;
 import java.util.zip.GZIPOutputStream;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @Provider
 @Priority(Priorities.ENTITY_CODER)
 public class GZIPEncodingInterceptor implements WriterInterceptor

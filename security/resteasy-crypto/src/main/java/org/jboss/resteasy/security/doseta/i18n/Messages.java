@@ -6,12 +6,12 @@ import org.jboss.logging.annotations.MessageBundle;
 import org.jboss.resteasy.security.doseta.DKIMSignature;
 
 /**
- * 
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * Copyright Aug 29, 2015
- */
+   * 
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * Copyright Aug 29, 2015
+   */
 @MessageBundle(projectCode = "RESTEASY")
 public interface Messages
 {

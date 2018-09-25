@@ -17,12 +17,12 @@ import org.jboss.resteasy.cdi.i18n.Messages;
 import org.junit.Test;
 
 /**
- * 
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * Copyright Aug 25, 2015
- */
+   * 
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * Copyright Aug 25, 2015
+   */
 @SuppressWarnings(value = "unchecked")
 abstract public class TestMessagesAbstract extends TestMessagesParent
 {

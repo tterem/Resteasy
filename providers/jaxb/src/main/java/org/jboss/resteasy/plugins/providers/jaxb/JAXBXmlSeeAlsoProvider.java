@@ -19,11 +19,11 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
- * A JAXBXmlRootElementProvider.
- *
- * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
- * @version $Revision:$
- */
+   * A JAXBXmlRootElementProvider.
+   *
+   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+   * @version $Revision:$
+   */
 @Provider
 @Produces({"application/xml", "application/*+xml", "text/xml", "text/*+xml"})
 @Consumes({"application/xml", "application/*+xml", "text/xml", "text/*+xml"})
@@ -31,7 +31,7 @@ public class JAXBXmlSeeAlsoProvider extends AbstractJAXBProvider<Object>
 {
    @Override
    public JAXBContext findJAXBContext(Class<?> type, Annotation[] annotations, MediaType mediaType, boolean reader)
-           throws JAXBException
+         throws JAXBException
    {
       ContextResolver<JAXBContextFinder> resolver = providers.getContextResolver(JAXBContextFinder.class, mediaType);
       JAXBContextFinder finder = resolver.getContext(type);

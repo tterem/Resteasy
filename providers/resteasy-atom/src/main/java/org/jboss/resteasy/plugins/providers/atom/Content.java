@@ -24,50 +24,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>Represents an atom:content element.</p>
- * <p>Per RFC4287:</p>
- * <pre>
- *  The "atom:content" element either contains or links to the content of
- *  the entry.  The content of atom:content is Language-Sensitive.
- *
- *  atomInlineTextContent =
- *     element atom:content {
- *        atomCommonAttributes,
- *        attribute type { "text" | "html" }?,
- *        (text)*
- *     }
- *
- *  atomInlineXHTMLContent =
- *     element atom:content {
- *        atomCommonAttributes,
- *        attribute type { "xhtml" },
- *        xhtmlDiv
- *     }
- *  atomInlineOtherContent =
- *     element atom:content {
- *        atomCommonAttributes,
- *        attribute type { atomMediaType }?,
- *        (text|anyElement)*
- *     }
- *
- *  atomOutOfLineContent =
- *     element atom:content {
- *        atomCommonAttributes,
- *        attribute type { atomMediaType }?,
- *        attribute src { atomUri },
- *        empty
- *     }
- *
- *  atomContent = atomInlineTextContent
- *   | atomInlineXHTMLContent
- *   | atomInlineOtherContent
- *   | atomOutOfLineContent
- *
- * </pre>
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * <p>Represents an atom:content element.</p>
+   * <p>Per RFC4287:</p>
+   * <pre>
+   *  The "atom:content" element either contains or links to the content of
+   *  the entry.  The content of atom:content is Language-Sensitive.
+   *
+   *  atomInlineTextContent =
+   *     element atom:content {
+   *        atomCommonAttributes,
+   *        attribute type { "text" | "html" }?,
+   *        (text)*
+   *     }
+   *
+   *  atomInlineXHTMLContent =
+   *     element atom:content {
+   *        atomCommonAttributes,
+   *        attribute type { "xhtml" },
+   *        xhtmlDiv
+   *     }
+   *  atomInlineOtherContent =
+   *     element atom:content {
+   *        atomCommonAttributes,
+   *        attribute type { atomMediaType }?,
+   *        (text|anyElement)*
+   *     }
+   *
+   *  atomOutOfLineContent =
+   *     element atom:content {
+   *        atomCommonAttributes,
+   *        attribute type { atomMediaType }?,
+   *        attribute src { atomUri },
+   *        empty
+   *     }
+   *
+   *  atomContent = atomInlineTextContent
+   *   | atomInlineXHTMLContent
+   *   | atomInlineOtherContent
+   *   | atomOutOfLineContent
+   *
+   * </pre>
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @XmlRootElement(name = "content")
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class Content extends CommonAttributes
@@ -118,10 +118,10 @@ public class Content extends CommonAttributes
    }
 
    /**
-    * Mime type of the content.
-    *
-    * @return media type
-    */
+   * Mime type of the content.
+   *
+   * @return media type
+   */
    @XmlTransient
    public MediaType getType()
    {
@@ -158,10 +158,10 @@ public class Content extends CommonAttributes
 
 
    /**
-    * If content is text, return it as a String.  Otherwise, if content is not text this will return null.
-    *
-    * @return text
-    */
+   * If content is text, return it as a String.  Otherwise, if content is not text this will return null.
+   *
+   * @return text
+   */
    @XmlTransient
    public String getText()
    {
@@ -178,10 +178,10 @@ public class Content extends CommonAttributes
    }
 
    /**
-    * Set content as text.
-    *
-    * @param text text
-    */
+   * Set content as text.
+   *
+   * @param text text
+   */
    public void setText(String text)
    {
       if (value == null) value = new ArrayList<Object>();
@@ -191,10 +191,10 @@ public class Content extends CommonAttributes
    }
 
    /**
-    * Get content as an XML Element if the content is XML.  Otherwise, this will just return null.
-    *
-    * @return {@link Element}
-    */
+   * Get content as an XML Element if the content is XML.  Otherwise, this will just return null.
+   *
+   * @return {@link Element}
+   */
    @XmlTransient
    public Element getElement()
    {
@@ -212,10 +212,10 @@ public class Content extends CommonAttributes
    }
 
    /**
-    * Set the content to an XML Element.
-    *
-    * @param element {@link Element}
-    */
+   * Set the content to an XML Element.
+   *
+   * @param element {@link Element}
+   */
    public void setElement(Element element)
    {
       if (value == null) value = new ArrayList<Object>();
@@ -226,18 +226,18 @@ public class Content extends CommonAttributes
    }
 
    /**
-    * Extract the content as the provided JAXB annotated type.
-    * <p>
-    * This method will use a cached JAXBContext used by the Resteasy JAXB providers
-    * or, if those are not existent, it will create a new JAXBContext from scratch
-    * using the class.
-    *
-    * @param <T> type
-    * @param clazz                class type you are expecting
-    * @param otherPossibleClasses Other classe you want to create the JAXBContext with
-    * @return null if there is no XML content
-    * @throws JAXBException jaxb exception
-    */
+   * Extract the content as the provided JAXB annotated type.
+   * <p>
+   * This method will use a cached JAXBContext used by the Resteasy JAXB providers
+   * or, if those are not existent, it will create a new JAXBContext from scratch
+   * using the class.
+   *
+   * @param <T> type
+   * @param clazz                class type you are expecting
+   * @param otherPossibleClasses Other classe you want to create the JAXBContext with
+   * @return null if there is no XML content
+   * @throws JAXBException jaxb exception
+   */
    @SuppressWarnings(value = "unchecked")
    public <T> T getJAXBObject(Class<T> clazz, Class... otherPossibleClasses) throws JAXBException
    {
@@ -292,11 +292,11 @@ public class Content extends CommonAttributes
    }
 
    /**
-    * Returns previous extracted jaxbobject from a call to getJAXBObject(Class{@literal <}T{@literal >} clazz)
-    * or value passed in through a previous setJAXBObject().
-    *
-    * @return jaxb object
-    */
+   * Returns previous extracted jaxbobject from a call to getJAXBObject(Class{@literal <}T{@literal >} clazz)
+   * or value passed in through a previous setJAXBObject().
+   *
+   * @return jaxb object
+   */
    @XmlTransient
    public Object getJAXBObject()
    {

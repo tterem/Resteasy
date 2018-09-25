@@ -27,11 +27,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpTestCaseDetails RESTEASY-1540
- * @tpSince RESTEasy 3.1.0.Final
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpTestCaseDetails RESTEASY-1540
+   * @tpSince RESTEasy 3.1.0.Final
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 @Category({NotForForwardCompatibility.class})
@@ -40,29 +40,29 @@ public class AbortMessageTest {
 
    @BeforeClass
    public static void setup() {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void close() {
-       client.close();
+      client.close();
    }
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(AbortMessageTest.class.getSimpleName());
-       war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(
+      WebArchive war = TestUtil.prepareArchive(AbortMessageTest.class.getSimpleName());
+      war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(
                new LoggingPermission("control", ""),
                new RuntimePermission("accessDeclaredMembers")
-       ), "permissions.xml");
-       return TestUtil.finishContainerPrepare(war, null, AbortMessageResourceFilter.class);
+      ), "permissions.xml");
+      return TestUtil.finishContainerPrepare(war, null, AbortMessageResourceFilter.class);
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, AbortMessageTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, AbortMessageTest.class.getSimpleName());
    }
 
-    /**
+   /**
      * @tpTestDetails Send response with "Aborted"
      * @tpSince RESTEasy 3.1.0.Final
      */

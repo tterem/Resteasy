@@ -49,9 +49,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class BasicAuthTest
 {
    private static Dispatcher dispatcher;
@@ -143,10 +143,8 @@ public class BasicAuthTest
    public static void before() throws Exception
    {
       SimpleSecurityDomain domain = new SimpleSecurityDomain();
-      String[] roles =
-              {"admin"};
-      String[] basic =
-              {"user"};
+      String[] roles = {"admin"};
+      String[] basic = {"user"};
       domain.addUser("bill", "password", roles);
       domain.addUser("mo", "password", basic);
       dispatcher = HttpServerContainer.start("", domain).getDispatcher();
@@ -199,7 +197,7 @@ public class BasicAuthTest
       CloseableHttpClient httpClient = HttpClientBuilder.create().setDefaultCredentialsProvider(cp).build();
       ClientHttpEngine engine = createAuthenticatingEngine(httpClient);
       Client client = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
- 
+   
       {
          Builder request = client.target(generateURL("/secured")).request();
          Response response = request.get();
@@ -222,12 +220,12 @@ public class BasicAuthTest
    }
 
    /**
-    * RESTEASY-579
-    *
-    * Found 579 bug when doing 575 so the test is here out of laziness
-    *
-    * @throws Exception
-    */
+   * RESTEASY-579
+   *
+   * Found 579 bug when doing 575 so the test is here out of laziness
+   *
+   * @throws Exception
+   */
    @Test
    public void test579() throws Exception
    {
@@ -275,8 +273,8 @@ public class BasicAuthTest
    }
 
    /**
-    * Create a ClientExecutor which does preemptive authentication.
-    */
+   * Create a ClientExecutor which does preemptive authentication.
+   */
    
    static private ClientHttpEngine createAuthenticatingEngine(CloseableHttpClient client)
    {

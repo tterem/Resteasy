@@ -35,9 +35,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ServerCacheTest
 {
    private static NettyJaxrsServer server;
@@ -79,8 +79,8 @@ public class ServerCacheTest
    }
 
    /**
-    * @param resource
-    */
+   * @param resource
+   */
    public static void addPerRequestResource(Class<?> resource)
    {
       deployment.getRegistry().addPerRequestResource(resource);
@@ -430,25 +430,25 @@ public class ServerCacheTest
 
    @Test
    public void testVary() throws Exception {
-       int cachedCount;
-       {
-           Builder request = client.target(generateURL("/cache/vary")).request();
-           Response foo = request.accept("text/plain").header("X-Test-Vary", "foo").get();
-           Assert.assertEquals("foo", foo.readEntity(String.class));
-           cachedCount = Integer.parseInt(foo.getHeaderString("X-Count"));
-       }
-       {
-           Builder request = client.target(generateURL("/cache/vary")).request();
-           Response bar = request.accept("text/plain").header("X-Test-Vary", "bar").get();
-           Assert.assertEquals("bar", bar.readEntity(String.class));
-       }
-       {
-           Builder request = client.target(generateURL("/cache/vary")).request();
-           Response foo = request.accept("text/plain").header("X-Test-Vary", "foo").get();
-           Assert.assertEquals("foo", foo.readEntity(String.class));
-           int currentCount = Integer.parseInt(foo.getHeaderString("X-Count"));
-           Assert.assertEquals(cachedCount, currentCount);
-       }
+      int cachedCount;
+      {
+         Builder request = client.target(generateURL("/cache/vary")).request();
+         Response foo = request.accept("text/plain").header("X-Test-Vary", "foo").get();
+         Assert.assertEquals("foo", foo.readEntity(String.class));
+         cachedCount = Integer.parseInt(foo.getHeaderString("X-Count"));
+      }
+      {
+         Builder request = client.target(generateURL("/cache/vary")).request();
+         Response bar = request.accept("text/plain").header("X-Test-Vary", "bar").get();
+         Assert.assertEquals("bar", bar.readEntity(String.class));
+      }
+      {
+         Builder request = client.target(generateURL("/cache/vary")).request();
+         Response foo = request.accept("text/plain").header("X-Test-Vary", "foo").get();
+         Assert.assertEquals("foo", foo.readEntity(String.class));
+         int currentCount = Integer.parseInt(foo.getHeaderString("X-Count"));
+         Assert.assertEquals(cachedCount, currentCount);
+      }
    }
 
    @Test

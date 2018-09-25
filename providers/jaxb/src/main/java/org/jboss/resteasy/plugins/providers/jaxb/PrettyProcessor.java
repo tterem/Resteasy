@@ -9,9 +9,9 @@ import javax.xml.bind.Marshaller;
 import java.lang.annotation.Annotation;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @DecorateTypes({"text/*+xml", "application/*+xml"})
 public class PrettyProcessor implements DecoratorProcessor<Marshaller, Formatted>
 {
@@ -29,4 +29,3 @@ public class PrettyProcessor implements DecoratorProcessor<Marshaller, Formatted
       }
    }
 }
-

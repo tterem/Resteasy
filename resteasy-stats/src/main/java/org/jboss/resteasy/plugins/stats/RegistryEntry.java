@@ -9,21 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <pre>
- * {@literal <}resource uriTemplate="/foo/bar{fff:.*}/x/a"{@literal >}
- *     {@literal <}get method="org.blah.MyResource.method()" invocations="5555"{@literal >}
- *         {@literal <}produces{@literal >}application/xml{@literal <}/produces{@literal >}
- *         {@literal <}produces{@literal >}application/json{@literal <}/produces{@literal >}
- *     {@literal <}/get{@literal >}
- *     {@literal <}post method="org.blah.MyResource.post()"{@literal >}
- *         {@literal <}produces{@literal >}application/xml{@literal <}/produces{@literal >}
- *     {@literal <}/post{@literal >}
- * {@literal <}/resource{@literal >}
- * </pre>
- * 
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 2 $
- */
+   * <pre>
+   * {@literal <}resource uriTemplate="/foo/bar{fff:.*}/x/a"{@literal >}
+   *     {@literal <}get method="org.blah.MyResource.method()" invocations="5555"{@literal >}
+   *         {@literal <}produces{@literal >}application/xml{@literal <}/produces{@literal >}
+   *         {@literal <}produces{@literal >}application/json{@literal <}/produces{@literal >}
+   *     {@literal <}/get{@literal >}
+   *     {@literal <}post method="org.blah.MyResource.post()"{@literal >}
+   *         {@literal <}produces{@literal >}application/xml{@literal <}/produces{@literal >}
+   *     {@literal <}/post{@literal >}
+   * {@literal <}/resource{@literal >}
+   * </pre>
+   * 
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 2 $
+   */
 @XmlRootElement(name = "resource")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RegistryEntry implements Comparable<RegistryEntry>
@@ -62,12 +62,12 @@ public class RegistryEntry implements Comparable<RegistryEntry>
       return methods;
    }
 
-    @Override
-    public int compareTo(RegistryEntry o)
-    {
-        if (this.getUriTemplate() == null)
-            return o.getUriTemplate() == null ? 0 : 1;
+   @Override
+   public int compareTo(RegistryEntry o)
+   {
+      if (this.getUriTemplate() == null)
+         return o.getUriTemplate() == null ? 0 : 1;
 
-        return this.getUriTemplate().compareTo(o.getUriTemplate());
-    }
+      return this.getUriTemplate().compareTo(o.getUriTemplate());
+   }
 }

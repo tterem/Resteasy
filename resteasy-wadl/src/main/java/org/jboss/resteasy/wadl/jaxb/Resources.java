@@ -26,49 +26,49 @@ import org.w3c.dom.Element;
 
 
 /**
- * <p>Java class for anonymous complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element ref="{http://wadl.dev.java.net/2009/02}doc" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;element ref="{http://wadl.dev.java.net/2009/02}resource" maxOccurs="unbounded"/&gt;
- *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="base" type="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
- *       &lt;anyAttribute processContents='lax' namespace='##other'/&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
- */
+   * <p>Java class for anonymous complex type.
+   * 
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * 
+   * <pre>
+   * &lt;complexType&gt;
+   *   &lt;complexContent&gt;
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+   *       &lt;sequence&gt;
+   *         &lt;element ref="{http://wadl.dev.java.net/2009/02}doc" maxOccurs="unbounded" minOccurs="0"/&gt;
+   *         &lt;element ref="{http://wadl.dev.java.net/2009/02}resource" maxOccurs="unbounded"/&gt;
+   *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
+   *       &lt;/sequence&gt;
+   *       &lt;attribute name="base" type="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
+   *       &lt;anyAttribute processContents='lax' namespace='##other'/&gt;
+   *     &lt;/restriction&gt;
+   *   &lt;/complexContent&gt;
+   * &lt;/complexType&gt;
+   * </pre>
+   * 
+   * 
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "doc",
-    "resource",
-    "any"
+   "doc",
+   "resource",
+   "any"
 })
 @XmlRootElement(name = "resources")
 public class Resources {
 
-    protected List<Doc> doc;
-    @XmlElement(required = true)
-    protected List<Resource> resource;
-    @XmlAnyElement(lax = true)
-    protected List<Object> any;
-    @XmlAttribute(name = "base")
-    @XmlSchemaType(name = "anyURI")
-    protected String base;
-    @XmlAnyAttribute
-    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+   protected List<Doc> doc;
+   @XmlElement(required = true)
+   protected List<Resource> resource;
+   @XmlAnyElement(lax = true)
+   protected List<Object> any;
+   @XmlAttribute(name = "base")
+   @XmlSchemaType(name = "anyURI")
+   protected String base;
+   @XmlAnyAttribute
+   private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
-    /**
+   /**
      * Gets the value of the doc property.
      * 
      * <p>
@@ -90,14 +90,14 @@ public class Resources {
      * 
      * 
      */
-    public List<Doc> getDoc() {
-        if (doc == null) {
-            doc = new ArrayList<Doc>();
-        }
-        return this.doc;
-    }
+   public List<Doc> getDoc() {
+      if (doc == null) {
+         doc = new ArrayList<Doc>();
+      }
+      return this.doc;
+   }
 
-    /**
+   /**
      * Gets the value of the resource property.
      * 
      * <p>
@@ -119,14 +119,14 @@ public class Resources {
      * 
      * 
      */
-    public List<Resource> getResource() {
-        if (resource == null) {
-            resource = new ArrayList<Resource>();
-        }
-        return this.resource;
-    }
+   public List<Resource> getResource() {
+      if (resource == null) {
+         resource = new ArrayList<Resource>();
+      }
+      return this.resource;
+   }
 
-    /**
+   /**
      * Gets the value of the any property.
      * 
      * <p>
@@ -149,14 +149,14 @@ public class Resources {
      * 
      * 
      */
-    public List<Object> getAny() {
-        if (any == null) {
-            any = new ArrayList<Object>();
-        }
-        return this.any;
-    }
+   public List<Object> getAny() {
+      if (any == null) {
+         any = new ArrayList<Object>();
+      }
+      return this.any;
+   }
 
-    /**
+   /**
      * Gets the value of the base property.
      * 
      * @return
@@ -164,11 +164,11 @@ public class Resources {
      *     {@link String }
      *     
      */
-    public String getBase() {
-        return base;
-    }
+   public String getBase() {
+      return base;
+   }
 
-    /**
+   /**
      * Sets the value of the base property.
      * 
      * @param value
@@ -176,11 +176,11 @@ public class Resources {
      *     {@link String }
      *     
      */
-    public void setBase(String value) {
-        this.base = value;
-    }
+   public void setBase(String value) {
+      this.base = value;
+   }
 
-    /**
+   /**
      * Gets a map that contains attributes that aren't bound to any typed property on this class.
      * 
      * <p>
@@ -194,8 +194,8 @@ public class Resources {
      * @return
      *     always non-null
      */
-    public Map<QName, String> getOtherAttributes() {
-        return otherAttributes;
-    }
+   public Map<QName, String> getOtherAttributes() {
+      return otherAttributes;
+   }
 
 }

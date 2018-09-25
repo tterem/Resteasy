@@ -18,14 +18,14 @@ import java.io.IOException;
 import java.util.concurrent.CompletionException;
 
 /**
- * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
+   * @version $Revision: 1 $
+   */
 // TODO: Right now there's a problematic relationship between Dispatcher and
 // Registry. Ideally, the Registry shouldn't be owned by the Dispatcher, and the
 // methods needed from SynchronousDispatcher should move into a shared class.
 public class ResteasyHandlerAdapter extends
-        ResteasyWebHandlerTemplate<ModelAndView> implements HandlerAdapter
+      ResteasyWebHandlerTemplate<ModelAndView> implements HandlerAdapter
 {
    protected ResteasyDeployment deployment;
 
@@ -57,7 +57,7 @@ public class ResteasyHandlerAdapter extends
          try
          {
             response.sendError(requestWrapper.getErrorCode(), requestWrapper
-                    .getErrorMessage());
+               .getErrorMessage());
          }
          catch (Exception e)
          {
@@ -84,7 +84,7 @@ public class ResteasyHandlerAdapter extends
    }
 
    protected ModelAndView createModelAndView(
-           ResteasyRequestWrapper requestWrapper, HttpResponse response)
+         ResteasyRequestWrapper requestWrapper, HttpResponse response)
    {
       HttpRequest request = requestWrapper.getHttpRequest();
       SynchronousDispatcher dispatcher = (SynchronousDispatcher)deployment.getDispatcher();

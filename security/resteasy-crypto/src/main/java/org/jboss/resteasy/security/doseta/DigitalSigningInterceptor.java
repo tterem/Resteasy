@@ -30,9 +30,9 @@ import org.jboss.resteasy.security.doseta.i18n.LogMessages;
 import org.jboss.resteasy.security.doseta.i18n.Messages;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @Provider
 @Priority(Priorities.ENTITY_CODER)
 public class DigitalSigningInterceptor implements WriterInterceptor, ContainerResponseFilter, ClientRequestFilter

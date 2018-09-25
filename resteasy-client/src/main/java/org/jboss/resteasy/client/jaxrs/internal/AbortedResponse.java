@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class AbortedResponse extends ClientResponse
 {
    protected InputStream is;
@@ -35,7 +35,7 @@ public class AbortedResponse extends ClientResponse
       {
          for (Object obj : entry.getValue())
          {
-             getMetadata().add(entry.getKey(), configuration.toHeaderString(obj));
+            getMetadata().add(entry.getKey(), configuration.toHeaderString(obj));
          }
       }
       setStatus(response.getStatus());
@@ -60,8 +60,8 @@ public class AbortedResponse extends ClientResponse
 
             @SuppressWarnings("rawtypes")
             MessageBodyWriter writer = configuration
-                    .getMessageBodyWriter(getEntityClass(), getGenericType(),
-                            null, mediaType);
+               .getMessageBodyWriter(getEntityClass(), getGenericType(),
+                     null, mediaType);
             if (writer == null) {
                throw new ProcessingException(Messages.MESSAGES.failedToBufferAbortedResponseNoWriter(mediaType, entityClass.getName()));
             }
@@ -133,8 +133,8 @@ public class AbortedResponse extends ClientResponse
    }
    
    /**
-    * Added for RESTEASY-1540.
-    */
+   * Added for RESTEASY-1540.
+   */
    @Override
    public synchronized <T> T readEntity(Class<T> type, Type genericType, Annotation[] anns)
    {

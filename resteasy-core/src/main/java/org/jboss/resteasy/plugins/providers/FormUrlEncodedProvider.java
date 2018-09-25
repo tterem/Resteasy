@@ -31,9 +31,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings("rawtypes")
 @Provider
 @Produces("application/x-www-form-urlencoded")
@@ -70,7 +70,7 @@ public class FormUrlEncodedProvider implements MessageBodyReader<MultivaluedMap>
    }
 
    public static MultivaluedMap<String, String> parseForm(InputStream entityStream, String charset)
-           throws IOException
+         throws IOException
    {
       char[] buffer = new char[100];
       StringBuffer buf = new StringBuffer();

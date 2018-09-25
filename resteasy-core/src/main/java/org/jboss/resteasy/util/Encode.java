@@ -19,9 +19,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class Encode
 {
    private static final String UTF_8 = StandardCharsets.UTF_8.name();
@@ -37,14 +37,14 @@ public class Encode
    static
    {
       /*
-       * Encode via <a href="http://ietf.org/rfc/rfc3986.txt">RFC 3986</a>.  PCHAR is allowed allong with '/'
-       *
-       * unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
-       * sub-delims  = "!" / "$" / "&" / "'" / "(" / ")"
+      * Encode via <a href="http://ietf.org/rfc/rfc3986.txt">RFC 3986</a>.  PCHAR is allowed allong with '/'
+      *
+      * unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
+      * sub-delims  = "!" / "$" / "&" / "'" / "(" / ")"
                      / "*" / "+" / "," / ";" / "="
-       * pchar = unreserved / pct-encoded / sub-delims / ":" / "@"
-       *
-       */
+      * pchar = unreserved / pct-encoded / sub-delims / ":" / "@"
+      *
+      */
       for (int i = 0; i < 128; i++)
       {
          if (i >= 'a' && i <= 'z') continue;
@@ -82,12 +82,12 @@ public class Encode
       System.arraycopy(pathEncoding, 0, pathSegmentEncoding, 0, pathEncoding.length);
       pathSegmentEncoding['/'] = "%2F";
       /*
-       * Encode via <a href="http://ietf.org/rfc/rfc3986.txt">RFC 3986</a>.
-       *
-       * unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
-       * space encoded as '+'
-       *
-       */
+      * Encode via <a href="http://ietf.org/rfc/rfc3986.txt">RFC 3986</a>.
+      *
+      * unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
+      * space encoded as '+'
+      *
+      */
       for (int i = 0; i < 128; i++)
       {
          if (i >= 'a' && i <= 'z') continue;
@@ -109,9 +109,9 @@ public class Encode
       }
 
       /*
-       * query       = *( pchar / "/" / "?" )
+      * query       = *( pchar / "/" / "?" )
 
-       */
+      */
       for (int i = 0; i < 128; i++)
       {
          if (i >= 'a' && i <= 'z') continue;
@@ -148,60 +148,60 @@ public class Encode
    }
 
    /**
-    * Keep encoded values "%..." and template parameters intact.
-    * @param value query string
-    * @return encoded query string
-    */
+   * Keep encoded values "%..." and template parameters intact.
+   * @param value query string
+   * @return encoded query string
+   */
    public static String encodeQueryString(String value)
    {
       return encodeValue(value, queryStringEncoding);
    }
 
    /**
-    * Keep encoded values "%...", matrix parameters, template parameters, and '/' characters intact.
-    * @param value path
-    * @return encoded path
-    */
+   * Keep encoded values "%...", matrix parameters, template parameters, and '/' characters intact.
+   * @param value path
+   * @return encoded path
+   */
    public static String encodePath(String value)
    {
       return encodeValue(value, pathEncoding);
    }
 
    /**
-    * Keep encoded values "%...", matrix parameters and template parameters intact.
-    * @param value path segment
-    * @return encoded path segment
-    */
+   * Keep encoded values "%...", matrix parameters and template parameters intact.
+   * @param value path segment
+   * @return encoded path segment
+   */
    public static String encodePathSegment(String value)
    {
       return encodeValue(value, pathSegmentEncoding);
    }
 
    /**
-    * Keep encoded values "%..." and template parameters intact.
-    * @param value uri fragment
-    * @return encoded uri fragment
-    */
+   * Keep encoded values "%..." and template parameters intact.
+   * @param value uri fragment
+   * @return encoded uri fragment
+   */
    public static String encodeFragment(String value)
    {
       return encodeValue(value, queryStringEncoding);
    }
 
    /**
-    * Keep encoded values "%..." and template parameters intact.
-    * @param value matrix parameter
-    * @return encoded matrix parameter
-    */
+   * Keep encoded values "%..." and template parameters intact.
+   * @param value matrix parameter
+   * @return encoded matrix parameter
+   */
    public static String encodeMatrixParam(String value)
    {
       return encodeValue(value, matrixParameterEncoding);
    }
 
    /**
-    * Keep encoded values "%..." and template parameters intact.
-    * @param value query parameter
-    * @return encoded query parameter
-    */
+   * Keep encoded values "%..." and template parameters intact.
+   * @param value query parameter
+   * @return encoded query parameter
+   */
    public static String encodeQueryParam(String value)
    {
       return encodeValue(value, queryNameValueEncoding);
@@ -220,7 +220,7 @@ public class Encode
       CharsetDecoder decoder = Charset.forName(UTF_8).newDecoder();
       while (matcher.find())
       {
-    	 builder.append(path, start, matcher.start());
+         builder.append(path, start, matcher.start());
          decoder.reset();
          String decoded = decodeBytes(matcher.group(1), decoder);
          builder.append(decoded);
@@ -251,11 +251,11 @@ public class Encode
    }
 
    /**
-    * Encode '%' if it is not an encoding sequence
-    *
-    * @param string value to encode
-    * @return encoded value
-    */
+   * Encode '%' if it is not an encoding sequence
+   *
+   * @param string value to encode
+   * @return encoded value
+   */
    public static String encodeNonCodes(String string)
    {
       Matcher matcher = nonCodes.matcher(string);
@@ -288,7 +288,7 @@ public class Encode
       int start = 0;
       while (matcher.find())
       {
-    	 newSegment.append(segment, start, matcher.start());
+         newSegment.append(segment, start, matcher.start());
          foundParam = true;
          String group = matcher.group();
          // Regular expressions can have '{' and '}' characters.  Recover earlier replacement
@@ -301,12 +301,12 @@ public class Encode
    }
 
    /**
-    * Keep encoded values "%..." and template parameters intact i.e. "{x}"
-    *
-    * @param segment value to encode
-    * @param encoding encoding
-    * @return encoded value
-    */
+   * Keep encoded values "%..." and template parameters intact i.e. "{x}"
+   *
+   * @param segment value to encode
+   * @param encoding encoding
+   * @return encoded value
+   */
    public static String encodeValue(String segment, String[] encoding)
    {
       ArrayList<String> params = new ArrayList<String>();
@@ -328,26 +328,26 @@ public class Encode
    }
 
    /**
-    * Encode via <a href="http://ietf.org/rfc/rfc3986.txt">RFC 3986</a>.  PCHAR is allowed allong with '/'
-    * <p>
-    * unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
-    * sub-delims  = "!" / "$" / "&#x26;" / "'" / "(" / ")"
-    * / "*" / "+" / "," / ";" / "="
-    * pchar = unreserved / pct-encoded / sub-delims / ":" / "@"
-    * @param segment value to encode
-    * @return encoded value
-    */
+   * Encode via <a href="http://ietf.org/rfc/rfc3986.txt">RFC 3986</a>.  PCHAR is allowed allong with '/'
+   * <p>
+   * unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
+   * sub-delims  = "!" / "$" / "&#x26;" / "'" / "(" / ")"
+   * / "*" / "+" / "," / ";" / "="
+   * pchar = unreserved / pct-encoded / sub-delims / ":" / "@"
+   * @param segment value to encode
+   * @return encoded value
+   */
    public static String encodePathAsIs(String segment)
    {
       return encodeFromArray(segment, pathEncoding, true);
    }
 
    /**
-    * Keep any valid encodings from string i.e. keep "%2D" but don't keep "%p"
-    *
-    * @param segment value to encode
-    * @return encoded value
-    */
+   * Keep any valid encodings from string i.e. keep "%2D" but don't keep "%p"
+   *
+   * @param segment value to encode
+   * @return encoded value
+   */
    public static String encodePathSaveEncodings(String segment)
    {
       String result = encodeFromArray(segment, pathEncoding, false);
@@ -356,26 +356,26 @@ public class Encode
    }
 
    /**
-    * Encode via <a href="http://ietf.org/rfc/rfc3986.txt">RFC 3986</a>.  PCHAR is allowed allong with '/'
-    * <p>
-    * unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
-    * sub-delims  = "!" / "$" / "&#x26;" / "'" / "(" / ")"
-    * / "*" / "+" / "," / ";" / "="
-    * pchar = unreserved / pct-encoded / sub-delims / ":" / "@"
-    * @param segment value to encode
-    * @return encoded value
-    */
+   * Encode via <a href="http://ietf.org/rfc/rfc3986.txt">RFC 3986</a>.  PCHAR is allowed allong with '/'
+   * <p>
+   * unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
+   * sub-delims  = "!" / "$" / "&#x26;" / "'" / "(" / ")"
+   * / "*" / "+" / "," / ";" / "="
+   * pchar = unreserved / pct-encoded / sub-delims / ":" / "@"
+   * @param segment value to encode
+   * @return encoded value
+   */
    public static String encodePathSegmentAsIs(String segment)
    {
       return encodeFromArray(segment, pathSegmentEncoding, true);
    }
 
    /**
-    * Keep any valid encodings from string i.e. keep "%2D" but don't keep "%p"
-    *
-    * @param segment value to encode
-    * @return encoded value
-    */
+   * Keep any valid encodings from string i.e. keep "%2D" but don't keep "%p"
+   *
+   * @param segment value to encode
+   * @return encoded value
+   */
    public static String encodePathSegmentSaveEncodings(String segment)
    {
       String result = encodeFromArray(segment, pathSegmentEncoding, false);
@@ -385,22 +385,22 @@ public class Encode
 
 
    /**
-    * Encodes everything of a query parameter name or value.
-    *
-    * @param nameOrValue value to encode
-    * @return encoded value
-    */
+   * Encodes everything of a query parameter name or value.
+   *
+   * @param nameOrValue value to encode
+   * @return encoded value
+   */
    public static String encodeQueryParamAsIs(String nameOrValue)
    {
       return encodeFromArray(nameOrValue, queryNameValueEncoding, true);
    }
 
    /**
-    * Keep any valid encodings from string i.e. keep "%2D" but don't keep "%p"
-    *
-    * @param segment value to encode
-    * @return encoded value
-    */
+   * Keep any valid encodings from string i.e. keep "%2D" but don't keep "%p"
+   *
+   * @param segment value to encode
+   * @return encoded value
+   */
    public static String encodeQueryParamSaveEncodings(String segment)
    {
       String result = encodeFromArray(segment, queryNameValueEncoding, false);
@@ -418,7 +418,7 @@ public class Encode
       StringBuilder result = new StringBuilder();
       for (int i = 0; i < segment.length(); i++)
       {
-    	 char currentChar = segment.charAt(i);
+         char currentChar = segment.charAt(i);
          if (!encodePercent && currentChar == '%')
          {
             result.append(currentChar);
@@ -438,10 +438,10 @@ public class Encode
    }
 
    /**
-    * @param zhar        integer representation of character
-    * @param encodingMap encoding map
-    * @return URL encoded character
-    */
+   * @param zhar        integer representation of character
+   * @param encodingMap encoding map
+   * @return URL encoded character
+   */
    private static String encode(int zhar, String[] encodingMap)
    {
       String encoded;
@@ -471,22 +471,22 @@ public class Encode
       int start = 0;
       while (matcher.find())
       {
-    	 newSegment.append(segment, start, matcher.start());
+         newSegment.append(segment, start, matcher.start());
          String replacement = params.get(i++);
-     	 newSegment.append(replacement);
-		 start = matcher.end();
+         newSegment.append(replacement);
+         start = matcher.end();
       }
-  	  newSegment.append(segment, start, segment.length());
+      newSegment.append(segment, start, segment.length());
       segment = newSegment.toString();
       return segment;
    }
 
    /**
-    * decode an encoded map
-    *
-    * @param map map
-    * @return decoded map
-    */
+   * decode an encoded map
+   *
+   * @param map map
+   * @return decoded map
+   */
    public static MultivaluedMap<String, String> decode(MultivaluedMap<String, String> map)
    {
       MultivaluedMapImpl<String, String> decoded = new MultivaluedMapImpl<String, String>();
@@ -509,12 +509,12 @@ public class Encode
    }
    
    /**
-    * decode an encoded map
-    *
-    * @param map map
-    * @param charset charset
-    * @return decoded map
-    */
+   * decode an encoded map
+   *
+   * @param map map
+   * @param charset charset
+   * @return decoded map
+   */
    public static MultivaluedMap<String, String> decode(MultivaluedMap<String, String> map, String charset)
    {
       if (charset == null)
