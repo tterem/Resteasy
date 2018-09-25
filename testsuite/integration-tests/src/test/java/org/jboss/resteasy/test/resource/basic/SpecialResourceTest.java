@@ -34,11 +34,11 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 
 /**
- * @tpSubChapter Resources
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEasy issues about special resources
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resources
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEasy issues about special resources
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SpecialResourceTest {
@@ -120,13 +120,13 @@ public class SpecialResourceTest {
       } catch (IOException e) {
             throw new RuntimeException(e);
       } finally {
-           try
-           {
+         try
+         {
               EntityUtils.consume(response.getEntity());
-           } catch (IOException e)
-           {
+         } catch (IOException e)
+         {
               LogMessages.LOGGER.unableToCloseEntityStream(e);
-           }
+         }
       }
    }
 

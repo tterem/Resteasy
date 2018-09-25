@@ -111,14 +111,14 @@ public class GzipResource {
    @Path("big/send")
    public Response sendBig(byte[] b)
    {
-       return Response.ok().build();
+      return Response.ok().build();
    }
     
    @POST
    @Path("big/receive")
    public Response receiveBig(int n)
    {
-       Variant variant = new Variant(MediaType.APPLICATION_OCTET_STREAM_TYPE, Locale.ENGLISH, "gzip");
-       return Response.ok(new byte[n]).variant(variant).header("xyz", "abc").build();
+      Variant variant = new Variant(MediaType.APPLICATION_OCTET_STREAM_TYPE, Locale.ENGLISH, "gzip");
+      return Response.ok(new byte[n]).variant(variant).header("xyz", "abc").build();
    }
 }

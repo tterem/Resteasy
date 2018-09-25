@@ -35,9 +35,9 @@ import static org.jboss.resteasy.test.TestPortProvider.getHost;
 import static org.jboss.resteasy.test.TestPortProvider.getPort;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class VertxTest
 {
 

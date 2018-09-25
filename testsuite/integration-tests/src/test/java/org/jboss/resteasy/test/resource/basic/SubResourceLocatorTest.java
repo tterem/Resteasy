@@ -27,11 +27,11 @@ import javax.ws.rs.core.Response;
 import static org.hamcrest.CoreMatchers.is;
 
 /**
- * @tpSubChapter Resources
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-657
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resources
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-657
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SubResourceLocatorTest {

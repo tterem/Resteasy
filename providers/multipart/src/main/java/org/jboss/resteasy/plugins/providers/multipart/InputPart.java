@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 
 /**
- * Represents one part of a multipart message.
- * 
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Represents one part of a multipart message.
+   * 
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public interface InputPart {
    /**
    * If no content-type header is sent in a multipart message part

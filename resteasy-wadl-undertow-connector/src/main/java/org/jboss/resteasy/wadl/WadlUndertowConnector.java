@@ -13,8 +13,8 @@ import javax.ws.rs.core.Application;
 import static io.undertow.servlet.Servlets.servlet;
 
 /**
- * Created by weli on 7/26/16.
- */
+   * Created by weli on 7/26/16.
+   */
 public class WadlUndertowConnector {
    public UndertowJaxrsServer deployToServer(UndertowJaxrsServer server, Class<? extends Application> application) {
       ApplicationPath appPath = application.getAnnotation(ApplicationPath.class);

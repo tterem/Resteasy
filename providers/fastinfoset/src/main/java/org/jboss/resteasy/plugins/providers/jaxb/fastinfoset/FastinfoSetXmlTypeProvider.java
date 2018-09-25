@@ -7,9 +7,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.ext.Provider;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @Provider
 @Consumes({"application/fastinfoset", "application/*+fastinfoset"})
 @Produces({"application/fastinfoset", "application/*+fastinfoset"})

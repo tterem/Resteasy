@@ -29,11 +29,11 @@ import org.junit.runner.RunWith;
 
 
 /**
- * @tpSubChapter RESTEasy Cache Core
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1423
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter RESTEasy Cache Core
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1423
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ServerCacheInterceptorTest {
@@ -43,9 +43,9 @@ public class ServerCacheInterceptorTest {
 
    @Deployment
    public static Archive<?> deploySimpleResource() {
-       List<Class<?>> singletons = new ArrayList<>();
-       singletons.add(ServerCacheFeature.class);
-       WebArchive war = TestUtil.prepareArchive(ServerCacheInterceptorTest.class.getSimpleName());
+      List<Class<?>> singletons = new ArrayList<>();
+      singletons.add(ServerCacheFeature.class);
+      WebArchive war = TestUtil.prepareArchive(ServerCacheInterceptorTest.class.getSimpleName());
       // This test is not supposed to run with security manager
       war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(new AllPermission()), "permissions.xml");
       war.addClasses(ServerCache.class, InfinispanCache.class, ServerCacheHitFilter.class, ServerCacheInterceptor.class);

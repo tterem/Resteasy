@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class AbstractMultipartFormDataWriter extends AbstractMultipartWriter {
    @Override
    protected void writeParts(MultipartOutput multipartOutput,
@@ -42,18 +42,18 @@ public class AbstractMultipartFormDataWriter extends AbstractMultipartWriter {
       if (filename == null) {
          return "";
       } else {
-          String encodedFilename = filename;
-          try {
-             encodedFilename = URLEncoder.encode(filename, "UTF-8");
-             // append encoding charset into the value if and only if encoding was needed
-             if (!encodedFilename.equals(filename)) {
+         String encodedFilename = filename;
+         try {
+            encodedFilename = URLEncoder.encode(filename, "UTF-8");
+            // append encoding charset into the value if and only if encoding was needed
+            if (!encodedFilename.equals(filename)) {
             // encoding was needed, so per rfc5987 we have to prepend charset
             return "; filename*=utf-8''" + encodedFilename;
-             }
-          } catch (UnsupportedEncodingException e) {
-             // should not happen
-          }
-          return "; filename=\"" + filename + "\"";
+            }
+         } catch (UnsupportedEncodingException e) {
+            // should not happen
+         }
+         return "; filename=\"" + filename + "\"";
       }
    }
 }

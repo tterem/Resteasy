@@ -4,16 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A simple parser intended to parse sequences of name/value pairs.
- * Parameter values are exptected to be enclosed in quotes if they
- * contain unsafe characters, such as '=' characters or separators.
- * Parameter values are optional and can be omitted.
- * <p>
- * <code>param1 = value; param2 = "anything goes; really"; param3</code>
- * </p>
- *
- * @author <a href="mailto:oleg@ural.ru">Oleg Kalnichevski</a>
- */
+   * A simple parser intended to parse sequences of name/value pairs.
+   * Parameter values are exptected to be enclosed in quotes if they
+   * contain unsafe characters, such as '=' characters or separators.
+   * Parameter values are optional and can be omitted.
+   * <p>
+   * <code>param1 = value; param2 = "anything goes; really"; param3</code>
+   * </p>
+   *
+   * @author <a href="mailto:oleg@ural.ru">Oleg Kalnichevski</a>
+   */
 
 public class ParameterParser
 {
@@ -262,10 +262,10 @@ public class ParameterParser
    * @return a map of name/value pairs
    */
    public Map<String, String> parse(
-           final char[] chars,
-           int offset,
-           int length,
-           char separator)
+         final char[] chars,
+         int offset,
+         int length,
+         char separator)
    {
 
       if (chars == null)
@@ -319,12 +319,12 @@ public class ParameterParser
    * @return updated parameters string
    */
    public String setAttribute(
-           final char[] chars,
-           int offset,
-           int length,
-           char separator,
-           String name,
-           String value)
+         final char[] chars,
+         int offset,
+         int length,
+         char separator,
+         String name,
+         String value)
    {
 
       this.chars = chars;

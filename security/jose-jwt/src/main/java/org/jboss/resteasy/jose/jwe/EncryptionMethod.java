@@ -6,9 +6,9 @@ import java.security.NoSuchAlgorithmException;
 import org.jboss.resteasy.jose.i18n.Messages;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public enum EncryptionMethod
 {
    A128CBC_HS256(256),

@@ -4,8 +4,8 @@ import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.json.bind.annotation.JsonbTransient;
 
 /**
- * Created by rsearls.
- */
+   * Created by rsearls.
+   */
 @JsonbPropertyOrder({"color", "sort", "name", "domesticated"})
 public class Cat {
 

@@ -19,11 +19,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Encoding
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for special characters in get request
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Encoding
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for special characters in get request
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EncodedParamsTest {

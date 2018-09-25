@@ -8,11 +8,11 @@ import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.Extension;
 
 /**
- * BostonBeanExtension implements a CDI extension.
- * In particular, it creates a BostonBean for each of the two classes,
- * BostonHolder and BostonLeaf, that are annotated with @Boston, and it
- * registers them with the CDI runtime.
- */
+   * BostonBeanExtension implements a CDI extension.
+   * In particular, it creates a BostonBean for each of the two classes,
+   * BostonHolder and BostonLeaf, that are annotated with @Boston, and it
+   * registers them with the CDI runtime.
+   */
 public class CDIExtensionsBostonBeanExtension implements Extension {
    private static Logger log = Logger.getLogger(CDIExtensionsBostonBeanExtension.class);
 

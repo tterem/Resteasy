@@ -26,11 +26,11 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Response
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for getter return value validation
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Response
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for getter return value validation
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GetterReturnValueValidatedTest {

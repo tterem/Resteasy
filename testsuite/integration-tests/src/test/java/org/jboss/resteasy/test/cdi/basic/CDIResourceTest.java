@@ -38,13 +38,13 @@ import org.jboss.resteasy.test.cdi.basic.resource.resteasy1082.TestServlet;
 
 
 /**
- * @tpSubChapter CDI
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1082
- * @tpSince RESTEasy 3.0.16
- *
- * Jul 27, 2018 Test rewritten to generated the needed archive and write it to disk.
- */
+   * @tpSubChapter CDI
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1082
+   * @tpSince RESTEasy 3.0.16
+   *
+   * Jul 27, 2018 Test rewritten to generated the needed archive and write it to disk.
+   */
 
 @RunWith(Arquillian.class)
 @RunAsClient

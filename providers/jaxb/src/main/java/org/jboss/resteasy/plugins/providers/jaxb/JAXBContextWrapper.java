@@ -29,12 +29,12 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * A wrapper class around a JAXBContext that enables additional features
- * to the RESTEasy JAXB-based providers.
- *
- * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
- * @version $Revision:$
- */
+   * A wrapper class around a JAXBContext that enables additional features
+   * to the RESTEasy JAXB-based providers.
+   *
+   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+   * @version $Revision:$
+   */
 @SuppressWarnings("deprecation")
 public class JAXBContextWrapper extends JAXBContext
 {

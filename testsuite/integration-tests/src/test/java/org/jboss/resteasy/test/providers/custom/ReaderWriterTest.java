@@ -35,11 +35,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * @tpSubChapter Providers
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEasy issues
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Providers
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEasy issues
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ReaderWriterTest {

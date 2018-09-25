@@ -1,9 +1,9 @@
 package org.jboss.resteasy.util;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class StringToPrimitive
 {
    public static Object stringToPrimitiveBoxType(Class primitiveType, String value)
@@ -23,8 +23,8 @@ public class StringToPrimitive
          else if (value.length() != 1) {
             throw new IllegalArgumentException();
          }
-          return Character.valueOf(value.charAt(0));
-       }
+         return Character.valueOf(value.charAt(0));
+      }
       if (value == null) value = "0";
       if (primitiveType.equals(int.class)) return Integer.valueOf(value);
       if (primitiveType.equals(long.class)) return Long.valueOf(value);

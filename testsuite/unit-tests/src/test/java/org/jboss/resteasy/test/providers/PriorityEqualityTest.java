@@ -18,11 +18,11 @@ import org.junit.Test;
 
 
 /**
- * @tpSubChapter Providers
- * @tpChapter Unit tests
- * @tpTestCaseDetails Correct storage of ParamConverterProviders and ExceptionMappers of equal @Priority
- * @tpSince RESTEasy 4.0.0
- */
+   * @tpSubChapter Providers
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Correct storage of ParamConverterProviders and ExceptionMappers of equal @Priority
+   * @tpSince RESTEasy 4.0.0
+   */
 public class PriorityEqualityTest {
 
    public static class TestException extends Exception {

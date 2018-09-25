@@ -20,11 +20,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Integration tests
- * @tpTestCaseDetails Client engine customization (RESTEASY-1599)
- * @tpSince RESTEasy 3.0.24
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Client engine customization (RESTEASY-1599)
+   * @tpSince RESTEasy 3.0.24
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CustomHttpClientEngineTest {

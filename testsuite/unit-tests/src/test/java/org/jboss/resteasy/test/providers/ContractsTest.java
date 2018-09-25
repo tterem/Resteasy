@@ -13,11 +13,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @tpSubChapter Providers
- * @tpChapter Unit tests
- * @tpTestCaseDetails Correct selection of Reader and Writer
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Providers
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Correct selection of Reader and Writer
+   * @tpSince RESTEasy 3.0.16
+   */
 public class ContractsTest {
 
    /**

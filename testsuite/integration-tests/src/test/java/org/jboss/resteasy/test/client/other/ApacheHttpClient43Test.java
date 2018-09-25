@@ -34,11 +34,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test connection cleanup for ApacheHttpClient4Engine and URLConnectionEngine
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test connection cleanup for ApacheHttpClient4Engine and URLConnectionEngine
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ApacheHttpClient43Test {
@@ -341,8 +341,8 @@ public class ApacheHttpClient43Test {
       } else if (engine.isAssignableFrom(URLConnectionEngine.class)) {
          executor = new URLConnectionEngine();
       } else {
-           Assert.fail("unknown engine");
-           executor = null;
+         Assert.fail("unknown engine");
+         executor = null;
       }
 
 

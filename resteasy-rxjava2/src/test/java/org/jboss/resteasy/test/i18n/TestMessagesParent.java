@@ -9,11 +9,11 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 /**
- * 
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- * 
- */
+   * 
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   * 
+   */
 abstract public class TestMessagesParent
 {
    private static final Logger LOG = Logger.getLogger(TestMessagesParent.class);

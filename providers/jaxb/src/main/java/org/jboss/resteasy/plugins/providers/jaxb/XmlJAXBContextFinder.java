@@ -15,9 +15,9 @@ import org.jboss.resteasy.spi.util.FindAnnotation;
 
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @Provider
 @Produces({"text/xml", "text/*+xml", "application/xml", "application/*+xml"})
 public class XmlJAXBContextFinder extends AbstractJAXBContextFinder implements ContextResolver<JAXBContextFinder>

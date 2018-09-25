@@ -63,7 +63,7 @@ public class HeaderParamsAsPrimitivesResourceDefaultOverride implements HeaderPa
    @GET
    @Produces("application/char")
    public String doGet(@HeaderParam("char") @DefaultValue("b") char v) {
-       Assert.assertEquals(HeaderParamsAsPrimitivesTest.ERROR_MESSAGE, 'a', v);
+      Assert.assertEquals(HeaderParamsAsPrimitivesTest.ERROR_MESSAGE, 'a', v);
       return "content";
    }
 }

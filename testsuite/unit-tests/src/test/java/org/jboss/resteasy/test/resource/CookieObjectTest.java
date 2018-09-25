@@ -17,11 +17,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @tpSubChapter Resource tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Set of tests for Cookie and NewCookie objects
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resource tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Set of tests for Cookie and NewCookie objects
+   * @tpSince RESTEasy 3.0.16
+   */
 public class CookieObjectTest {
 
    private static Logger logger = Logger.getLogger(CookieObjectTest.class);

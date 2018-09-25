@@ -21,11 +21,11 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Response
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-952
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Response
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-952
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InheritedContextTest {

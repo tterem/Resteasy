@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Base util class for RESTEasy spring related testing.
- */
+   * Base util class for RESTEasy spring related testing.
+   */
 public class TestUtilSpring {
 
    private static String defaultSpringVersion = "4.2.4.RELEASE";

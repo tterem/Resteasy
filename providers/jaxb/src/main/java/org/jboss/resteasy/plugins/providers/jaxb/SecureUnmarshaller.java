@@ -38,12 +38,12 @@ import org.xml.sax.SAXNotSupportedException;
 import org.xml.sax.XMLReader;
 
 /**
- * 
- * @author <a href="mailto:ron.sigal@jboss.com">Ron Sigal</a>
- * 
- * @version $Revision: 1.1 $
- * Created Feb 1, 2012
- */
+   * 
+   * @author <a href="mailto:ron.sigal@jboss.com">Ron Sigal</a>
+   * 
+   * @version $Revision: 1.1 $
+   * Created Feb 1, 2012
+   */
 public class SecureUnmarshaller implements Unmarshaller {
 
    private static class SAXParserProvider
@@ -215,16 +215,16 @@ public class SecureUnmarshaller implements Unmarshaller {
    */
    public Object unmarshal(InputSource source) throws JAXBException
    {
-       try
-       {
-          SAXParser sp = SAXParserProvider.getInstance().getParser(disableExternalEntities, enableSecureProcessingFeature, disableDTDs);
-          XMLReader xmlReader = sp.getXMLReader();
-          final SAXSource saxSource = new SAXSource(xmlReader, source);
-          if (System.getSecurityManager() == null) {
-             return delegate.unmarshal(saxSource);
-          }
-          else
-          {
+      try
+      {
+         SAXParser sp = SAXParserProvider.getInstance().getParser(disableExternalEntities, enableSecureProcessingFeature, disableDTDs);
+         XMLReader xmlReader = sp.getXMLReader();
+         final SAXSource saxSource = new SAXSource(xmlReader, source);
+         if (System.getSecurityManager() == null) {
+            return delegate.unmarshal(saxSource);
+         }
+         else
+         {
             return AccessController.doPrivileged(new PrivilegedExceptionAction<Object>()
             {
                @Override
@@ -233,7 +233,7 @@ public class SecureUnmarshaller implements Unmarshaller {
                   return delegate.unmarshal(saxSource);
                }
             });
-          }
+         }
       }
       catch (SAXException e)
       {

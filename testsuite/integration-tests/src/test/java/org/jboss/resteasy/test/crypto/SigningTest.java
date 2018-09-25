@@ -52,11 +52,11 @@ import java.util.Map;
 import static org.hamcrest.CoreMatchers.containsString;
 
 /**
- * @tpSubChapter Crypto
- * @tpChapter Integration tests
- * @tpTestCaseDetails Signing test for RESTEasy-crypto
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Crypto
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Signing test for RESTEasy-crypto
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SigningTest {

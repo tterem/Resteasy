@@ -32,10 +32,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Form tests
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Form tests
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FormUrlEncodedTest {
@@ -49,17 +49,17 @@ public class FormUrlEncodedTest {
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, FormUrlEncodedTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, FormUrlEncodedTest.class.getSimpleName());
    }
 
    @BeforeClass
    public static void before() throws Exception {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void after() throws Exception {
-       client.close();
+      client.close();
    }
    
    /**
@@ -84,21 +84,21 @@ public class FormUrlEncodedTest {
      */
    @Test
    public void testResteasy109() {
-       Builder builder = client.target(generateURL("/RESTEASY-109")).request();
-       Response response = null;
-       try
-       {
-          response = builder.post(Entity.entity("name=jon&address1=123+Main+St&address2=&zip=12345", MediaType.APPLICATION_FORM_URLENCODED));
-          Assert.assertEquals(204, response.getStatus());
-       }
-       catch (Exception e)
-       {
-          throw new RuntimeException(e);
-       }
-       finally
-       {
-          response.close();
-       }
+      Builder builder = client.target(generateURL("/RESTEASY-109")).request();
+      Response response = null;
+      try
+      {
+         response = builder.post(Entity.entity("name=jon&address1=123+Main+St&address2=&zip=12345", MediaType.APPLICATION_FORM_URLENCODED));
+         Assert.assertEquals(204, response.getStatus());
+      }
+      catch (Exception e)
+      {
+         throw new RuntimeException(e);
+      }
+      finally
+      {
+         response.close();
+      }
    }
 
    /**
@@ -107,17 +107,17 @@ public class FormUrlEncodedTest {
      */
    @Test
    public void testQueryParamIsNull() {
-       Builder builder = client.target(generateURL("/simple")).request();
-       try
-       {
-          Response response = builder.post(Entity.form(new Form("hello", "world")));
-          Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-          Assert.assertEquals("hello=world", response.readEntity(String.class));
-       }
-       catch (Exception e)
-       {
-          throw new RuntimeException(e);
-       }
+      Builder builder = client.target(generateURL("/simple")).request();
+      try
+      {
+         Response response = builder.post(Entity.form(new Form("hello", "world")));
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals("hello=world", response.readEntity(String.class));
+      }
+      catch (Exception e)
+      {
+         throw new RuntimeException(e);
+      }
    }
    
    /**
@@ -126,34 +126,34 @@ public class FormUrlEncodedTest {
      */
    @Test
    public void testPostTwoParameters() {
-       Builder builder = client.target(generateURL("/form/twoparams")).request();
-       try
-       {
-          Response response = builder.post(Entity.form(new Form("hello", "world").param("yo", "mama")));
-          Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-          String body = response.readEntity(String.class);
-          Assert.assertTrue(body.indexOf("hello=world") != -1);
-          Assert.assertTrue(body.indexOf("yo=mama") != -1);
-       }
-       catch (Exception e)
-       {
-          throw new RuntimeException(e);
-       }
+      Builder builder = client.target(generateURL("/form/twoparams")).request();
+      try
+      {
+         Response response = builder.post(Entity.form(new Form("hello", "world").param("yo", "mama")));
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         String body = response.readEntity(String.class);
+         Assert.assertTrue(body.indexOf("hello=world") != -1);
+         Assert.assertTrue(body.indexOf("yo=mama") != -1);
+      }
+      catch (Exception e)
+      {
+         throw new RuntimeException(e);
+      }
    }
    
    @Path("/")
    public interface TestProxy {
-       @Path("/form")
-       @POST
-       @Produces("application/x-www-form-urlencoded")
-       @Consumes("application/x-www-form-urlencoded")
-       String post(MultivaluedMap<String, String> form);
+      @Path("/form")
+      @POST
+      @Produces("application/x-www-form-urlencoded")
+      @Consumes("application/x-www-form-urlencoded")
+      String post(MultivaluedMap<String, String> form);
 
-       @Path("/form")
-       @POST
-       @Produces("application/x-www-form-urlencoded")
-       @Consumes("application/x-www-form-urlencoded")
-       MultivaluedMap<String, String> post2(MultivaluedMap<String, String> form);
+      @Path("/form")
+      @POST
+      @Produces("application/x-www-form-urlencoded")
+      @Consumes("application/x-www-form-urlencoded")
+      MultivaluedMap<String, String> post2(MultivaluedMap<String, String> form);
    }
 
    /**
@@ -162,14 +162,14 @@ public class FormUrlEncodedTest {
      */
    @Test
    public void testProxy() {
-       ResteasyWebTarget target = (ResteasyWebTarget) client.target(generateURL(""));
-       TestProxy proxy = target.proxy(TestProxy.class);
-       MultivaluedMapImpl<String, String> form = new MultivaluedMapImpl<String, String>();
-       form.add("hello", "world");
-       String body = proxy.post(form);
-       Assert.assertEquals("hello=world", body);
+      ResteasyWebTarget target = (ResteasyWebTarget) client.target(generateURL(""));
+      TestProxy proxy = target.proxy(TestProxy.class);
+      MultivaluedMapImpl<String, String> form = new MultivaluedMapImpl<String, String>();
+      form.add("hello", "world");
+      String body = proxy.post(form);
+      Assert.assertEquals("hello=world", body);
 
-       MultivaluedMap<String, String> rtn = proxy.post2(form);
-       Assert.assertEquals(rtn.getFirst("hello"), "world");
+      MultivaluedMap<String, String> rtn = proxy.post2(form);
+      Assert.assertEquals(rtn.getFirst("hello"), "world");
    }
 }

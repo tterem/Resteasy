@@ -15,9 +15,9 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class LinkHeaderDelegate implements RuntimeDelegate.HeaderDelegate<LinkHeader>
 {
    private static class Parser

@@ -7,27 +7,27 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
- * <p>
- * Java class for AtomProviderDataCollectionRecord complex type.
- * <p>
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
- * <p>
- * <p>
- * <pre>
- * &lt;complexType name=&quot;AtomProviderDataCollectionRecord&quot;&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&gt;
- *       &lt;sequence&gt;
- *         &lt;element name=&quot;timestamp&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}dateTime&quot;/&gt;
- *         &lt;element name=&quot;collectedData&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}string&quot;/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- */
+   * <p>
+   * Java class for AtomProviderDataCollectionRecord complex type.
+   * <p>
+   * <p>
+   * The following schema fragment specifies the expected content contained within
+   * this class.
+   * <p>
+   * <p>
+   * <pre>
+   * &lt;complexType name=&quot;AtomProviderDataCollectionRecord&quot;&gt;
+   *   &lt;complexContent&gt;
+   *     &lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&gt;
+   *       &lt;sequence&gt;
+   *         &lt;element name=&quot;timestamp&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}dateTime&quot;/&gt;
+   *         &lt;element name=&quot;collectedData&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}string&quot;/&gt;
+   *       &lt;/sequence&gt;
+   *     &lt;/restriction&gt;
+   *   &lt;/complexContent&gt;
+   * &lt;/complexType&gt;
+   * </pre>
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AtomProviderDataCollectionRecord", propOrder = {"timestamp", "collectedData"})
 public class AtomProviderDataCollectionRecord {

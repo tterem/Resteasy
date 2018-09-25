@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Returns a sorted list of values by their qualifier 'q' with parameters pulled off.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Returns a sorted list of values by their qualifier 'q' with parameters pulled off.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class AcceptParser
 {
 

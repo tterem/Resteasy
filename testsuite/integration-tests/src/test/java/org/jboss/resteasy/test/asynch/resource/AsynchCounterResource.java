@@ -8,7 +8,7 @@ public class AsynchCounterResource {
 
    @GET
    public String get() throws Exception {
-       Thread.sleep(1500);
-       return "get";
+      Thread.sleep(1500);
+      return "get";
    }
 }

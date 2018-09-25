@@ -9,10 +9,10 @@ import org.jboss.resteasy.client.jaxrs.internal.ClientInvocation;
 import org.jboss.resteasy.client.jaxrs.internal.ClientResponse;
 
 /**
- * Interface for an async HttpClientEngine
- *
- * @author Markus Kull
- */
+   * Interface for an async HttpClientEngine
+   *
+   * @author Markus Kull
+   */
 public interface AsyncClientHttpEngine extends ClientHttpEngine
 {
 
@@ -24,11 +24,11 @@ public interface AsyncClientHttpEngine extends ClientHttpEngine
    public interface ResultExtractor<T>
    {
       /**
-       * Extracts a result out of a Response
-       *
-       * @param response Response
-       * @return result
-       */
+      * Extracts a result out of a Response
+      *
+      * @param response Response
+      * @return result
+      */
       T extractResult(ClientResponse response);
    }
 

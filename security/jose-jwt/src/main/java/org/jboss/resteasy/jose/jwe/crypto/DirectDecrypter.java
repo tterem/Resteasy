@@ -12,25 +12,25 @@ import java.nio.charset.StandardCharsets;
 
 
 /**
- * Direct decrypter with a
- * shared symmetric key. This class is thread-safe.
- * <p>Supports the following JWE algorithms:
- * </p>
- * <ul>
- * <li>DIR
- * </ul>
- * <p>Supports the following encryption methods:
- * </p>
- * <ul>
- * <li>A128CBC_HS256
- * <li>A256CBC_HS512
- * <li>A128GCM
- * <li>A256GCM
- * </ul>
- *
- * @author Vladimir Dzhuvinov
- * @version $version$ (2013-05-29)
- */
+   * Direct decrypter with a
+   * shared symmetric key. This class is thread-safe.
+   * <p>Supports the following JWE algorithms:
+   * </p>
+   * <ul>
+   * <li>DIR
+   * </ul>
+   * <p>Supports the following encryption methods:
+   * </p>
+   * <ul>
+   * <li>A128CBC_HS256
+   * <li>A256CBC_HS512
+   * <li>A128GCM
+   * <li>A256GCM
+   * </ul>
+   *
+   * @author Vladimir Dzhuvinov
+   * @version $version$ (2013-05-29)
+   */
 public class DirectDecrypter
 {
    public static byte[] decrypt(final SecretKey key,

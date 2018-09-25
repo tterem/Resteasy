@@ -30,11 +30,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * @tpSubChapter Security
- * @tpChapter Integration tests
- * @tpTestCaseDetails Basic test for RESTEasy authentication using programmatic security with javax.ws.rs.core.SecurityContext
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Security
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Basic test for RESTEasy authentication using programmatic security with javax.ws.rs.core.SecurityContext
+   * @tpSince RESTEasy 3.0.16
+   */
 @ServerSetup({SecurityContextTest.SecurityDomainSetup.class})
 @RunWith(Arquillian.class)
 @RunAsClient

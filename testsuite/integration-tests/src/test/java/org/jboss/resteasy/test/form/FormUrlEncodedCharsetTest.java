@@ -29,11 +29,11 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 /**
- * @tpSubChapter Form tests
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for JBEAP-4693
- * @tpSince RESTEasy 3.0.17
- */
+   * @tpSubChapter Form tests
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for JBEAP-4693
+   * @tpSince RESTEasy 3.0.17
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FormUrlEncodedCharsetTest {

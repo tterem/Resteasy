@@ -54,9 +54,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorRegistryListener
 {
    protected MethodInjector methodInjector;
@@ -92,7 +92,7 @@ public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorR
       this.method = method;
       this.methodAnnotations = this.method.getAnnotatedMethod().getAnnotations();
 
-       resourceInfo = new ResourceInfo()
+      resourceInfo = new ResourceInfo()
       {
          @Override
          public Method getResourceMethod()
@@ -410,7 +410,7 @@ public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorR
       }
       else
       {
-          asyncResponseConsumer = null;
+         asyncResponseConsumer = null;
       }
 
       try

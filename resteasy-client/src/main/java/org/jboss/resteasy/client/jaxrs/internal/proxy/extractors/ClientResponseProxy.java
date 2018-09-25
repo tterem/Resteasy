@@ -7,15 +7,15 @@ import java.util.Map;
 import org.jboss.resteasy.client.jaxrs.i18n.Messages;
 
 /**
- * Implement a client proxy for ProxyFactory. This class implements each method
- * using an EntityExtractor
- *
- * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
- * @version $Revision: 1 $
- * @see EntityExtractor
- * @see org.jboss.resteasy.client.jaxrs.internal.proxy.extractors.EntityExtractorFactory
- * @see org.jboss.resteasy.client.jaxrs.internal.proxy.extractors.ResponseObjectEntityExtractorFactory
- */
+   * Implement a client proxy for ProxyFactory. This class implements each method
+   * using an EntityExtractor
+   *
+   * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
+   * @version $Revision: 1 $
+   * @see EntityExtractor
+   * @see org.jboss.resteasy.client.jaxrs.internal.proxy.extractors.EntityExtractorFactory
+   * @see org.jboss.resteasy.client.jaxrs.internal.proxy.extractors.ResponseObjectEntityExtractorFactory
+   */
 @SuppressWarnings("unchecked")
 public class ClientResponseProxy implements InvocationHandler
 {

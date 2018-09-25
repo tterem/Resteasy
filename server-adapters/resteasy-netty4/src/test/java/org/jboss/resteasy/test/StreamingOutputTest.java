@@ -25,9 +25,9 @@ import java.util.concurrent.CountDownLatch;
 import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class StreamingOutputTest
 {
    static String BASE_URI = generateURL("");

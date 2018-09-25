@@ -81,17 +81,17 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @tpSubChapter CDI
- * @tpChapter Integration tests
- * @tpTestCaseDetails ReverseInjectionTest goes beyond InjectionTest by injecting Resteasy objects
- *                    into other kinds of beans, e.g., EJBs. For example,
- *                    *) an EJB called ReverseInjectionEJBHolder is injected into the Resteasy resource ReverseInjectionResource
- *                    *) a variety of EJBs, e.g., StatelessEJBwithJaxRsComponents, are injected  into ReverseInjectionEJBHolder
- *                    *) a variety of Resteasy resources are injected into StatelessEJBwithJaxRsComponents and similar EJBs.
- *                    Also, the EJBs like StatelessEJBwithJaxRsComponents are injected into ReverseInjectionEJBHolder using both.
- *                    Annotation @EJB and @Inject, and the semantics of both are tested.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter CDI
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails ReverseInjectionTest goes beyond InjectionTest by injecting Resteasy objects
+   *                    into other kinds of beans, e.g., EJBs. For example,
+   *                    *) an EJB called ReverseInjectionEJBHolder is injected into the Resteasy resource ReverseInjectionResource
+   *                    *) a variety of EJBs, e.g., StatelessEJBwithJaxRsComponents, are injected  into ReverseInjectionEJBHolder
+   *                    *) a variety of Resteasy resources are injected into StatelessEJBwithJaxRsComponents and similar EJBs.
+   *                    Also, the EJBs like StatelessEJBwithJaxRsComponents are injected into ReverseInjectionEJBHolder using both.
+   *                    Annotation @EJB and @Inject, and the semantics of both are tested.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class ReverseInjectionTest extends AbstractInjectionTestBase {
    private static Logger log = Logger.getLogger(ReverseInjectionTest.class);

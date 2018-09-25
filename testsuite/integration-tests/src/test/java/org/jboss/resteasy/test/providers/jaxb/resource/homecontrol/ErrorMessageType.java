@@ -10,27 +10,27 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java-Klasse für ErrorMessageType complex type.
- *
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
- *
- * <pre>
- * &lt;complexType name="ErrorMessageType"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="type" type="{http://creaity.de/homecontrol/rest/types/v1}ErrorType"/&gt;
- *         &lt;element name="domain" type="{http://creaity.de/homecontrol/rest/types/v1}ErrorDomainType"/&gt;
- *         &lt;element name="message" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="timestamp" type="{http://www.w3.org/2001/XMLSchema}dateTime"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- *
- *
- */
+   * <p>Java-Klasse für ErrorMessageType complex type.
+   *
+   * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+   *
+   * <pre>
+   * &lt;complexType name="ErrorMessageType"&gt;
+   *   &lt;complexContent&gt;
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+   *       &lt;sequence&gt;
+   *         &lt;element name="type" type="{http://creaity.de/homecontrol/rest/types/v1}ErrorType"/&gt;
+   *         &lt;element name="domain" type="{http://creaity.de/homecontrol/rest/types/v1}ErrorDomainType"/&gt;
+   *         &lt;element name="message" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+   *         &lt;element name="timestamp" type="{http://www.w3.org/2001/XMLSchema}dateTime"/&gt;
+   *       &lt;/sequence&gt;
+   *     &lt;/restriction&gt;
+   *   &lt;/complexContent&gt;
+   * &lt;/complexType&gt;
+   * </pre>
+   *
+   *
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ErrorMessageType", propOrder = {
       "type",

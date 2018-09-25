@@ -39,7 +39,7 @@ public class SseEventProvider implements MessageBodyWriter<OutboundSseEvent>, Me
    {
       return OutboundSseEvent.class.isAssignableFrom(type) && 
             (MediaType.SERVER_SENT_EVENTS_TYPE.isCompatible(mediaType) ||
-             GENERAL_STREAM_TYPE.isCompatible(mediaType));
+            GENERAL_STREAM_TYPE.isCompatible(mediaType));
    }
 
    @Override
@@ -185,7 +185,7 @@ public class SseEventProvider implements MessageBodyWriter<OutboundSseEvent>, Me
    {
       return SseEventInputImpl.class.isAssignableFrom(cls) && 
             (MediaType.SERVER_SENT_EVENTS_TYPE.isCompatible(mediaType) ||
-             GENERAL_STREAM_TYPE.isCompatible(mediaType));
+            GENERAL_STREAM_TYPE.isCompatible(mediaType));
    }
 
    @Override
@@ -200,7 +200,7 @@ public class SseEventProvider implements MessageBodyWriter<OutboundSseEvent>, Me
       String elementType = map.get(SseConstants.SSE_ELEMENT_MEDIA_TYPE);
       if (elementType != null)
       {
-           mediaType = MediaType.valueOf(elementType);
+         mediaType = MediaType.valueOf(elementType);
       }
      }
       return new SseEventInputImpl(annotations, streamType, mediaType, httpHeaders, entityStream);

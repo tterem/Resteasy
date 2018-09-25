@@ -19,11 +19,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0.0
- * @tpTestCaseDetails Check for slash in URL
- */
+   * @tpSubChapter Resource
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0.0
+   * @tpTestCaseDetails Check for slash in URL
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PathParamMissingDefaultValueTest {

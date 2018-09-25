@@ -7,8 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 /**
- * Created by weli on 6/13/16.
- */
+   * Created by weli on 6/13/16.
+   */
 @Path("/issues/1246")
 public class RESTEASY1246 {
    @Path("/provides1")

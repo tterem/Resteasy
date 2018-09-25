@@ -35,11 +35,11 @@ import javax.ws.rs.core.Response;
 import java.util.Iterator;
 
 /**
- * @tpSubChapter Response
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-923
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Response
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-923
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationCoreTest {

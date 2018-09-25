@@ -36,15 +36,15 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
- * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
- * @tpSubChapter Resteasy-client
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test if client throws exceptions as described in JAXRS-2.0 specification:
- * "When a provider method throws an exception, the JAX-RS client runtime will map it to an instance of
- * ProcessingException if thrown while processing a request, and to a ResponseProcessingException
- * if thrown while processing a response."
- * @tpSince RESTEasy 3.0.16
- */
+   * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test if client throws exceptions as described in JAXRS-2.0 specification:
+   * "When a provider method throws an exception, the JAX-RS client runtime will map it to an instance of
+   * ProcessingException if thrown while processing a request, and to a ResponseProcessingException
+   * if thrown while processing a response."
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ClientExceptionsTest extends ClientTestBase {

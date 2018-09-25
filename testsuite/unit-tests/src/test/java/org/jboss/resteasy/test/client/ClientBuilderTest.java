@@ -20,11 +20,11 @@ import javax.ws.rs.ext.RuntimeDelegate;
 import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Unit tests
- * @tpSince RESTEasy 3.0.16
- *
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Unit tests
+   * @tpSince RESTEasy 3.0.16
+   *
+   */
 public class ClientBuilderTest {
 
    /**
@@ -108,11 +108,11 @@ public class ClientBuilderTest {
      */
    @Test
    public void testLinkBuilder() throws Exception {
-       Link link = RuntimeDelegate.getInstance().createLinkBuilder()
-             .baseUri("http://jboss.org/resteasy").rel("relation relation2").title("titleX")
-             .param("param1", "value1").param("param2", "value2")
-             .type(MediaType.APPLICATION_OCTET_STREAM).build();
-       Assert.assertNotNull("Build link failed", link);
+      Link link = RuntimeDelegate.getInstance().createLinkBuilder()
+            .baseUri("http://jboss.org/resteasy").rel("relation relation2").title("titleX")
+            .param("param1", "value1").param("param2", "value2")
+            .type(MediaType.APPLICATION_OCTET_STREAM).build();
+      Assert.assertNotNull("Build link failed", link);
    }
 
    @Test

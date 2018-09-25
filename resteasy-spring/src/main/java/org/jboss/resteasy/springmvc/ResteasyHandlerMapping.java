@@ -22,9 +22,9 @@ import javax.ws.rs.NotSupportedException;
 import javax.ws.rs.core.Response;
 
 /**
- * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
+   * @version $Revision: 1 $
+   */
 public class ResteasyHandlerMapping implements HandlerMapping, Ordered, InitializingBean
 {
 
@@ -62,7 +62,7 @@ public class ResteasyHandlerMapping implements HandlerMapping, Ordered, Initiali
    }
 
    public HandlerExecutionChain getHandler(HttpServletRequest request)
-           throws Exception
+         throws Exception
    {
       ResteasyRequestWrapper requestWrapper = RequestUtil.getRequestWrapper(
               request, request.getMethod(), prefix);

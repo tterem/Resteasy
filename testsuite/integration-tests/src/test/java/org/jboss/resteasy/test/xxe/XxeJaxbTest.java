@@ -30,12 +30,12 @@ import java.io.File;
 import java.util.Hashtable;
 
 /**
- * @tpSubChapter XXE
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1103, RESTEASY-647.
- * RestEasy is vulnerable to XML Entity Denial of Service XXE is disabled.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter XXE
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1103, RESTEASY-647.
+   * RestEasy is vulnerable to XML Entity Denial of Service XXE is disabled.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class XxeJaxbTest {

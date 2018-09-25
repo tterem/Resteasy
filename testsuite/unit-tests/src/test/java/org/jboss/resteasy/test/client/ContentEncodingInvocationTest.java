@@ -14,11 +14,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @tpSubChapter Requests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Regression test for RESTEASY-1274
- * @tpSince RESTEasy 3.0.20
- */
+   * @tpSubChapter Requests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1274
+   * @tpSince RESTEasy 3.0.20
+   */
 public class ContentEncodingInvocationTest
 {
    @Test

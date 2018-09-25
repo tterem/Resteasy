@@ -28,11 +28,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 /**
- * @tpSubChapter CDI
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for asynchronous behavior of RESTEasy with CDI.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter CDI
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for asynchronous behavior of RESTEasy with CDI.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AsynchronousCdiTest {

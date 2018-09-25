@@ -28,9 +28,9 @@ import org.jboss.resteasy.resteasy_jaxrs.i18n.LogMessages;
 import org.jboss.resteasy.util.NoContent;
 
 /**
- * @author <a href="mailto:mlittle@redhat.com">Mark Little</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:mlittle@redhat.com">Mark Little</a>
+   * @version $Revision: 1 $
+   */
 
 @Provider
 @Produces("*/*")
@@ -55,7 +55,7 @@ public class FileProvider implements MessageBodyReader<File>,
    public File readFrom(Class<File> type, Type genericType,
                         Annotation[] annotations, MediaType mediaType,
                         MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
-           throws IOException
+         throws IOException
    {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom", getClass().getName());
       File downloadedFile = null;
@@ -138,8 +138,8 @@ public class FileProvider implements MessageBodyReader<File>,
       if ( byteUnit < 0)
       {
          //must start with 'bytes'
-          writeIt(uploadFile, entityStream);
-          return;
+         writeIt(uploadFile, entityStream);
+         return;
       }
       range = range.substring("bytes=".length());
       if (range.indexOf(',') > -1)

@@ -22,11 +22,11 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Providers
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for custom provider preference.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Providers
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for custom provider preference.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CustomProviderPreferenceTest {

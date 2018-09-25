@@ -27,10 +27,10 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
- * 
- * @author <a href="mailto:jeff@infohazard.org">Jeff Schnitzer</a>
- * @author Thomas Broyer
- */
+   * 
+   * @author <a href="mailto:jeff@infohazard.org">Jeff Schnitzer</a>
+   * @author Thomas Broyer
+   */
 @Provider
 @Produces("text/html")
 public class HtmlRenderableWriter implements MessageBodyWriter<Renderable>

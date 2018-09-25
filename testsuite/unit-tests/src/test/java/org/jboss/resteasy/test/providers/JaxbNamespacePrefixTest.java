@@ -18,10 +18,10 @@ import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
 
 /**
- * @tpSubChapter Providers - jaxb
- * @tpChapter Unit tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Providers - jaxb
+   * @tpChapter Unit tests
+   * @tpSince RESTEasy 3.0.16
+   */
 public class JaxbNamespacePrefixTest {
 
    private static final LogMessages logger = Logger.getMessageLogger(LogMessages.class, JaxbNamespacePrefixTest.class.getName());

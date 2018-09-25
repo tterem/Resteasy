@@ -24,11 +24,11 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
 /**
- * @tpSubChapter Encoding
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-729
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Encoding
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-729
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MatrixParamEncodingTest {

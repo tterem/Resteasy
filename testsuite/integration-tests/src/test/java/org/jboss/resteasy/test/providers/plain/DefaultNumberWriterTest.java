@@ -24,12 +24,12 @@ import java.net.SocketPermission;
 import java.util.PropertyPermission;
 
 /**
- * @tpSubChapter Plain provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for DefaultNumberWriter provider.
- *                    Regression test for partial fix for JBEAP-2847.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Plain provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for DefaultNumberWriter provider.
+   *                    Regression test for partial fix for JBEAP-2847.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class DefaultNumberWriterTest {
    private static Logger logger = Logger.getLogger(DefaultNumberWriterTest.class);
@@ -61,7 +61,7 @@ public class DefaultNumberWriterTest {
 
    @After
    public void resetProviderFlag() {
-       DefaultNumberWriterCustom.used = false;
+      DefaultNumberWriterCustom.used = false;
    }
     
    /**

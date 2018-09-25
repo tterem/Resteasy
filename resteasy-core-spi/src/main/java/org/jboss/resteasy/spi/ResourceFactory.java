@@ -3,11 +3,11 @@ package org.jboss.resteasy.spi;
 import java.util.concurrent.CompletionStage;
 
 /**
- * Implementations of this interface are registered through the Registry class.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Implementations of this interface are registered through the Registry class.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public interface ResourceFactory
 {
    /**

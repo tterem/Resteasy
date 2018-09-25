@@ -39,11 +39,11 @@ import org.junit.runner.RunWith;
 import com.google.common.net.HttpHeaders;
 
 /**
- * @tpSubChapter GZIP interceptors
- * @tpChapter Integration tests
- * @tpTestCaseDetails Gzip compression tests
- * @tpSince RESTEasy 3.1.0.Final
- */
+   * @tpSubChapter GZIP interceptors
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Gzip compression tests
+   * @tpSince RESTEasy 3.1.0.Final
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GzipSizeTest {
@@ -107,17 +107,17 @@ public class GzipSizeTest {
       Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
       try
       {
-           byte[] b = response.readEntity(byte[].class);
-           Assert.fail("Expecting ProcessingException, not " + b);
+         byte[] b = response.readEntity(byte[].class);
+         Assert.fail("Expecting ProcessingException, not " + b);
       }
       catch (ProcessingException e)
       {
-           Assert.assertTrue(e.getMessage().contains("RESTEASY003357"));
-           Assert.assertTrue(e.getMessage().contains("16"));
+         Assert.assertTrue(e.getMessage().contains("RESTEASY003357"));
+         Assert.assertTrue(e.getMessage().contains("16"));
       }
       catch (Exception e)
       {
-           Assert.fail("Expecting ProcessingException, not " + e);
+         Assert.fail("Expecting ProcessingException, not " + e);
       }
    }
 }

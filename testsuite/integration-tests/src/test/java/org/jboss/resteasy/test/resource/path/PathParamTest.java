@@ -22,11 +22,11 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Integration tests
- * @tpTestCaseDetails Spec requires that HEAD and OPTIONS are handled in a default manner
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resource
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Spec requires that HEAD and OPTIONS are handled in a default manner
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PathParamTest {
@@ -120,9 +120,9 @@ public class PathParamTest {
      */
    @Test
    public void testEmail() throws Exception {
-       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
-       Response response = client.target(PortProviderUtil.generateURL("/employeeinfo/employees/bill.burke@burkecentral.com", PathLimitedTest.class.getSimpleName())).request().get();
-       String str = response.readEntity(String.class);
-       Assert.assertEquals("burke", str);
+      ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
+      Response response = client.target(PortProviderUtil.generateURL("/employeeinfo/employees/bill.burke@burkecentral.com", PathLimitedTest.class.getSimpleName())).request().get();
+      String str = response.readEntity(String.class);
+      Assert.assertEquals("burke", str);
    }
 }

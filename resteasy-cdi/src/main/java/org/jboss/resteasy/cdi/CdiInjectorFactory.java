@@ -31,8 +31,8 @@ import org.jboss.resteasy.spi.metadata.ResourceConstructor;
 import org.jboss.resteasy.spi.metadata.ResourceLocator;
 
 /**
- * @author Jozef Hartinger
- */
+   * @author Jozef Hartinger
+   */
 @SuppressWarnings("rawtypes")
 public class CdiInjectorFactory implements InjectorFactory
 {
@@ -162,15 +162,15 @@ public class CdiInjectorFactory implements InjectorFactory
       beanManager = lookupBeanManagerCDIUtil();
       if(beanManager != null)
       {
-          LogMessages.LOGGER.debug(Messages.MESSAGES.foundBeanManagerViaCDI());
-          return beanManager;
+         LogMessages.LOGGER.debug(Messages.MESSAGES.foundBeanManagerViaCDI());
+         return beanManager;
       }
 
       beanManager = lookupBeanManagerViaServletContext();
       if(beanManager != null)
       {
-          LogMessages.LOGGER.debug(Messages.MESSAGES.foundBeanManagerInServletContext());
-          return beanManager;
+         LogMessages.LOGGER.debug(Messages.MESSAGES.foundBeanManagerInServletContext());
+         return beanManager;
       }
 
       throw new RuntimeException(Messages.MESSAGES.unableToLookupBeanManager());
@@ -198,14 +198,14 @@ public class CdiInjectorFactory implements InjectorFactory
 
    private static BeanManager lookupBeanManagerViaServletContext()
    {
-       BeanManager beanManager = null;
-       try
-       {
-           // Look for BeanManager in ServletContext
-           ServletContext servletContext = ResteasyContext.getContextData(ServletContext.class);
-           // null check for RESTEASY-1009
-           if (servletContext != null)
-           {
+      BeanManager beanManager = null;
+      try
+      {
+         // Look for BeanManager in ServletContext
+         ServletContext servletContext = ResteasyContext.getContextData(ServletContext.class);
+         // null check for RESTEASY-1009
+         if (servletContext != null)
+         {
                beanManager = (BeanManager) servletContext.getAttribute(BEAN_MANAGER_ATTRIBUTE_PREFIX + BeanManager.class.getName());
                if (beanManager != null)
                {
@@ -220,36 +220,36 @@ public class CdiInjectorFactory implements InjectorFactory
                    LogMessages.LOGGER.debug(Messages.MESSAGES.foundBeanManagerInServletContext());
                    return beanManager;
                }
-           }
-       }
-       catch (NoClassDefFoundError e)
-       {
-          LogMessages.LOGGER.debug(Messages.MESSAGES.unableToFindServletContextClass(), e);
-       }
+         }
+      }
+      catch (NoClassDefFoundError e)
+      {
+         LogMessages.LOGGER.debug(Messages.MESSAGES.unableToFindServletContextClass(), e);
+      }
 
-       catch (Exception e)
-       {
-          LogMessages.LOGGER.debug(Messages.MESSAGES.errorOccurredLookingUpServletContext(), e);
-       }
-       return beanManager;
+      catch (Exception e)
+      {
+         LogMessages.LOGGER.debug(Messages.MESSAGES.errorOccurredLookingUpServletContext(), e);
+      }
+      return beanManager;
    }
 
    public static BeanManager lookupBeanManagerCDIUtil()
    {
-       BeanManager bm = null;
-       try
-       {
-           bm = CDI.current().getBeanManager();
-       }
-       catch (NoClassDefFoundError e)
-       {
-           LogMessages.LOGGER.debug(Messages.MESSAGES.unableToFindCDIClass(), e);
-       }
-       catch (Exception e)
-       {
-          LogMessages.LOGGER.debug(Messages.MESSAGES.errorOccurredLookingUpViaCDIUtil(), e);
-       }
-       return bm;
+      BeanManager bm = null;
+      try
+      {
+         bm = CDI.current().getBeanManager();
+      }
+      catch (NoClassDefFoundError e)
+      {
+         LogMessages.LOGGER.debug(Messages.MESSAGES.unableToFindCDIClass(), e);
+      }
+      catch (Exception e)
+      {
+         LogMessages.LOGGER.debug(Messages.MESSAGES.errorOccurredLookingUpViaCDIUtil(), e);
+      }
+      return bm;
    }
 
    /**

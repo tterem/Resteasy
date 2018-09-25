@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
- */
+   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+   */
 public class ResteasyWadlServletWriter extends ResteasyWadlWriter {
 
    public void writeWadl(String base, HttpServletResponse resp, Map<String, ResteasyWadlServiceRegistry> serviceRegistries)

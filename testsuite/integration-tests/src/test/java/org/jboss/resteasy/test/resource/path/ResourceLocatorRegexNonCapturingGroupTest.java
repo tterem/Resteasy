@@ -22,12 +22,12 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
- * @Path annotation paths can consist of Regex Non-Capturing groups  used with
- * Resource Locator scenarios.
- *
- * User: rsearls
- * Date: 2/18/17
- */
+   * @Path annotation paths can consist of Regex Non-Capturing groups  used with
+   * Resource Locator scenarios.
+   *
+   * User: rsearls
+   * Date: 2/18/17
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResourceLocatorRegexNonCapturingGroupTest {

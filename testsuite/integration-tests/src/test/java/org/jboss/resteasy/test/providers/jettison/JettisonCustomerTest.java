@@ -23,11 +23,11 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Jettison provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-175
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jettison provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-175
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JettisonCustomerTest {

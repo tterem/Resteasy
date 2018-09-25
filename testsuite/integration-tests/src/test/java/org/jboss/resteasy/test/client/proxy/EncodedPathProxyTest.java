@@ -21,11 +21,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1475.
- * @tpSince RESTEasy 3.1.4
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1475.
+   * @tpSince RESTEasy 3.1.4
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EncodedPathProxyTest {
@@ -59,12 +59,12 @@ public class EncodedPathProxyTest {
    @Test
    public void testEncodeProxy() throws Exception
    {
-       ResteasyWebTarget target = client.target(generateBaseUrl());
-       EncodedPathProxyInterface proxy = target.proxy(EncodedPathProxyInterface.class);
-       Response response = proxy.encode("t;hawkular/f;jk-feed", null);
-       Assert.assertEquals(200, response.getStatus());
-       String uri = response.readEntity(String.class);
-       Assert.assertEquals(generateBaseUrl() + "/test/encode/t;hawkular%2Ff;jk-feed", uri);
+      ResteasyWebTarget target = client.target(generateBaseUrl());
+      EncodedPathProxyInterface proxy = target.proxy(EncodedPathProxyInterface.class);
+      Response response = proxy.encode("t;hawkular/f;jk-feed", null);
+      Assert.assertEquals(200, response.getStatus());
+      String uri = response.readEntity(String.class);
+      Assert.assertEquals(generateBaseUrl() + "/test/encode/t;hawkular%2Ff;jk-feed", uri);
    }
 
    /**
@@ -74,11 +74,11 @@ public class EncodedPathProxyTest {
    @Test
    public void testNoencodeProxy() throws Exception
    {
-       ResteasyWebTarget target = client.target(generateBaseUrl());
-       EncodedPathProxyInterface proxy = target.proxy(EncodedPathProxyInterface.class);
-       Response response = proxy.noencode("t;hawkular/f;jk-feed", null);
-       Assert.assertEquals(200, response.getStatus());
-       String uri = response.readEntity(String.class);
-       Assert.assertEquals(generateBaseUrl() + "/test/noencode/t;hawkular/f;jk-feed", uri);
+      ResteasyWebTarget target = client.target(generateBaseUrl());
+      EncodedPathProxyInterface proxy = target.proxy(EncodedPathProxyInterface.class);
+      Response response = proxy.noencode("t;hawkular/f;jk-feed", null);
+      Assert.assertEquals(200, response.getStatus());
+      String uri = response.readEntity(String.class);
+      Assert.assertEquals(generateBaseUrl() + "/test/noencode/t;hawkular/f;jk-feed", uri);
    }
 }

@@ -21,10 +21,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Form tests
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0.0
- */
+   * @tpSubChapter Form tests
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FormEntityTest {
@@ -38,17 +38,17 @@ public class FormEntityTest {
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, FormEntityTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, FormEntityTest.class.getSimpleName());
    }
 
    @BeforeClass
    public static void before() throws Exception {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void after() throws Exception {
-       client.close();
+      client.close();
    }
 
    /**
@@ -58,11 +58,11 @@ public class FormEntityTest {
    @Test
    public void testWithEqualsAndEmptyString() throws Exception
    {
-       Invocation.Builder request = client.target(generateURL("/test/form")).request();
-       Response response = request.post(Entity.entity("fp=abc&fp2=\"\"", "application/x-www-form-urlencoded"));
-       String s = response.readEntity(String.class);
-       Assert.assertEquals(200, response.getStatus());
-       Assert.assertTrue(s.equals("abc|fp=abc&fp2=\"\"") || s.equals("abc|fp2=\"\"&fp=abc"));
+      Invocation.Builder request = client.target(generateURL("/test/form")).request();
+      Response response = request.post(Entity.entity("fp=abc&fp2=\"\"", "application/x-www-form-urlencoded"));
+      String s = response.readEntity(String.class);
+      Assert.assertEquals(200, response.getStatus());
+      Assert.assertTrue(s.equals("abc|fp=abc&fp2=\"\"") || s.equals("abc|fp2=\"\"&fp=abc"));
    }
    
    /**
@@ -72,11 +72,11 @@ public class FormEntityTest {
    @Test
    public void testWithEquals() throws Exception
    {
-       Invocation.Builder request = client.target(generateURL("/test/form")).request();
-       Response response = request.post(Entity.entity("fp=abc&fp2=", "application/x-www-form-urlencoded"));
-       String s = response.readEntity(String.class);
-       Assert.assertEquals(200, response.getStatus());
-       Assert.assertTrue(s.equals("abc|fp=abc&fp2") || s.equals("abc|fp2&fp=abc"));
+      Invocation.Builder request = client.target(generateURL("/test/form")).request();
+      Response response = request.post(Entity.entity("fp=abc&fp2=", "application/x-www-form-urlencoded"));
+      String s = response.readEntity(String.class);
+      Assert.assertEquals(200, response.getStatus());
+      Assert.assertTrue(s.equals("abc|fp=abc&fp2") || s.equals("abc|fp2&fp=abc"));
    }
    
    /**
@@ -86,10 +86,10 @@ public class FormEntityTest {
    @Test
    public void testWithoutEquals() throws Exception
    {
-       Invocation.Builder request = client.target(generateURL("/test/form")).request();
-       Response response = request.post(Entity.entity("fp=abc&fp2", "application/x-www-form-urlencoded"));
-       String s = response.readEntity(String.class);
-       Assert.assertEquals(200, response.getStatus());
-       Assert.assertTrue(s.equals("abc|fp=abc&fp2") || s.equals("abc|fp2&fp=abc"));
+      Invocation.Builder request = client.target(generateURL("/test/form")).request();
+      Response response = request.post(Entity.entity("fp=abc&fp2", "application/x-www-form-urlencoded"));
+      String s = response.readEntity(String.class);
+      Assert.assertEquals(200, response.getStatus());
+      Assert.assertTrue(s.equals("abc|fp=abc&fp2") || s.equals("abc|fp2&fp=abc"));
    }
 }

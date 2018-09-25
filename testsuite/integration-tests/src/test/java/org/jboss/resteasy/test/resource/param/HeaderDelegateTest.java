@@ -38,11 +38,11 @@ import java.util.Date;
 import java.util.PropertyPermission;
 
 /**
- * @tpSubChapter Parameters
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-915
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Parameters
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-915
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class HeaderDelegateTest {
    private static Logger logger = Logger.getLogger(HeaderDelegateTest.class);
@@ -73,7 +73,7 @@ public class HeaderDelegateTest {
             new SocketPermission(PortProviderUtil.getHost(), "connect,resolve"),
             new RuntimePermission("accessDeclaredMembers"),
             new ReflectPermission("suppressAccessChecks")
-       ), "permissions.xml");
+      ), "permissions.xml");
       return TestUtil.finishContainerPrepare(war, null, HeaderDelegateResource.class);
    }
 

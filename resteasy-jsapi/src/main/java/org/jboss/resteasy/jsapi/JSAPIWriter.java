@@ -23,8 +23,8 @@ import java.util.regex.Matcher;
 import java.util.zip.GZIPOutputStream;
 
 /**
- * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
- */
+   * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
+   */
 public class JSAPIWriter
 {
 
@@ -174,7 +174,7 @@ public class JSAPIWriter
    }
 
    private void copyResource(String name, PrintWriter writer)
-           throws IOException
+         throws IOException
    {
       Reader reader = new InputStreamReader(getClass()
               .getResourceAsStream(name));

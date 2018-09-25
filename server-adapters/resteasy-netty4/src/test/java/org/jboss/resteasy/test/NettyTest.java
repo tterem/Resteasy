@@ -36,9 +36,9 @@ import org.junit.Test;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class NettyTest
 {
    @Path("/")
@@ -88,14 +88,14 @@ public class NettyTest
       @Path("/context")
       @Produces("text/plain")
       public String context(@Context ChannelHandlerContext context) {
-          return context.channel().toString();
+         return context.channel().toString();
       }
       
       @POST
       @Path("/post")
       @Produces("text/plain")
       public String post(String postBody) {
-          return postBody;
+         return postBody;
       }
 
       @PUT

@@ -20,11 +20,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Parameters
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for ParamConverter
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Parameters
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for ParamConverter
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ParamConverterTest {

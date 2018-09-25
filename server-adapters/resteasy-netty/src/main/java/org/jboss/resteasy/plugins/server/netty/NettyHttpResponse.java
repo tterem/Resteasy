@@ -23,9 +23,9 @@ import java.io.OutputStream;
 import static org.jboss.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class NettyHttpResponse implements HttpResponse
 {
    private int status = 200;
@@ -101,21 +101,21 @@ public class NettyHttpResponse implements HttpResponse
    @Override
    public void sendError(int status, String message) throws IOException
    {
-       if (committed) 
-       {
-           throw new IllegalStateException();
-       }
-       
-       HttpResponseStatus responseStatus = null;
-       if (message != null)
-       {
-           responseStatus = new HttpResponseStatus(status, message);
-       }
-       else
-       {
-           responseStatus = HttpResponseStatus.valueOf(status);
-       }
-       DefaultHttpResponse response = new DefaultHttpResponse(HTTP_1_1, responseStatus);
+      if (committed) 
+      {
+         throw new IllegalStateException();
+      }
+      
+      HttpResponseStatus responseStatus = null;
+      if (message != null)
+      {
+         responseStatus = new HttpResponseStatus(status, message);
+      }
+      else
+      {
+         responseStatus = HttpResponseStatus.valueOf(status);
+      }
+      DefaultHttpResponse response = new DefaultHttpResponse(HTTP_1_1, responseStatus);
       if (keepAlive)
       {
          // Add keep alive and content length if needed
@@ -123,8 +123,8 @@ public class NettyHttpResponse implements HttpResponse
             .add(Names.CONNECTION, Values.KEEP_ALIVE)
             .add(Names.CONTENT_LENGTH, 0);
       }
-       channel.write(response);
-       committed = true;
+      channel.write(response);
+      committed = true;
    }
 
    @Override
@@ -146,7 +146,7 @@ public class NettyHttpResponse implements HttpResponse
    }
    
    public boolean isKeepAlive() {
-       return keepAlive;
+      return keepAlive;
    }
 
    public HttpMethod getMethod() {

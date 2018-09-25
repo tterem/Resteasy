@@ -22,10 +22,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class WhitespaceTest {

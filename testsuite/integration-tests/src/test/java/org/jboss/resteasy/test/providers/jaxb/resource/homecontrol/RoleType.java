@@ -5,22 +5,22 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für RoleType.
- *
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
- * <p>
- * <pre>
- * &lt;simpleType name="RoleType"&gt;
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
- *     &lt;enumeration value="USER"/&gt;
- *     &lt;enumeration value="ADMIN"/&gt;
- *     &lt;enumeration value="BACKUP_USER"/&gt;
- *     &lt;enumeration value="BACKUP_ADMIN"/&gt;
- *   &lt;/restriction&gt;
- * &lt;/simpleType&gt;
- * </pre>
- *
- */
+   * <p>Java-Klasse für RoleType.
+   *
+   * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+   * <p>
+   * <pre>
+   * &lt;simpleType name="RoleType"&gt;
+   *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
+   *     &lt;enumeration value="USER"/&gt;
+   *     &lt;enumeration value="ADMIN"/&gt;
+   *     &lt;enumeration value="BACKUP_USER"/&gt;
+   *     &lt;enumeration value="BACKUP_ADMIN"/&gt;
+   *   &lt;/restriction&gt;
+   * &lt;/simpleType&gt;
+   * </pre>
+   *
+   */
 @XmlType(name = "RoleType")
 @XmlEnum
 public enum RoleType {

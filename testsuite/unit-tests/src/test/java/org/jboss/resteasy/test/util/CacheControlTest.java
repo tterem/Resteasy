@@ -13,11 +13,11 @@ import javax.ws.rs.ext.RuntimeDelegate;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @tpSubChapter Util tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for javax.ws.rs.core.CacheControl; class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Util tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for javax.ws.rs.core.CacheControl; class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class CacheControlTest {
 
    /**

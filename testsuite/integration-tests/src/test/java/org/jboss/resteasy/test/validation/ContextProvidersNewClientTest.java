@@ -29,11 +29,11 @@ import java.lang.reflect.ReflectPermission;
 import java.lang.reflect.Type;
 
 /**
- * @tpSubChapter Multipart provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1119. Test for new client.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Multipart provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1119. Test for new client.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ContextProvidersNewClientTest extends ContextProvidersTestBase {

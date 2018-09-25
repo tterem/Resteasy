@@ -19,11 +19,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Exceptions
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for javax.ws.rs.WebApplicationException class
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Exceptions
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for javax.ws.rs.WebApplicationException class
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class WebApplicationExceptionTest {

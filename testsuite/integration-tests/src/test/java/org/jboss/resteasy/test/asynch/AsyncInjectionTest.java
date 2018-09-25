@@ -39,11 +39,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter CDI
- * @tpChapter Integration tests
- * @tpTestCaseDetails Async Request Filter test.
- * @tpSince RESTEasy 4.0.0
- */
+   * @tpSubChapter CDI
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Async Request Filter test.
+   * @tpSince RESTEasy 4.0.0
+   */
 @RunWith(Arquillian.class)
 //@RunWith(UndertowTestRunner.class)
 @RunAsClient
@@ -81,7 +81,7 @@ public class AsyncInjectionTest {
       WebTarget base = client.target(generateURL("/"));
 
       Response response = base.request()
-           .get();
+         .get();
       assertEquals("Non-200 result: "+response.readEntity(String.class), 200, response.getStatus());
         
       client.close();
@@ -98,7 +98,7 @@ public class AsyncInjectionTest {
       WebTarget base = client.target(generateURL("/interface"));
 
       Response response = base.request()
-           .get();
+         .get();
       assertEquals("Non-200 result: "+response.readEntity(String.class), 200, response.getStatus());
         
       client.close();
@@ -115,7 +115,7 @@ public class AsyncInjectionTest {
       WebTarget base = client.target(generateURL("/resolved"));
 
       Response response = base.request()
-           .get();
+         .get();
       assertEquals("Non-200 result: "+response.readEntity(String.class), 200, response.getStatus());
         
       client.close();
@@ -132,7 +132,7 @@ public class AsyncInjectionTest {
       WebTarget base = client.target(generateURL("/suspended"));
 
       Response response = base.request()
-           .get();
+         .get();
       assertEquals("Non-200 result: "+response.readEntity(String.class), 200, response.getStatus());
         
       client.close();
@@ -149,7 +149,7 @@ public class AsyncInjectionTest {
       WebTarget base = client.target(generateURL("/exception"));
 
       Response response = base.request()
-           .get();
+         .get();
       assertEquals("Non-202 result: "+response.readEntity(String.class), 202, response.getStatus());
         
       client.close();
@@ -166,7 +166,7 @@ public class AsyncInjectionTest {
       WebTarget base = client.target(generateURL("/exception-async"));
 
       Response response = base.request()
-           .get();
+         .get();
       assertEquals("Non-202 result: "+response.readEntity(String.class), 202, response.getStatus());
         
       client.close();
@@ -183,7 +183,7 @@ public class AsyncInjectionTest {
       WebTarget base = client.target(generateURL("/late"));
 
       Response response = base.request()
-           .get();
+         .get();
       assertEquals("Non-200 result: "+response.readEntity(String.class), 200, response.getStatus());
         
       client.close();
@@ -200,7 +200,7 @@ public class AsyncInjectionTest {
       WebTarget base = client.target(generateURL("/primitives"));
 
       Response response = base.request()
-           .get();
+         .get();
       assertEquals("Non-200 result: "+response.readEntity(String.class), 200, response.getStatus());
         
       client.close();

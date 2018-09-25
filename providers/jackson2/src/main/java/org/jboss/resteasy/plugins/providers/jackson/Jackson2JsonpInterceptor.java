@@ -26,34 +26,34 @@ import org.jboss.resteasy.util.CommitHeaderOutputStream;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * <p>
- *  JSONP is an alternative to normal AJAX requests. Instead of using a XMLHttpRequest a script tag is added to the DOM.
- *  The browser will call the corresponding URL and download the JavaScript. The server creates a response which looks like a
- *  method call. The parameter is the body of the request. The name of the method to call is normally passed as query parameter.
- *  The method has to be present in the current JavaScript environment.
- * </p>
- * <p>
- *  Jackson JSON processor can produce such an response. This interceptor checks if the media type is a JavaScript one if there is a query
- *  parameter with the method name. The default name of this query parameter is "callback". So this interceptor is compatible with 
- *  <a href="http://api.jquery.com/jQuery.ajax/">jQuery</a>.
- * </p>
- * <p>
- *  It is possible to wrap the generated javascript function call in a try-catch block.
- *  You can enable it either by setting the {@link #wrapInTryCatch} property of the provider instance to {@code true}
- *  or by setting the {@code resteasy.jsonp.silent} context-param to true:
- * </p>
- * <pre>
- *  {@code
- *  <context-param>
- *   <param-name>resteasy.jsonp.silent</param-name>
- *   <param-value>true</param-value>
- *  </context-param>
- *  }
- * </pre>
- *
- * @author <a href="mailto:holger.morch@nokia.com">Holger Morch</a>
- * @version $Revision: 1 $
- */
+   * <p>
+   *  JSONP is an alternative to normal AJAX requests. Instead of using a XMLHttpRequest a script tag is added to the DOM.
+   *  The browser will call the corresponding URL and download the JavaScript. The server creates a response which looks like a
+   *  method call. The parameter is the body of the request. The name of the method to call is normally passed as query parameter.
+   *  The method has to be present in the current JavaScript environment.
+   * </p>
+   * <p>
+   *  Jackson JSON processor can produce such an response. This interceptor checks if the media type is a JavaScript one if there is a query
+   *  parameter with the method name. The default name of this query parameter is "callback". So this interceptor is compatible with 
+   *  <a href="http://api.jquery.com/jQuery.ajax/">jQuery</a>.
+   * </p>
+   * <p>
+   *  It is possible to wrap the generated javascript function call in a try-catch block.
+   *  You can enable it either by setting the {@link #wrapInTryCatch} property of the provider instance to {@code true}
+   *  or by setting the {@code resteasy.jsonp.silent} context-param to true:
+   * </p>
+   * <pre>
+   *  {@code
+   *  <context-param>
+   *   <param-name>resteasy.jsonp.silent</param-name>
+   *   <param-value>true</param-value>
+   *  </context-param>
+   *  }
+   * </pre>
+   *
+   * @author <a href="mailto:holger.morch@nokia.com">Holger Morch</a>
+   * @version $Revision: 1 $
+   */
 @Provider
 @ConstrainedTo(RuntimeType.SERVER)
 public class Jackson2JsonpInterceptor implements WriterInterceptor{

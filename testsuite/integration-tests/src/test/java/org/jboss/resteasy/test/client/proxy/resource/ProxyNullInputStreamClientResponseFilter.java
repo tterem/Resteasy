@@ -10,8 +10,8 @@ import javax.ws.rs.ext.Provider;
 
 
 /**
- * Created by rsearls on 8/24/17.
- */
+   * Created by rsearls on 8/24/17.
+   */
 @Provider
 public class ProxyNullInputStreamClientResponseFilter implements ClientResponseFilter {
    public void filter(ClientRequestContext requestContext, ClientResponseContext responseContext)

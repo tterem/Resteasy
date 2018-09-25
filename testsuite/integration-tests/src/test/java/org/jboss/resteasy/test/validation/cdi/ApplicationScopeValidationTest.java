@@ -32,28 +32,28 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Validation
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1459
- * @tpSince RESTEasy 3.1.0.Final
- */
+   * @tpSubChapter Validation
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1459
+   * @tpSince RESTEasy 3.1.0.Final
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ApplicationScopeValidationTest {
    
    @Deployment(testable = false)
    public static Archive<?> createTestArchive() {
-       WebArchive war = TestUtil.prepareArchive(ApplicationScopeValidationTest.class.getSimpleName())
+      WebArchive war = TestUtil.prepareArchive(ApplicationScopeValidationTest.class.getSimpleName())
                .addClasses(ApplicationScopeIRestServiceAppScoped.class, ApplicationScopeIRestServiceReqScoped.class)
                .addClasses(ApplicationScopeMyDto.class)
                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
-       Map<String, String> contextParam = new HashMap<>();
-       contextParam.put(ResteasyContextParameters.RESTEASY_PREFER_JACKSON_OVER_JSONB, "true");
-       return TestUtil.finishContainerPrepare(war, contextParam, ApplicationScopeRestServiceAppScoped.class, ApplicationScopeRestServiceReqScoped.class);
+      Map<String, String> contextParam = new HashMap<>();
+      contextParam.put(ResteasyContextParameters.RESTEASY_PREFER_JACKSON_OVER_JSONB, "true");
+      return TestUtil.finishContainerPrepare(war, contextParam, ApplicationScopeRestServiceAppScoped.class, ApplicationScopeRestServiceReqScoped.class);
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, ApplicationScopeValidationTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, ApplicationScopeValidationTest.class.getSimpleName());
    }
    
    @Test

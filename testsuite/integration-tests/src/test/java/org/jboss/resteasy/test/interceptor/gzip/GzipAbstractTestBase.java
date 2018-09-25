@@ -30,14 +30,14 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 /**
- * Abstract base class for gzip tests
- *
- * This abstract class provides basic test methods, Arquillian URL Resource and RESTEasy client
- *
- * This abstract class is extended by:
- *      AllowGzipOnServerAbstractTestBase
- *      NotAllowGzipOnServerAbstractTestBase
- */
+   * Abstract base class for gzip tests
+   *
+   * This abstract class provides basic test methods, Arquillian URL Resource and RESTEasy client
+   *
+   * This abstract class is extended by:
+   *      AllowGzipOnServerAbstractTestBase
+   *      NotAllowGzipOnServerAbstractTestBase
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public abstract class GzipAbstractTestBase {

@@ -5,9 +5,9 @@ import javax.persistence.PersistenceContext;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
- * The UserRepository
- *
- */
+   * The UserRepository
+   *
+   */
 @ApplicationScoped
 public class UserRepository {
 

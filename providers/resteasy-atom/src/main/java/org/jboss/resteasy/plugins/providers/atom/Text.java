@@ -21,87 +21,87 @@ import org.jboss.resteasy.plugins.providers.jaxb.JAXBXmlTypeProvider;
 import org.w3c.dom.Element;
 
 /**
- * <p>Represents an atomTextConstruct element.</p>
- * <p>Per RFC4287:</p>
- * <pre>
- *  A Text construct contains human-readable text, usually in small
- *  quantities. The content of Text constructs is Language-Sensitive.
- *
- *  atomPlainTextConstruct =
- *     atomCommonAttributes,
- *     attribute type { "text" | "html" }?,
- *     text
- *
- *  atomXHTMLTextConstruct =
- *    atomCommonAttributes,
- *    attribute type { "xhtml" },
- *    xhtmlDiv 
- *
- *  atomTextConstruct = atomPlainTextConstruct | atomXHTMLTextConstruct
- *
- * </pre>
- *
- * @author <a href="mailto:mail@johannes-beck.name">Johannes Beck</a>
- * @version $Revision: 1 $
- */
+   * <p>Represents an atomTextConstruct element.</p>
+   * <p>Per RFC4287:</p>
+   * <pre>
+   *  A Text construct contains human-readable text, usually in small
+   *  quantities. The content of Text constructs is Language-Sensitive.
+   *
+   *  atomPlainTextConstruct =
+   *     atomCommonAttributes,
+   *     attribute type { "text" | "html" }?,
+   *     text
+   *
+   *  atomXHTMLTextConstruct =
+   *    atomCommonAttributes,
+   *    attribute type { "xhtml" },
+   *    xhtmlDiv 
+   *
+   *  atomTextConstruct = atomPlainTextConstruct | atomXHTMLTextConstruct
+   *
+   * </pre>
+   *
+   * @author <a href="mailto:mail@johannes-beck.name">Johannes Beck</a>
+   * @version $Revision: 1 $
+   */
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class Text extends CommonAttributes 
 {
   
-  private String type;
+   private String type;
 
-  private MediaType mediaType;
+   private MediaType mediaType;
 
-  private String text;
+   private String text;
 
-  private Element element;
+   private Element element;
 
-  private List<Object> value;
+   private List<Object> value;
 
-  private Object jaxbObject;
+   private Object jaxbObject;
 
-  protected JAXBContextFinder finder;
+   protected JAXBContextFinder finder;
 
-  public Text()
-  {
-  }
+   public Text()
+   {
+   }
 
-  public Text(String text, String type)
-  {
+   public Text(String text, String type)
+   {
      setText(text);
      setRawType(type);
-  }
+   }
 
-  public Text(String text)
-  {
+   public Text(String text)
+   {
    setText(text);
-  }  
+   }  
   
-  protected void setFinder(JAXBContextFinder finder)
-  {
+   protected void setFinder(JAXBContextFinder finder)
+   {
      this.finder = finder;
-  }
+   }
 
-  @XmlAnyElement
-  @XmlMixed
-  public List<Object> getValue()
-  {
+   @XmlAnyElement
+   @XmlMixed
+   public List<Object> getValue()
+   {
      return value;
-  }
+   }
 
-  public void setValue(List<Object> value)
-  {
+   public void setValue(List<Object> value)
+   {
      this.value = value;
-  }
+   }
     
-  /**
+   /**
    * Mime type.
    *
    * @return media type
    */
-  @XmlTransient
-  public MediaType getType()
-  {
+   @XmlTransient
+   public MediaType getType()
+   {
      if (mediaType == null)
      {
       if (type.equals("html")) mediaType = MediaType.TEXT_HTML_TYPE;
@@ -110,36 +110,36 @@ public class Text extends CommonAttributes
       else mediaType = MediaType.valueOf(type);
      }
      return mediaType;
-  }
+   }
 
-  public void setType(MediaType type)
-  {
+   public void setType(MediaType type)
+   {
      mediaType = type;
      if (type.equals(MediaType.TEXT_PLAIN_TYPE)) this.type = "text";
      else if (type.equals(MediaType.TEXT_HTML_TYPE)) this.type = "html";
      else if (type.equals(MediaType.APPLICATION_XHTML_XML_TYPE)) this.type = "xhtml";
      else this.type = type.toString();
-  }
+   }
   
-  @XmlAttribute(name = "type")
-  public String getRawType()
-  {
+   @XmlAttribute(name = "type")
+   public String getRawType()
+   {
      return type;
-  }
+   }
 
-  public void setRawType(String type)
-  {
+   public void setRawType(String type)
+   {
      this.type = type;
-  }
+   }
   
-  /**
+   /**
    * If content is text, return it as a String.  Otherwise, if content is not text this will return null.
    *
    * @return text
    */
-  @XmlTransient
-  public String getText()
-  {
+   @XmlTransient
+   public String getText()
+   {
      if (value == null) return null;
      if (value.size() == 0) return null;
      if (text != null) return text;
@@ -150,57 +150,57 @@ public class Text extends CommonAttributes
      }
      text = buf.toString();
      return text;
-  }
+   }
   
-  /**
+   /**
    * Set content as text.
    *
    * @param text text
    */
-  public void setText(String text)
-  {
+   public void setText(String text)
+   {
      if (value == null) value = new ArrayList<Object>();
      if (this.text != null && value != null) value.clear();
      this.text = text;
      value.add(text);
-  }
+   }
 
-  /**
+   /**
    * Get content as an XML Element if the content is XML.  Otherwise, this will just return null.
    *
    * @return {@link Element}
    */
-  @XmlTransient
-  public Element getElement()
-  {
+   @XmlTransient
+   public Element getElement()
+   {
      if (value == null) return null;
      if (element != null) return element;
      for (Object obj : value)
      {
       if (obj instanceof Element)
       {
-           element = (Element) obj;
-           return element;
+         element = (Element) obj;
+         return element;
       }
      }
      return null;
-  }
+   }
 
-  /**
+   /**
    * Set the content to an XML Element.
    *
    * @param element {@link Element}
    */
-  public void setElement(Element element)
-  {
+   public void setElement(Element element)
+   {
      if (value == null) value = new ArrayList<Object>();
      if (this.element != null && value != null) value.clear();
      this.element = element;
      value.add(element);
 
-  }
+   }
     
-  /**
+   /**
    * Extract the content as the provided JAXB annotated type.
    * <p>
    * This method will use a cached JAXBContext used by the Resteasy JAXB providers
@@ -212,9 +212,9 @@ public class Text extends CommonAttributes
    * @return null if there is no XML content
    * @throws JAXBException jaxb exception
    */
-  @SuppressWarnings(value = "unchecked")
-  public <T> T getJAXBObject(Class<T> clazz, Class... otherPossibleClasses) throws JAXBException
-  {
+   @SuppressWarnings(value = "unchecked")
+   public <T> T getJAXBObject(Class<T> clazz, Class... otherPossibleClasses) throws JAXBException
+   {
      JAXBContext ctx = null;
      Class[] classes = {clazz};
      if (otherPossibleClasses != null && otherPossibleClasses.length > 0)
@@ -243,22 +243,22 @@ public class Text extends CommonAttributes
       jaxbObject = obj;
       return (T) obj;
      }
-  }
+   }
 
-  /**
+   /**
    * Returns previous extracted jaxbobject from a call to getJAXBObject(Class{@literal <}T{@literal >} clazz)
    * or value passed in through a previous setJAXBObject().
    *
    * @return jaxb object
    */
-  @XmlTransient
-  public Object getJAXBObject()
-  {
+   @XmlTransient
+   public Object getJAXBObject()
+   {
      return jaxbObject;
-  }
+   }
 
-  public void setJAXBObject(Object obj)
-  {
+   public void setJAXBObject(Object obj)
+   {
      if (value == null) value = new ArrayList<Object>();
      if (jaxbObject != null && value != null) value.clear();
      if (!obj.getClass().isAnnotationPresent(XmlRootElement.class) && obj.getClass().isAnnotationPresent(XmlType.class))
@@ -270,5 +270,5 @@ public class Text extends CommonAttributes
       value.add(obj);
      }
      jaxbObject = obj;
-  }  
+   }  
 }

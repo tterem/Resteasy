@@ -21,12 +21,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @tpSubChapter Providers
- * @tpChapter Integration tests
- * @tpTestCaseDetails This test verifies that Providers instance can be injected into a Provider
- *                    using constructor or field injection.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Providers
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails This test verifies that Providers instance can be injected into a Provider
+   *                    using constructor or field injection.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ProviderInjectionTest {

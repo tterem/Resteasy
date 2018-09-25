@@ -19,11 +19,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Integration tests
- * @tpTestCaseDetails Smoke parameter test.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Smoke parameter test.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SmokeParamTest extends ClientTestBase{

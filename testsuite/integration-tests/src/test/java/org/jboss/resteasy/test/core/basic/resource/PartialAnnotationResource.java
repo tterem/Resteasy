@@ -5,10 +5,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 /**
- * A PartialAnnotationResource.
- * 
- * @author pjurak
- */
+   * A PartialAnnotationResource.
+   * 
+   * @author pjurak
+   */
 @Path("/test")
 public interface PartialAnnotationResource
 {

@@ -24,11 +24,11 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Parameters
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test of CDI integration for RESTEasy extended support for multivalue @*Param (RESTEASY-1566 + RESTEASY-1746)
- * @tpSince RESTEasy 4.0.0
- */
+   * @tpSubChapter Parameters
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test of CDI integration for RESTEasy extended support for multivalue @*Param (RESTEASY-1566 + RESTEASY-1746)
+   * @tpSince RESTEasy 4.0.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MultiValuedParamCdiTest {

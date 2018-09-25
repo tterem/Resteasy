@@ -8,8 +8,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- * Created by mkopecky on 11/9/15.
- */
+   * Created by mkopecky on 11/9/15.
+   */
 class ConsoleErrorHandler extends DefaultServiceLocator.ErrorHandler {
 
    protected static final Logger logger = LogManager.getLogger(ConsoleErrorHandler.class.getName());

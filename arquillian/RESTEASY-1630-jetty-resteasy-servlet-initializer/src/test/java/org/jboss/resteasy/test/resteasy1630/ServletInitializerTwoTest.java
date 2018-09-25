@@ -32,7 +32,7 @@ import static org.junit.Assert.assertEquals;
 
      This test checks that the implementation properly handles a jaxrs app that provides
      resource and provider classes but no web.xml file.
- */
+   */
 
 @RunWith(Arquillian.class)
 @RunAsClient

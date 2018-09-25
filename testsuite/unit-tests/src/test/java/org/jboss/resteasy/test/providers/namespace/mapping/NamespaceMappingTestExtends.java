@@ -7,23 +7,23 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for NamespaceMappingTestExtends complex type.
- * <p>
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;complexType name="NamespaceMappingTestExtends">
- *   &lt;complexContent>
- *     &lt;extension base="{http://www.example.org/a/TestCanonical}NamespaceMappingTestBase">
- *       &lt;sequence>
- *         &lt;element name="someMoreEl" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="element2" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *       &lt;/sequence>
- *     &lt;/extension>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- */
+   * <p>Java class for NamespaceMappingTestExtends complex type.
+   * <p>
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * <p>
+   * <pre>
+   * &lt;complexType name="NamespaceMappingTestExtends">
+   *   &lt;complexContent>
+   *     &lt;extension base="{http://www.example.org/a/TestCanonical}NamespaceMappingTestBase">
+   *       &lt;sequence>
+   *         &lt;element name="someMoreEl" type="{http://www.w3.org/2001/XMLSchema}string"/>
+   *         &lt;element name="element2" type="{http://www.w3.org/2001/XMLSchema}string"/>
+   *       &lt;/sequence>
+   *     &lt;/extension>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "NamespaceMappingTestExtends", propOrder = {
       "someMoreEl",

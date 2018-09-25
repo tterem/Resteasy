@@ -38,11 +38,11 @@ import org.springframework.context.ApplicationContext;
 import org.jboss.resteasy.test.spring.inmodule.resource.TestResource;
 
 /**
- * @tpSubChapter Spring
- * @tpChapter Integration tests
- * @tpTestCaseDetails Tests adding spring as resource root with dependency for server module
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Spring
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Tests adding spring as resource root with dependency for server module
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AddSpringResteasyAsResourceRootInModuleTest {

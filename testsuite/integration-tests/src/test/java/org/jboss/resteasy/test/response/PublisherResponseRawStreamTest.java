@@ -30,10 +30,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Publisher response type
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- */
+   * @tpSubChapter Publisher response type
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PublisherResponseRawStreamTest {

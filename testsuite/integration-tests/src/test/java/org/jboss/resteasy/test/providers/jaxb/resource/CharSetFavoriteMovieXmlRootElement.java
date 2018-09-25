@@ -11,4 +11,4 @@ public class CharSetFavoriteMovieXmlRootElement {
    public void setTitle(String title) {
      _title = title;
    }
- }
+   }

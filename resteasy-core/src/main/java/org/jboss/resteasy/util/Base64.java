@@ -6,143 +6,143 @@ import org.jboss.resteasy.resteasy_jaxrs.i18n.LogMessages;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 
 /**
- * <p>Encodes and decodes to and from Base64 notation.</p>
- * <p>Homepage: <a href="http://iharder.net/base64">http://iharder.net/base64</a>.</p>
- * <p>Example:</p>
- * <p>
- * <code>String encoded = Base64.encode( myByteArray );</code>
- * <br>
- * <code>byte[] myByteArray = Base64.decode( encoded );</code>
- * <p>The <tt>options</tt> parameter, which appears in a few places, is used to pass
- * several pieces of information to the encoder. In the "higher level" methods such as
- * encodeBytes( bytes, options ) the options parameter can be used to indicate such
- * things as first gzipping the bytes before encoding them, not inserting linefeeds,
- * and encoding using the URL-safe and Ordered dialects.</p>
- * <p>Note, according to <a href="http://www.faqs.org/rfcs/rfc3548.html">RFC3548</a>,
- * Section 2.1, implementations should not add line feeds unless explicitly told
- * to do so. I've got Base64 set to this behavior now, although earlier versions
- * broke lines by default.</p>
- * <p>The constants defined in Base64 can be OR-ed together to combine options, so you
- * might make a call like this:</p>
- * <p>
- * <code>String encoded = Base64.encodeBytes( mybytes, Base64.GZIP | Base64.DO_BREAK_LINES );</code>
- * <p>to compress the data before encoding it and then making the output have newline characters.</p>
- * <p>Also...</p>
- * <code>String encoded = Base64.encodeBytes( crazyString.getBytes() );</code>
- * <p>
- * Change Log:
- * </p>
- * <ul>
- * <li>v2.3.7 - Fixed subtle bug when base 64 input stream contained the
- * value 01111111, which is an invalid base 64 character but should not
- * throw an ArrayIndexOutOfBoundsException either. Led to discovery of
- * mishandling (or potential for better handling) of other bad input
- * characters. You should now get an IOException if you try decoding
- * something that has bad characters in it.</li>
- * <li>v2.3.6 - Fixed bug when breaking lines and the final byte of the encoded
- * string ended in the last column; the buffer was not properly shrunk and
- * contained an extra (null) byte that made it into the string.</li>
- * <li>v2.3.5 - Fixed bug in {@link #encodeFromFile} where estimated buffer size
- * was wrong for files of size 31, 34, and 37 bytes.</li>
- * <li>v2.3.4 - Fixed bug when working with gzipped streams whereby flushing
- * the Base64.OutputStream closed the Base64 encoding (by padding with equals
- * signs) too soon. Also added an option to suppress the automatic decoding
- * of gzipped streams. Also added experimental support for specifying a
- * class loader when using the
- * {@link #decodeToObject(java.lang.String, int, java.lang.ClassLoader)}
- * method.</li>
- * <li>v2.3.3 - Changed default char encoding to US-ASCII which reduces the internal Java
- * footprint with its CharEncoders and so forth. Fixed some javadocs that were
- * inconsistent. Removed imports and specified things like java.io.IOException
- * explicitly inline.</li>
- * <li>v2.3.2 - Reduced memory footprint! Finally refined the "guessing" of how big the
- * final encoded data will be so that the code doesn't have to create two output
- * arrays: an oversized initial one and then a final, exact-sized one. Big win
- * when using the {@link #encodeBytesToBytes(byte[])} family of methods (and not
- * using the gzip options which uses a different mechanism with streams and stuff).</li>
- * <li>v2.3.1 - Added {@link #encodeBytesToBytes(byte[], int, int, int)} and some
- * similar helper methods to be more efficient with memory by not returning a
- * String but just a byte array.</li>
- * <li>v2.3 - <strong>This is not a drop-in replacement!</strong> This is two years of comments
- * and bug fixes queued up and finally executed. Thanks to everyone who sent
- * me stuff, and I'm sorry I wasn't able to distribute your fixes to everyone else.
- * Much bad coding was cleaned up including throwing exceptions where necessary
- * instead of returning null values or something similar. Here are some changes
- * that may affect you:
- * <ul>
- * <li><em>Does not break lines, by default.</em> This is to keep in compliance with
- * <a href="http://www.faqs.org/rfcs/rfc3548.html">RFC3548</a>.</li>
- * <li><em>Throws exceptions instead of returning null values.</em> Because some operations
- * (especially those that may permit the GZIP option) use IO streams, there
- * is a possiblity of an java.io.IOException being thrown. After some discussion and
- * thought, I've changed the behavior of the methods to throw java.io.IOExceptions
- * rather than return null if ever there's an error. I think this is more
- * appropriate, though it will require some changes to your code. Sorry,
- * it should have been done this way to begin with.</li>
- * <li><em>Removed all references to System.out, System.err, and the like.</em>
- * Shame on me. All I can say is sorry they were ever there.</li>
- * <li><em>Throws NullPointerExceptions and IllegalArgumentExceptions</em> as needed
- * such as when passed arrays are null or offsets are invalid.</li>
- * <li>Cleaned up as much javadoc as I could to avoid any javadoc warnings.
- * This was especially annoying before for people who were thorough in their
- * own projects and then had gobs of javadoc warnings on this file.</li>
- * </ul>
- * <li>v2.2.1 - Fixed bug using URL_SAFE and ORDERED encodings. Fixed bug
- * when using very small files (~&lt; 40 bytes).</li>
- * <li>v2.2 - Added some helper methods for encoding/decoding directly from
- * one file to the next. Also added a main() method to support command line
- * encoding/decoding from one file to the next. Also added these Base64 dialects:
- * <ol>
- * <li>The default is RFC3548 format.</li>
- * <li>Calling Base64.setFormat(Base64.BASE64_FORMAT.URLSAFE_FORMAT) generates
- * URL and file name friendly format as described in Section 4 of RFC3548.
- * http://www.faqs.org/rfcs/rfc3548.html</li>
- * <li>Calling Base64.setFormat(Base64.BASE64_FORMAT.ORDERED_FORMAT) generates
- * URL and file name friendly format that preserves lexical ordering as described
- * in http://www.faqs.org/qa/rfcc-1940.html</li>
- * </ol>
- * Special thanks to Jim Kellerman at <a href="http://www.powerset.com/">http://www.powerset.com/</a>
- * for contributing the new Base64 dialects.
- * </li>
- * <li>v2.1 - Cleaned up javadoc comments and unused variables and methods. Added
- * some convenience methods for reading and writing to and from files.</li>
- * <li>v2.0.2 - Now specifies UTF-8 encoding in places where the code fails on systems
- * with other encodings (like EBCDIC).</li>
- * <li>v2.0.1 - Fixed an error when decoding a single byte, that is, when the
- * encoded data was a single byte.</li>
- * <li>v2.0 - I got rid of methods that used booleans to set options.
- * Now everything is more consolidated and cleaner. The code now detects
- * when data that's being decoded is gzip-compressed and will decompress it
- * automatically. Generally things are cleaner. You'll probably have to
- * change some method calls that you were making to support the new
- * options format (<tt>int</tt>s that you "OR" together).</li>
- * <li>v1.5.1 - Fixed bug when decompressing and decoding to a
- * byte[] using <tt>decode( String s, boolean gzipCompressed )</tt>.
- * Added the ability to "suspend" encoding in the Output Stream so
- * you can turn on and off the encoding if you need to embed base64
- * data in an otherwise "normal" stream (like an XML file).</li>
- * <li>v1.5 - Output stream pases on flush() command but doesn't do anything itself.
- * This helps when using GZIP streams.
- * Added the ability to GZip-compress objects before encoding them.</li>
- * <li>v1.4 - Added helper methods to read/write files.</li>
- * <li>v1.3.6 - Fixed OutputStream.flush() so that 'position' is reset.</li>
- * <li>v1.3.5 - Added flag to turn on and off line breaks. Fixed bug in input stream
- * where last buffer being read, if not completely full, was not returned.</li>
- * <li>v1.3.4 - Fixed when "improperly padded stream" error was thrown at the wrong time.</li>
- * <li>v1.3.3 - Fixed I/O streams which were totally messed up.</li>
- * </ul>
- * <p>
- * I am placing this code in the Public Domain. Do with it as you will.
- * This software comes with no guarantees or warranties but with
- * plenty of well-wishing instead!
- * Please visit <a href="http://iharder.net/base64">http://iharder.net/base64</a>
- * periodically to check for updates or to contribute improvements.
- * </p>
- *
- * @author Robert Harder
- * @author rob@iharder.net
- * @version 2.3.7
- */
+   * <p>Encodes and decodes to and from Base64 notation.</p>
+   * <p>Homepage: <a href="http://iharder.net/base64">http://iharder.net/base64</a>.</p>
+   * <p>Example:</p>
+   * <p>
+   * <code>String encoded = Base64.encode( myByteArray );</code>
+   * <br>
+   * <code>byte[] myByteArray = Base64.decode( encoded );</code>
+   * <p>The <tt>options</tt> parameter, which appears in a few places, is used to pass
+   * several pieces of information to the encoder. In the "higher level" methods such as
+   * encodeBytes( bytes, options ) the options parameter can be used to indicate such
+   * things as first gzipping the bytes before encoding them, not inserting linefeeds,
+   * and encoding using the URL-safe and Ordered dialects.</p>
+   * <p>Note, according to <a href="http://www.faqs.org/rfcs/rfc3548.html">RFC3548</a>,
+   * Section 2.1, implementations should not add line feeds unless explicitly told
+   * to do so. I've got Base64 set to this behavior now, although earlier versions
+   * broke lines by default.</p>
+   * <p>The constants defined in Base64 can be OR-ed together to combine options, so you
+   * might make a call like this:</p>
+   * <p>
+   * <code>String encoded = Base64.encodeBytes( mybytes, Base64.GZIP | Base64.DO_BREAK_LINES );</code>
+   * <p>to compress the data before encoding it and then making the output have newline characters.</p>
+   * <p>Also...</p>
+   * <code>String encoded = Base64.encodeBytes( crazyString.getBytes() );</code>
+   * <p>
+   * Change Log:
+   * </p>
+   * <ul>
+   * <li>v2.3.7 - Fixed subtle bug when base 64 input stream contained the
+   * value 01111111, which is an invalid base 64 character but should not
+   * throw an ArrayIndexOutOfBoundsException either. Led to discovery of
+   * mishandling (or potential for better handling) of other bad input
+   * characters. You should now get an IOException if you try decoding
+   * something that has bad characters in it.</li>
+   * <li>v2.3.6 - Fixed bug when breaking lines and the final byte of the encoded
+   * string ended in the last column; the buffer was not properly shrunk and
+   * contained an extra (null) byte that made it into the string.</li>
+   * <li>v2.3.5 - Fixed bug in {@link #encodeFromFile} where estimated buffer size
+   * was wrong for files of size 31, 34, and 37 bytes.</li>
+   * <li>v2.3.4 - Fixed bug when working with gzipped streams whereby flushing
+   * the Base64.OutputStream closed the Base64 encoding (by padding with equals
+   * signs) too soon. Also added an option to suppress the automatic decoding
+   * of gzipped streams. Also added experimental support for specifying a
+   * class loader when using the
+   * {@link #decodeToObject(java.lang.String, int, java.lang.ClassLoader)}
+   * method.</li>
+   * <li>v2.3.3 - Changed default char encoding to US-ASCII which reduces the internal Java
+   * footprint with its CharEncoders and so forth. Fixed some javadocs that were
+   * inconsistent. Removed imports and specified things like java.io.IOException
+   * explicitly inline.</li>
+   * <li>v2.3.2 - Reduced memory footprint! Finally refined the "guessing" of how big the
+   * final encoded data will be so that the code doesn't have to create two output
+   * arrays: an oversized initial one and then a final, exact-sized one. Big win
+   * when using the {@link #encodeBytesToBytes(byte[])} family of methods (and not
+   * using the gzip options which uses a different mechanism with streams and stuff).</li>
+   * <li>v2.3.1 - Added {@link #encodeBytesToBytes(byte[], int, int, int)} and some
+   * similar helper methods to be more efficient with memory by not returning a
+   * String but just a byte array.</li>
+   * <li>v2.3 - <strong>This is not a drop-in replacement!</strong> This is two years of comments
+   * and bug fixes queued up and finally executed. Thanks to everyone who sent
+   * me stuff, and I'm sorry I wasn't able to distribute your fixes to everyone else.
+   * Much bad coding was cleaned up including throwing exceptions where necessary
+   * instead of returning null values or something similar. Here are some changes
+   * that may affect you:
+   * <ul>
+   * <li><em>Does not break lines, by default.</em> This is to keep in compliance with
+   * <a href="http://www.faqs.org/rfcs/rfc3548.html">RFC3548</a>.</li>
+   * <li><em>Throws exceptions instead of returning null values.</em> Because some operations
+   * (especially those that may permit the GZIP option) use IO streams, there
+   * is a possiblity of an java.io.IOException being thrown. After some discussion and
+   * thought, I've changed the behavior of the methods to throw java.io.IOExceptions
+   * rather than return null if ever there's an error. I think this is more
+   * appropriate, though it will require some changes to your code. Sorry,
+   * it should have been done this way to begin with.</li>
+   * <li><em>Removed all references to System.out, System.err, and the like.</em>
+   * Shame on me. All I can say is sorry they were ever there.</li>
+   * <li><em>Throws NullPointerExceptions and IllegalArgumentExceptions</em> as needed
+   * such as when passed arrays are null or offsets are invalid.</li>
+   * <li>Cleaned up as much javadoc as I could to avoid any javadoc warnings.
+   * This was especially annoying before for people who were thorough in their
+   * own projects and then had gobs of javadoc warnings on this file.</li>
+   * </ul>
+   * <li>v2.2.1 - Fixed bug using URL_SAFE and ORDERED encodings. Fixed bug
+   * when using very small files (~&lt; 40 bytes).</li>
+   * <li>v2.2 - Added some helper methods for encoding/decoding directly from
+   * one file to the next. Also added a main() method to support command line
+   * encoding/decoding from one file to the next. Also added these Base64 dialects:
+   * <ol>
+   * <li>The default is RFC3548 format.</li>
+   * <li>Calling Base64.setFormat(Base64.BASE64_FORMAT.URLSAFE_FORMAT) generates
+   * URL and file name friendly format as described in Section 4 of RFC3548.
+   * http://www.faqs.org/rfcs/rfc3548.html</li>
+   * <li>Calling Base64.setFormat(Base64.BASE64_FORMAT.ORDERED_FORMAT) generates
+   * URL and file name friendly format that preserves lexical ordering as described
+   * in http://www.faqs.org/qa/rfcc-1940.html</li>
+   * </ol>
+   * Special thanks to Jim Kellerman at <a href="http://www.powerset.com/">http://www.powerset.com/</a>
+   * for contributing the new Base64 dialects.
+   * </li>
+   * <li>v2.1 - Cleaned up javadoc comments and unused variables and methods. Added
+   * some convenience methods for reading and writing to and from files.</li>
+   * <li>v2.0.2 - Now specifies UTF-8 encoding in places where the code fails on systems
+   * with other encodings (like EBCDIC).</li>
+   * <li>v2.0.1 - Fixed an error when decoding a single byte, that is, when the
+   * encoded data was a single byte.</li>
+   * <li>v2.0 - I got rid of methods that used booleans to set options.
+   * Now everything is more consolidated and cleaner. The code now detects
+   * when data that's being decoded is gzip-compressed and will decompress it
+   * automatically. Generally things are cleaner. You'll probably have to
+   * change some method calls that you were making to support the new
+   * options format (<tt>int</tt>s that you "OR" together).</li>
+   * <li>v1.5.1 - Fixed bug when decompressing and decoding to a
+   * byte[] using <tt>decode( String s, boolean gzipCompressed )</tt>.
+   * Added the ability to "suspend" encoding in the Output Stream so
+   * you can turn on and off the encoding if you need to embed base64
+   * data in an otherwise "normal" stream (like an XML file).</li>
+   * <li>v1.5 - Output stream pases on flush() command but doesn't do anything itself.
+   * This helps when using GZIP streams.
+   * Added the ability to GZip-compress objects before encoding them.</li>
+   * <li>v1.4 - Added helper methods to read/write files.</li>
+   * <li>v1.3.6 - Fixed OutputStream.flush() so that 'position' is reset.</li>
+   * <li>v1.3.5 - Added flag to turn on and off line breaks. Fixed bug in input stream
+   * where last buffer being read, if not completely full, was not returned.</li>
+   * <li>v1.3.4 - Fixed when "improperly padded stream" error was thrown at the wrong time.</li>
+   * <li>v1.3.3 - Fixed I/O streams which were totally messed up.</li>
+   * </ul>
+   * <p>
+   * I am placing this code in the Public Domain. Do with it as you will.
+   * This software comes with no guarantees or warranties but with
+   * plenty of well-wishing instead!
+   * Please visit <a href="http://iharder.net/base64">http://iharder.net/base64</a>
+   * periodically to check for updates or to contribute improvements.
+   * </p>
+   *
+   * @author Robert Harder
+   * @author rob@iharder.net
+   * @version 2.3.7
+   */
 public class Base64
 {
 
@@ -238,16 +238,16 @@ public class Base64
    */
    /* Host platform me be something funny like EBCDIC, so we hardcode these values. */
    private final static byte[] _STANDARD_ALPHABET = {
-           (byte) 'A', (byte) 'B', (byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', (byte) 'G',
-           (byte) 'H', (byte) 'I', (byte) 'J', (byte) 'K', (byte) 'L', (byte) 'M', (byte) 'N',
-           (byte) 'O', (byte) 'P', (byte) 'Q', (byte) 'R', (byte) 'S', (byte) 'T', (byte) 'U',
-           (byte) 'V', (byte) 'W', (byte) 'X', (byte) 'Y', (byte) 'Z',
-           (byte) 'a', (byte) 'b', (byte) 'c', (byte) 'd', (byte) 'e', (byte) 'f', (byte) 'g',
-           (byte) 'h', (byte) 'i', (byte) 'j', (byte) 'k', (byte) 'l', (byte) 'm', (byte) 'n',
-           (byte) 'o', (byte) 'p', (byte) 'q', (byte) 'r', (byte) 's', (byte) 't', (byte) 'u',
-           (byte) 'v', (byte) 'w', (byte) 'x', (byte) 'y', (byte) 'z',
-           (byte) '0', (byte) '1', (byte) '2', (byte) '3', (byte) '4', (byte) '5',
-           (byte) '6', (byte) '7', (byte) '8', (byte) '9', (byte) '+', (byte) '/'
+         (byte) 'A', (byte) 'B', (byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', (byte) 'G',
+         (byte) 'H', (byte) 'I', (byte) 'J', (byte) 'K', (byte) 'L', (byte) 'M', (byte) 'N',
+         (byte) 'O', (byte) 'P', (byte) 'Q', (byte) 'R', (byte) 'S', (byte) 'T', (byte) 'U',
+         (byte) 'V', (byte) 'W', (byte) 'X', (byte) 'Y', (byte) 'Z',
+         (byte) 'a', (byte) 'b', (byte) 'c', (byte) 'd', (byte) 'e', (byte) 'f', (byte) 'g',
+         (byte) 'h', (byte) 'i', (byte) 'j', (byte) 'k', (byte) 'l', (byte) 'm', (byte) 'n',
+         (byte) 'o', (byte) 'p', (byte) 'q', (byte) 'r', (byte) 's', (byte) 't', (byte) 'u',
+         (byte) 'v', (byte) 'w', (byte) 'x', (byte) 'y', (byte) 'z',
+         (byte) '0', (byte) '1', (byte) '2', (byte) '3', (byte) '4', (byte) '5',
+         (byte) '6', (byte) '7', (byte) '8', (byte) '9', (byte) '+', (byte) '/'
    };
 
 
@@ -256,37 +256,37 @@ public class Base64
    * or a negative number indicating some other meaning.
    */
    private final static byte[] _STANDARD_DECODABET = {
-           -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal  0 -  8
-           -5, -5,                                      // Whitespace: Tab and Linefeed
-           -9, -9,                                      // Decimal 11 - 12
-           -5,                                         // Whitespace: Carriage Return
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 14 - 26
-           -9, -9, -9, -9, -9,                             // Decimal 27 - 31
-           -5,                                         // Whitespace: Space
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,              // Decimal 33 - 42
-           62,                                         // Plus sign at decimal 43
-           -9, -9, -9,                                   // Decimal 44 - 46
-           63,                                         // Slash at decimal 47
-           52, 53, 54, 55, 56, 57, 58, 59, 60, 61,              // Numbers zero through nine
-           -9, -9, -9,                                   // Decimal 58 - 60
-           -1,                                         // Equals sign at decimal 61
-           -9, -9, -9,                                      // Decimal 62 - 64
-           0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,            // Letters 'A' through 'N'
-           14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,        // Letters 'O' through 'Z'
-           -9, -9, -9, -9, -9, -9,                          // Decimal 91 - 96
-           26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,     // Letters 'a' through 'm'
-           39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,     // Letters 'n' through 'z'
-           -9, -9, -9, -9, -9                              // Decimal 123 - 127
-           , -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,       // Decimal 128 - 139
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 140 - 152
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 153 - 165
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 166 - 178
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 179 - 191
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 192 - 204
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 205 - 217
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 218 - 230
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 231 - 243
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9         // Decimal 244 - 255
+         -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal  0 -  8
+         -5, -5,                                      // Whitespace: Tab and Linefeed
+         -9, -9,                                      // Decimal 11 - 12
+         -5,                                         // Whitespace: Carriage Return
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 14 - 26
+         -9, -9, -9, -9, -9,                             // Decimal 27 - 31
+         -5,                                         // Whitespace: Space
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,              // Decimal 33 - 42
+         62,                                         // Plus sign at decimal 43
+         -9, -9, -9,                                   // Decimal 44 - 46
+         63,                                         // Slash at decimal 47
+         52, 53, 54, 55, 56, 57, 58, 59, 60, 61,              // Numbers zero through nine
+         -9, -9, -9,                                   // Decimal 58 - 60
+         -1,                                         // Equals sign at decimal 61
+         -9, -9, -9,                                      // Decimal 62 - 64
+         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,            // Letters 'A' through 'N'
+         14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,        // Letters 'O' through 'Z'
+         -9, -9, -9, -9, -9, -9,                          // Decimal 91 - 96
+         26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,     // Letters 'a' through 'm'
+         39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,     // Letters 'n' through 'z'
+         -9, -9, -9, -9, -9                              // Decimal 123 - 127
+         , -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,       // Decimal 128 - 139
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 140 - 152
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 153 - 165
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 166 - 178
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 179 - 191
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 192 - 204
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 205 - 217
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 218 - 230
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 231 - 243
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9         // Decimal 244 - 255
    };
 
 
@@ -298,57 +298,57 @@ public class Base64
    * Notice that the last two bytes become "hyphen" and "underscore" instead of "plus" and "slash."
    */
    private final static byte[] _URL_SAFE_ALPHABET = {
-           (byte) 'A', (byte) 'B', (byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', (byte) 'G',
-           (byte) 'H', (byte) 'I', (byte) 'J', (byte) 'K', (byte) 'L', (byte) 'M', (byte) 'N',
-           (byte) 'O', (byte) 'P', (byte) 'Q', (byte) 'R', (byte) 'S', (byte) 'T', (byte) 'U',
-           (byte) 'V', (byte) 'W', (byte) 'X', (byte) 'Y', (byte) 'Z',
-           (byte) 'a', (byte) 'b', (byte) 'c', (byte) 'd', (byte) 'e', (byte) 'f', (byte) 'g',
-           (byte) 'h', (byte) 'i', (byte) 'j', (byte) 'k', (byte) 'l', (byte) 'm', (byte) 'n',
-           (byte) 'o', (byte) 'p', (byte) 'q', (byte) 'r', (byte) 's', (byte) 't', (byte) 'u',
-           (byte) 'v', (byte) 'w', (byte) 'x', (byte) 'y', (byte) 'z',
-           (byte) '0', (byte) '1', (byte) '2', (byte) '3', (byte) '4', (byte) '5',
-           (byte) '6', (byte) '7', (byte) '8', (byte) '9', (byte) '-', (byte) '_'
+         (byte) 'A', (byte) 'B', (byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', (byte) 'G',
+         (byte) 'H', (byte) 'I', (byte) 'J', (byte) 'K', (byte) 'L', (byte) 'M', (byte) 'N',
+         (byte) 'O', (byte) 'P', (byte) 'Q', (byte) 'R', (byte) 'S', (byte) 'T', (byte) 'U',
+         (byte) 'V', (byte) 'W', (byte) 'X', (byte) 'Y', (byte) 'Z',
+         (byte) 'a', (byte) 'b', (byte) 'c', (byte) 'd', (byte) 'e', (byte) 'f', (byte) 'g',
+         (byte) 'h', (byte) 'i', (byte) 'j', (byte) 'k', (byte) 'l', (byte) 'm', (byte) 'n',
+         (byte) 'o', (byte) 'p', (byte) 'q', (byte) 'r', (byte) 's', (byte) 't', (byte) 'u',
+         (byte) 'v', (byte) 'w', (byte) 'x', (byte) 'y', (byte) 'z',
+         (byte) '0', (byte) '1', (byte) '2', (byte) '3', (byte) '4', (byte) '5',
+         (byte) '6', (byte) '7', (byte) '8', (byte) '9', (byte) '-', (byte) '_'
    };
 
    /**
    * Used in decoding URL- and Filename-safe dialects of Base64.
    */
    private final static byte[] _URL_SAFE_DECODABET = {
-           -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal  0 -  8
-           -5, -5,                                      // Whitespace: Tab and Linefeed
-           -9, -9,                                      // Decimal 11 - 12
-           -5,                                         // Whitespace: Carriage Return
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 14 - 26
-           -9, -9, -9, -9, -9,                             // Decimal 27 - 31
-           -5,                                         // Whitespace: Space
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,              // Decimal 33 - 42
-           -9,                                         // Plus sign at decimal 43
-           -9,                                         // Decimal 44
-           62,                                         // Minus sign at decimal 45
-           -9,                                         // Decimal 46
-           -9,                                         // Slash at decimal 47
-           52, 53, 54, 55, 56, 57, 58, 59, 60, 61,              // Numbers zero through nine
-           -9, -9, -9,                                   // Decimal 58 - 60
-           -1,                                         // Equals sign at decimal 61
-           -9, -9, -9,                                   // Decimal 62 - 64
-           0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,            // Letters 'A' through 'N'
-           14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,        // Letters 'O' through 'Z'
-           -9, -9, -9, -9,                                // Decimal 91 - 94
-           63,                                         // Underscore at decimal 95
-           -9,                                         // Decimal 96
-           26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,     // Letters 'a' through 'm'
-           39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,     // Letters 'n' through 'z'
-           -9, -9, -9, -9, -9                              // Decimal 123 - 127
-           , -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 128 - 139
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 140 - 152
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 153 - 165
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 166 - 178
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 179 - 191
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 192 - 204
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 205 - 217
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 218 - 230
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 231 - 243
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9         // Decimal 244 - 255
+         -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal  0 -  8
+         -5, -5,                                      // Whitespace: Tab and Linefeed
+         -9, -9,                                      // Decimal 11 - 12
+         -5,                                         // Whitespace: Carriage Return
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 14 - 26
+         -9, -9, -9, -9, -9,                             // Decimal 27 - 31
+         -5,                                         // Whitespace: Space
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,              // Decimal 33 - 42
+         -9,                                         // Plus sign at decimal 43
+         -9,                                         // Decimal 44
+         62,                                         // Minus sign at decimal 45
+         -9,                                         // Decimal 46
+         -9,                                         // Slash at decimal 47
+         52, 53, 54, 55, 56, 57, 58, 59, 60, 61,              // Numbers zero through nine
+         -9, -9, -9,                                   // Decimal 58 - 60
+         -1,                                         // Equals sign at decimal 61
+         -9, -9, -9,                                   // Decimal 62 - 64
+         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,            // Letters 'A' through 'N'
+         14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,        // Letters 'O' through 'Z'
+         -9, -9, -9, -9,                                // Decimal 91 - 94
+         63,                                         // Underscore at decimal 95
+         -9,                                         // Decimal 96
+         26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,     // Letters 'a' through 'm'
+         39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,     // Letters 'n' through 'z'
+         -9, -9, -9, -9, -9                              // Decimal 123 - 127
+         , -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 128 - 139
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 140 - 152
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 153 - 165
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 166 - 178
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 179 - 191
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 192 - 204
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 205 - 217
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 218 - 230
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 231 - 243
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9         // Decimal 244 - 255
    };
 
 
@@ -360,59 +360,59 @@ public class Base64
    * <a href="http://www.faqs.org/qa/rfcc-1940.html">http://www.faqs.org/qa/rfcc-1940.html</a>.
    */
    private final static byte[] _ORDERED_ALPHABET = {
-           (byte) '-',
-           (byte) '0', (byte) '1', (byte) '2', (byte) '3', (byte) '4',
-           (byte) '5', (byte) '6', (byte) '7', (byte) '8', (byte) '9',
-           (byte) 'A', (byte) 'B', (byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', (byte) 'G',
-           (byte) 'H', (byte) 'I', (byte) 'J', (byte) 'K', (byte) 'L', (byte) 'M', (byte) 'N',
-           (byte) 'O', (byte) 'P', (byte) 'Q', (byte) 'R', (byte) 'S', (byte) 'T', (byte) 'U',
-           (byte) 'V', (byte) 'W', (byte) 'X', (byte) 'Y', (byte) 'Z',
-           (byte) '_',
-           (byte) 'a', (byte) 'b', (byte) 'c', (byte) 'd', (byte) 'e', (byte) 'f', (byte) 'g',
-           (byte) 'h', (byte) 'i', (byte) 'j', (byte) 'k', (byte) 'l', (byte) 'm', (byte) 'n',
-           (byte) 'o', (byte) 'p', (byte) 'q', (byte) 'r', (byte) 's', (byte) 't', (byte) 'u',
-           (byte) 'v', (byte) 'w', (byte) 'x', (byte) 'y', (byte) 'z'
+         (byte) '-',
+         (byte) '0', (byte) '1', (byte) '2', (byte) '3', (byte) '4',
+         (byte) '5', (byte) '6', (byte) '7', (byte) '8', (byte) '9',
+         (byte) 'A', (byte) 'B', (byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', (byte) 'G',
+         (byte) 'H', (byte) 'I', (byte) 'J', (byte) 'K', (byte) 'L', (byte) 'M', (byte) 'N',
+         (byte) 'O', (byte) 'P', (byte) 'Q', (byte) 'R', (byte) 'S', (byte) 'T', (byte) 'U',
+         (byte) 'V', (byte) 'W', (byte) 'X', (byte) 'Y', (byte) 'Z',
+         (byte) '_',
+         (byte) 'a', (byte) 'b', (byte) 'c', (byte) 'd', (byte) 'e', (byte) 'f', (byte) 'g',
+         (byte) 'h', (byte) 'i', (byte) 'j', (byte) 'k', (byte) 'l', (byte) 'm', (byte) 'n',
+         (byte) 'o', (byte) 'p', (byte) 'q', (byte) 'r', (byte) 's', (byte) 't', (byte) 'u',
+         (byte) 'v', (byte) 'w', (byte) 'x', (byte) 'y', (byte) 'z'
    };
 
    /**
    * Used in decoding the "ordered" dialect of Base64.
    */
    private final static byte[] _ORDERED_DECODABET = {
-           -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal  0 -  8
-           -5, -5,                                      // Whitespace: Tab and Linefeed
-           -9, -9,                                      // Decimal 11 - 12
-           -5,                                         // Whitespace: Carriage Return
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 14 - 26
-           -9, -9, -9, -9, -9,                             // Decimal 27 - 31
-           -5,                                         // Whitespace: Space
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,              // Decimal 33 - 42
-           -9,                                         // Plus sign at decimal 43
-           -9,                                         // Decimal 44
-           0,                                          // Minus sign at decimal 45
-           -9,                                         // Decimal 46
-           -9,                                         // Slash at decimal 47
-           1, 2, 3, 4, 5, 6, 7, 8, 9, 10,                       // Numbers zero through nine
-           -9, -9, -9,                                   // Decimal 58 - 60
-           -1,                                         // Equals sign at decimal 61
-           -9, -9, -9,                                   // Decimal 62 - 64
-           11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,     // Letters 'A' through 'M'
-           24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36,     // Letters 'N' through 'Z'
-           -9, -9, -9, -9,                                // Decimal 91 - 94
-           37,                                         // Underscore at decimal 95
-           -9,                                         // Decimal 96
-           38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,     // Letters 'a' through 'm'
-           51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63,     // Letters 'n' through 'z'
-           -9, -9, -9, -9, -9                                 // Decimal 123 - 127
-           , -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 128 - 139
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 140 - 152
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 153 - 165
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 166 - 178
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 179 - 191
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 192 - 204
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 205 - 217
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 218 - 230
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 231 - 243
-           -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9         // Decimal 244 - 255
+         -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal  0 -  8
+         -5, -5,                                      // Whitespace: Tab and Linefeed
+         -9, -9,                                      // Decimal 11 - 12
+         -5,                                         // Whitespace: Carriage Return
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 14 - 26
+         -9, -9, -9, -9, -9,                             // Decimal 27 - 31
+         -5,                                         // Whitespace: Space
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,              // Decimal 33 - 42
+         -9,                                         // Plus sign at decimal 43
+         -9,                                         // Decimal 44
+         0,                                          // Minus sign at decimal 45
+         -9,                                         // Decimal 46
+         -9,                                         // Slash at decimal 47
+         1, 2, 3, 4, 5, 6, 7, 8, 9, 10,                       // Numbers zero through nine
+         -9, -9, -9,                                   // Decimal 58 - 60
+         -1,                                         // Equals sign at decimal 61
+         -9, -9, -9,                                   // Decimal 62 - 64
+         11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,     // Letters 'A' through 'M'
+         24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36,     // Letters 'N' through 'Z'
+         -9, -9, -9, -9,                                // Decimal 91 - 94
+         37,                                         // Underscore at decimal 95
+         -9,                                         // Decimal 96
+         38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,     // Letters 'a' through 'm'
+         51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63,     // Letters 'n' through 'z'
+         -9, -9, -9, -9, -9                                 // Decimal 123 - 127
+         , -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 128 - 139
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 140 - 152
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 153 - 165
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 166 - 178
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 179 - 191
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 192 - 204
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 205 - 217
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 218 - 230
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 231 - 243
+         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9         // Decimal 244 - 255
    };
 
 
@@ -524,8 +524,8 @@ public class Base64
    * @since 1.3
    */
    private static byte[] encode3to4(
-           byte[] source, int srcOffset, int numSigBytes,
-           byte[] destination, int destOffset, int options)
+         byte[] source, int srcOffset, int numSigBytes,
+         byte[] destination, int destOffset, int options)
    {
 
       byte[] ALPHABET = getAlphabet(options);
@@ -647,7 +647,7 @@ public class Base64
    * @since 1.4
    */
    public static String encodeObject(java.io.Serializable serializableObject)
-           throws java.io.IOException
+         throws java.io.IOException
    {
       return encodeObject(serializableObject, NO_OPTIONS);
    }   // end encodeObject
@@ -682,7 +682,7 @@ public class Base64
    * @since 2.0
    */
    public static String encodeObject(java.io.Serializable serializableObject, int options)
-           throws java.io.IOException
+         throws java.io.IOException
    {
 
       if (serializableObject == null)
@@ -1102,8 +1102,8 @@ public class Base64
    * @since 1.3
    */
    private static int decode4to3(
-           byte[] source, int srcOffset,
-           byte[] destination, int destOffset, int options)
+         byte[] source, int srcOffset,
+         byte[] destination, int destOffset, int options)
    {
 
       // Lots of error checking and exception throwing
@@ -1194,7 +1194,7 @@ public class Base64
    * @since 2.3.1
    */
    public static byte[] decode(byte[] source)
-           throws java.io.IOException
+         throws java.io.IOException
    {
       byte[] decoded = null;
 //        try {
@@ -1224,7 +1224,7 @@ public class Base64
    * @since 1.3
    */
    public static byte[] decode(byte[] source, int off, int len, int options)
-           throws java.io.IOException
+         throws java.io.IOException
    {
 
       // Lots of error checking and exception throwing
@@ -1415,7 +1415,7 @@ public class Base64
    * @since 1.5
    */
    public static Object decodeToObject(String encodedObject)
-           throws java.io.IOException, java.lang.ClassNotFoundException
+         throws java.io.IOException, java.lang.ClassNotFoundException
    {
       return decodeToObject(encodedObject, NO_OPTIONS, null);
    }
@@ -1438,8 +1438,8 @@ public class Base64
    * @since 2.3.4
    */
    public static Object decodeToObject(
-           String encodedObject, int options, final ClassLoader loader)
-           throws java.io.IOException, java.lang.ClassNotFoundException
+         String encodedObject, int options, final ClassLoader loader)
+         throws java.io.IOException, java.lang.ClassNotFoundException
    {
 
       // Decode and gunzip if necessary
@@ -1522,7 +1522,7 @@ public class Base64
    * @since 2.1
    */
    public static void encodeToFile(byte[] dataToEncode, String filename)
-           throws java.io.IOException
+         throws java.io.IOException
    {
 
       if (dataToEncode == null)
@@ -1565,7 +1565,7 @@ public class Base64
    * @since 2.1
    */
    public static void decodeToFile(String dataToDecode, String filename)
-           throws java.io.IOException
+         throws java.io.IOException
    {
 
       Base64.OutputStream bos = null;
@@ -1604,7 +1604,7 @@ public class Base64
    * @since 2.1
    */
    public static byte[] decodeFromFile(String filename)
-           throws java.io.IOException
+         throws java.io.IOException
    {
 
       byte[] decodedData = null;
@@ -1670,7 +1670,7 @@ public class Base64
    * @since 2.1
    */
    public static String encodeFromFile(String filename)
-           throws java.io.IOException
+         throws java.io.IOException
    {
 
       String encodedData = null;
@@ -1722,7 +1722,7 @@ public class Base64
    * @since 2.2
    */
    public static void encodeFileToFile(String infile, String outfile)
-           throws java.io.IOException
+         throws java.io.IOException
    {
 
       String encoded = Base64.encodeFromFile(infile);
@@ -1756,7 +1756,7 @@ public class Base64
    * @since 2.2
    */
    public static void decodeFileToFile(String infile, String outfile)
-           throws java.io.IOException
+         throws java.io.IOException
    {
 
       byte[] decoded = Base64.decodeFromFile(infile);
@@ -1807,11 +1807,11 @@ public class Base64
 
 
       /**
-       * Constructs a {@link Base64.InputStream} in DECODE mode.
-       *
-       * @param in the <tt>java.io.InputStream</tt> from which to read data.
-       * @since 1.3
-       */
+      * Constructs a {@link Base64.InputStream} in DECODE mode.
+      *
+      * @param in the <tt>java.io.InputStream</tt> from which to read data.
+      * @since 1.3
+      */
       public InputStream(java.io.InputStream in)
       {
          this(in, DECODE);
@@ -1819,24 +1819,24 @@ public class Base64
 
 
       /**
-       * Constructs a {@link Base64.InputStream} in
-       * either ENCODE or DECODE mode.
-       * <p>
-       * Valid options:<pre>
-       *   ENCODE or DECODE: Encode or Decode as data is read.
-       *   DO_BREAK_LINES: break lines at 76 characters
-       *     <i>(only meaningful when encoding)</i>
-       * </pre>
-       * <p>
-       * Example: <code>new Base64.InputStream( in, Base64.DECODE )</code>
-       *
-       * @param in      the <tt>java.io.InputStream</tt> from which to read data.
-       * @param options Specified options
-       * @see Base64#ENCODE
-       * @see Base64#DECODE
-       * @see Base64#DO_BREAK_LINES
-       * @since 2.0
-       */
+      * Constructs a {@link Base64.InputStream} in
+      * either ENCODE or DECODE mode.
+      * <p>
+      * Valid options:<pre>
+      *   ENCODE or DECODE: Encode or Decode as data is read.
+      *   DO_BREAK_LINES: break lines at 76 characters
+      *     <i>(only meaningful when encoding)</i>
+      * </pre>
+      * <p>
+      * Example: <code>new Base64.InputStream( in, Base64.DECODE )</code>
+      *
+      * @param in      the <tt>java.io.InputStream</tt> from which to read data.
+      * @param options Specified options
+      * @see Base64#ENCODE
+      * @see Base64#DECODE
+      * @see Base64#DO_BREAK_LINES
+      * @since 2.0
+      */
       public InputStream(java.io.InputStream in, int options)
       {
 
@@ -1852,12 +1852,12 @@ public class Base64
       }   // end constructor
 
       /**
-       * Reads enough of the input stream to convert
-       * to/from Base64 and returns the next byte.
-       *
-       * @return next byte
-       * @since 1.3
-       */
+      * Reads enough of the input stream to convert
+      * to/from Base64 and returns the next byte.
+      *
+      * @return next byte
+      * @since 1.3
+      */
       @Override
       public int read() throws java.io.IOException
       {
@@ -1978,17 +1978,17 @@ public class Base64
 
 
       /**
-       * Calls {@link #read()} repeatedly until the end of stream
-       * is reached or <var>len</var> bytes are read.
-       * Returns number of bytes read into array or -1 if
-       * end of stream is encountered.
-       *
-       * @param dest array to hold values
-       * @param off  offset for array
-       * @param len  max number of bytes to read into array
-       * @return bytes read into array or -1 if end of stream is encountered.
-       * @since 1.3
-       */
+      * Calls {@link #read()} repeatedly until the end of stream
+      * is reached or <var>len</var> bytes are read.
+      * Returns number of bytes read into array or -1 if
+      * end of stream is encountered.
+      *
+      * @param dest array to hold values
+      * @param off  offset for array
+      * @param len  max number of bytes to read into array
+      * @return bytes read into array or -1 if end of stream is encountered.
+      * @since 1.3
+      */
       @Override
       public int read(byte[] dest, int off, int len)
               throws java.io.IOException
@@ -2044,11 +2044,11 @@ public class Base64
       private byte[] decodabet;  // Local copies to avoid extra method calls
 
       /**
-       * Constructs a {@link Base64.OutputStream} in ENCODE mode.
-       *
-       * @param out the <tt>java.io.OutputStream</tt> to which data will be written.
-       * @since 1.3
-       */
+      * Constructs a {@link Base64.OutputStream} in ENCODE mode.
+      *
+      * @param out the <tt>java.io.OutputStream</tt> to which data will be written.
+      * @since 1.3
+      */
       public OutputStream(java.io.OutputStream out)
       {
          this(out, ENCODE);
@@ -2056,24 +2056,24 @@ public class Base64
 
 
       /**
-       * Constructs a {@link Base64.OutputStream} in
-       * either ENCODE or DECODE mode.
-       * <p>
-       * Valid options:<pre>
-       *   ENCODE or DECODE: Encode or Decode as data is read.
-       *   DO_BREAK_LINES: don't break lines at 76 characters
-       *     <i>(only meaningful when encoding)</i>
-       * </pre>
-       * <p>
-       * Example: <code>new Base64.OutputStream( out, Base64.ENCODE )</code>
-       *
-       * @param out     the <tt>java.io.OutputStream</tt> to which data will be written.
-       * @param options Specified options.
-       * @see Base64#ENCODE
-       * @see Base64#DECODE
-       * @see Base64#DO_BREAK_LINES
-       * @since 1.3
-       */
+      * Constructs a {@link Base64.OutputStream} in
+      * either ENCODE or DECODE mode.
+      * <p>
+      * Valid options:<pre>
+      *   ENCODE or DECODE: Encode or Decode as data is read.
+      *   DO_BREAK_LINES: don't break lines at 76 characters
+      *     <i>(only meaningful when encoding)</i>
+      * </pre>
+      * <p>
+      * Example: <code>new Base64.OutputStream( out, Base64.ENCODE )</code>
+      *
+      * @param out     the <tt>java.io.OutputStream</tt> to which data will be written.
+      * @param options Specified options.
+      * @see Base64#ENCODE
+      * @see Base64#DECODE
+      * @see Base64#DO_BREAK_LINES
+      * @since 1.3
+      */
       public OutputStream(java.io.OutputStream out, int options)
       {
          super(out);
@@ -2091,17 +2091,17 @@ public class Base64
 
 
       /**
-       * Writes the byte to the output stream after
-       * converting to/from Base64 notation.
-       * When encoding, bytes are buffered three
-       * at a time before the output stream actually
-       * gets a write() call.
-       * When decoding, bytes are buffered four
-       * at a time.
-       *
-       * @param theByte the byte to write
-       * @since 1.3
-       */
+      * Writes the byte to the output stream after
+      * converting to/from Base64 notation.
+      * When encoding, bytes are buffered three
+      * at a time before the output stream actually
+      * gets a write() call.
+      * When decoding, bytes are buffered four
+      * at a time.
+      *
+      * @param theByte the byte to write
+      * @since 1.3
+      */
       @Override
       public void write(int theByte)
               throws java.io.IOException
@@ -2157,14 +2157,14 @@ public class Base64
 
 
       /**
-       * Calls {@link #write(int)} repeatedly until <var>len</var>
-       * bytes are written.
-       *
-       * @param theBytes array from which to read bytes
-       * @param off      offset for array
-       * @param len      max number of bytes to read into array
-       * @since 1.3
-       */
+      * Calls {@link #write(int)} repeatedly until <var>len</var>
+      * bytes are written.
+      *
+      * @param theBytes array from which to read bytes
+      * @param off      offset for array
+      * @param len      max number of bytes to read into array
+      * @since 1.3
+      */
       @Override
       public void write(byte[] theBytes, int off, int len)
               throws java.io.IOException
@@ -2185,11 +2185,11 @@ public class Base64
 
 
       /**
-       * Method added by PHIL. [Thanks, PHIL. -Rob]
-       * This pads the buffer without closing the stream.
-       *
-       * @throws java.io.IOException if there's an error.
-       */
+      * Method added by PHIL. [Thanks, PHIL. -Rob]
+      * This pads the buffer without closing the stream.
+      *
+      * @throws java.io.IOException if there's an error.
+      */
       public void flushBase64() throws java.io.IOException
       {
          if (position > 0)
@@ -2209,10 +2209,10 @@ public class Base64
 
 
       /**
-       * Flushes and closes (I think, in the superclass) the stream.
-       *
-       * @since 1.3
-       */
+      * Flushes and closes (I think, in the superclass) the stream.
+      *
+      * @since 1.3
+      */
       @Override
       public void close() throws java.io.IOException
       {
@@ -2229,13 +2229,13 @@ public class Base64
 
 
       /**
-       * Suspends encoding of the stream.
-       * May be helpful if you need to embed a piece of
-       * base64-encoded data in a stream.
-       *
-       * @throws java.io.IOException if there's an error flushing
-       * @since 1.5.1
-       */
+      * Suspends encoding of the stream.
+      * May be helpful if you need to embed a piece of
+      * base64-encoded data in a stream.
+      *
+      * @throws java.io.IOException if there's an error flushing
+      * @since 1.5.1
+      */
       public void suspendEncoding() throws java.io.IOException
       {
          flushBase64();
@@ -2244,12 +2244,12 @@ public class Base64
 
 
       /**
-       * Resumes encoding of the stream.
-       * May be helpful if you need to embed a piece of
-       * base64-encoded data in a stream.
-       *
-       * @since 1.5.1
-       */
+      * Resumes encoding of the stream.
+      * May be helpful if you need to embed a piece of
+      * base64-encoded data in a stream.
+      *
+      * @since 1.5.1
+      */
       public void resumeEncoding()
       {
          this.suspendEncoding = false;

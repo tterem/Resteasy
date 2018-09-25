@@ -25,11 +25,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.20
- * @tpTestCaseDetails Test client error caused by bad media type
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.20
+   * @tpTestCaseDetails Test client error caused by bad media type
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ClientErrorTest
@@ -38,14 +38,14 @@ public class ClientErrorTest
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(ClientErrorTest.class.getSimpleName());
-       war.addClass(PortProviderUtil.class);
-       war.addClass(TestUtil.class);
-       return TestUtil.finishContainerPrepare(war, null, ClientErrorResource.class);
+      WebArchive war = TestUtil.prepareArchive(ClientErrorTest.class.getSimpleName());
+      war.addClass(PortProviderUtil.class);
+      war.addClass(TestUtil.class);
+      return TestUtil.finishContainerPrepare(war, null, ClientErrorResource.class);
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, ClientErrorTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, ClientErrorTest.class.getSimpleName());
    }
 
    @BeforeClass

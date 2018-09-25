@@ -8,24 +8,24 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for NamespaceMappingTestBase complex type.
- * <p>
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;complexType name="NamespaceMappingTestBase">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="desc" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- */
+   * <p>Java class for NamespaceMappingTestBase complex type.
+   * <p>
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * <p>
+   * <pre>
+   * &lt;complexType name="NamespaceMappingTestBase">
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;sequence>
+   *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/>
+   *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+   *         &lt;element name="desc" type="{http://www.w3.org/2001/XMLSchema}string"/>
+   *       &lt;/sequence>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "NamespaceMappingTestBase", propOrder = {
       "id",

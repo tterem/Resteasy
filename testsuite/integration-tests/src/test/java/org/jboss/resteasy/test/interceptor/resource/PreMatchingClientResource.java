@@ -4,8 +4,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 /**
- * Created by rsearls on 8/21/17.
- */
+   * Created by rsearls on 8/21/17.
+   */
 @Path("/")
 public class PreMatchingClientResource {
    @GET

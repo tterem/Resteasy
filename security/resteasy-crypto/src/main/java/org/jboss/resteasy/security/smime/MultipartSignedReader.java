@@ -23,9 +23,9 @@ import org.jboss.resteasy.spi.ReaderException;
 import org.jboss.resteasy.spi.util.Types;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @Provider
 @Consumes("multipart/signed")
 public class MultipartSignedReader implements MessageBodyReader<SignedInput>

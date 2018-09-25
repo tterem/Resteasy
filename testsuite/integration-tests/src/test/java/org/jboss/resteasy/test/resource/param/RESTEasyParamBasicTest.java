@@ -28,12 +28,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Parameters
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for RESTEasy param annotations (https://issues.jboss.org/browse/RESTEASY-1880)
- *                    Test logic is in the end-point in deployment.
- * @tpSince RESTEasy 3.6
- */
+   * @tpSubChapter Parameters
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for RESTEasy param annotations (https://issues.jboss.org/browse/RESTEASY-1880)
+   *                    Test logic is in the end-point in deployment.
+   * @tpSince RESTEasy 3.6
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RESTEasyParamBasicTest {

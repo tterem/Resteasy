@@ -63,9 +63,9 @@ import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.util.CaseInsensitiveMap;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class MultipartInputImpl implements MultipartInput, ProvidersContextRetainer
 {
    protected MediaType contentType;
@@ -235,13 +235,13 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
    }
 
    protected InputStream addHeaderToHeadlessStream(InputStream is)
-           throws UnsupportedEncodingException
+         throws UnsupportedEncodingException
    {
       return new SequenceInputStream(createHeaderInputStream(), is);
    }
 
    protected InputStream createHeaderInputStream()
-           throws UnsupportedEncodingException
+         throws UnsupportedEncodingException
    {
       String header = HttpHeaders.CONTENT_TYPE + ": " + contentType
               + "\r\n\r\n";

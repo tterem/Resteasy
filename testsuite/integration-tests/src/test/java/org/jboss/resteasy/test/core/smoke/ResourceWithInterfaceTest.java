@@ -16,11 +16,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Smoke tests for jaxrs
- * @tpChapter Integration tests
- * @tpTestCaseDetails Smoke test for resource with interface.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Smoke tests for jaxrs
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Smoke test for resource with interface.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResourceWithInterfaceTest {

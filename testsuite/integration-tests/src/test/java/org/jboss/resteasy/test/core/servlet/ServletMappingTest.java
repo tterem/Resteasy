@@ -30,11 +30,11 @@ import javax.ws.rs.core.Response;
 import java.lang.reflect.ReflectPermission;
 
 /**
- * @tpSubChapter Configuration
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for servlet mapping. This settings is in web.xml
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Configuration
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for servlet mapping. This settings is in web.xml
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ServletMappingTest {

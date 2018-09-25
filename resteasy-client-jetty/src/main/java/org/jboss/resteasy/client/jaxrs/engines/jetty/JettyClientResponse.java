@@ -37,9 +37,9 @@ class JettyClientResponse extends ClientResponse {
       InputStream is = getInputStream();
       if (is != null && consumeInputStream)
       {
-           while (is.read() > 0)
-           {
-           }
+         while (is.read() > 0)
+         {
+         }
       }
       cancel.run();
    }

@@ -18,11 +18,11 @@ import java.util.Set;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @tpSubChapter Injection tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Session bean interface test.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Injection tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Session bean interface test.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class SessionBeanInterfaceTest {
    private ResteasyCdiExtension extension;
 

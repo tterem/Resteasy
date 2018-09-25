@@ -9,8 +9,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
- * This class provides a web-based facade for an injected service.
- */
+   * This class provides a web-based facade for an injected service.
+   */
 @Path("/")
 public class JavaConfigResource {
 

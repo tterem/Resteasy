@@ -42,9 +42,9 @@ import org.jboss.resteasy.spi.UnhandledException;
 import org.jboss.resteasy.tracing.RESTEasyTracingLogger;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SynchronousDispatcher implements Dispatcher
 {
@@ -313,7 +313,7 @@ public class SynchronousDispatcher implements Dispatcher
    }
 
    public ResourceInvoker getInvoker(HttpRequest request)
-           throws Failure
+         throws Failure
    {
       LogMessages.LOGGER.pathInfo(request.getUri().getPath());
       if (!request.isInitial())
@@ -400,14 +400,14 @@ public class SynchronousDispatcher implements Dispatcher
      {
       for (Iterator<Cleanable> it = cleanables.getCleanables().iterator(); it.hasNext(); )
       {
-           try
-           {
+         try
+         {
               it.next().clean();
-           }
-           catch(Exception e)
-           {
+         }
+         catch(Exception e)
+         {
             // Empty
-           }
+         }
       }
      }
      ResteasyContext.clearContextData();
@@ -435,11 +435,11 @@ public class SynchronousDispatcher implements Dispatcher
          if (request.getAsyncContext().isSuspended())
          {
             /**
-             * Callback by the initial calling thread.  This callback will probably do nothing in an asynchronous environment
-             * but will be used to simulate AsynchronousResponse in vanilla Servlet containers that do not support
-             * asychronous HTTP.
-             *
-             */
+            * Callback by the initial calling thread.  This callback will probably do nothing in an asynchronous environment
+            * but will be used to simulate AsynchronousResponse in vanilla Servlet containers that do not support
+            * asychronous HTTP.
+            *
+            */
             request.getAsyncContext().getAsyncResponse().initialRequestThreadFinished();
             jaxrsResponse = null; // we're handing response asynchronously
          }
@@ -480,11 +480,11 @@ public class SynchronousDispatcher implements Dispatcher
          if (request.getAsyncContext().isSuspended())
          {
             /**
-             * Callback by the initial calling thread.  This callback will probably do nothing in an asynchronous environment
-             * but will be used to simulate AsynchronousResponse in vanilla Servlet containers that do not support
-             * asychronous HTTP.
-             *
-             */
+            * Callback by the initial calling thread.  This callback will probably do nothing in an asynchronous environment
+            * but will be used to simulate AsynchronousResponse in vanilla Servlet containers that do not support
+            * asychronous HTTP.
+            *
+            */
             request.getAsyncContext().getAsyncResponse().initialRequestThreadFinished();
             jaxrsResponse = null; // we're handing response asynchronously
          }

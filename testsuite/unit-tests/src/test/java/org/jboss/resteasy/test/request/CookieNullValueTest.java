@@ -7,11 +7,11 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.containsString;
 
 /**
- * @tpSubChapter Requests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Regression test for JBEAP-4712
- * @tpSince RESTEasy 3.0.17
- */
+   * @tpSubChapter Requests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Regression test for JBEAP-4712
+   * @tpSince RESTEasy 3.0.17
+   */
 public class CookieNullValueTest {
 
    /**

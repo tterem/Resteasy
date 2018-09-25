@@ -18,11 +18,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Regression test for RESTEASY-839
- */
+   * @tpSubChapter Resource
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Regression test for RESTEASY-839
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SerializableWithParametersTest {

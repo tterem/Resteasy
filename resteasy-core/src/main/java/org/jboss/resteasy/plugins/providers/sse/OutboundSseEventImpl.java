@@ -148,7 +148,7 @@ public class OutboundSseEventImpl implements OutboundSseEvent
       {
       if (this.comment == null && this.data == null)
       {
-           throw new IllegalArgumentException(Messages.MESSAGES.nullValueSetToCreateOutboundSseEvent("comment or data"));
+         throw new IllegalArgumentException(Messages.MESSAGES.nullValueSetToCreateOutboundSseEvent("comment or data"));
       }
          return new OutboundSseEventImpl(name, id, reconnectDelay, type, genericType, mediaType, data, comment);
       }

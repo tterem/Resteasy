@@ -28,10 +28,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter CompletionStage response type
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.5
- */
+   * @tpSubChapter CompletionStage response type
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.5
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CompletionStageResponseTest {

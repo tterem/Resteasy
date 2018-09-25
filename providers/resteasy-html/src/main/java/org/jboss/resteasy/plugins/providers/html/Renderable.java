@@ -7,11 +7,11 @@ import javax.ws.rs.WebApplicationException;
 import java.io.IOException;
 
 /**
- * If you return one of these from a resource method, RESTEasy-HTML will render it.  This
- * interface allows for exotic view rendering types.
- * 
- * @author <a href="mailto:jeff@infohazard.org">Jeff Schnitzer</a>
- */
+   * If you return one of these from a resource method, RESTEasy-HTML will render it.  This
+   * interface allows for exotic view rendering types.
+   * 
+   * @author <a href="mailto:jeff@infohazard.org">Jeff Schnitzer</a>
+   */
 public interface Renderable
 {
    /**
@@ -24,6 +24,6 @@ public interface Renderable
    * @throws WebApplicationException if application error occurred
    */
    void render(HttpServletRequest request, HttpServletResponse response)
-       throws IOException, ServletException, WebApplicationException;
+      throws IOException, ServletException, WebApplicationException;
 
 }

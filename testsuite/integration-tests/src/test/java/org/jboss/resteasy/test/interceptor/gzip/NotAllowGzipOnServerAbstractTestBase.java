@@ -4,14 +4,14 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.Archive;
 
 /**
- * Abstract base class for tests with gzip disabled on server side.
- *
- * This abstract class provides deployments.
- *
- * This abstract class is extended by:
- *      NotAllowGzipOnServerAllowGzipOnClientTest
- *      NotAllowGzipOnServerNotAllowGzipOnClientTest
- */
+   * Abstract base class for tests with gzip disabled on server side.
+   *
+   * This abstract class provides deployments.
+   *
+   * This abstract class is extended by:
+   *      NotAllowGzipOnServerAllowGzipOnClientTest
+   *      NotAllowGzipOnServerNotAllowGzipOnClientTest
+   */
 public class NotAllowGzipOnServerAbstractTestBase extends GzipAbstractTestBase {
 
    /**

@@ -1,11 +1,11 @@
 package org.jboss.resteasy.plugins.server.servlet;
 
 /**
- * constant names of resteasy configuration variables within a servlet
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * constant names of resteasy configuration variables within a servlet
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public interface ResteasyContextParameters {
    String RESTEASY_PROVIDERS = "resteasy.providers";
 

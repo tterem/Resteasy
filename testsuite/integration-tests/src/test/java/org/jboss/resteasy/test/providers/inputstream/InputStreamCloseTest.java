@@ -21,11 +21,11 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Configuration
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-741
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Configuration
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-741
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InputStreamCloseTest {

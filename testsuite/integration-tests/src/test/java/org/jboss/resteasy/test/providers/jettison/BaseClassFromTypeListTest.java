@@ -28,11 +28,11 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
- * @tpSubChapter Jettison provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-167
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jettison provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-167
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class BaseClassFromTypeListTest {

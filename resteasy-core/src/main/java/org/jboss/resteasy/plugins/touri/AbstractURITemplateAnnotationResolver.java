@@ -74,7 +74,7 @@ public abstract class AbstractURITemplateAnnotationResolver implements
    }
 
    private Map<String, PropertyDescriptor> getPropertyDescriptors(
-           Class<? extends Object> clazz)
+         Class<? extends Object> clazz)
    {
       try
       {

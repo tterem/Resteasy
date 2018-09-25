@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 12 05 2012
- *
- * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
- */
+   * 12 05 2012
+   *
+   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+   */
 public class Person {
    @Form(prefix="telephoneNumbers") List<TelephoneNumber> telephoneNumbers;
    @Form(prefix="address")

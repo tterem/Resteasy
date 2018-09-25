@@ -26,10 +26,10 @@ import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class TimeoutTest extends ClientTestBase{

@@ -16,10 +16,10 @@ import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
 
 /**
- * @tpSubChapter Providers
- * @tpChapter Unit tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Providers
+   * @tpChapter Unit tests
+   * @tpSince RESTEasy 3.0.16
+   */
 public class ProviderFactoryPrecedenceTest {
 
    @Provider

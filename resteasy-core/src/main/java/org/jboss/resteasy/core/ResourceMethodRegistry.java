@@ -35,11 +35,11 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Registry of resources and methods/classes that can dispatch HTTP method requests.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Registry of resources and methods/classes that can dispatch HTTP method requests.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings("rawtypes")
 public class ResourceMethodRegistry implements Registry
 {

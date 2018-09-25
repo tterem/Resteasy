@@ -30,11 +30,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @tpSubChapter Configuration
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-541
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Configuration
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-541
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ApplicationFilterTest {

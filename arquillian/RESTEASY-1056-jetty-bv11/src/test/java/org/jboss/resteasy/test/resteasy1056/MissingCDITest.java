@@ -23,13 +23,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * RESTEASY-1056
- *
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *          <p>
- *          Copyright June 7, 2014
- */
+   * RESTEASY-1056
+   *
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *          <p>
+   *          Copyright June 7, 2014
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MissingCDITest {

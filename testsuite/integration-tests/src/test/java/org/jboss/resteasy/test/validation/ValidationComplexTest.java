@@ -88,11 +88,11 @@ import java.util.PropertyPermission;
 import java.util.logging.LoggingPermission;
 
 /**
- * @tpSubChapter Response
- * @tpChapter Integration tests
- * @tpTestCaseDetails Complex basic test for Resteasy Validator Provider
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Response
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Complex basic test for Resteasy Validator Provider
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class ValidationComplexTest {
 

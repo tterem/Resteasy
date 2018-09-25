@@ -29,14 +29,14 @@ import org.junit.runner.RunWith;
 import static org.jboss.resteasy.utils.PortProviderUtil.generateURL;
 
 /**
- * @tpSubChapter XXE
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1073.
- *      External parameter entities should be disabled when the resteasy.document.expand.entity.references parameter was set to false.
- *      A remote attacker able to send XML requests to a RESTEasy endpoint could use this flaw to read files accessible to the user
- *      running the application server, and potentially perform other more advanced XXE attacks.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter XXE
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1073.
+   *      External parameter entities should be disabled when the resteasy.document.expand.entity.references parameter was set to false.
+   *      A remote attacker able to send XML requests to a RESTEasy endpoint could use this flaw to read files accessible to the user
+   *      running the application server, and potentially perform other more advanced XXE attacks.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExternalParameterEntityTest {

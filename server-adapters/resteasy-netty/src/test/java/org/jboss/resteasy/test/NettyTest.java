@@ -22,9 +22,9 @@ import javax.ws.rs.core.Response;
 import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class NettyTest
 {
    @Path("/")
@@ -49,7 +49,7 @@ public class NettyTest
       @Path("/context")
       @Produces("text/plain")
       public String context(@Context ChannelHandlerContext context) {
-          return context.getChannel().toString();
+         return context.getChannel().toString();
       }
    }
 

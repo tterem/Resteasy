@@ -18,11 +18,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Response
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for default value of resteasy.validation.suppress.path parameter
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Response
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for default value of resteasy.validation.suppress.path parameter
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationSurpressPathDefaultTest extends ValidationSuppressPathTestBase {

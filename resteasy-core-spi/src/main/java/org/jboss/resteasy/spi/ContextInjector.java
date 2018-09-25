@@ -4,9 +4,9 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
- * @param <WrappedType> A class that wraps a data type or data object (e.g. Single<Foo>)
- * @param <UnwrappedType> The data type or data object declared in the WrappedType (e.g. Foo)
- */
+   * @param <WrappedType> A class that wraps a data type or data object (e.g. Single<Foo>)
+   * @param <UnwrappedType> The data type or data object declared in the WrappedType (e.g. Foo)
+   */
 public interface ContextInjector<WrappedType, UnwrappedType> {
    // FIXME: remove rawType and genericType?
 

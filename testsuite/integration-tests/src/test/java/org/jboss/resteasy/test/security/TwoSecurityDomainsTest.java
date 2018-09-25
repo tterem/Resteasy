@@ -35,13 +35,13 @@ import java.nio.file.Paths;
 import java.util.Hashtable;
 
 /**
- * @tpSubChapter Security
- * @tpChapter Integration tests
- * @tpTestCaseDetails Two different security domains in two deployments. Both domains are by default created in PicketBox
- * security subsystem. When running server and tests Elytron enabled, domain in the deployment 2 is created
- * in the Elytron subsystem.
- * @tpSince RESTEasy 3.0.21
- */
+   * @tpSubChapter Security
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Two different security domains in two deployments. Both domains are by default created in PicketBox
+   * security subsystem. When running server and tests Elytron enabled, domain in the deployment 2 is created
+   * in the Elytron subsystem.
+   * @tpSince RESTEasy 3.0.21
+   */
 @ServerSetup({TwoSecurityDomainsTest.SecurityDomainSetup1.class, TwoSecurityDomainsTest.SecurityDomainSetup2.class})
 @RunWith(Arquillian.class)
 @RunAsClient

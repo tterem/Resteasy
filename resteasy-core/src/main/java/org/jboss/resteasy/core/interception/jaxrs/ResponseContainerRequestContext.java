@@ -10,9 +10,9 @@ import java.io.InputStream;
 import java.net.URI;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ResponseContainerRequestContext extends PreMatchContainerRequestContext
 {
    public ResponseContainerRequestContext(HttpRequest request)

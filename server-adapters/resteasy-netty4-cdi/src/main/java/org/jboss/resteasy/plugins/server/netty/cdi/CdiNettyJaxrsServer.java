@@ -9,16 +9,16 @@ import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.spi.CDI;
 
 /**
- * A CDI aware Netty Jaxrs Server.
- */
+   * A CDI aware Netty Jaxrs Server.
+   */
 @Dependent
 public class CdiNettyJaxrsServer extends NettyJaxrsServer {
    private Instance<Object> instance;
    public CdiNettyJaxrsServer() {
-       this.instance = CDI.current();
+      this.instance = CDI.current();
    }
    public CdiNettyJaxrsServer(Instance<Object> instance) {
-       this.instance = instance;
+      this.instance = instance;
    }
    @Override
    protected RequestDispatcher createRequestDispatcher() {

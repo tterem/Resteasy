@@ -6,7 +6,7 @@ import org.jboss.logging.annotations.Message.Format;
 import org.jboss.logging.annotations.MessageBundle;
 
 /**
- */
+   */
 @MessageBundle(projectCode = "RESTEASY")
 public interface Messages
 {

@@ -16,10 +16,10 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   */
 public class ResponseTest {
    protected static final Logger logger = LogManager.getLogger(ResponseTest.class.getName());
 

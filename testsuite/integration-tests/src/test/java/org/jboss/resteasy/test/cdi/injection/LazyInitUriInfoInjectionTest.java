@@ -21,11 +21,11 @@ import javax.ws.rs.client.WebTarget;
 
 
 /**
- * @tpSubChapter Injection
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-573
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Injection
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-573
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class LazyInitUriInfoInjectionTest {

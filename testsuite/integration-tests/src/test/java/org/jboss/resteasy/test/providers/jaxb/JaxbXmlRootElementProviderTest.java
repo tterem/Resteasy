@@ -30,10 +30,10 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
 
 /**
- * @tpSubChapter Jaxb provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jaxb provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JaxbXmlRootElementProviderTest {

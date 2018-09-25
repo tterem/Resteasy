@@ -1,6 +1,6 @@
 /**
- *
- */
+   *
+   */
 package org.jboss.resteasy.plugins.providers;
 
 import org.jboss.resteasy.annotations.providers.img.ImageWriterParams;
@@ -27,9 +27,9 @@ import java.lang.reflect.Type;
 import java.util.Locale;
 
 /**
- * @author <a href="mailto:ryan@damnhandy.com">Ryan J. McDonough</a>
- * @version $Revision:$
- */
+   * @author <a href="mailto:ryan@damnhandy.com">Ryan J. McDonough</a>
+   * @version $Revision:$
+   */
 @Provider
 @Consumes("image/*")
 @Produces("image/*")

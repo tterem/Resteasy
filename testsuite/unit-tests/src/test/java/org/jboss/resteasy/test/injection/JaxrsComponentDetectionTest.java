@@ -9,11 +9,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @tpSubChapter Injection tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for org.jboss.resteasy.cdi.Utils class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Injection tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for org.jboss.resteasy.cdi.Utils class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class JaxrsComponentDetectionTest {
    private static final String WRONG_RESOURCE = "Method isJaxrsResource works incorrectly";
    private static final String WRONG_COMPONENT = "Method isJaxrsComponent works incorrectly";

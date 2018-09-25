@@ -13,12 +13,12 @@ import java.security.NoSuchAlgorithmException;
 
 
 /**
- * Static methods for Hash-based Message Authentication Codes (HMAC).
- *
- * @author Axel Nennker
- * @author Vladimir Dzhuvinov
- * @version $version$ (2013-03-23)
- */
+   * Static methods for Hash-based Message Authentication Codes (HMAC).
+   *
+   * @author Axel Nennker
+   * @author Vladimir Dzhuvinov
+   * @version $version$ (2013-03-23)
+   */
 class HMAC
 {
 

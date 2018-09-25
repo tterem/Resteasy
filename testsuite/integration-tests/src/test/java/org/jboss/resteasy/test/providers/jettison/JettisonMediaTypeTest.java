@@ -23,11 +23,11 @@ import javax.ws.rs.core.Response;
 import static org.hamcrest.CoreMatchers.containsString;
 
 /**
- * @tpSubChapter Jettison provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-244
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jettison provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-244
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JettisonMediaTypeTest {

@@ -34,12 +34,12 @@ import static org.hamcrest.core.StringContains.containsString;
 import static org.jboss.resteasy.utils.PortProviderUtil.generateURL;
 
 /**
- * @tpSubChapter XXE
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1103
- *      RestEasy is vulnerable to XML Entity Denial of Service XXE is disabled.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter XXE
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1103
+   *      RestEasy is vulnerable to XML Entity Denial of Service XXE is disabled.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SecureProcessing2Test {

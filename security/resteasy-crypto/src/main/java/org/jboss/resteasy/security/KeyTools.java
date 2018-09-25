@@ -13,9 +13,9 @@ import java.security.cert.X509Certificate;
 import java.util.Date;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class KeyTools
 {
    static
@@ -24,7 +24,7 @@ public class KeyTools
    }
 
    public static X509Certificate generateTestCertificate(String subject, String issuer, KeyPair pair) throws InvalidKeyException,
-           NoSuchProviderException, SignatureException
+         NoSuchProviderException, SignatureException
    {
 
       X509V1CertificateGenerator certGen = new X509V1CertificateGenerator();
@@ -42,7 +42,7 @@ public class KeyTools
 
 
    public static X509Certificate generateTestCertificate(KeyPair pair) throws InvalidKeyException,
-           NoSuchProviderException, SignatureException
+         NoSuchProviderException, SignatureException
    {
       return generateTestCertificate("CN=Test", "CN=Issuer", pair);
    }

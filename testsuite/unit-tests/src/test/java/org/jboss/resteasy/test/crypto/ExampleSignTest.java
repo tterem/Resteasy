@@ -17,11 +17,11 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 /**
- * @tpSubChapter Crypto
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for sign by PKCS8EncodedKeySpec and X509EncodedKeySpec.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Crypto
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for sign by PKCS8EncodedKeySpec and X509EncodedKeySpec.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class ExampleSignTest {
    static final String publicFileS = TestUtil.getResourcePath(ExampleSignTest.class, "ExampleSignPublicDkimKey.pem");
    static final String privateFileS = TestUtil.getResourcePath(ExampleSignTest.class, "ExampleSignPrivateDkimKey.der");

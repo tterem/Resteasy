@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class AbortedResponse extends ClientResponse
 {
    protected InputStream is;
@@ -35,7 +35,7 @@ public class AbortedResponse extends ClientResponse
       {
          for (Object obj : entry.getValue())
          {
-             getMetadata().add(entry.getKey(), configuration.toHeaderString(obj));
+            getMetadata().add(entry.getKey(), configuration.toHeaderString(obj));
          }
       }
       setStatus(response.getStatus());

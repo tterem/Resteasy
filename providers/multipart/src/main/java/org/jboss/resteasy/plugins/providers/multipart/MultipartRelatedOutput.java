@@ -3,28 +3,28 @@ package org.jboss.resteasy.plugins.providers.multipart;
 import javax.ws.rs.core.MediaType;
 
 /**
- * Represents a multipart/related (RFC2387) outgoing mime message. A
- * multipart/related message is used to hold a root or start part and other
- * parts which are referenced from the root part. All parts have a unique id.
- * The type and the id of the start part is presented in parameters in the
- * message content-type header.
- * 
- * Usage is the same as with {@link MultipartOutput}:
- * 
- * <code>
- * MultipartRelatedDataOutput mrdo = new MultipartRelatedDataOutput();
- * mrdo.addPart(...);
- * </code>
- * 
- * The first added part will be used as root. The root parts content-type will
- * be used as the type parameter of the content-type of the mime message.
- * 
- * For parts without Content-ID header a unique id will be generated during
- * serialization.
- * 
- * @author Attila Kiraly
- * @version $Revision: 1 $
- */
+   * Represents a multipart/related (RFC2387) outgoing mime message. A
+   * multipart/related message is used to hold a root or start part and other
+   * parts which are referenced from the root part. All parts have a unique id.
+   * The type and the id of the start part is presented in parameters in the
+   * message content-type header.
+   * 
+   * Usage is the same as with {@link MultipartOutput}:
+   * 
+   * <code>
+   * MultipartRelatedDataOutput mrdo = new MultipartRelatedDataOutput();
+   * mrdo.addPart(...);
+   * </code>
+   * 
+   * The first added part will be used as root. The root parts content-type will
+   * be used as the type parameter of the content-type of the mime message.
+   * 
+   * For parts without Content-ID header a unique id will be generated during
+   * serialization.
+   * 
+   * @author Attila Kiraly
+   * @version $Revision: 1 $
+   */
 public class MultipartRelatedOutput extends MultipartOutput {
    private String startInfo;
 

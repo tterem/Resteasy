@@ -5,9 +5,9 @@ import org.jboss.resteasy.spi.BadRequestException;
 
 
 /**
- * @author Pascal S. de Kloe
- * @see "RFC2616 3.9 Quality Values"
- */
+   * @author Pascal S. de Kloe
+   * @see "RFC2616 3.9 Quality Values"
+   */
 public final class QualityValue extends Number implements Comparable<QualityValue>
 {
 

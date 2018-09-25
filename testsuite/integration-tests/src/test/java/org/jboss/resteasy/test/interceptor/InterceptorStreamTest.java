@@ -22,11 +22,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Interceptors
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.1.0
- * @tpTestCaseDetails Change InputStream and OutputStream in ReaderInterceptor and WriterInterceptor
- */
+   * @tpSubChapter Interceptors
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.1.0
+   * @tpTestCaseDetails Change InputStream and OutputStream in ReaderInterceptor and WriterInterceptor
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InterceptorStreamTest {

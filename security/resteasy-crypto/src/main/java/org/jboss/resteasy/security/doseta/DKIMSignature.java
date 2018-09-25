@@ -24,11 +24,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * One single signature within a DKIM-Signature header
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * One single signature within a DKIM-Signature header
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class DKIMSignature
 {
    public static final String DKIM_SIGNATURE = "DKIM-Signature";

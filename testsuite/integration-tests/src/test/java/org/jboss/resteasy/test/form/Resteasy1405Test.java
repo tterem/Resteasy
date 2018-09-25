@@ -42,11 +42,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Form tests
- * @tpChapter Integration tests
- * @tpTestCaseDetails Injection of @FormParam InputPart fields in @MultipartForm parameters
- * @tpSince RESTEasy 3.1.0
- */
+   * @tpSubChapter Form tests
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Injection of @FormParam InputPart fields in @MultipartForm parameters
+   * @tpSince RESTEasy 3.1.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 @Category({NotForForwardCompatibility.class})
@@ -60,10 +60,10 @@ public class Resteasy1405Test
       war.addClasses(ByFieldForm.class, BySetterForm.class, InputData.class, OutputData.class);
 
       war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(
-          new FilePermission("<<ALL FILES>>", "read"),
-          new RuntimePermission("accessDeclaredMembers"),
-          new RuntimePermission("getClassLoader")),
-          "permissions.xml");
+         new FilePermission("<<ALL FILES>>", "read"),
+         new RuntimePermission("accessDeclaredMembers"),
+         new RuntimePermission("getClassLoader")),
+         "permissions.xml");
 
       return TestUtil.finishContainerPrepare(war, null, MyResource.class);
    }

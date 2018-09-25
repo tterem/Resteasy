@@ -32,7 +32,7 @@ public class ObservableRxInvokerImpl implements ObservableRxInvoker
    {
       if (!(syncInvoker instanceof ClientInvocationBuilder))
       {
-          throw new ProcessingException(Messages.MESSAGES.expectedClientInvocationBuilder(syncInvoker.getClass().getName()));
+         throw new ProcessingException(Messages.MESSAGES.expectedClientInvocationBuilder(syncInvoker.getClass().getName()));
       }
       this.syncInvoker = (ClientInvocationBuilder) syncInvoker;
       if (executorService instanceof ScheduledExecutorService)

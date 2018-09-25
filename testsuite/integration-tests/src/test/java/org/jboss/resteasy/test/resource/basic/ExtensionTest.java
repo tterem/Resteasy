@@ -22,11 +22,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for resteasy.media.type.mappings and resteasy.language.mappings parameters
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resource
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for resteasy.media.type.mappings and resteasy.language.mappings parameters
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExtensionTest {

@@ -9,25 +9,25 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for itemtype complex type.
- * <p>
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;complexType name="itemtype">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="title" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}stringtype"/>
- *         &lt;element name="note" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}stringtype" minOccurs="0"/>
- *         &lt;element name="quantity" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}inttype"/>
- *         &lt;element name="price" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}dectype"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- */
+   * <p>Java class for itemtype complex type.
+   * <p>
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * <p>
+   * <pre>
+   * &lt;complexType name="itemtype">
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;sequence>
+   *         &lt;element name="title" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}stringtype"/>
+   *         &lt;element name="note" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}stringtype" minOccurs="0"/>
+   *         &lt;element name="quantity" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}inttype"/>
+   *         &lt;element name="price" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}dectype"/>
+   *       &lt;/sequence>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "itemtype", propOrder = {
       "title",

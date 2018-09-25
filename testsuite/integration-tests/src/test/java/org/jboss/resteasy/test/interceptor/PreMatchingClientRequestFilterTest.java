@@ -24,11 +24,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Interceptor
- * @tpChapter Integration tests
- * @tpTestCaseDetails Tests @PreMatching annotation on ClientRequestFilter (RESTEASY-1696)
- * @tpSince RESTEasy 4.0.0
- */
+   * @tpSubChapter Interceptor
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Tests @PreMatching annotation on ClientRequestFilter (RESTEASY-1696)
+   * @tpSince RESTEasy 4.0.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PreMatchingClientRequestFilterTest extends ClientTestBase {

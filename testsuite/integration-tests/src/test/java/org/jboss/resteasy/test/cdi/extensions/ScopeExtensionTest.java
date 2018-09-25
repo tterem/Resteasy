@@ -37,12 +37,12 @@ import java.util.logging.LoggingPermission;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @tpSubChapter CDI
- * @tpChapter Integration tests
- * @tpTestCaseDetails CDIScopeExtensionTest tests that Resteasy interacts well with beans in
- * a user defined scope.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter CDI
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails CDIScopeExtensionTest tests that Resteasy interacts well with beans in
+   * a user defined scope.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class ScopeExtensionTest {
    @Inject

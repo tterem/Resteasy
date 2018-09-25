@@ -42,11 +42,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Security
- * @tpChapter Integration tests
- * @tpTestCaseDetails Basic test for RESTEasy authentication.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Security
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Basic test for RESTEasy authentication.
+   * @tpSince RESTEasy 3.0.16
+   */
 @ServerSetup({BasicAuthTest.SecurityDomainSetup.class})
 @RunWith(Arquillian.class)
 @RunAsClient

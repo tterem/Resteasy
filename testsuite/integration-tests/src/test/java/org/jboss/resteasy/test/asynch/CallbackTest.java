@@ -31,11 +31,11 @@ import java.io.IOException;
 import java.util.concurrent.Future;
 
 /**
- * @tpSubChapter Asynchronous RESTEasy
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for async exception handling
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Asynchronous RESTEasy
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for async exception handling
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CallbackTest {

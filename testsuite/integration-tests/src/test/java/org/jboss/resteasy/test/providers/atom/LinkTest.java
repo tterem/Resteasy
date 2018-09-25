@@ -23,11 +23,11 @@ import org.junit.runner.RunWith;
 
 
 /**
- * @tpSubChapter Atom provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for org.jboss.resteasy.plugins.providers.atom.Link class
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Atom provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for org.jboss.resteasy.plugins.providers.atom.Link class
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class LinkTest {

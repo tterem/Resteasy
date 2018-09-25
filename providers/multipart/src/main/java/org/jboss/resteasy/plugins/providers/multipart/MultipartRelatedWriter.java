@@ -12,12 +12,12 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
- * The {@link MessageBodyWriter} implementation to serialize
- * {@link MultipartRelatedOutput} objects.
- *
- * @author Attila Kiraly
- * @version $Revision: 1 $
- */
+   * The {@link MessageBodyWriter} implementation to serialize
+   * {@link MultipartRelatedOutput} objects.
+   *
+   * @author Attila Kiraly
+   * @version $Revision: 1 $
+   */
 @Provider
 @Produces("multipart/related")
 public class MultipartRelatedWriter extends AbstractMultipartRelatedWriter
@@ -41,7 +41,7 @@ public class MultipartRelatedWriter extends AbstractMultipartRelatedWriter
                        Class<?> type, Type genericType, Annotation[] annotations,
                        MediaType mediaType, MultivaluedMap<String, Object> httpHeaders,
                        OutputStream entityStream) throws IOException,
-           WebApplicationException
+         WebApplicationException
    {
       writeRelated(multipartRelatedOutput, mediaType, httpHeaders,
               entityStream);

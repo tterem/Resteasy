@@ -29,11 +29,11 @@ import java.util.List;
 import org.jboss.resteasy.utils.PortProviderUtil;
 
 /**
- * @tpSubChapter Response
- * @tpChapter Integration tests
- * @tpTestCaseDetails Tests that correct variant headers are returned in the response
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Response
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Tests that correct variant headers are returned in the response
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class VariantsTest {

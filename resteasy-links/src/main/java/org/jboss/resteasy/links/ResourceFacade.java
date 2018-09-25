@@ -3,15 +3,15 @@ package org.jboss.resteasy.links;
 import java.util.Map;
 
 /**
- * Represents a facade for an entity which should still receive links for this entity even
- * though this entity's instance is not available. This is useful for Collections of an entity's
- * children (Order.comments) where the parent entity (Order) is not returned as part of the collection,
- * but should still receive any links for the entity of type T (Comment) for whom we do not have any
- * instance (links for "add" and "list" for example).
- * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
- *
- * @param <T> the type of entity that this facade should receive links for
- */
+   * Represents a facade for an entity which should still receive links for this entity even
+   * though this entity's instance is not available. This is useful for Collections of an entity's
+   * children (Order.comments) where the parent entity (Order) is not returned as part of the collection,
+   * but should still receive any links for the entity of type T (Comment) for whom we do not have any
+   * instance (links for "add" and "list" for example).
+   * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
+   *
+   * @param <T> the type of entity that this facade should receive links for
+   */
 public interface ResourceFacade<T> {
    /**
    * Returns the type of entity that this facade should receive links for. If we represent

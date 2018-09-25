@@ -6,8 +6,8 @@ import org.wildfly.extras.creaper.core.online.OnlineManagementClient;
 import org.wildfly.extras.creaper.core.online.operations.admin.Administration;
 
 /**
- * Prepare server for injection tests. Add test queue and disable security.
- */
+   * Prepare server for injection tests. Add test queue and disable security.
+   */
 public class AbstractInjectionTestBase {
 
    public static void initQueue() throws Exception {

@@ -9,12 +9,12 @@ import javax.ws.rs.core.EntityTag;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- *
- * @author <a href="dmitry.bedrin@gmail.com">Dmitry Bedrin</a>
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   *
+   * @author <a href="dmitry.bedrin@gmail.com">Dmitry Bedrin</a>
+   */
 public class ResponseBuilderImplTest {
 
    private final String ERROR_MESSAGE = "Incorrect ETag value";

@@ -14,8 +14,8 @@ import javax.enterprise.inject.spi.WithAnnotations;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 /**
- * Created by hbraun on 15.01.18.
- */
+   * Created by hbraun on 15.01.18.
+   */
 public class RestClientExtension implements Extension {
 
    private static Set<Class<?>> proxyTypes = new LinkedHashSet<>();

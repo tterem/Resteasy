@@ -45,12 +45,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Spring
- * @tpChapter Integration tests - dependencies included in deployment
- * @tpTestCaseDetails This class tests a gamut of Spring related functionality including @Configuration beans, @Autowired,
- * scanned beans, interceptors and overall integration between RESTEasy and the Spring ApplicationContext.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Spring
+   * @tpChapter Integration tests - dependencies included in deployment
+   * @tpTestCaseDetails This class tests a gamut of Spring related functionality including @Configuration beans, @Autowired,
+   * scanned beans, interceptors and overall integration between RESTEasy and the Spring ApplicationContext.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SpringBeanProcessorDependenciesInDeploymentTest {

@@ -37,13 +37,13 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Parameters
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for RESTEasy extended support for multivalue @*Param (RESTEASY-1566 + RESTEASY-1746)
- *                    java.util.Date class is used
- *                    Client Proxy is not used
- * @tpSince RESTEasy 4.0.0
- */
+   * @tpSubChapter Parameters
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for RESTEasy extended support for multivalue @*Param (RESTEASY-1566 + RESTEASY-1746)
+   *                    java.util.Date class is used
+   *                    Client Proxy is not used
+   * @tpSince RESTEasy 4.0.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MultiValuedParamDateNoProxyTest {

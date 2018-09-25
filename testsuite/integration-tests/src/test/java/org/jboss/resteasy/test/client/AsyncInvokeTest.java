@@ -30,10 +30,10 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AsyncInvokeTest extends ClientTestBase{
@@ -424,50 +424,50 @@ public class AsyncInvokeTest extends ClientTestBase{
    
    @Test
    public void AsyncCallbackExceptionHandlingTest() throws Exception {
-       {
-          final CountDownLatch latch = new CountDownLatch(1);
-          Future<Response> future = nioClient.target(generateURL("/test")).request().async().get(new InvocationCallback<Response>()
-          {
-             @Override
-             public void completed(Response response)
-             {
+      {
+         final CountDownLatch latch = new CountDownLatch(1);
+         Future<Response> future = nioClient.target(generateURL("/test")).request().async().get(new InvocationCallback<Response>()
+         {
+            @Override
+            public void completed(Response response)
+            {
             String entity = response.readEntity(String.class);
             Assert.assertEquals("get", entity);
             latch.countDown();
             throw new RuntimeException("for the test of it");
-             }
+            }
 
-             @Override
-             public void failed(Throwable error)
-             {
-             }
-          });
-          Assert.assertTrue(latch.await(15, TimeUnit.SECONDS));
-          Response res = future.get();
-          Assert.assertEquals(200, res.getStatus()); // must not see the runtimeexception of the callback
-       }
+            @Override
+            public void failed(Throwable error)
+            {
+            }
+         });
+         Assert.assertTrue(latch.await(15, TimeUnit.SECONDS));
+         Response res = future.get();
+         Assert.assertEquals(200, res.getStatus()); // must not see the runtimeexception of the callback
+      }
 
-       {
-          final CountDownLatch latch = new CountDownLatch(1);
-          Future<String> future = nioClient.target(generateURL("/test")).request().async().get(new InvocationCallback<String>()
-          {
-             @Override
-             public void completed(String s)
-             {
+      {
+         final CountDownLatch latch = new CountDownLatch(1);
+         Future<String> future = nioClient.target(generateURL("/test")).request().async().get(new InvocationCallback<String>()
+         {
+            @Override
+            public void completed(String s)
+            {
             Assert.assertEquals("get", s);
             latch.countDown();
             throw new RuntimeException("for the test of it");
-             }
+            }
 
-             @Override
-             public void failed(Throwable error)
-             {
-             }
-          });
-          Assert.assertTrue(latch.await(15, TimeUnit.SECONDS));
-          String entity = future.get();
-          Assert.assertEquals("get", entity); // must not see the runtimeexception of the callback
-       }
+            @Override
+            public void failed(Throwable error)
+            {
+            }
+         });
+         Assert.assertTrue(latch.await(15, TimeUnit.SECONDS));
+         String entity = future.get();
+         Assert.assertEquals("get", entity); // must not see the runtimeexception of the callback
+      }
    }
 
 

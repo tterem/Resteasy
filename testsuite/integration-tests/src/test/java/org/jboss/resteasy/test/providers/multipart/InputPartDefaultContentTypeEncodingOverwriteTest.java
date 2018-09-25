@@ -25,11 +25,11 @@ import javax.ws.rs.core.Response;
 import java.lang.reflect.ReflectPermission;
 
 /**
- * @tpSubChapter Multipart provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for default content type encoding of multipart provider
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Multipart provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for default content type encoding of multipart provider
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InputPartDefaultContentTypeEncodingOverwriteTest {

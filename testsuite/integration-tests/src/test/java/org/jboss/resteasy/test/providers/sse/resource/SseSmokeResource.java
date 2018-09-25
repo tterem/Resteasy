@@ -37,10 +37,10 @@ public class SseSmokeResource {
    @Path("/eventsjson")
    @Produces(MediaType.SERVER_SENT_EVENTS)
    public void sentJsonEvents(@Context SseEventSink sseEventSink, @Context Sse sse) {
-       OutboundSseEvent event = sse.newEventBuilder().name("json")
-             .data("{\"email\":\"zeytin@resteasy.org\",\"username\":\"Zeytin\",\"nickname\":\"Zeytin\"}")
-             .mediaType(MediaType.APPLICATION_JSON_TYPE).build();
-       try (SseEventSink sink = sseEventSink) {
+      OutboundSseEvent event = sse.newEventBuilder().name("json")
+            .data("{\"email\":\"zeytin@resteasy.org\",\"username\":\"Zeytin\",\"nickname\":\"Zeytin\"}")
+            .mediaType(MediaType.APPLICATION_JSON_TYPE).build();
+      try (SseEventSink sink = sseEventSink) {
          sseEventSink.send(event);
       }
    }

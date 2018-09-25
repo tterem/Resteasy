@@ -10,12 +10,12 @@ import org.jboss.resteasy.spi.util.FindAnnotation;
 import org.jboss.resteasy.spi.util.Types;
 
 /**
- * 
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * Copyright Apr 8, 2015
- */
+   * 
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * Copyright Apr 8, 2015
+   */
 class XmlAdapterWrapper extends XmlAdapter<Object, Object>
 {
    private XmlAdapter<Object, Object> delegate;

@@ -25,10 +25,10 @@ import java.util.logging.LoggingPermission;
 import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALIFIER;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Unit tests
- * @tpSince RESTEasy 3.0.17
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Unit tests
+   * @tpSince RESTEasy 3.0.17
+   */
 @RunWith(Arquillian.class)
 public class ClientBuilderTest {
 

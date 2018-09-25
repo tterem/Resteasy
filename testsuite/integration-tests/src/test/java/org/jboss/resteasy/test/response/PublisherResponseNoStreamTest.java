@@ -31,10 +31,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Publisher response type
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- */
+   * @tpSubChapter Publisher response type
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PublisherResponseNoStreamTest {
@@ -179,17 +179,17 @@ public class PublisherResponseNoStreamTest {
       String data = evt.readData(String.class);
       collector.add(data);
       if(collector.size() >= 2) {
-           future.complete(null);
+         future.complete(null);
       }
       }, 
-           t -> {
+         t -> {
               logger.error(t);
               errors.add(t);  
-           }, 
-           () -> {
+         }, 
+         () -> {
               // bah, never called
               future.complete(null);
-           });
+         });
       source.open();
       future.get();
       source.close();

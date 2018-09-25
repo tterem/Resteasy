@@ -22,23 +22,23 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
- * A provider to handle multipart representations. This implementation will be
- * invoked when a method parameter takes a {@link MimeMultipart} as a method
- * parameter or a return value and the
- *
- * {@literal @}Consumes value is either multipart/mixed or multipart/form-data.
- * <p>
- * <code>
- * {@literal @}POST
- * {@literal @}Consumes("multipart/form-data") public void postData(MimeMultipart multipart) {
- * ...
- * </code>
- * <p>
- * When the {@link MimeMultipart} is passed to the method body, it is up to the
- * developer to extract the various parts.
- * 
- * @author <a href="mailto:ryan@damnhandy.com">Ryan J. McDonough</a>
- */
+   * A provider to handle multipart representations. This implementation will be
+   * invoked when a method parameter takes a {@link MimeMultipart} as a method
+   * parameter or a return value and the
+   *
+   * {@literal @}Consumes value is either multipart/mixed or multipart/form-data.
+   * <p>
+   * <code>
+   * {@literal @}POST
+   * {@literal @}Consumes("multipart/form-data") public void postData(MimeMultipart multipart) {
+   * ...
+   * </code>
+   * <p>
+   * When the {@link MimeMultipart} is passed to the method body, it is up to the
+   * developer to extract the various parts.
+   * 
+   * @author <a href="mailto:ryan@damnhandy.com">Ryan J. McDonough</a>
+   */
 
 @Provider
 @Produces("multipart/mixed")

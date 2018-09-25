@@ -31,10 +31,10 @@ import org.junit.runner.RunWith;
 
 
 /**
- * @tpSubChapter Jackson2 provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.23
- */
+   * @tpSubChapter Jackson2 provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.23
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CustomJackson2ProviderTest {

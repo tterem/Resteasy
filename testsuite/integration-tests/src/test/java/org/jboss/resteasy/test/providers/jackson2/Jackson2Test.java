@@ -43,10 +43,10 @@ import javax.ws.rs.core.Response;
 
 
 /**
- * @tpSubChapter Jackson2 provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jackson2 provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class Jackson2Test {

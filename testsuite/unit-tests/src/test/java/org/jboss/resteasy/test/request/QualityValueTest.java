@@ -8,11 +8,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * @tpSubChapter Requests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for QualityValue class and its base conversion
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Requests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for QualityValue class and its base conversion
+   * @tpSince RESTEasy 3.0.16
+   */
 public class QualityValueTest {
 
    private static final String ERROR_MSG = "Wrong conversion";

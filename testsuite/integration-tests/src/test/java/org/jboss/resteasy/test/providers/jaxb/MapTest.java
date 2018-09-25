@@ -35,10 +35,10 @@ import java.io.StringWriter;
 import java.util.Map;
 
 /**
- * @tpSubChapter Jaxb provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jaxb provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MapTest {
@@ -136,7 +136,7 @@ public class MapTest {
      */
    @Test
    public void testProviderMapIntegerFoo() throws Exception {
-       String xml = "<resteasy:map xmlns:resteasy=\"http://jboss.org/resteasy\">"
+      String xml = "<resteasy:map xmlns:resteasy=\"http://jboss.org/resteasy\">"
             + "<resteasy:entry key=\"1\" xmlns=\"http://foo.com\">"
             + "<mapFoo name=\"bill\"/></resteasy:entry>"
             + "<resteasy:entry key=\"2\" xmlns=\"http://foo.com\">"
@@ -172,7 +172,7 @@ public class MapTest {
      */
    @Test
    public void testWrapped() throws Exception {
-       String xml = "<map xmlns:mapFoo=\"http://foo.com\">"
+      String xml = "<map xmlns:mapFoo=\"http://foo.com\">"
             + "<entry key=\"bill\">"
             + "<mapFoo:mapFoo name=\"bill\"/></entry>"
             + "<entry key=\"monica\">"

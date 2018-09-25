@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- * @tpSubChapter Util tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for javax.ws.rs.core.MultivaluedMap class
- *                    and javax.ws.rs.core.MultivaluedHashMap.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Util tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for javax.ws.rs.core.MultivaluedMap class
+   *                    and javax.ws.rs.core.MultivaluedHashMap.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class MultivaluedMapTest {
 
    /**

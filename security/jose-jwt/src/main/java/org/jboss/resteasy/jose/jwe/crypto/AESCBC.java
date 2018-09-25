@@ -14,15 +14,15 @@ import java.util.Arrays;
 
 
 /**
- * AES/CBC/PKCS5Padding and AES/CBC/PKCS5Padding/HMAC-SHA2 encryption and 
- * decryption methods.
- *
- * <p>See draft-ietf-jose-json-web-algorithms-10, section 4.8.3.
- *
- * @author Vladimir Dzhuvinov
- * @author Axel Nennker
- * @version $version$ (2013-05-07)
- */
+   * AES/CBC/PKCS5Padding and AES/CBC/PKCS5Padding/HMAC-SHA2 encryption and 
+   * decryption methods.
+   *
+   * <p>See draft-ietf-jose-json-web-algorithms-10, section 4.8.3.
+   *
+   * @author Vladimir Dzhuvinov
+   * @author Axel Nennker
+   * @version $version$ (2013-05-07)
+   */
 class AESCBC
 {
 
@@ -253,7 +253,7 @@ class AESCBC
 
       // Check MAC
       int hmacInputLength = aad.length + iv.length + cipherText.length + al.length;
-       byte[] hmacInput = ByteBuffer.allocate(hmacInputLength).put(aad).put(iv).put(cipherText).put(al).array();
+      byte[] hmacInput = ByteBuffer.allocate(hmacInputLength).put(aad).put(iv).put(cipherText).put(al).array();
 
       byte[] hmac = HMAC.compute(compositeKey.getMACKey(), hmacInput);
 

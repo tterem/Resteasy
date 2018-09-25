@@ -18,8 +18,8 @@ import org.jboss.resteasy.specimpl.ResteasyUriInfo;
 import java.io.IOException;
 
 /**
- * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
- */
+   * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+   */
 public class VertxRequestHandler implements Handler<HttpServerRequest>
 {
 

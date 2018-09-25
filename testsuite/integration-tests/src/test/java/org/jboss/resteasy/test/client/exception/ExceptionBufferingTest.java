@@ -32,11 +32,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Regression test for RESTEASY-981
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Regression test for RESTEASY-981
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExceptionBufferingTest {

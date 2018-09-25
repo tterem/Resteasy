@@ -33,11 +33,11 @@ import java.util.logging.LoggingPermission;
 import static org.jboss.resteasy.utils.PortProviderUtil.generateURL;
 
 /**
- * @tpSubChapter Asynchronous RESTEasy
- * @tpChapter Integration tests
- * @tpTestCaseDetails Basic asynchronous test for "resteasy.async.job.service.max.job.results" property.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Asynchronous RESTEasy
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Basic asynchronous test for "resteasy.async.job.service.max.job.results" property.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class AsynchBasicTest {
    private static org.jboss.logging.Logger logger = org.jboss.logging.Logger.getLogger(AsynchBasicTest.class);

@@ -49,10 +49,10 @@ import static org.jboss.resteasy.utils.PortProviderUtil.generateURL;
 import java.util.List;
 
 /**
- * @tpSubChapter Validator provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Validator provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationExceptionsTest {
@@ -237,7 +237,7 @@ public class ValidationExceptionsTest {
       logger.info("entity: " + entity);
       Assert.assertTrue(ERROR_MESSAGE, entity.contains("GroupDefinitionException"));
       Assert.assertTrue(ERROR_MESSAGE,
-           entity.contains(ValidationExceptionResourceWithInvalidConstraintGroup.GroupDefinitionExceptionMapper.class.getName()));
+         entity.contains(ValidationExceptionResourceWithInvalidConstraintGroup.GroupDefinitionExceptionMapper.class.getName()));
       }
 
    /**

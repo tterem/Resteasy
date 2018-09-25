@@ -38,10 +38,10 @@ import javax.ws.rs.core.Response;
 import static org.jboss.resteasy.utils.PortProviderUtil.generateURL;
 
 /**
- * @tpSubChapter Validator provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Validator provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResteasyViolationExceptionRepresentationTest {

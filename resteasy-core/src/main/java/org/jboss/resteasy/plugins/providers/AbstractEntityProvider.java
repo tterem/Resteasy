@@ -1,6 +1,6 @@
 /**
- *
- */
+   *
+   */
 package org.jboss.resteasy.plugins.providers;
 
 import javax.ws.rs.core.MediaType;
@@ -10,12 +10,12 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
- * A AbstractEntityProvider.
- *
- * @param <T> type
- * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
- * @version $Revision: $
- */
+   * A AbstractEntityProvider.
+   *
+   * @param <T> type
+   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+   * @version $Revision: $
+   */
 public abstract class AbstractEntityProvider<T>
       implements MessageBodyReader<T>, MessageBodyWriter<T>
 {

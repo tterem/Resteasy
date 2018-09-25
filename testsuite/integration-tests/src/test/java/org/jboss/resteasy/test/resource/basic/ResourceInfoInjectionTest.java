@@ -25,11 +25,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Resources
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for JBEAP-4701
- * @tpSince RESTEasy 3.0.17
- */
+   * @tpSubChapter Resources
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for JBEAP-4701
+   * @tpSince RESTEasy 3.0.17
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResourceInfoInjectionTest {

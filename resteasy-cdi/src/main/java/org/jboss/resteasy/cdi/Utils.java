@@ -11,11 +11,11 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.ext.Provider;
 
 /**
- * Utility methods for detecting CDI scopes and JAX-RS components.
- *
- * @author Jozef Hartinger
- *
- */
+   * Utility methods for detecting CDI scopes and JAX-RS components.
+   *
+   * @author Jozef Hartinger
+   *
+   */
 public class Utils
 {
    /**

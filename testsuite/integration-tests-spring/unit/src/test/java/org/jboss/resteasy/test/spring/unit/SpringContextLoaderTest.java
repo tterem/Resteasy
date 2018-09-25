@@ -11,11 +11,11 @@ import javax.servlet.ServletContext;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @tpSubChapter Spring
- * @tpChapter Unit test
- * @tpTestCaseDetails  Tests that SpringContextLoader does proper validations and adds an application listener
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Spring
+   * @tpChapter Unit test
+   * @tpTestCaseDetails  Tests that SpringContextLoader does proper validations and adds an application listener
+   * @tpSince RESTEasy 3.0.16
+   */
 public class SpringContextLoaderTest {
 
    private SpringContextLoaderSubclass contextLoader;

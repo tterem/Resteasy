@@ -24,50 +24,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>Represents an atom:content element.</p>
- * <p>Per RFC4287:</p>
- * <pre>
- *  The "atom:content" element either contains or links to the content of
- *  the entry.  The content of atom:content is Language-Sensitive.
- *
- *  atomInlineTextContent =
- *     element atom:content {
- *        atomCommonAttributes,
- *        attribute type { "text" | "html" }?,
- *        (text)*
- *     }
- *
- *  atomInlineXHTMLContent =
- *     element atom:content {
- *        atomCommonAttributes,
- *        attribute type { "xhtml" },
- *        xhtmlDiv
- *     }
- *  atomInlineOtherContent =
- *     element atom:content {
- *        atomCommonAttributes,
- *        attribute type { atomMediaType }?,
- *        (text|anyElement)*
- *     }
- *
- *  atomOutOfLineContent =
- *     element atom:content {
- *        atomCommonAttributes,
- *        attribute type { atomMediaType }?,
- *        attribute src { atomUri },
- *        empty
- *     }
- *
- *  atomContent = atomInlineTextContent
- *   | atomInlineXHTMLContent
- *   | atomInlineOtherContent
- *   | atomOutOfLineContent
- *
- * </pre>
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * <p>Represents an atom:content element.</p>
+   * <p>Per RFC4287:</p>
+   * <pre>
+   *  The "atom:content" element either contains or links to the content of
+   *  the entry.  The content of atom:content is Language-Sensitive.
+   *
+   *  atomInlineTextContent =
+   *     element atom:content {
+   *        atomCommonAttributes,
+   *        attribute type { "text" | "html" }?,
+   *        (text)*
+   *     }
+   *
+   *  atomInlineXHTMLContent =
+   *     element atom:content {
+   *        atomCommonAttributes,
+   *        attribute type { "xhtml" },
+   *        xhtmlDiv
+   *     }
+   *  atomInlineOtherContent =
+   *     element atom:content {
+   *        atomCommonAttributes,
+   *        attribute type { atomMediaType }?,
+   *        (text|anyElement)*
+   *     }
+   *
+   *  atomOutOfLineContent =
+   *     element atom:content {
+   *        atomCommonAttributes,
+   *        attribute type { atomMediaType }?,
+   *        attribute src { atomUri },
+   *        empty
+   *     }
+   *
+   *  atomContent = atomInlineTextContent
+   *   | atomInlineXHTMLContent
+   *   | atomInlineOtherContent
+   *   | atomOutOfLineContent
+   *
+   * </pre>
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @XmlRootElement(name = "content")
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class Content extends CommonAttributes

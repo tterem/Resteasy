@@ -28,9 +28,9 @@ import java.io.OutputStream;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class NettyHttpResponse implements HttpResponse
 {
    private static final int EMPTY_CONTENT_LENGTH = 0;
@@ -167,24 +167,24 @@ public class NettyHttpResponse implements HttpResponse
 
    public DefaultHttpResponse getDefaultHttpResponse()
    {
-       DefaultHttpResponse res = new DefaultHttpResponse(HTTP_1_1, HttpResponseStatus.valueOf(getStatus()));
-       transformResponseHeaders(res);
-       return res;
+      DefaultHttpResponse res = new DefaultHttpResponse(HTTP_1_1, HttpResponseStatus.valueOf(getStatus()));
+      transformResponseHeaders(res);
+      return res;
    }
 
    public DefaultHttpResponse getEmptyHttpResponse()
    {
-       DefaultFullHttpResponse res = new DefaultFullHttpResponse(HTTP_1_1, HttpResponseStatus.valueOf(getStatus()));
-       if (method == null || !method.equals(HttpMethod.HEAD)) //[RESTEASY-1627]
-       {
-          res.headers().add(HttpHeaderNames.CONTENT_LENGTH, EMPTY_CONTENT_LENGTH);
-       }
-       transformResponseHeaders(res);
-       return res;
+      DefaultFullHttpResponse res = new DefaultFullHttpResponse(HTTP_1_1, HttpResponseStatus.valueOf(getStatus()));
+      if (method == null || !method.equals(HttpMethod.HEAD)) //[RESTEASY-1627]
+      {
+         res.headers().add(HttpHeaderNames.CONTENT_LENGTH, EMPTY_CONTENT_LENGTH);
+      }
+      transformResponseHeaders(res);
+      return res;
    }
 
    private void transformResponseHeaders(io.netty.handler.codec.http.HttpResponse res) {
-       RestEasyHttpResponseEncoder.transformHeaders(this, res, providerFactory);
+      RestEasyHttpResponseEncoder.transformHeaders(this, res, providerFactory);
    }
 
    public void prepareChunkStream() {

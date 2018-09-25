@@ -9,11 +9,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
 /**
- * @tpSubChapter Util tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for ResteasyUriBuilderImpl class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Util tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for ResteasyUriBuilderImpl class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class ResteasyUriBuilderTest {
 
    private static final String URI_ERROR = "Uri function of ResteasyUriBuilderImpl should return builder itself.";

@@ -60,8 +60,8 @@ public class CommitNewCookiesHeaderTest {
                         return "Cookie 1=Cookie 1 value;Version=1;Path=/";
                      }
                   })
-          .cookie(new NewCookie("Cookie 2", "Cookie 2 value"))
-          .build();
+         .cookie(new NewCookie("Cookie 2", "Cookie 2 value"))
+         .build();
       }
 
       @Path("three")

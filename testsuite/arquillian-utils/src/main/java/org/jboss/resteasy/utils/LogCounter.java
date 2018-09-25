@@ -1,8 +1,8 @@
 package org.jboss.resteasy.utils;
 
 /**
- * Counter for log messages in log file.
- */
+   * Counter for log messages in log file.
+   */
 public class LogCounter {
    /**
      * Examined log message

@@ -27,11 +27,11 @@ import java.util.Map;
 
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Integration tests
- * @tpTestCaseDetails Tests for RFC 7232 functionality
- * @tpSince RESTEasy 3.0.17
- */
+   * @tpSubChapter Resource
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Tests for RFC 7232 functionality
+   * @tpSince RESTEasy 3.0.17
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PreconditionRfc7232Test {

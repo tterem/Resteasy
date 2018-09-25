@@ -14,12 +14,12 @@ import javax.ws.rs.ext.Provider;
 import org.jboss.resteasy.spi.HttpResponseCodes;
 
 /**
- * (RESTEASY-1485) Thwart select XSS attack by escaping special chars in
- * Exception message.
- *
- * User: rsearls
- * Date: 9/16/16
- */
+   * (RESTEASY-1485) Thwart select XSS attack by escaping special chars in
+   * Exception message.
+   *
+   * User: rsearls
+   * Date: 9/16/16
+   */
 @Provider
 @Priority(Priorities.ENTITY_CODER)
 public class MessageSanitizerContainerResponseFilter implements ContainerResponseFilter {
@@ -76,19 +76,19 @@ public class MessageSanitizerContainerResponseFilter implements ContainerRespons
    }
 
    private boolean containsHtmlText(ArrayList<Object> list) {
-       for (Object o :list) {
-          if (o instanceof String) {
-             String mediaType = (String) o;
-             String[] partsType = mediaType.split("/");
-             if (partsType.length >= 2) {
+      for (Object o :list) {
+         if (o instanceof String) {
+            String mediaType = (String) o;
+            String[] partsType = mediaType.split("/");
+            if (partsType.length >= 2) {
             String[] partsSubtype = partsType[1].split(";");
             if (partsType[0].trim().equalsIgnoreCase("text") && 
                       partsSubtype[0].trim().toLowerCase().equals("html")) {
                    return true;
             }
-             }
-          }
-       }
-       return false;
+            }
+         }
+      }
+      return false;
    }
 }

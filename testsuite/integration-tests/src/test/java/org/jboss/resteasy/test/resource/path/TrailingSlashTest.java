@@ -23,11 +23,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.17
- * @tpTestCaseDetails Regression test for JBEAP-4698
- */
+   * @tpSubChapter Resource
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.17
+   * @tpTestCaseDetails Regression test for JBEAP-4698
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class TrailingSlashTest {

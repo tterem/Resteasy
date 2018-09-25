@@ -20,12 +20,12 @@ import org.jboss.resteasy.util.HttpHeaderNames;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * Helper/delegate class to unify Servlet and Filter dispatcher implementations
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @author Norman Maurer
- * @version $Revision: 1 $
- */
+   * Helper/delegate class to unify Servlet and Filter dispatcher implementations
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @author Norman Maurer
+   * @version $Revision: 1 $
+   */
 public class RequestDispatcher
 {
    protected final SynchronousDispatcher dispatcher;
@@ -81,7 +81,7 @@ public class RequestDispatcher
 
             ResteasyContext.pushContext(SecurityContext.class, securityContext);
             ResteasyContext.pushContext(ChannelHandlerContext.class, ctx);
-             if (handleNotFound)
+            if (handleNotFound)
             {
                dispatcher.invoke(request, response);
             }

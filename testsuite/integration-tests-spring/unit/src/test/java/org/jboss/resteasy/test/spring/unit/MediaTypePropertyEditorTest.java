@@ -10,11 +10,11 @@ import java.beans.PropertyEditor;
 import java.nio.charset.StandardCharsets;
 
 /**
- * @tpSubChapter Spring
- * @tpChapter Unit test
- * @tpTestCaseDetails  Tests MediaTypeEditor
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Spring
+   * @tpChapter Unit test
+   * @tpTestCaseDetails  Tests MediaTypeEditor
+   * @tpSince RESTEasy 3.0.16
+   */
 public class MediaTypePropertyEditorTest {
 
    private PropertyEditor propertyEditor;

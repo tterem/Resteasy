@@ -7,11 +7,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @tpSubChapter Injection tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for correct injection in registered custom provider.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Injection tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for correct injection in registered custom provider.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class ProviderInjectionTest {
    private static final String ERROR_MSG = String.format("%s provider was not successfully registered.",
          ProviderInjectionProviderReader.class.getSimpleName());

@@ -18,21 +18,21 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ServletUtil
 {
    public static ResteasyUriInfo extractUriInfo(HttpServletRequest request, String servletPrefix)
    {
-       String contextPath = request.getContextPath();
-       if (servletPrefix != null && servletPrefix.length() > 0 && !servletPrefix.equals("/"))
-       {
-           if (!contextPath.endsWith("/") && !servletPrefix.startsWith("/"))
+      String contextPath = request.getContextPath();
+      if (servletPrefix != null && servletPrefix.length() > 0 && !servletPrefix.equals("/"))
+      {
+         if (!contextPath.endsWith("/") && !servletPrefix.startsWith("/"))
                contextPath += "/";
-           contextPath += servletPrefix;
-       }
-       return new ResteasyUriInfo(request.getRequestURL(), request.getQueryString(), contextPath);
+         contextPath += servletPrefix;
+      }
+      return new ResteasyUriInfo(request.getRequestURL(), request.getQueryString(), contextPath);
    }
 
    public static ResteasyHttpHeaders extractHttpHeaders(HttpServletRequest request)

@@ -17,8 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
- */
+   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+   */
 public class ResteasyWadlServlet extends HttpServlet {
 
    private Map<String, ResteasyWadlServiceRegistry> services;

@@ -28,10 +28,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 /**
- * @tpSubChapter Json-p provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Json-p provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JsonpTest {
@@ -71,10 +71,10 @@ public class JsonpTest {
      */
    @Test
    public void testObject() throws Exception {
-       doTestObject("UTF-8");
-       doTestObject("UTF-16");
-       doTestObject("UTF-32");
-       doTestObject(null);
+      doTestObject("UTF-8");
+      doTestObject("UTF-16");
+      doTestObject("UTF-32");
+      doTestObject(null);
    }
    
    private void doTestObject(String charset) throws Exception {
@@ -104,10 +104,10 @@ public class JsonpTest {
      */
    @Test
    public void testArray() throws Exception {
-       doTestArray("UTF-8");
-       doTestArray("UTF-16");
-       doTestArray("UTF-32");
-       doTestArray(null);
+      doTestArray("UTF-8");
+      doTestArray("UTF-16");
+      doTestArray("UTF-32");
+      doTestArray(null);
    }
    
    private void doTestArray(String charset) {
@@ -141,26 +141,26 @@ public class JsonpTest {
      */
    @Test
    public void testStructure() throws Exception {
-       doTestStructure("UTF-8");
-       doTestStructure("UTF-16");
-       doTestStructure("UTF-32");
-       doTestStructure(null);
+      doTestStructure("UTF-8");
+      doTestStructure("UTF-16");
+      doTestStructure("UTF-32");
+      doTestStructure(null);
    }
 
    @Test
    public void testJsonString() throws Exception {
-       WebTarget target = client.target(generateURL("/test/json/string"));
-       JsonString jsonString = Json.createValue("Resteasy");
-       JsonString result = target.request().post(Entity.json(jsonString), JsonString.class);
-       Assert.assertTrue("JsonString object with Hello Resteasy value is expected", result.getString().equals("Hello Resteasy"));
+      WebTarget target = client.target(generateURL("/test/json/string"));
+      JsonString jsonString = Json.createValue("Resteasy");
+      JsonString result = target.request().post(Entity.json(jsonString), JsonString.class);
+      Assert.assertTrue("JsonString object with Hello Resteasy value is expected", result.getString().equals("Hello Resteasy"));
    }
 
    @Test
    public void testJsonNumber() throws Exception {
-       WebTarget target = client.target(generateURL("/test/json/number"));
-       JsonNumber jsonNumber = Json.createValue(100);
-       JsonNumber result = target.request().post(Entity.json(jsonNumber), JsonNumber.class);
-       Assert.assertTrue("JsonNumber object with 200 value is expected", result.intValue() == 200);
+      WebTarget target = client.target(generateURL("/test/json/number"));
+      JsonNumber jsonNumber = Json.createValue(100);
+      JsonNumber result = target.request().post(Entity.json(jsonNumber), JsonNumber.class);
+      Assert.assertTrue("JsonNumber object with 200 value is expected", result.intValue() == 200);
    }
 
    private void doTestStructure(String charset) {

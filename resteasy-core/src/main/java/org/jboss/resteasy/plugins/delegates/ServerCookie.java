@@ -11,8 +11,8 @@ import java.util.TimeZone;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 
 /**
- * Server-side cookie representation.  Stolen from Tomcat.
- */
+   * Server-side cookie representation.  Stolen from Tomcat.
+   */
 public class ServerCookie implements Serializable
 {
    private static final String tspecials = ",; ";

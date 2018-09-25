@@ -21,11 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @tpSubChapter Requests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for accepting correct method.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Requests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for accepting correct method.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class AcceptTest {
    private static final String METHOD_ERROR_MESSAGE = "Unexpected method received";
 

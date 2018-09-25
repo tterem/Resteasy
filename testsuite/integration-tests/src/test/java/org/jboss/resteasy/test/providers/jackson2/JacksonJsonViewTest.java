@@ -28,10 +28,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 /**
- * @tpSubChapter Jackson2 provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.1.0
- */
+   * @tpSubChapter Jackson2 provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.1.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JacksonJsonViewTest {

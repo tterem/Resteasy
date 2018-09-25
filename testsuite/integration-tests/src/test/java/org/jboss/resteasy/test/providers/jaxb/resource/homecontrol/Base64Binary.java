@@ -9,22 +9,22 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java-Klasse für base64Binary complex type.
- *
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
- *
- * <pre>
- * &lt;complexType name="base64Binary"&gt;
- *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;base64Binary"&gt;
- *       &lt;attribute ref="{http://www.w3.org/2005/05/xmlmime}contentType"/&gt;
- *     &lt;/extension&gt;
- *   &lt;/simpleContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- *
- *
- */
+   * <p>Java-Klasse für base64Binary complex type.
+   *
+   * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+   *
+   * <pre>
+   * &lt;complexType name="base64Binary"&gt;
+   *   &lt;simpleContent&gt;
+   *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;base64Binary"&gt;
+   *       &lt;attribute ref="{http://www.w3.org/2005/05/xmlmime}contentType"/&gt;
+   *     &lt;/extension&gt;
+   *   &lt;/simpleContent&gt;
+   * &lt;/complexType&gt;
+   * </pre>
+   *
+   *
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "base64Binary", propOrder = {
       "value"

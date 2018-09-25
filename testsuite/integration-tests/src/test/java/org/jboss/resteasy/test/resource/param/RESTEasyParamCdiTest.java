@@ -25,13 +25,13 @@ import javax.ws.rs.core.Response;
 import static org.hamcrest.CoreMatchers.is;
 
 /**
- * @tpSubChapter Parameters
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for RESTEasy param annotations (https://issues.jboss.org/browse/RESTEASY-1880)
- * Test logic is in the end-point in deployment.
- * This test checks CDI integration.
- * @tpSince RESTEasy 3.6
- */
+   * @tpSubChapter Parameters
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for RESTEasy param annotations (https://issues.jboss.org/browse/RESTEASY-1880)
+   * Test logic is in the end-point in deployment.
+   * This test checks CDI integration.
+   * @tpSince RESTEasy 3.6
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RESTEasyParamCdiTest {

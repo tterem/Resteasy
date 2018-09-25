@@ -21,11 +21,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Integration tests
- * @tpTestCaseDetails Tests path encoding
- * @tpSince RESTEasy 3.0.20
- */
+   * @tpSubChapter Resource
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Tests path encoding
+   * @tpSince RESTEasy 3.0.20
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EncodedPathTest
@@ -34,22 +34,22 @@ public class EncodedPathTest
 
    @BeforeClass
    public static void setup() {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void close() {
-       client.close();
+      client.close();
    }
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(EncodedPathTest.class.getSimpleName());
-       return TestUtil.finishContainerPrepare(war, null, EncodedPathResource.class);
+      WebArchive war = TestUtil.prepareArchive(EncodedPathTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, EncodedPathResource.class);
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, EncodedPathTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, EncodedPathTest.class.getSimpleName());
    }
 
    private void _test(String path)

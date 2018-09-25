@@ -6,8 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Use to indicate MediaType of elements in SSE streams.
- */
+   * Use to indicate MediaType of elements in SSE streams.
+   */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SseElementType

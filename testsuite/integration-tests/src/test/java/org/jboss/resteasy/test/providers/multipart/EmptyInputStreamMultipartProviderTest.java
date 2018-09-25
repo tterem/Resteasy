@@ -20,12 +20,12 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Multipart provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-204.
- * POJO with empty InputStream field returned as "mutlipart/form-data" produces no headers in multipart
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Multipart provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-204.
+   * POJO with empty InputStream field returned as "mutlipart/form-data" produces no headers in multipart
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EmptyInputStreamMultipartProviderTest {
@@ -48,7 +48,7 @@ public class EmptyInputStreamMultipartProviderTest {
      */
    @Test
    public void test() throws Exception {
-       Client client = ClientBuilder.newClient();
+      Client client = ClientBuilder.newClient();
       WebTarget target = client.target(generateURL("/rest/zba"));
       Response response = target.request().get();
       Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());

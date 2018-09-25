@@ -28,6 +28,6 @@ public class PathParamMissingDefaultValueBeanParamEntity {
    public String bpeQuery;
 
    public String toString() {
-       return bpeCookie + bpeForm + bpeHeader + bpeMatrix + bpePath + bpeQuery;
+      return bpeCookie + bpeForm + bpeHeader + bpeMatrix + bpePath + bpeQuery;
    }
 }

@@ -7,16 +7,16 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 
 /**
- * For use when you want repository created via a context object, i.e., when defined within a WAR file.
- * <p>
- * For WAR files, it will look in context parameters and servlet/filter init params for doseta variables.
- * <p>
- * Private keys are stored in a java keystore.  Public keys may be stored in either a java keystore or discovered via
- * DNS.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * For use when you want repository created via a context object, i.e., when defined within a WAR file.
+   * <p>
+   * For WAR files, it will look in context parameters and servlet/filter init params for doseta variables.
+   * <p>
+   * Private keys are stored in a java keystore.  Public keys may be stored in either a java keystore or discovered via
+   * DNS.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ConfiguredDosetaKeyRepository implements KeyRepository
 {
    /**

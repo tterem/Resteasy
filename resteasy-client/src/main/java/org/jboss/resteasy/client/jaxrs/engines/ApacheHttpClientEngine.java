@@ -11,22 +11,22 @@ public interface ApacheHttpClientEngine extends ClientHttpEngine
    */
    public enum MemoryUnit {
       /**
-       * Bytes
-       */
+      * Bytes
+      */
       BY,
       /**
-       * Killo Bytes
-       */
+      * Killo Bytes
+      */
       KB,
 
       /**
-       * Mega Bytes
-       */
+      * Mega Bytes
+      */
       MB,
 
       /**
-       * Giga Bytes
-       */
+      * Giga Bytes
+      */
       GB
    }
 

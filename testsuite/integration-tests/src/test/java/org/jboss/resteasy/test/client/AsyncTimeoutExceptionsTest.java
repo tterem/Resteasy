@@ -34,12 +34,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
- * @tpSubChapter Resteasy-client
- * @tpChapter Integration tests
- * @tpTestCaseDetails Tests client exception handling for AsyncInvoker interface and InvocationCallBack interface.
- * @tpSince RESTEasy 3.0.16
- */
+   * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Tests client exception handling for AsyncInvoker interface and InvocationCallBack interface.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AsyncTimeoutExceptionsTest extends ClientTestBase{

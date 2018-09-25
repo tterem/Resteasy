@@ -9,34 +9,34 @@ import java.util.List;
 
 
 /**
- * <p>Java class for ParsingDataCollectionPackage complex type.
- * <p>
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;complexType name="ParsingDataCollectionPackage">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="sourceID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="eventID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="dataRecords">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="ParsingDataCollectionRecord" type="{http://www.example.org/DataCollectionPackage}ParsingDataCollectionRecord" maxOccurs="unbounded"/>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- */
+   * <p>Java class for ParsingDataCollectionPackage complex type.
+   * <p>
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * <p>
+   * <pre>
+   * &lt;complexType name="ParsingDataCollectionPackage">
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;sequence>
+   *         &lt;element name="sourceID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+   *         &lt;element name="eventID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+   *         &lt;element name="dataRecords">
+   *           &lt;complexType>
+   *             &lt;complexContent>
+   *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *                 &lt;sequence>
+   *                   &lt;element name="ParsingDataCollectionRecord" type="{http://www.example.org/DataCollectionPackage}ParsingDataCollectionRecord" maxOccurs="unbounded"/>
+   *                 &lt;/sequence>
+   *               &lt;/restriction>
+   *             &lt;/complexContent>
+   *           &lt;/complexType>
+   *         &lt;/element>
+   *       &lt;/sequence>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ParsingDataCollectionPackage",
       propOrder = {

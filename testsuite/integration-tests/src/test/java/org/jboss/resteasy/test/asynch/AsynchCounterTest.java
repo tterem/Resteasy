@@ -26,11 +26,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Asynchronous RESTEasy
- * @tpChapter Integration tests
- * @tpTestCaseDetails Tests use of SecureRandom to generate location job ids, RESTEASY-1483
- * @tpSince RESTEasy 3.1.0.Final
- */
+   * @tpSubChapter Asynchronous RESTEasy
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Tests use of SecureRandom to generate location job ids, RESTEASY-1483
+   * @tpSince RESTEasy 3.1.0.Final
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 @Category({NotForForwardCompatibility.class})
@@ -69,16 +69,16 @@ public class AsynchCounterTest {
    @Test
    public void testAsynchCounter() throws Exception {
 
-       Response response = client.target(generateURL("?asynch=true")).request().get();
-       Assert.assertEquals(HttpServletResponse.SC_ACCEPTED, response.getStatus());
-       String jobUrl = response.getHeaderString(HttpHeaders.LOCATION);
-       int job1 = Integer.parseInt(jobUrl.substring(jobUrl.lastIndexOf('-') + 1));
-       response.close();
-       response = client.target(generateURL("?asynch=true")).request().get();
-       Assert.assertEquals(HttpServletResponse.SC_ACCEPTED, response.getStatus());
-       jobUrl = response.getHeaderString(HttpHeaders.LOCATION);
-       int job2 = Integer.parseInt(jobUrl.substring(jobUrl.lastIndexOf('-') + 1));
-       Assert.assertTrue(job2 != job1 + 1);
-       response.close();
+      Response response = client.target(generateURL("?asynch=true")).request().get();
+      Assert.assertEquals(HttpServletResponse.SC_ACCEPTED, response.getStatus());
+      String jobUrl = response.getHeaderString(HttpHeaders.LOCATION);
+      int job1 = Integer.parseInt(jobUrl.substring(jobUrl.lastIndexOf('-') + 1));
+      response.close();
+      response = client.target(generateURL("?asynch=true")).request().get();
+      Assert.assertEquals(HttpServletResponse.SC_ACCEPTED, response.getStatus());
+      jobUrl = response.getHeaderString(HttpHeaders.LOCATION);
+      int job2 = Integer.parseInt(jobUrl.substring(jobUrl.lastIndexOf('-') + 1));
+      Assert.assertTrue(job2 != job1 + 1);
+      response.close();
    }
 }

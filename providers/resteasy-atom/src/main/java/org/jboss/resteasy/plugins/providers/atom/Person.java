@@ -6,23 +6,23 @@ import javax.xml.bind.annotation.XmlElement;
 import java.net.URI;
 
 /**
- * <p>Per RFC4287:</p>
- * <pre>
- *   A Person construct is an element that describes a person,
- *   corporation, or similar entity (hereafter, 'person').
- *
- *   atomPersonConstruct =
- *     atomCommonAttributes,
- *     (element atom:name { text }
- *      &amp; element atom:uri { atomUri }?
- *      &amp; element atom:email { atomEmailAddress }?
- *      &amp; extensionElement*)
- *
- * </pre>
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * <p>Per RFC4287:</p>
+   * <pre>
+   *   A Person construct is an element that describes a person,
+   *   corporation, or similar entity (hereafter, 'person').
+   *
+   *   atomPersonConstruct =
+   *     atomCommonAttributes,
+   *     (element atom:name { text }
+   *      &amp; element atom:uri { atomUri }?
+   *      &amp; element atom:email { atomEmailAddress }?
+   *      &amp; extensionElement*)
+   *
+   * </pre>
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class Person extends CommonAttributes
 {

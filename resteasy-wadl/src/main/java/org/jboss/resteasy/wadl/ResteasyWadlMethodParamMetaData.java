@@ -3,8 +3,8 @@ package org.jboss.resteasy.wadl;
 import java.lang.annotation.Annotation;
 
 /**
- * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
- */
+   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+   */
 public class ResteasyWadlMethodParamMetaData {
    public enum MethodParamType {
       QUERY_PARAMETER, HEADER_PARAMETER, COOKIE_PARAMETER, PATH_PARAMETER, MATRIX_PARAMETER, FORM_PARAMETER, FORM, ENTITY_PARAMETER

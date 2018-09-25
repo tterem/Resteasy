@@ -26,11 +26,11 @@ import javax.ws.rs.core.Response;
 
 
 /**
- * @tpSubChapter Response
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-363
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Response
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-363
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class OptionsTest {
@@ -147,11 +147,11 @@ public class OptionsTest {
       Assert.assertNotNull(allowed);
       HashSet<String> vals = new HashSet<String>();
       for (String v : allowed.split(",")) {
-           vals.add(v.trim());
+         vals.add(v.trim());
       }
       Assert.assertEquals(verbs.length, vals.size());
       for (String verb : verbs) {
-           Assert.assertTrue(vals.contains(verb));
+         Assert.assertTrue(vals.contains(verb));
       }
    }
 }

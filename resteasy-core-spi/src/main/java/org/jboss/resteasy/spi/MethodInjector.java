@@ -3,11 +3,11 @@ package org.jboss.resteasy.spi;
 import java.util.concurrent.CompletionStage;
 
 /**
- * Will invoke a method in the context of an HTTP request.  Does all the parameter injection for you.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Will invoke a method in the context of an HTTP request.  Does all the parameter injection for you.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public interface MethodInjector
 {
    /**

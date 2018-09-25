@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
- */
+   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+   */
 public class ResteasyWadlServiceRegistry {
 
    private ResourceMethodRegistry registry;

@@ -3,10 +3,10 @@ package org.jboss.resteasy.links;
 import javax.el.ELContext;
 
 /**
- * Implement this interface to wrap, modify or extend RESTEasy's ELContext with
- * your own variable or method resolvers.
- * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
- */
+   * Implement this interface to wrap, modify or extend RESTEasy's ELContext with
+   * your own variable or method resolvers.
+   * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
+   */
 public interface ELProvider {
    /**
    * Returns an ELContext to use for any @LinkResource constraint and pathParameters.

@@ -25,11 +25,11 @@ import java.lang.reflect.Field;
 import java.util.Iterator;
 
 /**
- * @tpSubChapter Atom provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test integration of atom provider and JAXB Context finder
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Atom provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test integration of atom provider and JAXB Context finder
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JAXBContextFinderTest {

@@ -46,11 +46,11 @@ import java.util.logging.LoggingPermission;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @tpSubChapter CDI
- * @tpChapter Integration tests
- * @tpTestCaseDetails EJB and RESTEasy integration test.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter CDI
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails EJB and RESTEasy integration test.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class EJBTest {
 

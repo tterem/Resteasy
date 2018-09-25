@@ -14,9 +14,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @ConstrainedTo(RuntimeType.SERVER)
 public class ServerContentEncodingAnnotationFeature implements DynamicFeature
 {
@@ -59,7 +59,7 @@ public class ServerContentEncodingAnnotationFeature implements DynamicFeature
       {
          if (annotation.annotationType().isAnnotationPresent(ContentEncoding.class))
          {
-           encodings.add(annotation.annotationType().getAnnotation(ContentEncoding.class).value().toLowerCase());
+         encodings.add(annotation.annotationType().getAnnotation(ContentEncoding.class).value().toLowerCase());
          }
       }
       return encodings;

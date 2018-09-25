@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class LinkImpl extends Link
 {
    protected final URI uri;
@@ -24,7 +24,7 @@ public class LinkImpl extends Link
    protected final Map<String, String> map;
 
    protected static final RuntimeDelegate.HeaderDelegate<Link> delegate =
-           RuntimeDelegate.getInstance().createHeaderDelegate(Link.class);
+         RuntimeDelegate.getInstance().createHeaderDelegate(Link.class);
 
    public static Link valueOf(String value)
    {

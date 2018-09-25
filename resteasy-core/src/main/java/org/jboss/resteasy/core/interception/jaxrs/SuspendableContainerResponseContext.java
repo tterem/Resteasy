@@ -3,11 +3,11 @@ package org.jboss.resteasy.core.interception.jaxrs;
 import javax.ws.rs.container.ContainerResponseContext;
 
 /**
- * Suspendable response context, which allows the users to suspend execution of the filter
- * chain until it is resumed normally, or abnormally with a {@link Throwable}. 
- *
- * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
- */
+   * Suspendable response context, which allows the users to suspend execution of the filter
+   * chain until it is resumed normally, or abnormally with a {@link Throwable}. 
+   *
+   * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
+   */
 public interface SuspendableContainerResponseContext extends ContainerResponseContext
 {
    /**

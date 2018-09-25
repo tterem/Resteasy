@@ -3,15 +3,15 @@ package org.jboss.resteasy.plugins.providers.multipart;
 import java.util.Map;
 
 /**
- * Represents a multipart/related (RFC2387) incoming mime message. A
- * multipart/related message is used to hold a root or start part and other
- * parts which are referenced from the root part. All parts have a unique id.
- * The type and the id of the start part is presented in parameters in the
- * message content-type header.
- * 
- * @author Attila Kiraly
- * @version $Revision: 1 $
- */
+   * Represents a multipart/related (RFC2387) incoming mime message. A
+   * multipart/related message is used to hold a root or start part and other
+   * parts which are referenced from the root part. All parts have a unique id.
+   * The type and the id of the start part is presented in parameters in the
+   * message content-type header.
+   * 
+   * @author Attila Kiraly
+   * @version $Revision: 1 $
+   */
 public interface MultipartRelatedInput extends MultipartInput {
 
    /**

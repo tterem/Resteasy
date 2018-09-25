@@ -19,11 +19,11 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 
 /**
- * @tpSubChapter Util tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for Types class for generic types.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Util tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for Types class for generic types.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class TypesGenericTest {
 
    protected final Logger logger = LogManager.getLogger(TypesGenericTest.class.getName());

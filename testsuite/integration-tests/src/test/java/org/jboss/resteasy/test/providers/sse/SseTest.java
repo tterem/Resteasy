@@ -530,7 +530,7 @@ public class SseTest
       try (SseEventSource source = sourceImpl)
       {
          source.register(event -> {
-           logger.info(event);
+         logger.info(event);
          }, ex -> {
             logger.error("Error:", ex);
             errors.incrementAndGet();

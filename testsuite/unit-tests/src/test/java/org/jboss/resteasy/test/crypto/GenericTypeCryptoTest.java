@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @tpSubChapter Crypto
- * @tpChapter Unit tests
- * @tpTestCaseDetails Regression test for JBEAP-1795
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Crypto
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Regression test for JBEAP-1795
+   * @tpSince RESTEasy 3.0.16
+   */
 public class GenericTypeCryptoTest {
    protected static final Logger logger = LogManager.getLogger(GenericTypeCryptoTest.class.getName());
 

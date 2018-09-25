@@ -25,11 +25,11 @@ import java.lang.reflect.ReflectPermission;
 import java.util.PropertyPermission;
 
 /**
- * @tpSubChapter Jaxrs implementation
- * @tpChapter Integration tests
- * @tpTestCaseDetails RESTEASY-1531
- * @tpSince RESTEasy 3.1.0
- */
+   * @tpSubChapter Jaxrs implementation
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails RESTEASY-1531
+   * @tpSince RESTEasy 3.1.0
+   */
 @RunWith(Arquillian.class)
 public class ResteasyJAXRSImplTest
 {

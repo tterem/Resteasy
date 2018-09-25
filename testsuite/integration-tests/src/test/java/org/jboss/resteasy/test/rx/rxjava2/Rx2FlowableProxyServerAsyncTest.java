@@ -39,15 +39,15 @@ import org.junit.runners.MethodSorters;
 
 
 /**
- * @tpSubChapter Reactive classes
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- * 
- * In these tests, the server uses Flowables to build objects asynchronously, then collects the
- * results and returns then in one transmission.
- * 
- * The client uses a proxy to make synchronous calls.
- */
+   * @tpSubChapter Reactive classes
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   * 
+   * In these tests, the server uses Flowables to build objects asynchronously, then collects the
+   * results and returns then in one transmission.
+   * 
+   * The client uses a proxy to make synchronous calls.
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)

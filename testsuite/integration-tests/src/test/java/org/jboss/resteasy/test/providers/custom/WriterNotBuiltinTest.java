@@ -27,11 +27,11 @@ import java.util.PropertyPermission;
 import java.util.logging.LoggingPermission;
 
 /**
- * @tpSubChapter Providers
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Providers
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class WriterNotBuiltinTest {
 

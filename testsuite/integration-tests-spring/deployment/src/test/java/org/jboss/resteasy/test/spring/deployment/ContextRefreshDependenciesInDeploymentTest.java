@@ -23,11 +23,11 @@ import java.util.logging.LoggingPermission;
 
 
 /**
- * @tpSubChapter Spring
- * @tpChapter Integration tests - dependencies included in deployment
- * @tpTestCaseDetails Spring context refresh, RESTEASY-632
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Spring
+   * @tpChapter Integration tests - dependencies included in deployment
+   * @tpTestCaseDetails Spring context refresh, RESTEASY-632
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class ContextRefreshDependenciesInDeploymentTest {
 

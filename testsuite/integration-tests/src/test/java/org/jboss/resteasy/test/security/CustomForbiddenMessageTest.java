@@ -36,11 +36,11 @@ import java.nio.file.Paths;
 import java.util.Hashtable;
 
 /**
- * @tpSubChapter Security
- * @tpChapter Integration tests
- * @tpTestCaseDetails Custom ExceptionMapper is used when Forbidden is thrown from RoleBasedSecurityFilter
- * @tpSince RESTEasy 3.1.0
- */
+   * @tpSubChapter Security
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Custom ExceptionMapper is used when Forbidden is thrown from RoleBasedSecurityFilter
+   * @tpSince RESTEasy 3.1.0
+   */
 @ServerSetup({CustomForbiddenMessageTest.SecurityDomainSetup.class})
 @RunWith(Arquillian.class)
 @RunAsClient

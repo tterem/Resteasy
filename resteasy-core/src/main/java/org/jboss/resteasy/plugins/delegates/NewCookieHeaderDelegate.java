@@ -14,9 +14,9 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class NewCookieHeaderDelegate implements RuntimeDelegate.HeaderDelegate {
    private final static String OLD_COOKIE_PATTERN = "EEE, dd-MMM-yyyy HH:mm:ss z";
 
@@ -70,7 +70,7 @@ public class NewCookieHeaderDelegate implements RuntimeDelegate.HeaderDelegate {
 
       if (cookieValue == null)
       {
-           cookieValue = "";
+         cookieValue = "";
       }
       
       return new NewCookie(cookieName, cookieValue, path, domain, version, comment, maxAge, expiry, secure, httpOnly);
@@ -89,14 +89,14 @@ public class NewCookieHeaderDelegate implements RuntimeDelegate.HeaderDelegate {
    }
 
    public String toString(Object value) {
-       if (value == null) throw new IllegalArgumentException(Messages.MESSAGES.paramNull());
+      if (value == null) throw new IllegalArgumentException(Messages.MESSAGES.paramNull());
       NewCookie cookie = (NewCookie) value;
       StringBuilder b = new StringBuilder();
 
       b.append(cookie.getName()).append('=');
       
       if (cookie.getValue() != null) {
-           quote(b, cookie.getValue());
+         quote(b, cookie.getValue());
       }
 
       b.append(";").append("Version=").append(cookie.getVersion());

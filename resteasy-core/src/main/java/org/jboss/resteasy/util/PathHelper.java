@@ -1,21 +1,21 @@
 /**
- *
- */
+   *
+   */
 package org.jboss.resteasy.util;
 
 import java.util.regex.Pattern;
 
 
 /**
- * A utility class for handling URI template parameters. As the Java
- * regulare expressions package does not handle named groups, this
- * class attempts to simulate that functionality by using groups.
- *
- * @author Ryan J. McDonough
- * @author Bill Burke
- * @since 1.0
- *        Nov 8, 2006
- */
+   * A utility class for handling URI template parameters. As the Java
+   * regulare expressions package does not handle named groups, this
+   * class attempts to simulate that functionality by using groups.
+   *
+   * @author Ryan J. McDonough
+   * @author Bill Burke
+   * @since 1.0
+   *        Nov 8, 2006
+   */
 public class PathHelper
 {
    public static final String URI_PARAM_NAME_REGEX = "\\w[\\w\\.-]*";

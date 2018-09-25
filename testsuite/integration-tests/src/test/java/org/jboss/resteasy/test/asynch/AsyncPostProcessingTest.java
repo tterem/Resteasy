@@ -27,11 +27,11 @@ import java.net.SocketPermission;
 import java.util.PropertyPermission;
 
 /**
- * @tpSubChapter Asynchronous RESTEasy
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-767
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Asynchronous RESTEasy
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-767
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class AsyncPostProcessingTest {
 

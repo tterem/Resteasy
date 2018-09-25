@@ -11,10 +11,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 
- * @author Nicolas NESMON
- *
- */
+   * 
+   * @author Nicolas NESMON
+   *
+   */
 class SseEventSourceScheduler
 {
 

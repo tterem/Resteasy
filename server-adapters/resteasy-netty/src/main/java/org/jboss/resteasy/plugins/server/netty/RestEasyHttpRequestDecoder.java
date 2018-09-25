@@ -13,14 +13,14 @@ import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.specimpl.ResteasyUriInfo;
 
 /**
- * This {@link OneToOneDecoder} is responsible for decode {@link org.jboss.netty.handler.codec.http.HttpRequest}
- * to {@link NettyHttpRequest}'s
- * 
- * This implementation is {@link Sharable}
- * 
- * @author Norman Maurer
- *
- */
+   * This {@link OneToOneDecoder} is responsible for decode {@link org.jboss.netty.handler.codec.http.HttpRequest}
+   * to {@link NettyHttpRequest}'s
+   * 
+   * This implementation is {@link Sharable}
+   * 
+   * @author Norman Maurer
+   *
+   */
 @Sharable
 public class RestEasyHttpRequestDecoder extends OneToOneDecoder 
 {
@@ -68,21 +68,21 @@ public class RestEasyHttpRequestDecoder extends OneToOneDecoder
       ResteasyUriInfo uriInfo = null;
       try
       {
-           headers = NettyUtil.extractHttpHeaders(request);
+         headers = NettyUtil.extractHttpHeaders(request);
 
-           uriInfo = NettyUtil.extractUriInfo(request, servletMappingPrefix, proto);
-           HttpRequest nettyRequest = new NettyHttpRequest(headers, uriInfo, request.getMethod().getName(), dispatcher, response, org.jboss.netty.handler.codec.http.HttpHeaders.is100ContinueExpected(request) );
-           ChannelBufferInputStream is = new ChannelBufferInputStream(request.getContent());
-           nettyRequest.setInputStream(is);
-           return nettyRequest;
+         uriInfo = NettyUtil.extractUriInfo(request, servletMappingPrefix, proto);
+         HttpRequest nettyRequest = new NettyHttpRequest(headers, uriInfo, request.getMethod().getName(), dispatcher, response, org.jboss.netty.handler.codec.http.HttpHeaders.is100ContinueExpected(request) );
+         ChannelBufferInputStream is = new ChannelBufferInputStream(request.getContent());
+         nettyRequest.setInputStream(is);
+         return nettyRequest;
       }
       catch (Exception e)
       {
-           response.sendError(400);
-           // made it warn so that people can filter this.
-           LogMessages.LOGGER.warn(Messages.MESSAGES.failedToParseRequest(), e);
+         response.sendError(400);
+         // made it warn so that people can filter this.
+         LogMessages.LOGGER.warn(Messages.MESSAGES.failedToParseRequest(), e);
            
-           return null;
+         return null;
       }
 
    }

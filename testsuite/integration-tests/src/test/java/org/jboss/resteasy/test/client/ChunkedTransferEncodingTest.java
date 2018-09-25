@@ -28,11 +28,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test facility for sending requests in chunked format
- * @tpSince RESTEasy 3.0.24
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test facility for sending requests in chunked format
+   * @tpSince RESTEasy 3.0.24
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ChunkedTransferEncodingTest {
@@ -79,25 +79,25 @@ public class ChunkedTransferEncodingTest {
      */    
    @Test
    public void testTarget() throws Exception {
-       doTestTarget(clientDefault, Boolean.TRUE, "chunked null");
-       doTestTarget(clientDefault, Boolean.FALSE, "null " + fileLength);
-       doTestTarget(clientDefault,null, "null " + fileLength);
-       doTestTarget(clientEngine43, Boolean.TRUE, "chunked null");
-       doTestTarget(clientEngine43, Boolean.FALSE, "null " + fileLength);
-       doTestTarget(clientEngine43,null, "null " + fileLength);
+      doTestTarget(clientDefault, Boolean.TRUE, "chunked null");
+      doTestTarget(clientDefault, Boolean.FALSE, "null " + fileLength);
+      doTestTarget(clientDefault,null, "null " + fileLength);
+      doTestTarget(clientEngine43, Boolean.TRUE, "chunked null");
+      doTestTarget(clientEngine43, Boolean.FALSE, "null " + fileLength);
+      doTestTarget(clientEngine43,null, "null " + fileLength);
    }
     
    public void doTestTarget(ResteasyClient client, Boolean b, String expected) throws Exception
    {
-       ResteasyWebTarget target = client.target(generateURL("/test"));
-       if (b == Boolean.TRUE || b == Boolean.FALSE ) {
-          target.setChunked(b.booleanValue());
-       }
-       Invocation.Builder request = target.request();
-       Response response = request.post(Entity.entity(file, "text/plain"));
-       String header = response.readEntity(String.class);
-       Assert.assertEquals(200, response.getStatus());
-       Assert.assertEquals(expected, header);
+      ResteasyWebTarget target = client.target(generateURL("/test"));
+      if (b == Boolean.TRUE || b == Boolean.FALSE ) {
+         target.setChunked(b.booleanValue());
+      }
+      Invocation.Builder request = target.request();
+      Response response = request.post(Entity.entity(file, "text/plain"));
+      String header = response.readEntity(String.class);
+      Assert.assertEquals(200, response.getStatus());
+      Assert.assertEquals(expected, header);
    }
 
    /**
@@ -108,24 +108,24 @@ public class ChunkedTransferEncodingTest {
      */ 
    @Test
    public void testRequest() throws Exception {
-       doTestRequest(clientDefault, Boolean.TRUE, "chunked null");
-       doTestRequest(clientDefault, Boolean.FALSE, "null " + fileLength);
-       doTestRequest(clientDefault, null, "null " + fileLength);
-       doTestRequest(clientEngine43, Boolean.TRUE, "chunked null");
-       doTestRequest(clientEngine43, Boolean.FALSE, "null " + fileLength);
-       doTestRequest(clientEngine43, null, "null " + fileLength);
+      doTestRequest(clientDefault, Boolean.TRUE, "chunked null");
+      doTestRequest(clientDefault, Boolean.FALSE, "null " + fileLength);
+      doTestRequest(clientDefault, null, "null " + fileLength);
+      doTestRequest(clientEngine43, Boolean.TRUE, "chunked null");
+      doTestRequest(clientEngine43, Boolean.FALSE, "null " + fileLength);
+      doTestRequest(clientEngine43, null, "null " + fileLength);
    }
     
    protected void doTestRequest(ResteasyClient client, Boolean b, String expected) throws Exception
    {
-       ResteasyWebTarget target = client.target(generateURL("/test"));
-       ClientInvocationBuilder request = (ClientInvocationBuilder) target.request();
-       if (b != null){
-          request.setChunked(b);
-       }
-       Response response = request.post(Entity.entity(file, "text/plain"));
-       String header = response.readEntity(String.class);
-       Assert.assertEquals(200, response.getStatus());
-       Assert.assertEquals(expected, header);
+      ResteasyWebTarget target = client.target(generateURL("/test"));
+      ClientInvocationBuilder request = (ClientInvocationBuilder) target.request();
+      if (b != null){
+         request.setChunked(b);
+      }
+      Response response = request.post(Entity.entity(file, "text/plain"));
+      String header = response.readEntity(String.class);
+      Assert.assertEquals(200, response.getStatus());
+      Assert.assertEquals(expected, header);
    }
 }

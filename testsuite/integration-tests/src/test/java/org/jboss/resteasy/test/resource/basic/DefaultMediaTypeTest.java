@@ -29,11 +29,11 @@ import javax.ws.rs.core.Response;
 import java.io.ByteArrayOutputStream;
 
 /**
- * @tpSubChapter Resources
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for JBEAP-2847. DefaultTextPlain should be used, if produce annotation annotation is not used in end-point.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resources
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for JBEAP-2847. DefaultTextPlain should be used, if produce annotation annotation is not used in end-point.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class DefaultMediaTypeTest {

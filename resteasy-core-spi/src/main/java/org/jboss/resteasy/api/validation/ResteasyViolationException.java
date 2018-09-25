@@ -24,14 +24,14 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.jboss.resteasy.spi.validation.ConstraintTypeUtil;
 
 /**
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * Copyright Mar 6, 2012
- *
- * {@literal @}TODO Need to work on representation of exceptions
- * {@literal @}TODO Add javadoc.
- */
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * Copyright Mar 6, 2012
+   *
+   * {@literal @}TODO Need to work on representation of exceptions
+   * {@literal @}TODO Add javadoc.
+   */
 public abstract class ResteasyViolationException extends ConstraintViolationException
 {
    private static final long serialVersionUID = 2623733139912277260L;

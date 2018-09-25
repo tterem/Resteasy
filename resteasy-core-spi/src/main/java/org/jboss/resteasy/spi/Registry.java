@@ -3,9 +3,9 @@ package org.jboss.resteasy.spi;
 import org.jboss.resteasy.spi.metadata.ResourceClass;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public interface Registry
 {
    /**

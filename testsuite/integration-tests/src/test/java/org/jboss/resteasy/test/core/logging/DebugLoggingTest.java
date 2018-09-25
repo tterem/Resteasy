@@ -35,12 +35,12 @@ import static org.hamcrest.core.Is.is;
 import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALIFIER;
 
 /**
- * @tpSubChapter Interceptors
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test debug messages for used Interceptors and Providers.
- *                    Regression test for RESTEASY-1415 and RESTEASY-1558.
- * @tpSince RESTEasy 3.1.0
- */
+   * @tpSubChapter Interceptors
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test debug messages for used Interceptors and Providers.
+   *                    Regression test for RESTEASY-1415 and RESTEASY-1558.
+   * @tpSince RESTEasy 3.1.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class DebugLoggingTest {

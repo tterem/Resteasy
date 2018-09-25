@@ -1,9 +1,9 @@
 package org.jboss.resteasy.jose.jws;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public enum Algorithm
 {
    none,

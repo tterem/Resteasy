@@ -22,11 +22,11 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.RuntimeDelegate;
 
 /**
- * UriInfo implementation with some added extra methods to help process requests.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * UriInfo implementation with some added extra methods to help process requests.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ResteasyUriInfo implements UriInfo
 {
    private String path;

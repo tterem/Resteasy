@@ -12,11 +12,11 @@ import static org.junit.Assert.assertTrue;
 
 
 /**
- * @tpSubChapter Util tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for {@link org.jboss.resteasy.util.TypeConverter#getType(Class, String)}.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Util tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for {@link org.jboss.resteasy.util.TypeConverter#getType(Class, String)}.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class TypeConverterTest {
 
    private static final String CONVERSION_ERROR = "Wrong type of converted value";

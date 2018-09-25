@@ -41,9 +41,9 @@ import java.util.Map.Entry;
 import java.util.function.Consumer;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ServerResponseWriter
 {
    @FunctionalInterface
@@ -167,24 +167,24 @@ public class ServerResponseWriter
       {
       if ((mt = jaxrsResponse.getMediaType()) == null)
       {
-           mt = getDefaultContentType(request, jaxrsResponse, providerFactory, method);
+         mt = getDefaultContentType(request, jaxrsResponse, providerFactory, method);
       }
       
       boolean addCharset = true;
       ResteasyDeployment deployment = ResteasyContext.getContextData(ResteasyDeployment.class);
       if (deployment != null)
       {
-           addCharset = deployment.isAddCharset();
+         addCharset = deployment.isAddCharset();
       }
       if (addCharset)
       {
-           if (!mt.getParameters().containsKey(MediaType.CHARSET_PARAMETER))
-           {
+         if (!mt.getParameters().containsKey(MediaType.CHARSET_PARAMETER))
+         {
               if (MediaTypeHelper.isTextLike(mt))
               {
                  mt = mt.withCharset(StandardCharsets.UTF_8.toString());
               }
-           }
+         }
       }
       }
       return mt;

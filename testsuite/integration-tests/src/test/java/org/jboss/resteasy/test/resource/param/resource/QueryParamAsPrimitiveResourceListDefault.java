@@ -65,6 +65,6 @@ public class QueryParamAsPrimitiveResourceListDefault {
    @Produces("application/char")
    public String doGetCharacter(@QueryParam("char")  @DefaultValue("a") List<Character> v) {
          Assert.assertEquals(QueryParamAsPrimitiveTest.ERROR_MESSAGE, 'a', v.get(0).charValue());
-          return "content";
+         return "content";
    }
 }

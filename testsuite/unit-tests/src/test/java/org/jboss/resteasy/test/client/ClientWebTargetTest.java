@@ -9,11 +9,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpTestCaseDetails Regression test for JBEAP-4708
- * @tpSince RESTEasy 3.0.17
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpTestCaseDetails Regression test for JBEAP-4708
+   * @tpSince RESTEasy 3.0.17
+   */
 public class ClientWebTargetTest {
 
    /**

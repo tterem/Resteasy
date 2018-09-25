@@ -6,9 +6,9 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.Response;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public interface ClientHttpEngine
 {
    /**

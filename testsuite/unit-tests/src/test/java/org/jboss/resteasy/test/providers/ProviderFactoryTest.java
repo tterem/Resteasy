@@ -34,11 +34,11 @@ import java.util.Set;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * @tpSubChapter Providers
- * @tpChapter Unit tests
- * @tpTestCaseDetails Regression test for RESTEASY-584
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Providers
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Regression test for RESTEASY-584
+   * @tpSince RESTEasy 3.0.16
+   */
 public class ProviderFactoryTest {
 
    private ResteasyProviderFactory factory;

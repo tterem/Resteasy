@@ -25,11 +25,11 @@ import org.junit.runner.RunWith;
 
 
 /**
- * @tpSubChapter Configuration
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for resource and provider defined in one class together.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Configuration
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for resource and provider defined in one class together.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AppConfigTest {

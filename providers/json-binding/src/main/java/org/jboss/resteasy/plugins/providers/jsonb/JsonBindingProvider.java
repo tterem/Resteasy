@@ -34,8 +34,8 @@ import org.jboss.resteasy.spi.ResteasyConfiguration;
 import org.jboss.resteasy.spi.util.Types;
 
 /**
- * Created by rsearls on 6/26/17.
- */
+   * Created by rsearls on 6/26/17.
+   */
 @Provider
 @Produces({"application/json", "application/*+json", "text/json", "*/*"})
 @Consumes({"application/json", "application/*+json", "text/json", "*/*"})
@@ -137,7 +137,7 @@ public class JsonBindingProvider extends AbstractJsonBindingProvider
                        MediaType mediaType,
                        MultivaluedMap<String, Object> httpHeaders,
                        OutputStream entityStream)
-           throws java.io.IOException, javax.ws.rs.WebApplicationException {
+         throws java.io.IOException, javax.ws.rs.WebApplicationException {
       Jsonb jsonb = getJsonb(type);
       try
       {

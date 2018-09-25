@@ -13,23 +13,23 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for HTTPMethods.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;simpleType name="HTTPMethods"&gt;
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}NMTOKEN"&gt;
- *     &lt;enumeration value="GET"/&gt;
- *     &lt;enumeration value="POST"/&gt;
- *     &lt;enumeration value="PUT"/&gt;
- *     &lt;enumeration value="HEAD"/&gt;
- *     &lt;enumeration value="DELETE"/&gt;
- *   &lt;/restriction&gt;
- * &lt;/simpleType&gt;
- * </pre>
- * 
- */
+   * <p>Java class for HTTPMethods.
+   * 
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * <p>
+   * <pre>
+   * &lt;simpleType name="HTTPMethods"&gt;
+   *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}NMTOKEN"&gt;
+   *     &lt;enumeration value="GET"/&gt;
+   *     &lt;enumeration value="POST"/&gt;
+   *     &lt;enumeration value="PUT"/&gt;
+   *     &lt;enumeration value="HEAD"/&gt;
+   *     &lt;enumeration value="DELETE"/&gt;
+   *   &lt;/restriction&gt;
+   * &lt;/simpleType&gt;
+   * </pre>
+   * 
+   */
 @XmlType(name = "HTTPMethods")
 @XmlEnum
 public enum HTTPMethods {

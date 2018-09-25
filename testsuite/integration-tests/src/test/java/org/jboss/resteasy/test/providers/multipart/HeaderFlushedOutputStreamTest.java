@@ -31,11 +31,11 @@ import java.io.File;
 import java.io.InputStream;
 
 /**
- * @tpSubChapter Multipart provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-190
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Multipart provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-190
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class HeaderFlushedOutputStreamTest {

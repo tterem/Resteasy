@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A utility class to provide supporting functionality to various
- * entity providers.
- *
- * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
- * @version $Revision: $
- */
+   * A utility class to provide supporting functionality to various
+   * entity providers.
+   *
+   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+   * @version $Revision: $
+   */
 public final class ProviderHelper
 {
 

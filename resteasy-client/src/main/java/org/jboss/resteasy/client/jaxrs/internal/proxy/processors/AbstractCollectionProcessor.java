@@ -3,9 +3,9 @@ package org.jboss.resteasy.client.jaxrs.internal.proxy.processors;
 import java.util.Collection;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public abstract class AbstractCollectionProcessor<T>
 {
    protected String paramName;

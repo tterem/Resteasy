@@ -10,8 +10,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created by weli on 6/14/16.
- */
+   * Created by weli on 6/14/16.
+   */
 public class WADLTestExistenceVerifier {
    private Map<String, Boolean> data = new HashMap<>();
 

@@ -135,12 +135,12 @@ public class RESTEasyParamBasicCustomValuesResource
    @POST
    @Path("a/{pathParam0}/{pathParam1}/{pathParam2}/{pathParam3}")
    public Response post(
-           @CookieParam("cookieParam3") String cookieParam3Updated,
-           @FormParam("formParam3") String formParam3Updated,
-           @HeaderParam("headerParam3") String headerParam3Updated,
-           @MatrixParam("matrixParam3") String matrixParam3Updated,
-           @PathParam("pathParam3") String pathParam3Updated,
-           @QueryParam("queryParam3") String queryParam3Updated)
+         @CookieParam("cookieParam3") String cookieParam3Updated,
+         @FormParam("formParam3") String formParam3Updated,
+         @HeaderParam("headerParam3") String headerParam3Updated,
+         @MatrixParam("matrixParam3") String matrixParam3Updated,
+         @PathParam("pathParam3") String pathParam3Updated,
+         @QueryParam("queryParam3") String queryParam3Updated)
    {
 
       StringBuilder details = new StringBuilder();

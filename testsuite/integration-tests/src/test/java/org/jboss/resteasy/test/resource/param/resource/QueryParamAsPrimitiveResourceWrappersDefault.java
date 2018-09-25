@@ -64,6 +64,6 @@ public class QueryParamAsPrimitiveResourceWrappersDefault {
    @Produces("application/char")
    public String doGet(@QueryParam("char") @DefaultValue("a")  Character v) {
       Assert.assertEquals(QueryParamAsPrimitiveTest.ERROR_MESSAGE, 'a', v.charValue());
-       return "content";
+      return "content";
    }
 }

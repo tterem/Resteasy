@@ -9,16 +9,16 @@ import org.jboss.resteasy.jose.i18n.Messages;
 
 
 /**
- * Composite key used in AES/CBC/PKCS5Padding/HMAC-SHA2 encryption. This class
- * is immutable.
- *
- * <p>See draft-ietf-jose-json-web-algorithms-10, section 4.8.2.
- *
- * <p>See draft-mcgrew-aead-aes-cbc-hmac-sha2-01
- *
- * @author Vladimir Dzhuvinov
- * @version $version$ (2013-05-06)
- */
+   * Composite key used in AES/CBC/PKCS5Padding/HMAC-SHA2 encryption. This class
+   * is immutable.
+   *
+   * <p>See draft-ietf-jose-json-web-algorithms-10, section 4.8.2.
+   *
+   * <p>See draft-mcgrew-aead-aes-cbc-hmac-sha2-01
+   *
+   * @author Vladimir Dzhuvinov
+   * @version $version$ (2013-05-06)
+   */
 final class CompositeKey
 {
 

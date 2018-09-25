@@ -18,11 +18,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Asynchronous RESTEasy
- * @tpChapter Integration tests
- * @tpTestCaseDetails Basic asynchronous test. Resource creates new threads.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Asynchronous RESTEasy
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Basic asynchronous test. Resource creates new threads.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JaxrsAsyncTest {

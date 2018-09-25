@@ -20,12 +20,12 @@ import org.jboss.resteasy.spi.validation.GeneralValidatorCDI;
 import org.jboss.resteasy.util.GetRestful;
 
 /**
- * This implementation of InjectionTarget is a wrapper that allows JAX-RS
- * property injection to be performed just after CDI injection.
- * 
- * @author Jozef Hartinger
- * 
- */
+   * This implementation of InjectionTarget is a wrapper that allows JAX-RS
+   * property injection to be performed just after CDI injection.
+   * 
+   * @author Jozef Hartinger
+   * 
+   */
 public class JaxrsInjectionTarget<T> implements InjectionTarget<T>
 {
    

@@ -9,10 +9,10 @@ import javax.ws.rs.ext.Provider;
 import org.jboss.logging.Logger;
 
 /**
- * A feature constrained to the server runtime.
- * 
- * @author pjurak
- */
+   * A feature constrained to the server runtime.
+   * 
+   * @author pjurak
+   */
 @Provider
 @ConstrainedTo(RuntimeType.SERVER)
 public class CustomServerConstrainedFeature implements Feature {
@@ -29,9 +29,9 @@ public class CustomServerConstrainedFeature implements Feature {
 
    public static boolean wasInvoked() {
       return invoked;
-  }
+   }
 
-  public static void reset() {
+   public static void reset() {
       invoked = false;
-  }
+   }
 }

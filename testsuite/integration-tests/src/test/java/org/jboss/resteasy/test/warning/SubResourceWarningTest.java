@@ -20,11 +20,11 @@ import org.wildfly.extras.creaper.core.online.OnlineManagementClient;
 import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALIFIER;
 
 /**
- * @tpSubChapter Miscellaneous
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0.0
- * Created by rsearls on 9/11/17.
- */
+   * @tpSubChapter Miscellaneous
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0.0
+   * Created by rsearls on 9/11/17.
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SubResourceWarningTest {

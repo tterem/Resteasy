@@ -15,21 +15,21 @@ import java.net.URI;
 import javax.ws.rs.client.ClientBuilder;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} to generate a client
- * proxy from a REST annotated interface.
- * <p>
- * Example: The following spring xml configuration snippet makes a bean with the
- * id echoClient. The bean is a generated proxy of the a.b.c.Echo interface to
- * access the remote service on http://server.far.far.away:8080/echo base URI.
- * </p>
- * <pre>
- * &lt;bean id=&quot;echoClient&quot; class=&quot;org.jboss.resteasy.client.spring.RestClientProxyFactoryBean&quot;
- * p:serviceInterface=&quot;a.b.c.Echo&quot; p:baseUri=&quot;http://server.far.far.away:8080/echo&quot; /&gt;
- * </pre>
- *
- * @author Attila Kiraly
- * @param <T> The type representing the client interface.
- */
+   * {@link org.springframework.beans.factory.FactoryBean} to generate a client
+   * proxy from a REST annotated interface.
+   * <p>
+   * Example: The following spring xml configuration snippet makes a bean with the
+   * id echoClient. The bean is a generated proxy of the a.b.c.Echo interface to
+   * access the remote service on http://server.far.far.away:8080/echo base URI.
+   * </p>
+   * <pre>
+   * &lt;bean id=&quot;echoClient&quot; class=&quot;org.jboss.resteasy.client.spring.RestClientProxyFactoryBean&quot;
+   * p:serviceInterface=&quot;a.b.c.Echo&quot; p:baseUri=&quot;http://server.far.far.away:8080/echo&quot; /&gt;
+   * </pre>
+   *
+   * @author Attila Kiraly
+   * @param <T> The type representing the client interface.
+   */
 public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
       InitializingBean
 {
@@ -179,7 +179,7 @@ public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
    * @param resteasyProviderFactory the instance to be used by proxy generation.
    */
    public void setResteasyProviderFactory(
-           ResteasyProviderFactory resteasyProviderFactory)
+         ResteasyProviderFactory resteasyProviderFactory)
    {
       this.resteasyProviderFactory = resteasyProviderFactory;
    }

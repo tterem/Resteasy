@@ -35,11 +35,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @tpSubChapter Jackson2 provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for WFLY-5916. Integration tests for jackson-datatype-jsr310 and jackson-datatype-jdk8 modules
- * @tpSince RESTEasy 3.1.0.CR3
- */
+   * @tpSubChapter Jackson2 provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for WFLY-5916. Integration tests for jackson-datatype-jsr310 and jackson-datatype-jdk8 modules
+   * @tpSince RESTEasy 3.1.0.CR3
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JacksonDatatypeTest {
@@ -76,7 +76,7 @@ public class JacksonDatatypeTest {
       Map<String, String> contextParam = new HashMap<>();
       contextParam.put(ResteasyContextParameters.RESTEASY_PREFER_JACKSON_OVER_JSONB, "true");
       return TestUtil.finishContainerPrepare(war, contextParam, JacksonDatatypeEndPoint.class,
-             JacksonDatatypeJacksonProducer.class, ApplicationTestScannedApplication.class);
+            JacksonDatatypeJacksonProducer.class, ApplicationTestScannedApplication.class);
    }
 
    private String requestHelper(String endPath, String deployment) {

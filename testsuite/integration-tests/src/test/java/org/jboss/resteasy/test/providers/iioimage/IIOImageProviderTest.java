@@ -31,11 +31,11 @@ import java.util.Arrays;
 
 
 /**
- * @tpSubChapter IIOImage provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Basic test for IIOImage provider. Old issue: https://issues.jboss.org/browse/RESTEASY-862
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter IIOImage provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Basic test for IIOImage provider. Old issue: https://issues.jboss.org/browse/RESTEASY-862
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class IIOImageProviderTest {

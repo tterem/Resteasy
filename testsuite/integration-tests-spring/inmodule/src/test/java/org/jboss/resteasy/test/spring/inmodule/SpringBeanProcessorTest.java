@@ -43,12 +43,12 @@ import java.util.PropertyPermission;
 import java.util.logging.LoggingPermission;
 
 /**
- * @tpSubChapter Spring
- * @tpChapter Integration tests
- * @tpTestCaseDetails This class tests a gamut of Spring related functionality including @Configuration beans, @Autowired,
- * scanned beans, interceptors and overall integration between RESTEasy and the Spring ApplicationContext.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Spring
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails This class tests a gamut of Spring related functionality including @Configuration beans, @Autowired,
+   * scanned beans, interceptors and overall integration between RESTEasy and the Spring ApplicationContext.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SpringBeanProcessorTest {

@@ -22,11 +22,11 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @tpSubChapter Interception tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Unit test for JaxrsInterceptorRegistry class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Interception tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Unit test for JaxrsInterceptorRegistry class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class JaxrsInterceptorRegistryTest {
 
    /**

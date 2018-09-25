@@ -35,10 +35,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter ExceptionMappers and ParamConverterProviders
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0.0
- */
+   * @tpSubChapter ExceptionMappers and ParamConverterProviders
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ProviderPriorityProvidersInApplicationTest {

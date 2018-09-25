@@ -14,15 +14,15 @@ import java.security.SecureRandom;
 
 
 /**
- * AES/GSM/NoPadding encryption and decryption methods. Uses the 
- * BouncyCastle.org provider.
- *
- * <p>See draft-ietf-jose-json-web-algorithms-10, section 4.9.
- *
- * @author Vladimir Dzhuvinov
- * @author Axel Nennker
- * @version $version$ (2013-05-07)
- */
+   * AES/GSM/NoPadding encryption and decryption methods. Uses the 
+   * BouncyCastle.org provider.
+   *
+   * <p>See draft-ietf-jose-json-web-algorithms-10, section 4.9.
+   *
+   * @author Vladimir Dzhuvinov
+   * @author Axel Nennker
+   * @version $version$ (2013-05-07)
+   */
 class AESGCM
 {
 

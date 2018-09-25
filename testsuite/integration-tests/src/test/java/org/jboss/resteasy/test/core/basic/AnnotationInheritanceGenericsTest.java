@@ -28,11 +28,11 @@ import javax.ws.rs.core.MediaType;
 import java.util.Collection;
 
 /**
- * @tpSubChapter Configuration
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for JAX-RS annotation inheritance with generics.
- * @tpSince RESTEasy 4.0.0
- */
+   * @tpSubChapter Configuration
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for JAX-RS annotation inheritance with generics.
+   * @tpSince RESTEasy 4.0.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AnnotationInheritanceGenericsTest {

@@ -21,11 +21,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Test client error caused by bad media type
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Test client error caused by bad media type
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ClientErrorBadMediaTypeTest {

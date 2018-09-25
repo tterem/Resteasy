@@ -12,12 +12,12 @@ import java.security.NoSuchAlgorithmException;
 
 
 /**
- * AES encryption, decryption and key generation methods. Uses the 
- * BouncyCastle.org provider.
- *
- * @author Vladimir Dzhuvinov
- * @version $version$ (2013-05-06)
- */
+   * AES encryption, decryption and key generation methods. Uses the 
+   * BouncyCastle.org provider.
+   *
+   * @author Vladimir Dzhuvinov
+   * @version $version$ (2013-05-06)
+   */
 class AES
 {
 

@@ -5,12 +5,12 @@ import org.jboss.resteasy.jose.i18n.Messages;
 import org.jboss.resteasy.jose.jwe.CompressionAlgorithm;
 
 /**
- * Deflate (RFC 1951) helper methods, intended for use by JWE encrypters and
- * decrypters.
- *
- * @author Vladimir Dzhuvinov
- * @version $version$ (2013-04-16)
- */
+   * Deflate (RFC 1951) helper methods, intended for use by JWE encrypters and
+   * decrypters.
+   *
+   * @author Vladimir Dzhuvinov
+   * @version $version$ (2013-04-16)
+   */
 class DeflateHelper
 {
 

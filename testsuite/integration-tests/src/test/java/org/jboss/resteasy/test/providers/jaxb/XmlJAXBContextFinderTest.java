@@ -33,10 +33,10 @@ import java.io.FilePermission;
 import java.lang.reflect.ReflectPermission;
 
 /**
- * @tpSubChapter Jaxb provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jaxb provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class XmlJAXBContextFinderTest {

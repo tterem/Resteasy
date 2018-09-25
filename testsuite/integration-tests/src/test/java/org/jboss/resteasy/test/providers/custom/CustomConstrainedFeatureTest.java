@@ -25,11 +25,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Core
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.6.1
- * @tpTestCaseDetails Regression test for RESTEASY-1861
- */
+   * @tpSubChapter Core
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.6.1
+   * @tpTestCaseDetails Regression test for RESTEASY-1861
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CustomConstrainedFeatureTest {
@@ -46,7 +46,7 @@ public class CustomConstrainedFeatureTest {
    }
 
    private static String generateURL(String path) {
-           return PortProviderUtil.generateURL(path, CustomConstrainedFeatureTest.class.getSimpleName());
+         return PortProviderUtil.generateURL(path, CustomConstrainedFeatureTest.class.getSimpleName());
    }
 
    /**
@@ -55,21 +55,21 @@ public class CustomConstrainedFeatureTest {
      */
    @Test
    public void testClientCall() {
-       CustomServerConstrainedFeature.reset();
-       CustomClientConstrainedFeature.reset();
-       // This will register always in SERVER runtime
-       // ResteasyProviderFactory providerFactory = ResteasyProviderFactory.newInstance();
-       // providerFactory.register(CustomClientConstrainedFeature.class);
-       // providerFactory.register(CustomServerConstrainedFeature.class);
-       // ResteasyClientImpl client = new ResteasyClientBuilderImpl().build();
-       // the line below does the same as if there is providers file in META-INF/services/javax.ws.rs.ext.Providers
-       ResteasyClient client = (ResteasyClient)ClientBuilder.newBuilder().register(CustomClientConstrainedFeature.class).register(CustomServerConstrainedFeature.class).build();
-       assertTrue(CustomConstrainedFeatureResource.ERROR_CLIENT_FEATURE, CustomClientConstrainedFeature.wasInvoked());
-       assertFalse(CustomConstrainedFeatureResource.ERROR_SERVER_FEATURE, CustomServerConstrainedFeature.wasInvoked());
-       Response response = client.target(TEST_URI).request().get();
-       LOGGER.info("Response from server: {}", response.readEntity(String.class));
-       // server must return 200 if only registered feature was for server runtime
-       assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-       client.close();
+      CustomServerConstrainedFeature.reset();
+      CustomClientConstrainedFeature.reset();
+      // This will register always in SERVER runtime
+      // ResteasyProviderFactory providerFactory = ResteasyProviderFactory.newInstance();
+      // providerFactory.register(CustomClientConstrainedFeature.class);
+      // providerFactory.register(CustomServerConstrainedFeature.class);
+      // ResteasyClientImpl client = new ResteasyClientBuilderImpl().build();
+      // the line below does the same as if there is providers file in META-INF/services/javax.ws.rs.ext.Providers
+      ResteasyClient client = (ResteasyClient)ClientBuilder.newBuilder().register(CustomClientConstrainedFeature.class).register(CustomServerConstrainedFeature.class).build();
+      assertTrue(CustomConstrainedFeatureResource.ERROR_CLIENT_FEATURE, CustomClientConstrainedFeature.wasInvoked());
+      assertFalse(CustomConstrainedFeatureResource.ERROR_SERVER_FEATURE, CustomServerConstrainedFeature.wasInvoked());
+      Response response = client.target(TEST_URI).request().get();
+      LOGGER.info("Response from server: {}", response.readEntity(String.class));
+      // server must return 200 if only registered feature was for server runtime
+      assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      client.close();
    }
 }

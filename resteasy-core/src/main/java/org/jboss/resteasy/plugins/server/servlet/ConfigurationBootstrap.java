@@ -12,11 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Create a deployment from String-based configuration data
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Create a deployment from String-based configuration data
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 abstract public class ConfigurationBootstrap implements ResteasyConfiguration
 {
    private ResteasyDeployment deployment = new ResteasyDeploymentImpl();
@@ -80,14 +80,14 @@ abstract public class ConfigurationBootstrap implements ResteasyConfiguration
 
       String resteasySecurity = getParameter(ResteasyContextParameters.RESTEASY_ROLE_BASED_SECURITY);
       if (resteasySecurity != null) {
-          boolean useResteasySecurity = parseBooleanParam(ResteasyContextParameters.RESTEASY_ROLE_BASED_SECURITY, resteasySecurity);
-          deployment.setSecurityEnabled(Boolean.valueOf(useResteasySecurity));
+         boolean useResteasySecurity = parseBooleanParam(ResteasyContextParameters.RESTEASY_ROLE_BASED_SECURITY, resteasySecurity);
+         deployment.setSecurityEnabled(Boolean.valueOf(useResteasySecurity));
       }
 
       String builtin = getParameter(ResteasyContextParameters.RESTEASY_USE_BUILTIN_PROVIDERS);
       if (builtin != null) {
-          boolean useBuiltin = parseBooleanParam(ResteasyContextParameters.RESTEASY_USE_BUILTIN_PROVIDERS, builtin);
-          deployment.setRegisterBuiltin(useBuiltin);
+         boolean useBuiltin = parseBooleanParam(ResteasyContextParameters.RESTEASY_USE_BUILTIN_PROVIDERS, builtin);
+         deployment.setRegisterBuiltin(useBuiltin);
       }
 
       String sProviders = getParameter(ResteasyContextParameters.RESTEASY_SCAN_PROVIDERS);
@@ -236,7 +236,7 @@ abstract public class ConfigurationBootstrap implements ResteasyConfiguration
       } else if (value.equals("false") || value.equals("0")) {
             return false;
       } else {
-           throw new RuntimeException(Messages.MESSAGES.keyCouldNotBeParsed(key));
+         throw new RuntimeException(Messages.MESSAGES.keyCouldNotBeParsed(key));
 
       }
    }

@@ -24,10 +24,10 @@ import javax.ws.rs.core.MediaType;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class DefaultMediaTypesTest {

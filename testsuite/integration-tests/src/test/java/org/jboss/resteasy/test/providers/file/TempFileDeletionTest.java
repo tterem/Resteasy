@@ -24,10 +24,10 @@ import org.junit.runner.RunWith;
 import org.junit.experimental.categories.Category;
 
 /**
- * @tpSubChapter File provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.1.3.Final
- */
+   * @tpSubChapter File provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.1.3.Final
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class TempFileDeletionTest {

@@ -60,19 +60,19 @@ public class LinkHeaderService {
     
    private static String toString(LinkHeader value)
    {
-       if (value == null) throw new IllegalArgumentException(Messages.MESSAGES.paramNull());
-       return getString(value);
+      if (value == null) throw new IllegalArgumentException(Messages.MESSAGES.paramNull());
+      return getString(value);
    }
 
    private static String getString(LinkHeader value)
    {
-       StringBuffer buf = new StringBuffer();
-       for (Link link : value.getLinks())
-       {
-          if (buf.length() > 0) buf.append(", ");
-          buf.append(link.toString());
-       }
-       return buf.toString();
+      StringBuffer buf = new StringBuffer();
+      for (Link link : value.getLinks())
+      {
+         if (buf.length() > 0) buf.append(", ");
+         buf.append(link.toString());
+      }
+      return buf.toString();
    }
 
 }

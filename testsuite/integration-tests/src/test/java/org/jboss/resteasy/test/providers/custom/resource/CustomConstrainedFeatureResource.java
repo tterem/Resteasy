@@ -21,14 +21,14 @@ public class CustomConstrainedFeatureResource {
    @Path("test-custom-feature")
    @Produces("text/plain")
    public Response test() {
-       try {
-          // only server runtime feature must be invoked
-          assertTrue(ERROR_SERVER_FEATURE, CustomServerConstrainedFeature.wasInvoked());
-          assertFalse(ERROR_CLIENT_FEATURE, CustomClientConstrainedFeature.wasInvoked());
-       } catch (AssertionError e) {
-          logger.error(e);
-          return Response.status(500).entity(e.getLocalizedMessage()).build();
-       }
-       return Response.status(200).build();
+      try {
+         // only server runtime feature must be invoked
+         assertTrue(ERROR_SERVER_FEATURE, CustomServerConstrainedFeature.wasInvoked());
+         assertFalse(ERROR_CLIENT_FEATURE, CustomClientConstrainedFeature.wasInvoked());
+      } catch (AssertionError e) {
+         logger.error(e);
+         return Response.status(500).entity(e.getLocalizedMessage()).build();
+      }
+      return Response.status(200).build();
    }
 }

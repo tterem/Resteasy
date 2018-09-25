@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:alexey.ogarkov@gmail.com">Alexey Ogarkov</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:alexey.ogarkov@gmail.com">Alexey Ogarkov</a>
+   * @version $Revision: 1 $
+   */
 public class URLConnectionEngine implements ClientHttpEngine
 {
 
@@ -51,7 +51,7 @@ public class URLConnectionEngine implements ClientHttpEngine
          status = connection.getResponseCode();
       } catch (IOException e)
       {
-           throw new ProcessingException(Messages.MESSAGES.unableToInvokeRequest(), e);
+         throw new ProcessingException(Messages.MESSAGES.unableToInvokeRequest(), e);
       }
 
       //Creating response with stream content
@@ -174,7 +174,7 @@ public class URLConnectionEngine implements ClientHttpEngine
 
       if (request.getEntity() != null)
       {
-           if (request.getMethod().equals("GET")) throw new ProcessingException(Messages.MESSAGES.getRequestCannotHaveBody());
+         if (request.getMethod().equals("GET")) throw new ProcessingException(Messages.MESSAGES.getRequestCannotHaveBody());
 
          ByteArrayOutputStream baos = new ByteArrayOutputStream();
          request.getDelegatingOutputStream().setDelegate(baos);

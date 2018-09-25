@@ -10,11 +10,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @tpSubChapter Resteasy-client proxy
- * @tpChapter Unit tests
- * @tpSince RESTEasy 3.0.20
- *
- */
+   * @tpSubChapter Resteasy-client proxy
+   * @tpChapter Unit tests
+   * @tpSince RESTEasy 3.0.20
+   *
+   */
 public class ProxyEqualsTest {
 
    public interface I {

@@ -23,11 +23,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *          <p>
- *          Copyright Aug 3, 2012
- */
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *          <p>
+   *          Copyright Aug 3, 2012
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AsyncTimeoutTest {

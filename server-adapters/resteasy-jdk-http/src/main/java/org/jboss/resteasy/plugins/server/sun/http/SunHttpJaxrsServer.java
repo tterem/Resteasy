@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 /**
- * com.sun.net.httpserver.HttpServer adapter for Resteasy.  You may instead want to create and manage your own HttpServer.
- * Use the HttpContextBuilder class in this case to build and register a specific HttpContext.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * com.sun.net.httpserver.HttpServer adapter for Resteasy.  You may instead want to create and manage your own HttpServer.
+   * Use the HttpContextBuilder class in this case to build and register a specific HttpContext.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class SunHttpJaxrsServer implements EmbeddedJaxrsServer
 {
    protected HttpContextBuilder context = new HttpContextBuilder();

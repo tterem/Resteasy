@@ -21,11 +21,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 /**
- * Tests SNI capabilities for Netty based JaxRS server.
- *
- * @author Sebastian Łaskawiec
- * @see https://issues.jboss.org/browse/RESTEASY-1431
- */
+   * Tests SNI capabilities for Netty based JaxRS server.
+   *
+   * @author Sebastian Łaskawiec
+   * @see https://issues.jboss.org/browse/RESTEASY-1431
+   */
 public class SniTest
 {
 

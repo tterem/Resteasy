@@ -20,11 +20,11 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 
 /**
- * @tpSubChapter Providers
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for atom app service
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Providers
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for atom app service
+   * @tpSince RESTEasy 3.0.16
+   */
 public class AtomProviderAppServiceTest {
    /**
      * Taken from the RFC 5023 section-8.2.

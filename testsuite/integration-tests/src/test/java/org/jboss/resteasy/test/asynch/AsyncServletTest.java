@@ -21,11 +21,11 @@ import javax.ws.rs.core.Response;
 
 
 /**
- * @tpSubChapter Asynchronous RESTEasy
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for asyncHttpServlet module
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Asynchronous RESTEasy
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for asyncHttpServlet module
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AsyncServletTest {

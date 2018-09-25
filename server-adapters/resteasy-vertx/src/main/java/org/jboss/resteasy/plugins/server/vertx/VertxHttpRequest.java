@@ -28,15 +28,15 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Abstraction for an inbound http request on the server, or a response from a server to a client
- * <p>
- * We have this abstraction so that we can reuse marshalling objects in a client framework and serverside framework
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @author Norman Maurer
- * @author Kristoffer Sjogren
- * @version $Revision: 1 $
- */
+   * Abstraction for an inbound http request on the server, or a response from a server to a client
+   * <p>
+   * We have this abstraction so that we can reuse marshalling objects in a client framework and serverside framework
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @author Norman Maurer
+   * @author Kristoffer Sjogren
+   * @version $Revision: 1 $
+   */
 public class VertxHttpRequest extends BaseHttpRequest
 {
    protected ResteasyHttpHeaders httpHeaders;
@@ -225,10 +225,10 @@ public class VertxHttpRequest extends BaseHttpRequest
 
 
       /**
-       * Vertx implementation of {@link AsyncResponse}.
-       *
-       * @author Kristoffer Sjogren
-       */
+      * Vertx implementation of {@link AsyncResponse}.
+      *
+      * @author Kristoffer Sjogren
+      */
       class VertxHttpAsyncResponse extends AbstractAsynchronousResponse
       {
          private final Object responseLock = new Object();

@@ -42,10 +42,10 @@ import org.junit.runner.RunWith;
 import io.reactivex.Flowable;
 
 /**
- * @tpSubChapter Publisher response type
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- */
+   * @tpSubChapter Publisher response type
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PublisherResponseTest {
@@ -142,7 +142,7 @@ public class PublisherResponseTest {
    */
    @Test
    @Ignore// Doesn't currently work. The original version, now in PublisherResponseNoStreamTest, still works.
-          // See RESTEASY-1906 "Allow representation of Exception in SSE stream"
+         // See RESTEASY-1906 "Allow representation of Exception in SSE stream"
    public void testTextErrorDeferred() throws Exception
    {
       Invocation.Builder request = client.target(generateURL("/text-error-deferred")).request();
@@ -229,17 +229,17 @@ public class PublisherResponseTest {
       String data = evt.readData(String.class);
       collector.add(data);
       if(collector.size() >= 2) {
-           future.complete(null);
+         future.complete(null);
       }
       }, 
-           t -> {
+         t -> {
               logger.error("Error:", t);
               errors.add(t);  
-           }, 
-           () -> {
+         }, 
+         () -> {
               // bah, never called
               future.complete(null);
-           });
+         });
       source.open();
       future.get();
       source.close();

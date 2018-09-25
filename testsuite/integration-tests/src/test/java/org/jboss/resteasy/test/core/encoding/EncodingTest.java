@@ -32,11 +32,11 @@ import java.nio.charset.StandardCharsets;
 
 
 /**
- * @tpSubChapter Encoding
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for HTML encoding and decoding.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Encoding
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for HTML encoding and decoding.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EncodingTest {

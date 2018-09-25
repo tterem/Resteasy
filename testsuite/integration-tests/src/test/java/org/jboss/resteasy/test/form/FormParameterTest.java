@@ -25,11 +25,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Form tests
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-760
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Form tests
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-760
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FormParameterTest {

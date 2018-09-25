@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ReadFromStream
 {
    /**
@@ -19,7 +19,7 @@ public class ReadFromStream
    * @throws IOException if I/O error occurred
    */
    public static byte[] readFromStream(int bufferSize, InputStream entityStream)
-           throws IOException
+         throws IOException
    {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
 

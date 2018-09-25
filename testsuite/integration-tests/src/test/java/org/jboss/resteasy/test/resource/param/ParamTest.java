@@ -17,11 +17,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Parameters
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-423 and RESTEASY-522
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Parameters
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-423 and RESTEASY-522
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ParamTest {

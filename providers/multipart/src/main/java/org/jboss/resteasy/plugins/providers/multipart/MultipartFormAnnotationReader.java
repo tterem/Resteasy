@@ -26,9 +26,9 @@ import org.jboss.resteasy.spi.ReaderException;
 import org.jboss.resteasy.spi.util.FindAnnotation;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @Provider
 @Consumes("multipart/form-data")
 public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
@@ -49,7 +49,7 @@ public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
    public Object readFrom(Class<Object> type, Type genericType,
                           Annotation[] annotations, MediaType mediaType,
                           MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
-           throws IOException, WebApplicationException
+         throws IOException, WebApplicationException
    {
       String boundary = mediaType.getParameters().get("boundary");
       if (boundary == null)

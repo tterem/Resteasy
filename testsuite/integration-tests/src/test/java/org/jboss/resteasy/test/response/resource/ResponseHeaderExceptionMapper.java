@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Replace the HEADER "Server" with replacement text.
- */
+   * Replace the HEADER "Server" with replacement text.
+   */
 public class ResponseHeaderExceptionMapper implements ExceptionMapper<ResponseHeaderExceptionMapperRuntimeException> {
    public Response toResponse(ResponseHeaderExceptionMapperRuntimeException exception) {
 

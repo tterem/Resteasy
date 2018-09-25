@@ -23,11 +23,11 @@ import java.net.URL;
 import java.util.PropertyPermission;
 
 /**
- * @tpSubChapter Configuration
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-903
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Configuration
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-903
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class UndertowTest {
    @Deployment

@@ -30,11 +30,11 @@ import java.util.PropertyPermission;
 import java.util.logging.LoggingPermission;
 
 /**
- * @tpSubChapter Core
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Test for InternalDispatcher
- */
+   * @tpSubChapter Core
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Test for InternalDispatcher
+   */
 @RunWith(Arquillian.class)
 public class InternalDispatcherTest {
    private static Logger logger = Logger.getLogger(InternalDispatcherTest.class);

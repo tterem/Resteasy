@@ -8,18 +8,18 @@ import java.net.URI;
 import java.util.ArrayList;
 
 /**
- * <p>
- * This holds a list of atom links describing the REST service discovered. This will
- * be injected by RESTEasy on any entity in the response if the JAX-RS method was
- * annotated with {@link AddLinks @AddLinks} if your entity declares a field of this
- * type.
- * </p>
- * <p>
- * For this to work you need to add {@link LinkResource @LinkResource} annotations on
- * all the JAX-RS methods you want to be discovered.
- * </p>
- * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
- */
+   * <p>
+   * This holds a list of atom links describing the REST service discovered. This will
+   * be injected by RESTEasy on any entity in the response if the JAX-RS method was
+   * annotated with {@link AddLinks @AddLinks} if your entity declares a field of this
+   * type.
+   * </p>
+   * <p>
+   * For this to work you need to add {@link LinkResource @LinkResource} annotations on
+   * all the JAX-RS methods you want to be discovered.
+   * </p>
+   * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
+   */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class RESTServiceDiscovery extends ArrayList<RESTServiceDiscovery.AtomLink>{

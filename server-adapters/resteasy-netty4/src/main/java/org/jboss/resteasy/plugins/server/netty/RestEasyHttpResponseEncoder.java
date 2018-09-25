@@ -17,14 +17,14 @@ import io.netty.handler.codec.http.LastHttpContent;
 
 
 /**
- * {@link MessageToMessageEncoder} implementation which encodes {@link org.jboss.resteasy.spi.HttpResponse}'s to
- * {@link HttpResponse}'s
- *
- * This implementation is {@link Sharable}
- *
- * @author Norman Maurer
- *
- */
+   * {@link MessageToMessageEncoder} implementation which encodes {@link org.jboss.resteasy.spi.HttpResponse}'s to
+   * {@link HttpResponse}'s
+   *
+   * This implementation is {@link Sharable}
+   *
+   * @author Norman Maurer
+   *
+   */
 @Sharable
 public class RestEasyHttpResponseEncoder extends MessageToMessageEncoder<NettyHttpResponse>
 {
@@ -32,13 +32,13 @@ public class RestEasyHttpResponseEncoder extends MessageToMessageEncoder<NettyHt
    @Override
    protected void encode(ChannelHandlerContext ctx, NettyHttpResponse nettyResponse, List<Object> out) throws Exception
    {
-       nettyResponse.getOutputStream().flush();
-       if (nettyResponse.isCommitted()) {
-          out.add(LastHttpContent.EMPTY_LAST_CONTENT);
-       } else {
-          HttpResponse response = nettyResponse.getDefaultHttpResponse();
-          out.add(response);
-       }
+      nettyResponse.getOutputStream().flush();
+      if (nettyResponse.isCommitted()) {
+         out.add(LastHttpContent.EMPTY_LAST_CONTENT);
+      } else {
+         HttpResponse response = nettyResponse.getDefaultHttpResponse();
+         out.add(response);
+      }
    }
 
    @SuppressWarnings({ "rawtypes", "unchecked" }) 

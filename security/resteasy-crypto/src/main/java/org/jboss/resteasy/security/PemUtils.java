@@ -12,11 +12,11 @@ import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 
 /**
- * Utility classes to extract PublicKey, PrivateKey, and X509Certificate from openssl generated PEM files.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Utility classes to extract PublicKey, PrivateKey, and X509Certificate from openssl generated PEM files.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class PemUtils
 {
    static

@@ -24,14 +24,14 @@ import java.util.Map.Entry;
 
 
 /**
- * Wrapper around Undertow to make resteasy deployments easier
- * Each ResteasyDeployment or jaxrs Application is deployed under its own web deployment (WAR)
- *
- * You may also deploy after the server has started.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Wrapper around Undertow to make resteasy deployments easier
+   * Each ResteasyDeployment or jaxrs Application is deployed under its own web deployment (WAR)
+   *
+   * You may also deploy after the server has started.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class UndertowJaxrsServer
 {
    final PathHandler root = new PathHandler();

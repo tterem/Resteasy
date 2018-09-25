@@ -5,10 +5,10 @@ import org.jboss.resteasy.annotations.Form;
 import java.util.List;
 
 /**
- * 12 04 2012
- *
- * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
- */
+   * 12 04 2012
+   *
+   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+   */
 public class MyForm3 {
    @Form(prefix="foos")
    List<Foo> foos;

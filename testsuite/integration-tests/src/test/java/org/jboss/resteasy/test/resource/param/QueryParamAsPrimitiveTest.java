@@ -47,11 +47,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @tpSubChapter Parameters
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test all variants of primitive query parameters (boolean, int, long, float, etc.)
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Parameters
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test all variants of primitive query parameters (boolean, int, long, float, etc.)
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class QueryParamAsPrimitiveTest {
@@ -627,13 +627,13 @@ public class QueryParamAsPrimitiveTest {
 
    static public String updateQuery(String uriString, String query)
    {
-       try
-       {
-          URI uri = new URI(uriString);
-          return new URI(uri.getScheme(), uri.getAuthority(), uri.getPath(), query, uri.getFragment()).toString();
-       } catch (URISyntaxException e)
-       {
-          throw new RuntimeException(e);
-       }
+      try
+      {
+         URI uri = new URI(uriString);
+         return new URI(uri.getScheme(), uri.getAuthority(), uri.getPath(), query, uri.getFragment()).toString();
+      } catch (URISyntaxException e)
+      {
+         throw new RuntimeException(e);
+      }
    }
 }

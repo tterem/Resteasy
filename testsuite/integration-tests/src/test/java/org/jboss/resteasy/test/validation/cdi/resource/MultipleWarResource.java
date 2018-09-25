@@ -9,13 +9,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
- * RESTEASY-1058
- *
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *          <p>
- *          Copyright May 13, 2014
- */
+   * RESTEASY-1058
+   *
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *          <p>
+   *          Copyright May 13, 2014
+   */
 @Path("/")
 @MultipleWarSumConstraint(min = 9)
 public class MultipleWarResource {

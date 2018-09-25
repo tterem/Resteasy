@@ -11,33 +11,33 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for JaxbNameSpacePrefixItem complex type.
- * <p>
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;complexType name="JaxbNameSpacePrefixItem">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="productName" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="quantity">
- *           &lt;simpleType>
- *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}positiveInteger">
- *               &lt;maxExclusive value="100"/>
- *             &lt;/restriction>
- *           &lt;/simpleType>
- *         &lt;/element>
- *         &lt;element name="USPrice" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
- *         &lt;element ref="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}comment" minOccurs="0"/>
- *         &lt;element name="shipDate" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
- *       &lt;/sequence>
- *       &lt;attribute name="partNum" use="required" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}SKU" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- */
+   * <p>Java class for JaxbNameSpacePrefixItem complex type.
+   * <p>
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * <p>
+   * <pre>
+   * &lt;complexType name="JaxbNameSpacePrefixItem">
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;sequence>
+   *         &lt;element name="productName" type="{http://www.w3.org/2001/XMLSchema}string"/>
+   *         &lt;element name="quantity">
+   *           &lt;simpleType>
+   *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}positiveInteger">
+   *               &lt;maxExclusive value="100"/>
+   *             &lt;/restriction>
+   *           &lt;/simpleType>
+   *         &lt;/element>
+   *         &lt;element name="USPrice" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
+   *         &lt;element ref="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}comment" minOccurs="0"/>
+   *         &lt;element name="shipDate" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
+   *       &lt;/sequence>
+   *       &lt;attribute name="partNum" use="required" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}SKU" />
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "JaxbNameSpacePrefixItem", propOrder = {
       "productName",

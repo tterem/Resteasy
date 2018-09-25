@@ -33,15 +33,15 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 
 /**
- * @tpSubChapter Json-binding provider.JAX-RS 2.1 spec (JSR-370), section 11.2.7 states,
- * "Note that if JSON-B and JSON-P are both supported in the same environment, entity providers for
- * JSON-B take precedence over those for JSON-P for all types except JsonValue and its sub-types."
- * The sub-types of JsonValue are JsonArray, JsonNumber, JsonObject, JsonString, JsonStructure.
- * Resteasy's JSON-P providers currently supports this.  A general object such as Cat will be processed by
- * the JSON-B provider.
- * @tpChapter Integration test
- * @tpSince RESTEasy 4.0.0
- */
+   * @tpSubChapter Json-binding provider.JAX-RS 2.1 spec (JSR-370), section 11.2.7 states,
+   * "Note that if JSON-B and JSON-P are both supported in the same environment, entity providers for
+   * JSON-B take precedence over those for JSON-P for all types except JsonValue and its sub-types."
+   * The sub-types of JsonValue are JsonArray, JsonNumber, JsonObject, JsonString, JsonStructure.
+   * Resteasy's JSON-P providers currently supports this.  A general object such as Cat will be processed by
+   * the JSON-B provider.
+   * @tpChapter Integration test
+   * @tpSince RESTEasy 4.0.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JsonBindingTest {
@@ -134,7 +134,7 @@ public class JsonBindingTest {
       Cat response = target.request().post(entity, Cat.class);
       Assert.assertThat("Failed to return the correct name", response.getName(), is("Rosa"));
       Assert.assertThat("Variable with JsonbTransient annotation should be transient, if JSON-B is used",
-             response.getTransientVar(), is(Cat.DEFAULT_TRANSIENT_VAR_VALUE));
+            response.getTransientVar(), is(Cat.DEFAULT_TRANSIENT_VAR_VALUE));
    }
 
 

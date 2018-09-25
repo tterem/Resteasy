@@ -4,8 +4,8 @@ import org.jboss.resteasy.core.ResteasyDeploymentImpl;
 import org.jboss.resteasy.spi.Registry;
 
 /**
- * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
- */
+   * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+   */
 public class VertxResteasyDeployment extends ResteasyDeploymentImpl
 {
 

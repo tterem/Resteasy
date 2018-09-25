@@ -57,31 +57,31 @@ import org.jboss.resteasy.client.jaxrs.internal.ClientResponse;
 import org.jboss.resteasy.util.CaseInsensitiveMap;
 
 /**
- * AsyncClientHttpEngine using apache http components HttpAsyncClient 4.<p>
- *
- * Some words of caution: <ul>
- * <li>Asynchronous IO means non-blocking IO utilizing few threads, typically at most as much threads as number of cores.
- * As such, performance may profit from fewer thread switches and less memory usage due to fewer thread-stacks. But doing
- * synchronous, blocking IO (the invoke-methods not returning a future) may suffer, because the data has to be transferred
- * piecewiese to/from the io-threads.</li>
- * <li>Request-Entities are fully buffered in memory, thus this engine is unsuitable for very large uploads.</li>
- * <li>Response-Entities are buffered in memory, except if requesting a Response, InputStream or Reader as Result. Thus
- * for large downloads or COMET one of these three return types must be requested, but there may be a performance penalty
- * because the response-body is transferred piecewise from the io-threads. When using InvocationCallbacks, the response is
- * always fully buffered in memory.</li>
- * <li>InvocationCallbacks are called from within the io-threads and thus must not block or else the application may
- * slow down to a halt. Reading the response is safe (because the response is buffered in memory), as are other async
- * (and in-memory) Client-invocations (the submit-calls returning a future not containing Response, InputStream or Reader).
- * Again, there must be no blocking IO inside InvocationCallback! (If you are wondering why not to allow blocking calls by
- * wrapping InvocationCallbacks in extra threads: Because then the main advantage of async IO, less threading, is lost.)
- * <li>InvocationCallbacks may be called seemingly "after" the future-object returns. Thus, responses should be handled
- * solely in the InvocationCallback.</li>
- * <li>InvocationCallbacks will see the same result as the future-object and vice versa. Thus, if the invocationcallback
- * throws an exception, the future-object will not see it. Another reason to handle responses only in the InvocationCallback.
- * </li>
- * </ul>
- * @author Markus Kull
- */
+   * AsyncClientHttpEngine using apache http components HttpAsyncClient 4.<p>
+   *
+   * Some words of caution: <ul>
+   * <li>Asynchronous IO means non-blocking IO utilizing few threads, typically at most as much threads as number of cores.
+   * As such, performance may profit from fewer thread switches and less memory usage due to fewer thread-stacks. But doing
+   * synchronous, blocking IO (the invoke-methods not returning a future) may suffer, because the data has to be transferred
+   * piecewiese to/from the io-threads.</li>
+   * <li>Request-Entities are fully buffered in memory, thus this engine is unsuitable for very large uploads.</li>
+   * <li>Response-Entities are buffered in memory, except if requesting a Response, InputStream or Reader as Result. Thus
+   * for large downloads or COMET one of these three return types must be requested, but there may be a performance penalty
+   * because the response-body is transferred piecewise from the io-threads. When using InvocationCallbacks, the response is
+   * always fully buffered in memory.</li>
+   * <li>InvocationCallbacks are called from within the io-threads and thus must not block or else the application may
+   * slow down to a halt. Reading the response is safe (because the response is buffered in memory), as are other async
+   * (and in-memory) Client-invocations (the submit-calls returning a future not containing Response, InputStream or Reader).
+   * Again, there must be no blocking IO inside InvocationCallback! (If you are wondering why not to allow blocking calls by
+   * wrapping InvocationCallbacks in extra threads: Because then the main advantage of async IO, less threading, is lost.)
+   * <li>InvocationCallbacks may be called seemingly "after" the future-object returns. Thus, responses should be handled
+   * solely in the InvocationCallback.</li>
+   * <li>InvocationCallbacks will see the same result as the future-object and vice versa. Thus, if the invocationcallback
+   * throws an exception, the future-object will not see it. Another reason to handle responses only in the InvocationCallback.
+   * </li>
+   * </ul>
+   * @author Markus Kull
+   */
 public class ApacheHttpAsyncClient4Engine implements AsyncClientHttpEngine, Closeable
 {
    protected final CloseableHttpAsyncClient client;

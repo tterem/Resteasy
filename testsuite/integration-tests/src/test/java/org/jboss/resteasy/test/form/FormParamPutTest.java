@@ -21,11 +21,11 @@ import javax.ws.rs.core.Response;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @tpSubChapter Form tests
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for JBEAP-982
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Form tests
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for JBEAP-982
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FormParamPutTest {

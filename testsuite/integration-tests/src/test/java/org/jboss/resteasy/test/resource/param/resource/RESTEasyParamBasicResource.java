@@ -136,12 +136,12 @@ public class RESTEasyParamBasicResource
    @POST
    @Path("a/{pathParam0}/{pathParam1}/{pathParam2}/{pathParam3}")
    public Response post(
-           @CookieParam String cookieParam3,
-           @FormParam String formParam3,
-           @HeaderParam String headerParam3,
-           @MatrixParam String matrixParam3,
-           @PathParam String pathParam3,
-           @QueryParam String queryParam3)
+         @CookieParam String cookieParam3,
+         @FormParam String formParam3,
+         @HeaderParam String headerParam3,
+         @MatrixParam String matrixParam3,
+         @PathParam String pathParam3,
+         @QueryParam String queryParam3)
    {
 
       StringBuilder details = new StringBuilder();

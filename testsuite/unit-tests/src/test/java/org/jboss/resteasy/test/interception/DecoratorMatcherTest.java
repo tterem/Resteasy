@@ -19,11 +19,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * @tpSubChapter Interception tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for org.jboss.resteasy.annotations.Decorator class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Interception tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for org.jboss.resteasy.annotations.Decorator class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class DecoratorMatcherTest {
    private static final AtomicBoolean called = new AtomicBoolean(false);
    private JAXBContext jaxbContext;

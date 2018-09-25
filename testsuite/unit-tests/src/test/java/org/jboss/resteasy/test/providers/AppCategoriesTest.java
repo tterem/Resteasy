@@ -15,11 +15,11 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 
 /**
- * @tpSubChapter Providers
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for atom categories
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Providers
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for atom categories
+   * @tpSince RESTEasy 3.0.16
+   */
 public class AppCategoriesTest {
    /**
      * Taken from the RFC 5023 section-8.2.

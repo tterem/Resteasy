@@ -17,11 +17,11 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Test query params with multiple equals
- */
+   * @tpSubChapter Resource
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Test query params with multiple equals
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class QueryParamWithMultipleEqualsTest {

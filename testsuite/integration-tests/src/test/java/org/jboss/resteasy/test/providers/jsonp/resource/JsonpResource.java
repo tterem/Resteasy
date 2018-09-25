@@ -44,7 +44,7 @@ public class JsonpResource {
       Assert.assertEquals("The value of field 'name' didn't propagated correctly from the request"
             , obj.getJsonString("name").getString(), "Bill");
       if (obj.containsKey("id")) {
-           Assert.assertEquals("The value of field 'id' didn't propagated correctly from the request"
+         Assert.assertEquals("The value of field 'id' didn't propagated correctly from the request"
                  , obj.getJsonNumber("id").longValue(), 10001);
       }
       return obj;

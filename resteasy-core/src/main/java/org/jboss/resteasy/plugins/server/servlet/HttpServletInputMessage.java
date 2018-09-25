@@ -28,13 +28,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Abstraction for an inbound http request on the server, or a response from a server to a client
- * <p>
- * We have this abstraction so that we can reuse marshalling objects in a client framework and serverside framework
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Abstraction for an inbound http request on the server, or a response from a server to a client
+   * <p>
+   * We have this abstraction so that we can reuse marshalling objects in a client framework and serverside framework
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class HttpServletInputMessage extends BaseHttpRequest
 {
    protected ResteasyHttpHeaders httpHeaders;

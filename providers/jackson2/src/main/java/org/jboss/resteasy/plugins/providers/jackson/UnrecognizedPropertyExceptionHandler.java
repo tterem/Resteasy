@@ -10,12 +10,12 @@ import org.jboss.resteasy.spi.HttpResponseCodes;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 
 /**
- * (RESTEASY-1485) Address concerns of a possible XSS attack by removing some
- * details of the exception.
- *
- * User: rsearls
- * Date: 9/22/16
- */
+   * (RESTEASY-1485) Address concerns of a possible XSS attack by removing some
+   * details of the exception.
+   *
+   * User: rsearls
+   * Date: 9/22/16
+   */
 @Provider
 public class UnrecognizedPropertyExceptionHandler implements ExceptionMapper<UnrecognizedPropertyException> {
    @Override

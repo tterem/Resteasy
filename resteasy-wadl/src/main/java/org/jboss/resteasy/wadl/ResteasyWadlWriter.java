@@ -27,8 +27,8 @@ import java.util.Map;
 import static org.jboss.resteasy.wadl.ResteasyWadlMethodParamMetaData.MethodParamType.*;
 
 /**
- * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
- */
+   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+   */
 public class ResteasyWadlWriter {
 
    public byte[] getBytes(String base, Map<String, ResteasyWadlServiceRegistry> serviceRegistries) throws JAXBException {

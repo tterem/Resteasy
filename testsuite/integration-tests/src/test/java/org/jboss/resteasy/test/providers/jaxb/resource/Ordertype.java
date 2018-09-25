@@ -10,25 +10,25 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ordertype complex type.
- * <p>
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;complexType name="ordertype">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="person" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}stringtype"/>
- *         &lt;element name="shipto" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}shiptotype"/>
- *         &lt;element name="item" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}itemtype" maxOccurs="unbounded"/>
- *       &lt;/sequence>
- *       &lt;attribute name="orderid" use="required" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}orderidtype" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- */
+   * <p>Java class for ordertype complex type.
+   * <p>
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * <p>
+   * <pre>
+   * &lt;complexType name="ordertype">
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;sequence>
+   *         &lt;element name="person" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}stringtype"/>
+   *         &lt;element name="shipto" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}shiptotype"/>
+   *         &lt;element name="item" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}itemtype" maxOccurs="unbounded"/>
+   *       &lt;/sequence>
+   *       &lt;attribute name="orderid" use="required" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/order}orderidtype" />
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ordertype", propOrder = {
       "person",

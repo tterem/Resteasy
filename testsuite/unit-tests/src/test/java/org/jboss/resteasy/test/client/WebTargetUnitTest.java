@@ -15,12 +15,12 @@ import java.util.Map;
 import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 
 /**
- * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
- * @version $Revision: 1 $
- * @tpSubChapter Resteasy-client
- * @tpChapter Unit tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
+   * @version $Revision: 1 $
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Unit tests
+   * @tpSince RESTEasy 3.0.16
+   */
 public class WebTargetUnitTest {
 
    static Client client;

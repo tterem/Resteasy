@@ -11,9 +11,9 @@ import javax.xml.bind.PropertyException;
 import java.lang.annotation.Annotation;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @DecorateTypes({"text/*+xml", "application/*+xml"})
 public class XmlHeaderProcessor implements DecoratorProcessor<Marshaller, XmlHeader>
 {

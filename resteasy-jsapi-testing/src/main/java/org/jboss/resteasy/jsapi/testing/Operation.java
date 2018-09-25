@@ -6,10 +6,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
- * 11 01 2012
- *
- * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
- */
+   * 11 01 2012
+   *
+   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+   */
 public interface Operation {
    @GET
    @Path("/{operand1}/{operand2}")

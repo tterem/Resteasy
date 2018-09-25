@@ -15,11 +15,11 @@ import java.util.Objects;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 
 /**
- * Type conversions and generic type manipulations
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Type conversions and generic type manipulations
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public final class Types
 {
    /**

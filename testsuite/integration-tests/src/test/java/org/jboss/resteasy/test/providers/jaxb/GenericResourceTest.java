@@ -27,12 +27,12 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Jaxb provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1125. Jaxb message body reader not recognized when using generics in
- * complex inheritance structure
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jaxb provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1125. Jaxb message body reader not recognized when using generics in
+   * complex inheritance structure
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GenericResourceTest {

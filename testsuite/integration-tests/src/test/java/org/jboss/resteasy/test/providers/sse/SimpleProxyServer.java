@@ -11,14 +11,14 @@ import java.net.SocketTimeoutException;
 import org.jboss.logging.Logger;
 
 /**
- * A SimpleProxyServer.
- * <p>
- * Implementation of the simple one threaded proxy which allows
- * to debug and block communication on the demand.
- *
- * @author <a href="pslavice@jboss.com">Pavel Slavicek</a>
- * @version $Revision: 1.1 $
- */
+   * A SimpleProxyServer.
+   * <p>
+   * Implementation of the simple one threaded proxy which allows
+   * to debug and block communication on the demand.
+   *
+   * @author <a href="pslavice@jboss.com">Pavel Slavicek</a>
+   * @version $Revision: 1.1 $
+   */
 public class SimpleProxyServer
 {
    // Logger
@@ -185,12 +185,12 @@ public class SimpleProxyServer
       private SimpleProxyServer controllableProxy;
 
       /**
-       * Create a new ProxyThread.
-       *
-       * @param socket
-       * @param host
-       * @param remotePort
-       */
+      * Create a new ProxyThread.
+      *
+      * @param socket
+      * @param host
+      * @param remotePort
+      */
       ProxyThread(Socket socket, String host, int remotePort, SimpleProxyServer controllableProxy)
       {
          super("ProxyThread");
@@ -201,8 +201,8 @@ public class SimpleProxyServer
       }
 
       /**
-       * @see {@link Thread#run()}
-       */
+      * @see {@link Thread#run()}
+      */
       @Override
       public void run()
       {

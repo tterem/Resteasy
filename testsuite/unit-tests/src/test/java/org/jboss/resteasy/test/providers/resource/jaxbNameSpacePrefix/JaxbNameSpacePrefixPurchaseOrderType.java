@@ -10,26 +10,26 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for JaxbNameSpacePrefixPurchaseOrderType complex type.
- * <p>
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;complexType name="JaxbNameSpacePrefixPurchaseOrderType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="shipTo" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}JaxbNameSpacePrefixUSAddress"/>
- *         &lt;element name="billTo" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}JaxbNameSpacePrefixUSAddress"/>
- *         &lt;element ref="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}comment" minOccurs="0"/>
- *         &lt;element name="jaxbNameSpacePrefixItems" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}JaxbNameSpacePrefixItems"/>
- *       &lt;/sequence>
- *       &lt;attribute name="orderDate" type="{http://www.w3.org/2001/XMLSchema}date" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- */
+   * <p>Java class for JaxbNameSpacePrefixPurchaseOrderType complex type.
+   * <p>
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * <p>
+   * <pre>
+   * &lt;complexType name="JaxbNameSpacePrefixPurchaseOrderType">
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;sequence>
+   *         &lt;element name="shipTo" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}JaxbNameSpacePrefixUSAddress"/>
+   *         &lt;element name="billTo" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}JaxbNameSpacePrefixUSAddress"/>
+   *         &lt;element ref="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}comment" minOccurs="0"/>
+   *         &lt;element name="jaxbNameSpacePrefixItems" type="{http://jboss.org/resteasy/test/providers/jaxb/generated/po}JaxbNameSpacePrefixItems"/>
+   *       &lt;/sequence>
+   *       &lt;attribute name="orderDate" type="{http://www.w3.org/2001/XMLSchema}date" />
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "JaxbNameSpacePrefixPurchaseOrderType", propOrder = {
       "shipTo",

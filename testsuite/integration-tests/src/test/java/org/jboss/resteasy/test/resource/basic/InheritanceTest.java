@@ -22,11 +22,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Integration tests
- * @tpTestCaseDetails Tests annotation inheritence from interface.
- * @tpSince RESTEasy 3.0.20
- */
+   * @tpSubChapter Resource
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Tests annotation inheritence from interface.
+   * @tpSince RESTEasy 3.0.20
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InheritanceTest
@@ -35,13 +35,13 @@ public class InheritanceTest
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(InheritanceTest.class.getSimpleName());
-       war.addClass(InheritenceParentResource.class);
-       return TestUtil.finishContainerPrepare(war, null, InheritenceParentResourceImpl.class);
+      WebArchive war = TestUtil.prepareArchive(InheritanceTest.class.getSimpleName());
+      war.addClass(InheritenceParentResource.class);
+      return TestUtil.finishContainerPrepare(war, null, InheritenceParentResourceImpl.class);
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, InheritanceTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, InheritanceTest.class.getSimpleName());
    }
    
    @BeforeClass

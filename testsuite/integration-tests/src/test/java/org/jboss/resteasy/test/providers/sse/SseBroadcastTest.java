@@ -68,8 +68,8 @@ public class SseBroadcastTest {
       SseEventSource msgEventSource3 = SseEventSource.target(target3).build();
 
       try (SseEventSource eventSource = msgEventSource;
-             SseEventSource eventSource2 = msgEventSource2;
-             SseEventSource eventSource3 = msgEventSource3) {
+            SseEventSource eventSource2 = msgEventSource2;
+            SseEventSource eventSource3 = msgEventSource3) {
          eventSource.register(event -> {
             Assert.assertTrue("Unexpected sever sent event data", textMessage.equals(event.readData()));
             latch.countDown();

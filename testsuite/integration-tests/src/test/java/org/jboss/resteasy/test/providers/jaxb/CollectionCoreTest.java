@@ -29,10 +29,10 @@ import javax.ws.rs.core.Response;
 import static org.hamcrest.CoreMatchers.containsString;
 
 /**
- * @tpSubChapter Jaxb provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Check jaxb requests with collection
- * @tpSince RESTEasy 3.0.16
+   * @tpSubChapter Jaxb provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Check jaxb requests with collection
+   * @tpSince RESTEasy 3.0.16
 */
 @RunWith(Arquillian.class)
 @RunAsClient

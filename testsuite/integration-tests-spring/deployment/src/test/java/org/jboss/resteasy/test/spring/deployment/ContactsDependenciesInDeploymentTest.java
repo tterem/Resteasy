@@ -39,10 +39,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Spring
- * @tpChapter Integration tests - dependencies included in deployment
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Spring
+   * @tpChapter Integration tests - dependencies included in deployment
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ContactsDependenciesInDeploymentTest {

@@ -29,11 +29,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Jaxb provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1066. If the content-type of the response is not specified in the request,
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jaxb provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1066. If the content-type of the response is not specified in the request,
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class KeepCharsetTest {

@@ -16,8 +16,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Created by weinanli on 16/06/2017.
- */
+   * Created by weinanli on 16/06/2017.
+   */
 public class SubresourceClassInjectionTest {
    public static class SubResource {
 

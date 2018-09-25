@@ -38,11 +38,11 @@ import java.lang.reflect.ReflectPermission;
 import java.util.PropertyPermission;
 
 /**
- * @tpSubChapter Jaxb provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-636
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jaxb provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-636
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class GenericSuperInterfaceTest {
 

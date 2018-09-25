@@ -21,11 +21,11 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Regression for RESTEASY-699
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Regression for RESTEASY-699
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InvalidMediaTypeTest {

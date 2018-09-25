@@ -16,11 +16,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * @tpSubChapter Requests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for ServerDrivenNegotiation class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Requests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for ServerDrivenNegotiation class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class VariantSelectionTest {
 
    final String ERROR_MSG = "Wrong media type";

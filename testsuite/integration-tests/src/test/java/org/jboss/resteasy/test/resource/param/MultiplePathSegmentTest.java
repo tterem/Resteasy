@@ -20,11 +20,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Parameters
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for @PathParam capturing multiple PathSegments (RESTEASY-1653)
- * @tpSince RESTEasy 3.1.3.Final
- */
+   * @tpSubChapter Parameters
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for @PathParam capturing multiple PathSegments (RESTEASY-1653)
+   * @tpSince RESTEasy 3.1.3.Final
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MultiplePathSegmentTest {
@@ -43,12 +43,12 @@ public class MultiplePathSegmentTest {
 
    @BeforeClass
    public static void setup() {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void cleanup() {
-       client.close();
+      client.close();
    }
    
    /**

@@ -38,10 +38,10 @@ import org.junit.Assert;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Jaxb provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jaxb provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class XmlJavaTypeAdapterTest {
 

@@ -17,11 +17,11 @@ import org.jboss.resteasy.test.injection.resource.StringParameterInjectorType;
 import org.junit.Test;
 
 /**
- * @tpSubChapter Injection tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for org.jboss.resteasy.annotations.Decorator class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Injection tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for org.jboss.resteasy.annotations.Decorator class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class StringParameterInjectorTest {
 
    private static final String MY_SPECIAL_STRING = "MySpecialString";
@@ -32,7 +32,7 @@ public class StringParameterInjectorTest {
      */
    @Test
    public void shouldInjectForAnnotationConfiguredUnmarshaller() throws Exception {
-       ResteasyContext.pushContext(StringParameterInjectorInjected.class, new StringParameterInjectorInjected(MY_SPECIAL_STRING));
+      ResteasyContext.pushContext(StringParameterInjectorInjected.class, new StringParameterInjectorInjected(MY_SPECIAL_STRING));
 
       Field declaredField = StringParameterInjectorType.class.getDeclaredField("name");
       StringParameterInjector injector = new StringParameterInjector(String.class, String.class, "name",

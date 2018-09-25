@@ -11,14 +11,14 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Finds DecoratorProcessors and calls decorates on them by introspecting annotations.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- * @see org.jboss.resteasy.spi.DecoratorProcessor
- * @see org.jboss.resteasy.annotations.DecorateTypes
- * @see org.jboss.resteasy.annotations.Decorator
- */
+   * Finds DecoratorProcessors and calls decorates on them by introspecting annotations.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   * @see org.jboss.resteasy.spi.DecoratorProcessor
+   * @see org.jboss.resteasy.annotations.DecorateTypes
+   * @see org.jboss.resteasy.annotations.Decorator
+   */
 public class DecoratorMatcher
 {
    /**

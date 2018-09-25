@@ -44,11 +44,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Interceptors
- * @tpChapter Integration tests
- * @tpTestCaseDetails Gzip compression tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Interceptors
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Gzip compression tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GzipTest {

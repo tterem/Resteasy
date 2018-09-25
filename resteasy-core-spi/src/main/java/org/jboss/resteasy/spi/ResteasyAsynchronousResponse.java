@@ -6,9 +6,9 @@ import javax.ws.rs.ext.WriterInterceptor;
 import java.lang.annotation.Annotation;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public interface ResteasyAsynchronousResponse extends AsyncResponse
 {
    /**

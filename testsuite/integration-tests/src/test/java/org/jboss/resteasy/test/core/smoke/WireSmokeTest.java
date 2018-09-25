@@ -24,11 +24,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Smoke tests for jaxrs
- * @tpChapter Integration tests
- * @tpTestCaseDetails Check basic resource function.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Smoke tests for jaxrs
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Check basic resource function.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class WireSmokeTest {
@@ -121,19 +121,19 @@ public class WireSmokeTest {
             Assert.assertEquals(WRONG_RESPONSE, "1234", response.readEntity(String.class));
       }
       {
-           Response response = client.target(generateURLLocating("/locating/uriParam/x1234")).queryParam("param", "hello world").request().get();
-           Assert.assertEquals(HttpServletResponse.SC_NOT_FOUND, response.getStatus());
-           response.close();
+         Response response = client.target(generateURLLocating("/locating/uriParam/x1234")).queryParam("param", "hello world").request().get();
+         Assert.assertEquals(HttpServletResponse.SC_NOT_FOUND, response.getStatus());
+         response.close();
       }
       {
-           Response response = client.target(generateURLLocating("/locating/notmatching")).request().get();
-           Assert.assertEquals(HttpServletResponse.SC_NOT_FOUND, response.getStatus());
-           response.close();
+         Response response = client.target(generateURLLocating("/locating/notmatching")).request().get();
+         Assert.assertEquals(HttpServletResponse.SC_NOT_FOUND, response.getStatus());
+         response.close();
       }
       {
-           Response response = client.target(generateURLLocating("/subresource/subresource/subresource/basic")).request().get();
-           Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
-           Assert.assertEquals("basic", response.readEntity(String.class));
+         Response response = client.target(generateURLLocating("/subresource/subresource/subresource/basic")).request().get();
+         Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
+         Assert.assertEquals("basic", response.readEntity(String.class));
       }
    }
 }

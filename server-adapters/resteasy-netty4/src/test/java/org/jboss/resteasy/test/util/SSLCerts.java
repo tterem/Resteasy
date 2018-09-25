@@ -13,10 +13,10 @@ import java.security.GeneralSecurityException;
 import java.security.KeyStore;
 
 /**
- * Utility class for handling SSL certificates.
- *
- * @author Sebastian Łaskawiec
- */
+   * Utility class for handling SSL certificates.
+   *
+   * @author Sebastian Łaskawiec
+   */
 public enum SSLCerts
 {
    DEFAULT_SERVER_KEYSTORE("sni/default_server_keystore.jks", "secret".toCharArray(), null, null),
@@ -46,7 +46,7 @@ public enum SSLCerts
    }
 
    public static SSLContext getContext(String keyStoreFileName, char[] keyStorePassword, String trustStoreFileName,
-          char[] trustStorePassword)
+         char[] trustStorePassword)
    {
       try
       {
@@ -81,7 +81,7 @@ public enum SSLCerts
    }
 
    private static void loadKeyStore(KeyStore ks, String keyStoreFileName, char[] keyStorePassword) throws IOException,
-          GeneralSecurityException
+         GeneralSecurityException
    {
 
       try (InputStream is = new BufferedInputStream(new FileInputStream(keyStoreFileName)))

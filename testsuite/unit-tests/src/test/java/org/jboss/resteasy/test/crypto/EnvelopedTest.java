@@ -44,11 +44,11 @@ import java.security.Security;
 import java.security.cert.X509Certificate;
 
 /**
- * @tpSubChapter Crypto
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for sign by content of message signed by X509Certificate.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Crypto
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for sign by content of message signed by X509Certificate.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class EnvelopedTest {
 
    protected static final Logger logger = LogManager.getLogger(EnvelopedTest.class.getName());

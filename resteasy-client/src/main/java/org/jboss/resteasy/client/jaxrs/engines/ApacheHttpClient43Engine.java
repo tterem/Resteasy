@@ -43,8 +43,8 @@ import org.jboss.resteasy.client.jaxrs.internal.ClientResponse;
 import org.jboss.resteasy.util.CaseInsensitiveMap;
 
 /**
- * An Apache HTTP engine for use with the new Builder Config style.
- */
+   * An Apache HTTP engine for use with the new Builder Config style.
+   */
 public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
 {
 
@@ -636,9 +636,9 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
    private static class FileExposingFileEntity extends FileEntity
    {
       /**
-       * @param pFile -
-       * @param pContentType -
-       */
+      * @param pFile -
+      * @param pContentType -
+      */
       @SuppressWarnings("deprecation")
       FileExposingFileEntity(File pFile, String pContentType)
       {
@@ -646,8 +646,8 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
       }
 
       /**
-       * @return - the content File enclosed by this FileEntity.
-       */
+      * @return - the content File enclosed by this FileEntity.
+      */
       File getFile()
       {
          return this.file;

@@ -4,15 +4,15 @@ import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.InjectorFactory;
 
 /**
- *
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * If CDI is enabled, validation will be invoked from an interceptor,
- * rather than from ResourceMethodInvoker and MethodInjectorImpl.
- *
- * Copyright Feb 12, 2014
- */
+   *
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * If CDI is enabled, validation will be invoked from an interceptor,
+   * rather than from ResourceMethodInvoker and MethodInjectorImpl.
+   *
+   * Copyright Feb 12, 2014
+   */
 public interface GeneralValidatorCDI extends GeneralValidator
 {
    /**

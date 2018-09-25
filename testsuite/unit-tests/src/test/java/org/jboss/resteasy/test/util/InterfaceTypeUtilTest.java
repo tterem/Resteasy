@@ -10,11 +10,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @tpSubChapter Util tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for org.jboss.resteasy.spi.util.Types class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Util tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for org.jboss.resteasy.spi.util.Types class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class InterfaceTypeUtilTest {
 
    /**

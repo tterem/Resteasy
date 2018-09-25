@@ -35,13 +35,13 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 /**
- * @author <a href="mailto:rsigal@redhat.com">Ron Sigal</a>
- * @version $Revision: 1 $
- * 
- * The basic idea implemented by AsyncResponseConsumer is that a resource method returns a CompletionStage,
- * an Observable, etc., and some version of AsyncResponseConsumer subscribes to it. Each subclass of
- * AsyncResponseConsumer knows how to handle new data items as they are provided.
- */
+   * @author <a href="mailto:rsigal@redhat.com">Ron Sigal</a>
+   * @version $Revision: 1 $
+   * 
+   * The basic idea implemented by AsyncResponseConsumer is that a resource method returns a CompletionStage,
+   * an Observable, etc., and some version of AsyncResponseConsumer subscribes to it. Each subclass of
+   * AsyncResponseConsumer knows how to handle new data items as they are provided.
+   */
 public abstract class AsyncResponseConsumer 
 {
    protected Map<Class<?>, Object> contextDataMap;
@@ -76,11 +76,11 @@ public abstract class AsyncResponseConsumer
      {
       if (Stream.MODE.RAW.equals(stream.value()))
       {
-           return new AsyncRawStreamingResponseConsumer(method, asyncStreamProvider);
+         return new AsyncRawStreamingResponseConsumer(method, asyncStreamProvider);
       }
       else
       {
-           return new AsyncGeneralStreamingSseResponseConsumer(method, asyncStreamProvider);
+         return new AsyncGeneralStreamingSseResponseConsumer(method, asyncStreamProvider);
       }
      }
       return new AsyncStreamCollectorResponseConsumer(method, asyncStreamProvider);
@@ -281,10 +281,10 @@ public abstract class AsyncResponseConsumer
       }
 
       /**
-       * Subclass to collect the next element and inform if you want more.
-       * @param element the next element to collect
-       * @return true if you want more elements, false if not
-       */
+      * Subclass to collect the next element and inform if you want more.
+      * @param element the next element to collect
+      * @return true if you want more elements, false if not
+      */
       protected void addNextElement(Object element) 
       {
          internalResume(element, t -> {
@@ -472,8 +472,8 @@ public abstract class AsyncResponseConsumer
       {
          // don't call super.doComplete which completes the asyncContext because Sse does that
          // we can be done by exception before we've even subscribed
-          if(subscription != null)
-             subscription.cancel();
+         if(subscription != null)
+            subscription.cancel();
          sseEventSink.close();
       }
 

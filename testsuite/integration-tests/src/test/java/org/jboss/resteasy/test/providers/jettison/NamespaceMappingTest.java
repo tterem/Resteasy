@@ -25,11 +25,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Jettison provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Namespace mapping test for jettison provider
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jettison provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Namespace mapping test for jettison provider
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class NamespaceMappingTest {

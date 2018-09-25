@@ -15,9 +15,9 @@ import java.util.LinkedList;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings("unchecked")
 public final class FindAnnotation
 {
@@ -26,7 +26,7 @@ public final class FindAnnotation
    *
    */
    private static final Class<? extends Annotation>[] JAXRS_ANNOTATIONS =
-           (Class<? extends Annotation>[]) new Class[]{
+         (Class<? extends Annotation>[]) new Class[]{
                    QueryParam.class,
                    HeaderParam.class,
                    CookieParam.class,
@@ -40,7 +40,7 @@ public final class FindAnnotation
                    org.jboss.resteasy.annotations.jaxrs.PathParam.class,
                    org.jboss.resteasy.annotations.jaxrs.MatrixParam.class,
                    org.jboss.resteasy.annotations.jaxrs.FormParam.class,
-           };
+         };
 
    @SuppressWarnings("rawtypes")
    private static final Class[] findJaxRSAnnotations_TYPE = new Class[]{};

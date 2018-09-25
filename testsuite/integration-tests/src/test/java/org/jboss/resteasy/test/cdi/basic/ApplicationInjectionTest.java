@@ -15,11 +15,11 @@ import java.lang.reflect.ReflectPermission;
 import java.util.PropertyPermission;
 
 /**
- * @tpSubChapter CDI
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for injecting of Application
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter CDI
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for injecting of Application
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class ApplicationInjectionTest {
 

@@ -36,8 +36,8 @@ public class FormUrlEncodedResource {
    @Consumes("application/x-www-form-urlencoded")
    public MultivaluedMap<String, String> post(MultivaluedMap<String, String> form)
    {
-       Assert.assertEquals("world", form.getFirst("hello"));
-       return form;
+      Assert.assertEquals("world", form.getFirst("hello"));
+      return form;
    }
 
    @Path("/form/twoparams")
@@ -46,20 +46,20 @@ public class FormUrlEncodedResource {
    @Consumes("application/x-www-form-urlencoded")
    public MultivaluedMap<String, String> post2Parameters(MultivaluedMap<String, String> form)
    {
-       Assert.assertEquals(2, form.size());
-       Assert.assertEquals("world", form.getFirst("hello"));
-       Assert.assertEquals("mama", form.getFirst("yo"));
-       return form;
+      Assert.assertEquals(2, form.size());
+      Assert.assertEquals("world", form.getFirst("hello"));
+      Assert.assertEquals("mama", form.getFirst("yo"));
+      return form;
    }
 
    @Path("/RESTEASY-109")
    @POST
    public void post109(MultivaluedMap<String, String> form)
    {
-       Assert.assertEquals(form.getFirst("name"), "jon");
-       Assert.assertEquals(form.getFirst("address1"), "123 Main St");
-       Assert.assertEquals(form.getFirst("address2"), "");
-       Assert.assertEquals(form.getFirst("zip"), "12345");
+      Assert.assertEquals(form.getFirst("name"), "jon");
+      Assert.assertEquals(form.getFirst("address1"), "123 Main St");
+      Assert.assertEquals(form.getFirst("address2"), "");
+      Assert.assertEquals(form.getFirst("zip"), "12345");
    }
 
 }

@@ -37,10 +37,10 @@ import java.net.URI;
 
 
 /**
- * @tpSubChapter Atom provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Atom provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AtomProviderTest {

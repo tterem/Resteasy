@@ -24,10 +24,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Multipart provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.6.0
- */
+   * @tpSubChapter Multipart provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.6.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EncodingMimeMultipartFormProviderTest {

@@ -143,20 +143,20 @@ public interface RESTEasyTracingLogger
      */
    static void initTracingSupport(Configuration configuration,
                                          HttpRequest request) {
-       if (!TRACING.AVAILABLE || request.getAttribute(RESTEasyTracing.PROPERTY_NAME) != null)
-           return;
+      if (!TRACING.AVAILABLE || request.getAttribute(RESTEasyTracing.PROPERTY_NAME) != null)
+         return;
 
-       final RESTEasyTracingLogger tracingLogger;
-       if (RESTEasyTracingUtils.isTracingSupportEnabled(RESTEasyTracingUtils.getRESTEasyTracingConfig(configuration), request)) {
-           tracingLogger = RESTEasyTracingLogger.create(
+      final RESTEasyTracingLogger tracingLogger;
+      if (RESTEasyTracingUtils.isTracingSupportEnabled(RESTEasyTracingUtils.getRESTEasyTracingConfig(configuration), request)) {
+         tracingLogger = RESTEasyTracingLogger.create(
                  RESTEasyTracingUtils.getTracingThreshold(RESTEasyTracingUtils.getRESTEasyTracingThreshold(configuration), request),
                  RESTEasyTracingUtils.getTracingLoggerNameSuffix(request),
                    RESTEasyTracingUtils.getTracingInfoFormat(request));
-       } else {
-           tracingLogger = RESTEasyTracingLogger.empty();
-       }
+      } else {
+         tracingLogger = RESTEasyTracingLogger.empty();
+      }
 
-       request.setAttribute(RESTEasyTracing.PROPERTY_NAME, tracingLogger);
+      request.setAttribute(RESTEasyTracing.PROPERTY_NAME, tracingLogger);
 
    }
 
@@ -167,26 +167,26 @@ public interface RESTEasyTracingLogger
    *                to check if tracing support is enabled for the request.
    */
    static void logStart(HttpRequest request) {
-       if (!TRACING.AVAILABLE || request == null) {
-           return;
-       }
+      if (!TRACING.AVAILABLE || request == null) {
+         return;
+      }
 
-       RESTEasyTracingLogger tracingLogger = RESTEasyTracingLogger.getInstance(request);
-       if (tracingLogger.isLogEnabled("START")) {
-           StringBuilder text = new StringBuilder();
-           SecurityContext securityContext = ResteasyContext.getContextData(SecurityContext.class);
-           text.append(String.format("baseUri=[%s] requestUri=[%s] method=[%s] authScheme=[%s]",
+      RESTEasyTracingLogger tracingLogger = RESTEasyTracingLogger.getInstance(request);
+      if (tracingLogger.isLogEnabled("START")) {
+         StringBuilder text = new StringBuilder();
+         SecurityContext securityContext = ResteasyContext.getContextData(SecurityContext.class);
+         text.append(String.format("baseUri=[%s] requestUri=[%s] method=[%s] authScheme=[%s]",
                    request.getUri().getBaseUri(), request.getUri().getRequestUri(), request.getHttpMethod(),
                    RESTEasyTracingUtils.toStringOrNA(securityContext == null ? null : securityContext.getAuthenticationScheme())));
-           for (String header : RESTEasyTracingUtils.SUMMARY_HEADERS) {
+         for (String header : RESTEasyTracingUtils.SUMMARY_HEADERS) {
                text.append(String.format(" %s=%s", header, RESTEasyTracingUtils.toStringOrNA(RESTEasyTracingUtils.getHeaderString(request, header))));
-           }
-           tracingLogger.log("START", text.toString());
-       }
-       if (tracingLogger.isLogEnabled("START_HEADERS")) {
-           StringBuilder text = new StringBuilder();
-           HttpHeaders headers = request.getHttpHeaders();
-           if (headers != null) {
+         }
+         tracingLogger.log("START", text.toString());
+      }
+      if (tracingLogger.isLogEnabled("START_HEADERS")) {
+         StringBuilder text = new StringBuilder();
+         HttpHeaders headers = request.getHttpHeaders();
+         if (headers != null) {
                for (String header : headers.getRequestHeaders().keySet()) {
                    if (!RESTEasyTracingUtils.SUMMARY_HEADERS.contains(header)) {
                        text.append(String.format(" %s=%s", header, RESTEasyTracingUtils.toStringOrNA(headers.getRequestHeaders().get(header))));
@@ -196,8 +196,8 @@ public interface RESTEasyTracingLogger
                    text.insert(0, "Other request headers:");
                }
                tracingLogger.log("START_HEADERS", text.toString());
-           }
-       }
+         }
+      }
    }
 
 

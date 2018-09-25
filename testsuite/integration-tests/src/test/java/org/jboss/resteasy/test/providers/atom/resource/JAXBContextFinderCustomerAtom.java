@@ -6,9 +6,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @XmlRootElement(name = "customer", namespace = "http://jboss.org/Customer")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class JAXBContextFinderCustomerAtom {

@@ -25,15 +25,15 @@ import java.util.Map;
 import java.util.concurrent.Executors;
 
 /**
- * An HTTP server that sends back the content of the received HTTP request
- * in a pretty plaintext form.
- *
- * @author <a href="http://www.jboss.org/netty/">The Netty Project</a>
- * @author Andy Taylor (andy.taylor@jboss.org)
- * @author <a href="http://gleamynode.net/">Trustin Lee</a>
- * @author Norman Maurer
- * @version $Rev: 2080 $, $Date: 2010-01-26 18:04:19 +0900 (Tue, 26 Jan 2010) $
- */
+   * An HTTP server that sends back the content of the received HTTP request
+   * in a pretty plaintext form.
+   *
+   * @author <a href="http://www.jboss.org/netty/">The Netty Project</a>
+   * @author Andy Taylor (andy.taylor@jboss.org)
+   * @author <a href="http://gleamynode.net/">Trustin Lee</a>
+   * @author Norman Maurer
+   * @version $Rev: 2080 $, $Date: 2010-01-26 18:04:19 +0900 (Tue, 26 Jan 2010) $
+   */
 public class NettyJaxrsServer implements EmbeddedJaxrsServer
 {
    protected ServerBootstrap bootstrap;
@@ -66,7 +66,7 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
    */
    public void setIoWorkerCount(int ioWorkerCount) 
    {
-       this.ioWorkerCount = ioWorkerCount;
+      this.ioWorkerCount = ioWorkerCount;
    }
    
    /**
@@ -79,7 +79,7 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
    */
    public void setExecutorThreadCount(int executorThreadCount)
    {
-       this.executorThreadCount = executorThreadCount;
+      this.executorThreadCount = executorThreadCount;
    }
 
    /**
@@ -89,20 +89,20 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
    */
    public void setMaxRequestSize(int maxRequestSize) 
    {
-       this.maxRequestSize  = maxRequestSize;
+      this.maxRequestSize  = maxRequestSize;
    }
    
    public void setKeepAlive(boolean isKeepAlive) 
    {
-       this.isKeepAlive = isKeepAlive;
+      this.isKeepAlive = isKeepAlive;
    }
 
    public String getHostname() {
-       return hostname;
+      return hostname;
    }
 
    public void setHostname(String hostname) {
-       this.hostname = hostname;
+      this.hostname = hostname;
    }
 
    public int getPort()
@@ -184,9 +184,9 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
 
       ChannelPipelineFactory factory;
       if (sslContext == null) {
-          factory = new HttpServerPipelineFactory(dispatcher, root, executorThreadCount, maxRequestSize, isKeepAlive, channelHandlers);
+         factory = new HttpServerPipelineFactory(dispatcher, root, executorThreadCount, maxRequestSize, isKeepAlive, channelHandlers);
       } else {
-          factory = new HttpsServerPipelineFactory(dispatcher, root, executorThreadCount, maxRequestSize, isKeepAlive, channelHandlers, sslContext);
+         factory = new HttpsServerPipelineFactory(dispatcher, root, executorThreadCount, maxRequestSize, isKeepAlive, channelHandlers, sslContext);
       }
       // Set up the event pipeline factory.
       bootstrap.setPipelineFactory(factory);
@@ -197,9 +197,9 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
       // Bind and start to accept incoming connections.
       final InetSocketAddress socketAddress;
       if(null == hostname || hostname.isEmpty()) {
-          socketAddress = new InetSocketAddress(configuredPort);
+         socketAddress = new InetSocketAddress(configuredPort);
       } else {
-          socketAddress = new InetSocketAddress(hostname, configuredPort);
+         socketAddress = new InetSocketAddress(hostname, configuredPort);
       }
 
       channel = bootstrap.bind(socketAddress);
@@ -213,7 +213,7 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
       runtimePort = -1;
       allChannels.close().awaitUninterruptibly();
       if (bootstrap != null) {
-          bootstrap.releaseExternalResources();
+         bootstrap.releaseExternalResources();
       }
       deployment.stop();
    }

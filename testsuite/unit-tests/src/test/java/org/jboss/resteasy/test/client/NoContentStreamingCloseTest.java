@@ -17,11 +17,11 @@ import java.io.InputStream;
 import java.io.Reader;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Unit tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Test for close calling, if no content in stream is used.
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Unit tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Test for close calling, if no content in stream is used.
+   */
 public class NoContentStreamingCloseTest {
    private static final String NULL_STREAM_ERROR_MSG = "Stream should not be null";
    private static final String RESPONSE_ERROR_MSG = "Response has wrong content";

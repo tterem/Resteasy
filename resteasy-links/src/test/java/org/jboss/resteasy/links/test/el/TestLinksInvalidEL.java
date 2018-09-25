@@ -101,9 +101,9 @@ public class TestLinksInvalidEL
       }catch(InternalServerErrorException x){
          LOG.error("Failure is "+x.getResponse().readEntity(String.class));
          Assert.assertEquals(500, x.getResponse().getStatus());
-       }catch(Exception x){
+      }catch(Exception x){
             Assert.fail("Expected InternalServerErrorException");
-       }
+      }
    }
    @Test
    public void testELWorksWithoutPackageJSON() throws Exception

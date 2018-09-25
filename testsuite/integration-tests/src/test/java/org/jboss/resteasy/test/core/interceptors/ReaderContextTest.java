@@ -31,11 +31,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @tpSubChapter Interceptors
- * @tpChapter Integration tests
- * @tpTestCaseDetails Basic test for reated context
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Interceptors
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Basic test for reated context
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ReaderContextTest {

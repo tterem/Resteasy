@@ -21,11 +21,11 @@ import javax.ws.rs.core.Form;
 
 
 /**
- * @tpSubChapter Localization
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for InjectorFactoryImpl. It is used for new type of parameters in resource.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Localization
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for InjectorFactoryImpl. It is used for new type of parameters in resource.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class HttpRequestParameterInjectorTest {

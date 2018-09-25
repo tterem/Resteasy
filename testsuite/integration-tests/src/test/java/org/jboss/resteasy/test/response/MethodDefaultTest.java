@@ -21,11 +21,11 @@ import javax.ws.rs.core.Response;
 import java.util.HashSet;
 
 /**
- * @tpSubChapter Response
- * @tpChapter Integration tests
- * @tpTestCaseDetails Spec requires that HEAD and OPTIONS are handled in a default manner
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Response
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Spec requires that HEAD and OPTIONS are handled in a default manner
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MethodDefaultTest {

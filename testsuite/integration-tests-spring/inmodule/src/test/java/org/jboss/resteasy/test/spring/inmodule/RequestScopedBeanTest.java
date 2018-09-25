@@ -33,11 +33,11 @@ import java.util.logging.LoggingPermission;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @tpSubChapter Spring
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test Spring request bean and RESTEasy integration
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Spring
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test Spring request bean and RESTEasy integration
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RequestScopedBeanTest {

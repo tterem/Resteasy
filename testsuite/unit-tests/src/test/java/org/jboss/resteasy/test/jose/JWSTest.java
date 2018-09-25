@@ -29,11 +29,11 @@ import java.security.KeyPairGenerator;
 import static org.hamcrest.CoreMatchers.containsString;
 
 /**
- * @tpSubChapter Jose tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for JWS
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jose tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for JWS
+   * @tpSince RESTEasy 3.0.16
+   */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JWSTest {
    protected static final Logger logger = LogManager.getLogger(JWSTest.class.getName());

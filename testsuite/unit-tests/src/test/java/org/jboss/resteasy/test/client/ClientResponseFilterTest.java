@@ -25,10 +25,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.RuntimeDelegate;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   */
 public class ClientResponseFilterTest {
 
    static Client client;
@@ -56,8 +56,8 @@ public class ClientResponseFilterTest {
    @Test
    public void emptyHeaderStringTest() {
 
-       RuntimeDelegate original = RuntimeDelegate.getInstance();
-       RuntimeDelegate.setInstance(new NullStringBeanRuntimeDelegate(original));
+      RuntimeDelegate original = RuntimeDelegate.getInstance();
+      RuntimeDelegate.setInstance(new NullStringBeanRuntimeDelegate(original));
       try {
          Response abortWith = Response.ok().header("header1", new StringBean("aa"))
                .build();

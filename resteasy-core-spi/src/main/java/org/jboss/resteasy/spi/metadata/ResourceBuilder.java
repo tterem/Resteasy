@@ -54,9 +54,9 @@ import org.jboss.resteasy.spi.util.PickConstructor;
 import org.jboss.resteasy.spi.util.Types;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings(value = "unchecked")
 public class ResourceBuilder
 {
@@ -198,11 +198,11 @@ public class ResourceBuilder
       }
 
       /**
-       * Resteasy @Form specific injection parameter.
-       *
-       * @param prefix prefix
-       * @return parameter builder
-       */
+      * Resteasy @Form specific injection parameter.
+      *
+      * @param prefix prefix
+      * @return parameter builder
+      */
       public T form(String prefix)
       {
          parameter.paramType = Parameter.ParamType.FORM;
@@ -211,10 +211,10 @@ public class ResourceBuilder
       }
 
       /**
-       * Resteasy @Form specific injection parameter.
-       *
-       * @return parameter builder
-       */
+      * Resteasy @Form specific injection parameter.
+      *
+      * @return parameter builder
+      */
       public T form()
       {
          parameter.paramType = Parameter.ParamType.FORM;

@@ -37,11 +37,11 @@ import javax.ws.rs.core.Response;
 import java.util.logging.LoggingPermission;
 
 /**
- * @tpSubChapter Resources
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test resources with sub-resources with parameters.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resources
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test resources with sub-resources with parameters.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ParameterSubResTest {

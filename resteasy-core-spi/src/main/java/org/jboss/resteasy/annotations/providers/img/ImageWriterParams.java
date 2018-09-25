@@ -9,12 +9,12 @@ import java.lang.annotation.Target;
 
 
 /**
- * An annotation that a resource class can use to pass parameters
- * to the {@link org.jboss.resteasy.plugins.providers.IIOImageProvider}.
- *
- * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
- * @version $Revision: $
- */
+   * An annotation that a resource class can use to pass parameters
+   * to the {@link org.jboss.resteasy.plugins.providers.IIOImageProvider}.
+   *
+   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+   * @version $Revision: $
+   */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})

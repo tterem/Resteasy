@@ -39,11 +39,11 @@ import static org.hamcrest.CoreMatchers.containsString;
 import java.util.Arrays;
 
 /**
- * @tpSubChapter Validation
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for JBEAP-3280
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Validation
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for JBEAP-3280
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationJaxbTest {

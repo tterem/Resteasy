@@ -30,11 +30,11 @@ import java.util.logging.LoggingPermission;
 
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Test for client cache
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Test for client cache
+   */
 @RunWith(Arquillian.class)
 public class ClientCacheTest {
 

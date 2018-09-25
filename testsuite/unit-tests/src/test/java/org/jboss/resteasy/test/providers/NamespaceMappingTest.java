@@ -26,11 +26,11 @@ import java.util.Map;
 import static org.hamcrest.CoreMatchers.containsString;
 
 /**
- * @tpSubChapter Providers
- * @tpChapter Unit tests
- * @tpTestCaseDetails Namespace mapping test for jettison provider
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Providers
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Namespace mapping test for jettison provider
+   * @tpSince RESTEasy 3.0.16
+   */
 public class NamespaceMappingTest {
    static JAXBContext ctx = null;
    static Unmarshaller unmarshaller = null;

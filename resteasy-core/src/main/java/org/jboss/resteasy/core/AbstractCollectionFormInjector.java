@@ -13,10 +13,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Abstract implementation of {@link ValueInjector} that can inject collections.
- *
- * @param <T> The type of collection that will be created.
- */
+   * Abstract implementation of {@link ValueInjector} that can inject collections.
+   *
+   * @param <T> The type of collection that will be created.
+   */
 public abstract class AbstractCollectionFormInjector<T> extends PrefixedFormInjector
 {
 

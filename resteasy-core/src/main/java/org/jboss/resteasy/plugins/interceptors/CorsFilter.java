@@ -16,12 +16,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Handles CORS requests both preflight and simple CORS requests.
- * You must bind this as a singleton and set up allowedOrigins and other settings to use.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Handles CORS requests both preflight and simple CORS requests.
+   * You must bind this as a singleton and set up allowedOrigins and other settings to use.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @PreMatching
 public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilter
 {

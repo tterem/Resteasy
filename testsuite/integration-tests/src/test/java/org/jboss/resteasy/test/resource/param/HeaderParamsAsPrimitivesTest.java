@@ -63,11 +63,11 @@ import java.util.TreeSet;
 import static org.junit.Assert.fail;
 
 /**
- * @tpSubChapter Parameters
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test primitive header parameters
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Parameters
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test primitive header parameters
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class HeaderParamsAsPrimitivesTest {

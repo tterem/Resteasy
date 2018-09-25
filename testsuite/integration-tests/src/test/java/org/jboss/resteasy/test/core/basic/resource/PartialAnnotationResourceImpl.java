@@ -1,10 +1,10 @@
 package org.jboss.resteasy.test.core.basic.resource;
 
 /**
- * A PartialAnnotationResourceImpl.
- * 
- * @author pjurak
- */
+   * A PartialAnnotationResourceImpl.
+   * 
+   * @author pjurak
+   */
 public class PartialAnnotationResourceImpl implements PartialAnnotationResource
 {
 

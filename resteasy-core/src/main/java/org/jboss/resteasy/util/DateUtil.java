@@ -13,13 +13,13 @@ import java.util.TimeZone;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 
 /**
- * A utility class for parsing and formatting HTTP dates as used in cookies and
- * other headers.  This class handles dates as defined by RFC 2616 section
- * 3.3.1 as well as some other common non-standard formats.
- *
- * @author Christopher Brown
- * @author Michael Becke
- */
+   * A utility class for parsing and formatting HTTP dates as used in cookies and
+   * other headers.  This class handles dates as defined by RFC 2616 section
+   * 3.3.1 as well as some other common non-standard formats.
+   *
+   * @author Christopher Brown
+   * @author Michael Becke
+   */
 public class DateUtil
 {
 
@@ -62,7 +62,7 @@ public class DateUtil
    public static final String PATTERN_ASCTIME = "EEE MMM d HH:mm:ss yyyy";
 
    private static final Collection DEFAULT_PATTERNS = Arrays.asList(
-           new String[]{PATTERN_ASCTIME, PATTERN_RFC1036, PATTERN_RFC1123});
+         new String[]{PATTERN_ASCTIME, PATTERN_RFC1036, PATTERN_RFC1123});
 
    private static final Date DEFAULT_TWO_DIGIT_YEAR_START;
 
@@ -98,7 +98,7 @@ public class DateUtil
    * @throws DateParseException if none of the dataFormats could parse the dateValue
    */
    public static Date parseDate(String dateValue, Collection dateFormats)
-           throws DateParseException
+         throws DateParseException
    {
       return parseDate(dateValue, dateFormats, null);
    }
@@ -116,9 +116,9 @@ public class DateUtil
    * @throws DateParseException if none of the dataFormats could parse the dateValue
    */
    public static Date parseDate(
-           String dateValue,
-           Collection dateFormats,
-           Date startDate
+         String dateValue,
+         Collection dateFormats,
+         Date startDate
    ) throws DateParseException
    {
 

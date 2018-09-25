@@ -32,24 +32,24 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Resteasy server
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test that MessageBodyWriters can be consulted for media type
- * @tpSince RESTEasy 3.1.3.Final
- */
+   * @tpSubChapter Resteasy server
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test that MessageBodyWriters can be consulted for media type
+   * @tpSince RESTEasy 3.1.3.Final
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MediaTypeFromMessageBodyWriterTest {
     
    private static class Target {
-       String path;
-       String queryName;
-       String queryValue;
-       Target(String path, String queryName, String queryValue) {
-          this.path = path;
-          this.queryName = queryName;
-          this.queryValue = queryValue;
-       }
+      String path;
+      String queryName;
+      String queryValue;
+      Target(String path, String queryName, String queryValue) {
+         this.path = path;
+         this.queryName = queryName;
+         this.queryValue = queryValue;
+      }
    }
     
    private static String ACCEPT_CHROME="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
@@ -61,17 +61,17 @@ public class MediaTypeFromMessageBodyWriterTest {
     
    static
    {
-       tgts.add(new Target("java.util.TreeSet", null, null));
-       tgts.add(new Target("fixed", "type", "text/plain"));
-       tgts.add(new Target("fixed", "type", "application/xml"));
-       tgts.add(new Target("variants", null, null));
-       tgts.add(new Target("variantsObject", null, null));
-       accepts.add(ACCEPT_CHROME);
-       accepts.add(ACCEPT_FIREFOX);
-       accepts.add(ACCEPT_IE11);
-       accepts.add("foo/bar,text/plain");
-       accepts.add("foo/bar,*/*");
-       accepts.add("text/plain");
+      tgts.add(new Target("java.util.TreeSet", null, null));
+      tgts.add(new Target("fixed", "type", "text/plain"));
+      tgts.add(new Target("fixed", "type", "application/xml"));
+      tgts.add(new Target("variants", null, null));
+      tgts.add(new Target("variantsObject", null, null));
+      accepts.add(ACCEPT_CHROME);
+      accepts.add(ACCEPT_FIREFOX);
+      accepts.add(ACCEPT_IE11);
+      accepts.add("foo/bar,text/plain");
+      accepts.add("foo/bar,*/*");
+      accepts.add("text/plain");
    }
 
    @Deployment(name = "multiple")
@@ -117,23 +117,23 @@ public class MediaTypeFromMessageBodyWriterTest {
    @Test
    @OperateOnDeployment("multiple")
    public void test() throws Exception {
-       WebTarget base = client.target(generateURL(""));
-       Response response = null;
-       for (Target tgt : tgts) {
-          for (String accept : accepts) {
-             if (tgt.queryName != null) {
+      WebTarget base = client.target(generateURL(""));
+      Response response = null;
+      for (Target tgt : tgts) {
+         for (String accept : accepts) {
+            if (tgt.queryName != null) {
             response = base.path(tgt.path).queryParam(tgt.queryName, tgt.queryValue).request().header("Accept", accept).get();
-             }
-             else {
+            }
+            else {
             response = base.path(tgt.path).request().header("Accept", accept).get();  
-             }
-             Assert.assertEquals(200, response.getStatus());
-             String s = response.getHeaderString("X-COUNT");
-             Assert.assertNotNull(s);
-             response.close();
-          }
-       }
-       client.close();
+            }
+            Assert.assertEquals(200, response.getStatus());
+            String s = response.getHeaderString("X-COUNT");
+            Assert.assertNotNull(s);
+            response.close();
+         }
+      }
+      client.close();
    }
 
    /**

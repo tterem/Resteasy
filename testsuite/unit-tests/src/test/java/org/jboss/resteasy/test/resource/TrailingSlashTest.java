@@ -7,11 +7,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 /**
- * @tpSubChapter Resource tests
- * @tpChapter Unit tests
- * @tpSince RESTEasy 3.0.17
- * @tpTestCaseDetails Regression test for JBEAP-4698
- */
+   * @tpSubChapter Resource tests
+   * @tpChapter Unit tests
+   * @tpSince RESTEasy 3.0.17
+   * @tpTestCaseDetails Regression test for JBEAP-4698
+   */
 public class TrailingSlashTest {
    private static final String ERROR_MSG = "ResteasyUriInfo parsed slash wrongly";
    /**

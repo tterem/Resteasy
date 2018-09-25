@@ -30,12 +30,12 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @tpSubChapter Multipart provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1119.
- *                    This is abstract class, ContextProvidersOldClientTest and ContextProvidersOldClientTest use this abstract class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Multipart provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1119.
+   *                    This is abstract class, ContextProvidersOldClientTest and ContextProvidersOldClientTest use this abstract class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public abstract class ContextProvidersTestBase {
    static final String RESPONSE_ERROR_MSG = "Response has wrong content";
    static final MediaType MULTIPART_MIXED = new MediaType("multipart", "mixed");

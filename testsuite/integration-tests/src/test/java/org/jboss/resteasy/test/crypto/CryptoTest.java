@@ -50,11 +50,11 @@ import java.security.cert.X509Certificate;
 import java.util.Base64;
 
 /**
- * @tpSubChapter Crypto
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for response secured by BouncyCastleProvider
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Crypto
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for response secured by BouncyCastleProvider
+   * @tpSince RESTEasy 3.0.16
+   */
 @SuppressWarnings(value = "unchecked")
 @RunWith(Arquillian.class)
 @RunAsClient

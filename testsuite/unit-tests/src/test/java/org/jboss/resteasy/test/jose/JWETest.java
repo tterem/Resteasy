@@ -17,11 +17,11 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
 /**
- * @tpSubChapter Jose tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for JWE
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Jose tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for JWE
+   * @tpSince RESTEasy 3.0.16
+   */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JWETest {
    private static final String ERROR_MSG = "Wrong conversion";

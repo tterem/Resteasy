@@ -35,8 +35,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Base util class for RESTEasy testing.
- */
+   * Base util class for RESTEasy testing.
+   */
 public class TestUtil {
 
    protected static Logger logger;

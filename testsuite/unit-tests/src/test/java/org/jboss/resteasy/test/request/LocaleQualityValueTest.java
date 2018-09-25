@@ -15,11 +15,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
- * @tpSubChapter Requests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for AcceptHeaders and QualityValue classes, local value.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Requests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for AcceptHeaders and QualityValue classes, local value.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class LocaleQualityValueTest {
 
    private static void assertList(String header, Locale[] fields, QualityValue[] qualities) {

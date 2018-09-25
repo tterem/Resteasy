@@ -19,9 +19,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class Encode
 {
    private static final String UTF_8 = StandardCharsets.UTF_8.name();
@@ -37,14 +37,14 @@ public class Encode
    static
    {
       /*
-       * Encode via <a href="http://ietf.org/rfc/rfc3986.txt">RFC 3986</a>.  PCHAR is allowed allong with '/'
-       *
-       * unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
-       * sub-delims  = "!" / "$" / "&" / "'" / "(" / ")"
+      * Encode via <a href="http://ietf.org/rfc/rfc3986.txt">RFC 3986</a>.  PCHAR is allowed allong with '/'
+      *
+      * unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
+      * sub-delims  = "!" / "$" / "&" / "'" / "(" / ")"
                      / "*" / "+" / "," / ";" / "="
-       * pchar = unreserved / pct-encoded / sub-delims / ":" / "@"
-       *
-       */
+      * pchar = unreserved / pct-encoded / sub-delims / ":" / "@"
+      *
+      */
       for (int i = 0; i < 128; i++)
       {
          if (i >= 'a' && i <= 'z') continue;
@@ -82,12 +82,12 @@ public class Encode
       System.arraycopy(pathEncoding, 0, pathSegmentEncoding, 0, pathEncoding.length);
       pathSegmentEncoding['/'] = "%2F";
       /*
-       * Encode via <a href="http://ietf.org/rfc/rfc3986.txt">RFC 3986</a>.
-       *
-       * unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
-       * space encoded as '+'
-       *
-       */
+      * Encode via <a href="http://ietf.org/rfc/rfc3986.txt">RFC 3986</a>.
+      *
+      * unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
+      * space encoded as '+'
+      *
+      */
       for (int i = 0; i < 128; i++)
       {
          if (i >= 'a' && i <= 'z') continue;
@@ -109,9 +109,9 @@ public class Encode
       }
 
       /*
-       * query       = *( pchar / "/" / "?" )
+      * query       = *( pchar / "/" / "?" )
 
-       */
+      */
       for (int i = 0; i < 128; i++)
       {
          if (i >= 'a' && i <= 'z') continue;
@@ -474,9 +474,9 @@ public class Encode
       newSegment.append(segment, start, matcher.start());
          String replacement = params.get(i++);
          newSegment.append(replacement);
-       start = matcher.end();
+      start = matcher.end();
       }
-       newSegment.append(segment, start, segment.length());
+      newSegment.append(segment, start, segment.length());
       segment = newSegment.toString();
       return segment;
    }

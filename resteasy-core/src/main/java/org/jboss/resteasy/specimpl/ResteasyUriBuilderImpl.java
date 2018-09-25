@@ -20,9 +20,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ResteasyUriBuilderImpl extends ResteasyUriBuilder
 {
 
@@ -178,7 +178,7 @@ public class ResteasyUriBuilderImpl extends ResteasyUriBuilder
       {
          String group = match.group(5);
          if (!scheme && !"".equals(group) && !group.startsWith("/") && group.indexOf(':') > -1 &&
-           group.indexOf('/') > -1 && group.indexOf(':') < group.indexOf('/'))
+         group.indexOf('/') > -1 && group.indexOf(':') < group.indexOf('/'))
             throw new IllegalArgumentException(Messages.MESSAGES.illegalUriTemplate(uriTemplate));
          if (!"".equals(group)) replacePath(group);
       }
@@ -581,7 +581,7 @@ public class ResteasyUriBuilderImpl extends ResteasyUriBuilder
    {
      if (string.indexOf('{') == -1)
      {
-       return builder.append(string);
+      return builder.append(string);
      }
       Matcher matcher = createUriParamMatcher(string);
       int start = 0;
@@ -600,8 +600,8 @@ public class ResteasyUriBuilderImpl extends ResteasyUriBuilder
          {
             value = Encode.encodeNonCodes(value);
          }
-       builder.append(value);
-       start = matcher.end();
+      builder.append(value);
+      start = matcher.end();
       }
       builder.append(string, start, string.length());
       return builder;
@@ -625,9 +625,9 @@ public class ResteasyUriBuilderImpl extends ResteasyUriBuilder
       {
       builder.append(string, start, matcher.start());
          String param = matcher.group(1);
-       boolean containsValueForParam = paramMap.containsKey(param);
-       if (!containsValueForParam)
-       {
+      boolean containsValueForParam = paramMap.containsKey(param);
+      if (!containsValueForParam)
+      {
          if (isTemplate)
          {
             builder.append(matcher.group());
@@ -635,9 +635,9 @@ public class ResteasyUriBuilderImpl extends ResteasyUriBuilder
             continue;
          }
             throw new IllegalArgumentException(Messages.MESSAGES.pathParameterNotProvided(param));
-       }
-       Object value = paramMap.get(param);
-       String stringValue = value != null ? value.toString() : null;
+      }
+      Object value = paramMap.get(param);
+      String stringValue = value != null ? value.toString() : null;
          if (stringValue != null)
          {
             if (!fromEncodedMap)
@@ -674,9 +674,9 @@ public class ResteasyUriBuilderImpl extends ResteasyUriBuilder
       {
       builder.append(string, start, matcher.start());
          String param = matcher.group(1);
-       boolean containsValueForParam = paramMap.containsKey(param);
-       if (!containsValueForParam)
-       {
+      boolean containsValueForParam = paramMap.containsKey(param);
+      if (!containsValueForParam)
+      {
          if (isTemplate)
          {
             builder.append(matcher.group());
@@ -684,9 +684,9 @@ public class ResteasyUriBuilderImpl extends ResteasyUriBuilder
             continue;
          }
          throw new IllegalArgumentException(Messages.MESSAGES.pathParameterNotProvided(param));
-       }
-       Object value = paramMap.get(param);
-       String stringValue = value != null ? value.toString() : null;
+      }
+      Object value = paramMap.get(param);
+      String stringValue = value != null ? value.toString() : null;
          if (stringValue != null)
          {
             if (!fromEncodedMap)
@@ -810,8 +810,8 @@ public class ResteasyUriBuilderImpl extends ResteasyUriBuilder
          foundParam = true;
          String group = matcher.group();
          pathParams.add(PathHelper.recoverEnclosedCurlyBraces(group));
-       newSegment.append("_resteasy_uri_parameter");
-       from = matcher.end();
+      newSegment.append("_resteasy_uri_parameter");
+      from = matcher.end();
       }
       newSegment.append(pathWithoutEnclosedCurlyBraces, from, pathWithoutEnclosedCurlyBraces.length());
       path = newSegment.toString();

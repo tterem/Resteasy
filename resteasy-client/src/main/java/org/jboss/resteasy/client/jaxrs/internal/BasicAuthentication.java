@@ -8,11 +8,11 @@ import javax.ws.rs.core.HttpHeaders;
 import java.io.IOException;
 
 /**
- * Client filter that will do basic authentication.  You must allocate it and then register it with the Client or WebTarget
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Client filter that will do basic authentication.  You must allocate it and then register it with the Client or WebTarget
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class BasicAuthentication implements ClientRequestFilter
 {
    private final String authHeader;

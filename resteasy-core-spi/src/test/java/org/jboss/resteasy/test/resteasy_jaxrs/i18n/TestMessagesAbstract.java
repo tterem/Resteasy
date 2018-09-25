@@ -13,12 +13,12 @@ import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 import org.junit.Test;
 
 /**
- *
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * Copyright Aug 20, 2015
- */
+   *
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * Copyright Aug 20, 2015
+   */
 public abstract class TestMessagesAbstract extends TestMessagesParent
 {
    private static final Logger LOG = Logger.getLogger(TestMessagesAbstract.class);

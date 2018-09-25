@@ -15,12 +15,12 @@ import java.util.List;
 
 
 /**
- * @tpSubChapter Resource tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Tests for content negotiation through a query parameter, instead of the Accept Header.
- * This is used when context-param resteasy.media.type.param.mapping is enabled in web.xml.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resource tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Tests for content negotiation through a query parameter, instead of the Accept Header.
+   * This is used when context-param resteasy.media.type.param.mapping is enabled in web.xml.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class AcceptParameterHttpPreprocessorTest {
 
    /**

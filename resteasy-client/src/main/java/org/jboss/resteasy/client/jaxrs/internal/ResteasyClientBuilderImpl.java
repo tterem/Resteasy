@@ -30,12 +30,12 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Abstraction for creating Clients.  Allows SSL configuration.  Uses Apache Http Client under
- * the covers.  If used with other ClientHttpEngines though, all configuration options are ignored.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Abstraction for creating Clients.  Allows SSL configuration.  Uses Apache Http Client under
+   * the covers.  If used with other ClientHttpEngines though, all configuration options are ignored.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
 {
    protected KeyStore truststore;
@@ -154,8 +154,8 @@ public class ResteasyClientBuilderImpl extends ResteasyClientBuilder
    */
    public ResteasyClientBuilderImpl connectionCheckoutTimeout(long timeout, TimeUnit unit)
    {
-       this.connectionCheckoutTimeoutMs = (int) TimeUnit.MILLISECONDS.convert(timeout, unit);
-       return this;
+      this.connectionCheckoutTimeoutMs = (int) TimeUnit.MILLISECONDS.convert(timeout, unit);
+      return this;
    }
 
    /**

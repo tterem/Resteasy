@@ -6,9 +6,9 @@ import org.jboss.resteasy.jsapi.testing.form.*;
 import javax.ws.rs.*;
 
 /**
- * @author Weinan Li
- * @created_at 08 24 2012
- */
+   * @author Weinan Li
+   * @created_at 08 24 2012
+   */
 @Path("/smoke")
 public class SmokeTestResource {
    @Path("{id}")

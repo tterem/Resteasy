@@ -19,11 +19,11 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.NotAuthorizedException;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Regression test for RESTEASY-575
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Regression test for RESTEASY-575
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class UnauthorizedHttpCodeTest {

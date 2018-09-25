@@ -29,10 +29,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Json-binding provider.
- * @tpChapter Integration test
- * @tpSince RESTEasy 3.5
- */
+   * @tpSubChapter Json-binding provider.
+   * @tpChapter Integration test
+   * @tpSince RESTEasy 3.5
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JsonBindingAnnotationsJacksonTest {

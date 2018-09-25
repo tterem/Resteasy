@@ -10,11 +10,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Book is
- * <p>
- * 1) a JAXB class, suitable for transport over the network, and
- * 2) an @Entity class, suitable for JPA storage
- */
+   * Book is
+   * <p>
+   * 1) a JAXB class, suitable for transport over the network, and
+   * 2) an @Entity class, suitable for JPA storage
+   */
 @Entity
 @XmlRootElement(name = "book")
 @XmlAccessorType(XmlAccessType.FIELD)

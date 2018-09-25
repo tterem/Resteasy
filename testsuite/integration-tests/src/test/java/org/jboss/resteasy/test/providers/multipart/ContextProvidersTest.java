@@ -55,12 +55,12 @@ import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 
 /**
- * @tpSubChapter Multipart provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1119.
- *      Unable to find contextual data of type: javax.ws.rs.ext.Providers if ClientBuilder.newClient is used.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Multipart provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1119.
+   *      Unable to find contextual data of type: javax.ws.rs.ext.Providers if ClientBuilder.newClient is used.
+   * @tpSince RESTEasy 3.0.16
+   */
 @SuppressWarnings("deprecation")
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -465,14 +465,14 @@ public class ContextProvidersTest {
    }
 
    <T> T get(String path, Class<T> clazz, Annotation[] annotations) throws Exception {
-       try {
-          Client client = ClientBuilder.newClient();
-          WebTarget target = client.target(PortProviderUtil.generateURL(path, ContextProvidersTest.class.getSimpleName()));
-          Response response = target.request().get();
-          Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-          T entity = response.readEntity(clazz, annotations);
-           client.close();
-          return entity;
+      try {
+         Client client = ClientBuilder.newClient();
+         WebTarget target = client.target(PortProviderUtil.generateURL(path, ContextProvidersTest.class.getSimpleName()));
+         Response response = target.request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         T entity = response.readEntity(clazz, annotations);
+         client.close();
+         return entity;
       } catch (Exception e) {
          throw new RuntimeException(TestUtil.getErrorMessageForKnownIssue("RESTEASY-1119"), e);
       }
@@ -480,19 +480,19 @@ public class ContextProvidersTest {
 
    @SuppressWarnings({"unchecked"})
    <S, T> T post(String path, S payload, MediaType mediaType, Class<T> returnType, Type genericReturnType, Annotation[] annotations) throws Exception {
-       Client client = ClientBuilder.newClient();
-       WebTarget target = client.target(PortProviderUtil.generateURL(path, ContextProvidersTest.class.getSimpleName()));
-       Entity<S> entity = Entity.entity(payload, mediaType, annotations);
-       Response response = target.request().post(entity);
-       Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-       T result = null;
-       if (genericReturnType != null) {
-          result = response.readEntity(new GenericType<T>(genericReturnType));
-       } else {
-          result = response.readEntity(returnType);
-       }
-       client.close();
-       return result;
+      Client client = ClientBuilder.newClient();
+      WebTarget target = client.target(PortProviderUtil.generateURL(path, ContextProvidersTest.class.getSimpleName()));
+      Entity<S> entity = Entity.entity(payload, mediaType, annotations);
+      Response response = target.request().post(entity);
+      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+      T result = null;
+      if (genericReturnType != null) {
+         result = response.readEntity(new GenericType<T>(genericReturnType));
+      } else {
+         result = response.readEntity(returnType);
+      }
+      client.close();
+      return result;
    }
 
    public abstract static class S1 extends AnnotationLiteral<PartType> implements PartType {

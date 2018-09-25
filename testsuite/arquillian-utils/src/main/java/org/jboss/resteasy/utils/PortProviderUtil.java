@@ -8,8 +8,8 @@ import java.net.URI;
 import java.net.URL;
 
 /**
- * Utility class that provides a port number for the Resteasy embedded container.
- */
+   * Utility class that provides a port number for the Resteasy embedded container.
+   */
 public class PortProviderUtil {
    private static final int DEFAULT_PORT = 8080;
 
@@ -89,8 +89,8 @@ public class PortProviderUtil {
      * @param path the base request path
      */
    public static <T> T createProxy(Class<T> clazz, String path, String testName) {
-       ResteasyWebTarget target = (ResteasyWebTarget) ResteasyClientBuilder.newClient().target(generateURL(path, testName));
-       return target.proxy(clazz);
+      ResteasyWebTarget target = (ResteasyWebTarget) ResteasyClientBuilder.newClient().target(generateURL(path, testName));
+      return target.proxy(clazz);
    }
 
    /**

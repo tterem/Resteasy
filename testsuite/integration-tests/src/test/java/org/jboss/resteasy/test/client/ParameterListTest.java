@@ -27,11 +27,11 @@ import java.util.HashSet;
 import java.util.TreeSet;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Regression for RESTEASY-756
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Regression for RESTEASY-756
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ParameterListTest extends ClientTestBase{

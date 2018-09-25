@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @ConstrainedTo(RuntimeType.SERVER)
 @Priority(Priorities.HEADER_DECORATOR)
 public class ServerContentEncodingAnnotationFilter implements WriterInterceptor

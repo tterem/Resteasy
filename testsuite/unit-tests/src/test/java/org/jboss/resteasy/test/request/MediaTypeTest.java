@@ -12,11 +12,11 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @tpSubChapter Requests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for javax.ws.rs.core.MediaType class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Requests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for javax.ws.rs.core.MediaType class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class MediaTypeTest {
 
    /**

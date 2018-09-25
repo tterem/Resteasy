@@ -25,11 +25,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @tpSubChapter XXE
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-869
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter XXE
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-869
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class XxeSecureProcessingTest {

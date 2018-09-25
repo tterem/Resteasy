@@ -21,11 +21,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * @tpSubChapter Resource tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Tests programmatic creation of resources.
- * @tpSince RESTEasy 3.0.20
- */
+   * @tpSubChapter Resource tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Tests programmatic creation of resources.
+   * @tpSince RESTEasy 3.0.20
+   */
 public class ProgammaticTest {
    
    private static Dispatcher dispatcher;

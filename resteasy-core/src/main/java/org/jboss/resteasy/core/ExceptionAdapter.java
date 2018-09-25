@@ -4,11 +4,11 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- * A ExceptionAdapter.
- *
- * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
- * @version $Revision: $
- */
+   * A ExceptionAdapter.
+   *
+   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+   * @version $Revision: $
+   */
 public class ExceptionAdapter extends RuntimeException
 {
 

@@ -45,10 +45,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @tpSubChapter Multipart provider
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Multipart provider
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MimeMultipartProviderTest {

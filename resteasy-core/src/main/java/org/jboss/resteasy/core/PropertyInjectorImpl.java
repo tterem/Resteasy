@@ -31,9 +31,9 @@ import java.util.concurrent.CompletionStage;
 
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class PropertyInjectorImpl implements PropertyInjector
 {
    protected HashMap<Field, ValueInjector> fieldMap = new HashMap<Field, ValueInjector>();
@@ -215,19 +215,19 @@ public class PropertyInjectorImpl implements PropertyInjector
 
    private Field[] getDeclaredFields(final Class<?> clazz)
    {
-       final SecurityManager sm = System.getSecurityManager();
-       if (sm != null)
-       {
-          return AccessController.doPrivileged(new PrivilegedAction<Field[]>()
-          {
-             @Override
-             public Field[] run()
-             {
+      final SecurityManager sm = System.getSecurityManager();
+      if (sm != null)
+      {
+         return AccessController.doPrivileged(new PrivilegedAction<Field[]>()
+         {
+            @Override
+            public Field[] run()
+            {
             return clazz.getDeclaredFields();
-             }
-          });
-       }
-       return clazz.getDeclaredFields();
+            }
+         });
+      }
+      return clazz.getDeclaredFields();
    }
 
    private Method[] getDeclaredMethods(final Class<?> clazz)

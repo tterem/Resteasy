@@ -22,11 +22,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Validation
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for validation of null error value
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Validation
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for validation of null error value
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationNullErrorValueTest {

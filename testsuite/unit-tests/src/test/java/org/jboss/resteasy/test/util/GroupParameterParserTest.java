@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @tpSubChapter Util tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for GroupParameterParser and ParameterParser class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Util tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for GroupParameterParser and ParameterParser class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class GroupParameterParserTest {
    protected final Logger logger = LogManager.getLogger(GroupParameterParserTest.class.getName());
 

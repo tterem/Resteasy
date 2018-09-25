@@ -43,11 +43,11 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 
 /**
- * @tpSubChapter ResourceClassProcessor SPI
- * @tpChapter Integration tests
- * @tpTestCaseDetails ResourceClassProcessor SPI basic test, see RESTEASY-1805
- * @tpSince RESTEasy 3.6
- */
+   * @tpSubChapter ResourceClassProcessor SPI
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails ResourceClassProcessor SPI basic test, see RESTEASY-1805
+   * @tpSince RESTEasy 3.6
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResourceClassProcessorBasicTest {

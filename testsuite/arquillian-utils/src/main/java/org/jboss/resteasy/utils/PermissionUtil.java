@@ -16,10 +16,10 @@ import nu.xom.Element;
 import nu.xom.Serializer;
 
 /**
- * @author <a href="mailto:david.lloyd@redhat.com">David M. Lloyd</a>
- * Taken from:
- * https://github.com/wildfly/wildfly-core/blob/master/testsuite/shared/src/main/java/org/jboss/as/test/shared/PermissionUtils.java
- */
+   * @author <a href="mailto:david.lloyd@redhat.com">David M. Lloyd</a>
+   * Taken from:
+   * https://github.com/wildfly/wildfly-core/blob/master/testsuite/shared/src/main/java/org/jboss/as/test/shared/PermissionUtils.java
+   */
 public final class PermissionUtil {
    public static Asset createPermissionsXmlAsset(Permission... permissions) {
       return new StringAsset(new String(createPermissionsXml(permissions), StandardCharsets.UTF_8));

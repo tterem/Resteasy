@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 
- * @author Nicolas NESMON
- *
- */
+   * 
+   * @author Nicolas NESMON
+   *
+   */
 public class PostResourceMethodInvokers {
 
    private final List<PostResourceMethodInvoker> invokers;

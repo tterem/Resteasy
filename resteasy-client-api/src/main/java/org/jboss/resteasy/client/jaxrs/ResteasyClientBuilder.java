@@ -14,26 +14,26 @@ import javax.ws.rs.core.Configuration;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 /**
- * Abstraction for creating Clients.  Allows SSL configuration.  Uses Apache Http Client under
- * the covers.  If used with other ClientHttpEngines though, all configuration options are ignored.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * Abstraction for creating Clients.  Allows SSL configuration.  Uses Apache Http Client under
+   * the covers.  If used with other ClientHttpEngines though, all configuration options are ignored.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public abstract class ResteasyClientBuilder extends ClientBuilder
 {
    public enum HostnameVerificationPolicy {
       /**
-       * Hostname verification is not done on the server's certificate
-       */
+      * Hostname verification is not done on the server's certificate
+      */
       ANY,
       /**
-       * Allows wildcards in subdomain names i.e. *.foo.com
-       */
+      * Allows wildcards in subdomain names i.e. *.foo.com
+      */
       WILDCARD,
       /**
-       * CN must match hostname connecting to
-       */
+      * CN must match hostname connecting to
+      */
       STRICT
    }
 

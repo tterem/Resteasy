@@ -12,11 +12,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * A XmlStreamFactory.
- *
- * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
- * @version $Revision:$
- */
+   * A XmlStreamFactory.
+   *
+   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+   * @version $Revision:$
+   */
 public final class XmlStreamFactory {
 
    private XmlStreamFactory() {

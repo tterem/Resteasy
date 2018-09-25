@@ -24,11 +24,11 @@ import java.net.URI;
 import java.util.Date;
 
 /**
- * @tpSubChapter Providers
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for atom provider model
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Providers
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for atom provider model
+   * @tpSince RESTEasy 3.0.16
+   */
 public class AtomProviderModelTest {
 
    protected final Logger logger = LogManager.getLogger(AtomProviderModelTest.class.getName());
@@ -139,10 +139,10 @@ public class AtomProviderModelTest {
       PrintStream ps = new PrintStream(baos);
       marshaller.marshal(content, ps);
       if (logger.isDebugEnabled()) {
-           logger.debug("Result: " + ps.toString());
+         logger.debug("Result: " + ps.toString());
 
-           logger.debug("**********");
-           logger.debug(writer.toString());
+         logger.debug("**********");
+         logger.debug(writer.toString());
       }
       content = (Content) ctx.createUnmarshaller().unmarshal(new StringReader(writer.toString()));
 

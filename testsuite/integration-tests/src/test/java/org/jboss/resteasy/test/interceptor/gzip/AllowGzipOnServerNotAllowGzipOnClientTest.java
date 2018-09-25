@@ -6,11 +6,11 @@ import org.junit.Test;
 import java.net.URL;
 
 /**
- * @tpSubChapter Gzip
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1735
- * @tpSince RESTEasy 3.6
- */
+   * @tpSubChapter Gzip
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1735
+   * @tpSince RESTEasy 3.6
+   */
 public class AllowGzipOnServerNotAllowGzipOnClientTest extends AllowGzipOnServerAbstractTestBase {
 
    /**

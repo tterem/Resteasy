@@ -36,9 +36,9 @@ import java.util.Map;
 import static org.jboss.resteasy.spi.util.FindAnnotation.findAnnotation;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class InjectorFactoryImpl implements InjectorFactory
 {

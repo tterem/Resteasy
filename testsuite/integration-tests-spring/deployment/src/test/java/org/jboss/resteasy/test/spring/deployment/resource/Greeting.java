@@ -1,9 +1,9 @@
 package org.jboss.resteasy.test.spring.deployment.resource;
 
 /**
- * User: rsearls
- * Date: 2/20/17
- */
+   * User: rsearls
+   * Date: 2/20/17
+   */
 public class Greeting {
 
    private final long id;

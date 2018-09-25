@@ -5,16 +5,16 @@ import java.lang.reflect.Method;
 import org.jboss.resteasy.spi.HttpRequest;
 
 /**
- *
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * Javadoc adapted from javax.validation.Validator and javax.validation.executable.ExecutableValidator:
- *
- * @author Emmanuel Bernard
- * @author Hardy Ferentschik
- * @author Gunnar Morling
- */
+   *
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * Javadoc adapted from javax.validation.Validator and javax.validation.executable.ExecutableValidator:
+   *
+   * @author Emmanuel Bernard
+   * @author Hardy Ferentschik
+   * @author Gunnar Morling
+   */
 public interface GeneralValidator
 {
    /**

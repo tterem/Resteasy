@@ -15,10 +15,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Copy this class in a project using resteasy-netty or resteasy-netty4 and run the test.
- * The test will fail with Resteasy 3.0.8.Final, but pass with 3.0.6.Final.
- * It'll also pass if you remove the trailing slash in {@code generateURL("/test/")}.
- */
+   * Copy this class in a project using resteasy-netty or resteasy-netty4 and run the test.
+   * The test will fail with Resteasy 3.0.8.Final, but pass with 3.0.6.Final.
+   * It'll also pass if you remove the trailing slash in {@code generateURL("/test/")}.
+   */
 public class ResteasyTrailingSlashTest {
    private static NettyJaxrsServer server;
 

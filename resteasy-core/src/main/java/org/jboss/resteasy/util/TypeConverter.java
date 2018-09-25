@@ -1,6 +1,6 @@
 /**
- *
- */
+   *
+   */
 package org.jboss.resteasy.util;
 
 import org.jboss.resteasy.core.ExceptionAdapter;
@@ -15,11 +15,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A utility class that can convert a String value as a typed object.
- *
- * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
- * @version $Revision: $
- */
+   * A utility class that can convert a String value as a typed object.
+   *
+   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+   * @version $Revision: $
+   */
 public final class TypeConverter
 {
    private static final String VALUE_OF_METHOD = "valueOf";
@@ -62,8 +62,8 @@ public final class TypeConverter
          return targetType.cast(source);
       }
       /*
-       * Dates are too complicated for this class.
-       */
+      * Dates are too complicated for this class.
+      */
       if (Date.class.isAssignableFrom(targetType))
       {
          throw new IllegalArgumentException(Messages.MESSAGES.dateInstancesNotSupported());
@@ -228,13 +228,13 @@ public final class TypeConverter
    */
    @SuppressWarnings("unchecked")
    public static <T> T getTypeViaValueOfMethod(final String source, final Class<T> targetType)
-           throws NoSuchMethodException
+         throws NoSuchMethodException
    {
       Class<?> actualTarget = targetType;
       /*
-       * if this is a primitive type, use the Object class's "valueOf()" 
-       * method.
-       */
+      * if this is a primitive type, use the Object class's "valueOf()" 
+      * method.
+      */
       if (targetType.isPrimitive())
       {
          actualTarget = PRIMITIVES.get(targetType);
@@ -250,8 +250,8 @@ public final class TypeConverter
             result = targetType.cast(value);
          }
          /*
-          * handle the primitive case
-          */
+         * handle the primitive case
+         */
          else if (!actualTarget.equals(targetType) && actualTarget.isInstance(value))
          {
             // because you can't use targetType.cast() with primitives.

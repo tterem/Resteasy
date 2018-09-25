@@ -10,11 +10,11 @@ import java.util.Map.Entry;
 
 
 /**
- * {@link Variant} selection.
- *
- * @author Pascal S. de Kloe
- * @see "RFC 2296"
- */
+   * {@link Variant} selection.
+   *
+   * @author Pascal S. de Kloe
+   * @see "RFC 2296"
+   */
 public class ServerDrivenNegotiation
 {
 

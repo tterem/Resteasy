@@ -23,11 +23,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @tpSubChapter Util tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Basic unit test for Utilities class used for many CDI integration tests.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Util tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Basic unit test for Utilities class used for many CDI integration tests.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class UtilitiesTest {
    private static Logger log = Logger.getLogger(UtilitiesTest.class.getName());
 

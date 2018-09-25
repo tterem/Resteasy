@@ -10,11 +10,11 @@ import javax.net.ssl.SSLEngine;
 import java.util.List;
 
 /**
- * {@link HttpServerPipelineFactory} subclass which enable the use of HTTPS
- * 
- * @author Norman Maurer
- *
- */
+   * {@link HttpServerPipelineFactory} subclass which enable the use of HTTPS
+   * 
+   * @author Norman Maurer
+   *
+   */
 public class HttpsServerPipelineFactory extends HttpServerPipelineFactory 
 {
 

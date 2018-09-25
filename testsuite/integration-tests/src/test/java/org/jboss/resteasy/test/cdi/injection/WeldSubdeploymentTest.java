@@ -32,12 +32,12 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @tpSubChapter CDI
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for JBEAP-4084, WFLY-6485
- *                    Test that JPA dependencies are set for sub-deployments
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter CDI
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for JBEAP-4084, WFLY-6485
+   *                    Test that JPA dependencies are set for sub-deployments
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class WeldSubdeploymentTest {

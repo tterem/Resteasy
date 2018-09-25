@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class JaxrsInterceptorRegistryImpl<T> implements JaxrsInterceptorRegistry<T>
 {
@@ -34,7 +34,7 @@ public class JaxrsInterceptorRegistryImpl<T> implements JaxrsInterceptorRegistry
       {
          if (annotation.annotationType().isAnnotationPresent(NameBinding.class))
          {
-             nameBound.add(annotation.annotationType());
+            nameBound.add(annotation.annotationType());
          }
       }
       return nameBound;

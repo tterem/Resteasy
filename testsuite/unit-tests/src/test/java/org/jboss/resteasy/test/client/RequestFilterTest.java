@@ -26,10 +26,10 @@ import java.io.ByteArrayInputStream;
 import java.util.Locale;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   */
 public class RequestFilterTest {
 
    protected static final Logger logger = LogManager.getLogger(RequestFilterTest.class.getName());
@@ -125,11 +125,11 @@ public class RequestFilterTest {
      */
    @Test
    public void ThrowCustomExceptionFilterTest() {
-       try {
-          client.target(dummyUrl).register(RequestFilterThrowCustomException.class).request().get();
-          Assert.fail();
-       } catch (ProcessingException pe) {
-          Assert.assertEquals(ClientCustomException.class, pe.getCause().getClass());
-       }
+      try {
+         client.target(dummyUrl).register(RequestFilterThrowCustomException.class).request().get();
+         Assert.fail();
+      } catch (ProcessingException pe) {
+         Assert.assertEquals(ClientCustomException.class, pe.getCause().getClass());
+      }
    }
 }

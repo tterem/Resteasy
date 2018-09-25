@@ -5,9 +5,9 @@ import java.util.concurrent.CompletionStage;
 import javax.ws.rs.WebApplicationException;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public interface PropertyInjector
 {
    /**

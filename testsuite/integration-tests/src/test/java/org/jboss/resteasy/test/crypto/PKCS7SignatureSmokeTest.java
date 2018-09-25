@@ -25,11 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @tpSubChapter Crypto
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for response secured by PKCS7SignatureInput
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Crypto
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for response secured by PKCS7SignatureInput
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PKCS7SignatureSmokeTest {

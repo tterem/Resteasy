@@ -23,11 +23,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter UriParamsWithLocatorResource
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Test that a locator and resource with same path params work
- */
+   * @tpSubChapter UriParamsWithLocatorResource
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Test that a locator and resource with same path params work
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class UriParamsWithLocatorTest {

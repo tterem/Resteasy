@@ -25,9 +25,9 @@ import org.jboss.resteasy.util.Base64;
 import org.jboss.resteasy.util.ParameterParser;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class DosetaKeyRepository implements KeyRepository
 {
 

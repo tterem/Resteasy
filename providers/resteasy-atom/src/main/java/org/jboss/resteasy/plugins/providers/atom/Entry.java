@@ -23,80 +23,80 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <p>Per RFC4287:</p>
- * <pre>
- * The "atom:entry" element represents an individual entry, acting as a
- * container for metadata and data associated with the entry.  This
- * element can appear as a child of the atom:feed element, or it can
- * appear as the document (i.e., top-level) element of a stand-alone
- * Atom Entry Document.
- *
- * atomEntry =
- *    element atom:entry {
- *       atomCommonAttributes,
- *       (atomAuthor*
- *        &amp; atomCategory*
- *        &amp; atomContent?
- *        &amp; atomContributor*
- *        &amp; atomId
- *        &amp; atomLink*
- *        &amp; atomPublished?
- *        &amp; atomRights?
- *        &amp; atomSource?
- *        &amp; atomSummary?
- *        &amp; atomTitle
- *        &amp; atomUpdated
- *        &amp; extensionElement*)
- *    }
- *
- * This specification assigns no significance to the order of appearance
- * of the child elements of atom:entry.
- *
- * The following child elements are defined by this specification (note
- * that it requires the presence of some of these elements):
- *
- * o  atom:entry elements MUST contain one or more atom:author elements,
- *    unless the atom:entry contains an atom:source element that
- *    contains an atom:author element or, in an Atom Feed Document, the
- *    atom:feed element contains an atom:author element itself.
- * o  atom:entry elements MAY contain any number of atom:category
- *    elements.
- * o  atom:entry elements MUST NOT contain more than one atom:content
- *    element.
- * o  atom:entry elements MAY contain any number of atom:contributor
- *    elements.
- * o  atom:entry elements MUST contain exactly one atom:id element.
- * o  atom:entry elements that contain no child atom:content element
- *    MUST contain at least one atom:link element with a rel attribute
- *    value of "alternate".
- * o  atom:entry elements MUST NOT contain more than one atom:link
- *    element with a rel attribute value of "alternate" that has the
- *    same combination of type and hreflang attribute values.
- * o  atom:entry elements MAY contain additional atom:link elements
- *    beyond those described above.
- * o  atom:entry elements MUST NOT contain more than one atom:published
- *    element.
- * o  atom:entry elements MUST NOT contain more than one atom:rights
- *    element.
- * o  atom:entry elements MUST NOT contain more than one atom:source
- *    element.
- * o  atom:entry elements MUST contain an atom:summary element in either
- *    of the following cases:
- *    *  the atom:entry contains an atom:content that has a "src"
- *       attribute (and is thus empty).
- *    *  the atom:entry contains content that is encoded in Base64;
- *       i.e., the "type" attribute of atom:content is a MIME media type
- *       [MIMEREG], but is not an XML media type [RFC3023], does not
- *       begin with "text/", and does not end with "/xml" or "+xml".
- * o  atom:entry elements MUST NOT contain more than one atom:summary
- *    element.
- * o  atom:entry elements MUST contain exactly one atom:title element.
- * o  atom:entry elements MUST contain exactly one atom:updated element.
- * </pre>
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * <p>Per RFC4287:</p>
+   * <pre>
+   * The "atom:entry" element represents an individual entry, acting as a
+   * container for metadata and data associated with the entry.  This
+   * element can appear as a child of the atom:feed element, or it can
+   * appear as the document (i.e., top-level) element of a stand-alone
+   * Atom Entry Document.
+   *
+   * atomEntry =
+   *    element atom:entry {
+   *       atomCommonAttributes,
+   *       (atomAuthor*
+   *        &amp; atomCategory*
+   *        &amp; atomContent?
+   *        &amp; atomContributor*
+   *        &amp; atomId
+   *        &amp; atomLink*
+   *        &amp; atomPublished?
+   *        &amp; atomRights?
+   *        &amp; atomSource?
+   *        &amp; atomSummary?
+   *        &amp; atomTitle
+   *        &amp; atomUpdated
+   *        &amp; extensionElement*)
+   *    }
+   *
+   * This specification assigns no significance to the order of appearance
+   * of the child elements of atom:entry.
+   *
+   * The following child elements are defined by this specification (note
+   * that it requires the presence of some of these elements):
+   *
+   * o  atom:entry elements MUST contain one or more atom:author elements,
+   *    unless the atom:entry contains an atom:source element that
+   *    contains an atom:author element or, in an Atom Feed Document, the
+   *    atom:feed element contains an atom:author element itself.
+   * o  atom:entry elements MAY contain any number of atom:category
+   *    elements.
+   * o  atom:entry elements MUST NOT contain more than one atom:content
+   *    element.
+   * o  atom:entry elements MAY contain any number of atom:contributor
+   *    elements.
+   * o  atom:entry elements MUST contain exactly one atom:id element.
+   * o  atom:entry elements that contain no child atom:content element
+   *    MUST contain at least one atom:link element with a rel attribute
+   *    value of "alternate".
+   * o  atom:entry elements MUST NOT contain more than one atom:link
+   *    element with a rel attribute value of "alternate" that has the
+   *    same combination of type and hreflang attribute values.
+   * o  atom:entry elements MAY contain additional atom:link elements
+   *    beyond those described above.
+   * o  atom:entry elements MUST NOT contain more than one atom:published
+   *    element.
+   * o  atom:entry elements MUST NOT contain more than one atom:rights
+   *    element.
+   * o  atom:entry elements MUST NOT contain more than one atom:source
+   *    element.
+   * o  atom:entry elements MUST contain an atom:summary element in either
+   *    of the following cases:
+   *    *  the atom:entry contains an atom:content that has a "src"
+   *       attribute (and is thus empty).
+   *    *  the atom:entry contains content that is encoded in Base64;
+   *       i.e., the "type" attribute of atom:content is a MIME media type
+   *       [MIMEREG], but is not an XML media type [RFC3023], does not
+   *       begin with "text/", and does not end with "/xml" or "+xml".
+   * o  atom:entry elements MUST NOT contain more than one atom:summary
+   *    element.
+   * o  atom:entry elements MUST contain exactly one atom:title element.
+   * o  atom:entry elements MUST contain exactly one atom:updated element.
+   * </pre>
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @XmlRootElement(name = "entry")
 @XmlAccessorType(XmlAccessType.PROPERTY)
 @XmlType(propOrder = {"titleElement", "links", "categories", "updated", "id", "published", "authors", "contributors", "source",
@@ -165,7 +165,7 @@ public class Entry extends CommonAttributes
    {
      if (this.title == null) 
      {
-       return null;
+      return null;
      }
       return title.getText();
    }
@@ -257,7 +257,7 @@ public class Entry extends CommonAttributes
    public String getRights() {
      if (rights == null) 
      {
-       return null;
+      return null;
      }
      return rights.getText();
    }
@@ -266,7 +266,7 @@ public class Entry extends CommonAttributes
    {
      if (this.rights == null) 
      {
-       this.rights = new Text();
+      this.rights = new Text();
      }
      this.rights.setText(rights);
    }
@@ -297,7 +297,7 @@ public class Entry extends CommonAttributes
    public String getSummary() {
      if (rights == null) 
      {
-       return null;
+      return null;
      }
      return rights.getText();
    }
@@ -306,7 +306,7 @@ public class Entry extends CommonAttributes
    {
      if (this.summary == null) 
      {
-       this.summary = new Text();
+      this.summary = new Text();
      }
      this.summary.setText(summary);
    }
@@ -326,7 +326,7 @@ public class Entry extends CommonAttributes
       {
          if (obj instanceof Element)
          {
-             anyOtherElement = (Element) obj;
+            anyOtherElement = (Element) obj;
             return anyOtherElement;
          }
       }
@@ -336,10 +336,10 @@ public class Entry extends CommonAttributes
    @XmlMixed
    @XmlAnyElement(lax = true)
    public List<Object> getAnyOther() {
-       if (anyOther == null) {
-           anyOther = new ArrayList<Object>();
-       }
-       return this.anyOther;
+      if (anyOther == null) {
+         anyOther = new ArrayList<Object>();
+      }
+      return this.anyOther;
    }
    /**
    * Extract the content as the provided JAXB annotated type.
@@ -416,11 +416,11 @@ public class Entry extends CommonAttributes
       if (anyOtherJaxbObject != null && anyOther != null) anyOther.clear();
       if (!obj.getClass().isAnnotationPresent(XmlRootElement.class) && obj.getClass().isAnnotationPresent(XmlType.class))
       {
-          anyOther.add(JAXBXmlTypeProvider.wrapInJAXBElement(obj, obj.getClass()));
+         anyOther.add(JAXBXmlTypeProvider.wrapInJAXBElement(obj, obj.getClass()));
       }
       else
       {
-          anyOther.add(obj);
+         anyOther.add(obj);
       }
       anyOtherJaxbObject = obj;
    }

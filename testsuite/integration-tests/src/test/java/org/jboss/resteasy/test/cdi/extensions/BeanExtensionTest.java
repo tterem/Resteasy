@@ -36,13 +36,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter CDI
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test CDI extensions for bean.
- * BostonBeanExtension implements a CDI extension, it creates a BostonBean for each of the two classes,
- * BostonHolder and BostonLeaf, that are annotated with @Boston, and it registers them with the CDI runtime.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter CDI
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test CDI extensions for bean.
+   * BostonBeanExtension implements a CDI extension, it creates a BostonBean for each of the two classes,
+   * BostonHolder and BostonLeaf, that are annotated with @Boston, and it registers them with the CDI runtime.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class BeanExtensionTest {

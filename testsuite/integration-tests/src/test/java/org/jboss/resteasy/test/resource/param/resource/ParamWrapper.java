@@ -1,11 +1,11 @@
 package org.jboss.resteasy.test.resource.param.resource;
 
 /***
- * 
- * @author Nicolas NESMON
- *
- * @param <E>
- */
+   * 
+   * @author Nicolas NESMON
+   *
+   * @param <E>
+   */
 public class ParamWrapper<E> {
 
    private final E element;

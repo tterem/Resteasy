@@ -21,8 +21,8 @@ import javax.ws.rs.core.Response;
 import java.util.Random;
 
 /**
- * Created by John.Ament on 2/23/14.
- */
+   * Created by John.Ament on 2/23/14.
+   */
 @RunWith(Arquillian.class)
 public class CdiNettyTest {
 

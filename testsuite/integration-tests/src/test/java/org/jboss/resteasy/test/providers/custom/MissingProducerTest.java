@@ -15,11 +15,11 @@ import org.junit.runner.RunWith;
 import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALIFIER;
 
 /**
- * @tpSubChapter Core
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.17
- * @tpTestCaseDetails Regression test for JBEAP-4719
- */
+   * @tpSubChapter Core
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.17
+   * @tpTestCaseDetails Regression test for JBEAP-4719
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MissingProducerTest {

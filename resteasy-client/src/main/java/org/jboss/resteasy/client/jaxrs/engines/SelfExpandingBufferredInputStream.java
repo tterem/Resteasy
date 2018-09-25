@@ -7,13 +7,13 @@ import java.io.InputStream;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 
 /**
- * Extension of {@link BufferedInputStream} enforcing the contract where reset()
- * always returns to the beginning of the stream, and the internal buffer
- * expands automatically to the total length of content read from the underlying
- * stream.
- *
- * @author ul8b
- */
+   * Extension of {@link BufferedInputStream} enforcing the contract where reset()
+   * always returns to the beginning of the stream, and the internal buffer
+   * expands automatically to the total length of content read from the underlying
+   * stream.
+   *
+   * @author ul8b
+   */
 public class SelfExpandingBufferredInputStream extends BufferedInputStream
 {
    private static int defaultBufferSize = 8192;

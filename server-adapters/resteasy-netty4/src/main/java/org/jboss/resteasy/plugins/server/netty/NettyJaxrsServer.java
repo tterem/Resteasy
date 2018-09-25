@@ -37,15 +37,15 @@ import static org.jboss.resteasy.plugins.server.netty.RestEasyHttpRequestDecoder
 import static org.jboss.resteasy.plugins.server.netty.RestEasyHttpRequestDecoder.Protocol.HTTPS;
 
 /**
- * An HTTP server that sends back the content of the received HTTP request
- * in a pretty plaintext form.
- *
- * @author <a href="http://www.jboss.org/netty/">The Netty Project</a>
- * @author Andy Taylor (andy.taylor@jboss.org)
- * @author <a href="http://gleamynode.net/">Trustin Lee</a>
- * @author Norman Maurer
- * @version $Rev: 2080 $, $Date: 2010-01-26 18:04:19 +0900 (Tue, 26 Jan 2010) $
- */
+   * An HTTP server that sends back the content of the received HTTP request
+   * in a pretty plaintext form.
+   *
+   * @author <a href="http://www.jboss.org/netty/">The Netty Project</a>
+   * @author Andy Taylor (andy.taylor@jboss.org)
+   * @author <a href="http://gleamynode.net/">Trustin Lee</a>
+   * @author Norman Maurer
+   * @version $Rev: 2080 $, $Date: 2010-01-26 18:04:19 +0900 (Tue, 26 Jan 2010) $
+   */
 public class NettyJaxrsServer implements EmbeddedJaxrsServer
 {
    protected ServerBootstrap bootstrap = new ServerBootstrap();
@@ -95,7 +95,7 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
    */
    public void setIoWorkerCount(int ioWorkerCount)
    {
-       this.ioWorkerCount = ioWorkerCount;
+      this.ioWorkerCount = ioWorkerCount;
    }
 
    /**
@@ -107,7 +107,7 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
    */
    public void setExecutorThreadCount(int executorThreadCount)
    {
-       this.executorThreadCount = executorThreadCount;
+      this.executorThreadCount = executorThreadCount;
    }
 
    /**
@@ -233,7 +233,7 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
 
    protected RequestDispatcher createRequestDispatcher()
    {
-       return new RequestDispatcher((SynchronousDispatcher)deployment.getDispatcher(),
+      return new RequestDispatcher((SynchronousDispatcher)deployment.getDispatcher(),
                deployment.getProviderFactory(), domain);
    }
 
@@ -245,12 +245,12 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
       deployment.start();
       // dynamically set the root path (the user can rewrite it by calling setRootResourcePath)
       if (deployment.getApplication() != null) {
-           ApplicationPath appPath = deployment.getApplication().getClass().getAnnotation(ApplicationPath.class);
-           if (appPath != null && (root == null || "".equals(root))) {
+         ApplicationPath appPath = deployment.getApplication().getClass().getAnnotation(ApplicationPath.class);
+         if (appPath != null && (root == null || "".equals(root))) {
               // annotation is present and original root is not set
               String path = appPath.value();
               setRootResourcePath(path);
-           }
+         }
       }
       // Configure the server.
       bootstrap.group(eventLoopGroup)
@@ -326,8 +326,8 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
    @Override
    public void stop()
    {
-       runtimePort = -1;
-       eventLoopGroup.shutdownGracefully();
-       eventExecutor.shutdownGracefully();
+      runtimePort = -1;
+      eventLoopGroup.shutdownGracefully();
+      eventExecutor.shutdownGracefully();
    }
 }

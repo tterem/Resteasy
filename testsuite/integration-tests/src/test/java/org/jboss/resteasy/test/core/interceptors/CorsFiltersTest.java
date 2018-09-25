@@ -31,11 +31,11 @@ import java.util.logging.LoggingPermission;
 import static org.hamcrest.core.Is.is;
 
 /**
- * @tpSubChapter Interceptors
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test CorsFilter usage
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Interceptors
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test CorsFilter usage
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 public class CorsFiltersTest {
 

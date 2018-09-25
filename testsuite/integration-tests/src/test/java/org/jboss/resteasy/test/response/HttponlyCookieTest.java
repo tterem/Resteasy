@@ -21,10 +21,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter NewCookie httponly flag is processed
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.1.0.Final
- */
+   * @tpSubChapter NewCookie httponly flag is processed
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.1.0.Final
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class HttponlyCookieTest {
@@ -33,23 +33,23 @@ public class HttponlyCookieTest {
 
    @Deployment
    public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(HttponlyCookieTest.class.getSimpleName());
-       return TestUtil.finishContainerPrepare(war, null, HttponlyCookieResource.class);
+      WebArchive war = TestUtil.prepareArchive(HttponlyCookieTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war, null, HttponlyCookieResource.class);
    }
 
    private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, HttponlyCookieTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, HttponlyCookieTest.class.getSimpleName());
    }
 
    @BeforeClass
    public static void setup() {
-       client = ClientBuilder.newClient();
+      client = ClientBuilder.newClient();
    }
 
    @AfterClass
    public static void close() {
-       client.close();
-       client = null;
+      client.close();
+      client = null;
    }
    
    @Test

@@ -4,8 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * This java class defines the beans for the application.
- */
+   * This java class defines the beans for the application.
+   */
 @Configuration
 public class JavaConfigBeanConfiguration {
    @Bean

@@ -39,10 +39,10 @@ import org.jboss.resteasy.spi.util.Types;
 import org.jboss.resteasy.util.StringToPrimitive;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @author Nicolas NESMON
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @author Nicolas NESMON
+   * @version $Revision: 1 $
+   */
 @SuppressWarnings(value = { "unchecked" })
 public class StringParameterInjector
 {
@@ -453,7 +453,7 @@ public class StringParameterInjector
       
      throw new RuntimeException(Messages.MESSAGES.unableToFindConstructor(getParamSignature(), target, baseType.getName()));
 
-  }
+   }
    
    
    private boolean initialize(Annotation[] annotations, ResteasyProviderFactory factory){
@@ -466,69 +466,69 @@ public class StringParameterInjector
 
       // First try to find a ParamConverter if any
       paramConverter = factory.getParamConverter(baseType, baseGenericType, annotations);
-       if (paramConverter != null) 
-       {
-          return true;
-       }
-       
-       // Else try to find a StringParameterUnmarshaller if any
-       unmarshaller = factory.createStringParameterUnmarshaller(baseType);
-       if (unmarshaller != null)
-       {
-          unmarshaller.setAnnotations(annotations);
-          return true;
-       }
-       for (Annotation annotation : annotations)
-       {
-          StringParameterUnmarshallerBinder binder = annotation.annotationType().getAnnotation(StringParameterUnmarshallerBinder.class);
-          if (binder != null)
-          {
-             try
-             {
+      if (paramConverter != null) 
+      {
+         return true;
+      }
+      
+      // Else try to find a StringParameterUnmarshaller if any
+      unmarshaller = factory.createStringParameterUnmarshaller(baseType);
+      if (unmarshaller != null)
+      {
+         unmarshaller.setAnnotations(annotations);
+         return true;
+      }
+      for (Annotation annotation : annotations)
+      {
+         StringParameterUnmarshallerBinder binder = annotation.annotationType().getAnnotation(StringParameterUnmarshallerBinder.class);
+         if (binder != null)
+         {
+            try
+            {
             unmarshaller = binder.value().newInstance();
-             }
-             catch (InstantiationException e)
-             {
+            }
+            catch (InstantiationException e)
+            {
             throw new RuntimeException(e.getCause());
-             }
-             catch (IllegalAccessException e)
-             {
+            }
+            catch (IllegalAccessException e)
+            {
             throw new RuntimeException(e);
-             }
-             factory.injectProperties(unmarshaller);
-             unmarshaller.setAnnotations(annotations);
-             return true;
-          }
-       }
-       
-       // Else try to find a RuntimeDelegate.HeaderDelegate if any
-       if (paramType.equals(HeaderParam.class))
-       {
-          delegate = factory.getHeaderDelegate(baseType);
-          if (delegate != null)
-          {
-             return true;
-          }
-       }
-       
-       // Else try to find a public Constructor that accepts a single String argument if any
-       try
-       {
-          constructor = baseType.getConstructor(String.class);
-          if (!Modifier.isPublic(constructor.getModifiers())) 
-          {
-             constructor = null;
-          }
-          else
-          {
-             return true;
-          }
-       }
-       catch (NoSuchMethodException ignored)
-       {
+            }
+            factory.injectProperties(unmarshaller);
+            unmarshaller.setAnnotations(annotations);
+            return true;
+         }
+      }
+      
+      // Else try to find a RuntimeDelegate.HeaderDelegate if any
+      if (paramType.equals(HeaderParam.class))
+      {
+         delegate = factory.getHeaderDelegate(baseType);
+         if (delegate != null)
+         {
+            return true;
+         }
+      }
+      
+      // Else try to find a public Constructor that accepts a single String argument if any
+      try
+      {
+         constructor = baseType.getConstructor(String.class);
+         if (!Modifier.isPublic(constructor.getModifiers())) 
+         {
+            constructor = null;
+         }
+         else
+         {
+            return true;
+         }
+      }
+      catch (NoSuchMethodException ignored)
+      {
 
-       }
-       
+      }
+      
      // Else try to find a public fromValue (JAXB enum) or valueOf or fromString method that accepts a single String argument if any.
       try
       {
@@ -646,7 +646,7 @@ public class StringParameterInjector
             collection.add(extractValue(str));
          }
       if (ArrayList.class.equals(collectionType)) {
-           return new UnmodifiableArrayList<>(collection);
+         return new UnmodifiableArrayList<>(collection);
       } else if (TreeSet.class.equals(collectionType)) {
          return new UnmodifiableTreeSet<>(collection);
       } else if (HashSet.class.equals(collectionType)) {

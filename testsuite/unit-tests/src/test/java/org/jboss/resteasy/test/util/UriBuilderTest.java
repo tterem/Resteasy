@@ -16,11 +16,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @tpSubChapter Util tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for UriBuilder class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Util tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for UriBuilder class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class UriBuilderTest {
    private static final String ERROR_MSG = "UriBuilder works incorrectly";
    protected static final Logger logger = LogManager.getLogger(UriBuilderTest.class.getName());

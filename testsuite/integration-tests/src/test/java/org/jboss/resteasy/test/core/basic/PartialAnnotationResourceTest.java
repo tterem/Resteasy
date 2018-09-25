@@ -18,11 +18,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Configuration
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for RESTEASY-798.
- * @tpSince RESTEasy 3.5.1
- */
+   * @tpSubChapter Configuration
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for RESTEASY-798.
+   * @tpSince RESTEasy 3.5.1
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PartialAnnotationResourceTest

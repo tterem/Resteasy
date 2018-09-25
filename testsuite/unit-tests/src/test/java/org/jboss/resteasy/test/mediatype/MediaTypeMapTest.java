@@ -8,10 +8,10 @@ import java.util.List;
 
 
 /**
- * @tpSubChapter Media type
- * @tpChapter Unit tests
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Media type
+   * @tpChapter Unit tests
+   * @tpSince RESTEasy 3.0.16
+   */
 public class MediaTypeMapTest {
 
    /**

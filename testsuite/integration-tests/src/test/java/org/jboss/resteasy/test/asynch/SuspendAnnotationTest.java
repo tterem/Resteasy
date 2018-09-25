@@ -19,12 +19,12 @@ import javax.ws.rs.core.Response;
 
 
 /**
- * @tpSubChapter Asynchronous RESTEasy
- * @tpChapter Integration tests
- * @tpTestCaseDetails Basic asynchronous test for suspended response.
- *                Test for org.jboss.resteasy.annotations.Suspend annotation
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Asynchronous RESTEasy
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Basic asynchronous test for suspended response.
+   *                Test for org.jboss.resteasy.annotations.Suspend annotation
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SuspendAnnotationTest {

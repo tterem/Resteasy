@@ -7,10 +7,10 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 /**
- * 
- * @author Nicolas NESMON
- *
- */
+   * 
+   * @author Nicolas NESMON
+   *
+   */
 @ApplicationPath("/")
 public class SsePostResourceMethodInvokerApplication extends Application {
 

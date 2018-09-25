@@ -15,11 +15,11 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
 /**
- * @tpSubChapter Requests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for AcceptHeaders and QualityValue classes, string type.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Requests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for AcceptHeaders and QualityValue classes, string type.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class StringQualityValueTest {
 
    private static void assertList(String header, String[] fields, QualityValue[] qualities) {

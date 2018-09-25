@@ -25,11 +25,11 @@ import static org.hamcrest.CoreMatchers.is;
 
 
 /**
- * @tpSubChapter Resources
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression tests for RESTEASY-549 and RESTEASY-537
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resources
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression tests for RESTEASY-549 and RESTEASY-537
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MatchedResourceTest {

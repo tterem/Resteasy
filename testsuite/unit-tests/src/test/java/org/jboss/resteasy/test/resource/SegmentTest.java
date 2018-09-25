@@ -18,12 +18,12 @@ import javax.ws.rs.NotAllowedException;
 import java.net.URISyntaxException;
 
 /**
- * @tpSubChapter Resource tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Tests to make sure that standard segment mapping work correctly, especially
- *                    regexes that contain "\"
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resource tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Tests to make sure that standard segment mapping work correctly, especially
+   *                    regexes that contain "\"
+   * @tpSince RESTEasy 3.0.16
+   */
 public class SegmentTest {
 
    /**

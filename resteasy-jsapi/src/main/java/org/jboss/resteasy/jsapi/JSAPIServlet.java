@@ -22,8 +22,8 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 
 /**
- * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
- */
+   * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
+   */
 public class JSAPIServlet extends HttpServlet
 {
 
@@ -59,7 +59,7 @@ public class JSAPIServlet extends HttpServlet
 
    @Override
    protected void service(HttpServletRequest req, HttpServletResponse resp)
-           throws ServletException, IOException
+         throws ServletException, IOException
    {
       String pathInfo = req.getPathInfo();
       String uri = req.getRequestURL().toString();

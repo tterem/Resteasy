@@ -15,10 +15,10 @@ import javax.ws.rs.ext.Provider;
 import javax.ws.rs.sse.SseEventSink;
 
 /**
- * 
- * @author Nicolas NESMON
- *
- */
+   * 
+   * @author Nicolas NESMON
+   *
+   */
 @Path(SsePostResourceMethodInvokerTestResource.BASE_PATH)
 public class SsePostResourceMethodInvokerTestResource {
 

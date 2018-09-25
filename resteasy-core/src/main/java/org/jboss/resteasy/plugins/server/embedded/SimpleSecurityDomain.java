@@ -8,11 +8,11 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 
 /**
- * POJO Security domain.
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * POJO Security domain.
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class SimpleSecurityDomain implements SecurityDomain
 {
    private ConcurrentHashMap<String, String> users = new ConcurrentHashMap<String, String>();

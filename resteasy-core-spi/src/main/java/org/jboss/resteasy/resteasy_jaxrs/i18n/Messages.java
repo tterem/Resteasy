@@ -17,12 +17,12 @@ import org.jboss.resteasy.annotations.Stream;
 import org.jboss.resteasy.api.validation.ConstraintType;
 
 /**
- *
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * Copyright Aug 13, 2015
- */
+   *
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * Copyright Aug 13, 2015
+   */
 @MessageBundle(projectCode = "RESTEASY")
 public interface Messages
 {

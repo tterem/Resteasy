@@ -41,11 +41,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * @tpSubChapter Spring
- * @tpChapter Integration tests
- * @tpTestCaseDetails Tests various http response codes returned from the server
- * @tpSince RESTEasy 3.1.0
- */
+   * @tpSubChapter Spring
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Tests various http response codes returned from the server
+   * @tpSince RESTEasy 3.1.0
+   */
 @ServerSetup({SpringMvcHttpResponseCodesTest.SecurityDomainSetup.class})
 @RunWith(Arquillian.class)
 @RunAsClient

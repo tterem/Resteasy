@@ -19,11 +19,11 @@ import static org.junit.Assert.fail;
 
 
 /**
- * @tpSubChapter Requests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for AcceptHeaders and QualityValue classes, media type.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Requests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for AcceptHeaders and QualityValue classes, media type.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class MediaTypeQualityValueTest {
 
    private static void assertList(String header, MediaType[] fields, QualityValue[] qualities) {

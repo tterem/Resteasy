@@ -15,11 +15,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.ContextResolver;
 
 /**
- * @tpSubChapter Resource
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for javax.ws.rs.ext.ContextResolver class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resource
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for javax.ws.rs.ext.ContextResolver class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class ContextResolverTest {
    @BeforeClass
    public static void before() {

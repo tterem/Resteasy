@@ -12,11 +12,11 @@ import java.lang.reflect.Type;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @tpSubChapter Util tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for Types class.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Util tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for Types class.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class TypesBuiltInTest {
 
    /**

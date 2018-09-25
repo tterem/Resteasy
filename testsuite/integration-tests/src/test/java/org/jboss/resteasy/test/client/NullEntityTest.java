@@ -19,11 +19,11 @@ import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpSince RESTEasy 3.0.16
- * @tpTestCaseDetails Regression for RESTEASY-1057
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpSince RESTEasy 3.0.16
+   * @tpTestCaseDetails Regression for RESTEASY-1057
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class NullEntityTest extends ClientTestBase{

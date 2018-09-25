@@ -14,8 +14,8 @@ import java.util.Map.Entry;
 
 
 /**
- * @author Pascal S. de Kloe
- */
+   * @author Pascal S. de Kloe
+   */
 public class AcceptHeaders
 {
 

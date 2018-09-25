@@ -10,11 +10,11 @@ import java.io.InputStream;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Client tests
- * @tpTestCaseDetails Unit test for SelfExpandingBufferredInputStream
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Client tests
+   * @tpTestCaseDetails Unit test for SelfExpandingBufferredInputStream
+   * @tpSince RESTEasy 3.0.16
+   */
 public class SelfExpandingBufferredInputStreamTest {
    String data = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
    InputStream input;

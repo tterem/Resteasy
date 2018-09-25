@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
- */
+   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+   */
 @Path("/application.xml")
 public class ResteasyWadlDefaultResource {
 
@@ -29,7 +29,7 @@ public class ResteasyWadlDefaultResource {
       try {
          return this.apiWriter.getStringWriter("", services).toString();
       } catch (JAXBException e) {
-           LogMessages.LOGGER.error(Messages.MESSAGES.cantProcessWadl(), e);
+         LogMessages.LOGGER.error(Messages.MESSAGES.cantProcessWadl(), e);
       }
       return null;
    }

@@ -14,14 +14,14 @@ import static org.jboss.resteasy.test.ContainerConstants.GZIP_CONTAINER_PORT_OFF
 import static org.jboss.resteasy.test.ContainerConstants.GZIP_CONTAINER_QUALIFIER;
 
 /**
- * Abstract base class for tests with gzip enabled on server side.
- *
- * This abstract class provides deployments and starts and stops custom server.
- *
- * This abstract class is extended by:
- *      AllowGzipOnServerAllowGzipOnClientTest
- *      AllowGzipOnServerNotAllowGzipOnClientTest
- */
+   * Abstract base class for tests with gzip enabled on server side.
+   *
+   * This abstract class provides deployments and starts and stops custom server.
+   *
+   * This abstract class is extended by:
+   *      AllowGzipOnServerAllowGzipOnClientTest
+   *      AllowGzipOnServerNotAllowGzipOnClientTest
+   */
 public class AllowGzipOnServerAbstractTestBase extends GzipAbstractTestBase {
 
    //keep in sync with offset in arquillian.xml

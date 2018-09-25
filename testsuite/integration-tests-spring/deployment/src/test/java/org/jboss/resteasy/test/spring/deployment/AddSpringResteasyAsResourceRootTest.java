@@ -37,11 +37,11 @@ import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 
 /**
- * @tpSubChapter Spring
- * @tpChapter Integration tests - dependencies included in deployment
- * @tpTestCaseDetails Tests adding spring as resource root in deployment
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Spring
+   * @tpChapter Integration tests - dependencies included in deployment
+   * @tpTestCaseDetails Tests adding spring as resource root in deployment
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AddSpringResteasyAsResourceRootTest {

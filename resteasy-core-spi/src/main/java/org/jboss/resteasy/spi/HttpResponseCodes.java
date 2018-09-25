@@ -1,14 +1,14 @@
 package org.jboss.resteasy.spi;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public interface HttpResponseCodes
 {
    /*
-          * Server status codes; see RFC 2068.
-          */
+         * Server status codes; see RFC 2068.
+         */
 
    /**
    * Status code (100) indicating the client can continue.

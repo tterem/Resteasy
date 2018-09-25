@@ -12,27 +12,27 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
- * <p>Java class for JaxbNameSpacePrefixUSAddress complex type.
- * <p>
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;complexType name="JaxbNameSpacePrefixUSAddress">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="street" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="city" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="state" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="zip" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
- *       &lt;/sequence>
- *       &lt;attribute name="country" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" fixed="US" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- */
+   * <p>Java class for JaxbNameSpacePrefixUSAddress complex type.
+   * <p>
+   * <p>The following schema fragment specifies the expected content contained within this class.
+   * <p>
+   * <pre>
+   * &lt;complexType name="JaxbNameSpacePrefixUSAddress">
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;sequence>
+   *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+   *         &lt;element name="street" type="{http://www.w3.org/2001/XMLSchema}string"/>
+   *         &lt;element name="city" type="{http://www.w3.org/2001/XMLSchema}string"/>
+   *         &lt;element name="state" type="{http://www.w3.org/2001/XMLSchema}string"/>
+   *         &lt;element name="zip" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
+   *       &lt;/sequence>
+   *       &lt;attribute name="country" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" fixed="US" />
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "JaxbNameSpacePrefixUSAddress", propOrder = {
       "name",

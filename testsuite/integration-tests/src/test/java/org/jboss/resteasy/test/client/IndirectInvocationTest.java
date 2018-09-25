@@ -24,12 +24,12 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
- * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
- * @tpSubChapter Resteasy-client
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.16
- *
- */
+   * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.16
+   *
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class IndirectInvocationTest extends ClientTestBase{

@@ -12,15 +12,15 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * ResteasyHttpServletResponseWrapper is introduced to support the use of
- * RequestDispatcher.forward() and RequestDispatcher.include(), which need
- * to be able to retrieve the orginal HttpServletResponse.
- * 
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * Copyright Apr 18, 2014
- */
+   * ResteasyHttpServletResponseWrapper is introduced to support the use of
+   * RequestDispatcher.forward() and RequestDispatcher.include(), which need
+   * to be able to retrieve the orginal HttpServletResponse.
+   * 
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * Copyright Apr 18, 2014
+   */
 public class ResteasyHttpServletResponseWrapper extends ServletResponseWrapper implements HttpServletResponse
 {
    private HttpServletResponse response;

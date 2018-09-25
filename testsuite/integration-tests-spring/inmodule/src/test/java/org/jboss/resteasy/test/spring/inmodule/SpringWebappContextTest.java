@@ -27,11 +27,11 @@ import java.util.PropertyPermission;
 import java.util.logging.LoggingPermission;
 
 /**
- * @tpSubChapter Spring
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test basic header and uri info context injection with spring dependencies on the classpath
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Spring
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test basic header and uri info context injection with spring dependencies on the classpath
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SpringWebappContextTest {

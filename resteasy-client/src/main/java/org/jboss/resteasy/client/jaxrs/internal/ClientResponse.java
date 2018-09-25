@@ -34,9 +34,9 @@ import org.jboss.resteasy.util.InputStreamToByteArray;
 import org.jboss.resteasy.util.ReadFromStream;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public abstract class ClientResponse extends BuiltResponse
 {
    // One thing to note, I don't cache header objects because I was too lazy to proxy the headers multivalued map
@@ -427,15 +427,15 @@ public abstract class ClientResponse extends BuiltResponse
 
    protected void resetEntity()
    {
-       entity = null;
-       bufferedEntity = null;
-       streamFullyRead = false;
+      entity = null;
+      bufferedEntity = null;
+      streamFullyRead = false;
    }
 
    @Override
    public void abortIfClosed()
    {
-       if (bufferedEntity == null) super.abortIfClosed();
+      if (bufferedEntity == null) super.abortIfClosed();
    }
    
 }

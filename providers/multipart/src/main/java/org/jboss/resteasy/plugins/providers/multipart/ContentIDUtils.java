@@ -10,11 +10,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 /**
- * Utility class to help generate, convert RFC compliant Content-ID and cid.
- * 
- * @author Attila Kiraly
- *
- */
+   * Utility class to help generate, convert RFC compliant Content-ID and cid.
+   * 
+   * @author Attila Kiraly
+   *
+   */
 public class ContentIDUtils {
    public static final String CID_URL_SCHEME = "cid:";
 

@@ -22,11 +22,11 @@ import org.junit.runner.RunWith;
 import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALIFIER;
 
 /**
- * @tpSubChapter Response
- * @tpChapter Integration tests
- * @tpSince RESTEasy 3.0.17
- * @tpTestCaseDetails Regression test for JBEAP-4697
- */
+   * @tpSubChapter Response
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 3.0.17
+   * @tpTestCaseDetails Regression test for JBEAP-4697
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class DuplicateDeploymentTest {

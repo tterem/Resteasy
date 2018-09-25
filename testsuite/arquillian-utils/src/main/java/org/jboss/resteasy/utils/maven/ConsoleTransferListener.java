@@ -13,8 +13,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * This class prints logs about status of downloading of artifacts. It is used from MavenUtil.
- */
+   * This class prints logs about status of downloading of artifacts. It is used from MavenUtil.
+   */
 class ConsoleTransferListener extends AbstractTransferListener {
 
    protected static final Logger logger = LogManager.getLogger(ConsoleRepositoryListener.class.getName());

@@ -50,10 +50,10 @@ import org.eclipse.aether.version.InvalidVersionSpecificationException;
 import org.eclipse.aether.version.VersionScheme;
 
 /**
- * This class was originally written by Kabir Khan to download old maven artifact in wildfly-core.
- * This class was updated for RESTEasy TS purposes.
- * Original sources can be found in wildfly-core:/model-test/src/main/java/org/jboss/as/model/test/MavenUtil.java
- */
+   * This class was originally written by Kabir Khan to download old maven artifact in wildfly-core.
+   * This class was updated for RESTEasy TS purposes.
+   * Original sources can be found in wildfly-core:/model-test/src/main/java/org/jboss/as/model/test/MavenUtil.java
+   */
 public class MavenUtil {
 
    protected static final Logger logger = LogManager.getLogger(MavenUtil.class.getName());

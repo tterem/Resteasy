@@ -19,13 +19,13 @@ import org.junit.runner.RunWith;
 
 
 /**
- * @tpSubChapter Resteasy-client
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for RESTEASY-1671
- * @tpSince RESTEasy 4.0.0
- *
- * Created by rsearls on 8/24/17.
- */
+   * @tpSubChapter Resteasy-client
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for RESTEASY-1671
+   * @tpSince RESTEasy 4.0.0
+   *
+   * Created by rsearls on 8/24/17.
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ProxyNullInputStreamTest {

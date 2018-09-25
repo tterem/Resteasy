@@ -12,9 +12,9 @@ import org.jboss.resteasy.client.jaxrs.ProxyConfig;
 import org.jboss.resteasy.client.jaxrs.i18n.Messages;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class ClientProxy implements InvocationHandler
 {
    private Map<Method, MethodInvoker> methodMap;
@@ -41,7 +41,7 @@ public class ClientProxy implements InvocationHandler
    }
 
    public Object invoke(Object o, Method method, Object[] args)
-           throws Throwable
+         throws Throwable
    {
       // equals and hashCode were added for cases where the proxy is added to
       // collections. The Spring transaction management, for example, adds
@@ -65,7 +65,7 @@ public class ClientProxy implements InvocationHandler
          }
          else if(method.getName().equals("as") && args.length == 1 && args[0] instanceof Class)
          {
-          return ProxyBuilder.proxy((Class<?>)args[0], target, config);
+         return ProxyBuilder.proxy((Class<?>)args[0], target, config);
          }
       }
 

@@ -46,12 +46,12 @@ import com.fasterxml.classmate.members.RawMethod;
 import com.fasterxml.classmate.members.ResolvedMethod;
 
 /**
- * 
- * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
- * @version $Revision: 1.1 $
- *
- * Copyright May 23, 2013
- */
+   * 
+   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+   * @version $Revision: 1.1 $
+   *
+   * Copyright May 23, 2013
+   */
 public class GeneralValidatorImpl implements GeneralValidatorCDI
 {
    public static final String SUPPRESS_VIOLATION_PATH = "resteasy.validation.suppress.path";
@@ -120,8 +120,8 @@ public class GeneralValidatorImpl implements GeneralValidatorCDI
    private ValidationException toValidationException(Exception exception, SimpleViolationsContainer simpleViolationsContainer)
    {
       if (exception instanceof ConstraintDeclarationException ||
-          exception instanceof ConstraintDefinitionException  ||
-          exception instanceof GroupDefinitionException)
+         exception instanceof ConstraintDefinitionException  ||
+         exception instanceof GroupDefinitionException)
       {
          return (ValidationException) exception;
       }
@@ -185,7 +185,7 @@ public class GeneralValidatorImpl implements GeneralValidatorCDI
       if ((violationsContainer.isFieldsValidated()
             || !GetRestful.isRootResource(object.getClass())
             || hasApplicationScope(object))
-          && violationsContainer.size() > 0)
+         && violationsContainer.size() > 0)
       {
          throw new ResteasyViolationExceptionImpl(violationsContainer, request.getHttpHeaders().getAcceptableMediaTypes());
       }

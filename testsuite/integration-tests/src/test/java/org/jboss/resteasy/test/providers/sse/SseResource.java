@@ -136,10 +136,10 @@ public class SseResource
       }
       synchronized (this.sseBroadcasterLock) {
          //subscribe
-          if (sseBroadcaster == null)
-          {
-             sseBroadcaster = sse.newBroadcaster();
-          }
+         if (sseBroadcaster == null)
+         {
+            sseBroadcaster = sse.newBroadcaster();
+         }
       }
       sseBroadcaster.register(sink);
    }

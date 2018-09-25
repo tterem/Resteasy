@@ -35,11 +35,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALIFIER;
 
 /**
- * @tpSubChapter Response
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for JBEAP-3459
- * @tpSince RESTEasy 3.0.17
- */
+   * @tpSubChapter Response
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for JBEAP-3459
+   * @tpSince RESTEasy 3.0.17
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class DuplicitePathTest {

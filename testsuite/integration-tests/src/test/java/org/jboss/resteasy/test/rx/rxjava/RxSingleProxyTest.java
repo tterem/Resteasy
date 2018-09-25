@@ -43,13 +43,13 @@ import rx.Single;
 
 
 /**
- * @tpSubChapter Reactive classes
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- * 
- * In these tests, the server resource methods create and return objects of type Single<T>. 
- * The client uses a proxy that uses a SingleRxInvoker to get objects of type Single<T>.
- */
+   * @tpSubChapter Reactive classes
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   * 
+   * In these tests, the server resource methods create and return objects of type Single<T>. 
+   * The client uses a proxy that uses a SingleRxInvoker to get objects of type Single<T>.
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RxSingleProxyTest {

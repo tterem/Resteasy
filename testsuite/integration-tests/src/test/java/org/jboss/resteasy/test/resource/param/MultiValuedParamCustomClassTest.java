@@ -22,12 +22,12 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
- * @tpSubChapter Parameters
- * @tpChapter Integration tests
- * @tpTestCaseDetails Test for RESTEasy extended support for multivalue @*Param (RESTEASY-1566 + RESTEASY-1746)
- *                    org.jboss.resteasy.test.resource.param.resource.MultiValuedParamPersonWithConverter class is used
- * @tpSince RESTEasy 4.0.0
- */
+   * @tpSubChapter Parameters
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Test for RESTEasy extended support for multivalue @*Param (RESTEASY-1566 + RESTEASY-1746)
+   *                    org.jboss.resteasy.test.resource.param.resource.MultiValuedParamPersonWithConverter class is used
+   * @tpSince RESTEasy 4.0.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MultiValuedParamCustomClassTest {

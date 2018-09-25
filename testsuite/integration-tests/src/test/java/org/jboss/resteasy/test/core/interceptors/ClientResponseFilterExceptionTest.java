@@ -38,11 +38,11 @@ import io.reactivex.Observable;
 import io.reactivex.Single;
 
 /**
- * @tpSubChapter Interceptors
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test for RESTEASY-1932
- * @tpSince RESTEasy 4.0
- */
+   * @tpSubChapter Interceptors
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1932
+   * @tpSince RESTEasy 4.0
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ClientResponseFilterExceptionTest {

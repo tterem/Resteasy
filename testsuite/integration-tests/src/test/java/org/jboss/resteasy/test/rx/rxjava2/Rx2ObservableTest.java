@@ -49,15 +49,15 @@ import org.junit.runners.MethodSorters;
 import io.reactivex.Observable;
 
 /**
- * @tpSubChapter Reactive classes
- * @tpChapter Integration tests
- * @tpSince RESTEasy 4.0
- * 
- * In these tests, the server uses Observables to create results asynchronously and streams the elements
- * of the Observables as they are created.
- * 
- * The client makes invocations on an ObservableRxInvoker.
- */
+   * @tpSubChapter Reactive classes
+   * @tpChapter Integration tests
+   * @tpSince RESTEasy 4.0
+   * 
+   * In these tests, the server uses Observables to create results asynchronously and streams the elements
+   * of the Observables as they are created.
+   * 
+   * The client makes invocations on an ObservableRxInvoker.
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)

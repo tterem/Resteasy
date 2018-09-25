@@ -33,11 +33,11 @@ import java.security.Security;
 import java.security.cert.X509Certificate;
 
 /**
- * @tpSubChapter Crypto
- * @tpChapter Unit tests
- * @tpTestCaseDetails Test for sign by X509Certificate.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Crypto
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Test for sign by X509Certificate.
+   * @tpSince RESTEasy 3.0.16
+   */
 public class SignedTest {
 
    protected static final Logger logger = LogManager.getLogger(SignedTest.class.getName());

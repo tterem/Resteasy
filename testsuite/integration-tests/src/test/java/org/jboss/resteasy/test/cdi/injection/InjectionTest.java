@@ -59,13 +59,13 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter CDI
- * @tpChapter Integration tests
- * @tpTestCaseDetails This is a collection of tests addressed to the interactions of
- *                    Resteasy, CDI, EJB, and so forth in the context of a JEE Application Server.
- *                    It tests the injection of a variety of beans into Resteasy objects.
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter CDI
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails This is a collection of tests addressed to the interactions of
+   *                    Resteasy, CDI, EJB, and so forth in the context of a JEE Application Server.
+   *                    It tests the injection of a variety of beans into Resteasy objects.
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InjectionTest extends AbstractInjectionTestBase {

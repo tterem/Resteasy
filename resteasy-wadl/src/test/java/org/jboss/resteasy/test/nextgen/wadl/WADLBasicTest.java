@@ -26,8 +26,8 @@ import org.junit.Test;
 import com.sun.net.httpserver.HttpServer;
 
 /**
- * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
- */
+   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+   */
 public class WADLBasicTest extends WADLTestSetup {
 
    private static HttpServer httpServer;
@@ -76,17 +76,17 @@ public class WADLBasicTest extends WADLTestSetup {
    @Before
    public void init() {
       setClient(ClientBuilder.newClient());
-       setUrl("http://127.0.0.1:${port}/application.xml".replaceAll("\\$\\{port\\}",
+      setUrl("http://127.0.0.1:${port}/application.xml".replaceAll("\\$\\{port\\}",
          Integer.valueOf(TestPortProvider.getPort()).toString()));
    }
     
    @After
    public void clean() {
-       try {
+      try {
          getClient().close();
          setClient(null);
       } catch (Exception e) {
-           //ignore
+         //ignore
       }
    }
 

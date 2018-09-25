@@ -14,9 +14,9 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
 /**
- * @author Weinan Li
- * @created_at 08 24 2012
- */
+   * @author Weinan Li
+   * @created_at 08 24 2012
+   */
 public class SmokingTest {
    Selenium selenium;
 

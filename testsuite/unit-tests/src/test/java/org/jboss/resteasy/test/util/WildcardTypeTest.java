@@ -13,11 +13,11 @@ import java.lang.reflect.WildcardType;
 import java.util.List;
 
 /**
- * @tpSubChapter Util tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Regression test for RESTEASY-1295, JBEAP-4713
- * @tpSince RESTEasy 3.0.17
- */
+   * @tpSubChapter Util tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1295, JBEAP-4713
+   * @tpSince RESTEasy 3.0.17
+   */
 public class WildcardTypeTest {
    protected final Logger logger = LogManager.getLogger(WildcardTypeTest.class.getName());
 

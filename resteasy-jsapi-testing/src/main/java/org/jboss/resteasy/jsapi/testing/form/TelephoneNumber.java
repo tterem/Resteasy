@@ -3,10 +3,10 @@ package org.jboss.resteasy.jsapi.testing.form;
 import javax.ws.rs.FormParam;
 
 /**
- * 12 05 2012
- *
- * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
- */
+   * 12 05 2012
+   *
+   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+   */
 public class TelephoneNumber {
    @FormParam("countryCode") private String countryCode;
    @FormParam("number") private String number;

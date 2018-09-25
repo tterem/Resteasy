@@ -16,9 +16,9 @@ import org.jboss.resteasy.annotations.security.doseta.Signed;
 import org.jboss.resteasy.core.ResteasyContext;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 @ConstrainedTo(RuntimeType.CLIENT)
 public class ClientDigitalSigningHeaderDecoratorFeature implements DynamicFeature
 {

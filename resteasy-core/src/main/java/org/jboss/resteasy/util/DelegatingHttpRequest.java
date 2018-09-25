@@ -12,9 +12,9 @@ import java.net.URI;
 import java.util.Enumeration;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
- */
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @version $Revision: 1 $
+   */
 public class DelegatingHttpRequest implements HttpRequest
 {
    private HttpRequest delegate;

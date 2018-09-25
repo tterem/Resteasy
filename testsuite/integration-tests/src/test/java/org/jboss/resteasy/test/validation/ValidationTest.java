@@ -35,11 +35,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @tpSubChapter Validator provider
- * @tpChapter Integration tests
- * @tpTestCaseDetails Regression test - RESTEASY-1054
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Validator provider
+   * @tpChapter Integration tests
+   * @tpTestCaseDetails Regression test - RESTEASY-1054
+   * @tpSince RESTEasy 3.0.16
+   */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationTest {

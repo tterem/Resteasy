@@ -5,11 +5,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @tpSubChapter Util tests
- * @tpChapter Unit tests
- * @tpTestCaseDetails Regression test for RESTEASY-1176
- * @tpSince RESTEasy 3.0.16
- */
+   * @tpSubChapter Util tests
+   * @tpChapter Unit tests
+   * @tpTestCaseDetails Regression test for RESTEASY-1176
+   * @tpSince RESTEasy 3.0.16
+   */
 public class PasswordColonTest {
    /**
      * @tpTestDetails Test for BasicAuthHelper

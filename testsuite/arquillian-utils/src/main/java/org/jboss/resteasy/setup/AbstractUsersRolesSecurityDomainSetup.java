@@ -18,9 +18,9 @@ import java.net.URISyntaxException;
 import static org.junit.Assert.assertTrue;
 
 /**
- * This abstract class implements steps needed to create PicketBox or Elytron security domain.
- *
- */
+   * This abstract class implements steps needed to create PicketBox or Elytron security domain.
+   *
+   */
 public abstract class AbstractUsersRolesSecurityDomainSetup implements ServerSetupTask {
 
    // Creaper fields

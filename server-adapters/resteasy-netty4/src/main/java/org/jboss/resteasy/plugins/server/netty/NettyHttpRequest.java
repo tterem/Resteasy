@@ -32,15 +32,15 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Abstraction for an inbound http request on the server, or a response from a server to a client
- * <p>
- * We have this abstraction so that we can reuse marshalling objects in a client framework and serverside framework
- *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @author Norman Maurer
- * @author Kristoffer Sjogren
- * @version $Revision: 1 $
- */
+   * Abstraction for an inbound http request on the server, or a response from a server to a client
+   * <p>
+   * We have this abstraction so that we can reuse marshalling objects in a client framework and serverside framework
+   *
+   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+   * @author Norman Maurer
+   * @author Kristoffer Sjogren
+   * @version $Revision: 1 $
+   */
 public class NettyHttpRequest extends BaseHttpRequest
 {
    protected ResteasyHttpHeaders httpHeaders;
@@ -155,17 +155,17 @@ public class NettyHttpRequest extends BaseHttpRequest
 
    public NettyHttpResponse getResponse()
    {
-       return response;
+      return response;
    }
 
    public boolean isKeepAlive()
    {
-       return response.isKeepAlive();
+      return response.isKeepAlive();
    }
 
    public boolean is100ContinueExpected()
    {
-       return is100ContinueExpected;
+      return is100ContinueExpected;
    }
 
    @Override
@@ -320,8 +320,8 @@ public class NettyHttpRequest extends BaseHttpRequest
             }
             }
 
-           protected synchronized void nettyFlush()
-           {
+         protected synchronized void nettyFlush()
+         {
               flushed = true;
               try
               {
@@ -331,9 +331,9 @@ public class NettyHttpRequest extends BaseHttpRequest
               {
                  throw new RuntimeException(e);
               }
-           }
+         }
 
-           @Override
+         @Override
             public boolean cancel(Date retryAfter) {
             synchronized (responseLock)
             {
