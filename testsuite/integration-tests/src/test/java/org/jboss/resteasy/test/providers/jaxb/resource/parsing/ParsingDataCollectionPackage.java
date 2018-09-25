@@ -39,82 +39,82 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ParsingDataCollectionPackage",
-        propOrder = {
-                "sourceID",
-                "eventID",
-                "dataRecords"
-        })
+      propOrder = {
+            "sourceID",
+            "eventID",
+            "dataRecords"
+      })
 public class ParsingDataCollectionPackage extends ParsingAbstractData {
 
-    @XmlElement(name = "sourceID", required = true)
-    protected String sourceID;
-    @XmlElement(required = true)
-    protected String eventID;
-    @XmlElement(required = true)
-    protected ParsingDataCollectionPackage.DataRecords dataRecords;
+   @XmlElement(name = "sourceID", required = true)
+   protected String sourceID;
+   @XmlElement(required = true)
+   protected String eventID;
+   @XmlElement(required = true)
+   protected ParsingDataCollectionPackage.DataRecords dataRecords;
 
-    /**
+   /**
      * Gets the value of the sourceID property.
      *
      * @return possible object is
      * {@link String }
      */
-    public String getSourceID() {
-        return sourceID;
-    }
+   public String getSourceID() {
+      return sourceID;
+   }
 
-    /**
+   /**
      * Sets the value of the sourceID property.
      *
      * @param value allowed object is
      *              {@link String }
      */
-    public void setSourceID(String value) {
-        this.sourceID = value;
-    }
+   public void setSourceID(String value) {
+      this.sourceID = value;
+   }
 
-    /**
+   /**
      * Gets the value of the eventID property.
      *
      * @return possible object is
      * {@link String }
      */
-    public String getEventID() {
-        return eventID;
-    }
+   public String getEventID() {
+      return eventID;
+   }
 
-    /**
+   /**
      * Sets the value of the eventID property.
      *
      * @param value allowed object is
      *              {@link String }
      */
-    public void setEventID(String value) {
-        this.eventID = value;
-    }
+   public void setEventID(String value) {
+      this.eventID = value;
+   }
 
-    /**
+   /**
      * Gets the value of the dataRecords property.
      *
      * @return possible object is
      * {@link ParsingDataCollectionPackage.DataRecords }
      */
-    public ParsingDataCollectionPackage.DataRecords getDataRecords() {
-        return dataRecords;
-    }
+   public ParsingDataCollectionPackage.DataRecords getDataRecords() {
+      return dataRecords;
+   }
 
-    /**
+   /**
      * Sets the value of the dataRecords property.
      *
      * @param value allowed object is
      *              {@link ParsingDataCollectionPackage.DataRecords }
      */
-    public void setDataRecords(ParsingDataCollectionPackage.DataRecords value) {
-        this.dataRecords = value;
-    }
+   public void setDataRecords(ParsingDataCollectionPackage.DataRecords value) {
+      this.dataRecords = value;
+   }
 
 
-    /**
+   /**
      * <p>Java class for anonymous complex type.
      * <p>
      * <p>The following schema fragment specifies the expected content contained within this class.
@@ -131,16 +131,16 @@ public class ParsingDataCollectionPackage extends ParsingAbstractData {
      * &lt;/complexType>
      * </pre>
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-            "dataCollectionRecord"
-    })
-    public static class DataRecords {
+   @XmlAccessorType(XmlAccessType.FIELD)
+   @XmlType(name = "", propOrder = {
+         "dataCollectionRecord"
+   })
+   public static class DataRecords {
 
-        @XmlElement(name = "ParsingDataCollectionRecord", required = true)
-        protected List<ParsingDataCollectionRecord> dataCollectionRecord;
+      @XmlElement(name = "ParsingDataCollectionRecord", required = true)
+      protected List<ParsingDataCollectionRecord> dataCollectionRecord;
 
-        /**
+      /**
          * Gets the value of the dataCollectionRecord property.
          * <p>
          * <p>
@@ -160,14 +160,14 @@ public class ParsingDataCollectionPackage extends ParsingAbstractData {
          * Objects of the following type(s) are allowed in the list
          * {@link ParsingDataCollectionRecord }
          */
-        public List<ParsingDataCollectionRecord> getDataCollectionRecord() {
-            if (dataCollectionRecord == null) {
-                dataCollectionRecord = new ArrayList<ParsingDataCollectionRecord>();
-            }
-            return this.dataCollectionRecord;
-        }
+      public List<ParsingDataCollectionRecord> getDataCollectionRecord() {
+         if (dataCollectionRecord == null) {
+            dataCollectionRecord = new ArrayList<ParsingDataCollectionRecord>();
+         }
+         return this.dataCollectionRecord;
+      }
 
 
-    }
+   }
 
 }

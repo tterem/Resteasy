@@ -42,30 +42,30 @@ public class LinkHeader
    }
 
    /**
-    * Index of links by relationship "rel" or "rev"
-    *
-    * @return map
-    */
+   * Index of links by relationship "rel" or "rev"
+   *
+   * @return map
+   */
    public Map<String, Link> getLinksByRelationship()
    {
       return linksByRelationship;
    }
 
    /**
-    * Index of links by title
-    *
-    * @return map
-    */
+   * Index of links by title
+   *
+   * @return map
+   */
    public Map<String, Link> getLinksByTitle()
    {
       return linksByTitle;
    }
 
    /**
-    * All the links defined
-    *
-    * @return links
-    */
+   * All the links defined
+   *
+   * @return links
+   */
    public List<Link> getLinks()
    {
       return links;

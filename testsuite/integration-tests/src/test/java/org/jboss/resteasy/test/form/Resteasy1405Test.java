@@ -90,9 +90,9 @@ public class Resteasy1405Test
    }
 
    /**
-    * @tpTestDetails Injection of Content-type into MultiPartForm with annotated form fields
-    * @tpSince RESTEasy 3.1.0
-    */
+   * @tpTestDetails Injection of Content-type into MultiPartForm with annotated form fields
+   * @tpSince RESTEasy 3.1.0
+   */
    @Test
    public void testInputPartByField() throws Exception
    {
@@ -122,9 +122,9 @@ public class Resteasy1405Test
    }
 
    /**
-    * @tpTestDetails Injection of Content-type into MultiPartForm with annotated form setters
-    * @tpSince RESTEasy 3.1.0
-    */
+   * @tpTestDetails Injection of Content-type into MultiPartForm with annotated form setters
+   * @tpSince RESTEasy 3.1.0
+   */
    @Test
    public void testInputPartBySetter() throws Exception
    {

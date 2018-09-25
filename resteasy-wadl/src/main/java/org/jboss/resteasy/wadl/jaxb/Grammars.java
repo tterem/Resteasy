@@ -41,19 +41,19 @@ import org.w3c.dom.Element;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "doc",
-    "include",
-    "any"
+   "doc",
+   "include",
+   "any"
 })
 @XmlRootElement(name = "grammars")
 public class Grammars {
 
-    protected List<Doc> doc;
-    protected List<Include> include;
-    @XmlAnyElement(lax = true)
-    protected List<Object> any;
+   protected List<Doc> doc;
+   protected List<Include> include;
+   @XmlAnyElement(lax = true)
+   protected List<Object> any;
 
-    /**
+   /**
      * Gets the value of the doc property.
      * 
      * <p>
@@ -75,14 +75,14 @@ public class Grammars {
      * 
      * 
      */
-    public List<Doc> getDoc() {
-        if (doc == null) {
-            doc = new ArrayList<Doc>();
-        }
-        return this.doc;
-    }
+   public List<Doc> getDoc() {
+      if (doc == null) {
+         doc = new ArrayList<Doc>();
+      }
+      return this.doc;
+   }
 
-    /**
+   /**
      * Gets the value of the include property.
      * 
      * <p>
@@ -104,14 +104,14 @@ public class Grammars {
      * 
      * 
      */
-    public List<Include> getInclude() {
-        if (include == null) {
-            include = new ArrayList<Include>();
-        }
-        return this.include;
-    }
+   public List<Include> getInclude() {
+      if (include == null) {
+         include = new ArrayList<Include>();
+      }
+      return this.include;
+   }
 
-    /**
+   /**
      * Gets the value of the any property.
      * 
      * <p>
@@ -134,11 +134,11 @@ public class Grammars {
      * 
      * 
      */
-    public List<Object> getAny() {
-        if (any == null) {
-            any = new ArrayList<Object>();
-        }
-        return this.any;
-    }
+   public List<Object> getAny() {
+      if (any == null) {
+         any = new ArrayList<Object>();
+      }
+      return this.any;
+   }
 
 }

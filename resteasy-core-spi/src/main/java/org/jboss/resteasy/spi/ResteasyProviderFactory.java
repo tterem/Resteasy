@@ -66,10 +66,10 @@ public abstract class ResteasyProviderFactory extends RuntimeDelegate implements
 
 
    /**
-    * Will not initialize singleton if not set.
-    *
-    * @return provider factory singleton
-    */
+   * Will not initialize singleton if not set.
+   *
+   * @return provider factory singleton
+   */
    public static ResteasyProviderFactory peekInstance()
    {
       return instance;
@@ -96,10 +96,10 @@ public abstract class ResteasyProviderFactory extends RuntimeDelegate implements
    static final Object RD_LOCK = new Object();
 
    /**
-    * Initializes ResteasyProviderFactory singleton if not set.
-    *
-    * @return singleton provider factory
-    */
+   * Initializes ResteasyProviderFactory singleton if not set.
+   *
+   * @return singleton provider factory
+   */
    public static ResteasyProviderFactory getInstance()
    {
       ResteasyProviderFactory result = instance;
@@ -199,41 +199,41 @@ public abstract class ResteasyProviderFactory extends RuntimeDelegate implements
    public abstract void registerProvider(Class provider);
 
    /**
-    * Convert an object to a string.  First try StringConverter then, object.ToString()
-    *
-    * @param object object
-    * @param clazz class
-    * @param genericType generic type
-    * @param annotations array of annotation
-    * @return string representation
-    */
+   * Convert an object to a string.  First try StringConverter then, object.ToString()
+   *
+   * @param object object
+   * @param clazz class
+   * @param genericType generic type
+   * @param annotations array of annotation
+   * @return string representation
+   */
    public abstract String toString(Object object, Class clazz, Type genericType, Annotation[] annotations);
 
    /**
-    * Checks to see if RuntimeDelegate is a ResteasyProviderFactory
-    * If it is, then use that, otherwise use this.
-    *
-    * @param aClass class of the header
-    * @return header delegate
-    */
+   * Checks to see if RuntimeDelegate is a ResteasyProviderFactory
+   * If it is, then use that, otherwise use this.
+   *
+   * @param aClass class of the header
+   * @return header delegate
+   */
    public abstract HeaderDelegate getHeaderDelegate(Class<?> aClass);
 
    /**
-    * Register a @Provider class.  Can be a MessageBodyReader/Writer or ExceptionMapper.
-    *
-    * @param provider provider class
-    * @param isBuiltin built-in
-    */
+   * Register a @Provider class.  Can be a MessageBodyReader/Writer or ExceptionMapper.
+   *
+   * @param provider provider class
+   * @param isBuiltin built-in
+   */
    public abstract void registerProvider(Class provider, boolean isBuiltin);
 
    public abstract void registerProvider(Class provider, Integer priorityOverride, boolean isBuiltin,
          Map<Class<?>, Integer> contracts);
 
    /**
-    * Register a @Provider object.  Can be a MessageBodyReader/Writer or ExceptionMapper.
-    *
-    * @param provider provider instance
-    */
+   * Register a @Provider object.  Can be a MessageBodyReader/Writer or ExceptionMapper.
+   *
+   * @param provider provider instance
+   */
    public abstract void registerProviderInstance(Object provider);
 
    public abstract void registerProviderInstance(Object provider, Map<Class<?>, Integer> contracts,
@@ -265,33 +265,33 @@ public abstract class ResteasyProviderFactory extends RuntimeDelegate implements
    //   private <T> MessageBodyWriter<T> resolveMessageBodyWriter(Class<T> type, Type genericType, Annotation[] annotations, MediaType mediaType, MediaTypeMap<SortedKey<MessageBodyWriter>> availableWriters);
 
    /**
-    * Create an instance of a class using provider allocation rules of the specification as well as the InjectorFactory
-    * only does constructor injection.
-    *
-    * @param clazz class
-    * @param <T> type
-    * @return provider instance of type T
-    */
+   * Create an instance of a class using provider allocation rules of the specification as well as the InjectorFactory
+   * only does constructor injection.
+   *
+   * @param clazz class
+   * @param <T> type
+   * @return provider instance of type T
+   */
    public abstract <T> T createProviderInstance(Class<? extends T> clazz);
 
    /**
-    * Property and constructor injection using the InjectorFactory.
-    *
-    * @param clazz class
-    * @param <T> type
-    * @return instance of type T
-    */
+   * Property and constructor injection using the InjectorFactory.
+   *
+   * @param clazz class
+   * @param <T> type
+   * @return instance of type T
+   */
    public abstract <T> T injectedInstance(Class<? extends T> clazz);
 
    /**
-    * Property and constructor injection using the InjectorFactory.
-    *
-    * @param clazz class
-    * @param request http request
-    * @param response http response
-    * @param <T> type
-    * @return instance of type T
-    */
+   * Property and constructor injection using the InjectorFactory.
+   *
+   * @param clazz class
+   * @param request http request
+   * @param response http response
+   * @param <T> type
+   * @return instance of type T
+   */
    public abstract <T> T injectedInstance(Class<? extends T> clazz, HttpRequest request, HttpResponse response);
 
    public abstract void injectProperties(Object obj);

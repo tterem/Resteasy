@@ -47,9 +47,9 @@ public class FilteredCookieTest {
    }
 
    /**
-    * @tpTestDetails Tests if multiple cookies are returned by the server
-    * @tpSince RESTEasy 3.1.0.Final
-    */
+   * @tpTestDetails Tests if multiple cookies are returned by the server
+   * @tpSince RESTEasy 3.1.0.Final
+   */
    @Test
    public void testServerHeaders() {
       

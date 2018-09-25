@@ -19,8 +19,8 @@ public class LinkImpl extends Link
    protected final URI uri;
 
    /**
-    * A map for all the link parameters such as "rel", "type", etc.
-    */
+   * A map for all the link parameters such as "rel", "type", etc.
+   */
    protected final Map<String, String> map;
 
    protected static final RuntimeDelegate.HeaderDelegate<Link> delegate =
@@ -33,10 +33,10 @@ public class LinkImpl extends Link
    
    LinkImpl(URI uri, Map<String, String> map) 
    {
-	  this.uri = uri;
-	  this.map = map.isEmpty() ? Collections.<String, String> emptyMap() : Collections
-		.unmodifiableMap(new HashMap<String, String>(map));
-	}
+     this.uri = uri;
+     this.map = map.isEmpty() ? Collections.<String, String> emptyMap() : Collections
+      .unmodifiableMap(new HashMap<String, String>(map));
+   }
 
    @Override
    public URI getUri() {

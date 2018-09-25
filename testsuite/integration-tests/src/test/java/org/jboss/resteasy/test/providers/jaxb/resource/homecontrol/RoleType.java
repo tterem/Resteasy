@@ -27,30 +27,30 @@ public enum RoleType {
 
 
    /**
-    * standard role which is needed to access the homecontrol application
-    *
-    *
-    */
+   * standard role which is needed to access the homecontrol application
+   *
+   *
+   */
    USER,
 
    /**
-    * Administration user for administrate the whole homecontrol application
-    *
-    *
-    */
+   * Administration user for administrate the whole homecontrol application
+   *
+   *
+   */
    ADMIN,
 
    /**
-    * User for the backup module of homecontrol
-    *
-    *
-    */
+   * User for the backup module of homecontrol
+   *
+   *
+   */
    BACKUP_USER,
 
    /**
-    * Admin user for administrating the backup module of homecontrol
-    *
-    */
+   * Admin user for administrating the backup module of homecontrol
+   *
+   */
    BACKUP_ADMIN;
 
    public String value() {

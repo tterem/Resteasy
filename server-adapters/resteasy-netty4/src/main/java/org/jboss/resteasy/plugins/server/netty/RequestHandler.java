@@ -35,9 +35,9 @@ public class RequestHandler extends SimpleChannelInboundHandler
       this.dispatcher = dispatcher;
    }
 
-    @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
-        if (msg instanceof NettyHttpRequest) {
+   @Override
+   protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
+      if (msg instanceof NettyHttpRequest) {
             NettyHttpRequest request = (NettyHttpRequest) msg;
             try {
 
@@ -46,27 +46,27 @@ public class RequestHandler extends SimpleChannelInboundHandler
 //                    send100Continue(ctx);
 //                }
 
-                NettyHttpResponse response = request.getResponse();
-                try {
-                    dispatcher.service(ctx, request, response, true);
-                } catch (Failure e1) {
-                    response.reset();
-                    response.setStatus(e1.getErrorCode());
-                } catch (Exception ex) {
-                    response.reset();
-                    response.setStatus(500);
-                    LogMessages.LOGGER.error(Messages.MESSAGES.unexpected(), ex);
-                }
-
-                if (!request.getAsyncContext().isSuspended()) {
-                    response.finish();
-                }
-            } finally {
-                request.releaseContentBuffer();
+            NettyHttpResponse response = request.getResponse();
+            try {
+               dispatcher.service(ctx, request, response, true);
+            } catch (Failure e1) {
+               response.reset();
+               response.setStatus(e1.getErrorCode());
+            } catch (Exception ex) {
+               response.reset();
+               response.setStatus(500);
+               LogMessages.LOGGER.error(Messages.MESSAGES.unexpected(), ex);
             }
 
-        }
-    }
+            if (!request.getAsyncContext().isSuspended()) {
+               response.finish();
+            }
+            } finally {
+            request.releaseContentBuffer();
+            }
+
+      }
+   }
 
 // No longer called. However, note that if it is called, it should write a 
 // io.netty.handler.codec.http.DefaultFullHttpResponse rather
@@ -97,10 +97,10 @@ public class RequestHandler extends SimpleChannelInboundHandler
       }
    }
 
-    @Override
-    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-        if (evt instanceof IdleStateEvent) {
+   @Override
+   public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+      if (evt instanceof IdleStateEvent) {
             ctx.close();
-        }
-    }
+      }
+   }
 }

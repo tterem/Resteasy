@@ -199,7 +199,7 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
                  .getAttribute(InputPart.DEFAULT_CONTENT_TYPE_PROPERTY);
          if (defaultContentType != null)
             this.defaultPartContentType = MediaType
-                    .valueOf(defaultContentType);
+               .valueOf(defaultContentType);
          this.defaultPartCharset = (String) httpRequest.getAttribute(InputPart.DEFAULT_CHARSET_PROPERTY);
          if (defaultPartCharset != null)
          {
@@ -509,10 +509,10 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
    }
 
    /**
-    * A custom TempFileStorageProvider that do no set deleteOnExit on temp files,
-    * to avoid memory leaks (see https://issues.apache.org/jira/browse/MIME4J-251)
-    *
-    */
+   * A custom TempFileStorageProvider that do no set deleteOnExit on temp files,
+   * to avoid memory leaks (see https://issues.apache.org/jira/browse/MIME4J-251)
+   *
+   */
    private static class CustomTempFileStorageProvider extends AbstractStorageProvider
    {
 

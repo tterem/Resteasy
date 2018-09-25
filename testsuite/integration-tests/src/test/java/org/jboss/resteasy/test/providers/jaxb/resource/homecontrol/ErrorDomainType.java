@@ -26,17 +26,17 @@ public enum ErrorDomainType {
 
 
    /**
-    * The error happend on the server side and can't be corrected with changing the request
-    *                         format
-    *
-    *
-    */
+   * The error happend on the server side and can't be corrected with changing the request
+   *                         format
+   *
+   *
+   */
    SERVER,
 
    /**
-    * The error happend because of the request or the requests content.
-    *
-    */
+   * The error happend because of the request or the requests content.
+   *
+   */
    REQUEST;
 
    public String value() {

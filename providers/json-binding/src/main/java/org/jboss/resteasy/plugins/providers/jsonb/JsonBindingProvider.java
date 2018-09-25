@@ -41,7 +41,7 @@ import org.jboss.resteasy.spi.util.Types;
 @Consumes({"application/json", "application/*+json", "text/json", "*/*"})
 @Priority(Priorities.USER-100)
 public class JsonBindingProvider extends AbstractJsonBindingProvider
-        implements MessageBodyReader<Object>, MessageBodyWriter<Object> {
+      implements MessageBodyReader<Object>, MessageBodyWriter<Object> {
 
    private final boolean disabled;
    
@@ -49,7 +49,7 @@ public class JsonBindingProvider extends AbstractJsonBindingProvider
       super();
       ResteasyConfiguration context = ResteasyContext.getContextData(ResteasyConfiguration.class);
       disabled = (context != null && (Boolean.parseBoolean(context.getParameter(ResteasyContextParameters.RESTEASY_PREFER_JACKSON_OVER_JSONB))
-                || Boolean.parseBoolean(context.getParameter("resteasy.jsonp.enable"))));
+            || Boolean.parseBoolean(context.getParameter("resteasy.jsonp.enable"))));
    }
    
    @Override
@@ -64,7 +64,7 @@ public class JsonBindingProvider extends AbstractJsonBindingProvider
          return false;
       }
       return (isSupportedMediaType(mediaType))
-    		  && ((hasJsonBindingAnnotations(annotations)) || (!isJaxbClass(type)));
+            && ((hasJsonBindingAnnotations(annotations)) || (!isJaxbClass(type)));
    }
 
    @Override

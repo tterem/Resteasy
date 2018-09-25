@@ -58,32 +58,32 @@ import org.w3c.dom.Element;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "doc",
-    "param",
-    "methodOrResource",
-    "any"
+   "doc",
+   "param",
+   "methodOrResource",
+   "any"
 })
 @XmlRootElement(name = "resource_type")
 public class ResourceType {
 
-    protected List<Doc> doc;
-    protected List<Param> param;
-    @XmlElements({
-        @XmlElement(name = "method", type = Method.class),
-        @XmlElement(name = "resource", type = Resource.class)
-    })
-    protected List<Object> methodOrResource;
-    @XmlAnyElement(lax = true)
-    protected List<Object> any;
-    @XmlAttribute(name = "id")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlID
-    @XmlSchemaType(name = "ID")
-    protected String id;
-    @XmlAnyAttribute
-    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+   protected List<Doc> doc;
+   protected List<Param> param;
+   @XmlElements({
+      @XmlElement(name = "method", type = Method.class),
+      @XmlElement(name = "resource", type = Resource.class)
+   })
+   protected List<Object> methodOrResource;
+   @XmlAnyElement(lax = true)
+   protected List<Object> any;
+   @XmlAttribute(name = "id")
+   @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+   @XmlID
+   @XmlSchemaType(name = "ID")
+   protected String id;
+   @XmlAnyAttribute
+   private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
-    /**
+   /**
      * Gets the value of the doc property.
      * 
      * <p>
@@ -105,14 +105,14 @@ public class ResourceType {
      * 
      * 
      */
-    public List<Doc> getDoc() {
-        if (doc == null) {
-            doc = new ArrayList<Doc>();
-        }
-        return this.doc;
-    }
+   public List<Doc> getDoc() {
+      if (doc == null) {
+         doc = new ArrayList<Doc>();
+      }
+      return this.doc;
+   }
 
-    /**
+   /**
      * Gets the value of the param property.
      * 
      * <p>
@@ -134,14 +134,14 @@ public class ResourceType {
      * 
      * 
      */
-    public List<Param> getParam() {
-        if (param == null) {
-            param = new ArrayList<Param>();
-        }
-        return this.param;
-    }
+   public List<Param> getParam() {
+      if (param == null) {
+         param = new ArrayList<Param>();
+      }
+      return this.param;
+   }
 
-    /**
+   /**
      * Gets the value of the methodOrResource property.
      * 
      * <p>
@@ -164,14 +164,14 @@ public class ResourceType {
      * 
      * 
      */
-    public List<Object> getMethodOrResource() {
-        if (methodOrResource == null) {
-            methodOrResource = new ArrayList<Object>();
-        }
-        return this.methodOrResource;
-    }
+   public List<Object> getMethodOrResource() {
+      if (methodOrResource == null) {
+         methodOrResource = new ArrayList<Object>();
+      }
+      return this.methodOrResource;
+   }
 
-    /**
+   /**
      * Gets the value of the any property.
      * 
      * <p>
@@ -194,14 +194,14 @@ public class ResourceType {
      * 
      * 
      */
-    public List<Object> getAny() {
-        if (any == null) {
-            any = new ArrayList<Object>();
-        }
-        return this.any;
-    }
+   public List<Object> getAny() {
+      if (any == null) {
+         any = new ArrayList<Object>();
+      }
+      return this.any;
+   }
 
-    /**
+   /**
      * Gets the value of the id property.
      * 
      * @return
@@ -209,11 +209,11 @@ public class ResourceType {
      *     {@link String }
      *     
      */
-    public String getId() {
-        return id;
-    }
+   public String getId() {
+      return id;
+   }
 
-    /**
+   /**
      * Sets the value of the id property.
      * 
      * @param value
@@ -221,11 +221,11 @@ public class ResourceType {
      *     {@link String }
      *     
      */
-    public void setId(String value) {
-        this.id = value;
-    }
+   public void setId(String value) {
+      this.id = value;
+   }
 
-    /**
+   /**
      * Gets a map that contains attributes that aren't bound to any typed property on this class.
      * 
      * <p>
@@ -239,8 +239,8 @@ public class ResourceType {
      * @return
      *     always non-null
      */
-    public Map<QName, String> getOtherAttributes() {
-        return otherAttributes;
-    }
+   public Map<QName, String> getOtherAttributes() {
+      return otherAttributes;
+   }
 
 }

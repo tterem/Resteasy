@@ -77,9 +77,9 @@ public class VariantQuality
 
 
    /**
-    * @return the quality value between zero and one with five decimal places after the point.
-    * @see "3.3 Computing overall quality values"
-    */
+   * @return the quality value between zero and one with five decimal places after the point.
+   * @see "3.3 Computing overall quality values"
+   */
    public BigDecimal getOverallQuality()
    {
       BigDecimal qt = BigDecimal.valueOf(mediaTypeQualityValue.intValue(), 3);

@@ -229,19 +229,19 @@ abstract public class ConfigurationBootstrap implements ResteasyConfiguration
       return deployment;
    }
 
-    protected boolean parseBooleanParam(String key, String value) {
-        value = value.trim().toLowerCase();
-        if (value.equals("true") || value.equals("1")) {
+   protected boolean parseBooleanParam(String key, String value) {
+      value = value.trim().toLowerCase();
+      if (value.equals("true") || value.equals("1")) {
             return true;
-        } else if (value.equals("false") || value.equals("0")) {
+      } else if (value.equals("false") || value.equals("0")) {
             return false;
-        } else {
+      } else {
            throw new RuntimeException(Messages.MESSAGES.keyCouldNotBeParsed(key));
 
-        }
-    }
+      }
+   }
 
-    protected Map<String, String> parseMap(String map)
+   protected Map<String, String> parseMap(String map)
    {
       Map<String, String> parsed = new HashMap<String, String>();
       String[] entries = map.trim().split(",");

@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlValue;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "base64Binary", propOrder = {
-        "value"
+      "value"
 })
 @XmlSeeAlso({
-        BinaryType.class
+      BinaryType.class
 })
 public class Base64Binary {
 
@@ -40,47 +40,47 @@ public class Base64Binary {
    protected String contentType;
 
    /**
-    * Ruft den Wert der value-Eigenschaft ab.
-    *
-    * @return
-    *     possible object is
-    *     byte[]
-    */
+   * Ruft den Wert der value-Eigenschaft ab.
+   *
+   * @return
+   *     possible object is
+   *     byte[]
+   */
    public byte[] getValue() {
       return value;
    }
 
    /**
-    * Legt den Wert der value-Eigenschaft fest.
-    *
-    * @param value
-    *     allowed object is
-    *     byte[]
-    */
+   * Legt den Wert der value-Eigenschaft fest.
+   *
+   * @param value
+   *     allowed object is
+   *     byte[]
+   */
    public void setValue(byte[] value) {
       this.value = value;
    }
 
    /**
-    * Ruft den Wert der contentType-Eigenschaft ab.
-    *
-    * @return
-    *     possible object is
-    *     {@link String }
-    *
-    */
+   * Ruft den Wert der contentType-Eigenschaft ab.
+   *
+   * @return
+   *     possible object is
+   *     {@link String }
+   *
+   */
    public String getContentType() {
       return contentType;
    }
 
    /**
-    * Legt den Wert der contentType-Eigenschaft fest.
-    *
-    * @param value
-    *     allowed object is
-    *     {@link String }
-    *
-    */
+   * Legt den Wert der contentType-Eigenschaft fest.
+   *
+   * @param value
+   *     allowed object is
+   *     {@link String }
+   *
+   */
    public void setContentType(String value) {
       this.contentType = value;
    }

@@ -309,7 +309,7 @@ public class JSAPIWriter
          if (matcher.start() > i)
          {
             writer.println(" uri += '"
-                    + replacedCurlyURI.substring(i, matcher.start()) + "';");
+               + replacedCurlyURI.substring(i, matcher.start()) + "';");
          }
          String name = matcher.group(1);
          writer.println(" uri += REST.Encoding.encodePathSegment(params." + name + ");");

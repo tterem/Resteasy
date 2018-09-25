@@ -191,17 +191,17 @@ public class ApacheHttpAsyncClient4Engine implements AsyncClientHttpEngine, Clos
 
 
    /**
-    * ResponseConsumer which transfers the response piecewise from the io-thread to the blocking handler-thread.
-    * {@link #future(Future)} returns a Future which completes immediately after receiving the response-headers
-    * but reading the response-inputstream blocks until data is available.
-    */
+   * ResponseConsumer which transfers the response piecewise from the io-thread to the blocking handler-thread.
+   * {@link #future(Future)} returns a Future which completes immediately after receiving the response-headers
+   * but reading the response-inputstream blocks until data is available.
+   */
    private static class StreamingResponseConsumer<T> implements HttpAsyncResponseConsumer<T>
    {
       private static final IOException unallowedBlockingReadException = new IOException("blocking reads inside an async io-handler are not allowed") {
          public synchronized Throwable fillInStackTrace() {
             //do nothing and return
             return this;
-        }
+      }
       };
       
       private ClientConfiguration configuration;
@@ -496,10 +496,10 @@ public class ApacheHttpAsyncClient4Engine implements AsyncClientHttpEngine, Clos
    }
 
    /**
-    * Buffers response fully in memory.
-    *
-    * (Buffering is definitely easier to implement than streaming)
-    */
+   * Buffers response fully in memory.
+   *
+   * (Buffering is definitely easier to implement than streaming)
+   */
    private static class BufferingResponseConsumer<T> extends AbstractAsyncResponseConsumer<T>
    {
 
@@ -570,8 +570,8 @@ public class ApacheHttpAsyncClient4Engine implements AsyncClientHttpEngine, Clos
    }
 
    /**
-    * Adapter from http-FutureCallback<T> to InvocationCallback<T>
-    */
+   * Adapter from http-FutureCallback<T> to InvocationCallback<T>
+   */
    private static class CallbackAdapter<T> implements FutureCallback<T>
    {
       private final InvocationCallback<T> invocationCallback;
@@ -617,8 +617,8 @@ public class ApacheHttpAsyncClient4Engine implements AsyncClientHttpEngine, Clos
    }
 
    /**
-    * ClientResponse with surefire releaseConnection
-    */
+   * ClientResponse with surefire releaseConnection
+   */
    private static class ConnectionResponse extends ClientResponse
    {
 
@@ -653,7 +653,7 @@ public class ApacheHttpAsyncClient4Engine implements AsyncClientHttpEngine, Clos
       @Override
       public synchronized void releaseConnection() throws IOException
       {
-        releaseConnection(false);
+      releaseConnection(false);
       }
       
       @Override

@@ -28,8 +28,8 @@ public class PathHelper
    public static final Pattern URI_PARAM_WITHOUT_REGEX_PATTERN = Pattern.compile(URI_PARAM_WITHOUT_REGEX);
 
    /**
-    * A regex pattern that searches for a URI template parameter in the form of {*}
-    */
+   * A regex pattern that searches for a URI template parameter in the form of {*}
+   */
    public static final Pattern URI_TEMPLATE_PATTERN = Pattern.compile("(\\{([^}]+)\\})");
 
    public static final String URI_TEMPLATE_REPLACE_PATTERN = "(.*?)";
@@ -72,10 +72,10 @@ public class PathHelper
    }
 
    /**
-    * A cheaper (memory-wise) version of replaceEnclosedCurlyBraces(String str).
-    * @param str input string
-    * @return replaced output
-    */
+   * A cheaper (memory-wise) version of replaceEnclosedCurlyBraces(String str).
+   * @param str input string
+   * @return replaced output
+   */
    public static CharSequence replaceEnclosedCurlyBracesCS(String str)
    {
       int open = 0;

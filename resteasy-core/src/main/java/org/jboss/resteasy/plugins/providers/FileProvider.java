@@ -36,7 +36,7 @@ import org.jboss.resteasy.util.NoContent;
 @Produces("*/*")
 @Consumes("*/*")
 public class FileProvider implements MessageBodyReader<File>,
-        MessageBodyWriter<File>
+      MessageBodyWriter<File>
 {
    private static final String PREFIX = "pfx";
 
@@ -65,7 +65,7 @@ public class FileProvider implements MessageBodyReader<File>,
          try
          {
             downloadedFile = File.createTempFile(PREFIX, SUFFIX, new File(
-                    _downloadDirectory));
+               _downloadDirectory));
          }
          catch (final IOException ex)
          {
@@ -137,7 +137,7 @@ public class FileProvider implements MessageBodyReader<File>,
       int byteUnit = range.indexOf("bytes=");
       if ( byteUnit < 0)
       {
-    	  //must start with 'bytes'
+         //must start with 'bytes'
           writeIt(uploadFile, entityStream);
           return;
       }

@@ -134,14 +134,14 @@ public class ClientInvocation implements Invocation
    }
 
    /**
-    * Extracts result from response throwing an appropriate exception if not a successful response.
-    *
-    * @param responseType generic type
-    * @param response response entity
-    * @param annotations array of annotations
-    * @param <T> type
-    * @return extracted result of type T
-    */
+   * Extracts result from response throwing an appropriate exception if not a successful response.
+   *
+   * @param responseType generic type
+   * @param response response entity
+   * @param annotations array of annotations
+   * @param <T> type
+   * @return extracted result of type T
+   */
    public static <T> T extractResult(GenericType<T> responseType, Response response, Annotation[] annotations)
    {
       int status = response.getStatus();
@@ -238,12 +238,12 @@ public class ClientInvocation implements Invocation
    }
 
    /**
-    * Throw an exception.  Expecting a status of 400 or greater.
-    *
-    * @param response response entity
-    * @param <T> type
-    * @return unreachable
-    */
+   * Throw an exception.  Expecting a status of 400 or greater.
+   *
+   * @param response response entity
+   * @param <T> type
+   * @return unreachable
+   */
    public static <T> T handleErrorStatus(Response response)
    {
       final int status = response.getStatus();

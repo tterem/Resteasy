@@ -55,15 +55,15 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AppWorkspace extends AppCommonAttributes
 {
-    private static final long serialVersionUID = -2595744438212041512L;
-    @XmlElement(namespace = "http://www.w3.org/2005/Atom", required = true)
-    protected String title;
+   private static final long serialVersionUID = -2595744438212041512L;
+   @XmlElement(namespace = "http://www.w3.org/2005/Atom", required = true)
+   protected String title;
     
-    protected List<AppCollection> collection;
-    @XmlAnyElement(lax = true)
-    protected List<Object> any;
+   protected List<AppCollection> collection;
+   @XmlAnyElement(lax = true)
+   protected List<Object> any;
 
-    /**
+   /**
      * Gets the value of the title property.
      * 
      * @return
@@ -71,11 +71,11 @@ public class AppWorkspace extends AppCommonAttributes
      *     {@link String }
      *     
      */
-    public String getTitle() {
-        return title;
-    }
+   public String getTitle() {
+      return title;
+   }
 
-    /**
+   /**
      * Sets the value of the title property.
      * 
      * @param value
@@ -83,11 +83,11 @@ public class AppWorkspace extends AppCommonAttributes
      *     {@link String }
      *     
      */
-    public void setTitle(String value) {
-        this.title = value;
-    }
+   public void setTitle(String value) {
+      this.title = value;
+   }
 
-    /**
+   /**
      * Gets the value of the collection property.
      * 
      * <p>
@@ -110,14 +110,14 @@ public class AppWorkspace extends AppCommonAttributes
      * @return list of {@link AppCollection}
      * 
      */
-    public List<AppCollection> getCollection() {
-        if (collection == null) {
-            collection = new ArrayList<AppCollection>();
-        }
-        return this.collection;
-    }
+   public List<AppCollection> getCollection() {
+      if (collection == null) {
+         collection = new ArrayList<AppCollection>();
+      }
+      return this.collection;
+   }
 
-    /**
+   /**
      * Gets the value of the any property.
      * 
      * <p>
@@ -141,10 +141,10 @@ public class AppWorkspace extends AppCommonAttributes
      * @return list of objects
      * 
      */
-    public List<Object> getAny() {
-        if (any == null) {
-            any = new ArrayList<Object>();
-        }
-        return this.any;
-    }
+   public List<Object> getAny() {
+      if (any == null) {
+         any = new ArrayList<Object>();
+      }
+      return this.any;
+   }
 }

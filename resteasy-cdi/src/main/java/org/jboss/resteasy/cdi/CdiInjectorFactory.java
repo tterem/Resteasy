@@ -135,10 +135,10 @@ public class CdiInjectorFactory implements InjectorFactory
    }
 
    /**
-    * Do a lookup for BeanManager instance. JNDI and ServletContext is searched.
-    *
-    * @return BeanManager instance
-    */
+   * Do a lookup for BeanManager instance. JNDI and ServletContext is searched.
+   *
+   * @return BeanManager instance
+   */
    protected BeanManager lookupBeanManager()
    {
       BeanManager beanManager = null;
@@ -253,10 +253,10 @@ public class CdiInjectorFactory implements InjectorFactory
    }
 
    /**
-    * Lookup ResteasyCdiExtension instance that was instantiated during CDI bootstrap
-    *
-    * @return ResteasyCdiExtension instance
-    */
+   * Lookup ResteasyCdiExtension instance that was instantiated during CDI bootstrap
+   *
+   * @return ResteasyCdiExtension instance
+   */
    private ResteasyCdiExtension lookupResteasyCdiExtension()
    {
       Set<Bean<?>> beans = manager.getBeans(ResteasyCdiExtension.class);

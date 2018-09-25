@@ -96,12 +96,12 @@ public class NettyTest
       Assert.assertEquals(500, resp.getStatus());
    }
 
-    @Test
-    public void testChannelContext() throws Exception {
+   @Test
+   public void testChannelContext() throws Exception {
       Client client = ClientBuilder.newBuilder().build();
       WebTarget target = client.target(generateURL("/context"));
       String val = target.request().get(String.class);
       Assert.assertNotNull(val);
       Assert.assertFalse(val.isEmpty());
-    }
+   }
 }

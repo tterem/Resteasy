@@ -70,22 +70,22 @@ public class VertxJaxrsServer implements EmbeddedJaxrsServer
    }
 
    /**
-    * Set {@link io.vertx.core.VertxOptions}.
-    *
-    * @param options the {@link io.vertx.core.VertxOptions}.
-    * @see Vertx#vertx(VertxOptions)
-    */
+   * Set {@link io.vertx.core.VertxOptions}.
+   *
+   * @param options the {@link io.vertx.core.VertxOptions}.
+   * @see Vertx#vertx(VertxOptions)
+   */
    public void setVertxOptions(VertxOptions options)
    {
       this.vertxOptions = options;
    }
 
    /**
-    * Set {@link io.vertx.core.http.HttpServerOptions}.
-    *
-    * @param options the {@link io.vertx.core.http.HttpServerOptions}.
-    * @see Vertx#createHttpServer(HttpServerOptions)
-    */
+   * Set {@link io.vertx.core.http.HttpServerOptions}.
+   *
+   * @param options the {@link io.vertx.core.http.HttpServerOptions}.
+   * @see Vertx#createHttpServer(HttpServerOptions)
+   */
    public void setServerOptions(HttpServerOptions options)
    {
       this.serverOptions = options;

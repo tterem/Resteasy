@@ -192,17 +192,17 @@ public class Verification
    }
 
    /**
-    * Headers can be a {@literal Map<String, Object> or a Map<String, List<Object>>}.  This gives some compatibility with
-    * JAX-RS's MultivaluedMap.   If a map of lists, every value of each header duplicate will be added.
+   * Headers can be a {@literal Map<String, Object> or a Map<String, List<Object>>}.  This gives some compatibility with
+   * JAX-RS's MultivaluedMap.   If a map of lists, every value of each header duplicate will be added.
 
-    *
-    * @param signature signature
-    * @param headers headers map
-    * @param body body
-    * @param publicKey public key
-    * @return map of validated headers and their values
-    * @throws SignatureException if verification fails
-    */
+   *
+   * @param signature signature
+   * @param headers headers map
+   * @param body body
+   * @param publicKey public key
+   * @return map of validated headers and their values
+   * @throws SignatureException if verification fails
+   */
    public MultivaluedMap<String, String> verify(DKIMSignature signature, Map headers, byte[] body, PublicKey publicKey) throws SignatureException
    {
       if (publicKey == null) publicKey = key;

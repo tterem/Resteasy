@@ -159,12 +159,12 @@ public class ResteasyHttpServletResponseWrapper extends ServletResponseWrapper i
    }
 
    /**
-    * @deprecated   As of version 2.1, use encodeURL(String url) instead
-    *
-    * @param  url   the url to be encoded.
-    * @return    the encoded URL if encoding is needed; 
-    *         the unchanged URL otherwise.
-    */
+   * @deprecated   As of version 2.1, use encodeURL(String url) instead
+   *
+   * @param  url   the url to be encoded.
+   * @return    the encoded URL if encoding is needed; 
+   *         the unchanged URL otherwise.
+   */
    @Override
    public String encodeUrl(String url)
    {
@@ -172,13 +172,13 @@ public class ResteasyHttpServletResponseWrapper extends ServletResponseWrapper i
    }
 
    /**
-    * @deprecated   As of version 2.1, use 
-    *         encodeRedirectURL(String url) instead
-    *
-    * @param  url   the url to be encoded.
-    * @return    the encoded URL if encoding is needed; 
-    *         the unchanged URL otherwise.
-    */
+   * @deprecated   As of version 2.1, use 
+   *         encodeRedirectURL(String url) instead
+   *
+   * @param  url   the url to be encoded.
+   * @return    the encoded URL if encoding is needed; 
+   *         the unchanged URL otherwise.
+   */
    @Override
    public String encodeRedirectUrl(String url)
    {
@@ -246,16 +246,16 @@ public class ResteasyHttpServletResponseWrapper extends ServletResponseWrapper i
    }
 
    /**
-    * @deprecated As of version 2.1, due to ambiguous meaning of the 
-    * message parameter. To set a status code 
-    * use <code>setStatus(int)</code>, to send an error with a description
-    * use <code>sendError(int, String)</code>.
-    *
-    * Sets the status code and message for this response.
-    * 
-    * @param  sc the status code
-    * @param  sm the status message
-    */
+   * @deprecated As of version 2.1, due to ambiguous meaning of the 
+   * message parameter. To set a status code 
+   * use <code>setStatus(int)</code>, to send an error with a description
+   * use <code>sendError(int, String)</code>.
+   *
+   * Sets the status code and message for this response.
+   * 
+   * @param  sc the status code
+   * @param  sm the status message
+   */
    @Override
    public void setStatus(int sc, String sm)
    {

@@ -30,9 +30,9 @@ public final class QualityValue extends Number implements Comparable<QualityValu
 
 
    /**
-    * @param qvalue the quality value or {@code null} if undefined.
-    * @return {@link QualityValue}
-    */
+   * @param qvalue the quality value or {@code null} if undefined.
+   * @return {@link QualityValue}
+   */
    public static QualityValue valueOf(String qvalue)
    {
       if (qvalue == null)

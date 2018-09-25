@@ -19,16 +19,16 @@ public @interface XmlNsMap
 {
 
    /**
-    * XML Namespace
-    *
-    * @return
-    */
+   * XML Namespace
+   *
+   * @return
+   */
    String namespace();
 
    /**
-    * JSON name prefix
-    *
-    * @return
-    */
+   * JSON name prefix
+   *
+   * @return
+   */
    String jsonName();
 }

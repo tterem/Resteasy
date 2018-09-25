@@ -41,11 +41,11 @@ public final class IIOImageProviderHelper
    }
 
    /**
-    * FIXME Comment this
-    *
-    * @param mediaType media type
-    * @return image writer
-    */
+   * FIXME Comment this
+   *
+   * @param mediaType media type
+   * @return image writer
+   */
    public static ImageWriter getImageWriterByMediaType(MediaType mediaType)
    {
       Iterator<ImageWriter> writers = ImageIO.getImageWritersByMIMEType(mediaType.toString());
@@ -59,14 +59,14 @@ public final class IIOImageProviderHelper
    }
 
    /**
-    * FIXME Comment this
-    *
-    * @param in input stream
-    * @param reader image reader
-    * @param imageIndex index
-    * @return {@link IIOImage}
-    * @throws IOException if I/O error occurred
-    */
+   * FIXME Comment this
+   *
+   * @param in input stream
+   * @param reader image reader
+   * @param imageIndex index
+   * @return {@link IIOImage}
+   * @throws IOException if I/O error occurred
+   */
    public static IIOImage readImage(InputStream in, ImageReader reader, int imageIndex)
            throws IOException
    {
@@ -76,11 +76,11 @@ public final class IIOImageProviderHelper
    }
 
    /**
-    * FIXME Comment this
-    *
-    * @param mediaType media type
-    * @return image reader
-    */
+   * FIXME Comment this
+   *
+   * @param mediaType media type
+   * @return image reader
+   */
    public static ImageReader getImageReaderByMediaType(MediaType mediaType)
    {
       Iterator<ImageReader> readers = ImageIO.getImageReadersByMIMEType(mediaType.toString());
@@ -103,15 +103,15 @@ public final class IIOImageProviderHelper
    }
 
    /**
-    * FIXME Comment this
-    *
-    * @param annotations array of annotations
-    * @param mediaType media type
-    * @param writer image writer
-    * @param out output stream
-    * @param image {@link IIOImage}
-    * @throws IOException if I/O error occurred
-    */
+   * FIXME Comment this
+   *
+   * @param annotations array of annotations
+   * @param mediaType media type
+   * @param writer image writer
+   * @param out output stream
+   * @param image {@link IIOImage}
+   * @throws IOException if I/O error occurred
+   */
    public static void writeImage(Annotation[] annotations,
                                  MediaType mediaType,
                                  ImageWriter writer,

@@ -60,11 +60,11 @@ public class GZIPAnnotationTest {
    }
 
    /**
-    * @tpTestDetails Test that org.jboss.resteasy.plugins.interceptors.ClientContentEncodingAnnotationFilter
-    *                and org.jboss.resteasy.plugins.interceptors.AcceptEncodingGZIPFilter
-    *                are called on client side
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Test that org.jboss.resteasy.plugins.interceptors.ClientContentEncodingAnnotationFilter
+   *                and org.jboss.resteasy.plugins.interceptors.AcceptEncodingGZIPFilter
+   *                are called on client side
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testGZIP() {
       ResteasyWebTarget target = (ResteasyWebTarget) client.target(generateURL(""));

@@ -27,15 +27,15 @@ import org.junit.runner.RunWith;
 @RunAsClient
 public class NullHeaderTest {
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(NullHeaderTest.class.getSimpleName());
-        war.addClass(NullHeaderFilter.class);
-        return TestUtil.finishContainerPrepare(war, null, NullHeaderResource.class);
-    }
+   @Deployment
+   public static Archive<?> deploy() {
+      WebArchive war = TestUtil.prepareArchive(NullHeaderTest.class.getSimpleName());
+      war.addClass(NullHeaderFilter.class);
+      return TestUtil.finishContainerPrepare(war, null, NullHeaderResource.class);
+   }
 
-    @Test
-    public void testNullHeader() throws Exception {
+   @Test
+   public void testNullHeader() throws Exception {
   
        Client client = ClientBuilder.newClient();
        WebTarget base = client.target(PortProviderUtil.generateURL("/test", NullHeaderTest.class.getSimpleName()));
@@ -45,5 +45,5 @@ public class NullHeaderTest {
        String serverHeader = response.getHeaderString("X-Server-Header");
        Assert.assertTrue(serverHeader == null || "".equals(serverHeader));
        client.close();
-    }
+   }
 }

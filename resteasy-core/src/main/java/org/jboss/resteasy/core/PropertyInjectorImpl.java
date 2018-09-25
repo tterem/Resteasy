@@ -223,7 +223,7 @@ public class PropertyInjectorImpl implements PropertyInjector
              @Override
              public Field[] run()
              {
-                return clazz.getDeclaredFields();
+            return clazz.getDeclaredFields();
              }
           });
        }

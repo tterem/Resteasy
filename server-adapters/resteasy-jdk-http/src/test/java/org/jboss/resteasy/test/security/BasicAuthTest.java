@@ -222,12 +222,12 @@ public class BasicAuthTest
    }
 
    /**
-    * RESTEASY-579
-    *
-    * Found 579 bug when doing 575 so the test is here out of laziness
-    *
-    * @throws Exception
-    */
+   * RESTEASY-579
+   *
+   * Found 579 bug when doing 575 so the test is here out of laziness
+   *
+   * @throws Exception
+   */
    @Test
    public void test579() throws Exception
    {
@@ -275,8 +275,8 @@ public class BasicAuthTest
    }
 
    /**
-    * Create a ClientExecutor which does preemptive authentication.
-    */
+   * Create a ClientExecutor which does preemptive authentication.
+   */
    
    static private ClientHttpEngine createAuthenticatingEngine(CloseableHttpClient client)
    {

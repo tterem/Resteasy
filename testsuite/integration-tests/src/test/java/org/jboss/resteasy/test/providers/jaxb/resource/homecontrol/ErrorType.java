@@ -27,28 +27,28 @@ public enum ErrorType {
 
 
    /**
-    * The requested resource was not found
-    *
-    */
+   * The requested resource was not found
+   *
+   */
    NOT_FOUND,
 
    /**
-    * The requested format did not match the specification
-    *
-    */
+   * The requested format did not match the specification
+   *
+   */
    VALIDATION,
 
    /**
-    * An error happend during the request processing
-    *
-    */
+   * An error happend during the request processing
+   *
+   */
    INTERNAL_SERVER_ERROR,
 
    /**
-    * Request can't be processed, because the caller has insufficient authorization
-    *
-    *
-    */
+   * Request can't be processed, because the caller has insufficient authorization
+   *
+   *
+   */
    SECURITY;
 
    public String value() {
@@ -60,4 +60,3 @@ public enum ErrorType {
    }
 
 }
-

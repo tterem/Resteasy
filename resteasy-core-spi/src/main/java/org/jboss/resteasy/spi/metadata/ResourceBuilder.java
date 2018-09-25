@@ -763,10 +763,10 @@ public class ResourceBuilder
    private final Map<Integer, List<ResourceClassProcessor>> processors = new TreeMap<>(Comparator.reverseOrder());
 
    /**
-    * Register a new {@link ResourceClassProcessor} which will be used to post-process all
-    * {@link ResourceClass} instances created from the builder.
-    * @param processor resource class processor
-    */
+   * Register a new {@link ResourceClassProcessor} which will be used to post-process all
+   * {@link ResourceClass} instances created from the builder.
+   * @param processor resource class processor
+   */
    public void registerResourceClassProcessor(ResourceClassProcessor processor, int priority)
    {
       List<ResourceClassProcessor> l = processors.get(priority);
@@ -818,11 +818,11 @@ public class ResourceBuilder
    }
 
    /**
-    * Picks a constructor from an annotated resource class based on spec rules.
-    *
-    * @param annotatedResourceClass annotated resource class
-    * @return {@link ResourceConstructor}
-    */
+   * Picks a constructor from an annotated resource class based on spec rules.
+   *
+   * @param annotatedResourceClass annotated resource class
+   * @return {@link ResourceConstructor}
+   */
    public ResourceConstructor getConstructor(Class<?> annotatedResourceClass)
    {
       Constructor constructor = PickConstructor.pickPerRequestConstructor(annotatedResourceClass);
@@ -847,11 +847,11 @@ public class ResourceBuilder
    }
 
    /**
-    * Build metadata from annotations on classes and methods.
-    *
-    * @param clazz class
-    * @return resource class
-    */
+   * Build metadata from annotations on classes and methods.
+   *
+   * @param clazz class
+   * @return resource class
+   */
    public ResourceClass getRootResourceFromAnnotations(Class<?> clazz)
    {
       return fromAnnotations(false, clazz);
@@ -923,12 +923,12 @@ public class ResourceBuilder
    }
 
    /**
-    * Find the annotated resource method or sub-resource method / sub-resource locator in the class hierarchy.
-    *
-    * @param root The root resource class.
-    * @param implementation The resource method or sub-resource method / sub-resource locator implementation
-    * @return The annotated resource method or sub-resource method / sub-resource locator.
-    */
+   * Find the annotated resource method or sub-resource method / sub-resource locator in the class hierarchy.
+   *
+   * @param root The root resource class.
+   * @param implementation The resource method or sub-resource method / sub-resource locator implementation
+   * @return The annotated resource method or sub-resource method / sub-resource locator.
+   */
    public Method getAnnotatedMethod(final Class<?> root, final Method implementation)
    {
       if (implementation.isSynthetic())
@@ -1209,8 +1209,8 @@ public class ResourceBuilder
    }
 
    /**
-    * Apply the list of {@link ResourceClassProcessor} to the supplied {@link ResourceClass}.
-    */
+   * Apply the list of {@link ResourceClassProcessor} to the supplied {@link ResourceClass}.
+   */
    private ResourceClass applyProcessors(ResourceClass original)
    {
       ResourceClass current = original;

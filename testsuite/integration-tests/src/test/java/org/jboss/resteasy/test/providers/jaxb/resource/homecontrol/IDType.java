@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "IDType", propOrder = {
-        "id"
+      "id"
 })
 public class IDType {
 
@@ -33,24 +33,23 @@ public class IDType {
    protected String id;
 
    /**
-    * Ruft den Wert der id-Eigenschaft ab.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+   * Ruft den Wert der id-Eigenschaft ab.
+   *
+   * @return possible object is
+   * {@link String }
+   */
    public String getId() {
       return id;
    }
 
    /**
-    * Legt den Wert der id-Eigenschaft fest.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+   * Legt den Wert der id-Eigenschaft fest.
+   *
+   * @param value allowed object is
+   *              {@link String }
+   */
    public void setId(String value) {
       this.id = value;
    }
 
 }
-

@@ -38,39 +38,39 @@ public class SunHttpJaxrsServer implements EmbeddedJaxrsServer
    }
 
    /**
-    * Setting a security domain will turn on Basic Authentication
-    *
-    * @param securityDomain
-    */
+   * Setting a security domain will turn on Basic Authentication
+   *
+   * @param securityDomain
+   */
    public void setSecurityDomain(SecurityDomain securityDomain)
    {
       this.context.setSecurityDomain(securityDomain);
    }
 
    /**
-    * If you do not provide an HttpServer instance, one will be created on startup
-    *
-    * @param httpServer
-    */
+   * If you do not provide an HttpServer instance, one will be created on startup
+   *
+   * @param httpServer
+   */
    public void setHttpServer(HttpServer httpServer)
    {
       this.httpServer = httpServer;
    }
 
    /**
-    * Value is ignored if HttpServer property is set. Default value is 8080
-    *
-    * @param port
-    */
+   * Value is ignored if HttpServer property is set. Default value is 8080
+   *
+   * @param port
+   */
    public void setPort(int port)
    {
       this.configuredPort = port;
    }
 
    /**
-    * Gets port number of this HttpServer.
-    *
-    * @return port number.
+   * Gets port number of this HttpServer.
+   *
+   * @return port number.
      */
    public int getPort()
    {

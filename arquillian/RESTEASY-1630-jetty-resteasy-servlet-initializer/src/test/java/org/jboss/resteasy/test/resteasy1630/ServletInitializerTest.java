@@ -38,34 +38,34 @@ import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 @RunAsClient
 public class ServletInitializerTest {
 
-    @Deployment
-    public static Archive<?> createTestArchive() {
-        File pomFile = Maven.resolver().loadPomFromFile("pom.xml").resolve("org.jboss.resteasy:resteasy-servlet-initializer")
-            .withoutTransitivity().asSingleFile();
+   @Deployment
+   public static Archive<?> createTestArchive() {
+      File pomFile = Maven.resolver().loadPomFromFile("pom.xml").resolve("org.jboss.resteasy:resteasy-servlet-initializer")
+         .withoutTransitivity().asSingleFile();
 
-        WebArchive war = ShrinkWrap.create(WebArchive.class, "RESTEASY-1630-two.war")
-            .addClasses(TestApplication.class)
-            .addClasses(TestResource.class)
-            .addAsLibraries(pomFile)
-            .addAsWebInfResource("web.xml");
-        return war;
-    }
+      WebArchive war = ShrinkWrap.create(WebArchive.class, "RESTEASY-1630-two.war")
+         .addClasses(TestApplication.class)
+         .addClasses(TestResource.class)
+         .addAsLibraries(pomFile)
+         .addAsWebInfResource("web.xml");
+      return war;
+   }
 
-    @ArquillianResource
-    URI baseUri;
+   @ArquillianResource
+   URI baseUri;
 
-    /**
+   /**
      * App declares files via the web.xml
      * @throws Exception
      */
-    @Test
-    public void testEndpoint() throws Exception {
-        Response response = ResteasyClientBuilder.newClient()
-            .target(baseUri.toString() + "test/17").request().get();
+   @Test
+   public void testEndpoint() throws Exception {
+      Response response = ResteasyClientBuilder.newClient()
+         .target(baseUri.toString() + "test/17").request().get();
 //        System.out.println("Status: " + response.getStatus());
-        String entity = response.readEntity(String.class);
+      String entity = response.readEntity(String.class);
 //        System.out.println("Result: " + entity);
-        assertEquals(200, response.getStatus());
-        Assert.assertEquals("17", entity);
-    }
+      assertEquals(200, response.getStatus());
+      Assert.assertEquals("17", entity);
+   }
 }

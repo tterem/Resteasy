@@ -62,7 +62,7 @@ public class AbortMessageTest {
        return PortProviderUtil.generateURL(path, AbortMessageTest.class.getSimpleName());
    }
 
-    /**
+   /**
      * @tpTestDetails Send response with "Aborted"
      * @tpSince RESTEasy 3.1.0.Final
      */

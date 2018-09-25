@@ -68,9 +68,9 @@ public class PublisherResponseNoStreamTest {
    }
 
    /**
-    * @tpTestDetails Resource method returns Publisher<String>.
-    * @tpSince RESTEasy 4.0
-    */
+   * @tpTestDetails Resource method returns Publisher<String>.
+   * @tpSince RESTEasy 4.0
+   */
    @Test
    public void testText() throws Exception
    {
@@ -88,9 +88,9 @@ public class PublisherResponseNoStreamTest {
    }
 
    /**
-    * @tpTestDetails Resource method returns Publisher<String>, throws exception immediately.
-    * @tpSince RESTEasy 4.0
-    */
+   * @tpTestDetails Resource method returns Publisher<String>, throws exception immediately.
+   * @tpSince RESTEasy 4.0
+   */
    @Test
    public void testTextErrorImmediate() throws Exception
    {
@@ -108,9 +108,9 @@ public class PublisherResponseNoStreamTest {
    }
 
    /**
-    * @tpTestDetails Resource method returns Publisher<String>, throws exception in stream.
-    * @tpSince RESTEasy 4.0
-    */
+   * @tpTestDetails Resource method returns Publisher<String>, throws exception in stream.
+   * @tpSince RESTEasy 4.0
+   */
    @Test
    public void testTextErrorDeferred() throws Exception
    {
@@ -128,9 +128,9 @@ public class PublisherResponseNoStreamTest {
    }
 
    /**
-    * @tpTestDetails Resource method returns Publisher<String>.
-    * @tpSince RESTEasy 4.0
-    */
+   * @tpTestDetails Resource method returns Publisher<String>.
+   * @tpSince RESTEasy 4.0
+   */
    @Test
    public void testSse() throws Exception
    {
@@ -140,20 +140,20 @@ public class PublisherResponseNoStreamTest {
       CompletableFuture<Void> future = new CompletableFuture<Void>();
       SseEventSource source = SseEventSource.target(target).build();
       source.register(evt -> {
-    	  String data = evt.readData(String.class);
-    	  collector.add(data);
-    	  if(collector.size() >= 2) {
-    		  future.complete(null);
-    	  }
+         String data = evt.readData(String.class);
+         collector.add(data);
+         if(collector.size() >= 2) {
+            future.complete(null);
+         }
       }, 
-    		  t -> {
-    			  logger.error(t.getMessage(), t);
-    			  errors.add(t);  
-    		  }, 
-    		  () -> {
-    			  // bah, never called
-    			  future.complete(null);
-    		  });
+            t -> {
+               logger.error(t.getMessage(), t);
+               errors.add(t);
+            },
+            () -> {
+               // bah, never called
+               future.complete(null);
+            });
       source.open();
       future.get();
       source.close();
@@ -164,9 +164,9 @@ public class PublisherResponseNoStreamTest {
    }
 
    /**
-    * @tpTestDetails Resource method unsubscribes on close for infinite streams.
-    * @tpSince RESTEasy 4.0
-    */
+   * @tpTestDetails Resource method unsubscribes on close for infinite streams.
+   * @tpSince RESTEasy 4.0
+   */
    @Test
    public void testInfiniteStreamsSse() throws Exception
    {
@@ -176,11 +176,11 @@ public class PublisherResponseNoStreamTest {
       CompletableFuture<Void> future = new CompletableFuture<Void>();
       SseEventSource source = SseEventSource.target(target).build();
       source.register(evt -> {
-        String data = evt.readData(String.class);
-        collector.add(data);
-        if(collector.size() >= 2) {
+      String data = evt.readData(String.class);
+      collector.add(data);
+      if(collector.size() >= 2) {
            future.complete(null);
-        }
+      }
       }, 
            t -> {
               logger.error(t);

@@ -22,9 +22,9 @@ public class HttpServletResponseWrapper implements HttpResponse
    protected OutputStream outputStream = new DeferredOutputStream();
 
    /**
-    * RESTEASY-684 wants to defer access to outputstream until a write happens
-    *
-    */
+   * RESTEASY-684 wants to defer access to outputstream until a write happens
+   *
+   */
    protected class DeferredOutputStream extends OutputStream
    {
       @Override

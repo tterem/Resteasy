@@ -69,8 +69,8 @@ public class JAXBXmlTypeProvider extends AbstractJAXBProvider<Object>
    protected static final String OBJECT_FACTORY_NAME = ".ObjectFactory";
    
    /**
-    *
-    */
+   *
+   */
    @Override
    public void writeTo(Object t,
                        Class<?> type,
@@ -148,12 +148,12 @@ public class JAXBXmlTypeProvider extends AbstractJAXBProvider<Object>
    }
 
    /**
-    * Check for a user provided JAXBContext implementation.  It takes priority over our builtin one.
-    * @param type
-    * @param mediaType
-    * @return
-    * @throws IOException
-    */
+   * Check for a user provided JAXBContext implementation.  It takes priority over our builtin one.
+   * @param type
+   * @param mediaType
+   * @return
+   * @throws IOException
+   */
    private javax.xml.bind.JAXBContext getJAXBContext(Class<Object> type, MediaType mediaType) throws IOException {
       LogMessages.LOGGER.debugf("Provider : %s,  Method : getJAXBContext", getClass().getName());
 
@@ -174,13 +174,13 @@ public class JAXBXmlTypeProvider extends AbstractJAXBProvider<Object>
    }
 
    /**
-    * Check for the resteasy builtin JAXBContext implementation.
-    * @param type
-    * @param annotations
-    * @param mediaType
-    * @return
-    * @throws IOException
-    */
+   * Check for the resteasy builtin JAXBContext implementation.
+   * @param type
+   * @param annotations
+   * @param mediaType
+   * @return
+   * @throws IOException
+   */
    private JAXBContext getJAXBContextFinder(Class<Object> type, Annotation[] annotations, MediaType mediaType) throws IOException
    {
       try
@@ -202,8 +202,8 @@ public class JAXBXmlTypeProvider extends AbstractJAXBProvider<Object>
    }
 
    /**
-    *
-    */
+   *
+   */
    @Override
    protected boolean isReadWritable(Class<?> type,
                                     Type genericType,
@@ -214,13 +214,13 @@ public class JAXBXmlTypeProvider extends AbstractJAXBProvider<Object>
    }
 
    /**
-    * Attempts to locate {@link XmlRegistry} for the XML type. Usually, a class named ObjectFactory is located
-    * in the same package as the type we're trying to marshall. This method simply locates this class and
-    * instantiates it if found.
-    *
-    * @param type type class
-    * @return object factory instance
-    */
+   * Attempts to locate {@link XmlRegistry} for the XML type. Usually, a class named ObjectFactory is located
+   * in the same package as the type we're trying to marshall. This method simply locates this class and
+   * instantiates it if found.
+   *
+   * @param type type class
+   * @return object factory instance
+   */
    public static Object findObjectFactory(Class<?> type)
    {
       try
@@ -243,13 +243,13 @@ public class JAXBXmlTypeProvider extends AbstractJAXBProvider<Object>
    }
 
    /**
-    * If this object is managed by an XmlRegistry, this method will invoke the registry and wrap the object in
-    * a JAXBElement so that it can be marshalled.
-    *
-    * @param t object to wrap
-    * @param type type class
-    * @return jaxb element
-    */
+   * If this object is managed by an XmlRegistry, this method will invoke the registry and wrap the object in
+   * a JAXBElement so that it can be marshalled.
+   *
+   * @param t object to wrap
+   * @param type type class
+   * @return jaxb element
+   */
    public static JAXBElement<?> wrapInJAXBElement(Object t, Class<?> type)
    {
       try
@@ -275,7 +275,7 @@ public class JAXBXmlTypeProvider extends AbstractJAXBProvider<Object>
          for (Method current : method)
          {
             if (current.getParameterTypes().length == 1 && current.getParameterTypes()[0].equals(type)
-                    && current.getName().startsWith("create"))
+               && current.getName().startsWith("create"))
             {
                Object result = current.invoke(factory, t);
                return JAXBElement.class.cast(result);

@@ -20,12 +20,12 @@ public class AcceptHeaders
 {
 
    /**
-    * Gets the strings from a comma-separated list.
-    * All "*" entries are replaced with {@code null} keys.
-    *
-    * @param header the header value.
-    * @return the listed items in order of appearance or {@code null} if the header didn't contain any entries.
-    */
+   * Gets the strings from a comma-separated list.
+   * All "*" entries are replaced with {@code null} keys.
+   *
+   * @param header the header value.
+   * @return the listed items in order of appearance or {@code null} if the header didn't contain any entries.
+   */
    public static Map<String, QualityValue> getStringQualityValues(String header)
    {
       if (header == null)
@@ -82,12 +82,12 @@ public class AcceptHeaders
 
 
    /**
-    * Gets the locales from a comma-separated list.
-    * Any "*" entries are replaced with {@code null} keys.
-    *
-    * @param header the header value.
-    * @return the listed items in order of appearance or {@code null} if the header didn't contain any entries.
-    */
+   * Gets the locales from a comma-separated list.
+   * Any "*" entries are replaced with {@code null} keys.
+   *
+   * @param header the header value.
+   * @return the listed items in order of appearance or {@code null} if the header didn't contain any entries.
+   */
    public static Map<Locale, QualityValue> getLocaleQualityValues(String header)
    {
       Map<String, QualityValue> stringResult = getStringQualityValues(header);
@@ -128,11 +128,11 @@ public class AcceptHeaders
 
 
    /**
-    * Gets the media types from a comma-separated list.
-    *
-    * @param header the header value.
-    * @return the listed items in order of appearance or {@code null} if the header didn't contain any entries.
-    */
+   * Gets the media types from a comma-separated list.
+   *
+   * @param header the header value.
+   * @return the listed items in order of appearance or {@code null} if the header didn't contain any entries.
+   */
    public static Map<MediaType, QualityValue> getMediaTypeQualityValues(String header)
    {
       if (header == null)
@@ -257,16 +257,16 @@ public class AcceptHeaders
 
 
    /**
-    * Evaluates and removes the accept parameters.
-    * <pre>
-    * accept-params  = ";" "q" "=" qvalue *( accept-extension )
-    * accept-extension = ";" token [ "=" ( token | quoted-string ) ]
-    * </pre>
-    *
-    * @param parameters all parameters in order of appearance.
-    * @return the qvalue.
-    * @see "accept-params
-    */
+   * Evaluates and removes the accept parameters.
+   * <pre>
+   * accept-params  = ";" "q" "=" qvalue *( accept-extension )
+   * accept-extension = ";" token [ "=" ( token | quoted-string ) ]
+   * </pre>
+   *
+   * @param parameters all parameters in order of appearance.
+   * @return the qvalue.
+   * @see "accept-params
+   */
    private static QualityValue evaluateAcceptParameters(Map<String, String> parameters)
    {
       Iterator<String> i = parameters.keySet().iterator();

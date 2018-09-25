@@ -37,19 +37,19 @@ import java.util.Map;
 @XmlTransient
 public class AppCommonAttributes implements Serializable
 {
-    private static final long serialVersionUID = -6132753912772236190L;
-    @XmlAttribute(namespace = "http://www.w3.org/XML/1998/namespace")
-    @XmlSchemaType(name = "anySimpleType")
-    private String base;
-    @XmlAttribute(namespace = "http://www.w3.org/XML/1998/namespace")
-    private String lang;
-    @XmlAttribute(namespace = "http://www.w3.org/XML/1998/namespace")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    private String space;
-    @XmlAnyAttribute
-    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+   private static final long serialVersionUID = -6132753912772236190L;
+   @XmlAttribute(namespace = "http://www.w3.org/XML/1998/namespace")
+   @XmlSchemaType(name = "anySimpleType")
+   private String base;
+   @XmlAttribute(namespace = "http://www.w3.org/XML/1998/namespace")
+   private String lang;
+   @XmlAttribute(namespace = "http://www.w3.org/XML/1998/namespace")
+   @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+   private String space;
+   @XmlAnyAttribute
+   private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
-    /**
+   /**
      * Gets the value of the base property.
      * 
      * @return
@@ -57,12 +57,12 @@ public class AppCommonAttributes implements Serializable
      *     {@link String }
      *     
      */
-    @javax.xml.bind.annotation.XmlTransient
-    public String getBase() {
-        return base;
-    }
+   @javax.xml.bind.annotation.XmlTransient
+   public String getBase() {
+      return base;
+   }
 
-    /**
+   /**
      * Sets the value of the base property.
      * 
      * @param value
@@ -70,11 +70,11 @@ public class AppCommonAttributes implements Serializable
      *     {@link String }
      *     
      */
-    public void setBase(String value) {
-        this.base = value;
-    }
+   public void setBase(String value) {
+      this.base = value;
+   }
 
-    /**
+   /**
      * Gets the value of the lang property.
      * 
      * @return
@@ -82,12 +82,12 @@ public class AppCommonAttributes implements Serializable
      *     {@link String }
      *     
      */
-    @javax.xml.bind.annotation.XmlTransient
-    public String getLang() {
-        return lang;
-    }
+   @javax.xml.bind.annotation.XmlTransient
+   public String getLang() {
+      return lang;
+   }
 
-    /**
+   /**
      * Sets the value of the lang property.
      * 
      * @param value
@@ -95,11 +95,11 @@ public class AppCommonAttributes implements Serializable
      *     {@link String }
      *     
      */
-    public void setLang(String value) {
-        this.lang = value;
-    }
+   public void setLang(String value) {
+      this.lang = value;
+   }
 
-    /**
+   /**
      * Gets the value of the space property.
      * 
      * @return
@@ -107,12 +107,12 @@ public class AppCommonAttributes implements Serializable
      *     {@link String }
      *     
      */
-    @javax.xml.bind.annotation.XmlTransient
-    public String getSpace() {
-        return space;
-    }
+   @javax.xml.bind.annotation.XmlTransient
+   public String getSpace() {
+      return space;
+   }
 
-    /**
+   /**
      * Sets the value of the space property.
      * 
      * @param value
@@ -120,11 +120,11 @@ public class AppCommonAttributes implements Serializable
      *     {@link String }
      *     
      */
-    public void setSpace(String value) {
-        this.space = value;
-    }
+   public void setSpace(String value) {
+      this.space = value;
+   }
 
-    /**
+   /**
      * Gets a map that contains attributes that aren't bound to any typed property on this class.
      * 
      * <p>
@@ -138,8 +138,8 @@ public class AppCommonAttributes implements Serializable
      * @return
      *     always non-null
      */
-    public Map<QName, String> getOtherAttributes() {
-        return otherAttributes;
-    }
+   public Map<QName, String> getOtherAttributes() {
+      return otherAttributes;
+   }
 
 }

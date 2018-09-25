@@ -38,17 +38,17 @@ public class DirectEncrypter
 
 
    /**
-    * Random byte generator.
-    */
+   * Random byte generator.
+   */
    private static SecureRandom randomGen;
 
 
    /**
-    * Initialises the secure random byte generator.
-    *
-    * @throws RuntimeException If the secure random byte generator couldn't
-    *                          be instantiated.
-    */
+   * Initialises the secure random byte generator.
+   *
+   * @throws RuntimeException If the secure random byte generator couldn't
+   *                          be instantiated.
+   */
    private static void initSecureRandom()
    {
 

@@ -21,7 +21,7 @@ import java.lang.reflect.Type;
 @Provider
 @Produces("multipart/related")
 public class MultipartRelatedWriter extends AbstractMultipartRelatedWriter
-        implements MessageBodyWriter<MultipartRelatedOutput>
+      implements MessageBodyWriter<MultipartRelatedOutput>
 {
 
    public boolean isWriteable(Class<?> type, Type genericType,

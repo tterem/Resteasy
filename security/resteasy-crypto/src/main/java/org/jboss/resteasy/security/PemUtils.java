@@ -39,12 +39,12 @@ public class PemUtils
 
 
    /**
-    * Extract a public key from a PEM string.
-    *
-    * @param pem PEM encoded string
-    * @return {@link PublicKey}
-    * @throws Exception if error occurred
-    */
+   * Extract a public key from a PEM string.
+   *
+   * @param pem PEM encoded string
+   * @return {@link PublicKey}
+   * @throws Exception if error occurred
+   */
    public static PublicKey decodePublicKey(String pem) throws Exception
    {
       byte[] der = pemToDer(pem);
@@ -52,12 +52,12 @@ public class PemUtils
    }
 
    /**
-    * Extract a private key that is a PKCS8 pem string (base64 encoded PKCS8).
-    *
-    * @param pem PEM encoded string
-    * @return {@link PrivateKey}
-    * @throws Exception if error occurred
-    */
+   * Extract a private key that is a PKCS8 pem string (base64 encoded PKCS8).
+   *
+   * @param pem PEM encoded string
+   * @return {@link PrivateKey}
+   * @throws Exception if error occurred
+   */
    public static PrivateKey decodePrivateKey(String pem) throws Exception
    {
       byte[] der = pemToDer(pem);
@@ -71,12 +71,12 @@ public class PemUtils
    }
 
    /**
-    * Decode a PEM file to DER format.
-    *
-    * @param is input stream
-    * @return decoded bytes
-    * @throws IOException if I/O error occurred
-    */
+   * Decode a PEM file to DER format.
+   *
+   * @param is input stream
+   * @return decoded bytes
+   * @throws IOException if I/O error occurred
+   */
    public static byte[] pemToDer(InputStream is) throws IOException
    {
       String pem = pemFromStream(is);
@@ -85,12 +85,12 @@ public class PemUtils
    }
 
    /**
-    * Decode a PEM string to DER format.
-    *
-    * @param pem PEM encoded string
-    * @return decoded bytes
-    * @throws java.io.IOException if I/O error occurred
-    */
+   * Decode a PEM string to DER format.
+   *
+   * @param pem PEM encoded string
+   * @return decoded bytes
+   * @throws java.io.IOException if I/O error occurred
+   */
    public static byte[] pemToDer(String pem) throws java.io.IOException
    {
       pem = removeBeginEnd(pem);

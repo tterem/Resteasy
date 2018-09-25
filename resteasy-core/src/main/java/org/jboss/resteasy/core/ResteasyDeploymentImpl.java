@@ -542,9 +542,9 @@ public class ResteasyDeploymentImpl implements ResteasyDeployment
    }
 
    /**
-    * @param config application
-    * @return whether application class registered anything. i.e. whether scanning metadata should be used or not
-    */
+   * @param config application
+   * @return whether application class registered anything. i.e. whether scanning metadata should be used or not
+   */
    private boolean processApplication(Application config)
    {
       LogMessages.LOGGER.deployingApplication(Application.class.getName(), config.getClass());
@@ -604,17 +604,17 @@ public class ResteasyDeploymentImpl implements ResteasyDeployment
       {
           Feature appliationPropertiesRegistrationfeature = new Feature()
           {
-			 @Override
-			 public boolean configure(FeatureContext featureContext)
-			 {
-				for (Map.Entry<String, Object> property : properties.entrySet())
-				{
-				   featureContext = featureContext.property(property.getKey(), property.getValue());
-				}
-				return true;
-			 }
+          @Override
+          public boolean configure(FeatureContext featureContext)
+          {
+            for (Map.Entry<String, Object> property : properties.entrySet())
+            {
+               featureContext = featureContext.property(property.getKey(), property.getValue());
+            }
+            return true;
+          }
           };
-	      this.providers.add(0, appliationPropertiesRegistrationfeature);
+         this.providers.add(0, appliationPropertiesRegistrationfeature);
       }
       return registered;
    }

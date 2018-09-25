@@ -45,7 +45,7 @@ public class NettyHttpResponse implements HttpResponse
 
    public NettyHttpResponse(ChannelHandlerContext ctx, boolean keepAlive, ResteasyProviderFactory providerFactory)
    {
-	   this(ctx, keepAlive, providerFactory, null);
+      this(ctx, keepAlive, providerFactory, null);
    }
 
    public NettyHttpResponse(ChannelHandlerContext ctx, boolean keepAlive, ResteasyProviderFactory providerFactory, HttpMethod method)
@@ -213,8 +213,8 @@ public class NettyHttpResponse implements HttpResponse
 
    @Override
    public void flushBuffer() throws IOException {
-	   if(os != null)
-		   os.flush();
-	   ctx.flush();
+      if(os != null)
+         os.flush();
+      ctx.flush();
    }
 }

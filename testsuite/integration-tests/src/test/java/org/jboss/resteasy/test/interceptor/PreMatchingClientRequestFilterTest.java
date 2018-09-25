@@ -56,10 +56,10 @@ public class PreMatchingClientRequestFilterTest extends ClientTestBase {
    }
 
    /**
-    * @tpTestDetails Test that annotation @PreMatching on an implementation of ClientRequestFilter
-    *                is ignored. This annotation is only valid on ContainerRequestFilter implementations.
-    * @tpSince RESTEasy 4.0.0
-    */
+   * @tpTestDetails Test that annotation @PreMatching on an implementation of ClientRequestFilter
+   *                is ignored. This annotation is only valid on ContainerRequestFilter implementations.
+   * @tpSince RESTEasy 4.0.0
+   */
    @Test
    public void preMatchingTest() throws Exception {
       WebTarget base = client.target(generateURL("/") + "testIt");

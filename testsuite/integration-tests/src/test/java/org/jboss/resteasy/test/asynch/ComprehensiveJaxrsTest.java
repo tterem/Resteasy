@@ -214,9 +214,9 @@ public class ComprehensiveJaxrsTest
    }
 
    /**
-    * @tpTestDetails Complex test. Check stage=0 and stage=1 values.
-    * @tpSince RESTEasy 3.0.16
-    */
+   * @tpTestDetails Complex test. Check stage=0 and stage=1 values.
+   * @tpSince RESTEasy 3.0.16
+   */
 
    @Test
    public void cancelVoidTest() throws Exception

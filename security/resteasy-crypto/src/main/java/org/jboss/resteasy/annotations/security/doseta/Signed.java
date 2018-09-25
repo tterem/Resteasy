@@ -31,26 +31,26 @@ public @interface Signed
    String algorithm() default "";
 
    /**
-    * If there is no domain, then abort.
-    * <p>
-    * If not set, the runtime may set a default domain.  See documentation for details.
-    *
-    * @return domain
-    */
+   * If there is no domain, then abort.
+   * <p>
+   * If not set, the runtime may set a default domain.  See documentation for details.
+   *
+   * @return domain
+   */
    String domain() default "";
 
    /**
-    * A default may be used if not set.  See documentation for more details.
-    *
-    * @return selector
-    */
+   * A default may be used if not set.  See documentation for more details.
+   *
+   * @return selector
+   */
    String selector() default "";
 
    /**
-    * Will calculate and add a timestamp
-    *
-    * @return calculate and add a timestamp
-    */
+   * Will calculate and add a timestamp
+   *
+   * @return calculate and add a timestamp
+   */
    boolean timestamped() default false;
 
 

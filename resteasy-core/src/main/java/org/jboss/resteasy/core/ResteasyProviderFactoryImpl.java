@@ -114,12 +114,12 @@ import java.util.concurrent.CopyOnWriteArraySet;
 public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory implements Providers, HeaderValueProcessor, Configurable<ResteasyProviderFactory>, Configuration
 {
    /**
-    * Allow us to sort message body implementations that are more specific for their types
-    * i.e. MessageBodyWriter&#x3C;Object&#x3E; is less specific than MessageBodyWriter&#x3C;String&#x3E;.
-    * <p>
-    * This helps out a lot when the desired media type is a wildcard and to weed out all the possible
-    * default mappings.
-    */
+   * Allow us to sort message body implementations that are more specific for their types
+   * i.e. MessageBodyWriter&#x3C;Object&#x3E; is less specific than MessageBodyWriter&#x3C;String&#x3E;.
+   * <p>
+   * This helps out a lot when the desired media type is a wildcard and to weed out all the possible
+   * default mappings.
+   */
    private static class SortedKey<T> implements Comparable<SortedKey<T>>, MediaTypeMap.Typed
    {
       private final T obj;
@@ -262,22 +262,22 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Copies a specific component registry when a new
-    * provider is added. Otherwise delegates to the parent.
-    *
-    * @param parent provider factory
-    */
+   * Copies a specific component registry when a new
+   * provider is added. Otherwise delegates to the parent.
+   *
+   * @param parent provider factory
+   */
    public ResteasyProviderFactoryImpl(ResteasyProviderFactory parent)
    {
       this(parent, false);
    }
 
    /**
-    * If local is true, copies components needed by client configuration,
-    * so that parent is not referenced.
-    * @param parent provider factory
-    * @param local local
-    */
+   * If local is true, copies components needed by client configuration,
+   * so that parent is not referenced.
+   * @param parent provider factory
+   * @param local local
+   */
    public ResteasyProviderFactoryImpl(ResteasyProviderFactory parent, boolean local)
    {
       if (local || parent == null)
@@ -495,10 +495,10 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Gets provide classes.
-    *
-    * @return set of provider classes
-    */
+   * Gets provide classes.
+   *
+   * @return set of provider classes
+   */
    public Set<Class<?>> getProviderClasses()
    {
       if (providerClasses == null && parent != null)
@@ -511,10 +511,10 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Gets provider instances.
-    *
-    * @return set of provider instances
-    */
+   * Gets provider instances.
+   *
+   * @return set of provider instances
+   */
    public Set<Object> getProviderInstances()
    {
       if (providerInstances == null && parent != null)
@@ -747,14 +747,14 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Specify the provider class.  This is there jsut in case the provider instance is a proxy.  Proxies tend
-    * to lose generic type information.
-    *
-    * @param provider message reader
-    * @param providerClass provider class
-    * @param priority priority
-    * @param isBuiltin built-in
-    */
+   * Specify the provider class.  This is there jsut in case the provider instance is a proxy.  Proxies tend
+   * to lose generic type information.
+   *
+   * @param provider message reader
+   * @param providerClass provider class
+   * @param priority priority
+   * @param isBuiltin built-in
+   */
 
    private void addMessageBodyReader(MessageBodyReader provider, Class<?> providerClass, int priority,
          boolean isBuiltin)
@@ -814,14 +814,14 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Specify the provider class.  This is there jsut in case the provider instance is a proxy.  Proxies tend
-    * to lose generic type information
-    *
-    * @param provider message reader
-    * @param providerClass provider class
-    * @param priority priority
-    * @param isBuiltin built-in
-    */
+   * Specify the provider class.  This is there jsut in case the provider instance is a proxy.  Proxies tend
+   * to lose generic type information
+   *
+   * @param provider message reader
+   * @param providerClass provider class
+   * @param priority priority
+   * @param isBuiltin built-in
+   */
    private void addMessageBodyWriter(MessageBodyWriter provider, Class<?> providerClass, int priority,
          boolean isBuiltin)
    {
@@ -897,22 +897,22 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Always returns server MBRs.
-    *
-    * @param type        the class of the object that is to be read.
-    * @param genericType the type of object to be produced. E.g. if the
-    *                    message body is to be converted into a method parameter, this will be
-    *                    the formal type of the method parameter as returned by
-    *                    {@code Class.getGenericParameterTypes}.
-    * @param annotations an array of the annotations on the declaration of the
-    *                    artifact that will be initialized with the produced instance. E.g. if
-    *                    the message body is to be converted into a method parameter, this will
-    *                    be the annotations on that parameter returned by
-    *                    {@code Class.getParameterAnnotations}.
-    * @param mediaType   the media type of the data that will be read.
-    * @param <T> type
-    * @return message reader
-    */
+   * Always returns server MBRs.
+   *
+   * @param type        the class of the object that is to be read.
+   * @param genericType the type of object to be produced. E.g. if the
+   *                    message body is to be converted into a method parameter, this will be
+   *                    the formal type of the method parameter as returned by
+   *                    {@code Class.getGenericParameterTypes}.
+   * @param annotations an array of the annotations on the declaration of the
+   *                    artifact that will be initialized with the produced instance. E.g. if
+   *                    the message body is to be converted into a method parameter, this will
+   *                    be the annotations on that parameter returned by
+   *                    {@code Class.getParameterAnnotations}.
+   * @param mediaType   the media type of the data that will be read.
+   * @param <T> type
+   * @return message reader
+   */
    public <T> MessageBodyReader<T> getMessageBodyReader(Class<T> type, Type genericType, Annotation[] annotations,
          MediaType mediaType)
    {
@@ -1230,14 +1230,14 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Convert an object to a string.  First try StringConverter then, object.ToString()
-    *
-    * @param object object
-    * @param clazz class
-    * @param genericType generic type
-    * @param annotations array of annotation
-    * @return string representation
-    */
+   * Convert an object to a string.  First try StringConverter then, object.ToString()
+   *
+   * @param object object
+   * @param clazz class
+   * @param genericType generic type
+   * @param annotations array of annotation
+   * @return string representation
+   */
    public String toString(Object object, Class clazz, Type genericType, Annotation[] annotations)
    {
       if (object instanceof String)
@@ -1272,12 +1272,12 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Checks to see if RuntimeDelegate is a ResteasyProviderFactory
-    * If it is, then use that, otherwise use this.
-    *
-    * @param aClass class of the header
-    * @return header delegate
-    */
+   * Checks to see if RuntimeDelegate is a ResteasyProviderFactory
+   * If it is, then use that, otherwise use this.
+   *
+   * @param aClass class of the header
+   * @return header delegate
+   */
    public HeaderDelegate getHeaderDelegate(Class<?> aClass)
    {
       HeaderDelegate delegate = null;
@@ -1294,11 +1294,11 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Register a @Provider class.  Can be a MessageBodyReader/Writer or ExceptionMapper.
-    *
-    * @param provider provider class
-    * @param isBuiltin built-in
-    */
+   * Register a @Provider class.  Can be a MessageBodyReader/Writer or ExceptionMapper.
+   *
+   * @param provider provider class
+   * @param isBuiltin built-in
+   */
    public void registerProvider(Class provider, boolean isBuiltin)
    {
       registerProvider(provider, null, isBuiltin, null);
@@ -1680,10 +1680,10 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Register a @Provider object.  Can be a MessageBodyReader/Writer or ExceptionMapper.
-    *
-    * @param provider provider instance
-    */
+   * Register a @Provider object.  Can be a MessageBodyReader/Writer or ExceptionMapper.
+   *
+   * @param provider provider instance
+   */
    public void registerProviderInstance(Object provider)
    {
       registerProviderInstance(provider, null, null, false);
@@ -2132,21 +2132,21 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Always gets server MBW.
-    *
-    * @param type        the class of the object that is to be written.
-    * @param genericType the type of object to be written. E.g. if the
-    *                    message body is to be produced from a field, this will be
-    *                    the declared type of the field as returned by {@code Field.getGenericType}.
-    * @param annotations an array of the annotations on the declaration of the
-    *                    artifact that will be written. E.g. if the
-    *                    message body is to be produced from a field, this will be
-    *                    the annotations on that field returned by
-    *                    {@code Field.getDeclaredAnnotations}.
-    * @param mediaType   the media type of the data that will be written.
-    * @param <T> type
-    * @return message writer
-    */
+   * Always gets server MBW.
+   *
+   * @param type        the class of the object that is to be written.
+   * @param genericType the type of object to be written. E.g. if the
+   *                    message body is to be produced from a field, this will be
+   *                    the declared type of the field as returned by {@code Field.getGenericType}.
+   * @param annotations an array of the annotations on the declaration of the
+   *                    artifact that will be written. E.g. if the
+   *                    message body is to be produced from a field, this will be
+   *                    the annotations on that field returned by
+   *                    {@code Field.getDeclaredAnnotations}.
+   * @param mediaType   the media type of the data that will be written.
+   * @param <T> type
+   * @return message writer
+   */
    public <T> MessageBodyWriter<T> getMessageBodyWriter(Class<T> type, Type genericType, Annotation[] annotations,
          MediaType mediaType)
    {
@@ -2232,14 +2232,14 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * This is a spec method that is unsupported.  It is an optional method anyways.
-    *
-    * @param applicationConfig application
-    * @param endpointType endpoint type
-    * @return endpoint
-    * @throws IllegalArgumentException if applicationConfig is null
-    * @throws UnsupportedOperationException allways throw since this method is not supported
-    */
+   * This is a spec method that is unsupported.  It is an optional method anyways.
+   *
+   * @param applicationConfig application
+   * @param endpointType endpoint type
+   * @return endpoint
+   * @throws IllegalArgumentException if applicationConfig is null
+   * @throws UnsupportedOperationException allways throw since this method is not supported
+   */
    public <T> T createEndpoint(Application applicationConfig, Class<T> endpointType)
          throws IllegalArgumentException, UnsupportedOperationException
    {
@@ -2271,13 +2271,13 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Create an instance of a class using provider allocation rules of the specification as well as the InjectorFactory
-    * only does constructor injection.
-    *
-    * @param clazz class 
-    * @param <T> type
-    * @return provider instance of type T
-    */
+   * Create an instance of a class using provider allocation rules of the specification as well as the InjectorFactory
+   * only does constructor injection.
+   *
+   * @param clazz class 
+   * @param <T> type
+   * @return provider instance of type T
+   */
    public <T> T createProviderInstance(Class<? extends T> clazz)
    {
       ConstructorInjector constructorInjector = createConstructorInjector(clazz);
@@ -2298,12 +2298,12 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Property and constructor injection using the InjectorFactory.
-    *
-    * @param clazz class
-    * @param <T> type
-    * @return instance of type T
-    */
+   * Property and constructor injection using the InjectorFactory.
+   *
+   * @param clazz class
+   * @param <T> type
+   * @return instance of type T
+   */
    public <T> T injectedInstance(Class<? extends T> clazz)
    {
       Constructor<?> constructor = PickConstructor.pickSingletonConstructor(clazz);
@@ -2315,14 +2315,14 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    }
 
    /**
-    * Property and constructor injection using the InjectorFactory.
-    *
-    * @param clazz class
-    * @param request http request
-    * @param response http response
-    * @param <T> type
-    * @return instance of type T
-    */
+   * Property and constructor injection using the InjectorFactory.
+   *
+   * @param clazz class
+   * @param request http request
+   * @param response http response
+   * @param <T> type
+   * @return instance of type T
+   */
    public <T> T injectedInstance(Class<? extends T> clazz, HttpRequest request, HttpResponse response)
    {
       Constructor<?> constructor = PickConstructor.pickSingletonConstructor(clazz);

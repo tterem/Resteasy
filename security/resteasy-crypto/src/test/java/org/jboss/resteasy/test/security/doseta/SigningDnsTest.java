@@ -58,8 +58,8 @@ public class SigningDnsTest
    }
 
    /**
-    * @param resource
-    */
+   * @param resource
+   */
    public static void addPerRequestResource(Class<?> resource)
    {
       deployment.getRegistry().addPerRequestResource(resource);

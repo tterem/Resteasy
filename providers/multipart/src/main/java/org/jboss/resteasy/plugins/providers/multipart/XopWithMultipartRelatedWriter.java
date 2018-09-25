@@ -25,7 +25,7 @@ import org.jboss.resteasy.spi.util.FindAnnotation;
 @Provider
 @Produces("multipart/related")
 public class XopWithMultipartRelatedWriter extends
-        AbstractMultipartRelatedWriter implements MessageBodyWriter<Object>
+      AbstractMultipartRelatedWriter implements MessageBodyWriter<Object>
 {
 
    public long getSize(Object t, Class<?> type, Type genericType,

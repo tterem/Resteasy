@@ -47,23 +47,23 @@ import org.w3c.dom.Element;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "doc",
-    "param",
-    "representation",
-    "any"
+   "doc",
+   "param",
+   "representation",
+   "any"
 })
 @XmlRootElement(name = "request")
 public class Request {
 
-    protected List<Doc> doc;
-    protected List<Param> param;
-    protected List<Representation> representation;
-    @XmlAnyElement(lax = true)
-    protected List<Object> any;
-    @XmlAnyAttribute
-    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+   protected List<Doc> doc;
+   protected List<Param> param;
+   protected List<Representation> representation;
+   @XmlAnyElement(lax = true)
+   protected List<Object> any;
+   @XmlAnyAttribute
+   private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
-    /**
+   /**
      * Gets the value of the doc property.
      * 
      * <p>
@@ -85,14 +85,14 @@ public class Request {
      * 
      * 
      */
-    public List<Doc> getDoc() {
-        if (doc == null) {
-            doc = new ArrayList<Doc>();
-        }
-        return this.doc;
-    }
+   public List<Doc> getDoc() {
+      if (doc == null) {
+         doc = new ArrayList<Doc>();
+      }
+      return this.doc;
+   }
 
-    /**
+   /**
      * Gets the value of the param property.
      * 
      * <p>
@@ -114,14 +114,14 @@ public class Request {
      * 
      * 
      */
-    public List<Param> getParam() {
-        if (param == null) {
-            param = new ArrayList<Param>();
-        }
-        return this.param;
-    }
+   public List<Param> getParam() {
+      if (param == null) {
+         param = new ArrayList<Param>();
+      }
+      return this.param;
+   }
 
-    /**
+   /**
      * Gets the value of the representation property.
      * 
      * <p>
@@ -143,14 +143,14 @@ public class Request {
      * 
      * 
      */
-    public List<Representation> getRepresentation() {
-        if (representation == null) {
-            representation = new ArrayList<Representation>();
-        }
-        return this.representation;
-    }
+   public List<Representation> getRepresentation() {
+      if (representation == null) {
+         representation = new ArrayList<Representation>();
+      }
+      return this.representation;
+   }
 
-    /**
+   /**
      * Gets the value of the any property.
      * 
      * <p>
@@ -173,14 +173,14 @@ public class Request {
      * 
      * 
      */
-    public List<Object> getAny() {
-        if (any == null) {
-            any = new ArrayList<Object>();
-        }
-        return this.any;
-    }
+   public List<Object> getAny() {
+      if (any == null) {
+         any = new ArrayList<Object>();
+      }
+      return this.any;
+   }
 
-    /**
+   /**
      * Gets a map that contains attributes that aren't bound to any typed property on this class.
      * 
      * <p>
@@ -194,8 +194,8 @@ public class Request {
      * @return
      *     always non-null
      */
-    public Map<QName, String> getOtherAttributes() {
-        return otherAttributes;
-    }
+   public Map<QName, String> getOtherAttributes() {
+      return otherAttributes;
+   }
 
 }

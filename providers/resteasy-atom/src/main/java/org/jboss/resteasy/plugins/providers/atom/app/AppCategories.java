@@ -46,36 +46,36 @@ import java.util.List;
 @XmlRootElement(name = "categories")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "categories", propOrder = {
-    "category", "href"
+   "category", "href"
 })
 public class AppCategories extends AppCommonAttributes {
 
-    private static final long serialVersionUID = 7978145545675525082L;
-    @XmlElements({
-        @XmlElement(name = "category", namespace = "http://www.w3.org/2005/Atom", type = Category.class)
-    })
-    protected List<Category> category;
-    @XmlJavaTypeAdapter( BooleanAdapter.class )
-    @XmlAttribute
-    protected Boolean fixed;
-    @XmlAttribute
-    @XmlSchemaType(name = "anyURI")
-    protected String scheme;
-    @XmlSchemaType(name = "anyURI")
-    protected String href;
+   private static final long serialVersionUID = 7978145545675525082L;
+   @XmlElements({
+      @XmlElement(name = "category", namespace = "http://www.w3.org/2005/Atom", type = Category.class)
+   })
+   protected List<Category> category;
+   @XmlJavaTypeAdapter( BooleanAdapter.class )
+   @XmlAttribute
+   protected Boolean fixed;
+   @XmlAttribute
+   @XmlSchemaType(name = "anyURI")
+   protected String scheme;
+   @XmlSchemaType(name = "anyURI")
+   protected String href;
 
-    public AppCategories() {}
+   public AppCategories() {}
     
-    public AppCategories(List<Category> category, Boolean fixed, String scheme,
-            String href) {
-        super();
-        this.category = category;
-        this.fixed = fixed;
-        this.scheme = scheme;
-        this.href = href;
-    }
+   public AppCategories(List<Category> category, Boolean fixed, String scheme,
+         String href) {
+      super();
+      this.category = category;
+      this.fixed = fixed;
+      this.scheme = scheme;
+      this.href = href;
+   }
 
-    /**
+   /**
      * Gets the value of the category property.
      * 
      * <p>
@@ -97,14 +97,14 @@ public class AppCategories extends AppCommonAttributes {
      * @return list of categories
      * 
      */
-    public List<Category> getCategory() {
-        if (category == null) {
-            category = new ArrayList<Category>();
-        }
-        return this.category;
-    }
+   public List<Category> getCategory() {
+      if (category == null) {
+         category = new ArrayList<Category>();
+      }
+      return this.category;
+   }
 
-    /**
+   /**
      * Gets the value of the fixed property.
      * 
      * @return
@@ -112,11 +112,11 @@ public class AppCategories extends AppCommonAttributes {
      *     {@link Boolean }
      *     
      */
-    public Boolean isFixed() {
-        return fixed;
-    }
+   public Boolean isFixed() {
+      return fixed;
+   }
 
-    /**
+   /**
      * Sets the value of the fixed property.
      * 
      * @param value
@@ -124,50 +124,50 @@ public class AppCategories extends AppCommonAttributes {
      *     {@link Boolean }
      *     
      */
-    public void setFixed(Boolean value) {
-        this.fixed = value;
-    }
+   public void setFixed(Boolean value) {
+      this.fixed = value;
+   }
     
-    /**
+   /**
      * Gets the value of the scheme property.
      * 
      * @return possible object is {@link String }
      * 
      */
-    public String getScheme() {
-        return scheme;
-    }
+   public String getScheme() {
+      return scheme;
+   }
 
-    /**
+   /**
      * Sets the value of the scheme property.
      * 
      * @param value
      *            allowed object is {@link String }
      * 
      */
-    public void setScheme(String value) {
-        this.scheme = value;
-    }
+   public void setScheme(String value) {
+      this.scheme = value;
+   }
     
-    /**
+   /**
      * Gets the value of the href property.
      * 
      * @return possible object is {@link String }
      * 
      */
-    public String getHref() {
-        return href;
-    }
+   public String getHref() {
+      return href;
+   }
 
-    /**
+   /**
      * Sets the value of the href property.
      * 
      * @param value
      *            allowed object is {@link String }
      * 
      */
-    public void setHref(String value) {
-        this.href = value;
-    }
+   public void setHref(String value) {
+      this.href = value;
+   }
 
 }

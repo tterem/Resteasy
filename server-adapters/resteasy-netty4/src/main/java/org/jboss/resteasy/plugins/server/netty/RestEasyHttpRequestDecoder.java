@@ -28,39 +28,39 @@ import org.jboss.resteasy.specimpl.ResteasyUriInfo;
 @Sharable
 public class RestEasyHttpRequestDecoder extends MessageToMessageDecoder<io.netty.handler.codec.http.HttpRequest>
 {
-    private final SynchronousDispatcher dispatcher;
-    private final String servletMappingPrefix;
-    private final String proto;
+   private final SynchronousDispatcher dispatcher;
+   private final String servletMappingPrefix;
+   private final String proto;
 
-    public enum Protocol
-    {
-        HTTPS,
-        HTTP
-    }
+   public enum Protocol
+   {
+      HTTPS,
+      HTTP
+   }
 
-    public RestEasyHttpRequestDecoder(SynchronousDispatcher dispatcher, String servletMappingPrefix, Protocol protocol)
-    {
-        this.dispatcher = dispatcher;
-        this.servletMappingPrefix = servletMappingPrefix;
-        if (protocol == Protocol.HTTP)
-        {
-            proto = "http";
-        }
-        else
-        {
-            proto = "https";
-        }
-    }
+   public RestEasyHttpRequestDecoder(SynchronousDispatcher dispatcher, String servletMappingPrefix, Protocol protocol)
+   {
+      this.dispatcher = dispatcher;
+      this.servletMappingPrefix = servletMappingPrefix;
+      if (protocol == Protocol.HTTP)
+      {
+         proto = "http";
+      }
+      else
+      {
+         proto = "https";
+      }
+   }
 
-    @Override
-    protected void decode(ChannelHandlerContext ctx, io.netty.handler.codec.http.HttpRequest request, List<Object> out) throws Exception
-    {
-        boolean keepAlive = HttpUtil.isKeepAlive(request);
-        final NettyHttpResponse response = new NettyHttpResponse(ctx, keepAlive, dispatcher.getProviderFactory(), request.method());
+   @Override
+   protected void decode(ChannelHandlerContext ctx, io.netty.handler.codec.http.HttpRequest request, List<Object> out) throws Exception
+   {
+      boolean keepAlive = HttpUtil.isKeepAlive(request);
+      final NettyHttpResponse response = new NettyHttpResponse(ctx, keepAlive, dispatcher.getProviderFactory(), request.method());
         
-        DecoderResult decoderResult = request.decoderResult();
-        if (decoderResult.isFailure())
-        {
+      DecoderResult decoderResult = request.decoderResult();
+      if (decoderResult.isFailure())
+      {
            Throwable t = decoderResult.cause();
            if (t != null && t.getLocalizedMessage() != null)
            {
@@ -71,12 +71,12 @@ public class RestEasyHttpRequestDecoder extends MessageToMessageDecoder<io.netty
               response.sendError(400);
            }
            return;
-        }
+      }
         
-        final ResteasyHttpHeaders headers;
-        final ResteasyUriInfo uriInfo;
-        try
-        {
+      final ResteasyHttpHeaders headers;
+      final ResteasyUriInfo uriInfo;
+      try
+      {
            headers = NettyUtil.extractHttpHeaders(request);
 
            uriInfo = NettyUtil.extractUriInfo(request, servletMappingPrefix, proto);
@@ -94,12 +94,12 @@ public class RestEasyHttpRequestDecoder extends MessageToMessageDecoder<io.netty
 
                out.add(nettyRequest);
            }
-        }
-        catch (Exception e)
-        {
+      }
+      catch (Exception e)
+      {
            response.sendError(400);
            // made it warn so that people can filter this.
            LogMessages.LOGGER.warn(Messages.MESSAGES.failedToParseRequest(), e);
-        }
-    }
+      }
+   }
 }

@@ -79,7 +79,7 @@ public class NettyTest
       public String large() {
          StringBuffer buf = new StringBuffer();
          for (int i = 0; i < 1000; i++) {
-            buf.append(i);
+         buf.append(i);
          }
          return buf.toString();
       }
@@ -190,7 +190,7 @@ public class NettyTest
          Assert.assertEquals(200, response.getStatus());
          StringBuffer buf = new StringBuffer();
          for (int i = 0; i < 1000; i++) {
-            buf.append(i);
+         buf.append(i);
          }
          String expected = buf.toString();
          String have = response.readEntity(String.class);
@@ -218,21 +218,21 @@ public class NettyTest
       }
    }
 
-    @Test
-    public void testChannelContext() throws Exception {
-        WebTarget target = client.target(generateURL("/context"));
-        String val = target.request().get(String.class);
-        Assert.assertNotNull(val);
-        Assert.assertFalse(val.isEmpty());
-    }
-    
-    @Test
-    public void testPost() {
+   @Test
+   public void testChannelContext() throws Exception {
+      WebTarget target = client.target(generateURL("/context"));
+      String val = target.request().get(String.class);
+      Assert.assertNotNull(val);
+      Assert.assertFalse(val.isEmpty());
+   }
+   
+   @Test
+   public void testPost() {
       WebTarget target = client.target(generateURL("/post"));
       String postBody = "hello world";
       String result = (String) target.request().post(Entity.text(postBody), String.class);
       Assert.assertEquals(postBody, result);
-    }
+   }
 
    @Test
    public void testLeak() {
@@ -247,22 +247,22 @@ public class NettyTest
 
 
    /**
-    * Per the HTTP spec, we must allow requests like:
-    *
-    * <pre>
-    *     GET http://www.example.com/content HTTP/1.1
-    *     Host: www.example.com
-    * </pre>
-    *
-    * <blockquote>
-    * RFC 2616 5.1.12:
-    * To allow for transition to absoluteURIs in all requests in future
-    versions of HTTP, all HTTP/1.1 servers MUST accept the absoluteURI
-    form in requests, even though HTTP/1.1 clients will only generate
-    them in requests to proxies.
-    </blockquote>
-    * @throws Exception
-    */
+   * Per the HTTP spec, we must allow requests like:
+   *
+   * <pre>
+   *     GET http://www.example.com/content HTTP/1.1
+   *     Host: www.example.com
+   * </pre>
+   *
+   * <blockquote>
+   * RFC 2616 5.1.12:
+   * To allow for transition to absoluteURIs in all requests in future
+   versions of HTTP, all HTTP/1.1 servers MUST accept the absoluteURI
+   form in requests, even though HTTP/1.1 clients will only generate
+   them in requests to proxies.
+   </blockquote>
+   * @throws Exception
+   */
    @Test
    public void testAbsoluteURI() throws Exception {
       String uri = generateURL("/test/absolute");

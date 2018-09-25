@@ -67,22 +67,22 @@ public abstract class AsyncResponseConsumer
    }
 
    public static AsyncResponseConsumer makeAsyncResponseConsumer(ResourceMethodInvoker method, AsyncStreamProvider<?> asyncStreamProvider) {
-	  if(method.isSse())
-	  {
-		  return new AsyncGeneralStreamingSseResponseConsumer(method, asyncStreamProvider);
-	  }
-	  Stream stream = method.getMethod().getAnnotation(Stream.class);
-	  if (stream != null) 
-	  {
-	     if (Stream.MODE.RAW.equals(stream.value()))
-	     {
-	        return new AsyncRawStreamingResponseConsumer(method, asyncStreamProvider); 
-	     }
-	     else
-	     {
-	        return new AsyncGeneralStreamingSseResponseConsumer(method, asyncStreamProvider);  
-	     }
-	  }
+     if(method.isSse())
+     {
+      return new AsyncGeneralStreamingSseResponseConsumer(method, asyncStreamProvider);
+     }
+     Stream stream = method.getMethod().getAnnotation(Stream.class);
+     if (stream != null)
+     {
+      if (Stream.MODE.RAW.equals(stream.value()))
+      {
+           return new AsyncRawStreamingResponseConsumer(method, asyncStreamProvider);
+      }
+      else
+      {
+           return new AsyncGeneralStreamingSseResponseConsumer(method, asyncStreamProvider);
+      }
+     }
       return new AsyncStreamCollectorResponseConsumer(method, asyncStreamProvider);
    }
 
@@ -207,9 +207,9 @@ public abstract class AsyncResponseConsumer
    }
 
    /*
-    * As the name indicates, CompletionStageResponseConsumer subscribes to a CompletionStage supplied by
-    * a resource method.
-    */
+   * As the name indicates, CompletionStageResponseConsumer subscribes to a CompletionStage supplied by
+   * a resource method.
+   */
    private static class CompletionStageResponseConsumer extends AsyncResponseConsumer implements BiConsumer<Object, Throwable> 
    {
       private AsyncResponseProvider<?> asyncResponseProvider;
@@ -316,10 +316,10 @@ public abstract class AsyncResponseConsumer
    }
 
    /*
-    * AsyncRawStreamingResponseConsumer supports raw streaming, which is invoked when a resource method
-    * is annotated with @Stream(Stream.MODE.RAW). In raw streaming, an undelimited sequence of data elements
-    * such as bytes or chars is written. The client application is responsible for parsing it.
-    */
+   * AsyncRawStreamingResponseConsumer supports raw streaming, which is invoked when a resource method
+   * is annotated with @Stream(Stream.MODE.RAW). In raw streaming, an undelimited sequence of data elements
+   * such as bytes or chars is written. The client application is responsible for parsing it.
+   */
    private static class AsyncRawStreamingResponseConsumer extends AsyncStreamResponseConsumer 
    {
       private boolean sentEntity;
@@ -387,9 +387,9 @@ public abstract class AsyncResponseConsumer
    }
    
    /*
-    * Rather than writing a stream of data items, AsyncStreamCollectorResponseConsumer collects a sequence
-    * of data items into a list and writes the entire list when all data items have been collected. 
-    */
+   * Rather than writing a stream of data items, AsyncStreamCollectorResponseConsumer collects a sequence
+   * of data items into a list and writes the entire list when all data items have been collected. 
+   */
    private static class AsyncStreamCollectorResponseConsumer extends AsyncStreamResponseConsumer 
    {
       private List<Object> collector = new ArrayList<Object>();
@@ -445,14 +445,14 @@ public abstract class AsyncResponseConsumer
    }
 
    /**
-    * AsyncGeneralStreamingSseResponseConsumer handles two cases:
-    * 
-    * 1. SSE streaming, and
-    * 2. General streaming, which is requested when a resource method is annotated @Stream or @Stream(Stream.MODE.GENERAL).
-    *    
-    * General streaming is an extension of streaming as defined for SSE. The extension include
-    * support for encoding non-text data. 
-    */
+   * AsyncGeneralStreamingSseResponseConsumer handles two cases:
+   * 
+   * 1. SSE streaming, and
+   * 2. General streaming, which is requested when a resource method is annotated @Stream or @Stream(Stream.MODE.GENERAL).
+   *    
+   * General streaming is an extension of streaming as defined for SSE. The extension include
+   * support for encoding non-text data. 
+   */
    private static class AsyncGeneralStreamingSseResponseConsumer extends AsyncStreamResponseConsumer 
    {
       private SseImpl sse;
@@ -471,7 +471,7 @@ public abstract class AsyncResponseConsumer
       protected void doComplete()
       {
          // don't call super.doComplete which completes the asyncContext because Sse does that
-    	  // we can be done by exception before we've even subscribed
+         // we can be done by exception before we've even subscribed
           if(subscription != null)
              subscription.cancel();
          sseEventSink.close();

@@ -42,13 +42,13 @@ public class SimpleProxyServer
    private ServerSocket ss = null;
 
    /**
-    * Create a new SimpleProxyServer.
-    *
-    * @param host
-    * @param remotePort
-    * @param localPort
-    * @param debugCommunication
-    */
+   * Create a new SimpleProxyServer.
+   *
+   * @param host
+   * @param remotePort
+   * @param localPort
+   * @param debugCommunication
+   */
 
    public SimpleProxyServer(String host, int remotePort, int localPort)
    {
@@ -58,8 +58,8 @@ public class SimpleProxyServer
    }
 
    /**
-    * Start proxy
-    */
+   * Start proxy
+   */
    public void start()
    {
       log.info("Starting proxy " + this);
@@ -78,8 +78,8 @@ public class SimpleProxyServer
    }
 
    /**
-    * Stop proxy
-    */
+   * Stop proxy
+   */
    public void stop()
    {
       log.info("Stop proxy " + this);
@@ -110,8 +110,8 @@ public class SimpleProxyServer
    }
 
    /**
-    * Method runs thread with proxy which waits for connection
-    */
+   * Method runs thread with proxy which waits for connection
+   */
    private void runServer()
    {
 
@@ -164,11 +164,11 @@ public class SimpleProxyServer
    }
 
    /**
-    * Connection thread
-    *
-    * @author <a href="pslavice@jboss.com">Pavel Slavicek</a>
-    * @version $Revision: 1.1 $
-    */
+   * Connection thread
+   *
+   * @author <a href="pslavice@jboss.com">Pavel Slavicek</a>
+   * @version $Revision: 1.1 $
+   */
    private static class ProxyThread extends Thread
    {
 

@@ -145,8 +145,8 @@ public class ServerDrivenNegotiation
 
 
    /**
-    * Tests whether {@code option} is preferable over the current {@code bestOption}.
-    */
+   * Tests whether {@code option} is preferable over the current {@code bestOption}.
+   */
 //   private static boolean isBetterOption(BigDecimal bestQuality, Variant best,
 //                                         BigDecimal optionQuality, Variant option)
    private static boolean isBetterOption(VariantQuality bestQuality, Variant best,
@@ -347,8 +347,8 @@ public class ServerDrivenNegotiation
          if (availableValue == null && "charset".equals(name))
          {
             if (requestedCharacterSets != null
-                    && !requestedCharacterSets.containsKey(null)
-                    && !requestedCharacterSets.containsKey(value))
+               && !requestedCharacterSets.containsKey(null)
+               && !requestedCharacterSets.containsKey(value))
                return false;
          }
          else if (!value.equals(availableValue))

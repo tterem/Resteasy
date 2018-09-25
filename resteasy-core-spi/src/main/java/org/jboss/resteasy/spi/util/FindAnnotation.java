@@ -23,8 +23,8 @@ public final class FindAnnotation
 {
 
    /**
-    *
-    */
+   *
+   */
    private static final Class<? extends Annotation>[] JAXRS_ANNOTATIONS =
            (Class<? extends Annotation>[]) new Class[]{
                    QueryParam.class,
@@ -51,13 +51,13 @@ public final class FindAnnotation
    }
 
    /**
-    * Finds annotation.
-    *
-    * @param <T> type
-    * @param searchList array of annotations
-    * @param annotation expected annotation class
-    * @return annotation or null
-    */
+   * Finds annotation.
+   *
+   * @param <T> type
+   * @param searchList array of annotations
+   * @param annotation expected annotation class
+   * @return annotation or null
+   */
    public static <T> T findAnnotation(Annotation[] searchList, Class<T> annotation)
    {
       if (searchList == null) return null;
@@ -73,13 +73,13 @@ public final class FindAnnotation
 
 
    /**
-    * Finds annotation.
-    *
-    * @param <T> type
-    * @param searchList array of annotations
-    * @param annotations expected annotations
-    * @return annotation or null
-    */
+   * Finds annotation.
+   *
+   * @param <T> type
+   * @param searchList array of annotations
+   * @param annotations expected annotations
+   * @return annotation or null
+   */
    public static <T> T findAnnotation(Annotation[] searchList, String... annotations)
    {
       if (searchList == null || annotations == null || annotations.length == 0) return null;
@@ -115,12 +115,12 @@ public final class FindAnnotation
    }
 
    /**
-    * Returns an array of annotations the specified method of
-    * a resource class.
-    *
-    * @param method method
-    * @return array of annotations
-    */
+   * Returns an array of annotations the specified method of
+   * a resource class.
+   *
+   * @param method method
+   * @return array of annotations
+   */
    public static Annotation[] getResourcesAnnotations(Method method)
    {
       Map<Class<?>, Annotation> annotations = new HashMap<Class<?>, Annotation>();
@@ -136,14 +136,14 @@ public final class FindAnnotation
    }
 
    /**
-    * Look for an annotation in a list of annotations.  If not there, see if it is on the type provided.
-    *
-    * @param <T> type
-    * @param type type class
-    * @param annotations array of annotations
-    * @param annotation expected annotation
-    * @return annotation or null
-    */
+   * Look for an annotation in a list of annotations.  If not there, see if it is on the type provided.
+   *
+   * @param <T> type
+   * @param type type class
+   * @param annotations array of annotations
+   * @param annotation expected annotation
+   * @return annotation or null
+   */
    public static <T extends Annotation> T findAnnotation(Class<?> type, Annotation[] annotations, Class<T> annotation)
    {
       T config = FindAnnotation.findAnnotation(annotations, annotation);

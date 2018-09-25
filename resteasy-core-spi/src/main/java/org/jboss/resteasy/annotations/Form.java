@@ -27,10 +27,10 @@ import java.lang.annotation.Target;
 public @interface Form
 {
    /**
-    * This is a form parameter prefix you want applied to any @FormParam variables in the object
-    * See documentation for more details.
-    *
-    * @return prefix
-    */
+   * This is a form parameter prefix you want applied to any @FormParam variables in the object
+   * See documentation for more details.
+   *
+   * @return prefix
+   */
    String prefix() default "";
 }

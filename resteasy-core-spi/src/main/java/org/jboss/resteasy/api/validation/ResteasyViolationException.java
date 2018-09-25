@@ -61,9 +61,9 @@ public abstract class ResteasyViolationException extends ConstraintViolationExce
    private boolean suppressPath;
 
    /**
-    * New constructor
-    * @param constraintViolations set of constraint violations
-    */
+   * New constructor
+   * @param constraintViolations set of constraint violations
+   */
    public ResteasyViolationException(final Set<? extends ConstraintViolation<?>> constraintViolations)
    {
       super(constraintViolations);
@@ -73,11 +73,11 @@ public abstract class ResteasyViolationException extends ConstraintViolationExce
    }
 
    /**
-    * New constructor
-    *
-    * @param constraintViolations set of constraint violations
-    * @param accept list of accept media types
-    */
+   * New constructor
+   *
+   * @param constraintViolations set of constraint violations
+   * @param accept list of accept media types
+   */
    public ResteasyViolationException(final Set<? extends ConstraintViolation<?>> constraintViolations, final List<MediaType> accept)
    {
       super(constraintViolations);
@@ -86,10 +86,10 @@ public abstract class ResteasyViolationException extends ConstraintViolationExce
    }
 
    /**
-    * New constructor
-    *
-    * @param container violation container
-    */
+   * New constructor
+   *
+   * @param container violation container
+   */
    public ResteasyViolationException(final SimpleViolationsContainer container)
    {
       this(container.getViolations());
@@ -97,11 +97,11 @@ public abstract class ResteasyViolationException extends ConstraintViolationExce
    }
 
    /**
-    * New constructor
-    *
-    * @param container violation container
-    * @param accept list of accept media types
-    */
+   * New constructor
+   *
+   * @param container violation container
+   * @param accept list of accept media types
+   */
 
    public ResteasyViolationException(final SimpleViolationsContainer container, final List<MediaType> accept)
    {
@@ -403,10 +403,10 @@ public abstract class ResteasyViolationException extends ConstraintViolationExce
    }
 
    /**
-    * It seems that EJB3 wants to clone ResteasyViolationException,
-    * and MediaType is not serializable.
-    *
-    */
+   * It seems that EJB3 wants to clone ResteasyViolationException,
+   * and MediaType is not serializable.
+   *
+   */
    static class CloneableMediaType implements Serializable
    {
       public static final CloneableMediaType TEXT_PLAIN_TYPE = new CloneableMediaType("plain", "text");

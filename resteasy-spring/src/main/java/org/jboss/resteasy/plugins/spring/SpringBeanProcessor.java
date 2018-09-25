@@ -246,19 +246,19 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
    }
 
    /**
-    * <p>
-    * This method keeps track of @Provider and resources for future use. It also
-    * registers the RESTEasy Registry, ProviderFactry, and Dispatcher for @Autowire
-    * injection.
-    * </p>
-    * <p>
-    * Beyond tracking, this will ensure that non-MessageBody(Reader|Writer) @Providers
-    * are created by Spring before any resources by having the resources
-    * "depends-on" the @Providers.
-    * </p>
-    * 
-    * @param beanFactory bean factory
-    */
+   * <p>
+   * This method keeps track of @Provider and resources for future use. It also
+   * registers the RESTEasy Registry, ProviderFactry, and Dispatcher for @Autowire
+   * injection.
+   * </p>
+   * <p>
+   * Beyond tracking, this will ensure that non-MessageBody(Reader|Writer) @Providers
+   * are created by Spring before any resources by having the resources
+   * "depends-on" the @Providers.
+   * </p>
+   * 
+   * @param beanFactory bean factory
+   */
    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)
            throws BeansException
    {
@@ -293,8 +293,8 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
    }
 
    /**
-    * process a single @Provider or a single resource.
-    */
+   * process a single @Provider or a single resource.
+   */
    protected Class<?> processBean(final ConfigurableListableBeanFactory beanFactory,
                                   List<String> dependsOnProviders, String name, BeanDefinition beanDef)
    {
@@ -354,12 +354,12 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
    }
 
    /**
-    * merge two arrays.
-    *
-    * @param dependsOn first array
-    * @param dependsOnProviders second array
-    * @return merged array
-    */
+   * merge two arrays.
+   *
+   * @param dependsOn first array
+   * @param dependsOnProviders second array
+   * @return merged array
+   */
    private static String[] concat(String[] dependsOn, String[] dependsOnProviders)
    {
       if (dependsOn == null || dependsOn.length == 0)
@@ -376,14 +376,14 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
    }
 
    /**
-    * Get the bean class, and take @Configuration @Beans into consideration.
-    *
-    * @param beanDef {@link BeanDefinition}
-    * @param beanFactory bean factory
-    * @return bean class
-    */
+   * Get the bean class, and take @Configuration @Beans into consideration.
+   *
+   * @param beanDef {@link BeanDefinition}
+   * @param beanFactory bean factory
+   * @return bean class
+   */
    private static Class<?> getBeanClass(String name, BeanDefinition beanDef,
-                                        ConfigurableListableBeanFactory beanFactory)
+                              ConfigurableListableBeanFactory beanFactory)
    {
       if (beanDef instanceof RootBeanDefinition)
       {
@@ -448,9 +448,9 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
             Case in which this tends to happen:
 
             1. A bean (Bean A) exists which provides factoryMethods for retrieving 1 or more other beans (Bean B, Bean C, ...)
-                example: <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean"/>
+            example: <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean"/>
             2. Bean B is retrieved by telling Spring that the Factory-Bean is Bean A and that there is a method X to retrieve Bean B.
-                example: <bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService"/>
+            example: <bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService"/>
             3. When resteasy has to inject Bean B it tries to lookup method X on Bean A instead of Bean B using the above code.
 
             As a fix for this, we retrieve the return type for Bean A from the FactoryBean, which later on can be used to retrieve the other beans.
@@ -502,10 +502,10 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
    }
 
    /**
-    * Register all of the resources into RESTEasy only when Spring finishes it's
-    * life-cycle and the spring singleton bean creation is completed.
-    * @param event application event
-    */
+   * Register all of the resources into RESTEasy only when Spring finishes it's
+   * life-cycle and the spring singleton bean creation is completed.
+   * @param event application event
+   */
    @Override
    public void onApplicationEvent(ApplicationEvent event)
    {

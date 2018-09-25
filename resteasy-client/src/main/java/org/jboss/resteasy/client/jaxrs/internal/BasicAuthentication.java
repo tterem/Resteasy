@@ -18,10 +18,10 @@ public class BasicAuthentication implements ClientRequestFilter
    private final String authHeader;
 
    /**
-    *
-    * @param username user name
-    * @param password password
-    */
+   *
+   * @param username user name
+   * @param password password
+   */
    public BasicAuthentication(String username, String password)
    {
       authHeader = BasicAuthHelper.createHeader(username, password);

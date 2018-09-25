@@ -11,21 +11,21 @@ import java.util.Set;
 public interface ResteasyConfiguration
 {
    /**
-    * i.e. Servlet init-param first is searched, then servlet context.
-    *
-    * @param name parameter name
-    * @return parameter value
-    */
+   * i.e. Servlet init-param first is searched, then servlet context.
+   *
+   * @param name parameter name
+   * @return parameter value
+   */
    String getParameter(String name);
 
    Set<String> getParameterNames();
 
    /**
-    * Only provide parameter from a servlet or filter init param.
-    *
-    * @param name parameter name
-    * @return parameter value
-    */
+   * Only provide parameter from a servlet or filter init param.
+   *
+   * @param name parameter name
+   * @return parameter value
+   */
    String getInitParameter(String name);
 
    Set<String> getInitParameterNames();

@@ -84,9 +84,9 @@ public class ResourceLocatorTest
 
 
    /**
-    * @tpTestDetails Resource locator returns proxied resource.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Resource locator returns proxied resource.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testProxiedSubresource() throws Exception
    {
@@ -98,9 +98,9 @@ public class ResourceLocatorTest
 
 
    /**
-    * @tpTestDetails 1) Resource locator returns resource; 2) Resource locator returns resource locator.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails 1) Resource locator returns resource; 2) Resource locator returns resource locator.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testSubresource() throws Exception
    {
@@ -119,9 +119,9 @@ public class ResourceLocatorTest
 
 
    /**
-    * @tpTestDetails Two matching metods, one a resource locator, the other a resource method.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Two matching metods, one a resource locator, the other a resource method.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testSameUri() throws Exception
    {
@@ -132,9 +132,9 @@ public class ResourceLocatorTest
 
 
    /**
-    * @tpTestDetails Locator returns resource which inherits annotations from an interface.
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Locator returns resource which inherits annotations from an interface.
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testAnnotationFreeSubresource() throws Exception
    {

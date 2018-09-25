@@ -100,7 +100,7 @@ import java.util.List;
 @XmlRootElement(name = "entry")
 @XmlAccessorType(XmlAccessType.PROPERTY)
 @XmlType(propOrder = {"titleElement", "links", "categories", "updated", "id", "published", "authors", "contributors", "source",
-        "rightsElement", "content", "summaryElement", "anyOther"})
+      "rightsElement", "content", "summaryElement", "anyOther"})
 public class Entry extends CommonAttributes
 {
    private List<Person> authors = new ArrayList<Person>();
@@ -174,7 +174,7 @@ public class Entry extends CommonAttributes
    {
       if (this.title == null) 
       {
-        this.title = new Text();
+      this.title = new Text();
       }
       this.title.setText(title);
    }
@@ -313,10 +313,10 @@ public class Entry extends CommonAttributes
    
    
    /**
-    * Get content as an XML Element if the content is XML.  Otherwise, this will just return null.
-    *
-    * @return {@link Element}
-    */
+   * Get content as an XML Element if the content is XML.  Otherwise, this will just return null.
+   *
+   * @return {@link Element}
+   */
    @XmlTransient
    public Element getAnyOtherElement()
    {
@@ -342,68 +342,68 @@ public class Entry extends CommonAttributes
        return this.anyOther;
    }
    /**
-    * Extract the content as the provided JAXB annotated type.
-    * <p>
-    * This method will use a cached JAXBContext used by the Resteasy JAXB providers
-    * or, if those are not existent, it will create a new JAXBContext from scratch
-    * using the class.
-    *
-    * @param <T> type
-    * @param clazz                class type you are expecting
-    * @param otherPossibleClasses Other classe you want to create the JAXBContext with
-    * @return null if there is no XML content
-    * @throws JAXBException jaxb exception
-    */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	public <T> T getAnyOtherJAXBObject(Class<T> clazz, Class... otherPossibleClasses) throws JAXBException {
-        JAXBContext ctx = null;
-        Class[] classes = {clazz};
-        if (otherPossibleClasses != null && otherPossibleClasses.length > 0) {
+   * Extract the content as the provided JAXB annotated type.
+   * <p>
+   * This method will use a cached JAXBContext used by the Resteasy JAXB providers
+   * or, if those are not existent, it will create a new JAXBContext from scratch
+   * using the class.
+   *
+   * @param <T> type
+   * @param clazz                class type you are expecting
+   * @param otherPossibleClasses Other classe you want to create the JAXBContext with
+   * @return null if there is no XML content
+   * @throws JAXBException jaxb exception
+   */
+   @SuppressWarnings({ "unchecked", "rawtypes" })
+   public <T> T getAnyOtherJAXBObject(Class<T> clazz, Class... otherPossibleClasses) throws JAXBException {
+      JAXBContext ctx = null;
+      Class[] classes = {clazz};
+      if (otherPossibleClasses != null && otherPossibleClasses.length > 0) {
             classes = new Class[1 + otherPossibleClasses.length];
             classes[0] = clazz;
             for (int i = 0; i < otherPossibleClasses.length; i++) classes[i + 1] = otherPossibleClasses[i];
-        }
-        if (finder != null) {
+      }
+      if (finder != null) {
             ctx = finder.findCacheContext(MediaType.APPLICATION_XML_TYPE, null, classes);
-        } else {
+      } else {
             ctx = JAXBContext.newInstance(classes);
-        }
+      }
  
-        Object obj = null;
+      Object obj = null;
  
-        if (getAnyOtherElement() != null) {
+      if (getAnyOtherElement() != null) {
             obj = ctx.createUnmarshaller().unmarshal(getAnyOtherElement());
-        } else {
+      } else {
             if (getAnyOther().size() == 0) return null;
             for (Object _obj : getAnyOther()) {
-                for (Class _clazz : classes) {
-                    if (_obj.getClass().equals(_clazz)) {
+            for (Class _clazz : classes) {
+               if (_obj.getClass().equals(_clazz)) {
                         obj = _obj;
                         break;
-                    }
-                }
+               }
+            }
             }
  
             if (obj == null)
-                return null;
-        }
+            return null;
+      }
  
-        if (obj instanceof JAXBElement) {
+      if (obj instanceof JAXBElement) {
             anyOtherJaxbObject = ((JAXBElement) obj).getValue();
             return (T) anyOtherJaxbObject;
-        } else {
+      } else {
             anyOtherJaxbObject = obj;
             return (T) obj;
-        }
-	}
+      }
+   }
 
    
    /**
-    * Returns previous extracted jaxbobject from a call to getJAXBObject(Class{@literal <}T{@literal >} clazz)
-    * or value passed in through a previous setJAXBObject().
-    *
-    * @return object
-    */
+   * Returns previous extracted jaxbobject from a call to getJAXBObject(Class{@literal <}T{@literal >} clazz)
+   * or value passed in through a previous setJAXBObject().
+   *
+   * @return object
+   */
    @XmlTransient
    public Object getAnyOtherJAXBObject()
    {

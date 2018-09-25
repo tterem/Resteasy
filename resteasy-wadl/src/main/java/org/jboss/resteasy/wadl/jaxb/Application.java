@@ -50,29 +50,29 @@ import org.w3c.dom.Element;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "doc",
-    "grammars",
-    "resources",
-    "resourceTypeOrMethodOrRepresentation",
-    "any"
+   "doc",
+   "grammars",
+   "resources",
+   "resourceTypeOrMethodOrRepresentation",
+   "any"
 })
 @XmlRootElement(name = "application")
 public class Application {
 
-    protected List<Doc> doc;
-    protected Grammars grammars;
-    protected List<Resources> resources;
-    @XmlElements({
-        @XmlElement(name = "resource_type", type = ResourceType.class),
-        @XmlElement(name = "method", type = Method.class),
-        @XmlElement(name = "representation", type = Representation.class),
-        @XmlElement(name = "param", type = Param.class)
-    })
-    protected List<Object> resourceTypeOrMethodOrRepresentation;
-    @XmlAnyElement(lax = true)
-    protected List<Object> any;
+   protected List<Doc> doc;
+   protected Grammars grammars;
+   protected List<Resources> resources;
+   @XmlElements({
+      @XmlElement(name = "resource_type", type = ResourceType.class),
+      @XmlElement(name = "method", type = Method.class),
+      @XmlElement(name = "representation", type = Representation.class),
+      @XmlElement(name = "param", type = Param.class)
+   })
+   protected List<Object> resourceTypeOrMethodOrRepresentation;
+   @XmlAnyElement(lax = true)
+   protected List<Object> any;
 
-    /**
+   /**
      * Gets the value of the doc property.
      * 
      * <p>
@@ -94,14 +94,14 @@ public class Application {
      * 
      * 
      */
-    public List<Doc> getDoc() {
-        if (doc == null) {
-            doc = new ArrayList<Doc>();
-        }
-        return this.doc;
-    }
+   public List<Doc> getDoc() {
+      if (doc == null) {
+         doc = new ArrayList<Doc>();
+      }
+      return this.doc;
+   }
 
-    /**
+   /**
      * Gets the value of the grammars property.
      * 
      * @return
@@ -109,11 +109,11 @@ public class Application {
      *     {@link Grammars }
      *     
      */
-    public Grammars getGrammars() {
-        return grammars;
-    }
+   public Grammars getGrammars() {
+      return grammars;
+   }
 
-    /**
+   /**
      * Sets the value of the grammars property.
      * 
      * @param value
@@ -121,11 +121,11 @@ public class Application {
      *     {@link Grammars }
      *     
      */
-    public void setGrammars(Grammars value) {
-        this.grammars = value;
-    }
+   public void setGrammars(Grammars value) {
+      this.grammars = value;
+   }
 
-    /**
+   /**
      * Gets the value of the resources property.
      * 
      * <p>
@@ -147,14 +147,14 @@ public class Application {
      * 
      * 
      */
-    public List<Resources> getResources() {
-        if (resources == null) {
-            resources = new ArrayList<Resources>();
-        }
-        return this.resources;
-    }
+   public List<Resources> getResources() {
+      if (resources == null) {
+         resources = new ArrayList<Resources>();
+      }
+      return this.resources;
+   }
 
-    /**
+   /**
      * Gets the value of the resourceTypeOrMethodOrRepresentation property.
      * 
      * <p>
@@ -179,14 +179,14 @@ public class Application {
      * 
      * 
      */
-    public List<Object> getResourceTypeOrMethodOrRepresentation() {
-        if (resourceTypeOrMethodOrRepresentation == null) {
-            resourceTypeOrMethodOrRepresentation = new ArrayList<Object>();
-        }
-        return this.resourceTypeOrMethodOrRepresentation;
-    }
+   public List<Object> getResourceTypeOrMethodOrRepresentation() {
+      if (resourceTypeOrMethodOrRepresentation == null) {
+         resourceTypeOrMethodOrRepresentation = new ArrayList<Object>();
+      }
+      return this.resourceTypeOrMethodOrRepresentation;
+   }
 
-    /**
+   /**
      * Gets the value of the any property.
      * 
      * <p>
@@ -209,11 +209,11 @@ public class Application {
      * 
      * 
      */
-    public List<Object> getAny() {
-        if (any == null) {
-            any = new ArrayList<Object>();
-        }
-        return this.any;
-    }
+   public List<Object> getAny() {
+      if (any == null) {
+         any = new ArrayList<Object>();
+      }
+      return this.any;
+   }
 
 }

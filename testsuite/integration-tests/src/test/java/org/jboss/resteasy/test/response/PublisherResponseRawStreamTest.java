@@ -70,9 +70,9 @@ public class PublisherResponseRawStreamTest {
    }
 
    /**
-    * @tpTestDetails Resource method returns Publisher<String>.
-    * @tpSince RESTEasy 4.0
-    */
+   * @tpTestDetails Resource method returns Publisher<String>.
+   * @tpSince RESTEasy 4.0
+   */
    @Test
    public void testChunked() throws Exception
    {
@@ -84,9 +84,9 @@ public class PublisherResponseRawStreamTest {
    }
 
    /**
-    * @tpTestDetails Resource method unsubscribes on close for infinite streams.
-    * @tpSince RESTEasy 4.0
-    */
+   * @tpTestDetails Resource method unsubscribes on close for infinite streams.
+   * @tpSince RESTEasy 4.0
+   */
    @Test
    public void testInfiniteStreamsChunked() throws Exception
    {

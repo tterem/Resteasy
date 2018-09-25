@@ -41,9 +41,9 @@ public class ProgammaticTest {
    }
    
    /**
-    * @tpTestDetails Programmatically create resource class
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Programmatically create resource class
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testPerRequest() throws Exception
    {
@@ -78,9 +78,9 @@ public class ProgammaticTest {
    }
 
    /**
-    * @tpTestDetails Programmatically create singleton
-    * @tpSince RESTEasy 3.0.20
-    */
+   * @tpTestDetails Programmatically create singleton
+   * @tpSince RESTEasy 3.0.20
+   */
    @Test
    public void testSingleton() throws Exception
    {
@@ -107,9 +107,9 @@ public class ProgammaticTest {
    }
 
    /**
-    * Check that MockHttpResponse handles a user set character set.
-    * @throws Exception
-    */
+   * Check that MockHttpResponse handles a user set character set.
+   * @throws Exception
+   */
    @Test
    public void testCharsetHeader() throws Exception
    {

@@ -16,6 +16,6 @@ public class FastInfosetMapProvider extends MapProvider {
 
   @Override
   protected boolean needsSecurity() {
-    return false;
+   return false;
   }
 }
