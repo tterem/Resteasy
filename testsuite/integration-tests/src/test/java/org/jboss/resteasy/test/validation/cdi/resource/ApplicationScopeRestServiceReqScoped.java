@@ -13,7 +13,7 @@ public class ApplicationScopeRestServiceReqScoped implements ApplicationScopeIRe
    public Response sendDto(ApplicationScopeMyDto myDto) {
       if (logger.isDebugEnabled())
       {
-            logger.debug("RestServiceReqScoped: Nevertheless: " + myDto, new Exception("RestServiceReqScoped"));
+         logger.debug("RestServiceReqScoped: Nevertheless: " + myDto, new Exception("RestServiceReqScoped"));
       }
       return Response.ok(myDto == null ? "null" : myDto.getPath()).header("entered", "true").build();
    }

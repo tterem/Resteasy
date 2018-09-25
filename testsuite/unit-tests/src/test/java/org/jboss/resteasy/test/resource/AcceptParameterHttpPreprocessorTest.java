@@ -70,7 +70,7 @@ public class AcceptParameterHttpPreprocessorTest {
       List<MediaType> actual = request.getHttpHeaders().getAcceptableMediaTypes();
 
       for (MediaType expect : expected) {
-            Assert.assertTrue(actual.contains(expect));
+         Assert.assertTrue(actual.contains(expect));
       }
 
    }
@@ -97,7 +97,7 @@ public class AcceptParameterHttpPreprocessorTest {
       List<MediaType> actual = request.getHttpHeaders().getAcceptableMediaTypes();
 
       for (MediaType expect : expected) {
-            Assert.assertTrue(actual.contains(expect));
+         Assert.assertTrue(actual.contains(expect));
       }
    }
 

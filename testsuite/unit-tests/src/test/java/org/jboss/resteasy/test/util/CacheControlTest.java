@@ -79,29 +79,29 @@ public class CacheControlTest {
    public void testCacheControl() {
       CacheControlDelegate delegate = new CacheControlDelegate();
       {
-            CacheControl cc = new CacheControl();
-            cc.setNoCache(false);
-            cc.setNoTransform(true);
-            cc.setPrivate(true);
-            cc.setMustRevalidate(true);
-            cc.setProxyRevalidate(true);
-            CacheControl cc2 = delegate.fromString(delegate.toString(cc));
-            assertEqual("Incorrect conversion from CacheControl to String", cc, cc2);
+         CacheControl cc = new CacheControl();
+         cc.setNoCache(false);
+         cc.setNoTransform(true);
+         cc.setPrivate(true);
+         cc.setMustRevalidate(true);
+         cc.setProxyRevalidate(true);
+         CacheControl cc2 = delegate.fromString(delegate.toString(cc));
+         assertEqual("Incorrect conversion from CacheControl to String", cc, cc2);
 
       }
 
       {
-            CacheControl cc = new CacheControl();
-            cc.setNoCache(true);
-            cc.getNoCacheFields().add("bill");
-            cc.getNoCacheFields().add("marc");
-            cc.setPrivate(true);
-            cc.getPrivateFields().add("yo");
-            cc.getCacheExtension().put("foo", "bar");
-            cc.setMaxAge(25);
-            cc.setSMaxAge(25);
-            CacheControl cc2 = delegate.fromString(delegate.toString(cc));
-            assertEqual("Incorrect conversion from CacheControl to String", cc, cc2);
+         CacheControl cc = new CacheControl();
+         cc.setNoCache(true);
+         cc.getNoCacheFields().add("bill");
+         cc.getNoCacheFields().add("marc");
+         cc.setPrivate(true);
+         cc.getPrivateFields().add("yo");
+         cc.getCacheExtension().put("foo", "bar");
+         cc.setMaxAge(25);
+         cc.setSMaxAge(25);
+         CacheControl cc2 = delegate.fromString(delegate.toString(cc));
+         assertEqual("Incorrect conversion from CacheControl to String", cc, cc2);
 
       }
    }

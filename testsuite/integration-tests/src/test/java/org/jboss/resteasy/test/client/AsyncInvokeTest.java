@@ -431,10 +431,10 @@ public class AsyncInvokeTest extends ClientTestBase{
             @Override
             public void completed(Response response)
             {
-            String entity = response.readEntity(String.class);
-            Assert.assertEquals("get", entity);
-            latch.countDown();
-            throw new RuntimeException("for the test of it");
+               String entity = response.readEntity(String.class);
+               Assert.assertEquals("get", entity);
+               latch.countDown();
+               throw new RuntimeException("for the test of it");
             }
 
             @Override
@@ -454,9 +454,9 @@ public class AsyncInvokeTest extends ClientTestBase{
             @Override
             public void completed(String s)
             {
-            Assert.assertEquals("get", s);
-            latch.countDown();
-            throw new RuntimeException("for the test of it");
+               Assert.assertEquals("get", s);
+               latch.countDown();
+               throw new RuntimeException("for the test of it");
             }
 
             @Override

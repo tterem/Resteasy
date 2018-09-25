@@ -70,11 +70,11 @@ public class AnnotationInheritanceTest {
    @Test
    public void testDetectionOfNonResource() {
       try {
-            AnnotationInheritanceSomeOtherInterface proxy = client.target(generateURL("/somewhere")).proxy(AnnotationInheritanceSomeOtherInterface.class);
-            proxy.getFailure().blah();
-            Assert.fail();
+         AnnotationInheritanceSomeOtherInterface proxy = client.target(generateURL("/somewhere")).proxy(AnnotationInheritanceSomeOtherInterface.class);
+         proxy.getFailure().blah();
+         Assert.fail();
       } catch (Exception e) {
-            // exception thrown
+         // exception thrown
       }
    }
 }

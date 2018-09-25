@@ -67,11 +67,11 @@ public class AsyncRequestFilterResource {
       executor.submit(() -> {
          try
          {
-         Thread.sleep(2000);
+            Thread.sleep(2000);
          } catch (InterruptedException e)
          {
          // TODO Auto-generated catch block
-         LOG.error("Error:", e);
+            LOG.error("Error:", e);
          }
          resp.complete(Response.ok("resource").build());
       });

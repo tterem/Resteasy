@@ -22,14 +22,14 @@ public class AsyncInjectionFloatInjector implements ContextInjector<CompletionSt
          if(annotation.annotationType() == AsyncInjectionPrimitiveInjectorSpecifier.class) {
             AsyncInjectionPrimitiveInjectorSpecifier.Type value = ((AsyncInjectionPrimitiveInjectorSpecifier)annotation).value();
             switch(value) {
-            case NO_RESULT:
-               return null;
-            case NULL:
-               return CompletableFuture.completedFuture(null);
-            case VALUE:
-               return CompletableFuture.completedFuture(4.2f);
-            }
-            break;
+               case NO_RESULT:
+                  return null;
+               case NULL:
+                  return CompletableFuture.completedFuture(null);
+               case VALUE:
+                  return CompletableFuture.completedFuture(4.2f);
+               }
+               break;
          }
       }
       return CompletableFuture.completedFuture(4.2f);

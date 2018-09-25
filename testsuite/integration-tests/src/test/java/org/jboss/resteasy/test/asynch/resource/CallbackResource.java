@@ -51,12 +51,12 @@ public class CallbackResource extends CallbackResourceBase {
    public String registerObjectThrowsNpe(@QueryParam("stage") String stage) {
       AsyncResponse async = takeAsyncResponse(stage);
       try {
-            CallbackSettingCompletionCallback callback = null;
-            async.register(callback);
+         CallbackSettingCompletionCallback callback = null;
+         async.register(callback);
       } catch (NullPointerException e) {
-            return TRUE;
+         return TRUE;
       } catch (Exception e) {
-            return "Threw " + e.getClass().getName();
+         return "Threw " + e.getClass().getName();
       }
       return FALSE;
    }
@@ -66,12 +66,12 @@ public class CallbackResource extends CallbackResourceBase {
    public String registerClassThrowsNpe(@QueryParam("stage") String stage) {
       AsyncResponse async = takeAsyncResponse(stage);
       try {
-            Class<CallbackSettingCompletionCallback> callback = null;
-            async.register(callback);
+         Class<CallbackSettingCompletionCallback> callback = null;
+         async.register(callback);
       } catch (NullPointerException e) {
-            return TRUE;
+         return TRUE;
       } catch (Exception e) {
-            return "Threw " + e.getClass().getName();
+         return "Threw " + e.getClass().getName();
       }
       return FALSE;
    }
@@ -81,12 +81,12 @@ public class CallbackResource extends CallbackResourceBase {
    public String registerObjectsThrowsNpe1(@QueryParam("stage") String stage) {
       AsyncResponse async = takeAsyncResponse(stage);
       try {
-            CallbackSettingCompletionCallback callback = null;
-            async.register(callback, new CallbackSecondSettingCompletionCallback());
+         CallbackSettingCompletionCallback callback = null;
+         async.register(callback, new CallbackSecondSettingCompletionCallback());
       } catch (NullPointerException e) {
-            return TRUE;
+         return TRUE;
       } catch (Exception e) {
-            return "Threw " + e.getClass().getName();
+         return "Threw " + e.getClass().getName();
       }
       return FALSE;
    }
@@ -96,12 +96,12 @@ public class CallbackResource extends CallbackResourceBase {
    public String registerObjectsThrowsNpe2(@QueryParam("stage") String stage) {
       AsyncResponse async = takeAsyncResponse(stage);
       try {
-            CallbackSecondSettingCompletionCallback callback = null;
-            async.register(new CallbackSettingCompletionCallback(), callback);
+         CallbackSecondSettingCompletionCallback callback = null;
+         async.register(new CallbackSettingCompletionCallback(), callback);
       } catch (NullPointerException e) {
-            return TRUE;
+         return TRUE;
       } catch (Exception e) {
-            return "Threw " + e.getClass().getName();
+         return "Threw " + e.getClass().getName();
       }
       return FALSE;
    }
@@ -111,12 +111,12 @@ public class CallbackResource extends CallbackResourceBase {
    public String registerClassesThrowsNpe1(@QueryParam("stage") String stage) {
       AsyncResponse async = takeAsyncResponse(stage);
       try {
-            Class<CallbackSettingCompletionCallback> callback = null;
-            async.register(callback, CallbackSecondSettingCompletionCallback.class);
+         Class<CallbackSettingCompletionCallback> callback = null;
+         async.register(callback, CallbackSecondSettingCompletionCallback.class);
       } catch (NullPointerException e) {
-            return TRUE;
+         return TRUE;
       } catch (Exception e) {
-            return "Threw " + e.getClass().getName();
+         return "Threw " + e.getClass().getName();
       }
       return FALSE;
    }
@@ -126,12 +126,12 @@ public class CallbackResource extends CallbackResourceBase {
    public String registerClassesThrowsNpe2(@QueryParam("stage") String stage) {
       AsyncResponse async = takeAsyncResponse(stage);
       try {
-            Class<CallbackSecondSettingCompletionCallback> callback = null;
-            async.register(CallbackSettingCompletionCallback.class, callback);
+         Class<CallbackSecondSettingCompletionCallback> callback = null;
+         async.register(CallbackSettingCompletionCallback.class, callback);
       } catch (NullPointerException e) {
-            return TRUE;
+         return TRUE;
       } catch (Exception e) {
-            return "Threw " + e.getClass().getName();
+         return "Threw " + e.getClass().getName();
       }
       return FALSE;
    }

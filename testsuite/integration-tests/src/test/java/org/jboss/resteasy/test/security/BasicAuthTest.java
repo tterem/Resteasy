@@ -63,21 +63,21 @@ public class BasicAuthTest {
    public static void init() {
       // authorizedClient
       {
-            UsernamePasswordCredentials credentials = new UsernamePasswordCredentials("bill", "password1");
-            CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-            credentialsProvider.setCredentials(new AuthScope(AuthScope.ANY), credentials);
-            CloseableHttpClient client = HttpClients.custom().setDefaultCredentialsProvider(credentialsProvider).build();
-            ApacheHttpClientEngine engine = ApacheHttpClientEngine.create(client);
-            authorizedClient = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
+         UsernamePasswordCredentials credentials = new UsernamePasswordCredentials("bill", "password1");
+         CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+         credentialsProvider.setCredentials(new AuthScope(AuthScope.ANY), credentials);
+         CloseableHttpClient client = HttpClients.custom().setDefaultCredentialsProvider(credentialsProvider).build();
+         ApacheHttpClientEngine engine = ApacheHttpClientEngine.create(client);
+         authorizedClient = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
       }
       // unauthorizedClient
       {
-            UsernamePasswordCredentials credentials_other = new UsernamePasswordCredentials("ordinaryUser", "password2");
-            CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-            credentialsProvider.setCredentials(new AuthScope(AuthScope.ANY), credentials_other);
-            CloseableHttpClient client = HttpClients.custom().setDefaultCredentialsProvider(credentialsProvider).build();
-            ApacheHttpClientEngine engine = ApacheHttpClientEngine.create(client);
-            unauthorizedClient = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
+         UsernamePasswordCredentials credentials_other = new UsernamePasswordCredentials("ordinaryUser", "password2");
+         CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+         credentialsProvider.setCredentials(new AuthScope(AuthScope.ANY), credentials_other);
+         CloseableHttpClient client = HttpClients.custom().setDefaultCredentialsProvider(credentialsProvider).build();
+         ApacheHttpClientEngine engine = ApacheHttpClientEngine.create(client);
+         unauthorizedClient = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
       }
       // noAutorizationClient
       noAutorizationClient = (ResteasyClient)ClientBuilder.newClient();
@@ -143,38 +143,38 @@ public class BasicAuthTest {
    public void testSecurity() throws Exception {
       // authorized client
       {
-            Response response = authorizedClient.target(generateURL("/secured")).request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(WRONG_RESPONSE, "hello", response.readEntity(String.class));
+         Response response = authorizedClient.target(generateURL("/secured")).request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(WRONG_RESPONSE, "hello", response.readEntity(String.class));
       }
 
       {
-            Response response = authorizedClient.target(generateURL("/secured/authorized")).request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(WRONG_RESPONSE, "authorized", response.readEntity(String.class));
+         Response response = authorizedClient.target(generateURL("/secured/authorized")).request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(WRONG_RESPONSE, "authorized", response.readEntity(String.class));
       }
 
       {
-            Response response = authorizedClient.target(generateURL("/secured/deny")).request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_FORBIDDEN, response.getStatus());
-            Assert.assertEquals(WRONG_RESPONSE, ACCESS_FORBIDDEN_MESSAGE, response.readEntity(String.class));
+         Response response = authorizedClient.target(generateURL("/secured/deny")).request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_FORBIDDEN, response.getStatus());
+         Assert.assertEquals(WRONG_RESPONSE, ACCESS_FORBIDDEN_MESSAGE, response.readEntity(String.class));
       }
       {
-            Response response = authorizedClient.target(generateURL("/secured3/authorized")).request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(WRONG_RESPONSE, "authorized", response.readEntity(String.class));
+         Response response = authorizedClient.target(generateURL("/secured3/authorized")).request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(WRONG_RESPONSE, "authorized", response.readEntity(String.class));
       }
 
       // unauthorized client
       {
-            Response response = unauthorizedClient.target(generateURL("/secured3/authorized")).request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_FORBIDDEN, response.getStatus());
-            Assert.assertEquals(WRONG_RESPONSE, ACCESS_FORBIDDEN_MESSAGE, response.readEntity(String.class));
+         Response response = unauthorizedClient.target(generateURL("/secured3/authorized")).request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_FORBIDDEN, response.getStatus());
+         Assert.assertEquals(WRONG_RESPONSE, ACCESS_FORBIDDEN_MESSAGE, response.readEntity(String.class));
       }
       {
-            Response response = unauthorizedClient.target(generateURL("/secured3/anybody")).request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            response.close();
+         Response response = unauthorizedClient.target(generateURL("/secured3/anybody")).request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         response.close();
       }
    }
 
@@ -196,21 +196,21 @@ public class BasicAuthTest {
    @Test
    public void testSecurityFailure() throws Exception {
       {
-            Response response = noAutorizationClient.target(generateURL("/secured")).request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_UNAUTHORIZED, response.getStatus());
-            response.close();
+         Response response = noAutorizationClient.target(generateURL("/secured")).request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_UNAUTHORIZED, response.getStatus());
+         response.close();
       }
 
       {
-            Response response = authorizedClient.target(generateURL("/secured/authorized")).request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(WRONG_RESPONSE, "authorized", response.readEntity(String.class));
+         Response response = authorizedClient.target(generateURL("/secured/authorized")).request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(WRONG_RESPONSE, "authorized", response.readEntity(String.class));
       }
 
       {
-            Response response = unauthorizedClient.target(generateURL("/secured/authorized")).request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_FORBIDDEN, response.getStatus());
-            Assert.assertEquals(ACCESS_FORBIDDEN_MESSAGE, response.readEntity(String.class));
+         Response response = unauthorizedClient.target(generateURL("/secured/authorized")).request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_FORBIDDEN, response.getStatus());
+         Assert.assertEquals(ACCESS_FORBIDDEN_MESSAGE, response.readEntity(String.class));
       }
    }
 
@@ -261,9 +261,9 @@ public class BasicAuthTest {
 
       @Override
       public void setConfigurationPath() throws URISyntaxException {
-            Path filepath= Paths.get(BasicAuthTest.class.getResource("users.properties").toURI());
-            Path parent = filepath.getParent();
-            createPropertiesFiles(new File(parent.toUri()));
+         Path filepath= Paths.get(BasicAuthTest.class.getResource("users.properties").toURI());
+         Path parent = filepath.getParent();
+         createPropertiesFiles(new File(parent.toUri()));
       }
 
    }

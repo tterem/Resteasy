@@ -141,7 +141,7 @@ public abstract class AbstractJaxbClassCustomer implements java.io.Serializable 
       final GregorianCalendar seitCal = new GregorianCalendar();
       Date temp = seit;
       if (temp == null) {
-            temp = new Date();
+         temp = new Date();
       }
       seitCal.setTime(temp);
 
@@ -153,7 +153,7 @@ public abstract class AbstractJaxbClassCustomer implements java.io.Serializable 
    public String getSeitAsString(int style, Locale locale) {
       Date temp = seit;
       if (temp == null) {
-            temp = new Date();
+         temp = new Date();
       }
       final DateFormat f = DateFormat.getDateInstance(style, locale);
       return f.format(temp);
@@ -162,7 +162,7 @@ public abstract class AbstractJaxbClassCustomer implements java.io.Serializable 
    public void setSeit(String seit, int style, Locale locale) {
       final DateFormat f = DateFormat.getDateInstance(style, locale);
       try {
-            this.seit = f.parse(seit);
+         this.seit = f.parse(seit);
       } catch (ParseException e) {
       }
    }
@@ -242,35 +242,35 @@ public abstract class AbstractJaxbClassCustomer implements java.io.Serializable 
    @Override
    public boolean equals(Object obj) {
       if (this == obj) {
-            return true;
+         return true;
       }
       if (obj == null) {
-            return false;
+         return false;
       }
       if (getClass() != obj.getClass()) {
-            return false;
+         return false;
       }
       final AbstractJaxbClassCustomer other = (AbstractJaxbClassCustomer) obj;
       if (nachname == null) {
-            if (other.nachname != null) {
-            return false;
-            }
+         if (other.nachname != null) {
+         return false;
+         }
       } else if (!nachname.equals(other.nachname)) {
-            return false;
+         return false;
       }
       if (seit == null) {
-            if (other.seit != null) {
-            return false;
-            }
+         if (other.seit != null) {
+         return false;
+         }
       } else if (!seit.equals(other.seit)) {
-            return false;
+         return false;
       }
       if (vorname == null) {
-            if (other.vorname != null) {
-            return false;
-            }
+         if (other.vorname != null) {
+         return false;
+         }
       } else if (!vorname.equals(other.vorname)) {
-            return false;
+         return false;
       }
       return true;
    }

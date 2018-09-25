@@ -60,7 +60,7 @@ public class AsynchBasicTest {
       Map<String, String> contextParam = new HashMap<>();
       contextParam.put("resteasy.async.job.service.enabled", "true");
       if (maxSize != null) {
-            contextParam.put("resteasy.async.job.service.max.job.results", maxSize);
+         contextParam.put("resteasy.async.job.service.max.job.results", maxSize);
       }
       // Arquillian in the deployment
       war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(new ReflectPermission("suppressAccessChecks"),
@@ -109,18 +109,18 @@ public class AsynchBasicTest {
       ResteasyClient client = initClient();
       Response response = null;
       try {
-            latch = new CountDownLatch(1);
-            long start = System.currentTimeMillis();
-            response = client.target(generateURL("?oneway=true", DEFAULT_DEPLOYMENT)).request().put(Entity.entity("content", "text/plain"));
+         latch = new CountDownLatch(1);
+         long start = System.currentTimeMillis();
+         response = client.target(generateURL("?oneway=true", DEFAULT_DEPLOYMENT)).request().put(Entity.entity("content", "text/plain"));
 
-            //response = request.put();
-            long end = System.currentTimeMillis() - start;
-            Assert.assertEquals(HttpServletResponse.SC_ACCEPTED, response.getStatus());
-            Assert.assertTrue(end < 1000);
-            Assert.assertTrue("Request was not sent correctly", latch.await(2, TimeUnit.SECONDS));
+         //response = request.put();
+         long end = System.currentTimeMillis() - start;
+         Assert.assertEquals(HttpServletResponse.SC_ACCEPTED, response.getStatus());
+         Assert.assertTrue(end < 1000);
+         Assert.assertTrue("Request was not sent correctly", latch.await(2, TimeUnit.SECONDS));
       } finally {
-            response.close();
-            client.close();
+         response.close();
+         client.close();
       }
    }
 
@@ -150,17 +150,17 @@ public class AsynchBasicTest {
       // there's a lag between when the latch completes and the executor
       // registers the completion of the call
       for (int i = 0; i <= MAX; i++) {
-            response = client.target(jobUrl).request().get();
-            Thread.sleep(1000);
-            if (HttpServletResponse.SC_OK == response.getStatus()) {
-            Assert.assertEquals("Wrong response content", "content", response.readEntity(String.class));
-            response.close();
-            break;
-            }
-            response.close();
-            if (i == MAX) {
-            Assert.fail("Expected response with status code 200");
-            }
+         response = client.target(jobUrl).request().get();
+         Thread.sleep(1000);
+         if (HttpServletResponse.SC_OK == response.getStatus()) {
+         Assert.assertEquals("Wrong response content", "content", response.readEntity(String.class));
+         response.close();
+         break;
+         }
+         response.close();
+         if (i == MAX) {
+         Assert.fail("Expected response with status code 200");
+         }
       }
 
       // test its still there
@@ -241,34 +241,34 @@ public class AsynchBasicTest {
 
       ArrayList<String> jobs = new ArrayList<>();
       for (int i = 0; i < 110; i++) {
-            // test cache size
-            latch = new CountDownLatch(1);
-            Response response = client.target(generateURL("?asynch=true", DEFAULT_DEPLOYMENT)).request().post(Entity.entity("content", "text/plain"));
-            Assert.assertEquals(HttpServletResponse.SC_ACCEPTED, response.getStatus());
-            String jobUrl = response.getHeaderString(HttpHeaders.LOCATION);
-            logger.info(i + ": " + jobUrl);
-            jobs.add(jobUrl);
-            response.close();
-            Thread.sleep(50);
+         // test cache size
+         latch = new CountDownLatch(1);
+         Response response = client.target(generateURL("?asynch=true", DEFAULT_DEPLOYMENT)).request().post(Entity.entity("content", "text/plain"));
+         Assert.assertEquals(HttpServletResponse.SC_ACCEPTED, response.getStatus());
+         String jobUrl = response.getHeaderString(HttpHeaders.LOCATION);
+         logger.info(i + ": " + jobUrl);
+         jobs.add(jobUrl);
+         response.close();
+         Thread.sleep(50);
       }
 
       Thread.sleep(2000);
 
       for (int i = 0; i < 10; i++) {
-            Response response = client.target(jobs.get(i)).request().get();
-            logger.info(i + " (" + jobs.get(i) + "): get " + response.getStatus() + ", expected: " + HttpServletResponse.SC_GONE);
-            Assert.assertEquals("Response should be gone, but server still remember it", HttpServletResponse.SC_GONE, response.getStatus());
-            response.close();
-            Thread.sleep(50);
+         Response response = client.target(jobs.get(i)).request().get();
+         logger.info(i + " (" + jobs.get(i) + "): get " + response.getStatus() + ", expected: " + HttpServletResponse.SC_GONE);
+         Assert.assertEquals("Response should be gone, but server still remember it", HttpServletResponse.SC_GONE, response.getStatus());
+         response.close();
+         Thread.sleep(50);
       }
 
       for (int i = 10; i < 110; i++) {
-            Response response = client.target(jobs.get(i)).request().get();
-            logger.info(i + " (" + jobs.get(i) + "): get " + response.getStatus() + ", expected: " + HttpServletResponse.SC_OK);
-            Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
-            Assert.assertEquals("Wrong content of response", "content", response.readEntity(String.class));
-            response.close();
-            Thread.sleep(50);
+         Response response = client.target(jobs.get(i)).request().get();
+         logger.info(i + " (" + jobs.get(i) + "): get " + response.getStatus() + ", expected: " + HttpServletResponse.SC_OK);
+         Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
+         Assert.assertEquals("Wrong content of response", "content", response.readEntity(String.class));
+         response.close();
+         Thread.sleep(50);
       }
    }
 

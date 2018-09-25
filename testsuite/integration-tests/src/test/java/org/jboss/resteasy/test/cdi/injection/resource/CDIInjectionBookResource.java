@@ -227,7 +227,7 @@ public class CDIInjectionBookResource {
             !newBean1.equals(newBean2) &&
             store.get(STEREOTYPED_APPLICATION_SCOPED).equals(stereotypeApplicationScoped) &&
             !store.get(STEREOTYPED_DEPENDENT_SCOPED).equals(stereotypedRequestScoped)
-            ) {
+         ) {
          return Response.ok().build();
       } else {
          return Response.serverError().build();

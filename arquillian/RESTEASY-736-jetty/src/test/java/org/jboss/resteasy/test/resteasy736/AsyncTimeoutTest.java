@@ -54,18 +54,18 @@ public class AsyncTimeoutTest {
 //        System.out.println("start:   " + start);
       Response response = null;
       try {
-            response = request.get();
+         response = request.get();
       } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+         LOG.error(e.getMessage(), e);
       } finally {
 //            System.out.println("finish:  " + System.currentTimeMillis());
-            long elapsed = System.currentTimeMillis() - start;
+         long elapsed = System.currentTimeMillis() - start;
 //            System.out.println("elapsed: " + elapsed + " ms");
 //            System.out.println("status: " + response.getStatus());
-            assertTrue(response != null);
+         assertTrue(response != null);
 //            System.out.println("response: " + response.readEntity(String.class));
-            Assert.assertEquals("Status is wrong", 503, response.getStatus());
-            assertTrue(elapsed < 10000);
+         Assert.assertEquals("Status is wrong", 503, response.getStatus());
+         assertTrue(elapsed < 10000);
       }
    }
 
@@ -77,18 +77,18 @@ public class AsyncTimeoutTest {
       LOG.info("start:   " + start);
       Response response = null;
       try {
-            response = request.get();
+         response = request.get();
       } catch (Exception e) {
-            LOG.error("Error: ", e);
+         LOG.error("Error: ", e);
       } finally {
-            LOG.info("finish:  " + System.currentTimeMillis());
-            long elapsed = System.currentTimeMillis() - start;
-            LOG.info("elapsed: " + elapsed + " ms");
-            LOG.info("status: " + response.getStatus());
-            assertTrue(response != null);
-            LOG.info("response: " + response.readEntity(String.class));
-            Assert.assertEquals("Wrong response", 503, response.getStatus());
-            Assert.assertTrue("Should timeout", elapsed < 36000); // Jetty async timeout defaults to 30000.
+         LOG.info("finish:  " + System.currentTimeMillis());
+         long elapsed = System.currentTimeMillis() - start;
+         LOG.info("elapsed: " + elapsed + " ms");
+         LOG.info("status: " + response.getStatus());
+         assertTrue(response != null);
+         LOG.info("response: " + response.readEntity(String.class));
+         Assert.assertEquals("Wrong response", 503, response.getStatus());
+         Assert.assertTrue("Should timeout", elapsed < 36000); // Jetty async timeout defaults to 30000.
       }
    }
 }

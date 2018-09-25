@@ -230,11 +230,11 @@ public class AsyncTimeoutExceptionsTest extends ClientTestBase{
      * @tpPassCrit TimeoutException is raised
      * @tpSince RESTEasy 3.0.16
      */
-     @Test(expected = TimeoutException.class)
-     public void invocationCallbackAsyncOnServerAndTimeoutTest() throws InterruptedException, ExecutionException, TimeoutException {
-         WebTarget base = client.target(generateURL("/sticker2"));
-         Future<AsyncTimeoutExceptionsSticker> future = base.request().async().get(new StickerCallback());
-         future.get(5, TimeUnit.SECONDS);
+   @Test(expected = TimeoutException.class)
+   public void invocationCallbackAsyncOnServerAndTimeoutTest() throws InterruptedException, ExecutionException, TimeoutException {
+      WebTarget base = client.target(generateURL("/sticker2"));
+      Future<AsyncTimeoutExceptionsSticker> future = base.request().async().get(new StickerCallback());
+      future.get(5, TimeUnit.SECONDS);
      }
 
    /**

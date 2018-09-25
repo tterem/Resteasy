@@ -91,59 +91,59 @@ public class CDIResourceTest {
       Path to = FileSystems.getDefault().getPath(toStr).toAbsolutePath();
 
       try {
-            // Delete existing RESTEASY-1082.war, if any.
-            try {
-            Files.delete(to);
-            } catch (Exception e) {
-            // ok
-            }
+         // Delete existing RESTEASY-1082.war, if any.
+         try {
+         Files.delete(to);
+         } catch (Exception e) {
+         // ok
+         }
 
-            // Deploy RESTEASY-1082.war
-            Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
-            logger.info("Copied war to " + to);
-            CloseableHttpClient client = HttpClients.createDefault();
-            HttpGet get = new HttpGet(PortProviderUtil.generateURL("/test", "RESTEASY-1082"));
+         // Deploy RESTEASY-1082.war
+         Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
+         logger.info("Copied war to " + to);
+         CloseableHttpClient client = HttpClients.createDefault();
+         HttpGet get = new HttpGet(PortProviderUtil.generateURL("/test", "RESTEASY-1082"));
 
-            // Wait for RESTEASY-1082.war to be installed.
-            HttpResponse response = client.execute(get);
-            boolean succesInDeploy = false;
-            for (int i = 0; i < 40; i++) {
-            get.releaseConnection();
-            response = client.execute(get);
-            if (response.getStatusLine().getStatusCode() != HttpResponseCodes.SC_NOT_FOUND) {
-               succesInDeploy = true;
-               break;
-            }
-            Thread.sleep(TimeoutUtil.adjust(500));
-            }
-            Assert.assertTrue("Deployment was not deployed", succesInDeploy);
-            logger.info("status: " + response.getStatusLine().getStatusCode());
-            printResponse(response);
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatusLine().getStatusCode());
-            get.releaseConnection();
+         // Wait for RESTEASY-1082.war to be installed.
+         HttpResponse response = client.execute(get);
+         boolean succesInDeploy = false;
+         for (int i = 0; i < 40; i++) {
+         get.releaseConnection();
+         response = client.execute(get);
+         if (response.getStatusLine().getStatusCode() != HttpResponseCodes.SC_NOT_FOUND) {
+            succesInDeploy = true;
+            break;
+         }
+         Thread.sleep(TimeoutUtil.adjust(500));
+         }
+         Assert.assertTrue("Deployment was not deployed", succesInDeploy);
+         logger.info("status: " + response.getStatusLine().getStatusCode());
+         printResponse(response);
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatusLine().getStatusCode());
+         get.releaseConnection();
 
-            // Redeploy RESTEASY-1082.war
-            Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
-            logger.info("Replaced war");
-            Thread.sleep(TimeoutUtil.adjust(5000));
+         // Redeploy RESTEASY-1082.war
+         Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
+         logger.info("Replaced war");
+         Thread.sleep(TimeoutUtil.adjust(5000));
 
-            // Wait for RESTEASY-1082.war to be installed.
-            response = client.execute(get);
-            succesInDeploy = false;
-            for (int i = 0; i < 40; i++) {
-            get.releaseConnection();
-            response = client.execute(get);
-            if (response.getStatusLine().getStatusCode() != HttpResponseCodes.SC_NOT_FOUND) {
-               succesInDeploy = true;
-               break;
-            }
-            Thread.sleep(TimeoutUtil.adjust(500));
-            }
-            Assert.assertTrue("Deployment was not deployed", succesInDeploy);
+         // Wait for RESTEASY-1082.war to be installed.
+         response = client.execute(get);
+         succesInDeploy = false;
+         for (int i = 0; i < 40; i++) {
+         get.releaseConnection();
+         response = client.execute(get);
+         if (response.getStatusLine().getStatusCode() != HttpResponseCodes.SC_NOT_FOUND) {
+            succesInDeploy = true;
+            break;
+         }
+         Thread.sleep(TimeoutUtil.adjust(500));
+         }
+         Assert.assertTrue("Deployment was not deployed", succesInDeploy);
 
-            logger.info("status: " + response.getStatusLine().getStatusCode());
-            printResponse(response);
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatusLine().getStatusCode());
+         logger.info("status: " + response.getStatusLine().getStatusCode());
+         printResponse(response);
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatusLine().getStatusCode());
       } finally {
             Files.delete(to);
       }
@@ -154,8 +154,8 @@ public class CDIResourceTest {
       String line = reader.readLine();
       logger.info("_____Response:_____");
       while (line != null) {
-            logger.info(line);
-            line = reader.readLine();
+         logger.info(line);
+         line = reader.readLine();
       }
       logger.info("___________________");
    }

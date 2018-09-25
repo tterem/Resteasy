@@ -238,16 +238,16 @@ public class Base64
    */
    /* Host platform me be something funny like EBCDIC, so we hardcode these values. */
    private final static byte[] _STANDARD_ALPHABET = {
-         (byte) 'A', (byte) 'B', (byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', (byte) 'G',
-         (byte) 'H', (byte) 'I', (byte) 'J', (byte) 'K', (byte) 'L', (byte) 'M', (byte) 'N',
-         (byte) 'O', (byte) 'P', (byte) 'Q', (byte) 'R', (byte) 'S', (byte) 'T', (byte) 'U',
-         (byte) 'V', (byte) 'W', (byte) 'X', (byte) 'Y', (byte) 'Z',
-         (byte) 'a', (byte) 'b', (byte) 'c', (byte) 'd', (byte) 'e', (byte) 'f', (byte) 'g',
-         (byte) 'h', (byte) 'i', (byte) 'j', (byte) 'k', (byte) 'l', (byte) 'm', (byte) 'n',
-         (byte) 'o', (byte) 'p', (byte) 'q', (byte) 'r', (byte) 's', (byte) 't', (byte) 'u',
-         (byte) 'v', (byte) 'w', (byte) 'x', (byte) 'y', (byte) 'z',
-         (byte) '0', (byte) '1', (byte) '2', (byte) '3', (byte) '4', (byte) '5',
-         (byte) '6', (byte) '7', (byte) '8', (byte) '9', (byte) '+', (byte) '/'
+      (byte) 'A', (byte) 'B', (byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', (byte) 'G',
+      (byte) 'H', (byte) 'I', (byte) 'J', (byte) 'K', (byte) 'L', (byte) 'M', (byte) 'N',
+      (byte) 'O', (byte) 'P', (byte) 'Q', (byte) 'R', (byte) 'S', (byte) 'T', (byte) 'U',
+      (byte) 'V', (byte) 'W', (byte) 'X', (byte) 'Y', (byte) 'Z',
+      (byte) 'a', (byte) 'b', (byte) 'c', (byte) 'd', (byte) 'e', (byte) 'f', (byte) 'g',
+      (byte) 'h', (byte) 'i', (byte) 'j', (byte) 'k', (byte) 'l', (byte) 'm', (byte) 'n',
+      (byte) 'o', (byte) 'p', (byte) 'q', (byte) 'r', (byte) 's', (byte) 't', (byte) 'u',
+      (byte) 'v', (byte) 'w', (byte) 'x', (byte) 'y', (byte) 'z',
+      (byte) '0', (byte) '1', (byte) '2', (byte) '3', (byte) '4', (byte) '5',
+      (byte) '6', (byte) '7', (byte) '8', (byte) '9', (byte) '+', (byte) '/'
    };
 
 
@@ -256,37 +256,37 @@ public class Base64
    * or a negative number indicating some other meaning.
    */
    private final static byte[] _STANDARD_DECODABET = {
-         -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal  0 -  8
-         -5, -5,                                      // Whitespace: Tab and Linefeed
-         -9, -9,                                      // Decimal 11 - 12
-         -5,                                         // Whitespace: Carriage Return
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 14 - 26
-         -9, -9, -9, -9, -9,                             // Decimal 27 - 31
-         -5,                                         // Whitespace: Space
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,              // Decimal 33 - 42
-         62,                                         // Plus sign at decimal 43
-         -9, -9, -9,                                   // Decimal 44 - 46
-         63,                                         // Slash at decimal 47
-         52, 53, 54, 55, 56, 57, 58, 59, 60, 61,              // Numbers zero through nine
-         -9, -9, -9,                                   // Decimal 58 - 60
-         -1,                                         // Equals sign at decimal 61
-         -9, -9, -9,                                      // Decimal 62 - 64
-         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,            // Letters 'A' through 'N'
-         14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,        // Letters 'O' through 'Z'
-         -9, -9, -9, -9, -9, -9,                          // Decimal 91 - 96
-         26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,     // Letters 'a' through 'm'
-         39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,     // Letters 'n' through 'z'
-         -9, -9, -9, -9, -9                              // Decimal 123 - 127
-         , -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,       // Decimal 128 - 139
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 140 - 152
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 153 - 165
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 166 - 178
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 179 - 191
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 192 - 204
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 205 - 217
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 218 - 230
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 231 - 243
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9         // Decimal 244 - 255
+      -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal  0 -  8
+      -5, -5,                                      // Whitespace: Tab and Linefeed
+      -9, -9,                                      // Decimal 11 - 12
+      -5,                                         // Whitespace: Carriage Return
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 14 - 26
+      -9, -9, -9, -9, -9,                             // Decimal 27 - 31
+      -5,                                         // Whitespace: Space
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,              // Decimal 33 - 42
+      62,                                         // Plus sign at decimal 43
+      -9, -9, -9,                                   // Decimal 44 - 46
+      63,                                         // Slash at decimal 47
+      52, 53, 54, 55, 56, 57, 58, 59, 60, 61,              // Numbers zero through nine
+      -9, -9, -9,                                   // Decimal 58 - 60
+      -1,                                         // Equals sign at decimal 61
+      -9, -9, -9,                                      // Decimal 62 - 64
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,            // Letters 'A' through 'N'
+      14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,        // Letters 'O' through 'Z'
+      -9, -9, -9, -9, -9, -9,                          // Decimal 91 - 96
+      26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,     // Letters 'a' through 'm'
+      39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,     // Letters 'n' through 'z'
+      -9, -9, -9, -9, -9                              // Decimal 123 - 127
+      , -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,       // Decimal 128 - 139
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 140 - 152
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 153 - 165
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 166 - 178
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 179 - 191
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 192 - 204
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 205 - 217
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 218 - 230
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 231 - 243
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9         // Decimal 244 - 255
    };
 
 
@@ -298,57 +298,57 @@ public class Base64
    * Notice that the last two bytes become "hyphen" and "underscore" instead of "plus" and "slash."
    */
    private final static byte[] _URL_SAFE_ALPHABET = {
-         (byte) 'A', (byte) 'B', (byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', (byte) 'G',
-         (byte) 'H', (byte) 'I', (byte) 'J', (byte) 'K', (byte) 'L', (byte) 'M', (byte) 'N',
-         (byte) 'O', (byte) 'P', (byte) 'Q', (byte) 'R', (byte) 'S', (byte) 'T', (byte) 'U',
-         (byte) 'V', (byte) 'W', (byte) 'X', (byte) 'Y', (byte) 'Z',
-         (byte) 'a', (byte) 'b', (byte) 'c', (byte) 'd', (byte) 'e', (byte) 'f', (byte) 'g',
-         (byte) 'h', (byte) 'i', (byte) 'j', (byte) 'k', (byte) 'l', (byte) 'm', (byte) 'n',
-         (byte) 'o', (byte) 'p', (byte) 'q', (byte) 'r', (byte) 's', (byte) 't', (byte) 'u',
-         (byte) 'v', (byte) 'w', (byte) 'x', (byte) 'y', (byte) 'z',
-         (byte) '0', (byte) '1', (byte) '2', (byte) '3', (byte) '4', (byte) '5',
-         (byte) '6', (byte) '7', (byte) '8', (byte) '9', (byte) '-', (byte) '_'
+      (byte) 'A', (byte) 'B', (byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', (byte) 'G',
+      (byte) 'H', (byte) 'I', (byte) 'J', (byte) 'K', (byte) 'L', (byte) 'M', (byte) 'N',
+      (byte) 'O', (byte) 'P', (byte) 'Q', (byte) 'R', (byte) 'S', (byte) 'T', (byte) 'U',
+      (byte) 'V', (byte) 'W', (byte) 'X', (byte) 'Y', (byte) 'Z',
+      (byte) 'a', (byte) 'b', (byte) 'c', (byte) 'd', (byte) 'e', (byte) 'f', (byte) 'g',
+      (byte) 'h', (byte) 'i', (byte) 'j', (byte) 'k', (byte) 'l', (byte) 'm', (byte) 'n',
+      (byte) 'o', (byte) 'p', (byte) 'q', (byte) 'r', (byte) 's', (byte) 't', (byte) 'u',
+      (byte) 'v', (byte) 'w', (byte) 'x', (byte) 'y', (byte) 'z',
+      (byte) '0', (byte) '1', (byte) '2', (byte) '3', (byte) '4', (byte) '5',
+      (byte) '6', (byte) '7', (byte) '8', (byte) '9', (byte) '-', (byte) '_'
    };
 
    /**
    * Used in decoding URL- and Filename-safe dialects of Base64.
    */
    private final static byte[] _URL_SAFE_DECODABET = {
-         -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal  0 -  8
-         -5, -5,                                      // Whitespace: Tab and Linefeed
-         -9, -9,                                      // Decimal 11 - 12
-         -5,                                         // Whitespace: Carriage Return
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 14 - 26
-         -9, -9, -9, -9, -9,                             // Decimal 27 - 31
-         -5,                                         // Whitespace: Space
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,              // Decimal 33 - 42
-         -9,                                         // Plus sign at decimal 43
-         -9,                                         // Decimal 44
-         62,                                         // Minus sign at decimal 45
-         -9,                                         // Decimal 46
-         -9,                                         // Slash at decimal 47
-         52, 53, 54, 55, 56, 57, 58, 59, 60, 61,              // Numbers zero through nine
-         -9, -9, -9,                                   // Decimal 58 - 60
-         -1,                                         // Equals sign at decimal 61
-         -9, -9, -9,                                   // Decimal 62 - 64
-         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,            // Letters 'A' through 'N'
-         14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,        // Letters 'O' through 'Z'
-         -9, -9, -9, -9,                                // Decimal 91 - 94
-         63,                                         // Underscore at decimal 95
-         -9,                                         // Decimal 96
-         26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,     // Letters 'a' through 'm'
-         39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,     // Letters 'n' through 'z'
-         -9, -9, -9, -9, -9                              // Decimal 123 - 127
-         , -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 128 - 139
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 140 - 152
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 153 - 165
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 166 - 178
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 179 - 191
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 192 - 204
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 205 - 217
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 218 - 230
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 231 - 243
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9         // Decimal 244 - 255
+      -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal  0 -  8
+      -5, -5,                                      // Whitespace: Tab and Linefeed
+      -9, -9,                                      // Decimal 11 - 12
+      -5,                                         // Whitespace: Carriage Return
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 14 - 26
+      -9, -9, -9, -9, -9,                             // Decimal 27 - 31
+      -5,                                         // Whitespace: Space
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,              // Decimal 33 - 42
+      -9,                                         // Plus sign at decimal 43
+      -9,                                         // Decimal 44
+      62,                                         // Minus sign at decimal 45
+      -9,                                         // Decimal 46
+      -9,                                         // Slash at decimal 47
+      52, 53, 54, 55, 56, 57, 58, 59, 60, 61,              // Numbers zero through nine
+      -9, -9, -9,                                   // Decimal 58 - 60
+      -1,                                         // Equals sign at decimal 61
+      -9, -9, -9,                                   // Decimal 62 - 64
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,            // Letters 'A' through 'N'
+      14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,        // Letters 'O' through 'Z'
+      -9, -9, -9, -9,                                // Decimal 91 - 94
+      63,                                         // Underscore at decimal 95
+      -9,                                         // Decimal 96
+      26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,     // Letters 'a' through 'm'
+      39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,     // Letters 'n' through 'z'
+      -9, -9, -9, -9, -9                              // Decimal 123 - 127
+      , -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 128 - 139
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 140 - 152
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 153 - 165
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 166 - 178
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 179 - 191
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 192 - 204
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 205 - 217
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 218 - 230
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 231 - 243
+      -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9         // Decimal 244 - 255
    };
 
 
@@ -360,59 +360,59 @@ public class Base64
    * <a href="http://www.faqs.org/qa/rfcc-1940.html">http://www.faqs.org/qa/rfcc-1940.html</a>.
    */
    private final static byte[] _ORDERED_ALPHABET = {
-         (byte) '-',
-         (byte) '0', (byte) '1', (byte) '2', (byte) '3', (byte) '4',
-         (byte) '5', (byte) '6', (byte) '7', (byte) '8', (byte) '9',
-         (byte) 'A', (byte) 'B', (byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', (byte) 'G',
-         (byte) 'H', (byte) 'I', (byte) 'J', (byte) 'K', (byte) 'L', (byte) 'M', (byte) 'N',
-         (byte) 'O', (byte) 'P', (byte) 'Q', (byte) 'R', (byte) 'S', (byte) 'T', (byte) 'U',
-         (byte) 'V', (byte) 'W', (byte) 'X', (byte) 'Y', (byte) 'Z',
-         (byte) '_',
-         (byte) 'a', (byte) 'b', (byte) 'c', (byte) 'd', (byte) 'e', (byte) 'f', (byte) 'g',
-         (byte) 'h', (byte) 'i', (byte) 'j', (byte) 'k', (byte) 'l', (byte) 'm', (byte) 'n',
-         (byte) 'o', (byte) 'p', (byte) 'q', (byte) 'r', (byte) 's', (byte) 't', (byte) 'u',
-         (byte) 'v', (byte) 'w', (byte) 'x', (byte) 'y', (byte) 'z'
+      (byte) '-',
+      (byte) '0', (byte) '1', (byte) '2', (byte) '3', (byte) '4',
+      (byte) '5', (byte) '6', (byte) '7', (byte) '8', (byte) '9',
+      (byte) 'A', (byte) 'B', (byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', (byte) 'G',
+      (byte) 'H', (byte) 'I', (byte) 'J', (byte) 'K', (byte) 'L', (byte) 'M', (byte) 'N',
+      (byte) 'O', (byte) 'P', (byte) 'Q', (byte) 'R', (byte) 'S', (byte) 'T', (byte) 'U',
+      (byte) 'V', (byte) 'W', (byte) 'X', (byte) 'Y', (byte) 'Z',
+      (byte) '_',
+      (byte) 'a', (byte) 'b', (byte) 'c', (byte) 'd', (byte) 'e', (byte) 'f', (byte) 'g',
+      (byte) 'h', (byte) 'i', (byte) 'j', (byte) 'k', (byte) 'l', (byte) 'm', (byte) 'n',
+      (byte) 'o', (byte) 'p', (byte) 'q', (byte) 'r', (byte) 's', (byte) 't', (byte) 'u',
+      (byte) 'v', (byte) 'w', (byte) 'x', (byte) 'y', (byte) 'z'
    };
 
    /**
    * Used in decoding the "ordered" dialect of Base64.
    */
    private final static byte[] _ORDERED_DECODABET = {
-         -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal  0 -  8
-         -5, -5,                                      // Whitespace: Tab and Linefeed
-         -9, -9,                                      // Decimal 11 - 12
-         -5,                                         // Whitespace: Carriage Return
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 14 - 26
-         -9, -9, -9, -9, -9,                             // Decimal 27 - 31
-         -5,                                         // Whitespace: Space
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,              // Decimal 33 - 42
-         -9,                                         // Plus sign at decimal 43
-         -9,                                         // Decimal 44
-         0,                                          // Minus sign at decimal 45
-         -9,                                         // Decimal 46
-         -9,                                         // Slash at decimal 47
-         1, 2, 3, 4, 5, 6, 7, 8, 9, 10,                       // Numbers zero through nine
-         -9, -9, -9,                                   // Decimal 58 - 60
-         -1,                                         // Equals sign at decimal 61
-         -9, -9, -9,                                   // Decimal 62 - 64
-         11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,     // Letters 'A' through 'M'
-         24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36,     // Letters 'N' through 'Z'
-         -9, -9, -9, -9,                                // Decimal 91 - 94
-         37,                                         // Underscore at decimal 95
-         -9,                                         // Decimal 96
-         38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,     // Letters 'a' through 'm'
-         51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63,     // Letters 'n' through 'z'
-         -9, -9, -9, -9, -9                                 // Decimal 123 - 127
-         , -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 128 - 139
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 140 - 152
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 153 - 165
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 166 - 178
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 179 - 191
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 192 - 204
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 205 - 217
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 218 - 230
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 231 - 243
-         -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9         // Decimal 244 - 255
+-9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal  0 -  8
+-5, -5,                                      // Whitespace: Tab and Linefeed
+-9, -9,                                      // Decimal 11 - 12
+-5,                                         // Whitespace: Carriage Return
+-9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 14 - 26
+-9, -9, -9, -9, -9,                             // Decimal 27 - 31
+-5,                                         // Whitespace: Space
+-9, -9, -9, -9, -9, -9, -9, -9, -9, -9,              // Decimal 33 - 42
+-9,                                         // Plus sign at decimal 43
+-9,                                         // Decimal 44
+0,                                          // Minus sign at decimal 45
+-9,                                         // Decimal 46
+-9,                                         // Slash at decimal 47
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10,                       // Numbers zero through nine
+-9, -9, -9,                                   // Decimal 58 - 60
+-1,                                         // Equals sign at decimal 61
+-9, -9, -9,                                   // Decimal 62 - 64
+11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,     // Letters 'A' through 'M'
+24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36,     // Letters 'N' through 'Z'
+-9, -9, -9, -9,                                // Decimal 91 - 94
+37,                                         // Underscore at decimal 95
+-9,                                         // Decimal 96
+38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,     // Letters 'a' through 'm'
+51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63,     // Letters 'n' through 'z'
+-9, -9, -9, -9, -9                                 // Decimal 123 - 127
+, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 128 - 139
+-9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 140 - 152
+-9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 153 - 165
+-9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 166 - 178
+-9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 179 - 191
+-9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 192 - 204
+-9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 205 - 217
+-9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 218 - 230
+-9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9,     // Decimal 231 - 243
+-9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9, -9         // Decimal 244 - 255
    };
 
 
@@ -958,7 +958,7 @@ public class Base64
 
       if (off + len > source.length)
       {
-               throw new IllegalArgumentException(Messages.MESSAGES.cannotHaveOffset(off, len, source.length));
+         throw new IllegalArgumentException(Messages.MESSAGES.cannotHaveOffset(off, len, source.length));
       }   // end if: off < 0
 
 

@@ -52,15 +52,15 @@ public class CharsetResource {
       return foo;
    }
 
-     @POST
-     @Path("accepts/form/default")
-     @Produces("application/x-www-form-urlencoded")
-     @Consumes("application/x-www-form-urlencoded")
-     @Encoded
-     public MultivaluedMap<String, String> formAcceptsDefault(MultivaluedMap<String, String> form) {
-         Assert.assertTrue("Form doesn't contain the expected key", form.containsKey("title"));
-         String s = form.getFirst("title");
-         logger.info("s: " + s);
-         return form;
-     }
+   @POST
+   @Path("accepts/form/default")
+   @Produces("application/x-www-form-urlencoded")
+   @Consumes("application/x-www-form-urlencoded")
+   @Encoded
+   public MultivaluedMap<String, String> formAcceptsDefault(MultivaluedMap<String, String> form) {
+      Assert.assertTrue("Form doesn't contain the expected key", form.containsKey("title"));
+      String s = form.getFirst("title");
+      logger.info("s: " + s);
+      return form;
+   }
 }

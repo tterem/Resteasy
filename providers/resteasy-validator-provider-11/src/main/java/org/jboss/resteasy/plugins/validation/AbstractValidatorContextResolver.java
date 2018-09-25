@@ -75,9 +75,8 @@ public class AbstractValidatorContextResolver
             tmpConfig = bootstrapConfiguration;
             if (tmpConfig == null)
             {
-                 config = Validation.byDefaultProvider().configure();
-                 bootstrapConfiguration = tmpConfig = config.getBootstrapConfiguration();
-
+              config = Validation.byDefaultProvider().configure();
+              bootstrapConfiguration = tmpConfig = config.getBootstrapConfiguration();
             }
          }
       }

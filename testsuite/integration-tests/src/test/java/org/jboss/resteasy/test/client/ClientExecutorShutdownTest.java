@@ -70,10 +70,10 @@ public class ClientExecutorShutdownTest extends ClientTestBase{
       HttpClient httpClient = engine.getHttpClient();
       HttpPost post = new HttpPost(generateURL("/test"));
       try {
-            httpClient.execute(post);
-            fail("Expected IllegalStateException");
+         httpClient.execute(post);
+         fail("Expected IllegalStateException");
       } catch (IllegalStateException e) {
-            log.info("Got expected IllegalStateException");
+         log.info("Got expected IllegalStateException");
       }
    }
 
@@ -94,10 +94,10 @@ public class ClientExecutorShutdownTest extends ClientTestBase{
       HttpClient httpClient = engine.getHttpClient();
       HttpPost post = new HttpPost(generateURL("/test"));
       try {
-            httpClient.execute(post);
-            fail("Expected IllegalStateException");
+         httpClient.execute(post);
+         fail("Expected IllegalStateException");
       } catch (IllegalStateException e) {
-            log.info("Got expected IllegalStateException");
+         log.info("Got expected IllegalStateException");
       }
    }
 

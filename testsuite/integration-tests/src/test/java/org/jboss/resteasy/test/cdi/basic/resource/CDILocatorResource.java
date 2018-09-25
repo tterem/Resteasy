@@ -23,7 +23,7 @@ public class CDILocatorResource {
    public String get(@QueryParam("foo") java.util.List<Foo> foos) {
       // Bug: It's not a List<Foo>, it's a List<String>
       for (Foo foo : foos) {
-            return "OK";
+         return "OK";
       }
       return null;
 
@@ -34,10 +34,10 @@ public class CDILocatorResource {
    public FooResource lookup() throws Exception {
       logger.infov("classname: {0}", fooResource.getClass().getName());
       for (Method m : fooResource.getClass().getMethods()) {
-            if (m.getName().equals("get")) {
-            logger.info(m);
-            logger.info("@GET? " + m.isAnnotationPresent(GET.class));
-            }
+if (m.getName().equals("get")) {
+logger.info(m);
+logger.info("@GET? " + m.isAnnotationPresent(GET.class));
+}
       }
       return fooResource;
    }
@@ -47,11 +47,11 @@ public class CDILocatorResource {
 
       @GET
       public String get(@QueryParam("foo") java.util.List<Foo> foos) {
-            // Bug: It's not a List<Foo>, it's a List<String>
-            for (Foo foo : foos) {
-            return "OK";
-            }
-            return null;
+         // Bug: It's not a List<Foo>, it's a List<String>
+         for (Foo foo : foos) {
+         return "OK";
+         }
+         return null;
       }
 
    }
@@ -60,7 +60,7 @@ public class CDILocatorResource {
       String value;
 
       public Foo(final String value) {
-            this.value = value;
+         this.value = value;
       }
    }
 }

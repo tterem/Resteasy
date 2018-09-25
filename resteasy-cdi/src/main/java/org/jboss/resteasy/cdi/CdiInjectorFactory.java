@@ -206,20 +206,20 @@ public class CdiInjectorFactory implements InjectorFactory
          // null check for RESTEASY-1009
          if (servletContext != null)
          {
-               beanManager = (BeanManager) servletContext.getAttribute(BEAN_MANAGER_ATTRIBUTE_PREFIX + BeanManager.class.getName());
-               if (beanManager != null)
-               {
-                   LogMessages.LOGGER.debug(Messages.MESSAGES.foundBeanManagerInServletContext());
-                   return beanManager;
-               }
+            beanManager = (BeanManager) servletContext.getAttribute(BEAN_MANAGER_ATTRIBUTE_PREFIX + BeanManager.class.getName());
+            if (beanManager != null)
+            {
+               LogMessages.LOGGER.debug(Messages.MESSAGES.foundBeanManagerInServletContext());
+               return beanManager;
+            }
 
-               // Look for BeanManager in ServletContext (the old attribute name for backwards compatibility)
-               beanManager = (BeanManager) servletContext.getAttribute(BeanManager.class.getName());
-               if (beanManager != null)
-               {
-                   LogMessages.LOGGER.debug(Messages.MESSAGES.foundBeanManagerInServletContext());
-                   return beanManager;
-               }
+            // Look for BeanManager in ServletContext (the old attribute name for backwards compatibility)
+            beanManager = (BeanManager) servletContext.getAttribute(BeanManager.class.getName());
+            if (beanManager != null)
+            {
+               LogMessages.LOGGER.debug(Messages.MESSAGES.foundBeanManagerInServletContext());
+               return beanManager;
+            }
          }
       }
       catch (NoClassDefFoundError e)

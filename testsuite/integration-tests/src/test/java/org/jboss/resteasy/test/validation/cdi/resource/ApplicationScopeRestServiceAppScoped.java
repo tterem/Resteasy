@@ -12,7 +12,7 @@ public class ApplicationScopeRestServiceAppScoped implements ApplicationScopeIRe
    public String sendDto(ApplicationScopeMyDto myDto) {
       if (logger.isDebugEnabled())
       {
-            logger.debug("RestServiceAppScoped: Nevertheless: " + myDto, new Exception("RestServiceAppScoped"));
+         logger.debug("RestServiceAppScoped: Nevertheless: " + myDto, new Exception("RestServiceAppScoped"));
       }
       return myDto == null ? null : myDto.getPath();
    }

@@ -165,10 +165,9 @@ public abstract class AbstractJAXBContextFinder implements JAXBContextFinder
             if (type == null)
                continue;
             classes1.add(type);
-               Class<?> factory = findDefaultObjectFactoryClass(type);
-               if (factory != null)
-                  classes1.add(factory);
-            }
+            Class<?> factory = findDefaultObjectFactoryClass(type);
+            if (factory != null) classes1.add(factory);
+         }
       }
       Class<?>[] classArray = classes1.toArray(new Class[classes1.size()]);
       return createContextObject(parameterAnnotations, classArray);

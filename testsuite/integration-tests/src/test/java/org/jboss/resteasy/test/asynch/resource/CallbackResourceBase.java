@@ -24,9 +24,9 @@ public class CallbackResourceBase {
    public static final String TRUE = "A method return true";
 
    private static final JaxrsAsyncServletAsyncResponseBlockingQueue[] stage = {
-            new JaxrsAsyncServletAsyncResponseBlockingQueue(1),
-            new JaxrsAsyncServletAsyncResponseBlockingQueue(1),
-            new JaxrsAsyncServletAsyncResponseBlockingQueue(1)};
+      new JaxrsAsyncServletAsyncResponseBlockingQueue(1),
+      new JaxrsAsyncServletAsyncResponseBlockingQueue(1),
+      new JaxrsAsyncServletAsyncResponseBlockingQueue(1)};
 
    @GET
    @Path("suspend")
@@ -38,7 +38,7 @@ public class CallbackResourceBase {
    @Path("clear")
    public void clear() {
       for (int i = 0; i != stage.length; i++) {
-            stage[i].clear();
+         stage[i].clear();
       }
    }
 
@@ -161,10 +161,10 @@ public class CallbackResourceBase {
       final ResponseBuilder error = createErrorResponseBuilder();
       AsyncResponse asyncResponse = null;
       try {
-            asyncResponse = stage[stageId].take();
+         asyncResponse = stage[stageId].take();
       } catch (InterruptedException e) {
-            throw new WebApplicationException(error.entity(
-               "ArrayBlockingQueue#take").build());
+         throw new WebApplicationException(error.entity(
+            "ArrayBlockingQueue#take").build());
       }
       return asyncResponse;
    }

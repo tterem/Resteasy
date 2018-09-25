@@ -67,13 +67,13 @@ public abstract class AsyncResponseConsumer
    }
 
    public static AsyncResponseConsumer makeAsyncResponseConsumer(ResourceMethodInvoker method, AsyncStreamProvider<?> asyncStreamProvider) {
-     if(method.isSse())
-     {
+      if(method.isSse())
+      {
       return new AsyncGeneralStreamingSseResponseConsumer(method, asyncStreamProvider);
-     }
-     Stream stream = method.getMethod().getAnnotation(Stream.class);
-     if (stream != null)
-     {
+      }
+      Stream stream = method.getMethod().getAnnotation(Stream.class);
+      if (stream != null)
+      {
       if (Stream.MODE.RAW.equals(stream.value()))
       {
          return new AsyncRawStreamingResponseConsumer(method, asyncStreamProvider);
@@ -82,7 +82,7 @@ public abstract class AsyncResponseConsumer
       {
          return new AsyncGeneralStreamingSseResponseConsumer(method, asyncStreamProvider);
       }
-     }
+      }
       return new AsyncStreamCollectorResponseConsumer(method, asyncStreamProvider);
    }
 
