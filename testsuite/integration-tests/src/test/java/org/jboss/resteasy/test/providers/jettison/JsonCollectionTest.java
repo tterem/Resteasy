@@ -72,17 +72,17 @@ public class JsonCollectionTest {
       WebTarget target = client.target(generateURL("/array"));
       Response response;
       {
-            response = target.request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            logger.info(response.readEntity(String.class));
+         response = target.request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         logger.info(response.readEntity(String.class));
       }
 
       {
-            response = target.request()
-               .post(Entity.entity("[{\"jsonCollectionFoo\":{\"@test\":\"bill{\"}},{\"jsonCollectionFoo\":{\"@test\":\"monica\\\"}\"}}]",
-                     "application/json"));
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            logger.info(response.readEntity(String.class));
+         response = target.request()
+            .post(Entity.entity("[{\"jsonCollectionFoo\":{\"@test\":\"bill{\"}},{\"jsonCollectionFoo\":{\"@test\":\"monica\\\"}\"}}]",
+               "application/json"));
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         logger.info(response.readEntity(String.class));
       }
 
    }

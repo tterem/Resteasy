@@ -122,9 +122,9 @@ public class JaxbXmlRootElementProviderTest {
    public void testGetParentJson() throws Exception {
       Parent parent = null;
       try {
-            parent = jsonClient.getParent(JSON_PARENT);
+         parent = jsonClient.getParent(JSON_PARENT);
       } catch (ResponseProcessingException exc) {
-            Assert.fail(String.format("Regression of JBEAP-3530, see %s", exc.getCause().toString()));
+         Assert.fail(String.format("Regression of JBEAP-3530, see %s", exc.getCause().toString()));
       }
       Assert.assertNotNull(ERR_PARENT_NULL, parent);
       Assert.assertEquals(ERR_PARENT_NAME, parent.getName(), JSON_PARENT);

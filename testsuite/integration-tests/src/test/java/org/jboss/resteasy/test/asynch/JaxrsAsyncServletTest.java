@@ -149,14 +149,14 @@ public class JaxrsAsyncServletTest {
       // Default timeout is 20s
       boolean ok = false;
       for (int i = 0; i < TimeoutUtil.adjust(20); i++) {
-            response = client.target(generateURL("/jaxrs/cancelled")).request().get();
-            int status = response.getStatus();
-            response.close();
-            if (status == HttpResponseCodes.SC_NO_CONTENT) {
+         response = client.target(generateURL("/jaxrs/cancelled")).request().get();
+         int status = response.getStatus();
+         response.close();
+         if (status == HttpResponseCodes.SC_NO_CONTENT) {
             ok = true;
             break;
-            }
-            Thread.sleep(1000);
+         }
+         Thread.sleep(1000);
       }
       Assert.assertTrue("Response was not canceled correctly", ok);
       client.close();

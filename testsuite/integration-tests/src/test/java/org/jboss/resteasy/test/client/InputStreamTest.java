@@ -39,7 +39,7 @@ public class InputStreamTest extends ClientTestBase{
       @Produces("text/plain")
       @GET
       default InputStream get() {
-            return null;
+         return null;
       }
 
    }

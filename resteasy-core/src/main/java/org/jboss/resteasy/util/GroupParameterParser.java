@@ -289,8 +289,7 @@ public class GroupParameterParser
       String paramValue = null;
       while (hasChar())
       {
-         paramName = parseToken(new char[]{
-                 '=', separator, groupSeparator});
+         paramName = parseToken(new char[]{'=', separator, groupSeparator});
          paramValue = null;
          if (hasChar() && (chars[pos] == '='))
          {

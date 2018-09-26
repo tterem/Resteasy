@@ -84,9 +84,9 @@ public class GenericSuperInterfaceTest {
       Assert.assertEquals(updatableResource, GenericSuperInterfaceUpdatableResource.class);
       Method update = null;
       for (Method method : updatableResource.getMethods()) {
-            if (method.getName().equals("update")) {
+         if (method.getName().equals("update")) {
             update = method;
-            }
+         }
       }
       Assert.assertNotNull("Updated method was not found", update);
 
@@ -94,9 +94,9 @@ public class GenericSuperInterfaceTest {
 
       Method actual = null;
       for (Method method : GenericSuperInterfaceBackendDataCenterResource.class.getMethods()) {
-            if (method.getName().equals("update") && !method.isSynthetic()) {
+         if (method.getName().equals("update") && !method.isSynthetic()) {
             actual = method;
-            }
+         }
       }
       Assert.assertEquals("Interface was not detected", implemented, actual);
    }

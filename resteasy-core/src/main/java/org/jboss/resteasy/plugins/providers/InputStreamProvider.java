@@ -49,7 +49,7 @@ public class InputStreamProvider implements MessageBodyReader<InputStream>, Mess
 
    public void writeTo(InputStream inputStream, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException
    {
-         LogMessages.LOGGER.debugf("Provider : %s,  Method : writeTo", getClass().getName());
+      LogMessages.LOGGER.debugf("Provider : %s,  Method : writeTo", getClass().getName());
       try
       {
          int c = inputStream.read();

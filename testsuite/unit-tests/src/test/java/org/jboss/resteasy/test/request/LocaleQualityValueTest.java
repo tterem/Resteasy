@@ -38,14 +38,14 @@ public class LocaleQualityValueTest {
    public void simple() {
       String header = "da, en-gb;q=0.8, en;q=0.7";
       Locale[] locales = {
-            new Locale("da"),
-            Locale.UK,
-            Locale.ENGLISH
+         new Locale("da"),
+         Locale.UK,
+         Locale.ENGLISH
       };
       QualityValue[] fields = {
-            QualityValue.DEFAULT,
-            QualityValue.valueOf("0.8"),
-            QualityValue.valueOf("0.7"),
+         QualityValue.DEFAULT,
+         QualityValue.valueOf("0.8"),
+         QualityValue.valueOf("0.7"),
       };
       assertList(header, locales, fields);
    }
@@ -59,8 +59,8 @@ public class LocaleQualityValueTest {
       String header = "zh, *";
       Locale[] fields = {Locale.CHINESE, null};
       QualityValue[] qualities = {
-            QualityValue.DEFAULT,
-            QualityValue.DEFAULT
+         QualityValue.DEFAULT,
+         QualityValue.DEFAULT
       };
       assertList(header, fields, qualities);
    }
@@ -74,8 +74,8 @@ public class LocaleQualityValueTest {
       String header = "en, en-US, en-cockney, i-cherokee, x-pig-latin";
       Locale[] fields = {Locale.ENGLISH, Locale.US};
       QualityValue[] qualities = {
-            QualityValue.DEFAULT,
-            QualityValue.DEFAULT
+         QualityValue.DEFAULT,
+         QualityValue.DEFAULT
       };
       assertList(header, fields, qualities);
    }

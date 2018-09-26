@@ -98,33 +98,33 @@ public class ExecutableValidationDisabledTest {
       response.close();
 
       {
-            // Invalid native constraint
-            // BUT EXECUTABLE VALIDATION IS DISABLE.
-            foo = new ValidationCoreFoo("abcdef");
-            response = client.target(generateURL("/return/native")).request().post(Entity.entity(foo, "application/foo"));
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(RESPONSE_ERROR_MSG, foo, response.readEntity(ValidationCoreFoo.class));
-            response.close();
+         // Invalid native constraint
+         // BUT EXECUTABLE VALIDATION IS DISABLE.
+         foo = new ValidationCoreFoo("abcdef");
+         response = client.target(generateURL("/return/native")).request().post(Entity.entity(foo, "application/foo"));
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(RESPONSE_ERROR_MSG, foo, response.readEntity(ValidationCoreFoo.class));
+         response.close();
+   }
+
+      {
+         // Invalid imposed constraint
+         // BUT EXECUTABLE VALIDATION IS DISABLE.
+         foo = new ValidationCoreFoo("abcdef");
+         response = client.target(generateURL("/return/imposed")).request().post(Entity.entity(foo, "application/foo"));
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(RESPONSE_ERROR_MSG, foo, response.readEntity(ValidationCoreFoo.class));
+         response.close();
       }
 
       {
-            // Invalid imposed constraint
-            // BUT EXECUTABLE VALIDATION IS DISABLE.
-            foo = new ValidationCoreFoo("abcdef");
-            response = client.target(generateURL("/return/imposed")).request().post(Entity.entity(foo, "application/foo"));
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(RESPONSE_ERROR_MSG, foo, response.readEntity(ValidationCoreFoo.class));
-            response.close();
-      }
-
-      {
-            // Invalid native and imposed constraints
-            // BUT EXECUTABLE VALIDATION IS DISABLE.
-            foo = new ValidationCoreFoo("abcdef");
-            response = client.target(generateURL("/return/nativeAndImposed")).request().post(Entity.entity(foo, "application/foo"));
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(RESPONSE_ERROR_MSG, foo, response.readEntity(ValidationCoreFoo.class));
-            response.close();
+         // Invalid native and imposed constraints
+         // BUT EXECUTABLE VALIDATION IS DISABLE.
+         foo = new ValidationCoreFoo("abcdef");
+         response = client.target(generateURL("/return/nativeAndImposed")).request().post(Entity.entity(foo, "application/foo"));
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(RESPONSE_ERROR_MSG, foo, response.readEntity(ValidationCoreFoo.class));
+         response.close();
       }
    }
 

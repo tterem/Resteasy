@@ -27,8 +27,7 @@ import org.jboss.resteasy.spi.util.Types;
 @Provider
 @Consumes("multipart/*")
 public class ListMultipartReader implements MessageBodyReader<List<?>> {
-   protected @Context
-   Providers workers;
+   protected @Context Providers workers;
 
    public boolean isReadable(Class<?> type, Type genericType,
          Annotation[] annotations, MediaType mediaType) {

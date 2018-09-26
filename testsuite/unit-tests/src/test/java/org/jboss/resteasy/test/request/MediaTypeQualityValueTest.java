@@ -46,8 +46,8 @@ public class MediaTypeQualityValueTest {
             MediaType.valueOf("audio/basic")
       };
       QualityValue[] qualities = {
-            QualityValue.valueOf("0.2"),
-            QualityValue.DEFAULT
+         QualityValue.valueOf("0.2"),
+         QualityValue.DEFAULT
       };
       assertList(header, fields, qualities);
    }
@@ -89,16 +89,16 @@ public class MediaTypeQualityValueTest {
    @Test
    public void badRequests() {
       String[] badHeaders = {
-            "a",
-            "a,b",
-            "a/b,",
-            "a/b;",
-            "a/b;p",
-            "a/b;p=x,",
-            "a/b;p=\"x\"y",
-            "a/b;p=\"x\"y,c/d",
-            "a/b;p=\"x,c/d",
-            "a/b;p=\"x\\\",c/d"
+         "a",
+         "a,b",
+         "a/b,",
+         "a/b;",
+         "a/b;p",
+         "a/b;p=x,",
+         "a/b;p=\"x\"y",
+         "a/b;p=\"x\"y,c/d",
+         "a/b;p=\"x,c/d",
+         "a/b;p=\"x\\\",c/d"
       };
       for (String header : badHeaders) {
          try {

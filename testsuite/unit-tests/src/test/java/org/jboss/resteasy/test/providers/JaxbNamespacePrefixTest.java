@@ -48,9 +48,9 @@ public class JaxbNamespacePrefixTest {
       Assert.assertNotNull("Couldn't create xml schema for JaxbNameSpacePrefixPurchaseOrderType class", xmlSchema);
       XmlNamespacePrefixMapper mapper = new XmlNamespacePrefixMapper(xmlSchema.xmlns());
       try {
-            marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", mapper);
+         marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", mapper);
       } catch (PropertyException e) {
-            logger.error(e.getMessage(), e);
+         logger.error(e.getMessage(), e);
       }
       marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
       ObjectFactory factory = new ObjectFactory();

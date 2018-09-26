@@ -199,15 +199,15 @@ public class CryptoTest {
    @Test
    public void testEncryptedSignedOutput() throws Exception {
       try {
-      Response res = client.target(generateURL("/smime/encrypted/signed")).request().get();
-      EnvelopedInput enveloped = res.readEntity(EnvelopedInput.class);
-      SignedInput signed = (SignedInput) enveloped.getEntity(SignedInput.class, privateKey, cert);
-      String output = (String) signed.getEntity(String.class);
-      logger.info(output);
-      Assert.assertEquals(ERROR_CONTENT_MSG, "hello world", output);
-      Assert.assertTrue(ERROR_CORE_MSG, signed.verify(cert));
-      Assert.assertEquals(ERROR_CONTENT_MSG, "hello world", output);
-      res.close();
+         Response res = client.target(generateURL("/smime/encrypted/signed")).request().get();
+         EnvelopedInput enveloped = res.readEntity(EnvelopedInput.class);
+         SignedInput signed = (SignedInput) enveloped.getEntity(SignedInput.class, privateKey, cert);
+         String output = (String) signed.getEntity(String.class);
+         logger.info(output);
+         Assert.assertEquals(ERROR_CONTENT_MSG, "hello world", output);
+         Assert.assertTrue(ERROR_CORE_MSG, signed.verify(cert));
+         Assert.assertEquals(ERROR_CONTENT_MSG, "hello world", output);
+         res.close();
       } catch (Exception e) {
             throw new RuntimeException("Unexpected BouncyCastle error", e);
       }

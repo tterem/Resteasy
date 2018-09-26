@@ -122,10 +122,10 @@ public class MediaTypeFromMessageBodyWriterTest {
       for (Target tgt : tgts) {
          for (String accept : accepts) {
             if (tgt.queryName != null) {
-            response = base.path(tgt.path).queryParam(tgt.queryName, tgt.queryValue).request().header("Accept", accept).get();
+               response = base.path(tgt.path).queryParam(tgt.queryName, tgt.queryValue).request().header("Accept", accept).get();
             }
             else {
-            response = base.path(tgt.path).request().header("Accept", accept).get();  
+               response = base.path(tgt.path).request().header("Accept", accept).get();
             }
             Assert.assertEquals(200, response.getStatus());
             String s = response.getHeaderString("X-COUNT");

@@ -154,7 +154,7 @@ public class InternalDispatcherTest {
       logger.info("return value: " + proxy.getForwardBasic());
       int i = 0;
       for (Iterator<String> it = forwardingResource.uriStack.iterator(); it.hasNext(); i++) {
-            logger.info(String.format("%d. item in uriStack: %s", i, it.next()));
+         logger.info(String.format("%d. item in uriStack: %s", i, it.next()));
       }
 
       Assert.assertEquals("Wrong first URI in stack", generateBaseUrl() + "/basic", forwardingResource.uriStack.pop());

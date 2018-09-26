@@ -66,11 +66,11 @@ public class ConstructedInjectionTest {
    private void _test(String path) {
       WebTarget base = client.target(generateURL(path));
       try {
-            Response response = base.request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            response.close();
+         Response response = base.request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 

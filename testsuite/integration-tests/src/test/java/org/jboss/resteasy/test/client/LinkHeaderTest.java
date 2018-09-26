@@ -55,12 +55,12 @@ public class LinkHeaderTest extends ClientTestBase{
 
       // new client testing
       {
-            Response response = client.target(generateURL("/linkheader/str")).request().header("Link",
-               "<http://example.com/TheBook/chapter2>; rel=\"previous\"; title=\"previous chapter\"").post(Entity.text(new String()));
-            javax.ws.rs.core.Link link = response.getLink("previous");
-            Assert.assertNotNull(link);
-            Assert.assertEquals("Wrong link", "previous chapter", link.getTitle());
-            Assert.assertEquals("Wrong link", "http://example.com/TheBook/chapter2", link.getUri().toString());
+         Response response = client.target(generateURL("/linkheader/str")).request().header("Link",
+            "<http://example.com/TheBook/chapter2>; rel=\"previous\"; title=\"previous chapter\"").post(Entity.text(new String()));
+         javax.ws.rs.core.Link link = response.getLink("previous");
+         Assert.assertNotNull(link);
+         Assert.assertEquals("Wrong link", "previous chapter", link.getTitle());
+         Assert.assertEquals("Wrong link", "http://example.com/TheBook/chapter2", link.getUri().toString());
       }
    }
 }

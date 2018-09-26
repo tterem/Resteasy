@@ -26,12 +26,12 @@ public final class JAXBCache {
    public JAXBContext getJAXBContext(Class<?>... classes) {
       JAXBContext context = contextCache.get(classes);
       if (context == null) {
-            try {
+         try {
             context = JAXBContext.newInstance(classes);
-            } catch (JAXBException e) {
+         } catch (JAXBException e) {
             throw new ExceptionAdapter(e);
-            }
-            contextCache.putIfAbsent(classes, context);
+         }
+         contextCache.putIfAbsent(classes, context);
       }
       logger.debugv("Locating JAXBContext for package: {0}", (Object[]) classes);
       return context;
@@ -52,10 +52,10 @@ public final class JAXBCache {
    private String buildContextPath(String[] packageNames) {
       StringBuilder b = new StringBuilder();
       for (int i = 0; i < packageNames.length; i++) {
-            b.append(packageNames[i]);
-            if (i != (packageNames.length - 1)) {
+         b.append(packageNames[i]);
+         if (i != (packageNames.length - 1)) {
             b.append(":");
-            }
+         }
       }
       return b.toString();
    }

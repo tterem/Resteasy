@@ -88,17 +88,17 @@ public class ExceptionBufferingTest {
       Response response = null;
 
       try {
-            ResteasyWebTarget target = client.target(PortProviderUtil.generateURL("/test", DEPLOYMENT_DEFAULT));
-            Invocation invocation = target.request().buildGet();
-            response = invocation.invoke();
-            logger.info("status: " + response.getStatus());
-            String s = ClientInvocation.extractResult(new GenericType<String>(String.class), response, null);
-            fail("Was expecting an exception: " + s);
+         ResteasyWebTarget target = client.target(PortProviderUtil.generateURL("/test", DEPLOYMENT_DEFAULT));
+         Invocation invocation = target.request().buildGet();
+         response = invocation.invoke();
+         logger.info("status: " + response.getStatus());
+         String s = ClientInvocation.extractResult(new GenericType<String>(String.class), response, null);
+         fail("Was expecting an exception: " + s);
       } catch (Exception e) {
-            logger.info("caught: " + e);
-            String entity = response.readEntity(String.class);
-            logger.info("exception entity: " + entity);
-            Assert.assertEquals("Wrong response content", "test", entity);
+         logger.info("caught: " + e);
+         String entity = response.readEntity(String.class);
+         logger.info("exception entity: " + entity);
+         Assert.assertEquals("Wrong response content", "test", entity);
       }
    }
 
@@ -111,24 +111,24 @@ public class ExceptionBufferingTest {
       Response response = null;
 
       try {
-            ResteasyWebTarget target = client.target(PortProviderUtil.generateURL("/test", DEPLOYMENT_FALSE));
-            Invocation invocation = target.request().buildGet();
-            response = invocation.invoke();
-            logger.info("status: " + response.getStatus());
-            String s = ClientInvocation.extractResult(new GenericType<String>(String.class), response, null);
-            fail("Was expecting an exception: " + s);
+         ResteasyWebTarget target = client.target(PortProviderUtil.generateURL("/test", DEPLOYMENT_FALSE));
+         Invocation invocation = target.request().buildGet();
+         response = invocation.invoke();
+         logger.info("status: " + response.getStatus());
+         String s = ClientInvocation.extractResult(new GenericType<String>(String.class), response, null);
+         fail("Was expecting an exception: " + s);
       } catch (Exception e) {
-            logger.info("caught: " + e);
-            try {
+         logger.info("caught: " + e);
+         try {
             String s = response.readEntity(String.class);
             fail("Was expecting a second exception: " + s);
-            } catch (ProcessingException e1) {
+         } catch (ProcessingException e1) {
             logger.info("and caught: " + e1);
             Assert.assertTrue("Wrong exception thrown", e1.getCause() instanceof IOException);
             Assert.assertEquals("Attempted read on closed stream.", e1.getCause().getMessage());
-            } catch (Exception e1) {
+         } catch (Exception e1) {
             fail("Was expecting a ProcessingException instead of " + e1);
-            }
+         }
       }
    }
 
@@ -141,17 +141,17 @@ public class ExceptionBufferingTest {
       Response response = null;
 
       try {
-            ResteasyWebTarget target = client.target(PortProviderUtil.generateURL("/test", DEPLOYMENT_TRUE));
-            Invocation invocation = target.request().buildGet();
-            response = invocation.invoke();
-            logger.info("status: " + response.getStatus());
-            String s = ClientInvocation.extractResult(new GenericType<String>(String.class), response, null);
-            fail("Was expecting an exception: " + s);
+         ResteasyWebTarget target = client.target(PortProviderUtil.generateURL("/test", DEPLOYMENT_TRUE));
+         Invocation invocation = target.request().buildGet();
+         response = invocation.invoke();
+         logger.info("status: " + response.getStatus());
+         String s = ClientInvocation.extractResult(new GenericType<String>(String.class), response, null);
+         fail("Was expecting an exception: " + s);
       } catch (Exception e) {
-            logger.info("caught: " + e);
-            String entity = response.readEntity(String.class);
-            logger.info("exception entity: " + entity);
-            Assert.assertEquals("Wrong responce content", "test", entity);
+         logger.info("caught: " + e);
+         String entity = response.readEntity(String.class);
+         logger.info("exception entity: " + entity);
+         Assert.assertEquals("Wrong responce content", "test", entity);
       }
    }
 }

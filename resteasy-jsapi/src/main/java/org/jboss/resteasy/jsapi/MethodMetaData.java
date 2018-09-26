@@ -95,10 +95,10 @@ public class MethodMetaData
    }
 
    public static ResourceLocator getResourceLocator(ResourceInvoker invoker) throws Exception {
-         Field resourceMethodField = null;
-         resourceMethodField = invoker.getClass().getDeclaredField("method");
-         resourceMethodField.setAccessible(true);
-         return (ResourceLocator) resourceMethodField.get(invoker);
+      Field resourceMethodField = null;
+      resourceMethodField = invoker.getClass().getDeclaredField("method");
+      resourceMethodField.setAccessible(true);
+      return (ResourceLocator) resourceMethodField.get(invoker);
    }
 
    protected void processMetaData(Class<?> type, Annotation[] annotations,
@@ -147,10 +147,10 @@ public class MethodMetaData
          this.wantsForm = true;
       } else if ((form = FindAnnotation.findAnnotation(annotations, Form.class)) != null)
       {
-            if (type == Map.class || type == List.class) {
+         if (type == Map.class || type == List.class) {
             addParameter(type, annotations, MethodParamType.FORM, form.prefix());
             this.wantsForm = true;
-            } else
+         } else
             walkForm(type);
       } else if ((FindAnnotation.findAnnotation(annotations, Context.class)) != null)
       {

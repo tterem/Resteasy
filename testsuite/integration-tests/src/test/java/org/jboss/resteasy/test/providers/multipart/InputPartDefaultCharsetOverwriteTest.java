@@ -448,9 +448,9 @@ public class InputPartDefaultCharsetOverwriteTest {
       Assert.assertEquals("Status code is wrong.", 20, response.getStatus() / 10);
       byte[] b = response.readEntity(byte[].class);
       for (int i = 0; i < body.length; i++) {
-            StringBuilder errorMessage = new StringBuilder();
-            errorMessage.append("Wrong content of response: ").append(i).append(": ").append(body[i]).append(" != ").append(b[i]);
-            Assert.assertEquals(errorMessage.toString(), body[i], b[i]);
+         StringBuilder errorMessage = new StringBuilder();
+         errorMessage.append("Wrong content of response: ").append(i).append(": ").append(body[i]).append(" != ").append(b[i]);
+         Assert.assertEquals(errorMessage.toString(), body[i], b[i]);
       }
    }
 
@@ -458,9 +458,9 @@ public class InputPartDefaultCharsetOverwriteTest {
       String sl = s.toLowerCase();
       StringBuffer sb = new StringBuffer();
       for (int i = 0; i < s.length(); i++) {
-            if (sl.charAt(i) != ' ' && sl.charAt(i) != '"') {
+         if (sl.charAt(i) != ' ' && sl.charAt(i) != '"') {
             sb.append(sl.charAt(i));
-            }
+         }
       }
       return sb.toString();
    }

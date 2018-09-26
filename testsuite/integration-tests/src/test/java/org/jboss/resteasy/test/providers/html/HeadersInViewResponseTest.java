@@ -85,10 +85,10 @@ public class HeadersInViewResponseTest {
       File dir = new File(s);
       if (dir.exists() && dir.isDirectory()) {
          for (File file : dir.listFiles()) {
-               String name = file.getName();
-               if (name.startsWith("resteasy-html") && name.endsWith(".jar") && !name.contains("sources")) {
-                   return file;
-               }
+            String name = file.getName();
+            if (name.startsWith("resteasy-html") && name.endsWith(".jar") && !name.contains("sources")) {
+               return file;
+            }
          }
       }
 

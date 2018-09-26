@@ -16,6 +16,6 @@ public class FastInfosetCollectionProvider extends CollectionProvider {
 
    @Override
    protected boolean needsSecurity() {
-   return false;
+      return false;
    }
 }

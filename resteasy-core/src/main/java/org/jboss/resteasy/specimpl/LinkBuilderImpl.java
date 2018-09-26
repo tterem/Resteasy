@@ -99,15 +99,15 @@ public class LinkBuilderImpl implements Link.Builder
       URI built = null;
       if (uriBuilder == null)
       {
-      built = baseUri;
+         built = baseUri;
       }
       else
       {
-      built = this.uriBuilder.build(values);
+         built = this.uriBuilder.build(values);
       }
       if (!built.isAbsolute() && baseUri != null)
       {
-      built = baseUri.resolve(built);
+         built = baseUri.resolve(built);
       }
       return new LinkImpl(built, this.map);
    }

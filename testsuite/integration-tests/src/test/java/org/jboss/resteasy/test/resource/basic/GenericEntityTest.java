@@ -63,12 +63,12 @@ public class GenericEntityTest {
    public void testDoubles() {
       WebTarget base = client.target(generateURL("/doubles"));
       try {
-            Response response = base.request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            String body = response.readEntity(String.class);
-            Assert.assertEquals("The response doesn't contain the expected entity", "45.0D 50.0D ", body);
+         Response response = base.request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         String body = response.readEntity(String.class);
+         Assert.assertEquals("The response doesn't contain the expected entity", "45.0D 50.0D ", body);
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
@@ -80,12 +80,12 @@ public class GenericEntityTest {
    public void testFloats() {
       WebTarget base = client.target(generateURL("/floats"));
       try {
-            Response response = base.request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            String body = response.readEntity(String.class);
-            Assert.assertEquals("The response doesn't contain the expected entity", "45.0F 50.0F ", body);
+         Response response = base.request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         String body = response.readEntity(String.class);
+         Assert.assertEquals("The response doesn't contain the expected entity", "45.0F 50.0F ", body);
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 

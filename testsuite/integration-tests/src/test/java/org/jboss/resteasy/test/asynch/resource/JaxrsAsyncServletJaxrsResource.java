@@ -65,9 +65,9 @@ public class JaxrsAsyncServletJaxrsResource {
    @Path("cancelled")
    public Response getCancelled() {
       if (cancelled) {
-            return Response.noContent().build();
+         return Response.noContent().build();
       } else {
-            return Response.status(500).build();
+         return Response.status(500).build();
       }
    }
 

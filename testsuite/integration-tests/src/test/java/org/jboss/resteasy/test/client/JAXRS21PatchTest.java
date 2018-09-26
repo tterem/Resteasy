@@ -52,14 +52,14 @@ public class JAXRS21PatchTest extends ClientTestBase {
    @Test
    public void testMethods() throws Exception {
       {
-            Response res = client.target(generateURL("/test")).request().method(HttpMethod.PATCH, Entity.text("hello"));
-            Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
-            String entity = res.readEntity(String.class);
-            Assert.assertEquals("patch hello", entity);
+         Response res = client.target(generateURL("/test")).request().method(HttpMethod.PATCH, Entity.text("hello"));
+         Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
+         String entity = res.readEntity(String.class);
+         Assert.assertEquals("patch hello", entity);
       }
       {
-            String entity = client.target(generateURL("/test")).request().method(HttpMethod.PATCH, Entity.text("hello"), String.class);
-            Assert.assertEquals("patch hello", entity);
+         String entity = client.target(generateURL("/test")).request().method(HttpMethod.PATCH, Entity.text("hello"), String.class);
+         Assert.assertEquals("patch hello", entity);
       }
    }
 
@@ -70,14 +70,14 @@ public class JAXRS21PatchTest extends ClientTestBase {
    @Test
    public void testInvoke() throws Exception {
       {
-            Response res = client.target(generateURL("/test")).request().build(HttpMethod.PATCH, Entity.text("hello")).invoke();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
-            String entity = res.readEntity(String.class);
-            Assert.assertEquals("patch hello", entity);
+         Response res = client.target(generateURL("/test")).request().build(HttpMethod.PATCH, Entity.text("hello")).invoke();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
+         String entity = res.readEntity(String.class);
+         Assert.assertEquals("patch hello", entity);
       }
       {
-            String entity = client.target(generateURL("/test")).request().build(HttpMethod.PATCH, Entity.text("hello")).invoke(String.class);
-            Assert.assertEquals("patch hello", entity);
+   String entity = client.target(generateURL("/test")).request().build(HttpMethod.PATCH, Entity.text("hello")).invoke(String.class);
+   Assert.assertEquals("patch hello", entity);
       }
    }
 
@@ -112,7 +112,7 @@ public class JAXRS21PatchTest extends ClientTestBase {
       Response res = client.target(generateURL("/test")).request().method(HttpMethod.PATCH, Entity.text("hello"));
       MultivaluedMap<String, String> stringHeaders = res.getStringHeaders();
       stringHeaders.forEach((k,v)-> {
-            if (k.equals("Content-type")) Assert.assertEquals("text/plain;charset=UTF-8", v);
+         if (k.equals("Content-type")) Assert.assertEquals("text/plain;charset=UTF-8", v);
       });
    }
 }

@@ -16,13 +16,13 @@ public class JaxrsAsyncServletTimeoutHandler implements TimeoutHandler {
    @Override
    public void handleTimeout(AsyncResponse asyncResponse) {
       switch (function) {
-            case 1:
+         case 1:
             asyncResponse.setTimeout(200, TimeUnit.MILLISECONDS);
             break;
-            case 2:
+         case 2:
             asyncResponse.cancel();
             break;
-            case 3:
+         case 3:
             asyncResponse.resume(JaxrsAsyncServletResource.RESUMED);
             break;
       }

@@ -22,9 +22,9 @@ public class JaxrsAsyncServletResource {
    public static final String TRUE = "A method return true";
 
    private static final JaxrsAsyncServletAsyncResponseBlockingQueue[] stage = {
-            new JaxrsAsyncServletAsyncResponseBlockingQueue(1),
-            new JaxrsAsyncServletAsyncResponseBlockingQueue(1),
-            new JaxrsAsyncServletAsyncResponseBlockingQueue(1)};
+      new JaxrsAsyncServletAsyncResponseBlockingQueue(1),
+      new JaxrsAsyncServletAsyncResponseBlockingQueue(1),
+      new JaxrsAsyncServletAsyncResponseBlockingQueue(1)};
 
    @GET
    @Path("suspend")
@@ -164,10 +164,10 @@ public class JaxrsAsyncServletResource {
       final ResponseBuilder error = createErrorResponseBuilder();
       AsyncResponse asyncResponse = null;
       try {
-            asyncResponse = stage[stageId].take();
+         asyncResponse = stage[stageId].take();
       } catch (InterruptedException e) {
-            throw new WebApplicationException(error.entity(
-               "ArrayBlockingQueue#take").build());
+         throw new WebApplicationException(error.entity(
+            "ArrayBlockingQueue#take").build());
       }
       return asyncResponse;
    }
@@ -175,7 +175,7 @@ public class JaxrsAsyncServletResource {
    protected static final void addResponse(AsyncResponse response, String stageId) {
       int id = Integer.parseInt(stageId) + 1;
       if (id != stage.length) {
-            stage[id].add(response);
+         stage[id].add(response);
       }
    }
 

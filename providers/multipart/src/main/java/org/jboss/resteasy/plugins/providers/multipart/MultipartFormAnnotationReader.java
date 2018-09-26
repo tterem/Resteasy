@@ -33,9 +33,7 @@ import org.jboss.resteasy.spi.util.FindAnnotation;
 @Consumes("multipart/form-data")
 public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
 {
-   protected
-   @Context
-   Providers workers;
+   protected @Context Providers workers;
 
    @Override
    public boolean isReadable(Class<?> type, Type genericType,

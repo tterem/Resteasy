@@ -1,8 +1,14 @@
 package org.jboss.resteasy.rxjava2;
 
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ScheduledExecutorService;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import org.jboss.resteasy.client.jaxrs.internal.ClientInvocationBuilder;
+import org.jboss.resteasy.plugins.providers.sse.InboundSseEventImpl;
+import org.jboss.resteasy.plugins.providers.sse.client.SseEventSourceImpl;
+import org.jboss.resteasy.plugins.providers.sse.client.SseEventSourceImpl.SourceBuilder;
+import org.jboss.resteasy.rxjava2.i18n.Messages;
 
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.Entity;
@@ -11,17 +17,9 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.sse.InboundSseEvent;
 import javax.ws.rs.sse.SseEventSource;
-
-import org.jboss.resteasy.client.jaxrs.internal.ClientInvocationBuilder;
-import org.jboss.resteasy.plugins.providers.sse.InboundSseEventImpl;
-import org.jboss.resteasy.plugins.providers.sse.client.SseEventSourceImpl;
-import org.jboss.resteasy.plugins.providers.sse.client.SseEventSourceImpl.SourceBuilder;
-import org.jboss.resteasy.rxjava2.i18n.Messages;
-
-import io.reactivex.BackpressureStrategy;
-import io.reactivex.Flowable;
-import io.reactivex.FlowableEmitter;
-import io.reactivex.FlowableOnSubscribe;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class FlowableRxInvokerImpl implements FlowableRxInvoker
 {
@@ -214,16 +212,16 @@ public class FlowableRxInvokerImpl implements FlowableRxInvoker
                @Override
                public void subscribe(FlowableEmitter<T> emitter) throws Exception {
                   sseEventSource.register(
-                  (InboundSseEvent e) -> {T t = e.readData(clazz, ((InboundSseEventImpl) e).getMediaType()); emitter.onNext(t);},
-                  (Throwable t) -> emitter.onError(t),
-                  () -> emitter.onComplete());
-                  synchronized (monitor)
-                  {
-                     if (!sseEventSource.isOpen())
+                     (InboundSseEvent e) -> {T t = e.readData(clazz, ((InboundSseEventImpl) e).getMediaType()); emitter.onNext(t);},
+                     (Throwable t) -> emitter.onError(t),
+                     () -> emitter.onComplete());
+                     synchronized (monitor)
                      {
-                  sseEventSource.open(null, verb, entity, mediaTypes);
+                        if (!sseEventSource.isOpen())
+                        {
+                           sseEventSource.open(null, verb, entity, mediaTypes);
+                        }
                      }
-                  }
                }
          },
          backpressureStrategy);
@@ -239,13 +237,11 @@ public class FlowableRxInvokerImpl implements FlowableRxInvoker
                public void subscribe(FlowableEmitter<T> emitter) throws Exception {
                   sseEventSource.register(
                   (InboundSseEvent e) -> {T t = e.readData(type, ((InboundSseEventImpl) e).getMediaType()); emitter.onNext(t);},
-                  (Throwable t) -> emitter.onError(t),
-                  () -> emitter.onComplete());
-                  synchronized (monitor)
-                  {
-                     if (!sseEventSource.isOpen())
-                     {
-                  sseEventSource.open(null, verb, entity, mediaTypes);
+                        (Throwable t) -> emitter.onError(t),
+                        () -> emitter.onComplete());
+                  synchronized (monitor) {
+                     if (!sseEventSource.isOpen()) {
+                        sseEventSource.open(null, verb, entity, mediaTypes);
                      }
                   }
                }

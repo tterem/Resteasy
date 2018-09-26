@@ -142,10 +142,10 @@ public class FormResourceTest {
       String[] params = str.split("&");
       Map<String, String> map = new HashMap<String, String>();
       for (int i = 0; i < params.length; i++) {
-            int index = params[i].indexOf('=');
-            String key = params[i].substring(0, index).trim();
-            String value = params[i].substring(index + 1).trim().replace('+', ' ');
-            map.put(key, value);
+         int index = params[i].indexOf('=');
+         String key = params[i].substring(0, index).trim();
+         String value = params[i].substring(index + 1).trim().replace('+', ' ');
+         map.put(key, value);
       }
       Assert.assertEquals(map.get(BOOLEAN_VALUE_FIELD), "true");
       Assert.assertEquals(map.get(NAME_FIELD), "This is My Name");
@@ -165,43 +165,43 @@ public class FormResourceTest {
       InputStream in = null;
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
       try {
-            ResteasyWebTarget target = client.target(TEST_URI);
-            Invocation.Builder request = target.request();
-            request.header("custom-header", "42");
-            Form form = new Form().param(BOOLEAN_VALUE_FIELD, "true")
-               .param(NAME_FIELD, "This is My Name")
-               .param(DOUBLE_VALUE_FIELD, "123.45")
-               .param(LONG_VALUE_FIELD, "566780")
-               .param(INTEGER_VALUE_FIELD, "3")
-               .param(SHORT_VALUE_FIELD, "12345");
-            Response response = request.post(Entity.form(form));
-            Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
-            String contentType = response.getHeaderString("content-type");
-            Assert.assertEquals("application/x-www-form-urlencoded", contentType);
-            InputStream responseStream = response.readEntity(InputStream.class);
-            in = new BufferedInputStream(responseStream);
-            String formData = TestUtil.readString(in);
-            String[] keys = formData.split("&");
-            Map<String, String> values = new HashMap<String, String>();
-            for (String pair : keys) {
-            int index = pair.indexOf('=');
-            if (index < 0) {
-               values.put(URLDecoder.decode(pair, StandardCharsets.UTF_8.name()), null);
-            } else if (index > 0) {
-               values.put(URLDecoder.decode(pair.substring(0, index), StandardCharsets.UTF_8.name()), URLDecoder.decode(pair
-                     .substring(index + 1), StandardCharsets.UTF_8.name()));
-            }
-            }
-            Assert.assertEquals(values.get(BOOLEAN_VALUE_FIELD), "true");
-            Assert.assertEquals(values.get(NAME_FIELD), "This is My Name");
-            Assert.assertEquals(values.get(DOUBLE_VALUE_FIELD), "123.45");
-            Assert.assertEquals(values.get(LONG_VALUE_FIELD), "566780");
-            Assert.assertEquals(values.get(INTEGER_VALUE_FIELD), "3");
+         ResteasyWebTarget target = client.target(TEST_URI);
+         Invocation.Builder request = target.request();
+         request.header("custom-header", "42");
+         Form form = new Form().param(BOOLEAN_VALUE_FIELD, "true")
+            .param(NAME_FIELD, "This is My Name")
+            .param(DOUBLE_VALUE_FIELD, "123.45")
+            .param(LONG_VALUE_FIELD, "566780")
+            .param(INTEGER_VALUE_FIELD, "3")
+            .param(SHORT_VALUE_FIELD, "12345");
+         Response response = request.post(Entity.form(form));
+         Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
+         String contentType = response.getHeaderString("content-type");
+         Assert.assertEquals("application/x-www-form-urlencoded", contentType);
+         InputStream responseStream = response.readEntity(InputStream.class);
+         in = new BufferedInputStream(responseStream);
+         String formData = TestUtil.readString(in);
+         String[] keys = formData.split("&");
+         Map<String, String> values = new HashMap<String, String>();
+         for (String pair : keys) {
+         int index = pair.indexOf('=');
+         if (index < 0) {
+            values.put(URLDecoder.decode(pair, StandardCharsets.UTF_8.name()), null);
+         } else if (index > 0) {
+            values.put(URLDecoder.decode(pair.substring(0, index), StandardCharsets.UTF_8.name()), URLDecoder.decode(pair
+                  .substring(index + 1), StandardCharsets.UTF_8.name()));
+         }
+         }
+         Assert.assertEquals(values.get(BOOLEAN_VALUE_FIELD), "true");
+         Assert.assertEquals(values.get(NAME_FIELD), "This is My Name");
+         Assert.assertEquals(values.get(DOUBLE_VALUE_FIELD), "123.45");
+         Assert.assertEquals(values.get(LONG_VALUE_FIELD), "566780");
+         Assert.assertEquals(values.get(INTEGER_VALUE_FIELD), "3");
       } finally {
-            if (in != null) {
-            in.close();
-            }
-            client.close();
-      }
+         if (in != null) {
+         in.close();
+         }
+         client.close();
+   }
    }
 }

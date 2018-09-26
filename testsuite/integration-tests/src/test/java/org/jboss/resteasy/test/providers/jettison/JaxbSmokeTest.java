@@ -97,20 +97,20 @@ public class JaxbSmokeTest {
 
       @XmlAttribute
       public String getName() {
-            return name;
+         return name;
       }
 
       public void setName(String name) {
-            this.name = name;
+         this.name = name;
       }
 
       @XmlElement(name = "registered-books")
       public List<Book> getBooks() {
-            return books;
+         return books;
       }
 
       public void setBooks(List<Book> books) {
-            this.books = books;
+         this.books = books;
       }
    }
 
@@ -118,22 +118,22 @@ public class JaxbSmokeTest {
    @Mapped(attributesAsElements = {"title"})
    public void testJSON() throws Exception {
       {
-            Mapped mapped = JaxbSmokeTest.class.getMethod("testJSON").getAnnotation(Mapped.class);
-            JettisonMappedContext context = new JettisonMappedContext(mapped, Book.class);
-            StringWriter writer = new StringWriter();
-            context.createMarshaller().marshal(new Book("Bill Burke", "666", "EJB 3.0"), writer);
+         Mapped mapped = JaxbSmokeTest.class.getMethod("testJSON").getAnnotation(Mapped.class);
+         JettisonMappedContext context = new JettisonMappedContext(mapped, Book.class);
+         StringWriter writer = new StringWriter();
+         context.createMarshaller().marshal(new Book("Bill Burke", "666", "EJB 3.0"), writer);
 
-            String val = writer.toString();
-            log.info("Mapped: " + val);
+         String val = writer.toString();
+         log.info("Mapped: " + val);
 
-            // test Mapped attributeAsElement
-            Assert.assertTrue(!val.contains("@title"));
+         // test Mapped attributeAsElement
+         Assert.assertTrue(!val.contains("@title"));
       }
       {
-            BadgerContext context = new BadgerContext(Book.class);
-            StringWriter writer = new StringWriter();
-            context.createMarshaller().marshal(new Book("Bill Burke", "666", "EJB 3.0"), writer);
-            log.info("Badger: " + writer.toString());
+         BadgerContext context = new BadgerContext(Book.class);
+         StringWriter writer = new StringWriter();
+         context.createMarshaller().marshal(new Book("Bill Burke", "666", "EJB 3.0"), writer);
+         log.info("Badger: " + writer.toString());
       }
       Library library = new Library();
       List<Book> books = new ArrayList<>();
@@ -143,26 +143,26 @@ public class JaxbSmokeTest {
       library.setBooks(books);
 
       {
-            BadgerContext context = new BadgerContext(Library.class);
-            StringWriter writer = new StringWriter();
-            context.createMarshaller().marshal(library, writer);
+         BadgerContext context = new BadgerContext(Library.class);
+         StringWriter writer = new StringWriter();
+         context.createMarshaller().marshal(library, writer);
 
-            String s = writer.toString();
-            log.info("Badger: " + s);
-            Library lib = (Library) context.createUnmarshaller().unmarshal(new StringReader(s));
-            Assert.assertEquals(lib.getName(), "BPL");
-            Assert.assertEquals(lib.getBooks().size(), 2);
+         String s = writer.toString();
+         log.info("Badger: " + s);
+         Library lib = (Library) context.createUnmarshaller().unmarshal(new StringReader(s));
+         Assert.assertEquals(lib.getName(), "BPL");
+         Assert.assertEquals(lib.getBooks().size(), 2);
       }
       {
-            JettisonMappedContext context = new JettisonMappedContext(Library.class);
-            StringWriter writer = new StringWriter();
-            context.createMarshaller().marshal(library, writer);
+         JettisonMappedContext context = new JettisonMappedContext(Library.class);
+         StringWriter writer = new StringWriter();
+         context.createMarshaller().marshal(library, writer);
 
-            String s = writer.toString();
-            log.info("Mapped: " + s);
-            Library lib = (Library) context.createUnmarshaller().unmarshal(new StringReader(s));
-            Assert.assertEquals(lib.getName(), "BPL");
-            Assert.assertEquals(lib.getBooks().size(), 2);
+         String s = writer.toString();
+         log.info("Mapped: " + s);
+         Library lib = (Library) context.createUnmarshaller().unmarshal(new StringReader(s));
+         Assert.assertEquals(lib.getName(), "BPL");
+         Assert.assertEquals(lib.getBooks().size(), 2);
       }
    }
 

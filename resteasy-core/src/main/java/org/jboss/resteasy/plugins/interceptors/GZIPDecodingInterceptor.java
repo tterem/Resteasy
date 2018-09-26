@@ -35,12 +35,12 @@ public class GZIPDecodingInterceptor implements ReaderInterceptor
    
    public GZIPDecodingInterceptor(int maxSize)
    {
-     this.maxSize = maxSize;
+      this.maxSize = maxSize;
    }
    
    public GZIPDecodingInterceptor()
    {
-     this.maxSize = -1;
+      this.maxSize = -1;
    }
    
    public static class FinishableGZIPInputStream extends GZIPInputStream
