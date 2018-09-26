@@ -172,7 +172,7 @@ public class CallbackResourceBase {
    protected static final void addResponse(AsyncResponse response, String stageId) {
       int id = Integer.parseInt(stageId) + 1;
       if (id != stage.length) {
-            stage[id].add(response);
+         stage[id].add(response);
       }
    }
 

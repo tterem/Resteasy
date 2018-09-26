@@ -60,14 +60,14 @@ public class CacheControlTest {
       Assert.assertEquals(errorMsg, first.getNoCacheFields().size(), second.getNoCacheFields().size());
       Assert.assertEquals(errorMsg, first.getPrivateFields().size(), second.getPrivateFields().size());
       for (int i = 0; i < first.getNoCacheFields().size(); i++) {
-            Assert.assertEquals(errorMsg, first.getNoCacheFields().get(i), second.getNoCacheFields().get(i));
+         Assert.assertEquals(errorMsg, first.getNoCacheFields().get(i), second.getNoCacheFields().get(i));
       }
       for (int i = 0; i < first.getPrivateFields().size(); i++) {
-            Assert.assertEquals(errorMsg, first.getPrivateFields().get(i), second.getPrivateFields().get(i));
+         Assert.assertEquals(errorMsg, first.getPrivateFields().get(i), second.getPrivateFields().get(i));
       }
       Assert.assertEquals(errorMsg, first.getCacheExtension().size(), second.getCacheExtension().size());
       for (String key : first.getCacheExtension().keySet()) {
-            Assert.assertEquals(errorMsg, first.getCacheExtension().get(key), second.getCacheExtension().get(key));
+         Assert.assertEquals(errorMsg, first.getCacheExtension().get(key), second.getCacheExtension().get(key));
       }
    }
 

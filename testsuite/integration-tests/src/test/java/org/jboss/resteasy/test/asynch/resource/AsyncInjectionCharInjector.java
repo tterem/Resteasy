@@ -28,8 +28,8 @@ public class AsyncInjectionCharInjector implements ContextInjector<CompletionSta
                   return CompletableFuture.completedFuture(null);
                case VALUE:
                   return CompletableFuture.completedFuture('s');
-               }
-               break;
+            }
+            break;
          }
       }
       return CompletableFuture.completedFuture('s');

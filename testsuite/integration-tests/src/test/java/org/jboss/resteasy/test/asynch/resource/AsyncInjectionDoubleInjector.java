@@ -28,8 +28,8 @@ public class AsyncInjectionDoubleInjector implements ContextInjector<CompletionS
                   return CompletableFuture.completedFuture(null);
                case VALUE:
                   return CompletableFuture.completedFuture(4.2);
-               }
-               break;
+            }
+            break;
          }
       }
       return CompletableFuture.completedFuture(4.2);

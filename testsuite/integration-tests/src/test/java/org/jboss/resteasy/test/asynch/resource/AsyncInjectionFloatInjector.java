@@ -28,8 +28,8 @@ public class AsyncInjectionFloatInjector implements ContextInjector<CompletionSt
                   return CompletableFuture.completedFuture(null);
                case VALUE:
                   return CompletableFuture.completedFuture(4.2f);
-               }
-               break;
+            }
+            break;
          }
       }
       return CompletableFuture.completedFuture(4.2f);

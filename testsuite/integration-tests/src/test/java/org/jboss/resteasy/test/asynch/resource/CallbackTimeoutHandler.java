@@ -17,14 +17,14 @@ public class CallbackTimeoutHandler implements TimeoutHandler {
    public void handleTimeout(AsyncResponse asyncResponse) {
       switch (function) {
          case 1:
-         asyncResponse.setTimeout(200, TimeUnit.MILLISECONDS);
-         break;
+            asyncResponse.setTimeout(200, TimeUnit.MILLISECONDS);
+            break;
          case 2:
-         asyncResponse.cancel();
-         break;
+            asyncResponse.cancel();
+            break;
          case 3:
-         asyncResponse.resume(CallbackResource.RESUMED);
-         break;
+            asyncResponse.resume(CallbackResource.RESUMED);
+            break;
       }
    }
 

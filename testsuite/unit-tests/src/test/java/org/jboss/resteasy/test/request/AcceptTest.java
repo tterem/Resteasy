@@ -32,10 +32,10 @@ public class AcceptTest {
    private HttpRequest createRequest(String httpMethod, String path, MediaType contentType, List<MediaType> accepts) {
       MockHttpRequest request = null;
       try {
-          request = MockHttpRequest.create(httpMethod, path).contentType(contentType);
-          request.accept(accepts);
+         request = MockHttpRequest.create(httpMethod, path).contentType(contentType);
+         request.accept(accepts);
       } catch (URISyntaxException e) {
-          throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
 
       return request;

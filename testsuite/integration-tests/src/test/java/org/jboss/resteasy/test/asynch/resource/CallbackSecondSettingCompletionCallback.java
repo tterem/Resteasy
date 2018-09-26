@@ -14,7 +14,7 @@ public class CallbackSecondSettingCompletionCallback implements CompletionCallba
       throwableName = throwable == null ? NULL : throwable.getClass()
             .getName();
       if (!CallbackSettingCompletionCallback.getLastThrowableName().equals(throwableName)) {
-            throwableName = throwableName + OUTOFORDER;
+         throwableName = throwableName + OUTOFORDER;
       }
    }
 

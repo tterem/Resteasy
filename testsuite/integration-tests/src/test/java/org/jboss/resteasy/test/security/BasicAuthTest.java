@@ -128,10 +128,10 @@ public class BasicAuthTest {
    public void testProxyFailure() throws Exception {
       BasicAuthBaseProxy proxy = noAutorizationClient.target(generateURL("/")).proxyBuilder(BasicAuthBaseProxy.class).build();
       try {
-            proxy.getFailure();
-            Assert.fail();
+         proxy.getFailure();
+         Assert.fail();
       } catch (NotAuthorizedException e) {
-            Assert.assertEquals(HttpResponseCodes.SC_UNAUTHORIZED, e.getResponse().getStatus());
+         Assert.assertEquals(HttpResponseCodes.SC_UNAUTHORIZED, e.getResponse().getStatus());
       }
    }
 

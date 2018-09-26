@@ -153,13 +153,13 @@ public class AsynchBasicTest {
          response = client.target(jobUrl).request().get();
          Thread.sleep(1000);
          if (HttpServletResponse.SC_OK == response.getStatus()) {
-         Assert.assertEquals("Wrong response content", "content", response.readEntity(String.class));
-         response.close();
-         break;
+            Assert.assertEquals("Wrong response content", "content", response.readEntity(String.class));
+            response.close();
+            break;
          }
          response.close();
          if (i == MAX) {
-         Assert.fail("Expected response with status code 200");
+            Assert.fail("Expected response with status code 200");
          }
       }
 

@@ -91,7 +91,7 @@ public class AnotherPublisherResponseNoStreamTest {
             {
                future.complete(null);
             }
-            }, t -> {
+         }, t -> {
                logger.error(t.getMessage(), t);
                errors.add(t);
             }, () -> {

@@ -235,7 +235,7 @@ public class AsyncTimeoutExceptionsTest extends ClientTestBase{
       WebTarget base = client.target(generateURL("/sticker2"));
       Future<AsyncTimeoutExceptionsSticker> future = base.request().async().get(new StickerCallback());
       future.get(5, TimeUnit.SECONDS);
-     }
+   }
 
    /**
      * @tpTestDetails Invocation callback should close all connections by itself

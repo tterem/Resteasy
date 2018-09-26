@@ -28,8 +28,8 @@ public class AsyncInjectionByteInjector implements ContextInjector<CompletionSta
                   return CompletableFuture.completedFuture(null);
                case VALUE:
                   return CompletableFuture.completedFuture((byte)42);
-               }
-               break;
+            }
+            break;
          }
       }
       return CompletableFuture.completedFuture((byte)42);

@@ -124,7 +124,7 @@ public class CacheControlDelegate implements RuntimeDelegate.HeaderDelegate<Cach
          ExtendedCacheControl ecc = (ExtendedCacheControl) value;
          if (ecc.isPublic())
          {
-              addDirective("public", buffer);
+            addDirective("public", buffer);
          }
       }
       if (value.isMustRevalidate()) addDirective("must-revalidate", buffer);

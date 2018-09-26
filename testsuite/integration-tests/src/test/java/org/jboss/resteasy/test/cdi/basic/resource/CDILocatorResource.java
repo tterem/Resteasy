@@ -34,10 +34,10 @@ public class CDILocatorResource {
    public FooResource lookup() throws Exception {
       logger.infov("classname: {0}", fooResource.getClass().getName());
       for (Method m : fooResource.getClass().getMethods()) {
-if (m.getName().equals("get")) {
-logger.info(m);
-logger.info("@GET? " + m.isAnnotationPresent(GET.class));
-}
+         if (m.getName().equals("get")) {
+            logger.info(m);
+            logger.info("@GET? " + m.isAnnotationPresent(GET.class));
+         }
       }
       return fooResource;
    }
@@ -49,7 +49,7 @@ logger.info("@GET? " + m.isAnnotationPresent(GET.class));
       public String get(@QueryParam("foo") java.util.List<Foo> foos) {
          // Bug: It's not a List<Foo>, it's a List<String>
          for (Foo foo : foos) {
-         return "OK";
+            return "OK";
          }
          return null;
       }

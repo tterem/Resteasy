@@ -93,9 +93,9 @@ public class CDIResourceTest {
       try {
          // Delete existing RESTEASY-1082.war, if any.
          try {
-         Files.delete(to);
+            Files.delete(to);
          } catch (Exception e) {
-         // ok
+            // ok
          }
 
          // Deploy RESTEASY-1082.war
@@ -108,11 +108,11 @@ public class CDIResourceTest {
          HttpResponse response = client.execute(get);
          boolean succesInDeploy = false;
          for (int i = 0; i < 40; i++) {
-         get.releaseConnection();
-         response = client.execute(get);
-         if (response.getStatusLine().getStatusCode() != HttpResponseCodes.SC_NOT_FOUND) {
-            succesInDeploy = true;
-            break;
+            get.releaseConnection();
+            response = client.execute(get);
+            if (response.getStatusLine().getStatusCode() != HttpResponseCodes.SC_NOT_FOUND) {
+               succesInDeploy = true;
+               break;
          }
          Thread.sleep(TimeoutUtil.adjust(500));
          }
@@ -131,11 +131,11 @@ public class CDIResourceTest {
          response = client.execute(get);
          succesInDeploy = false;
          for (int i = 0; i < 40; i++) {
-         get.releaseConnection();
-         response = client.execute(get);
-         if (response.getStatusLine().getStatusCode() != HttpResponseCodes.SC_NOT_FOUND) {
-            succesInDeploy = true;
-            break;
+            get.releaseConnection();
+            response = client.execute(get);
+            if (response.getStatusLine().getStatusCode() != HttpResponseCodes.SC_NOT_FOUND) {
+               succesInDeploy = true;
+               break;
          }
          Thread.sleep(TimeoutUtil.adjust(500));
          }
@@ -145,7 +145,7 @@ public class CDIResourceTest {
          printResponse(response);
          Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatusLine().getStatusCode());
       } finally {
-            Files.delete(to);
+         Files.delete(to);
       }
    }
 

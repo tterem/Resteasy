@@ -253,21 +253,21 @@ public abstract class AbstractJaxbClassCustomer implements java.io.Serializable 
       final AbstractJaxbClassCustomer other = (AbstractJaxbClassCustomer) obj;
       if (nachname == null) {
          if (other.nachname != null) {
-         return false;
+            return false;
          }
       } else if (!nachname.equals(other.nachname)) {
          return false;
       }
       if (seit == null) {
          if (other.seit != null) {
-         return false;
+            return false;
          }
       } else if (!seit.equals(other.seit)) {
          return false;
       }
       if (vorname == null) {
          if (other.vorname != null) {
-         return false;
+            return false;
          }
       } else if (!vorname.equals(other.vorname)) {
          return false;

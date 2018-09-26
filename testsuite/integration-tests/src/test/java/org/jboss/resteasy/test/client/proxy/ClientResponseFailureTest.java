@@ -54,7 +54,7 @@ public class ClientResponseFailureTest {
 
    @Before
    public void init() {
-         client = (ResteasyClient)ClientBuilder.newClient();
+      client = (ResteasyClient)ClientBuilder.newClient();
    }
 
    @After
@@ -78,13 +78,13 @@ public class ClientResponseFailureTest {
             .proxy(ClientResponseFailureResourceInterface.class);
       boolean failed = true;
       try {
-            proxy.error();
-            failed = false;
+         proxy.error();
+         failed = false;
       } catch (NotFoundException e) {
-            Assert.assertEquals(HttpResponseCodes.SC_NOT_FOUND, e.getResponse().getStatus());
-            Assert.assertEquals("There wasn't expected message", e.getResponse().readEntity(String.class),
-               "there was an error");
-            e.getResponse().close();
+         Assert.assertEquals(HttpResponseCodes.SC_NOT_FOUND, e.getResponse().getStatus());
+         Assert.assertEquals("There wasn't expected message", e.getResponse().readEntity(String.class),
+            "there was an error");
+         e.getResponse().close();
       }
 
       Assert.assertTrue("The expected NotFoundException didn't happened", failed);

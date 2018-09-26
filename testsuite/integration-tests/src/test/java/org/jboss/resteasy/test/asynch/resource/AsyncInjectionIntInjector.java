@@ -28,8 +28,8 @@ public class AsyncInjectionIntInjector implements ContextInjector<CompletionStag
                   return CompletableFuture.completedFuture(null);
                case VALUE:
                   return CompletableFuture.completedFuture(42);
-               }
-               break;
+            }
+            break;
          }
       }
       return CompletableFuture.completedFuture(42);
