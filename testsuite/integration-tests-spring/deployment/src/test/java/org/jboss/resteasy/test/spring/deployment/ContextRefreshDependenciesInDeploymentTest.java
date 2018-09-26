@@ -66,7 +66,7 @@ public class ContextRefreshDependenciesInDeploymentTest {
       Assert.assertTrue(ContextRefreshTrigger.isOK());
       Enumeration<?> en = ContextRefreshTrigger.getApplicationContext().getServletContext().getAttributeNames();
       while (en.hasMoreElements()) {
-            logger.info(en.nextElement());
+         logger.info(en.nextElement());
       }
       Object o = ContextRefreshTrigger.getApplicationContext().getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
       logger.info(o);

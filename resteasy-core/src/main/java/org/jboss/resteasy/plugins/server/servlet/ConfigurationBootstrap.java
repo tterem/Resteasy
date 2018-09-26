@@ -232,9 +232,9 @@ abstract public class ConfigurationBootstrap implements ResteasyConfiguration
    protected boolean parseBooleanParam(String key, String value) {
       value = value.trim().toLowerCase();
       if (value.equals("true") || value.equals("1")) {
-            return true;
+         return true;
       } else if (value.equals("false") || value.equals("0")) {
-            return false;
+         return false;
       } else {
          throw new RuntimeException(Messages.MESSAGES.keyCouldNotBeParsed(key));
 

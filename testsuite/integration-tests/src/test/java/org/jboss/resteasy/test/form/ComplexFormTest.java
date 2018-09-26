@@ -46,9 +46,9 @@ public class ComplexFormTest {
    @Test
    public void shouldSupportNestedForm() throws Exception {
       javax.ws.rs.core.Form form = new javax.ws.rs.core.Form()
-      .param("name", "John Doe")
-      .param("invoice.street", "Main Street")
-      .param("shipping.street", "Station Street");
+         .param("name", "John Doe")
+         .param("invoice.street", "Main Street")
+         .param("shipping.street", "Station Street");
 
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
       WebTarget base = client.target(PortProviderUtil.generateURL("/person", CollectionsFormTest.class.getSimpleName()));

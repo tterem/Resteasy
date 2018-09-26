@@ -83,12 +83,12 @@ public class CookieInjectionTest {
    private void _test(String path) {
       WebTarget target = client.target(generateURL(path));
       try {
-            Response response = target.request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Response response = target.request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
 //            for (Map.Entry<String, List<String>> headerEntry : response.getStringHeaders().entrySet()) {
 //                logger.debug(headerEntry.getKey() + ": " + headerEntry.getValue());
 //            }
-            response.close();
+         response.close();
       } catch (Exception e) {
             throw new RuntimeException(e);
       }
@@ -111,12 +111,12 @@ public class CookieInjectionTest {
    private void _testExpire(String path) {
       WebTarget target = client.target(generateURL(path));
       try {
-            Response response = target.request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            String res = response.readEntity(String.class);
-            MultivaluedMap<String, String> headers = response.getStringHeaders();
-            Assert.assertTrue("Unexpected cookie expires:" + res, headers.get("Set-Cookie").contains(res));
-            response.close();
+         Response response = target.request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         String res = response.readEntity(String.class);
+         MultivaluedMap<String, String> headers = response.getStringHeaders();
+         Assert.assertTrue("Unexpected cookie expires:" + res, headers.get("Set-Cookie").contains(res));
+         response.close();
       } catch (Exception e) {
             throw new RuntimeException(e);
       }
@@ -158,13 +158,13 @@ public class CookieInjectionTest {
    @Test
    public void testProxy() {
       {
-            CookieProxy proxy = ProxyBuilder.builder(CookieProxy.class, client.target(generateURL("/"))).build();
-            proxy.param(42);
+         CookieProxy proxy = ProxyBuilder.builder(CookieProxy.class, client.target(generateURL("/"))).build();
+         proxy.param(42);
       }
       {
-            CookieProxy proxy = ProxyBuilder.builder(CookieProxy.class, client.target(generateURL("/"))).build();
-            Cookie cookie = new Cookie("meaning", "42");
-            proxy.param(cookie);
+         CookieProxy proxy = ProxyBuilder.builder(CookieProxy.class, client.target(generateURL("/"))).build();
+         Cookie cookie = new Cookie("meaning", "42");
+         proxy.param(cookie);
       }
    }
 }

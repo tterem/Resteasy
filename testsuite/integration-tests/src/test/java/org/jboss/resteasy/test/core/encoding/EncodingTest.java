@@ -47,19 +47,19 @@ public class EncodingTest {
    private static EncodingTestClient testClient;
 
    Character[] RESERVED_CHARACTERS = {
-         '?', ':', '@', '&', '=', '+', '$', ','
+      '?', ':', '@', '&', '=', '+', '$', ','
    };
 
    //also includes a-zA-Z0-9
    Character[] UNRESERVED_CHARACTERS = {
-         '-', '_', '.', '!', '~', '*', '\'', '(', ')'
+      '-', '_', '.', '!', '~', '*', '\'', '(', ')'
    };
    //also includes 0x00-0x1F and 0x7F
    Character[] EXCLUDED_CHARACTERS = {
-         ' ', '<', '>', '#', '%', '\"'
+      ' ', '<', '>', '#', '%', '\"'
    };
    Character[] UNWISE_CHARACTERS = {
-         '{', '}', '|', '\\', '^', '[', ']', '`'
+      '{', '}', '|', '\\', '^', '[', ']', '`'
    };
 
    @Before

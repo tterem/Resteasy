@@ -113,8 +113,8 @@ public class CDIResourceTest {
             if (response.getStatusLine().getStatusCode() != HttpResponseCodes.SC_NOT_FOUND) {
                succesInDeploy = true;
                break;
-         }
-         Thread.sleep(TimeoutUtil.adjust(500));
+            }
+            Thread.sleep(TimeoutUtil.adjust(500));
          }
          Assert.assertTrue("Deployment was not deployed", succesInDeploy);
          logger.info("status: " + response.getStatusLine().getStatusCode());
@@ -136,8 +136,8 @@ public class CDIResourceTest {
             if (response.getStatusLine().getStatusCode() != HttpResponseCodes.SC_NOT_FOUND) {
                succesInDeploy = true;
                break;
-         }
-         Thread.sleep(TimeoutUtil.adjust(500));
+            }
+            Thread.sleep(TimeoutUtil.adjust(500));
          }
          Assert.assertTrue("Deployment was not deployed", succesInDeploy);
 

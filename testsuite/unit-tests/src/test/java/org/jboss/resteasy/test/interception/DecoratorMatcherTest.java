@@ -60,11 +60,11 @@ public class DecoratorMatcherTest {
    @Decorator(processor = MarshallerDecorator.Processor.class, target = Marshaller.class)
    public static @interface MarshallerDecorator {
       class Processor implements DecoratorProcessor<Marshaller, MarshallerDecorator> {
-            @Override
-            public Marshaller decorate(Marshaller target, MarshallerDecorator annotation, Class type, Annotation[] annotations, MediaType mediaType) {
+         @Override
+         public Marshaller decorate(Marshaller target, MarshallerDecorator annotation, Class type, Annotation[] annotations, MediaType mediaType) {
             called.set(true);
             return target;
-            }
+         }
       }
    }
 

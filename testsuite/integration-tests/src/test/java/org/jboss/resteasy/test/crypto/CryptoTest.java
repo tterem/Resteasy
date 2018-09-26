@@ -80,17 +80,17 @@ public class CryptoTest {
    public static Archive<?> deploy() throws IOException {
       WebArchive war = TestUtil.prepareArchive(CryptoTest.class.getSimpleName());
       try {
-            BouncyCastleProvider bouncyCastleProvider = new BouncyCastleProvider();
-            Security.addProvider(bouncyCastleProvider);
-            KeyPair keyPair = KeyPairGenerator.getInstance("RSA", "BC").generateKeyPair();
-            privateKey = keyPair.getPrivate();
-            cert = KeyTools.generateTestCertificate(keyPair);
-            String privateKeyString = toString(privateKey);
-            String certString = toString(cert);
-            war.addAsResource(new StringAsset(privateKeyString), "privateKey.txt");
-            war.addAsResource(new StringAsset(certString), "cert.txt");
+         BouncyCastleProvider bouncyCastleProvider = new BouncyCastleProvider();
+         Security.addProvider(bouncyCastleProvider);
+         KeyPair keyPair = KeyPairGenerator.getInstance("RSA", "BC").generateKeyPair();
+         privateKey = keyPair.getPrivate();
+         cert = KeyTools.generateTestCertificate(keyPair);
+         String privateKeyString = toString(privateKey);
+         String certString = toString(cert);
+         war.addAsResource(new StringAsset(privateKeyString), "privateKey.txt");
+         war.addAsResource(new StringAsset(certString), "cert.txt");
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
       war.addAsManifestResource("jboss-deployment-structure-bouncycastle.xml", "jboss-deployment-structure.xml");
       return TestUtil.finishContainerPrepare(war, null, CryptoEncryptedResource.class, CryptoSignedResource.class,
@@ -199,15 +199,15 @@ public class CryptoTest {
    @Test
    public void testEncryptedSignedOutput() throws Exception {
       try {
-            Response res = client.target(generateURL("/smime/encrypted/signed")).request().get();
-            EnvelopedInput enveloped = res.readEntity(EnvelopedInput.class);
-            SignedInput signed = (SignedInput) enveloped.getEntity(SignedInput.class, privateKey, cert);
-            String output = (String) signed.getEntity(String.class);
-            logger.info(output);
-            Assert.assertEquals(ERROR_CONTENT_MSG, "hello world", output);
-            Assert.assertTrue(ERROR_CORE_MSG, signed.verify(cert));
-            Assert.assertEquals(ERROR_CONTENT_MSG, "hello world", output);
-            res.close();
+      Response res = client.target(generateURL("/smime/encrypted/signed")).request().get();
+      EnvelopedInput enveloped = res.readEntity(EnvelopedInput.class);
+      SignedInput signed = (SignedInput) enveloped.getEntity(SignedInput.class, privateKey, cert);
+      String output = (String) signed.getEntity(String.class);
+      logger.info(output);
+      Assert.assertEquals(ERROR_CONTENT_MSG, "hello world", output);
+      Assert.assertTrue(ERROR_CORE_MSG, signed.verify(cert));
+      Assert.assertEquals(ERROR_CONTENT_MSG, "hello world", output);
+      res.close();
       } catch (Exception e) {
             throw new RuntimeException("Unexpected BouncyCastle error", e);
       }
@@ -259,14 +259,14 @@ public class CryptoTest {
    @Test
    public void testPKCS7SignedInput() throws Exception {
       try {
-            SignedOutput output = new SignedOutput("input", "text/plain");
-            output.setCertificate(cert);
-            output.setPrivateKey(privateKey);
-            Response res = client.target(generateURL("/smime/pkcs7-signature")).request().post(Entity.entity(output, "application/pkcs7-signature"));
-            Assert.assertEquals(HttpResponseCodes.SC_NO_CONTENT, res.getStatus());
-            res.close();
+         SignedOutput output = new SignedOutput("input", "text/plain");
+         output.setCertificate(cert);
+         output.setPrivateKey(privateKey);
+         Response res = client.target(generateURL("/smime/pkcs7-signature")).request().post(Entity.entity(output, "application/pkcs7-signature"));
+         Assert.assertEquals(HttpResponseCodes.SC_NO_CONTENT, res.getStatus());
+         res.close();
       } catch (Exception e) {
-            throw new RuntimeException("Unexpected BouncyCastle error", e);
+         throw new RuntimeException("Unexpected BouncyCastle error", e);
       }
    }
 

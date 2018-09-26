@@ -40,7 +40,7 @@ public class DirectDecrypter
                         final String encodedIv,
                         final String encodedCipherText,
                         final String encodedAuthTag
-                               )
+   )
    {
 
       // Validate required JWE parts

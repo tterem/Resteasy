@@ -83,7 +83,7 @@ public class DosetaKeyRepository implements KeyRepository
                   loader = Thread.currentThread().getContextClassLoader();
                } else {
                   try {
-                  loader = AccessController.doPrivileged(new PrivilegedExceptionAction<ClassLoader>() {
+                     loader = AccessController.doPrivileged(new PrivilegedExceptionAction<ClassLoader>() {
                      @Override
                      public ClassLoader run() throws Exception {
                         return Thread.currentThread().getContextClassLoader();

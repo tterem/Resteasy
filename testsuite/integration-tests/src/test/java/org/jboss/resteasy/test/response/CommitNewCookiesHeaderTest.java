@@ -54,12 +54,12 @@ public class CommitNewCookiesHeaderTest {
       public Response echoTwo(@QueryParam("msg") String msg) {
          // Any class that provides a toString can be provided as a cookie
          return Response.ok().header(HttpHeaders.SET_COOKIE,
-                 new Object() {
-                     @Override
-                     public String toString() {
-                        return "Cookie 1=Cookie 1 value;Version=1;Path=/";
-                     }
-                  })
+              new Object() {
+                  @Override
+                  public String toString() {
+                     return "Cookie 1=Cookie 1 value;Version=1;Path=/";
+                  }
+               })
          .cookie(new NewCookie("Cookie 2", "Cookie 2 value"))
          .build();
       }

@@ -110,16 +110,16 @@ public class DataSourceProvider extends AbstractEntityProvider<DataSource>
             Cleanables cleanables = ResteasyContext.getContextData(Cleanables.class);
             if (cleanables != null)
             {
-            cleanables.addCleanable(new TempFileCleanable(tempFile));
+               cleanables.addCleanable(new TempFileCleanable(tempFile));
             }
             fos.write(buffer, 0, count);
             try
             {
-            ProviderHelper.writeTo(in, fos);
+               ProviderHelper.writeTo(in, fos);
             }
             finally
             {
-            fos.close();
+               fos.close();
             }
          }
       }
@@ -291,7 +291,7 @@ public class DataSourceProvider extends AbstractEntityProvider<DataSource>
          {
             if (!tempFile.delete()) //set delete on exit only if the file can't be deleted now
             {
-            tempFile.deleteOnExit();
+               tempFile.deleteOnExit();
             }
          }
       }

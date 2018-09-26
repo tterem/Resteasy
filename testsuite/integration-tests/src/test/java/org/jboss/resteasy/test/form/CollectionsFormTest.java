@@ -48,14 +48,14 @@ public class CollectionsFormTest {
    @Test
    public void shouldSupportCollectionsInForm() throws Exception {
       javax.ws.rs.core.Form form = new javax.ws.rs.core.Form()
-      .param("telephoneNumbers[0].countryCode", "31")
-      .param("telephoneNumbers[0].number", "0612345678")
-      .param("telephoneNumbers[1].countryCode", "91")
-      .param("telephoneNumbers[1].number", "9717738723")
-      .param("address[INVOICE].street", "Main Street")
-      .param("address[INVOICE].houseNumber", "2")
-      .param("address[SHIPPING].street", "Square One")
-      .param("address[SHIPPING].houseNumber", "13");
+         .param("telephoneNumbers[0].countryCode", "31")
+         .param("telephoneNumbers[0].number", "0612345678")
+         .param("telephoneNumbers[1].countryCode", "91")
+         .param("telephoneNumbers[1].number", "9717738723")
+         .param("address[INVOICE].street", "Main Street")
+         .param("address[INVOICE].houseNumber", "2")
+         .param("address[SHIPPING].street", "Square One")
+         .param("address[SHIPPING].houseNumber", "13");
 
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
       WebTarget base = client.target(PortProviderUtil.generateURL("/person", CollectionsFormTest.class.getSimpleName()));

@@ -153,20 +153,20 @@ public class Entry extends CommonAttributes
    @XmlElement(name = "title")
    public Text getTitleElement() 
    {
-     return title;     
+      return title;
    }
    
    public void setTitleElement(Text title) {
-     this.title = title;
+      this.title = title;
    }
    
    @XmlTransient
    public String getTitle()
    {
-     if (this.title == null) 
-     {
-      return null;
-     }
+      if (this.title == null)
+      {
+         return null;
+      }
       return title.getText();
    }
 
@@ -174,7 +174,7 @@ public class Entry extends CommonAttributes
    {
       if (this.title == null) 
       {
-      this.title = new Text();
+         this.title = new Text();
       }
       this.title.setText(title);
    }
@@ -255,20 +255,20 @@ public class Entry extends CommonAttributes
    
    @XmlTransient
    public String getRights() {
-     if (rights == null) 
-     {
-      return null;
-     }
-     return rights.getText();
+      if (rights == null)
+      {
+         return null;
+      }
+      return rights.getText();
    }
 
    public void setRights(String rights) 
    {
-     if (this.rights == null) 
-     {
-      this.rights = new Text();
-     }
-     this.rights.setText(rights);
+      if (this.rights == null)
+      {
+         this.rights = new Text();
+      }
+      this.rights.setText(rights);
    }
    
    @XmlElement
@@ -295,20 +295,20 @@ public class Entry extends CommonAttributes
 
    @XmlTransient
    public String getSummary() {
-     if (rights == null) 
-     {
-      return null;
-     }
-     return rights.getText();
+      if (rights == null)
+      {
+         return null;
+      }
+      return rights.getText();
    }
 
    public void setSummary(String summary) 
    {
-     if (this.summary == null) 
-     {
-      this.summary = new Text();
-     }
-     this.summary.setText(summary);
+      if (this.summary == null)
+      {
+         this.summary = new Text();
+      }
+      this.summary.setText(summary);
    }
    
    
@@ -359,9 +359,9 @@ public class Entry extends CommonAttributes
       JAXBContext ctx = null;
       Class[] classes = {clazz};
       if (otherPossibleClasses != null && otherPossibleClasses.length > 0) {
-            classes = new Class[1 + otherPossibleClasses.length];
-            classes[0] = clazz;
-            for (int i = 0; i < otherPossibleClasses.length; i++) classes[i + 1] = otherPossibleClasses[i];
+         classes = new Class[1 + otherPossibleClasses.length];
+         classes[0] = clazz;
+         for (int i = 0; i < otherPossibleClasses.length; i++) classes[i + 1] = otherPossibleClasses[i];
       }
       if (finder != null) {
             ctx = finder.findCacheContext(MediaType.APPLICATION_XML_TYPE, null, classes);

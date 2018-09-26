@@ -46,7 +46,7 @@ public class CustomConstrainedFeatureTest {
    }
 
    private static String generateURL(String path) {
-         return PortProviderUtil.generateURL(path, CustomConstrainedFeatureTest.class.getSimpleName());
+      return PortProviderUtil.generateURL(path, CustomConstrainedFeatureTest.class.getSimpleName());
    }
 
    /**

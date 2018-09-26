@@ -88,22 +88,22 @@ public class ContentTypeMatchingTest {
    public void testAcceptsProduces() throws Exception {
       WebTarget target = client.target(generateURL("/mapper/accepts-produces"));
       {
-            Response response = target.request().accept("application/json").get();
-            Assert.assertEquals(412, response.getStatus());
-            Assert.assertEquals("application/json", response.getStringHeaders().getFirst("Content-Type"));
-            String error = response.readEntity(String.class);
-            logger.info(error);
-            Assert.assertTrue("Incorrect exception mapper was used", error.contains("{\"name\":\"foo\"}"));
+         Response response = target.request().accept("application/json").get();
+         Assert.assertEquals(412, response.getStatus());
+         Assert.assertEquals("application/json", response.getStringHeaders().getFirst("Content-Type"));
+         String error = response.readEntity(String.class);
+         logger.info(error);
+         Assert.assertTrue("Incorrect exception mapper was used", error.contains("{\"name\":\"foo\"}"));
       }
 
       {
-            Response response = target.request().accept("application/xml").get();
-            Assert.assertEquals(412, response.getStatus());
-            Assert.assertEquals("application/xml;charset=UTF-8", response.getStringHeaders().getFirst("Content-Type"));
-            String error = response.readEntity(String.class);
-            logger.info(error);
-            Assert.assertTrue("Incorrect exception mapper was used",
-               error.contains("<contentTypeMatchingError><name>foo</name></contentTypeMatchingError>"));
+         Response response = target.request().accept("application/xml").get();
+         Assert.assertEquals(412, response.getStatus());
+         Assert.assertEquals("application/xml;charset=UTF-8", response.getStringHeaders().getFirst("Content-Type"));
+         String error = response.readEntity(String.class);
+         logger.info(error);
+         Assert.assertTrue("Incorrect exception mapper was used",
+            error.contains("<contentTypeMatchingError><name>foo</name></contentTypeMatchingError>"));
       }
    }
 
@@ -116,23 +116,22 @@ public class ContentTypeMatchingTest {
    public void testAccepts() throws Exception {
       WebTarget target = client.target(generateURL("/mapper/accepts"));
       {
-
-            Response response = target.request().accept("application/json").get();
-            Assert.assertEquals(412, response.getStatus());
-            Assert.assertEquals("application/json", response.getStringHeaders().getFirst("Content-Type"));
-            String error = response.readEntity(String.class);
-            logger.info(error);
-            Assert.assertTrue("Incorrect exception mapper was used", error.contains("{\"name\":\"foo\"}"));
+         Response response = target.request().accept("application/json").get();
+         Assert.assertEquals(412, response.getStatus());
+         Assert.assertEquals("application/json", response.getStringHeaders().getFirst("Content-Type"));
+         String error = response.readEntity(String.class);
+         logger.info(error);
+         Assert.assertTrue("Incorrect exception mapper was used", error.contains("{\"name\":\"foo\"}"));
       }
 
       {
-            Response response = target.request().accept("application/xml").get();
-            Assert.assertEquals(412, response.getStatus());
-            Assert.assertEquals("application/xml;charset=UTF-8", response.getStringHeaders().getFirst("Content-Type"));
-            String error = response.readEntity(String.class);
-            logger.info(error);
-            Assert.assertTrue("Incorrect exception mapper was used",
-               error.contains("<contentTypeMatchingError><name>foo</name></contentTypeMatchingError>"));
+         Response response = target.request().accept("application/xml").get();
+         Assert.assertEquals(412, response.getStatus());
+         Assert.assertEquals("application/xml;charset=UTF-8", response.getStringHeaders().getFirst("Content-Type"));
+         String error = response.readEntity(String.class);
+         logger.info(error);
+         Assert.assertTrue("Incorrect exception mapper was used",
+            error.contains("<contentTypeMatchingError><name>foo</name></contentTypeMatchingError>"));
       }
    }
 
@@ -145,22 +144,22 @@ public class ContentTypeMatchingTest {
    public void testAcceptsEntity() throws Exception {
       WebTarget target = client.target(generateURL("/mapper/accepts-entity"));
       {
-            Response response = target.request().accept("application/json").get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals("application/json", response.getStringHeaders().getFirst("Content-Type"));
-            String error = response.readEntity(String.class);
-            logger.info(error);
-            Assert.assertTrue("Incorrect exception mapper was used", error.contains("{\"name\":\"foo\"}"));
+         Response response = target.request().accept("application/json").get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals("application/json", response.getStringHeaders().getFirst("Content-Type"));
+         String error = response.readEntity(String.class);
+         logger.info(error);
+         Assert.assertTrue("Incorrect exception mapper was used", error.contains("{\"name\":\"foo\"}"));
       }
 
       {
-            Response response = target.request().accept("application/xml").get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals("application/xml;charset=UTF-8", response.getStringHeaders().getFirst("Content-Type"));
-            String error = response.readEntity(String.class);
-            logger.info(error);
-            Assert.assertTrue("Incorrect exception mapper was used",
-               error.contains("<contentTypeMatchingError><name>foo</name></contentTypeMatchingError>"));
+         Response response = target.request().accept("application/xml").get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals("application/xml;charset=UTF-8", response.getStringHeaders().getFirst("Content-Type"));
+         String error = response.readEntity(String.class);
+         logger.info(error);
+         Assert.assertTrue("Incorrect exception mapper was used",
+            error.contains("<contentTypeMatchingError><name>foo</name></contentTypeMatchingError>"));
       }
    }
 }
