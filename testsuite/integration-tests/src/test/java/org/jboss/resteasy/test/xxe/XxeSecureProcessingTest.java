@@ -64,7 +64,7 @@ public class XxeSecureProcessingTest {
       Map<String, String> contextParam = new HashMap<>();
       contextParam.put("resteasy.document.secure.disableDTDs", "false");
       if (expandEntityReferences != null) {
-            contextParam.put("resteasy.document.expand.entity.references", expandEntityReferences);
+         contextParam.put("resteasy.document.expand.entity.references", expandEntityReferences);
       }
       war.addClass(XxeSecureProcessingFavoriteMovieXmlRootElement.class);
       return TestUtil.finishContainerPrepare(war, contextParam, XxeSecureProcessingMovieResource.class);
@@ -188,11 +188,11 @@ public class XxeSecureProcessingTest {
       int pos = 0;
 
       while (pos >= 0) {
-            pos = s.indexOf("foo", pos);
-            if (pos >= 0) {
+         pos = s.indexOf("foo", pos);
+         if (pos >= 0) {
             count++;
             pos += 3;
-            }
+         }
       }
       return count;
    }

@@ -154,28 +154,28 @@ public class ClientHttpEngineBuilder43 implements ClientHttpEngineBuilder {
          }
          else
          {
-         cm = new BasicHttpClientConnectionManager(registry);
+            cm = new BasicHttpClientConnectionManager(registry);
          }
 
          RequestConfig.Builder rcBuilder = RequestConfig.custom();
          if (that.getReadTimeout(TimeUnit.MILLISECONDS) > -1)
          {
-         rcBuilder.setSocketTimeout((int) that.getReadTimeout(TimeUnit.MILLISECONDS));
+            rcBuilder.setSocketTimeout((int) that.getReadTimeout(TimeUnit.MILLISECONDS));
          }
          if (that.getConnectionTimeout(TimeUnit.MILLISECONDS) > -1)
          {
-         rcBuilder.setConnectTimeout((int)that.getConnectionTimeout(TimeUnit.MILLISECONDS));
+            rcBuilder.setConnectTimeout((int)that.getConnectionTimeout(TimeUnit.MILLISECONDS));
          }
-         if (that.getConnectionCheckoutTimeout(TimeUnit.MILLISECONDS) > -1)
+            if (that.getConnectionCheckoutTimeout(TimeUnit.MILLISECONDS) > -1)
          {
-         rcBuilder.setConnectionRequestTimeout((int)that.getConnectionCheckoutTimeout(TimeUnit.MILLISECONDS));
+            rcBuilder.setConnectionRequestTimeout((int)that.getConnectionCheckoutTimeout(TimeUnit.MILLISECONDS));
          }
 
          return createEngine(cm, rcBuilder, getDefaultProxy(that), that.getResponseBufferSize(), verifier, theContext);
       }
       catch (Exception e)
       {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
    
@@ -187,29 +187,28 @@ public class ClientHttpEngineBuilder43 implements ClientHttpEngineBuilder {
    protected ClientHttpEngine createEngine(final HttpClientConnectionManager cm, final RequestConfig.Builder rcBuilder,
          final HttpHost defaultProxy, final int responseBufferSize, final HostnameVerifier verifier, final SSLContext theContext)
    {
-       final HttpClient httpClient;
-       if (System.getSecurityManager() == null)
-       {
+      final HttpClient httpClient;
+      if (System.getSecurityManager() == null)
+      {
            httpClient = HttpClientBuilder.create()
                  .setConnectionManager(cm)
                  .setDefaultRequestConfig(rcBuilder.build())
                  .setProxy(defaultProxy)
                  .disableContentCompression().build();
-       }
-       else
-       {
-           httpClient = AccessController.doPrivileged(new PrivilegedAction<HttpClient>()
-           {
-               @Override
-               public HttpClient run()
-               {
-                   return HttpClientBuilder.create()
-                           .setConnectionManager(cm)
-                           .setDefaultRequestConfig(rcBuilder.build())
-                           .setProxy(defaultProxy)
-                           .disableContentCompression().build();
-               }
-           });
+      }
+      else {
+         httpClient = AccessController.doPrivileged(new PrivilegedAction<HttpClient>()
+         {
+            @Override
+            public HttpClient run()
+            {
+                return HttpClientBuilder.create()
+                        .setConnectionManager(cm)
+                        .setDefaultRequestConfig(rcBuilder.build())
+                        .setProxy(defaultProxy)
+                        .disableContentCompression().build();
+            }
+         });
        }
 
       ApacheHttpClient43Engine engine = new ApacheHttpClient43Engine(httpClient, true);
