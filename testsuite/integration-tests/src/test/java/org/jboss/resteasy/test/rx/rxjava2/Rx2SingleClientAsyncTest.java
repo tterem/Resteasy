@@ -380,7 +380,7 @@ public class Rx2SingleClientAsyncTest {
       }
 
       {
-        latch = new CountDownLatch(1);
+      latch = new CountDownLatch(1);
          RxScheduledExecutorService.used = false;
          RxScheduledExecutorService executor = new RxScheduledExecutorService();
          ResteasyClient client = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).executorService(executor).build();
@@ -501,13 +501,13 @@ public class Rx2SingleClientAsyncTest {
       return null;
    }
 
-    private static boolean throwableContains(Throwable t, String s) {
-        while (t != null) {
+   private static boolean throwableContains(Throwable t, String s) {
+      while (t != null) {
             if (t.getMessage().contains(s)) {
-                return true;
+            return true;
             }
             t = t.getCause();
-        }
-        return false;
-    }
+      }
+      return false;
+   }
 }
