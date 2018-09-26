@@ -153,9 +153,9 @@ public class NamespaceJaxbTest {
       Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
       String entity = response.readEntity(String.class);
       if (entity.indexOf("Cage") < entity.indexOf("Regle")) {
-            Assert.assertEquals(WRONG_RESPONSE_ERROR_MSG, "/La Cage Aux Folles/La Regle du Jeu", entity);
+         Assert.assertEquals(WRONG_RESPONSE_ERROR_MSG, "/La Cage Aux Folles/La Regle du Jeu", entity);
       } else {
-            Assert.assertEquals(WRONG_RESPONSE_ERROR_MSG, "/La Regle du Jeu/La Cage Aux Folles", entity);
+         Assert.assertEquals(WRONG_RESPONSE_ERROR_MSG, "/La Regle du Jeu/La Cage Aux Folles", entity);
       }
    }
 
@@ -175,9 +175,9 @@ public class NamespaceJaxbTest {
       String entity = response.readEntity(String.class);
       boolean result = false;
       if ("/La Cage Aux Folles/La Regle du Jeu".equals(entity)) {
-            result = true;
+         result = true;
       } else if ("/La Regle du Jeu/La Cage Aux Folles".equals(entity)) {
-            result = true;
+         result = true;
       }
 
       Assert.assertTrue(WRONG_RESPONSE_ERROR_MSG, result);

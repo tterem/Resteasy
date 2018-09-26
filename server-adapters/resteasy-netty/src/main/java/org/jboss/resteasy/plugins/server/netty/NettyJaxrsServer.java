@@ -168,9 +168,9 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
       if (deployment.getApplication() != null) {
          ApplicationPath appPath = deployment.getApplication().getClass().getAnnotation(ApplicationPath.class);
          if (appPath != null && (root == null || "".equals(root))) {
-         // annotation is present and original root is not set
-         String path = appPath.value();
-         setRootResourcePath(path);
+            // annotation is present and original root is not set
+            String path = appPath.value();
+            setRootResourcePath(path);
          }
       }
       RequestDispatcher dispatcher = new RequestDispatcher((SynchronousDispatcher)deployment.getDispatcher(), deployment.getProviderFactory(), domain);

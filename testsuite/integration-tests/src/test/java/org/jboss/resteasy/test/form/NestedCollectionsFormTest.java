@@ -69,16 +69,16 @@ public class NestedCollectionsFormTest {
    @Test
    public void shouldSupportCollectionsWithNestedObjectsInForm() throws Exception {
       javax.ws.rs.core.Form form = new javax.ws.rs.core.Form()
-      .param("telephoneNumbers[0].country.code", "31")
-      .param("telephoneNumbers[0].number", "0612345678")
-      .param("telephoneNumbers[1].country.code", "91")
-      .param("telephoneNumbers[1].number", "9717738723")
-      .param("address[INVOICE].street", "Main Street")
-      .param("address[INVOICE].houseNumber", "2")
-      .param("address[INVOICE].country.code", "NL")
-      .param("address[SHIPPING].street", "Square One")
-      .param("address[SHIPPING].houseNumber", "13")
-      .param("address[SHIPPING].country.code", "IN");
+         .param("telephoneNumbers[0].country.code", "31")
+         .param("telephoneNumbers[0].number", "0612345678")
+         .param("telephoneNumbers[1].country.code", "91")
+         .param("telephoneNumbers[1].number", "9717738723")
+         .param("address[INVOICE].street", "Main Street")
+         .param("address[INVOICE].houseNumber", "2")
+         .param("address[INVOICE].country.code", "NL")
+         .param("address[SHIPPING].street", "Square One")
+         .param("address[SHIPPING].houseNumber", "13")
+         .param("address[SHIPPING].country.code", "IN");
 
       WebTarget base = client.target(PortProviderUtil.generateURL("/person", NestedCollectionsFormTest.class.getSimpleName()));
       Response response = base.request().accept(MediaType.TEXT_PLAIN).post(Entity.form(form));

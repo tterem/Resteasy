@@ -79,7 +79,7 @@ public class NettyTest
       public String large() {
          StringBuffer buf = new StringBuffer();
          for (int i = 0; i < 1000; i++) {
-         buf.append(i);
+            buf.append(i);
          }
          return buf.toString();
       }
@@ -190,7 +190,7 @@ public class NettyTest
          Assert.assertEquals(200, response.getStatus());
          StringBuffer buf = new StringBuffer();
          for (int i = 0; i < 1000; i++) {
-         buf.append(i);
+            buf.append(i);
          }
          String expected = buf.toString();
          String have = response.readEntity(String.class);

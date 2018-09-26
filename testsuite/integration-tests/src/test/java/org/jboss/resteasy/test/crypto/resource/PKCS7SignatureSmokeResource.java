@@ -19,12 +19,12 @@ public class PKCS7SignatureSmokeResource {
 
    public PKCS7SignatureSmokeResource() {
       try {
-            BouncyIntegration.init();
-            KeyPair keyPair = KeyPairGenerator.getInstance("RSA", "BC").generateKeyPair();
-            privateKey = keyPair.getPrivate();
-            cert = KeyTools.generateTestCertificate(keyPair);
+         BouncyIntegration.init();
+         KeyPair keyPair = KeyPairGenerator.getInstance("RSA", "BC").generateKeyPair();
+         privateKey = keyPair.getPrivate();
+         cert = KeyTools.generateTestCertificate(keyPair);
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 

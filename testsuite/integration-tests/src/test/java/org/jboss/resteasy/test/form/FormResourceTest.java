@@ -88,12 +88,12 @@ public class FormResourceTest {
       });
       Assert.assertEquals(2, form.get("servername").size());
       for (String str : form.get("servername")) {
-            if (str.equals("srv1")) {
+         if (str.equals("srv1")) {
             sv1 = true;
-            } else if (str.equals("srv2")) {
+         } else if (str.equals("srv2")) {
             sv2 = true;
-            }
-      }
+         }
+   }
       Assert.assertTrue(sv1);
       Assert.assertTrue(sv2);
       client.close();
@@ -184,13 +184,13 @@ public class FormResourceTest {
          String[] keys = formData.split("&");
          Map<String, String> values = new HashMap<String, String>();
          for (String pair : keys) {
-         int index = pair.indexOf('=');
-         if (index < 0) {
-            values.put(URLDecoder.decode(pair, StandardCharsets.UTF_8.name()), null);
-         } else if (index > 0) {
-            values.put(URLDecoder.decode(pair.substring(0, index), StandardCharsets.UTF_8.name()), URLDecoder.decode(pair
+            int index = pair.indexOf('=');
+            if (index < 0) {
+               values.put(URLDecoder.decode(pair, StandardCharsets.UTF_8.name()), null);
+            } else if (index > 0) {
+               values.put(URLDecoder.decode(pair.substring(0, index), StandardCharsets.UTF_8.name()), URLDecoder.decode(pair
                   .substring(index + 1), StandardCharsets.UTF_8.name()));
-         }
+            }
          }
          Assert.assertEquals(values.get(BOOLEAN_VALUE_FIELD), "true");
          Assert.assertEquals(values.get(NAME_FIELD), "This is My Name");
@@ -199,7 +199,7 @@ public class FormResourceTest {
          Assert.assertEquals(values.get(INTEGER_VALUE_FIELD), "3");
       } finally {
          if (in != null) {
-         in.close();
+            in.close();
          }
          client.close();
    }

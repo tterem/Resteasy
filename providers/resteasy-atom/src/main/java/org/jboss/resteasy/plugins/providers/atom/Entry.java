@@ -192,8 +192,10 @@ public class Entry extends CommonAttributes
 
    public Link getLinkByRel(String name)
    {
-      for (Link link : links) if (link.getRel().equals(name))
-         return link;
+      for (Link link : links) {
+         if (link.getRel().equals(name))
+            return link;
+      }
       return null;
    }
 
@@ -377,12 +379,12 @@ public class Entry extends CommonAttributes
       } else {
          if (getAnyOther().size() == 0) return null;
          for (Object _obj : getAnyOther()) {
-         for (Class _clazz : classes) {
-            if (_obj.getClass().equals(_clazz)) {
-               obj = _obj;
-               break;
+            for (Class _clazz : classes) {
+               if (_obj.getClass().equals(_clazz)) {
+                  obj = _obj;
+                  break;
+               }
             }
-         }
          }
 
          if (obj == null)

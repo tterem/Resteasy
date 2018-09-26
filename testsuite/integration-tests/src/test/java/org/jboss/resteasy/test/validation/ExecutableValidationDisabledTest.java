@@ -105,7 +105,7 @@ public class ExecutableValidationDisabledTest {
          Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
          Assert.assertEquals(RESPONSE_ERROR_MSG, foo, response.readEntity(ValidationCoreFoo.class));
          response.close();
-   }
+      }
 
       {
          // Invalid imposed constraint

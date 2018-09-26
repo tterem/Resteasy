@@ -70,7 +70,7 @@ public class FormParameterTest {
       Response response = client.target(generateURL("/put/noquery/")).request()
             .header("Content-Type", "application/x-www-form-urlencoded")
             .put(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
-            assertThat("Wrong response", response, notNullValue());
+      assertThat("Wrong response", response, notNullValue());
 
       response.bufferEntity();
       assertEquals("Wrong response", "abc xyz", response.readEntity(String.class));

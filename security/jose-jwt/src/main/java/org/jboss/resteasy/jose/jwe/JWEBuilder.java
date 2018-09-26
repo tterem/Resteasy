@@ -94,7 +94,7 @@ public class JWEBuilder
       if (contentType != null) builder.append(",\"cty\":\"").append(contentType).append("\"");
       builder.append("}");
       String json = builder.toString();
-   return Base64Url.encode(json.getBytes(StandardCharsets.UTF_8));
+      return Base64Url.encode(json.getBytes(StandardCharsets.UTF_8));
    }
 
    @SuppressWarnings({"unchecked", "rawtypes"})

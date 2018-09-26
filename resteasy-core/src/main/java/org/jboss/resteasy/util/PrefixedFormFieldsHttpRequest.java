@@ -11,11 +11,11 @@ public class PrefixedFormFieldsHttpRequest extends DelegatingHttpRequest {
    public PrefixedFormFieldsHttpRequest(String prefix, HttpRequest request) {
       super(request);
       this.prefix = prefix;
-         }
+   }
 
    @Override
    public MultivaluedMap<String, String> getDecodedFormParameters() {
       return new PrefixedMultivaluedMap<String>(prefix, super.getDecodedFormParameters());
    }
 
-   }
+}

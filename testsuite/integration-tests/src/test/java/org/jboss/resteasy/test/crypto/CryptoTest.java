@@ -209,7 +209,7 @@ public class CryptoTest {
          Assert.assertEquals(ERROR_CONTENT_MSG, "hello world", output);
          res.close();
       } catch (Exception e) {
-            throw new RuntimeException("Unexpected BouncyCastle error", e);
+         throw new RuntimeException("Unexpected BouncyCastle error", e);
       }
    }
 

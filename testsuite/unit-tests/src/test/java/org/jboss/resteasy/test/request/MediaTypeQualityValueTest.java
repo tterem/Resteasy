@@ -64,8 +64,8 @@ public class MediaTypeQualityValueTest {
             MediaType.valueOf("text/html;level=2")
       };
       QualityValue[] qualities = {
-            QualityValue.DEFAULT,
-            QualityValue.valueOf("0.4")
+         QualityValue.DEFAULT,
+         QualityValue.valueOf("0.4")
       };
       assertList(header, fields, qualities);
    }

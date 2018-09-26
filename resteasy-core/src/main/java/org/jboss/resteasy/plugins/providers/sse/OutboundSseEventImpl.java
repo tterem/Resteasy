@@ -131,10 +131,10 @@ public class OutboundSseEventImpl implements OutboundSseEvent
          
          if (data instanceof GenericEntity)
          {
-         GenericEntity<?> genericEntity = (GenericEntity<?>) data;
-         this.type = genericEntity.getRawType();
-         this.genericType = genericEntity.getType();
-         this.data = genericEntity.getEntity();
+            GenericEntity<?> genericEntity = (GenericEntity<?>) data;
+            this.type = genericEntity.getRawType();
+            this.genericType = genericEntity.getType();
+            this.data = genericEntity.getEntity();
          }
          else
          {

@@ -86,15 +86,15 @@ public class ParsingTest {
    @Test
    public void testWire() throws Exception {
       {
-            Response response = client.target(generateURL("/storeXML")).request().post(Entity.entity(XML_CONTENT, "application/xml"));
-            Assert.assertEquals(HttpResponseCodes.SC_CREATED, response.getStatus());
-            response.close();
+         Response response = client.target(generateURL("/storeXML")).request().post(Entity.entity(XML_CONTENT, "application/xml"));
+         Assert.assertEquals(HttpResponseCodes.SC_CREATED, response.getStatus());
+         response.close();
       }
 
       {
-            Response response = client.target(generateURL("/storeXML/abstract")).request().post(Entity.entity(XML_CONTENT, "application/xml"));
-            Assert.assertEquals(HttpResponseCodes.SC_CREATED, response.getStatus());
-            response.close();
+         Response response = client.target(generateURL("/storeXML/abstract")).request().post(Entity.entity(XML_CONTENT, "application/xml"));
+         Assert.assertEquals(HttpResponseCodes.SC_CREATED, response.getStatus());
+         response.close();
       }
    }
 }

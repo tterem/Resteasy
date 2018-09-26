@@ -145,7 +145,7 @@ public class ExceptionHandler
    @SuppressWarnings(value = "unchecked")
    public Response executeExceptionMapper(Throwable exception)
    {
-     return executeExactExceptionMapper(exception, null);
+      return executeExactExceptionMapper(exception, null);
    }
 
 

@@ -66,11 +66,11 @@ public class PreconditionTest {
    public void testIfUnmodifiedSinceBeforeLastModified() {
       WebTarget base = client.target(generateURL("/"));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_UNMODIFIED_SINCE, "Sat, 30 Dec 2006 00:00:00 GMT").get();
-            Assert.assertEquals(HttpResponseCodes.SC_PRECONDITION_FAILED, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_UNMODIFIED_SINCE, "Sat, 30 Dec 2006 00:00:00 GMT").get();
+         Assert.assertEquals(HttpResponseCodes.SC_PRECONDITION_FAILED, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
@@ -82,11 +82,11 @@ public class PreconditionTest {
    public void testIfUnmodifiedSinceAfterLastModified() {
       WebTarget base = client.target(generateURL("/"));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_UNMODIFIED_SINCE, "Tue, 2 Jan 2007 00:00:00 GMT").get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_UNMODIFIED_SINCE, "Tue, 2 Jan 2007 00:00:00 GMT").get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
@@ -98,11 +98,11 @@ public class PreconditionTest {
    public void testIfModifiedSinceBeforeLastModified() {
       WebTarget base = client.target(generateURL("/"));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_MODIFIED_SINCE, "Sat, 30 Dec 2006 00:00:00 GMT").get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_MODIFIED_SINCE, "Sat, 30 Dec 2006 00:00:00 GMT").get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
@@ -114,11 +114,11 @@ public class PreconditionTest {
    public void testIfModifiedSinceAfterLastModified() {
       WebTarget base = client.target(generateURL("/"));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_MODIFIED_SINCE, "Tue, 2 Jan 2007 00:00:00 GMT").get();
-            Assert.assertEquals(HttpResponseCodes.SC_NOT_MODIFIED, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_MODIFIED_SINCE, "Tue, 2 Jan 2007 00:00:00 GMT").get();
+         Assert.assertEquals(HttpResponseCodes.SC_NOT_MODIFIED, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
@@ -130,12 +130,12 @@ public class PreconditionTest {
    public void testIfUnmodifiedSinceBeforeLastModified_IfModifiedSinceBeforeLastModified() {
       WebTarget base = client.target(generateURL("/"));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_UNMODIFIED_SINCE, "Sat, 30 Dec 2006 00:00:00 GMT")
-               .header(HttpHeaderNames.IF_MODIFIED_SINCE, "Sat, 30 Dec 2006 00:00:00 GMT").get();
-            Assert.assertEquals(HttpResponseCodes.SC_PRECONDITION_FAILED, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_UNMODIFIED_SINCE, "Sat, 30 Dec 2006 00:00:00 GMT")
+            .header(HttpHeaderNames.IF_MODIFIED_SINCE, "Sat, 30 Dec 2006 00:00:00 GMT").get();
+         Assert.assertEquals(HttpResponseCodes.SC_PRECONDITION_FAILED, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
@@ -147,12 +147,12 @@ public class PreconditionTest {
    public void testIfUnmodifiedSinceBeforeLastModified_IfModifiedSinceAfterLastModified() {
       WebTarget base = client.target(generateURL("/"));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_UNMODIFIED_SINCE, "Sat, 30 Dec 2006 00:00:00 GMT")
-               .header(HttpHeaderNames.IF_MODIFIED_SINCE, "Tue, 2 Jan 2007 00:00:00 GMT").get();
-            Assert.assertEquals(HttpResponseCodes.SC_NOT_MODIFIED, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_UNMODIFIED_SINCE, "Sat, 30 Dec 2006 00:00:00 GMT")
+            .header(HttpHeaderNames.IF_MODIFIED_SINCE, "Tue, 2 Jan 2007 00:00:00 GMT").get();
+         Assert.assertEquals(HttpResponseCodes.SC_NOT_MODIFIED, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
@@ -164,12 +164,12 @@ public class PreconditionTest {
    public void testIfUnmodifiedSinceAfterLastModified_IfModifiedSinceAfterLastModified() {
       WebTarget base = client.target(generateURL("/"));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_UNMODIFIED_SINCE, "Tue, 2 Jan 2007 00:00:00 GMT")
-               .header(HttpHeaderNames.IF_MODIFIED_SINCE, "Tue, 2 Jan 2007 00:00:00 GMT").get();
-            Assert.assertEquals(HttpResponseCodes.SC_NOT_MODIFIED, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_UNMODIFIED_SINCE, "Tue, 2 Jan 2007 00:00:00 GMT")
+            .header(HttpHeaderNames.IF_MODIFIED_SINCE, "Tue, 2 Jan 2007 00:00:00 GMT").get();
+         Assert.assertEquals(HttpResponseCodes.SC_NOT_MODIFIED, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
@@ -181,12 +181,12 @@ public class PreconditionTest {
    public void testIfUnmodifiedSinceAfterLastModified_IfModifiedSinceBeforeLastModified() {
       WebTarget base = client.target(generateURL("/"));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_UNMODIFIED_SINCE, "Tue, 2 Jan 2007 00:00:00 GMT")
-               .header(HttpHeaderNames.IF_MODIFIED_SINCE, "Sat, 30 Dec 2006 00:00:00 GMT").get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_UNMODIFIED_SINCE, "Tue, 2 Jan 2007 00:00:00 GMT")
+            .header(HttpHeaderNames.IF_MODIFIED_SINCE, "Sat, 30 Dec 2006 00:00:00 GMT").get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
@@ -302,11 +302,11 @@ public class PreconditionTest {
    public void testIfMatchWithMatchingWeakETag() {
       WebTarget base = client.target(generateURL("/etag/weak"));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_MATCH, "W/\"1\"").get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_MATCH, "W/\"1\"").get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
@@ -318,11 +318,11 @@ public class PreconditionTest {
    public void testIfMatchWithNonMatchingWeakEtag() {
       WebTarget base = client.target(generateURL("/etag/weak"));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_MATCH, "W/\"2\"").get();
-            Assert.assertEquals(HttpResponseCodes.SC_PRECONDITION_FAILED, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_MATCH, "W/\"2\"").get();
+         Assert.assertEquals(HttpResponseCodes.SC_PRECONDITION_FAILED, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
@@ -331,120 +331,120 @@ public class PreconditionTest {
    public void testIfMatchWithMatchingETag(String fromField) {
       WebTarget base = client.target(generateURL("/etag" + fromField));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_MATCH, "\"1\"").get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_MATCH, "\"1\"").get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
    public void testIfMatchWithoutMatchingETag(String fromField) {
       WebTarget base = client.target(generateURL("/etag" + fromField));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_MATCH, "\"2\"").get();
-            Assert.assertEquals(HttpResponseCodes.SC_PRECONDITION_FAILED, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_MATCH, "\"2\"").get();
+         Assert.assertEquals(HttpResponseCodes.SC_PRECONDITION_FAILED, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
    public void testIfMatchWildCard(String fromField) {
       WebTarget base = client.target(generateURL("/etag" + fromField));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_MATCH, "*").get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_MATCH, "*").get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
    public void testIfNonMatchWithMatchingETag(String fromField) {
       WebTarget base = client.target(generateURL("/etag" + fromField));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_NONE_MATCH, "\"1\"").get();
-            Assert.assertEquals(HttpResponseCodes.SC_NOT_MODIFIED, response.getStatus());
-            Assert.assertEquals("The eTag in the response doesn't match",
-               "\"1\"", response.getStringHeaders().getFirst(HttpHeaderNames.ETAG));
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_NONE_MATCH, "\"1\"").get();
+         Assert.assertEquals(HttpResponseCodes.SC_NOT_MODIFIED, response.getStatus());
+         Assert.assertEquals("The eTag in the response doesn't match",
+            "\"1\"", response.getStringHeaders().getFirst(HttpHeaderNames.ETAG));
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
    public void testIfNonMatchWithoutMatchingETag(String fromField) {
       WebTarget base = client.target(generateURL("/etag" + fromField));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_NONE_MATCH, "2").get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_NONE_MATCH, "2").get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
    public void testIfNonMatchWildCard(String fromField) {
       WebTarget base = client.target(generateURL("/etag" + fromField));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_NONE_MATCH, "*").get();
-            Assert.assertEquals(HttpResponseCodes.SC_NOT_MODIFIED, response.getStatus());
-            Assert.assertEquals("The eTag in the response doesn't match",
-               "\"1\"", response.getStringHeaders().getFirst(HttpHeaderNames.ETAG));
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_NONE_MATCH, "*").get();
+         Assert.assertEquals(HttpResponseCodes.SC_NOT_MODIFIED, response.getStatus());
+         Assert.assertEquals("The eTag in the response doesn't match",
+            "\"1\"", response.getStringHeaders().getFirst(HttpHeaderNames.ETAG));
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
    public void testIfMatchWithMatchingETag_IfNonMatchWithMatchingETag(String fromField) {
       WebTarget base = client.target(generateURL("/etag" + fromField));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_MATCH, "\"1\"")
-               .header(HttpHeaderNames.IF_NONE_MATCH, "\"1\"").get();
-            Assert.assertEquals(HttpResponseCodes.SC_NOT_MODIFIED, response.getStatus());
-            Assert.assertEquals("The eTag in the response doesn't match",
-               "\"1\"", response.getStringHeaders().getFirst(HttpHeaderNames.ETAG));
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_MATCH, "\"1\"")
+            .header(HttpHeaderNames.IF_NONE_MATCH, "\"1\"").get();
+         Assert.assertEquals(HttpResponseCodes.SC_NOT_MODIFIED, response.getStatus());
+         Assert.assertEquals("The eTag in the response doesn't match",
+            "\"1\"", response.getStringHeaders().getFirst(HttpHeaderNames.ETAG));
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
    public void testIfMatchWithMatchingETag_IfNonMatchWithoutMatchingETag(String fromField) {
       WebTarget base = client.target(generateURL("/etag" + fromField));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_MATCH, "\"1\"")
-               .header(HttpHeaderNames.IF_NONE_MATCH, "\"2\"").get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_MATCH, "\"1\"")
+            .header(HttpHeaderNames.IF_NONE_MATCH, "\"2\"").get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
    public void testIfMatchWithoutMatchingETag_IfNonMatchWithMatchingETag(String fromField) {
       WebTarget base = client.target(generateURL("/etag" + fromField));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_MATCH, "\"2\"")
-               .header(HttpHeaderNames.IF_NONE_MATCH, "\"1\"").get();
-            Assert.assertEquals(HttpResponseCodes.SC_PRECONDITION_FAILED, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_MATCH, "\"2\"")
+            .header(HttpHeaderNames.IF_NONE_MATCH, "\"1\"").get();
+         Assert.assertEquals(HttpResponseCodes.SC_PRECONDITION_FAILED, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
    public void testIfMatchWithoutMatchingETag_IfNonMatchWithoutMatchingETag(String fromField) {
       WebTarget base = client.target(generateURL("/etag" + fromField));
       try {
-            Response response = base.request().header(HttpHeaderNames.IF_MATCH, "\"2\"")
-               .header(HttpHeaderNames.IF_NONE_MATCH, "\"2\"").get();
-            Assert.assertEquals(HttpResponseCodes.SC_PRECONDITION_FAILED, response.getStatus());
-            response.close();
+         Response response = base.request().header(HttpHeaderNames.IF_MATCH, "\"2\"")
+            .header(HttpHeaderNames.IF_NONE_MATCH, "\"2\"").get();
+         Assert.assertEquals(HttpResponseCodes.SC_PRECONDITION_FAILED, response.getStatus());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 

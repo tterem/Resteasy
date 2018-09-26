@@ -72,8 +72,8 @@ public class LinkTest {
    public void testIllegalUri() {
       Link.Builder builder = Link.fromUri("http://:@");
       try {
-            builder.build();
-            Assert.fail();
+         builder.build();
+         Assert.fail();
       } catch (UriBuilderException e) {
       }
    }

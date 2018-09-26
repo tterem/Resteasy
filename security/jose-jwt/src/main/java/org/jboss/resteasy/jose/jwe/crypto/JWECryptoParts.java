@@ -58,7 +58,7 @@ public final class JWECryptoParts
                          final String iv,
                          final String cipherText,
                          final String authenticationTag
-                        ) {
+   ) {
 
       this.encryptedKey = encryptedKey;
 

@@ -52,11 +52,11 @@ public class PathParamTest {
 
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
       for (String header : Headers) {
-            Invocation.Builder request = client.target(PortProviderUtil.generateURL("/PathParamTest/a/b/c/d/e/f", PathLimitedTest.class.getSimpleName())).request();
-            request.header("Accept", "text/plain");
-            Response response = request.get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(header, response.readEntity(String.class));
+         Invocation.Builder request = client.target(PortProviderUtil.generateURL("/PathParamTest/a/b/c/d/e/f", PathLimitedTest.class.getSimpleName())).request();
+         request.header("Accept", "text/plain");
+         Response response = request.get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(header, response.readEntity(String.class));
       }
       client.close();
    }
@@ -69,17 +69,17 @@ public class PathParamTest {
    public void test178() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
       {
-            Invocation.Builder request = client.target(PortProviderUtil.generateURL("/digits/5150", PathLimitedTest.class.getSimpleName())).request();
-            Response response = request.get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            response.close();
+         Invocation.Builder request = client.target(PortProviderUtil.generateURL("/digits/5150", PathLimitedTest.class.getSimpleName())).request();
+         Response response = request.get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         response.close();
       }
 
       {
-            Invocation.Builder request = client.target(PortProviderUtil.generateURL("/digits/5150A", PathLimitedTest.class.getSimpleName())).request();
-            Response response = request.get();
-            Assert.assertEquals(HttpResponseCodes.SC_NOT_FOUND, response.getStatus());
-            response.close();
+         Invocation.Builder request = client.target(PortProviderUtil.generateURL("/digits/5150A", PathLimitedTest.class.getSimpleName())).request();
+         Response response = request.get();
+         Assert.assertEquals(HttpResponseCodes.SC_NOT_FOUND, response.getStatus());
+         response.close();
       }
       client.close();
    }

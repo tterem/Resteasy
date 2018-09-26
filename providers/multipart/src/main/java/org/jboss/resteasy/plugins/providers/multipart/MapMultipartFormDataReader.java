@@ -28,8 +28,7 @@ import org.jboss.resteasy.spi.util.Types;
 @Provider
 @Consumes("multipart/form-data")
 public class MapMultipartFormDataReader implements MessageBodyReader<Map<?, ?>> {
-   protected @Context
-   Providers workers;
+   protected @Context Providers workers;
 
    public boolean isReadable(Class<?> type, Type genericType,
          Annotation[] annotations, MediaType mediaType) {

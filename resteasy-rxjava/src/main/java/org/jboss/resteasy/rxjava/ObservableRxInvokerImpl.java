@@ -1,8 +1,12 @@
 package org.jboss.resteasy.rxjava;
 
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ScheduledExecutorService;
+import org.jboss.resteasy.client.jaxrs.internal.ClientInvocationBuilder;
+import org.jboss.resteasy.plugins.providers.sse.InboundSseEventImpl;
+import org.jboss.resteasy.plugins.providers.sse.client.SseEventSourceImpl;
+import org.jboss.resteasy.plugins.providers.sse.client.SseEventSourceImpl.SourceBuilder;
+import org.jboss.resteasy.rxjava.i18n.Messages;
+import rx.Observable;
+import rx.Subscriber;
 
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.Entity;
@@ -11,15 +15,9 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.sse.InboundSseEvent;
 import javax.ws.rs.sse.SseEventSource;
-
-import org.jboss.resteasy.client.jaxrs.internal.ClientInvocationBuilder;
-import org.jboss.resteasy.plugins.providers.sse.InboundSseEventImpl;
-import org.jboss.resteasy.plugins.providers.sse.client.SseEventSourceImpl;
-import org.jboss.resteasy.plugins.providers.sse.client.SseEventSourceImpl.SourceBuilder;
-import org.jboss.resteasy.rxjava.i18n.Messages;
-
-import rx.Observable;
-import rx.Subscriber;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
    * @deprecated:
@@ -202,20 +200,20 @@ public class ObservableRxInvokerImpl implements ObservableRxInvoker
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   private <T> Observable<T> eventSourceToObservable(SseEventSourceImpl sseEventSource, Class<T> clazz, String verb, Entity<?> entity, MediaType[] mediaTypes)
-   {
+   private <T> Observable<T> eventSourceToObservable(SseEventSourceImpl sseEventSource, Class<T> clazz, String verb, Entity<?> entity, MediaType[] mediaTypes) {
       Observable<T> observable = Observable.create(
             new Observable.OnSubscribe<T>() {
                @Override
                public void call(Subscriber<? super T> sub) {
                   sseEventSource.register(
-                        (InboundSseEvent e) -> {T t = e.readData(clazz, ((InboundSseEventImpl) e).getMediaType()); sub.onNext(t);},
+                        (InboundSseEvent e) -> {
+                           T t = e.readData(clazz, ((InboundSseEventImpl) e).getMediaType());
+                           sub.onNext(t);
+                        },
                         (Throwable t) -> sub.onError(t),
                         () -> sub.onCompleted());
-                  synchronized (monitor)
-                  {
-                     if (!sseEventSource.isOpen())
-                     {
+                  synchronized (monitor) {
+                     if (!sseEventSource.isOpen()) {
                         sseEventSource.open(null, verb, entity, mediaTypes);
                      }
                   }

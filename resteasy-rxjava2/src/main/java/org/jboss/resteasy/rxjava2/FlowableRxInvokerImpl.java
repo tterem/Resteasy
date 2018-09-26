@@ -212,17 +212,17 @@ public class FlowableRxInvokerImpl implements FlowableRxInvoker
                @Override
                public void subscribe(FlowableEmitter<T> emitter) throws Exception {
                   sseEventSource.register(
-                     (InboundSseEvent e) -> {T t = e.readData(clazz, ((InboundSseEventImpl) e).getMediaType()); emitter.onNext(t);},
-                     (Throwable t) -> emitter.onError(t),
-                     () -> emitter.onComplete());
-                     synchronized (monitor)
+                  (InboundSseEvent e) -> {T t = e.readData(clazz, ((InboundSseEventImpl) e).getMediaType()); emitter.onNext(t);},
+                  (Throwable t) -> emitter.onError(t),
+                  () -> emitter.onComplete());
+                  synchronized (monitor)
+                  {
+                     if (!sseEventSource.isOpen())
                      {
-                        if (!sseEventSource.isOpen())
-                        {
-                           sseEventSource.open(null, verb, entity, mediaTypes);
-                        }
+                        sseEventSource.open(null, verb, entity, mediaTypes);
                      }
-               }
+                  }
+            }
          },
          backpressureStrategy);
       return flowable;
@@ -237,8 +237,8 @@ public class FlowableRxInvokerImpl implements FlowableRxInvoker
                public void subscribe(FlowableEmitter<T> emitter) throws Exception {
                   sseEventSource.register(
                   (InboundSseEvent e) -> {T t = e.readData(type, ((InboundSseEventImpl) e).getMediaType()); emitter.onNext(t);},
-                        (Throwable t) -> emitter.onError(t),
-                        () -> emitter.onComplete());
+                     (Throwable t) -> emitter.onError(t),
+                     () -> emitter.onComplete());
                   synchronized (monitor) {
                      if (!sseEventSource.isOpen()) {
                         sseEventSource.open(null, verb, entity, mediaTypes);

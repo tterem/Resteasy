@@ -25,6 +25,6 @@ public class MultiValuedParamPersonConverterProvider implements ParamConverterPr
       if (MultiValuedParamPersonWithConverter[].class.isAssignableFrom(aClass)) {
          return (ParamConverter<T>) new MultiValuedParamPersonArrayConverter();
       }
-         return null;
+      return null;
    }
 }

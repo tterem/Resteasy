@@ -61,15 +61,15 @@ public class ProcessorFactory
       return params;
    }
 
-      public static Object createProcessor(Class<?> declaring,
+   public static Object createProcessor(Class<?> declaring,
                                                ClientConfiguration configuration, Class<?> type,
                                                Annotation[] annotations, Type genericType, AccessibleObject target,
                                                boolean ignoreBody)
-      {
-         return createProcessor(declaring, configuration, type, annotations, genericType, target, null, ignoreBody);
-      }
+   {
+      return createProcessor(declaring, configuration, type, annotations, genericType, target, null, ignoreBody);
+   }
 
-      public static Object createProcessor(Class<?> declaring,
+   public static Object createProcessor(Class<?> declaring,
                                                ClientConfiguration configuration, Class<?> type,
                                                Annotation[] annotations, Type genericType, AccessibleObject target, MediaType defaultConsumes,
                                                boolean ignoreBody)

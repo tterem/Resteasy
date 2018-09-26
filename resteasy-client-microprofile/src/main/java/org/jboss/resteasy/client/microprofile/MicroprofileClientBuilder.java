@@ -53,10 +53,10 @@ class MicroprofileClientBuilder implements RestClientBuilder {
          this.configurationWrapper = new ConfigurationWrapper(this.builderDelegate.getConfiguration());
          Config cfg = null;
          try {
-              ConfigProviderResolver.instance();
-              cfg = ConfigProvider.getConfig();
+            ConfigProviderResolver.instance();
+            cfg = ConfigProvider.getConfig();
          } catch (IllegalStateException ise) {
-              //ignore
+            //ignore
          }
          this.config = cfg;
       } else {
@@ -149,10 +149,10 @@ class MicroprofileClientBuilder implements RestClientBuilder {
 
          // disabled through jaxrs property
          try {
-               Object property = this.builderDelegate.getConfiguration().getProperty(DEFAULT_MAPPER_PROP);
-               if (property != null) {
-                   disabled = (Boolean)property;
-               }
+            Object property = this.builderDelegate.getConfiguration().getProperty(DEFAULT_MAPPER_PROP);
+            if (property != null) {
+               disabled = (Boolean)property;
+            }
          } catch (Throwable e) {
                // ignore cast exception
          }
@@ -168,12 +168,12 @@ class MicroprofileClientBuilder implements RestClientBuilder {
       for (Method method : methods) {
          boolean hasHttpMethod = false;
          for (Annotation annotation : method.getAnnotations()) {
-               boolean isHttpMethod = (annotation.annotationType().getAnnotation(HttpMethod.class) != null);
-               if (!hasHttpMethod && isHttpMethod) {
-                   hasHttpMethod = true;
-               } else if (hasHttpMethod && isHttpMethod) {
-                   throw new RestClientDefinitionException("Ambiguous @Httpmethod defintion on type " + typeDef);
-               }
+            boolean isHttpMethod = (annotation.annotationType().getAnnotation(HttpMethod.class) != null);
+            if (!hasHttpMethod && isHttpMethod) {
+               hasHttpMethod = true;
+            } else if (hasHttpMethod && isHttpMethod) {
+               throw new RestClientDefinitionException("Ambiguous @Httpmethod defintion on type " + typeDef);
+            }
          }
       }
 
@@ -191,13 +191,13 @@ class MicroprofileClientBuilder implements RestClientBuilder {
 
          Path methodPathAnno = method.getAnnotation(Path.class);
          if (methodPathAnno != null) {
-               template = classPathAnno == null ? (ResteasyUriBuilder)UriBuilder.fromUri(methodPathAnno.value())
-                       : (ResteasyUriBuilder)UriBuilder.fromUri(classPathAnno.value() + "/" + methodPathAnno.value());
+            template = classPathAnno == null ? (ResteasyUriBuilder)UriBuilder.fromUri(methodPathAnno.value())
+                    : (ResteasyUriBuilder)UriBuilder.fromUri(classPathAnno.value() + "/" + methodPathAnno.value());
          } else {
-               template = classTemplate;
+            template = classTemplate;
          }
          if (template == null) {
-               continue;
+            continue;
          }
 
          // it's not executed, so this can be anything - but a hostname needs to present
@@ -206,20 +206,20 @@ class MicroprofileClientBuilder implements RestClientBuilder {
          Set<String> allVariables = new HashSet<>(template.getPathParamNamesInDeclarationOrder());
          Map<String, Object> paramMap = new HashMap<>();
          for (Parameter p : method.getParameters()) {
-               PathParam pathParam = p.getAnnotation(PathParam.class);
-               if (pathParam != null) {
-                   paramMap.put(pathParam.value(), "foobar");
-               }
+            PathParam pathParam = p.getAnnotation(PathParam.class);
+            if (pathParam != null) {
+               paramMap.put(pathParam.value(), "foobar");
+            }
          }
 
          if (allVariables.size() != paramMap.size()) {
-               throw new RestClientDefinitionException("Parameters and variables don't match on " + typeDef + "::" + method.getName());
+            throw new RestClientDefinitionException("Parameters and variables don't match on " + typeDef + "::" + method.getName());
          }
 
          try {
-               template.resolveTemplates(paramMap, false).build();
+            template.resolveTemplates(paramMap, false).build();
          } catch (IllegalArgumentException ex) {
-               throw new RestClientDefinitionException("Parameter names don't match variable names on " + typeDef + "::" + method.getName(), ex);
+            throw new RestClientDefinitionException("Parameter names don't match variable names on " + typeDef + "::" + method.getName(), ex);
          }
 
       }
@@ -318,7 +318,7 @@ class MicroprofileClientBuilder implements RestClientBuilder {
       // local
       for (Class<?> aClass : classes) {
          if (aClass.isAssignableFrom(ResponseExceptionMapper.class)) {
-               register(o);
+            register(o);
          }
       }
 
@@ -356,8 +356,8 @@ class MicroprofileClientBuilder implements RestClientBuilder {
    public void registerLocalProviderInstance(Object provider, Map<Class<?>, Integer> contracts) {
       for (Object registered : getLocalProviderInstances()) {
          if (registered == provider) {
-               LOG.infov("Provider already registered {0}", provider.getClass().getName());
-               return;
+            LOG.infov("Provider already registered {0}", provider.getClass().getName());
+            return;
          }
       }
 

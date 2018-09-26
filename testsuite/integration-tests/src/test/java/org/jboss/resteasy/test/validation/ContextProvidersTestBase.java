@@ -93,9 +93,9 @@ public abstract class ContextProvidersTestBase {
       // Iterate over list of parts.
       Map<String, List<InputPart>> map = entity.getFormDataMap();
       for (Iterator<String> it = map.keySet().iterator(); it.hasNext(); ) {
-            String key = it.next();
-            List<InputPart> list = map.get(key);
-            for (Iterator<InputPart> it2 = list.iterator(); it2.hasNext(); ) {
+         String key = it.next();
+         List<InputPart> list = map.get(key);
+         for (Iterator<InputPart> it2 = list.iterator(); it2.hasNext(); ) {
             InputPart inputPart = it2.next();
             if (MediaType.APPLICATION_XML_TYPE.equals(inputPart.getMediaType())) {
                c = inputPart.getBody(ContextProvidersCustomer.class, null);
@@ -104,7 +104,7 @@ public abstract class ContextProvidersTestBase {
                s = inputPart.getBody(String.class, null);
                Assert.assertEquals(RESPONSE_ERROR_MSG, "Bob", s);
             }
-            }
+         }
       }
    }
 
@@ -119,14 +119,14 @@ public abstract class ContextProvidersTestBase {
       // Iterate over list of parts.
       List<InputPart> parts = entity.getParts();
       for (Iterator<InputPart> it = parts.iterator(); it.hasNext(); ) {
-            InputPart inputPart = it.next();
-            if (MediaType.APPLICATION_XML_TYPE.equals(inputPart.getMediaType())) {
+         InputPart inputPart = it.next();
+         if (MediaType.APPLICATION_XML_TYPE.equals(inputPart.getMediaType())) {
             ContextProvidersCustomer c = inputPart.getBody(ContextProvidersCustomer.class, null);
             Assert.assertEquals(RESPONSE_ERROR_MSG, "Bill", c.getName());
-            } else {
+         } else {
             String s = inputPart.getBody(String.class, null);
             Assert.assertEquals(RESPONSE_ERROR_MSG, "Bob", s);
-            }
+         }
       }
    }
 
@@ -142,8 +142,8 @@ public abstract class ContextProvidersTestBase {
       List<InputPart> parts = entity.getParts();
       Set<String> customers = new HashSet<String>();
       for (Iterator<InputPart> it = parts.iterator(); it.hasNext(); ) {
-            InputPart inputPart = it.next();
-            customers.add(inputPart.getBody(ContextProvidersCustomer.class, null).getName());
+         InputPart inputPart = it.next();
+         customers.add(inputPart.getBody(ContextProvidersCustomer.class, null).getName());
       }
       Assert.assertEquals(RESPONSE_ERROR_MSG, 2, customers.size());
       Assert.assertTrue(RESPONSE_ERROR_MSG, customers.contains("Bill"));
@@ -168,12 +168,12 @@ public abstract class ContextProvidersTestBase {
       Map<String, List<InputPart>> map = entity.getFormDataMap();
       Set<String> customers = new HashSet<String>();
       for (Iterator<String> it = map.keySet().iterator(); it.hasNext(); ) {
-            String key = it.next();
-            List<InputPart> list = map.get(key);
-            for (Iterator<InputPart> it2 = list.iterator(); it2.hasNext(); ) {
+         String key = it.next();
+         List<InputPart> list = map.get(key);
+         for (Iterator<InputPart> it2 = list.iterator(); it2.hasNext(); ) {
             InputPart inputPart = it2.next();
             customers.add(inputPart.getBody(ContextProvidersCustomer.class, null).getName());
-            }
+         }
       }
       Assert.assertEquals(RESPONSE_ERROR_MSG, 2, customers.size());
       Assert.assertTrue(RESPONSE_ERROR_MSG, customers.contains("Bill"));

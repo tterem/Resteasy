@@ -28,9 +28,7 @@ import java.lang.reflect.Type;
 public class MultipartRelatedReader implements
       MessageBodyReader<MultipartRelatedInput>
 {
-   protected
-   @Context
-   Providers workers;
+   protected @Context Providers workers;
 
    public boolean isReadable(Class<?> type, Type genericType,
                              Annotation[] annotations, MediaType mediaType)

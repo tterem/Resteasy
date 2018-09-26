@@ -76,8 +76,8 @@ public class JAXRS21PatchTest extends ClientTestBase {
          Assert.assertEquals("patch hello", entity);
       }
       {
-   String entity = client.target(generateURL("/test")).request().build(HttpMethod.PATCH, Entity.text("hello")).invoke(String.class);
-   Assert.assertEquals("patch hello", entity);
+         String entity = client.target(generateURL("/test")).request().build(HttpMethod.PATCH, Entity.text("hello")).invoke(String.class);
+         Assert.assertEquals("patch hello", entity);
       }
    }
 

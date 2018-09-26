@@ -36,7 +36,7 @@ public class JaxrsAsyncServletResource {
    @Path("clear")
    public void clear() {
       for (int i = 0; i != stage.length; i++) {
-            stage[i].clear();
+         stage[i].clear();
       }
    }
 

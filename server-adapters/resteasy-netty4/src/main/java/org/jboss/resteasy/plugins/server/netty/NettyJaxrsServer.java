@@ -247,9 +247,9 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
       if (deployment.getApplication() != null) {
          ApplicationPath appPath = deployment.getApplication().getClass().getAnnotation(ApplicationPath.class);
          if (appPath != null && (root == null || "".equals(root))) {
-              // annotation is present and original root is not set
-              String path = appPath.value();
-              setRootResourcePath(path);
+            // annotation is present and original root is not set
+            String path = appPath.value();
+            setRootResourcePath(path);
          }
       }
       // Configure the server.
@@ -260,18 +260,18 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
             .childOption(ChannelOption.SO_KEEPALIVE, true);
 
       for (Map.Entry<ChannelOption, Object> entry : channelOptions.entrySet()) {
-            bootstrap.option(entry.getKey(), entry.getValue());
+         bootstrap.option(entry.getKey(), entry.getValue());
       }
 
       for (Map.Entry<ChannelOption, Object> entry : childChannelOptions.entrySet()) {
-            bootstrap.childOption(entry.getKey(), entry.getValue());
+         bootstrap.childOption(entry.getKey(), entry.getValue());
       }
 
       final InetSocketAddress socketAddress;
       if (null == hostname || hostname.isEmpty()) {
-            socketAddress = new InetSocketAddress(configuredPort);
+         socketAddress = new InetSocketAddress(configuredPort);
       } else {
-            socketAddress = new InetSocketAddress(hostname, configuredPort);
+         socketAddress = new InetSocketAddress(hostname, configuredPort);
       }
 
       Channel channel = bootstrap.bind(socketAddress).syncUninterruptibly().channel();
@@ -281,14 +281,14 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
    private ChannelInitializer<SocketChannel> createChannelInitializer() {
       final RequestDispatcher dispatcher = createRequestDispatcher();
       if (sslContext == null && sniConfiguration == null) {
-            return new ChannelInitializer<SocketChannel>() {
-            @Override
-            public void initChannel(SocketChannel ch) throws Exception {
-               setupHandlers(ch, dispatcher, HTTP);
-            }
-            };
+         return new ChannelInitializer<SocketChannel>() {
+         @Override
+         public void initChannel(SocketChannel ch) throws Exception {
+            setupHandlers(ch, dispatcher, HTTP);
+         }
+         };
       } else if (sniConfiguration == null) {
-            return new ChannelInitializer<SocketChannel>() {
+         return new ChannelInitializer<SocketChannel>() {
             @Override
             public void initChannel(SocketChannel ch) throws Exception {
                SSLEngine engine = sslContext.createSSLEngine();
@@ -296,15 +296,15 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
                ch.pipeline().addFirst(new SslHandler(engine));
                setupHandlers(ch, dispatcher, HTTPS);
             }
-            };
+         };
       } else {
-            return new ChannelInitializer<SocketChannel>() {
+         return new ChannelInitializer<SocketChannel>() {
             @Override
             public void initChannel(SocketChannel ch) throws Exception {
                ch.pipeline().addFirst(new SniHandler(sniConfiguration.buildMapping()));
                setupHandlers(ch, dispatcher, HTTPS);
             }
-            };
+         };
       }
    }
 
@@ -318,7 +318,7 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
       channelPipeline.addLast(new RestEasyHttpRequestDecoder(dispatcher.getDispatcher(), root, protocol));
       channelPipeline.addLast(new RestEasyHttpResponseEncoder());
       if (idleTimeout > 0) {
-            channelPipeline.addLast("idleStateHandler", new IdleStateHandler(0, 0, idleTimeout));
+         channelPipeline.addLast("idleStateHandler", new IdleStateHandler(0, 0, idleTimeout));
       }
       channelPipeline.addLast(eventExecutor, new RequestHandler(dispatcher));
    }

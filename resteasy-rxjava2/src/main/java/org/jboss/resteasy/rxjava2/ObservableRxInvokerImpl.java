@@ -1,8 +1,13 @@
 package org.jboss.resteasy.rxjava2;
 
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ScheduledExecutorService;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import org.jboss.resteasy.client.jaxrs.internal.ClientInvocationBuilder;
+import org.jboss.resteasy.plugins.providers.sse.InboundSseEventImpl;
+import org.jboss.resteasy.plugins.providers.sse.client.SseEventSourceImpl;
+import org.jboss.resteasy.plugins.providers.sse.client.SseEventSourceImpl.SourceBuilder;
+import org.jboss.resteasy.rxjava2.i18n.Messages;
 
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.Entity;
@@ -11,16 +16,9 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.sse.InboundSseEvent;
 import javax.ws.rs.sse.SseEventSource;
-
-import org.jboss.resteasy.client.jaxrs.internal.ClientInvocationBuilder;
-import org.jboss.resteasy.plugins.providers.sse.InboundSseEventImpl;
-import org.jboss.resteasy.plugins.providers.sse.client.SseEventSourceImpl;
-import org.jboss.resteasy.plugins.providers.sse.client.SseEventSourceImpl.SourceBuilder;
-import org.jboss.resteasy.rxjava2.i18n.Messages;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class ObservableRxInvokerImpl implements ObservableRxInvoker
 {
@@ -193,21 +191,21 @@ public class ObservableRxInvokerImpl implements ObservableRxInvoker
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   private <T> Observable<T> eventSourceToObservable(SseEventSourceImpl sseEventSource, Class<T> clazz, String verb, Entity<?> entity, MediaType[] mediaTypes)
-   {
+   private <T> Observable<T> eventSourceToObservable(SseEventSourceImpl sseEventSource, Class<T> clazz, String verb, Entity<?> entity, MediaType[] mediaTypes) {
       Observable<T> observable = Observable.create(
             new ObservableOnSubscribe<T>() {
 
                @Override
                public void subscribe(ObservableEmitter<T> emitter) throws Exception {
                   sseEventSource.register(
-                        (InboundSseEvent e) -> {T t = e.readData(clazz, ((InboundSseEventImpl) e).getMediaType()); emitter.onNext(t);},
+                        (InboundSseEvent e) -> {
+                           T t = e.readData(clazz, ((InboundSseEventImpl) e).getMediaType());
+                           emitter.onNext(t);
+                        },
                         (Throwable t) -> emitter.onError(t),
                         () -> emitter.onComplete());
-                  synchronized (monitor)
-                  {
-                     if (!sseEventSource.isOpen())
-                     {
+                  synchronized (monitor) {
+                     if (!sseEventSource.isOpen()) {
                         sseEventSource.open(null, verb, entity, mediaTypes);
                      }
                   }
