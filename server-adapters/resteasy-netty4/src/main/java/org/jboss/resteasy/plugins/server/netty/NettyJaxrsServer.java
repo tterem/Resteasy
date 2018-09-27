@@ -282,10 +282,10 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
       final RequestDispatcher dispatcher = createRequestDispatcher();
       if (sslContext == null && sniConfiguration == null) {
          return new ChannelInitializer<SocketChannel>() {
-         @Override
-         public void initChannel(SocketChannel ch) throws Exception {
-            setupHandlers(ch, dispatcher, HTTP);
-         }
+            @Override
+            public void initChannel(SocketChannel ch) throws Exception {
+               setupHandlers(ch, dispatcher, HTTP);
+            }
          };
       } else if (sniConfiguration == null) {
          return new ChannelInitializer<SocketChannel>() {

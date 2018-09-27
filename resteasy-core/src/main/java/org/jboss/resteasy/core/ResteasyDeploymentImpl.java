@@ -604,15 +604,15 @@ public class ResteasyDeploymentImpl implements ResteasyDeployment
       {
          Feature appliationPropertiesRegistrationfeature = new Feature()
          {
-         @Override
-         public boolean configure(FeatureContext featureContext)
-         {
-            for (Map.Entry<String, Object> property : properties.entrySet())
+            @Override
+            public boolean configure(FeatureContext featureContext)
             {
-               featureContext = featureContext.property(property.getKey(), property.getValue());
+               for (Map.Entry<String, Object> property : properties.entrySet())
+               {
+                  featureContext = featureContext.property(property.getKey(), property.getValue());
+               }
+               return true;
             }
-            return true;
-         }
          };
          this.providers.add(0, appliationPropertiesRegistrationfeature);
       }

@@ -80,7 +80,7 @@ public class StatsTest {
       Assert.assertEquals("The number of resources doesn't match", 4, data.getEntries().size());
       boolean found = false;
       for (RegistryEntry entry : data.getEntries()) {
-            if (entry.getUriTemplate().equals("/entry/{foo:.*}")) {
+         if (entry.getUriTemplate().equals("/entry/{foo:.*}")) {
             Assert.assertEquals("Some method for resource \"" + entry.getUriTemplate() + "\" is missing ", 2,
                         entry.getMethods().size());
             List<Class> prepareRequiredTypes = prepareRequiredTypes(PostResourceMethod.class, PutResourceMethod.class);
@@ -88,12 +88,12 @@ public class StatsTest {
             Assert.assertTrue("Unexpected method type", testMethodTypes(entry.getMethods().get(1), prepareRequiredTypes));
             found = true;
             break;
-            }
+         }
       }
       Assert.assertTrue("Resource not found", found);
       found = false;
       for (RegistryEntry entry : data.getEntries()) {
-            if (entry.getUriTemplate().equals("/resource")) {
+         if (entry.getUriTemplate().equals("/resource")) {
             Assert.assertEquals("Some method for resource \"" + entry.getUriTemplate() + "\" is missing ", 2,
                         entry.getMethods().size());
             List<Class> prepareRequiredTypes = prepareRequiredTypes(HeadResourceMethod.class, DeleteResourceMethod.class);
@@ -101,27 +101,27 @@ public class StatsTest {
             Assert.assertTrue("Unexpected method type", testMethodTypes(entry.getMethods().get(1), prepareRequiredTypes));
             found = true;
             break;
-            }
+         }
       }
       Assert.assertTrue("Resource not found", found);
       found = false;
       for (RegistryEntry entry : data.getEntries()) {
-            if (entry.getUriTemplate().equals("/locator")) {
+         if (entry.getUriTemplate().equals("/locator")) {
             Assert.assertNotNull(entry.getLocator());
             found = true;
             break;
-            }
+         }
       }
       Assert.assertTrue("Resource not found", found);
       found = false;
       for (RegistryEntry entry : data.getEntries()) {
-            if (entry.getUriTemplate().equals("/resteasy/registry")) {
+         if (entry.getUriTemplate().equals("/resteasy/registry")) {
             Assert.assertEquals("Some method for resource \"" + entry.getUriTemplate() + "\" is missing ", 1,
                         entry.getMethods().size());
             Assert.assertTrue("Unexpected method type", entry.getMethods().get(0) instanceof GetResourceMethod);
             found = true;
             break;
-            }
+         }
       }
       Assert.assertTrue("Resource not found", found);
 
@@ -129,17 +129,17 @@ public class StatsTest {
 
    private boolean testMethodTypes(ResourceMethodEntry entry, List<Class> types) {
       if (types.contains(entry.getClass())) {
-            types.remove(entry.getClass());
-            return true;
+         types.remove(entry.getClass());
+         return true;
       } else {
-            return false;
+         return false;
       }
    }
 
    private List<Class> prepareRequiredTypes(Class... types) {
       ArrayList<Class> list = new ArrayList<Class>();
       for (Class type : types) {
-            list.add(type);
+         list.add(type);
       }
       return list;
    }

@@ -338,7 +338,7 @@ public class HeaderParamsAsPrimitivesTest {
       list.add(Boolean.TRUE);
       resourceHeaderPrimitiveList.doGetBoolean(list);
       boolean[] array =
-            {true, true, true};
+         {true, true, true};
       resourceHeaderPrimitiveArray.doGetBoolean(array);
    }
 

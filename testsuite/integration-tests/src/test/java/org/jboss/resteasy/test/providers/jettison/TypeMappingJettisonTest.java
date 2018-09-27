@@ -64,13 +64,13 @@ public class TypeMappingJettisonTest {
                                   String expectedContentType) throws Exception {
       String url = generateURL("/test/" + path);
       if (extension != null) {
-            url = url + "." + extension;
+         url = url + "." + extension;
       }
       Response response;
       if (accept != null) {
-            response = client.target(url).request().header(HttpHeaderNames.ACCEPT, accept).get();
+         response = client.target(url).request().header(HttpHeaderNames.ACCEPT, accept).get();
       } else {
-            response = client.target(url).request().get();
+         response = client.target(url).request().get();
       }
       assertEquals("Request for " + url + " returned a non-200 status", 200, response.getStatus());
       assertEquals("Request for " + url + " returned an unexpected content type",

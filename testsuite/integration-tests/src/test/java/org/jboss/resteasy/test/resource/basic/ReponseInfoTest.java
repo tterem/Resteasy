@@ -73,6 +73,6 @@ public class ReponseInfoTest {
      */
    @Test
    public void testUriInfo() throws Exception {
-            basicTest("/simple");
+      basicTest("/simple");
    }
 }

@@ -356,7 +356,7 @@ public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorR
       }
       catch (RuntimeException ex)
       {
-      throw new ProcessingException(ex);
+         throw new ProcessingException(ex);
 
       }
       return rtn;
@@ -369,7 +369,7 @@ public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorR
          ResteasyContext.pushContext(ResourceInfo.class, resourceInfo);  // we don't pop so writer interceptors can get at this
 
          PostMatchContainerRequestContext requestContext = new PostMatchContainerRequestContext(request, this, requestFilters,
-                 () -> invokeOnTargetAfterFilter(request, response, target));
+            () -> invokeOnTargetAfterFilter(request, response, target));
          // let it handle the continuation
          return requestContext.filter();
       } finally {
@@ -406,7 +406,7 @@ public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorR
       }
       else if (asyncStreamProvider != null)
       {
-      asyncResponseConsumer = AsyncResponseConsumer.makeAsyncResponseConsumer(this, asyncStreamProvider);
+         asyncResponseConsumer = AsyncResponseConsumer.makeAsyncResponseConsumer(this, asyncStreamProvider);
       }
       else
       {
@@ -542,22 +542,22 @@ public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorR
       PostResourceMethodInvokers postResourceMethodInvokers = ResteasyContext.getContextData(PostResourceMethodInvokers.class);
       return this.methodInjector.invoke(request, response, target)
             .handle((ret, exception) -> {
-         // on success
-         if (exception == null && postResourceMethodInvokers != null) {
-            postResourceMethodInvokers.getInvokers().forEach(e -> e.invoke());
-         }
-         // finally
-         if (postResourceMethodInvokers != null) {
-            postResourceMethodInvokers.clear();
-         }
-         if(exception != null)
-         {
-            SynchronousDispatcher.rethrow(exception);
-            // never reached
-            return null;
-         }
-         return ret;
-      });
+               // on success
+               if (exception == null && postResourceMethodInvokers != null) {
+                  postResourceMethodInvokers.getInvokers().forEach(e -> e.invoke());
+               }
+               // finally
+               if (postResourceMethodInvokers != null) {
+                  postResourceMethodInvokers.clear();
+               }
+               if(exception != null)
+               {
+                  SynchronousDispatcher.rethrow(exception);
+                  // never reached
+                  return null;
+               }
+               return ret;
+            });
    }
    
    public void initializeAsync(ResteasyAsynchronousResponse asyncResponse)
@@ -692,7 +692,7 @@ public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorR
    
    public boolean isSse() 
    {
-   return isSse;
+      return isSse;
    }
 
    public void markMethodAsAsync()

@@ -67,7 +67,7 @@ public class TypeMappingDependenciesInDeploymentTest {
       // prepare URL
       String url = generateURL("/test/" + path);
       if (extension != null) {
-            url = url + "." + extension;
+         url = url + "." + extension;
       }
 
       // make request
@@ -75,7 +75,7 @@ public class TypeMappingDependenciesInDeploymentTest {
       WebTarget target = client.target(url);
       Invocation.Builder builder = target.request();
       if (accept != null) {
-            builder.accept(accept);
+         builder.accept(accept);
       }
       Response response = builder.get();
       int status = response.getStatus();

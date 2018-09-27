@@ -242,8 +242,7 @@ public class QueryParamAsPrimitiveTest {
       list.add(Boolean.TRUE);
       list.add(Boolean.TRUE);
       resourceQueryPrimitiveList.doGetBoolean(list);
-      boolean[] array =
-            {true, true, true};
+      boolean[] array = {true, true, true};
       resourceQueryPrimitiveArray.doGetBoolean(array);
    }
 
@@ -297,8 +296,7 @@ public class QueryParamAsPrimitiveTest {
       list.add(new Byte((byte) 127));
       list.add(new Byte((byte) 127));
       resourceQueryPrimitiveList.doGetByte(list);
-      byte[] array =
-            {(byte) 127, (byte) 127, (byte) 127};
+      byte[] array = {(byte) 127, (byte) 127, (byte) 127};
       resourceQueryPrimitiveArray.doGetByte(array);
    }
 

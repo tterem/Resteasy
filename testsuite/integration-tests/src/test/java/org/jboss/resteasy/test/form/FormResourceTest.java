@@ -93,7 +93,7 @@ public class FormResourceTest {
          } else if (str.equals("srv2")) {
             sv2 = true;
          }
-   }
+      }
       Assert.assertTrue(sv1);
       Assert.assertTrue(sv2);
       client.close();
@@ -202,6 +202,6 @@ public class FormResourceTest {
             in.close();
          }
          client.close();
-   }
+      }
    }
 }

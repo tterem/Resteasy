@@ -36,13 +36,13 @@ public class RequestScopedBeanQualifierInjectorFactoryImpl extends InjectorFacto
          return new ValueInjector() {
             @Override
             public CompletionStage<Object> inject(HttpRequest request, HttpResponse response, boolean unwrapAsync) {
-                   return CompletableFuture.completedFuture(beanFactory.getBean(qualifier.value()));
+               return CompletableFuture.completedFuture(beanFactory.getBean(qualifier.value()));
             }
 
             @Override
             public CompletionStage<Object> inject(boolean unwrapAsync) {
-                   // do nothing.
-                   return CompletableFuture.completedFuture(null);
+               // do nothing.
+               return CompletableFuture.completedFuture(null);
             }
          };
       }
@@ -57,13 +57,13 @@ public class RequestScopedBeanQualifierInjectorFactoryImpl extends InjectorFacto
          return new ValueInjector() {
             @Override
             public CompletionStage<Object> inject(HttpRequest request, HttpResponse response, boolean unwrapAsync) {
-                   return CompletableFuture.completedFuture(beanFactory.getBean(qualifier.value()));
+               return CompletableFuture.completedFuture(beanFactory.getBean(qualifier.value()));
             }
 
             @Override
             public CompletionStage<Object> inject(boolean unwrapAsync) {
-                   // do nothing.
-                   return CompletableFuture.completedFuture(null);
+               // do nothing.
+               return CompletableFuture.completedFuture(null);
             }
          };
       }

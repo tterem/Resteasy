@@ -66,54 +66,54 @@ public class SyncInvokeTest extends ClientTestBase{
    @Test
    public void testMethods() throws Exception {
       {
-            Response res = client.target(generateURL("/test")).request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
-            String entity = res.readEntity(String.class);
-            Assert.assertEquals("get", entity);
+         Response res = client.target(generateURL("/test")).request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
+         String entity = res.readEntity(String.class);
+         Assert.assertEquals("get", entity);
       }
       {
-            String entity = client.target(generateURL("/test")).request().get(String.class);
-            Assert.assertEquals("get", entity);
+         String entity = client.target(generateURL("/test")).request().get(String.class);
+         Assert.assertEquals("get", entity);
       }
       {
-            Response res = client.target(generateURL("/test")).request().delete();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
-            String entity = res.readEntity(String.class);
-            Assert.assertEquals("delete", entity);
+         Response res = client.target(generateURL("/test")).request().delete();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
+         String entity = res.readEntity(String.class);
+         Assert.assertEquals("delete", entity);
       }
       {
-            String entity = client.target(generateURL("/test")).request().delete(String.class);
-            Assert.assertEquals("delete", entity);
+         String entity = client.target(generateURL("/test")).request().delete(String.class);
+         Assert.assertEquals("delete", entity);
       }
       {
-            Response res = client.target(generateURL("/test")).request().put(Entity.text("hello"));
-            Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
-            String entity = res.readEntity(String.class);
-            Assert.assertEquals("put hello", entity);
+         Response res = client.target(generateURL("/test")).request().put(Entity.text("hello"));
+         Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
+         String entity = res.readEntity(String.class);
+         Assert.assertEquals("put hello", entity);
       }
       {
-            String entity = client.target(generateURL("/test")).request().put(Entity.text("hello"), String.class);
-            Assert.assertEquals("put hello", entity);
+         String entity = client.target(generateURL("/test")).request().put(Entity.text("hello"), String.class);
+         Assert.assertEquals("put hello", entity);
       }
       {
-            Response res = client.target(generateURL("/test")).request().post(Entity.text("hello"));
-            Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
-            String entity = res.readEntity(String.class);
-            Assert.assertEquals("post hello", entity);
+         Response res = client.target(generateURL("/test")).request().post(Entity.text("hello"));
+         Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
+         String entity = res.readEntity(String.class);
+         Assert.assertEquals("post hello", entity);
       }
       {
-            String entity = client.target(generateURL("/test")).request().post(Entity.text("hello"), String.class);
-            Assert.assertEquals("post hello", entity);
+         String entity = client.target(generateURL("/test")).request().post(Entity.text("hello"), String.class);
+         Assert.assertEquals("post hello", entity);
       }
       {
-            Response res = client.target(generateURL("/test")).request().method("PATCH", Entity.text("hello"));
-            Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
-            String entity = res.readEntity(String.class);
-            Assert.assertEquals("patch hello", entity);
+         Response res = client.target(generateURL("/test")).request().method("PATCH", Entity.text("hello"));
+         Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
+         String entity = res.readEntity(String.class);
+         Assert.assertEquals("patch hello", entity);
       }
       {
-            String entity = client.target(generateURL("/test")).request().method("PATCH", Entity.text("hello"), String.class);
-            Assert.assertEquals("patch hello", entity);
+         String entity = client.target(generateURL("/test")).request().method("PATCH", Entity.text("hello"), String.class);
+         Assert.assertEquals("patch hello", entity);
       }
    }
 
@@ -126,54 +126,54 @@ public class SyncInvokeTest extends ClientTestBase{
    @Test
    public void testInvoke() throws Exception {
       {
-            Response res = client.target(generateURL("/test")).request().buildGet().invoke();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
-            String entity = res.readEntity(String.class);
-            Assert.assertEquals("get", entity);
+         Response res = client.target(generateURL("/test")).request().buildGet().invoke();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
+         String entity = res.readEntity(String.class);
+         Assert.assertEquals("get", entity);
       }
       {
-            String entity = client.target(generateURL("/test")).request().buildGet().invoke(String.class);
-            Assert.assertEquals("get", entity);
+         String entity = client.target(generateURL("/test")).request().buildGet().invoke(String.class);
+         Assert.assertEquals("get", entity);
       }
       {
-            Response res = client.target(generateURL("/test")).request().buildDelete().invoke();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
-            String entity = res.readEntity(String.class);
-            Assert.assertEquals("delete", entity);
+         Response res = client.target(generateURL("/test")).request().buildDelete().invoke();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
+         String entity = res.readEntity(String.class);
+         Assert.assertEquals("delete", entity);
       }
       {
-            String entity = client.target(generateURL("/test")).request().buildDelete().invoke(String.class);
-            Assert.assertEquals("delete", entity);
+         String entity = client.target(generateURL("/test")).request().buildDelete().invoke(String.class);
+         Assert.assertEquals("delete", entity);
       }
       {
-            Response res = client.target(generateURL("/test")).request().buildPut(Entity.text("hello")).invoke();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
-            String entity = res.readEntity(String.class);
-            Assert.assertEquals("put hello", entity);
+         Response res = client.target(generateURL("/test")).request().buildPut(Entity.text("hello")).invoke();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
+         String entity = res.readEntity(String.class);
+         Assert.assertEquals("put hello", entity);
       }
       {
-            String entity = client.target(generateURL("/test")).request().buildPut(Entity.text("hello")).invoke(String.class);
-            Assert.assertEquals("put hello", entity);
+         String entity = client.target(generateURL("/test")).request().buildPut(Entity.text("hello")).invoke(String.class);
+         Assert.assertEquals("put hello", entity);
       }
       {
-            Response res = client.target(generateURL("/test")).request().buildPost(Entity.text("hello")).invoke();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
-            String entity = res.readEntity(String.class);
-            Assert.assertEquals("post hello", entity);
+         Response res = client.target(generateURL("/test")).request().buildPost(Entity.text("hello")).invoke();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
+         String entity = res.readEntity(String.class);
+         Assert.assertEquals("post hello", entity);
       }
       {
-            String entity = client.target(generateURL("/test")).request().buildPost(Entity.text("hello")).invoke(String.class);
-            Assert.assertEquals("post hello", entity);
+         String entity = client.target(generateURL("/test")).request().buildPost(Entity.text("hello")).invoke(String.class);
+         Assert.assertEquals("post hello", entity);
       }
       {
-            Response res = client.target(generateURL("/test")).request().build("PATCH", Entity.text("hello")).invoke();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
-            String entity = res.readEntity(String.class);
-            Assert.assertEquals("patch hello", entity);
+         Response res = client.target(generateURL("/test")).request().build("PATCH", Entity.text("hello")).invoke();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
+         String entity = res.readEntity(String.class);
+         Assert.assertEquals("patch hello", entity);
       }
       {
-            String entity = client.target(generateURL("/test")).request().build("PATCH", Entity.text("hello")).invoke(String.class);
-            Assert.assertEquals("patch hello", entity);
+         String entity = client.target(generateURL("/test")).request().build("PATCH", Entity.text("hello")).invoke(String.class);
+         Assert.assertEquals("patch hello", entity);
       }
    }
 }

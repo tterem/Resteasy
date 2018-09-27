@@ -61,7 +61,7 @@ public class RestEasyHttpResponseEncoder extends MessageToMessageEncoder<NettyHt
             RuntimeDelegate.HeaderDelegate delegate = factory.getHeaderDelegate(value.getClass());
             if (delegate != null)
             {
-            response.headers().add(key, delegate.toString(value));
+               response.headers().add(key, delegate.toString(value));
             }
             else
             {

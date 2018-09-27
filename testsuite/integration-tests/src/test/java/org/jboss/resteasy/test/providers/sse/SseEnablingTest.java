@@ -178,8 +178,8 @@ public class SseEnablingTest {
             eventSource.register(event -> {
                countDownLatch.countDown();
             }, e -> {
-               throw new RuntimeException(e);
-            });
+                  throw new RuntimeException(e);
+               });
             eventSource.open();
             boolean result = countDownLatch.await(30, TimeUnit.SECONDS);
             Assert.assertTrue("Waiting for event to be delivered has timed out.", result);

@@ -310,11 +310,11 @@ public class RxObservableResourceImpl {
 
             @Override
             public void run() {
-            for (int i = 0; i < n; i++)
-            {
-               t.onNext(Bytes.BYTES);
-            }
-            t.onCompleted();
+               for (int i = 0; i < n; i++)
+               {
+                  t.onNext(Bytes.BYTES);
+               }
+               t.onCompleted();
             }
          });
       });

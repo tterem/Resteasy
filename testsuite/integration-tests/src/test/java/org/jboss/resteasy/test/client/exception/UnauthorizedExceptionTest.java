@@ -48,10 +48,10 @@ public class UnauthorizedExceptionTest {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
       UnauthorizedExceptionInterface proxy = client.target(generateURL("")).proxy(UnauthorizedExceptionInterface.class);
       try {
-            proxy.postIt("hello");
-            Assert.fail();
+         proxy.postIt("hello");
+         Assert.fail();
       } catch (NotAuthorizedException e) {
-            Assert.assertEquals(HttpResponseCodes.SC_UNAUTHORIZED, e.getResponse().getStatus());
+         Assert.assertEquals(HttpResponseCodes.SC_UNAUTHORIZED, e.getResponse().getStatus());
       }
       client.close();
    }

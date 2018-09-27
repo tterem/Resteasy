@@ -264,31 +264,31 @@ public class VariantsTest {
    @Test
    public void testGetComplexNotAcceptable() throws Exception {
       {
-            Response response = client.target(generateURL("/complex")).request()
-               .accept("application/atom+xml")
-               .acceptLanguage("en-us", "en").get();
-            Assert.assertEquals(406, response.getStatus());
+         Response response = client.target(generateURL("/complex")).request()
+            .accept("application/atom+xml")
+            .acceptLanguage("en-us", "en").get();
+         Assert.assertEquals(406, response.getStatus());
 
-            String vary = response.getHeaderString(HttpHeaderNames.VARY);
-            Assert.assertNotNull(vary);
-            logger.info("vary: " + vary);
-            Assert.assertTrue(contains(vary, "Accept"));
-            Assert.assertTrue(contains(vary, "Accept-Language"));
-            response.close();
+         String vary = response.getHeaderString(HttpHeaderNames.VARY);
+         Assert.assertNotNull(vary);
+         logger.info("vary: " + vary);
+         Assert.assertTrue(contains(vary, "Accept"));
+         Assert.assertTrue(contains(vary, "Accept-Language"));
+         response.close();
       }
 
       {
-            Response response = client.target(generateURL("/complex")).request()
-               .accept("application/xml")
-               .acceptLanguage("fr").get();
-            Assert.assertEquals(406, response.getStatus());
+         Response response = client.target(generateURL("/complex")).request()
+            .accept("application/xml")
+            .acceptLanguage("fr").get();
+         Assert.assertEquals(406, response.getStatus());
 
-            String vary = response.getHeaderString(HttpHeaderNames.VARY);
-            Assert.assertNotNull(vary);
-            logger.info("vary: " + vary);
-            Assert.assertTrue(contains(vary, "Accept"));
-            Assert.assertTrue(contains(vary, "Accept-Language"));
-            response.close();
+         String vary = response.getHeaderString(HttpHeaderNames.VARY);
+         Assert.assertNotNull(vary);
+         logger.info("vary: " + vary);
+         Assert.assertTrue(contains(vary, "Accept"));
+         Assert.assertTrue(contains(vary, "Accept-Language"));
+         response.close();
       }
    }
 
@@ -370,10 +370,10 @@ public class VariantsTest {
    private boolean contains(String all, String one) {
       String[] allSplit = all.split(",");
       for (String s : allSplit) {
-            s = s.trim();
-            if (s.equalsIgnoreCase(one)) {
+         s = s.trim();
+         if (s.equalsIgnoreCase(one)) {
             return true;
-            }
+         }
       }
 
       return false;

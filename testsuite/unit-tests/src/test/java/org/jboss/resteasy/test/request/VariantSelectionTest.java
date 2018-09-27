@@ -53,7 +53,7 @@ public class VariantSelectionTest {
 
       // Assert all acceptable:
       for (Variant variant : available) {
-            assertEquals(variant, negotiation.getBestMatch(Arrays.asList(variant)));
+         assertEquals(variant, negotiation.getBestMatch(Arrays.asList(variant)));
       }
 
       Variant best = negotiation.getBestMatch(available);

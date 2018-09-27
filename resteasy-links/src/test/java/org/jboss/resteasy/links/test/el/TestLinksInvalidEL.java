@@ -102,7 +102,7 @@ public class TestLinksInvalidEL
          LOG.error("Failure is "+x.getResponse().readEntity(String.class));
          Assert.assertEquals(500, x.getResponse().getStatus());
       }catch(Exception x){
-            Assert.fail("Expected InternalServerErrorException");
+         Assert.fail("Expected InternalServerErrorException");
       }
    }
    @Test

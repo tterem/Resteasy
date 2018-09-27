@@ -100,58 +100,58 @@ public class ValidationCoreTest {
       response.close();
 
       {
-            // Invalid native constraint
-            response = client.target(generateURL("/return/native")).request().post(Entity.entity(new ValidationCoreFoo("abcdef"), "application/foo"));
-            String entity = response.readEntity(String.class);
-            Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
-            String header = response.getHeaderString(Validation.VALIDATION_HEADER);
-            Assert.assertNotNull("Validation header is missing", header);
-            Assert.assertTrue("Wrong validation header", Boolean.valueOf(header));
-            ResteasyViolationException e = new ResteasyViolationExceptionImpl(entity);
-            ResteasyConstraintViolation violation = e.getReturnValueViolations().iterator().next();
-            Assert.assertTrue(WRONG_ERROR_MSG, violation.getMessage().equals("s must have length: 1 <= length <= 3"));
-            Assert.assertEquals(WRONG_ERROR_MSG, "ValidationCoreFoo[abcdef]", violation.getValue());
-            response.close();
+         // Invalid native constraint
+         response = client.target(generateURL("/return/native")).request().post(Entity.entity(new ValidationCoreFoo("abcdef"), "application/foo"));
+         String entity = response.readEntity(String.class);
+         Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
+         String header = response.getHeaderString(Validation.VALIDATION_HEADER);
+         Assert.assertNotNull("Validation header is missing", header);
+         Assert.assertTrue("Wrong validation header", Boolean.valueOf(header));
+         ResteasyViolationException e = new ResteasyViolationExceptionImpl(entity);
+         ResteasyConstraintViolation violation = e.getReturnValueViolations().iterator().next();
+         Assert.assertTrue(WRONG_ERROR_MSG, violation.getMessage().equals("s must have length: 1 <= length <= 3"));
+         Assert.assertEquals(WRONG_ERROR_MSG, "ValidationCoreFoo[abcdef]", violation.getValue());
+         response.close();
       }
 
       {
-            // Invalid imposed constraint
-            response = client.target(generateURL("/return/imposed")).request().post(Entity.entity(new ValidationCoreFoo("abcdef"), "application/foo"));
-            Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
-            String header = response.getHeaderString(Validation.VALIDATION_HEADER);
-            Assert.assertNotNull("Validation header is missing", header);
-            Assert.assertTrue("Wrong validation header", Boolean.valueOf(header));
-            String entity = response.readEntity(String.class);
-            ViolationReport r = new ViolationReport(entity);
-            TestUtil.countViolations(r, 0, 0, 0, 0, 1);
-            ResteasyConstraintViolation violation = r.getReturnValueViolations().iterator().next();
-            Assert.assertTrue(WRONG_ERROR_MSG, violation.getMessage().equals("s must have length: 3 <= length <= 5"));
-            Assert.assertEquals(WRONG_ERROR_MSG, "ValidationCoreFoo[abcdef]", violation.getValue());
-            response.close();
+         // Invalid imposed constraint
+         response = client.target(generateURL("/return/imposed")).request().post(Entity.entity(new ValidationCoreFoo("abcdef"), "application/foo"));
+         Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
+         String header = response.getHeaderString(Validation.VALIDATION_HEADER);
+         Assert.assertNotNull("Validation header is missing", header);
+         Assert.assertTrue("Wrong validation header", Boolean.valueOf(header));
+         String entity = response.readEntity(String.class);
+         ViolationReport r = new ViolationReport(entity);
+         TestUtil.countViolations(r, 0, 0, 0, 0, 1);
+         ResteasyConstraintViolation violation = r.getReturnValueViolations().iterator().next();
+         Assert.assertTrue(WRONG_ERROR_MSG, violation.getMessage().equals("s must have length: 3 <= length <= 5"));
+         Assert.assertEquals(WRONG_ERROR_MSG, "ValidationCoreFoo[abcdef]", violation.getValue());
+         response.close();
       }
 
       {
-            // Invalid native and imposed constraints
-            response = client.target(generateURL("/return/nativeAndImposed")).request().post(Entity.entity(new ValidationCoreFoo("abcdef"), "application/foo"));
-            Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
-            String header = response.getHeaderString(Validation.VALIDATION_HEADER);
-            Assert.assertNotNull("Validation header is missing", header);
-            Assert.assertTrue("Wrong validation header", Boolean.valueOf(header));
-            String entity = response.readEntity(String.class);
-            ViolationReport r = new ViolationReport(entity);
-            TestUtil.countViolations(r, 0, 0, 0, 0, 2);
-            Iterator<ResteasyConstraintViolation> it = r.getReturnValueViolations().iterator();
-            ResteasyConstraintViolation cv1 = it.next();
-            ResteasyConstraintViolation cv2 = it.next();
-            if (cv1.getMessage().indexOf('1') < 0) {
+         // Invalid native and imposed constraints
+         response = client.target(generateURL("/return/nativeAndImposed")).request().post(Entity.entity(new ValidationCoreFoo("abcdef"), "application/foo"));
+         Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
+         String header = response.getHeaderString(Validation.VALIDATION_HEADER);
+         Assert.assertNotNull("Validation header is missing", header);
+         Assert.assertTrue("Wrong validation header", Boolean.valueOf(header));
+         String entity = response.readEntity(String.class);
+         ViolationReport r = new ViolationReport(entity);
+         TestUtil.countViolations(r, 0, 0, 0, 0, 2);
+         Iterator<ResteasyConstraintViolation> it = r.getReturnValueViolations().iterator();
+         ResteasyConstraintViolation cv1 = it.next();
+         ResteasyConstraintViolation cv2 = it.next();
+         if (cv1.getMessage().indexOf('1') < 0) {
             ResteasyConstraintViolation temp = cv1;
             cv1 = cv2;
             cv2 = temp;
-            }
-            Assert.assertTrue(WRONG_ERROR_MSG, cv1.getMessage().equals("s must have length: 1 <= length <= 3"));
-            Assert.assertEquals(WRONG_ERROR_MSG, "ValidationCoreFoo[abcdef]", cv1.getValue());
-            Assert.assertTrue(WRONG_ERROR_MSG, cv2.getMessage().equals("s must have length: 3 <= length <= 5"));
-            Assert.assertEquals(WRONG_ERROR_MSG, "ValidationCoreFoo[abcdef]", cv2.getValue());
+         }
+         Assert.assertTrue(WRONG_ERROR_MSG, cv1.getMessage().equals("s must have length: 1 <= length <= 3"));
+         Assert.assertEquals(WRONG_ERROR_MSG, "ValidationCoreFoo[abcdef]", cv1.getValue());
+         Assert.assertTrue(WRONG_ERROR_MSG, cv2.getMessage().equals("s must have length: 3 <= length <= 5"));
+         Assert.assertEquals(WRONG_ERROR_MSG, "ValidationCoreFoo[abcdef]", cv2.getValue());
       }
    }
 

@@ -60,7 +60,7 @@ public class ProviderInjectionTest {
    @Test
    public void testConstructorInjection() {
       for (ProviderInjectionSimpleMessageBodyWriter writer : ProviderInjectionSimpleMessageBodyWriter.getInstances()) {
-            assertTrue(writer.getConstructorProviders() != null);
+         assertTrue(writer.getConstructorProviders() != null);
       }
    }
 
@@ -71,7 +71,7 @@ public class ProviderInjectionTest {
    @Test
    public void testFieldInjection() {
       for (ProviderInjectionSimpleMessageBodyWriter writer : ProviderInjectionSimpleMessageBodyWriter.getInstances()) {
-            assertTrue(writer.getFieldProviders() != null);
+         assertTrue(writer.getFieldProviders() != null);
       }
    }
 

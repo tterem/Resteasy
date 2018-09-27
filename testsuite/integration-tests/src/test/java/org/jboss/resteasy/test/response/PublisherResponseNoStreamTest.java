@@ -146,14 +146,14 @@ public class PublisherResponseNoStreamTest {
             future.complete(null);
          }
       }, 
-            t -> {
-               logger.error(t.getMessage(), t);
-               errors.add(t);
-            },
-            () -> {
-               // bah, never called
-               future.complete(null);
-            });
+         t -> {
+            logger.error(t.getMessage(), t);
+            errors.add(t);
+         },
+         () -> {
+            // bah, never called
+            future.complete(null);
+         });
       source.open();
       future.get();
       source.close();
@@ -176,19 +176,17 @@ public class PublisherResponseNoStreamTest {
       CompletableFuture<Void> future = new CompletableFuture<Void>();
       SseEventSource source = SseEventSource.target(target).build();
       source.register(evt -> {
-      String data = evt.readData(String.class);
-      collector.add(data);
-      if(collector.size() >= 2) {
-         future.complete(null);
-      }
-      }, 
-         t -> {
-              logger.error(t);
-              errors.add(t);  
-         }, 
-         () -> {
-              // bah, never called
-              future.complete(null);
+         String data = evt.readData(String.class);
+         collector.add(data);
+         if(collector.size() >= 2) {
+            future.complete(null);
+         }
+      }, t -> {
+            logger.error(t);
+            errors.add(t);
+         }, () -> {
+            // bah, never called
+            future.complete(null);
          });
       source.open();
       future.get();

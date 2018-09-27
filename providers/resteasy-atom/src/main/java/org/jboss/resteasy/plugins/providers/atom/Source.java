@@ -118,7 +118,9 @@ public class Source extends CommonAttributes
 
    public Link getLinkByRel(String name)
    {
-      for (Link link : links) if (link.getRel().equals(name)) return link;
+      for (Link link : links)
+         if (link.getRel().equals(name))
+            return link;
       return null;
    }
 

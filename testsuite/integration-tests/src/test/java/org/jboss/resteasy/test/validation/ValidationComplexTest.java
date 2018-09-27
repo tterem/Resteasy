@@ -417,9 +417,9 @@ public class ValidationComplexTest {
       ResteasyConstraintViolation cv1 = it.next();
       ResteasyConstraintViolation cv2 = it.next();
       if (cv1.getValue().equals("xyz")) {
-            ResteasyConstraintViolation tmp = cv1;
-            cv1 = cv2;
-            cv2 = tmp;
+         ResteasyConstraintViolation tmp = cv1;
+         cv1 = cv2;
+         cv2 = tmp;
       }
       Assert.assertTrue(WRONG_ERROR_MSG, cv1.getMessage().startsWith("size must be between 4 and"));
       Assert.assertEquals(WRONG_ERROR_MSG, "abc", cv1.getValue());
@@ -589,9 +589,9 @@ public class ValidationComplexTest {
       ResteasyConstraintViolation cv1 = it.next();
       ResteasyConstraintViolation cv2 = it.next();
       if (cv1.toString().indexOf('1') < 0) {
-            ResteasyConstraintViolation temp = cv1;
-            cv1 = cv2;
-            cv2 = temp;
+         ResteasyConstraintViolation temp = cv1;
+         cv1 = cv2;
+         cv2 = temp;
       }
       Assert.assertTrue(WRONG_ERROR_MSG, cv1.getMessage().equals("s must have length: 1 <= length <= 3"));
       Assert.assertEquals(RESPONSE_ERROR_MSG, "ValidationComplexFoo[abcdef]", cv1.getValue());
@@ -693,9 +693,9 @@ public class ValidationComplexTest {
       ResteasyConstraintViolation cv1 = it.next();
       ResteasyConstraintViolation cv2 = it.next();
       if (cv1.toString().indexOf('1') < 0) {
-            ResteasyConstraintViolation temp = cv1;
-            cv1 = cv2;
-            cv2 = temp;
+         ResteasyConstraintViolation temp = cv1;
+         cv1 = cv2;
+         cv2 = temp;
       }
       Assert.assertTrue(WRONG_ERROR_MSG, cv1.getMessage().equals("s must have length: 1 <= length <= 3"));
       Assert.assertEquals(RESPONSE_ERROR_MSG, "ValidationComplexFoo[abcdef]", cv1.getValue());
@@ -750,81 +750,81 @@ public class ValidationComplexTest {
    @OperateOnDeployment("basicDeploymentInterfaceTestSub")
    public void testInheritence() throws Exception {
       {
-            // Valid - inherited annotations
-            ValidationComplexInterfaceSuper.t = "aaa";
-            ValidationComplexInterfaceSub.u = "bbb";
-            Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/inherit", ValidationComplexInterfaceSub.class.getSimpleName()))
-               .request().post(Entity.entity("ccc", MediaType.TEXT_PLAIN_TYPE));
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(RESPONSE_ERROR_MSG, "ccc", response.readEntity(String.class));
-            response.close();
+         // Valid - inherited annotations
+         ValidationComplexInterfaceSuper.t = "aaa";
+         ValidationComplexInterfaceSub.u = "bbb";
+         Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/inherit", ValidationComplexInterfaceSub.class.getSimpleName()))
+            .request().post(Entity.entity("ccc", MediaType.TEXT_PLAIN_TYPE));
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(RESPONSE_ERROR_MSG, "ccc", response.readEntity(String.class));
+         response.close();
       }
 
       {
-            // Valid - overridden annotations
-            ValidationComplexInterfaceSuper.t = "aaa";
-            ValidationComplexInterfaceSub.u = "bbb";
-            Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/override", ValidationComplexInterfaceSub.class.getSimpleName()))
-               .request().post(Entity.entity("ccc", MediaType.TEXT_PLAIN_TYPE));
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(RESPONSE_ERROR_MSG, "ccc", response.readEntity(String.class));
-            response.close();
+         // Valid - overridden annotations
+         ValidationComplexInterfaceSuper.t = "aaa";
+         ValidationComplexInterfaceSub.u = "bbb";
+         Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/override", ValidationComplexInterfaceSub.class.getSimpleName()))
+            .request().post(Entity.entity("ccc", MediaType.TEXT_PLAIN_TYPE));
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(RESPONSE_ERROR_MSG, "ccc", response.readEntity(String.class));
+         response.close();
       }
 
       {
-            // Invalid - inherited class, parameter annotations
-            ValidationComplexInterfaceSuper.t = "a";
-            ValidationComplexInterfaceSub.u = "d";
-            Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/inherit", ValidationComplexInterfaceSub.class.getSimpleName()))
-               .request().post(Entity.entity("e", MediaType.TEXT_PLAIN_TYPE));
-            logger.info("status: " + response.getStatus());
-            Assert.assertEquals(HttpResponseCodes.SC_BAD_REQUEST, response.getStatus());
-            Object entity = response.readEntity(String.class);
-            ViolationReport r = new ViolationReport(String.class.cast(entity));
-            TestUtil.countViolations(r, 0, 0, 2, 1, 0);
-            response.close();
+         // Invalid - inherited class, parameter annotations
+         ValidationComplexInterfaceSuper.t = "a";
+         ValidationComplexInterfaceSub.u = "d";
+         Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/inherit", ValidationComplexInterfaceSub.class.getSimpleName()))
+            .request().post(Entity.entity("e", MediaType.TEXT_PLAIN_TYPE));
+         logger.info("status: " + response.getStatus());
+         Assert.assertEquals(HttpResponseCodes.SC_BAD_REQUEST, response.getStatus());
+         Object entity = response.readEntity(String.class);
+         ViolationReport r = new ViolationReport(String.class.cast(entity));
+         TestUtil.countViolations(r, 0, 0, 2, 1, 0);
+         response.close();
       }
 
       {
-            // Invalid - overridden class, parameter annotations
-            ValidationComplexInterfaceSuper.t = "a";
-            ValidationComplexInterfaceSub.u = "d";
-            Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/override", ValidationComplexInterfaceSub.class.getSimpleName()))
-               .request().post(Entity.entity("e", MediaType.TEXT_PLAIN_TYPE));
-            logger.info("status: " + response.getStatus());
-            Assert.assertEquals(HttpResponseCodes.SC_BAD_REQUEST, response.getStatus());
-            Object entity = response.readEntity(String.class);
-            ViolationReport r = new ViolationReport(String.class.cast(entity));
-            TestUtil.countViolations(r, 0, 0, 2, 1, 0);
-            response.close();
+         // Invalid - overridden class, parameter annotations
+         ValidationComplexInterfaceSuper.t = "a";
+         ValidationComplexInterfaceSub.u = "d";
+         Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/override", ValidationComplexInterfaceSub.class.getSimpleName()))
+            .request().post(Entity.entity("e", MediaType.TEXT_PLAIN_TYPE));
+         logger.info("status: " + response.getStatus());
+         Assert.assertEquals(HttpResponseCodes.SC_BAD_REQUEST, response.getStatus());
+         Object entity = response.readEntity(String.class);
+         ViolationReport r = new ViolationReport(String.class.cast(entity));
+         TestUtil.countViolations(r, 0, 0, 2, 1, 0);
+         response.close();
       }
 
       {
-            // Invalid - inherited return value annotations
-            ValidationComplexInterfaceSuper.t = "aaa";
-            ValidationComplexInterfaceSub.u = "bbb";
-            Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/inherit", ValidationComplexInterfaceSub.class.getSimpleName()))
-               .request().post(Entity.entity("eeee", MediaType.TEXT_PLAIN_TYPE));
-            logger.info("status: " + response.getStatus());
-            Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
-            Object entity = response.readEntity(String.class);
-            ViolationReport r = new ViolationReport(String.class.cast(entity));
-            TestUtil.countViolations(r, 0, 0, 0, 0, 1);
-            response.close();
+         // Invalid - inherited return value annotations
+         ValidationComplexInterfaceSuper.t = "aaa";
+         ValidationComplexInterfaceSub.u = "bbb";
+         Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/inherit", ValidationComplexInterfaceSub.class.getSimpleName()))
+            .request().post(Entity.entity("eeee", MediaType.TEXT_PLAIN_TYPE));
+         logger.info("status: " + response.getStatus());
+         Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
+         Object entity = response.readEntity(String.class);
+         ViolationReport r = new ViolationReport(String.class.cast(entity));
+         TestUtil.countViolations(r, 0, 0, 0, 0, 1);
+         response.close();
       }
 
       {
-            // Invalid - overridden return value annotations
-            ValidationComplexInterfaceSuper.t = "aaa";
-            ValidationComplexInterfaceSub.u = "bbb";
-            Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/override", ValidationComplexInterfaceSub.class.getSimpleName()))
-               .request().post(Entity.entity("eeee", MediaType.TEXT_PLAIN_TYPE));
-            logger.info("status: " + response.getStatus());
-            Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
-            Object entity = response.readEntity(String.class);
-            ViolationReport r = new ViolationReport(String.class.cast(entity));
-            TestUtil.countViolations(r, 0, 0, 0, 0, 2);
-            response.close();
+         // Invalid - overridden return value annotations
+         ValidationComplexInterfaceSuper.t = "aaa";
+         ValidationComplexInterfaceSub.u = "bbb";
+         Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/override", ValidationComplexInterfaceSub.class.getSimpleName()))
+            .request().post(Entity.entity("eeee", MediaType.TEXT_PLAIN_TYPE));
+         logger.info("status: " + response.getStatus());
+         Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
+         Object entity = response.readEntity(String.class);
+         ViolationReport r = new ViolationReport(String.class.cast(entity));
+         TestUtil.countViolations(r, 0, 0, 0, 0, 2);
+         response.close();
       }
    }
 
@@ -938,12 +938,12 @@ public class ValidationComplexTest {
       //             and no return value violations.
       response = client.target(jobUrl).request().get();
       for (int i = 0; i < 60; i++) {
-            Thread.sleep(TimeoutUtil.adjust(1000));
-            response.close();
-            response = client.target(jobUrl).request().get();
-            if (HttpServletResponse.SC_ACCEPTED != response.getStatus()) {
+         Thread.sleep(TimeoutUtil.adjust(1000));
+         response.close();
+         response = client.target(jobUrl).request().get();
+         if (HttpServletResponse.SC_ACCEPTED != response.getStatus()) {
             break;
-            }
+         }
       }
       Assert.assertEquals(HttpResponseCodes.SC_BAD_REQUEST, response.getStatus());
       Object entity = response.readEntity(String.class);
@@ -981,12 +981,12 @@ public class ValidationComplexTest {
       //             and one return value violation.
       response = client.target(jobUrl).request().get();
       for (int i = 0; i < 60; i++) {
-            Thread.sleep(TimeoutUtil.adjust(1000));
-            response.close();
-            response = client.target(jobUrl).request().get();
-            if (HttpServletResponse.SC_ACCEPTED != response.getStatus()) {
+         Thread.sleep(TimeoutUtil.adjust(1000));
+         response.close();
+         response = client.target(jobUrl).request().get();
+         if (HttpServletResponse.SC_ACCEPTED != response.getStatus()) {
             break;
-            }
+         }
       }
       Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
       entity = response.readEntity(String.class);
@@ -1050,24 +1050,24 @@ public class ValidationComplexTest {
       // Invalid
       client.s("abcde");
       try {
-            client.g();
+         client.g();
       } catch (InternalServerErrorException e) {
-            Response response = e.getResponse();
-            logger.info("status: " + response.getStatus());
-            String header = response.getHeaderString(Validation.VALIDATION_HEADER);
-            Assert.assertNotNull("Missing validation header", header);
-            Assert.assertTrue("Wrong validation header", Boolean.valueOf(header));
-            Object entity = response.readEntity(String.class);
-            logger.info("entity: " + entity);
-            ViolationReport r = new ViolationReport(String.class.cast(entity));
-            TestUtil.countViolations(r, 0, 0, 0, 0, 1);
-            ResteasyConstraintViolation violation = r.getReturnValueViolations().iterator().next();
-            logger.info("violation: " + violation);
-            Assert.assertEquals(WRONG_ERROR_MSG, "size must be between 2 and 4", violation.getMessage());
-            Assert.assertEquals(RESPONSE_ERROR_MSG, "abcde", violation.getValue());
-            response.close();
+         Response response = e.getResponse();
+         logger.info("status: " + response.getStatus());
+         String header = response.getHeaderString(Validation.VALIDATION_HEADER);
+         Assert.assertNotNull("Missing validation header", header);
+         Assert.assertTrue("Wrong validation header", Boolean.valueOf(header));
+         Object entity = response.readEntity(String.class);
+         logger.info("entity: " + entity);
+         ViolationReport r = new ViolationReport(String.class.cast(entity));
+         TestUtil.countViolations(r, 0, 0, 0, 0, 1);
+         ResteasyConstraintViolation violation = r.getReturnValueViolations().iterator().next();
+         logger.info("violation: " + violation);
+         Assert.assertEquals(WRONG_ERROR_MSG, "size must be between 2 and 4", violation.getMessage());
+         Assert.assertEquals(RESPONSE_ERROR_MSG, "abcde", violation.getValue());
+         response.close();
       } catch (Exception e) {
-            throw new RuntimeException("expected InternalServerErrorException", e);
+         throw new RuntimeException("expected InternalServerErrorException", e);
       }
    }
 
@@ -1099,8 +1099,8 @@ public class ValidationComplexTest {
    private List<String> getMessagesFromList(List<ResteasyConstraintViolation> rcvs) {
       List<String> list = new ArrayList<>();
       for (Iterator<ResteasyConstraintViolation> it = rcvs.iterator(); it.hasNext(); ) {
-            ResteasyConstraintViolation rcv = it.next();
-            list.add(rcv.getMessage() + "; " + rcv.getValue());
+         ResteasyConstraintViolation rcv = it.next();
+         list.add(rcv.getMessage() + "; " + rcv.getValue());
       }
       return list;
    }

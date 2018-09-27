@@ -208,10 +208,9 @@ public class FlowableRxInvokerImpl implements FlowableRxInvoker
    {
       Flowable<T> flowable = Flowable.create(
          new FlowableOnSubscribe<T>() {
-
-               @Override
-               public void subscribe(FlowableEmitter<T> emitter) throws Exception {
-                  sseEventSource.register(
+            @Override
+            public void subscribe(FlowableEmitter<T> emitter) throws Exception {
+               sseEventSource.register(
                   (InboundSseEvent e) -> {T t = e.readData(clazz, ((InboundSseEventImpl) e).getMediaType()); emitter.onNext(t);},
                   (Throwable t) -> emitter.onError(t),
                   () -> emitter.onComplete());
@@ -236,7 +235,7 @@ public class FlowableRxInvokerImpl implements FlowableRxInvoker
                @Override
                public void subscribe(FlowableEmitter<T> emitter) throws Exception {
                   sseEventSource.register(
-                  (InboundSseEvent e) -> {T t = e.readData(type, ((InboundSseEventImpl) e).getMediaType()); emitter.onNext(t);},
+                     (InboundSseEvent e) -> {T t = e.readData(type, ((InboundSseEventImpl) e).getMediaType()); emitter.onNext(t);},
                      (Throwable t) -> emitter.onError(t),
                      () -> emitter.onComplete());
                   synchronized (monitor) {

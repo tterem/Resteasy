@@ -53,7 +53,7 @@ public class ReaderProvider implements MessageBodyReader<Reader>, MessageBodyWri
 
    public void writeTo(Reader inputStream, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException
    {
-         LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom", getClass().getName());
+      LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom", getClass().getName());
       try
       {
          int c = inputStream.read();

@@ -102,9 +102,9 @@ public class RxTest
       Observable<String> observable = (Observable<String>) invoker.get();
       List<String> data = new ArrayList<String>();
       observable.subscribe(
-            (String s) -> data.add(s),
-            (Throwable t) -> LOG.error(t.getMessage(), t),
-            () -> latch.countDown());
+         (String s) -> data.add(s),
+         (Throwable t) -> LOG.error(t.getMessage(), t),
+         () -> latch.countDown());
       latch.await();
       assertArrayEquals(new String[] {"one", "two"}, data.toArray());
    }
@@ -116,9 +116,9 @@ public class RxTest
       Observable<String> observable = (Observable<String>) invoker.get();
       List<String> data = new ArrayList<String>();
       observable.subscribe(
-            (String s) -> data.add(s),
-            (Throwable t) -> LOG.error(t.getMessage(), t),
-            () -> latch.countDown());
+         (String s) -> data.add(s),
+         (Throwable t) -> LOG.error(t.getMessage(), t),
+         () -> latch.countDown());
       latch.await();
       assertArrayEquals(new String[] {"one", "two"}, data.toArray());
    }
@@ -130,9 +130,9 @@ public class RxTest
       Flowable<String> flowable = (Flowable<String>) invoker.get();
       List<String> data = new ArrayList<String>();
       flowable.subscribe(
-            (String s) -> data.add(s),
-            (Throwable t) -> LOG.error(t.getMessage(), t),
-            () -> latch.countDown());
+         (String s) -> data.add(s),
+         (Throwable t) -> LOG.error(t.getMessage(), t),
+         () -> latch.countDown());
       latch.await();
       assertArrayEquals(new String[] {"one", "two"}, data.toArray());
    }
@@ -144,9 +144,9 @@ public class RxTest
       Flowable<String> flowable = (Flowable<String>) invoker.get();
       List<String> data = new ArrayList<String>();
       flowable.subscribe(
-            (String s) -> data.add(s),
-            (Throwable t) -> LOG.error(t.getMessage(), t),
-            () -> {latch.countDown(); LOG.info("onComplete()");});
+         (String s) -> data.add(s),
+         (Throwable t) -> LOG.error(t.getMessage(), t),
+         () -> {latch.countDown(); LOG.info("onComplete()");});
       latch.await();
       assertArrayEquals(new String[] {"one", "two"}, data.toArray());
    }

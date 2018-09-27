@@ -114,18 +114,18 @@ public class SpecialResourceTest {
       HttpPut method = new HttpPut(generateURL("/api"));
       HttpResponse response = null;
       try {
-            method.setEntity(new StringEntity("hello", ContentType.create("vnd.net.juniper.space.target-management.targets+xml;version=1;charset=UTF-8")));
-            response = client.execute(method);
-            Assert.assertEquals(response.getStatusLine().getStatusCode(), HttpResponseCodes.SC_BAD_REQUEST);
+         method.setEntity(new StringEntity("hello", ContentType.create("vnd.net.juniper.space.target-management.targets+xml;version=1;charset=UTF-8")));
+         response = client.execute(method);
+         Assert.assertEquals(response.getStatusLine().getStatusCode(), HttpResponseCodes.SC_BAD_REQUEST);
       } catch (IOException e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       } finally {
          try
          {
-              EntityUtils.consume(response.getEntity());
+            EntityUtils.consume(response.getEntity());
          } catch (IOException e)
          {
-              LogMessages.LOGGER.unableToCloseEntityStream(e);
+            LogMessages.LOGGER.unableToCloseEntityStream(e);
          }
       }
    }

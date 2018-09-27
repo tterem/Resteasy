@@ -102,10 +102,10 @@ public class TypeConverterTest {
    @Test
    public void testDate() {
       try {
-            TypeConverter.getType(Date.class, "07/04/2008");
-            Assert.fail("Exception was excepted.");
+         TypeConverter.getType(Date.class, "07/04/2008");
+         Assert.fail("Exception was excepted.");
       } catch (IllegalArgumentException e) {
-            // ok
+         // ok
       }
    }
 

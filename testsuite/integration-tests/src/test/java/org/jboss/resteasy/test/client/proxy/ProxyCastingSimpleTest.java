@@ -72,16 +72,16 @@ public class ProxyCastingSimpleTest {
    public void testSubresourceProxy() throws Exception {
       ProxyCastingSimpleFooBar foobar = ProxyBuilder.builder(ProxyCastingSimpleFooBar.class, target).build();
       {
-            ProxyCastingSimpleInterfaceA a = ((ResteasyClientProxy) foobar.getThing("a")).as(ProxyCastingSimpleInterfaceA.class);
-            assertEquals("Wrong body of response", "FOO", a.getFoo());
-            ProxyCastingSimpleInterfaceB b = ((ResteasyClientProxy) foobar.getThing("b")).as(ProxyCastingSimpleInterfaceB.class);
-            assertEquals("Wrong body of response", "BAR", b.getBar());
+         ProxyCastingSimpleInterfaceA a = ((ResteasyClientProxy) foobar.getThing("a")).as(ProxyCastingSimpleInterfaceA.class);
+         assertEquals("Wrong body of response", "FOO", a.getFoo());
+         ProxyCastingSimpleInterfaceB b = ((ResteasyClientProxy) foobar.getThing("b")).as(ProxyCastingSimpleInterfaceB.class);
+         assertEquals("Wrong body of response", "BAR", b.getBar());
       }
       {
-            ProxyCastingSimpleInterfaceA a = foobar.getThing("a").as(ProxyCastingSimpleInterfaceA.class);
-            assertEquals("Wrong body of response", "FOO", a.getFoo());
-            ProxyCastingSimpleInterfaceB b = foobar.getThing("b").as(ProxyCastingSimpleInterfaceB.class);
-            assertEquals("Wrong body of response", "BAR", b.getBar());
+         ProxyCastingSimpleInterfaceA a = foobar.getThing("a").as(ProxyCastingSimpleInterfaceA.class);
+         assertEquals("Wrong body of response", "FOO", a.getFoo());
+         ProxyCastingSimpleInterfaceB b = foobar.getThing("b").as(ProxyCastingSimpleInterfaceB.class);
+         assertEquals("Wrong body of response", "BAR", b.getBar());
       }
    }
 }

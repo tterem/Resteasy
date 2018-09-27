@@ -171,15 +171,15 @@ public class UriInfoTest {
      */
    @Test
    public void testRelativize() throws Exception {
-            String uri = PortProviderUtil.generateURL("/", UriInfoRelativizeResource.class.getSimpleName());
-            WebTarget target = client.target(uri);
-            String result;
-            result = target.path("a/b/c").queryParam("to", "a/d/e").request().get(String.class);
-            Assert.assertEquals("../../d/e", result);
-            result = target.path("a/b/c").queryParam("to", UriBuilder.fromUri(uri).path("a/d/e").build().toString()).request().get(String.class);
-            Assert.assertEquals("../../d/e", result);
-            result = target.path("a/b/c").queryParam("to", "http://foobar/a/d/e").request().get(String.class);
-            Assert.assertEquals("http://foobar/a/d/e", result);
+      String uri = PortProviderUtil.generateURL("/", UriInfoRelativizeResource.class.getSimpleName());
+      WebTarget target = client.target(uri);
+      String result;
+      result = target.path("a/b/c").queryParam("to", "a/d/e").request().get(String.class);
+      Assert.assertEquals("../../d/e", result);
+      result = target.path("a/b/c").queryParam("to", UriBuilder.fromUri(uri).path("a/d/e").build().toString()).request().get(String.class);
+      Assert.assertEquals("../../d/e", result);
+      result = target.path("a/b/c").queryParam("to", "http://foobar/a/d/e").request().get(String.class);
+      Assert.assertEquals("http://foobar/a/d/e", result);
    }
 
    /**
@@ -198,9 +198,9 @@ public class UriInfoTest {
    private void basicTest(String path, String testName) throws Exception {
       Response response = client.target(PortProviderUtil.generateURL(path, testName)).request().get();
       try {
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
       } finally {
-            response.close();
+         response.close();
       }
    }
 

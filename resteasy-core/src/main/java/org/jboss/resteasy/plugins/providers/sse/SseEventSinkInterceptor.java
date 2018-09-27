@@ -37,7 +37,7 @@ public class SseEventSinkInterceptor implements ContainerRequestFilter
             @Override
             public void invoke()
             {
-            sink.flushResponseToClient();
+               sink.flushResponseToClient();
             }
          });
       }

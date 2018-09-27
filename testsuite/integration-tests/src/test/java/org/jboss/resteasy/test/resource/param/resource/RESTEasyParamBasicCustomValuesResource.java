@@ -56,7 +56,7 @@ public class RESTEasyParamBasicCustomValuesResource
          @MatrixParam("matrixParam0") String matrixParam0Updated,
          @PathParam("pathParam0") String pathParam0Updated,
          @QueryParam("queryParam0") String queryParam0Updated
-         )
+   )
    {
       this.cookieParam0Updated = cookieParam0Updated;
       this.formParam0Updated = formParam0Updated;

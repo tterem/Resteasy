@@ -73,24 +73,24 @@ public class WireSmokeTest {
    @Test
    public void testNoDefaultsResource() throws Exception {
       {
-            Response response = client.target(generateURLNoDefault("/basic")).request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(WRONG_RESPONSE, "basic", response.readEntity(String.class));
+         Response response = client.target(generateURLNoDefault("/basic")).request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(WRONG_RESPONSE, "basic", response.readEntity(String.class));
       }
       {
-            Response response = client.target(generateURLNoDefault("/basic")).request().put(Entity.entity("basic", "text/plain"));
-            Assert.assertEquals(HttpResponseCodes.SC_NO_CONTENT, response.getStatus());
-            response.close();
+         Response response = client.target(generateURLNoDefault("/basic")).request().put(Entity.entity("basic", "text/plain"));
+         Assert.assertEquals(HttpResponseCodes.SC_NO_CONTENT, response.getStatus());
+         response.close();
       }
       {
-            Response response = client.target(generateURLNoDefault("/queryParam")).queryParam("param", "hello world").request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(WRONG_RESPONSE, "hello world", response.readEntity(String.class));
+         Response response = client.target(generateURLNoDefault("/queryParam")).queryParam("param", "hello world").request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(WRONG_RESPONSE, "hello world", response.readEntity(String.class));
       }
       {
-            Response response = client.target(generateURLNoDefault("/uriParam/1234")).request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(WRONG_RESPONSE, "1234", response.readEntity(String.class));
+         Response response = client.target(generateURLNoDefault("/uriParam/1234")).request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(WRONG_RESPONSE, "1234", response.readEntity(String.class));
       }
    }
 
@@ -101,24 +101,24 @@ public class WireSmokeTest {
    @Test
    public void testLocatingResource() throws Exception {
       {
-            Response response = client.target(generateURLLocating("/locating/basic")).request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(WRONG_RESPONSE, "basic", response.readEntity(String.class));
+         Response response = client.target(generateURLLocating("/locating/basic")).request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(WRONG_RESPONSE, "basic", response.readEntity(String.class));
       }
       {
-            Response response = client.target(generateURLLocating("/locating/basic")).request().put(Entity.entity("basic", "text/plain"));
-            Assert.assertEquals(HttpResponseCodes.SC_NO_CONTENT, response.getStatus());
-            response.close();
+         Response response = client.target(generateURLLocating("/locating/basic")).request().put(Entity.entity("basic", "text/plain"));
+         Assert.assertEquals(HttpResponseCodes.SC_NO_CONTENT, response.getStatus());
+         response.close();
       }
       {
-            Response response = client.target(generateURLLocating("/locating/queryParam")).queryParam("param", "hello world").request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(WRONG_RESPONSE, "hello world", response.readEntity(String.class));
+         Response response = client.target(generateURLLocating("/locating/queryParam")).queryParam("param", "hello world").request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(WRONG_RESPONSE, "hello world", response.readEntity(String.class));
       }
       {
-            Response response = client.target(generateURLLocating("/locating/uriParam/1234")).queryParam("param", "hello world").request().get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-            Assert.assertEquals(WRONG_RESPONSE, "1234", response.readEntity(String.class));
+         Response response = client.target(generateURLLocating("/locating/uriParam/1234")).queryParam("param", "hello world").request().get();
+         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
+         Assert.assertEquals(WRONG_RESPONSE, "1234", response.readEntity(String.class));
       }
       {
          Response response = client.target(generateURLLocating("/locating/uriParam/x1234")).queryParam("param", "hello world").request().get();

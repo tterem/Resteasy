@@ -40,30 +40,30 @@ public class NewCookieHeaderDelegate implements RuntimeDelegate.HeaderDelegate {
          String name = entry.getKey();
          String value = entry.getValue();
          if (name.equalsIgnoreCase("Comment"))
-         comment = value;
+            comment = value;
          else if (name.equalsIgnoreCase("Domain"))
-         domain = value;
+            domain = value;
          else if (name.equalsIgnoreCase("Max-Age"))
-         maxAge = Integer.parseInt(value);
+            maxAge = Integer.parseInt(value);
          else if (name.equalsIgnoreCase("Path"))
-         path = value;
+            path = value;
          else if (name.equalsIgnoreCase("Secure"))
-         secure = true;
+            secure = true;
          else if (name.equalsIgnoreCase("Version"))
-         version = Integer.parseInt(value);
+            version = Integer.parseInt(value);
          else if (name.equalsIgnoreCase("HttpOnly"))
-         httpOnly = true;
+            httpOnly = true;
          else if (name.equalsIgnoreCase("Expires")) {
-         try
-         {
-            expiry = new SimpleDateFormat(OLD_COOKIE_PATTERN, Locale.US).parse(value);
-         }
-         catch (ParseException e)
-         {
-         }
+            try
+            {
+               expiry = new SimpleDateFormat(OLD_COOKIE_PATTERN, Locale.US).parse(value);
+            }
+            catch (ParseException e)
+            {
+            }
          } else {
-         cookieName = name;
-         cookieValue = value;
+            cookieName = name;
+            cookieValue = value;
          }
 
       }
@@ -80,11 +80,11 @@ public class NewCookieHeaderDelegate implements RuntimeDelegate.HeaderDelegate {
    protected void quote(StringBuilder b, String value) {
 
       if (MediaTypeHeaderDelegate.quoted(value)) {
-            b.append('"');
-            b.append(value);
-            b.append('"');
+         b.append('"');
+         b.append(value);
+         b.append('"');
       } else {
-            b.append(value);
+         b.append(value);
       }
    }
 

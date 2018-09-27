@@ -206,7 +206,7 @@ public class ValidationExceptionsTest {
       Assert.assertTrue(ERROR_MESSAGE, entity.contains("ConstraintDeclarationException"));
       Assert.assertTrue(ERROR_MESSAGE,
                           entity.contains(ValidationExceptionSubResourceWithInvalidOverride.ConstraintDeclarationExceptionMapper.class.getName()));
-      }
+   }
 
    /**
      * @tpTestDetails Resource with incorrect group definition, group definition exception is expected
@@ -238,7 +238,7 @@ public class ValidationExceptionsTest {
       Assert.assertTrue(ERROR_MESSAGE, entity.contains("GroupDefinitionException"));
       Assert.assertTrue(ERROR_MESSAGE,
          entity.contains(ValidationExceptionResourceWithInvalidConstraintGroup.GroupDefinitionExceptionMapper.class.getName()));
-      }
+   }
 
    /**
      * @tpTestDetails Tests for: Exception thrown during validation of field, Exception thrown during validation of parameter,

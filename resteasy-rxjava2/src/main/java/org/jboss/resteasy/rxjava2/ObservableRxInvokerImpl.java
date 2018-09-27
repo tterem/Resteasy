@@ -198,12 +198,12 @@ public class ObservableRxInvokerImpl implements ObservableRxInvoker
                @Override
                public void subscribe(ObservableEmitter<T> emitter) throws Exception {
                   sseEventSource.register(
-                        (InboundSseEvent e) -> {
-                           T t = e.readData(clazz, ((InboundSseEventImpl) e).getMediaType());
-                           emitter.onNext(t);
-                        },
-                        (Throwable t) -> emitter.onError(t),
-                        () -> emitter.onComplete());
+                     (InboundSseEvent e) -> {
+                        T t = e.readData(clazz, ((InboundSseEventImpl) e).getMediaType());
+                        emitter.onNext(t);
+                     },
+                     (Throwable t) -> emitter.onError(t),
+                     () -> emitter.onComplete());
                   synchronized (monitor) {
                      if (!sseEventSource.isOpen()) {
                         sseEventSource.open(null, verb, entity, mediaTypes);
@@ -222,9 +222,9 @@ public class ObservableRxInvokerImpl implements ObservableRxInvoker
                @Override
                public void subscribe(ObservableEmitter<T> emitter) throws Exception {
                   sseEventSource.register(
-                        (InboundSseEvent e) -> {T t = e.readData(type, ((InboundSseEventImpl) e).getMediaType()); emitter.onNext(t);},
-                        (Throwable t) -> emitter.onError(t),
-                        () -> emitter.onComplete());
+                     (InboundSseEvent e) -> {T t = e.readData(type, ((InboundSseEventImpl) e).getMediaType()); emitter.onNext(t);},
+                     (Throwable t) -> emitter.onError(t),
+                     () -> emitter.onComplete());
                   synchronized (monitor)
                   {
                      if (!sseEventSource.isOpen())

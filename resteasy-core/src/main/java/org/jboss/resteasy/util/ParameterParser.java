@@ -281,8 +281,7 @@ public class ParameterParser
       String paramValue = null;
       while (hasChar())
       {
-         paramName = parseToken(new char[]{
-                 '=', separator});
+         paramName = parseToken(new char[]{'=', separator});
          paramValue = null;
          if (hasChar() && (chars[pos] == '='))
          {
@@ -340,8 +339,7 @@ public class ParameterParser
 
       while (hasChar())
       {
-         paramName = parseToken(new char[]{
-                 '=', separator});
+         paramName = parseToken(new char[]{'=', separator});
          paramValue = null;
          int index = -1;
          if (paramName.equals(name))

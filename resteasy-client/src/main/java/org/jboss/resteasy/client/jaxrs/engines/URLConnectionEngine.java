@@ -62,8 +62,8 @@ public class URLConnectionEngine implements ClientHttpEngine
          @Override
          protected InputStream getInputStream()
          {
-         if (stream == null)
-         {
+            if (stream == null)
+            {
                try
                {
                   stream = (status < 300) ? connection.getInputStream() : connection.getErrorStream();
@@ -72,30 +72,30 @@ public class URLConnectionEngine implements ClientHttpEngine
                {
                   throw new RuntimeException(e);
                }
-         }
+            }
 
-         return stream;
+            return stream;
          }
 
          @Override
          protected void setInputStream(InputStream is)
          {
-         stream = is;
-         resetEntity();
+            stream = is;
+            resetEntity();
          }
 
          @Override
          public void releaseConnection() throws IOException
          {
-         releaseConnection(false);
+            releaseConnection(false);
          }
 
          @Override
          public void releaseConnection(boolean consumeInputStream) throws IOException
          {
-         InputStream is = getInputStream();
-         if (is != null)
-         {
+            InputStream is = getInputStream();
+            if (is != null)
+            {
                // https://docs.oracle.com/javase/8/docs/technotes/guides/net/http-keepalive.html
                if (consumeInputStream)
                {
@@ -104,8 +104,8 @@ public class URLConnectionEngine implements ClientHttpEngine
                   }
                }
                is.close();
-         }
-         connection.disconnect();
+            }
+            connection.disconnect();
          }
 
       };

@@ -66,11 +66,11 @@ public class SecureUnmarshaller implements Unmarshaller {
          } else
          {
             try {
-            tccl = AccessController.doPrivileged(new PrivilegedExceptionAction<ClassLoader>() {
-               public ClassLoader run() throws Exception {
-                  return Thread.currentThread().getContextClassLoader();
-               }
-            });
+               tccl = AccessController.doPrivileged(new PrivilegedExceptionAction<ClassLoader>() {
+                  public ClassLoader run() throws Exception {
+                     return Thread.currentThread().getContextClassLoader();
+                  }
+               });
             } catch (PrivilegedActionException e) {
                throw new SecurityException(e);
             }

@@ -113,12 +113,12 @@ public class RESTUtils {
          RESTServiceDiscovery ret) {
       // find a single service
       LinkResource service = m
-      .getAnnotation(LinkResource.class);
+         .getAnnotation(LinkResource.class);
       if(service != null)
          processLinkResource(m, entity, uriInfo, ret, service);
       // find a multi-service
       LinkResources services = m
-      .getAnnotation(LinkResources.class);
+         .getAnnotation(LinkResources.class);
       if(services != null)
          for(LinkResource service2 : services.value())
             processLinkResource(m, entity, uriInfo, ret, service2);

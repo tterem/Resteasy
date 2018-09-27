@@ -91,7 +91,7 @@ public class ServerCookie implements Serializable
               || name.equalsIgnoreCase("Secure")      // rfc2019
               || name.equalsIgnoreCase("Version")     // rfc2019
          // TODO remaining RFC2965 attributes
-              )
+      )
       {
          return false;
       }

@@ -38,8 +38,8 @@ public class StringQualityValueTest {
    public void simple() {
       String[] fields = {"compress", "gzip"};
       QualityValue[] qualities = {
-            QualityValue.DEFAULT,
-            QualityValue.DEFAULT
+         QualityValue.DEFAULT,
+         QualityValue.DEFAULT
       };
       assertList("compress, gzip", fields, qualities);
       assertList(" compress,gzip ", fields, qualities);
@@ -55,8 +55,8 @@ public class StringQualityValueTest {
       String header = "iso-8859-5, unicode-1-1;q=0.8";
       String[] fields = {"iso-8859-5", "unicode-1-1"};
       QualityValue[] qualities = {
-            QualityValue.DEFAULT,
-            QualityValue.valueOf("0.8")
+         QualityValue.DEFAULT,
+         QualityValue.valueOf("0.8")
       };
       assertList(header, fields, qualities);
    }
@@ -82,9 +82,9 @@ public class StringQualityValueTest {
       String header = "gzip;q=1.0, identity; q=0.5, *;q=0";
       String[] fields = {"gzip", "identity", null};
       QualityValue[] qualities = {
-            QualityValue.valueOf("1.0"),
-            QualityValue.valueOf("0.5"),
-            QualityValue.valueOf("0")
+         QualityValue.valueOf("1.0"),
+         QualityValue.valueOf("0.5"),
+         QualityValue.valueOf("0")
       };
       assertList(header, fields, qualities);
    }
@@ -96,15 +96,15 @@ public class StringQualityValueTest {
    @Test
    public void badRequests() {
       String[] badHeaders = {
-            " ,b,c",      // empty fields
-            "a, ,c",
-            "a,b, ",
-            ",",
-            "a;",         // empty parameters
-            "a;,b",
-            "a;x=0",      // illegal parameters
-            "a;q=0.1;q=0.1",
-            "a;illegal"
+         " ,b,c",      // empty fields
+         "a, ,c",
+         "a,b, ",
+         ",",
+         "a;",         // empty parameters
+         "a;,b",
+         "a;x=0",      // illegal parameters
+         "a;q=0.1;q=0.1",
+         "a;illegal"
       };
       for (String header : badHeaders) {
          try {

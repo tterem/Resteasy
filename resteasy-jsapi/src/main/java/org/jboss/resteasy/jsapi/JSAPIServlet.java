@@ -69,12 +69,13 @@ public class JSAPIServlet extends HttpServlet
          LogMessages.LOGGER.debug(Messages.MESSAGES.serving(pathInfo));
          LogMessages.LOGGER.debug(Messages.MESSAGES.query(req.getQueryString()));
       }
-      if (this.services == null) try {
+      if (this.services == null) {
+         try {
             scanResources();
-      } catch (Exception e) {
-         resp.sendError(503, Messages.MESSAGES.thereAreNoResteasyDeployments()); // FIXME should return internal error
+         } catch (Exception e) {
+            resp.sendError(503, Messages.MESSAGES.thereAreNoResteasyDeployments()); // FIXME should return internal error
+         }
       }
-
       if (this.services == null)
       {
          resp.sendError(503, Messages.MESSAGES.thereAreNoResteasyDeployments());

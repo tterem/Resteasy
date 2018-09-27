@@ -64,7 +64,7 @@ public class QueryParamAsPrimitiveResourceListDefaultOverride {
    @GET
    @Produces("application/char")
    public String doGetCharacter(@QueryParam("char") @DefaultValue("b") List<Character> v) {
-         Assert.assertEquals(QueryParamAsPrimitiveTest.ERROR_MESSAGE, 'a', v.get(0).charValue());
-         return "content";
+      Assert.assertEquals(QueryParamAsPrimitiveTest.ERROR_MESSAGE, 'a', v.get(0).charValue());
+      return "content";
    }
 }

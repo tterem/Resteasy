@@ -55,7 +55,7 @@ public class SpringContextLoaderTest {
       MockServletContext context = new MockServletContext();
 
       if (deployment != null) {
-            context.setAttribute(ResteasyDeployment.class.getName(), deployment);
+         context.setAttribute(ResteasyDeployment.class.getName(), deployment);
       }
 
       return context;

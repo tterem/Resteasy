@@ -65,7 +65,7 @@ public class ClientProxy implements InvocationHandler
          }
          else if(method.getName().equals("as") && args.length == 1 && args[0] instanceof Class)
          {
-         return ProxyBuilder.proxy((Class<?>)args[0], target, config);
+            return ProxyBuilder.proxy((Class<?>)args[0], target, config);
          }
       }
 

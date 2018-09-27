@@ -38,13 +38,13 @@ public class RequestHandler extends SimpleChannelInboundHandler
    @Override
    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
       if (msg instanceof NettyHttpRequest) {
-            NettyHttpRequest request = (NettyHttpRequest) msg;
-            try {
+         NettyHttpRequest request = (NettyHttpRequest) msg;
+         try {
 
-// Not necessary, since io.netty.handler.codec.MessageAggregator has already done it.
-//                if (request.is100ContinueExpected()) {
-//                    send100Continue(ctx);
-//                }
+            // Not necessary, since io.netty.handler.codec.MessageAggregator has already done it.
+            //                if (request.is100ContinueExpected()) {
+            //                    send100Continue(ctx);
+            //                }
 
             NettyHttpResponse response = request.getResponse();
             try {
@@ -61,9 +61,9 @@ public class RequestHandler extends SimpleChannelInboundHandler
             if (!request.getAsyncContext().isSuspended()) {
                response.finish();
             }
-            } finally {
+         } finally {
             request.releaseContentBuffer();
-            }
+         }
 
       }
    }
@@ -100,7 +100,7 @@ public class RequestHandler extends SimpleChannelInboundHandler
    @Override
    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
       if (evt instanceof IdleStateEvent) {
-            ctx.close();
+         ctx.close();
       }
    }
 }

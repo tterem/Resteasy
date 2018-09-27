@@ -31,16 +31,16 @@ import javax.ws.rs.core.Response;
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResourceLocatorRegexNonCapturingGroupTest {
-      private static final String ERROR_MSG = "Response contain wrong content";
-      static Client client;
+   private static final String ERROR_MSG = "Response contain wrong content";
+   static Client client;
 
-      @BeforeClass
-      public static void setup() throws Exception {
+   @BeforeClass
+   public static void setup() throws Exception {
       client = ClientBuilder.newClient();
    }
 
-      @Deployment
-      public static Archive<?> deploy() {
+   @Deployment
+   public static Archive<?> deploy() {
       WebArchive war = TestUtil.prepareArchive(ResourceLocatorRegexNonCapturingGroupTest.class.getSimpleName());
       war.addClasses(ResourceLocatorRegexCapturingGroupSubResourceNoPath.class,
          ResourceLocatorRegexCapturingGroupSubResourceWithPath.class);

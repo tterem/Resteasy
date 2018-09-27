@@ -74,23 +74,23 @@ public class SseBroadcastTest {
             Assert.assertTrue("Unexpected sever sent event data", textMessage.equals(event.readData()));
             latch.countDown();
          }, ex -> {
-            errors.incrementAndGet();
-            logger.error(ex.getMessage(), ex);
-         });
+               errors.incrementAndGet();
+               logger.error(ex.getMessage(), ex);
+            });
          eventSource2.register(event -> {
             Assert.assertTrue("Unexpected sever sent event data", textMessage.equals(event.readData()));
             latch.countDown();
          }, ex -> {
-            errors.incrementAndGet();
-            logger.error(ex.getMessage(), ex);
-         });
+               errors.incrementAndGet();
+               logger.error(ex.getMessage(), ex);
+            });
          eventSource3.register(event -> {
             Assert.assertTrue("Unexpected sever sent event data", textMessage.equals(event.readData()));
             latch.countDown();
          }, ex -> {
-            errors.incrementAndGet();
-            logger.error(ex.getMessage(), ex);
-         });
+               errors.incrementAndGet();
+               logger.error(ex.getMessage(), ex);
+            });
          eventSource.open();
          eventSource2.open();
          eventSource3.open();
@@ -129,9 +129,9 @@ public class SseBroadcastTest {
             Assert.assertTrue("Unexpected sever sent event data", textMessage.equals(event.readData()));
             latch.countDown();
          }, ex -> {
-            errors.incrementAndGet();
-            logger.error(ex.getMessage(), ex);
-         });
+               errors.incrementAndGet();
+               logger.error(ex.getMessage(), ex);
+            });
          eventSource.open();
 
          client.target(generateURL("/broadcast/listeners")).request().get();
@@ -166,8 +166,8 @@ public class SseBroadcastTest {
          eventSource.register(event -> {
             Assert.assertTrue("Unexpected sever sent event data", textMessage.equals(event.readData()));
          }, ex -> {
-            logger.error(ex.getMessage(), ex);
-         });
+               logger.error(ex.getMessage(), ex);
+            });
          eventSource.open();
 
          client.target(generateURL("/broadcast/listeners")).request().get();

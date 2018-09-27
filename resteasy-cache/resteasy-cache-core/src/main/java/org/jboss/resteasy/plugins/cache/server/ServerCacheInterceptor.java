@@ -45,9 +45,9 @@ public class ServerCacheInterceptor implements WriterInterceptor
 
 
    private static final String pseudo[] = {"0", "1", "2",
-         "3", "4", "5", "6", "7", "8",
-         "9", "A", "B", "C", "D", "E",
-         "F"};
+      "3", "4", "5", "6", "7", "8",
+      "9", "A", "B", "C", "D", "E",
+      "F"};
 
    public static String byteArrayToHexString(byte[] bytes)
    {
@@ -141,11 +141,11 @@ public class ServerCacheInterceptor implements WriterInterceptor
          if (!cc.isPrivate() && !cc.isNoStore()) {
             MultivaluedMap<String, String> varyHeaders = new MultivaluedHashMap<>();
             if (context.getHeaders().containsKey(HttpHeaders.VARY)) {
-                 for (Object varyHeader : context.getHeaders().get(HttpHeaders.VARY)) {
-                     if (request.getMutableHeaders().containsKey(varyHeader)) {
-                         varyHeaders.addAll((String) varyHeader, request.getMutableHeaders().get(varyHeader));
-                     }
-                 }
+               for (Object varyHeader : context.getHeaders().get(HttpHeaders.VARY)) {
+                  if (request.getMutableHeaders().containsKey(varyHeader)) {
+                     varyHeaders.addAll((String) varyHeader, request.getMutableHeaders().get(varyHeader));
+                  }
+               }
             }
             cache.add(request.getUri().getRequestUri().toString(), context.getMediaType(), cc, context.getHeaders(), entity, etag, varyHeaders);
          }

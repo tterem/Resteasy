@@ -105,24 +105,24 @@ public class StringParameterInjector
 
       @Override
       public Iterator<E> iterator() {
-            return new Iterator<E>() {
+         return new Iterator<E>() {
             private final Iterator<? extends E> iterator = UnmodifiableArrayList.super.iterator();
 
             @Override
             public boolean hasNext() {
-                   return iterator.hasNext();
+               return iterator.hasNext();
             }
             @Override
             public E next() {
-                   return iterator.next();
+               return iterator.next();
             }
             @Override
             public void remove() {throw new UnsupportedOperationException();}
             @Override
             public void forEachRemaining(Consumer<? super E> action) {
-                   iterator.forEachRemaining(action);
+               iterator.forEachRemaining(action);
             }
-            };
+         };
       }
 
       @Override
@@ -132,32 +132,32 @@ public class StringParameterInjector
 
       @Override
       public ListIterator<E> listIterator(int index) {
-            return new ListIterator<E>() {
+         return new ListIterator<E>() {
             private final ListIterator<? extends E> iterator = UnmodifiableArrayList.super.listIterator(index);
 
             @Override
             public boolean hasNext() {
-                   return iterator.hasNext();
+               return iterator.hasNext();
             }
             @Override
             public E next() {
-                   return iterator.next();
+               return iterator.next();
             }
             @Override
             public boolean hasPrevious() {
-                   return iterator.hasPrevious();
+               return iterator.hasPrevious();
             }
             @Override
             public E previous() {
-                   return iterator.previous();
+               return iterator.previous();
             }
             @Override
             public int nextIndex() {
-                   return iterator.nextIndex();
+               return iterator.nextIndex();
             }
             @Override
             public int previousIndex() {
-                   return iterator.previousIndex();
+               return iterator.previousIndex();
             }
             @Override
             public void remove() {throw new UnsupportedOperationException();}
@@ -167,10 +167,10 @@ public class StringParameterInjector
             public void add(E e) {throw new UnsupportedOperationException();}
             @Override
             public void forEachRemaining(Consumer<? super E> action) {
-                   iterator.forEachRemaining(action);
+               iterator.forEachRemaining(action);
             }
-            };
-      
+         };
+
       }
 
    }
@@ -216,24 +216,24 @@ public class StringParameterInjector
 
       @Override
       public Iterator<E> iterator() {
-            return new Iterator<E>() {
+         return new Iterator<E>() {
             private final Iterator<? extends E> iterator = UnmodifiableHashSet.super.iterator();
 
             @Override
             public boolean hasNext() {
-                   return iterator.hasNext();
+               return iterator.hasNext();
             }
             @Override
             public E next() {
-                   return iterator.next();
+               return iterator.next();
             }
             @Override
             public void remove() {throw new UnsupportedOperationException();}
             @Override
             public void forEachRemaining(Consumer<? super E> action) {
-                   iterator.forEachRemaining(action);
+               iterator.forEachRemaining(action);
             }
-            };
+         };
       }
 
    }
@@ -325,46 +325,46 @@ public class StringParameterInjector
 
       @Override
       public Iterator<E> iterator() {
-            return new Iterator<E>() {
+         return new Iterator<E>() {
             private final Iterator<? extends E> iterator = UnmodifiableTreeSet.super.iterator();
 
             @Override
             public boolean hasNext() {
-                   return iterator.hasNext();
+               return iterator.hasNext();
             }
             @Override
             public E next() {
-                   return iterator.next();
+               return iterator.next();
             }
             @Override
             public void remove() {throw new UnsupportedOperationException();}
             @Override
             public void forEachRemaining(Consumer<? super E> action) {
-                   iterator.forEachRemaining(action);
+               iterator.forEachRemaining(action);
             }
-            };
+         };
       }
 
       @Override
       public Iterator<E> descendingIterator() {
-            return new Iterator<E>() {
+         return new Iterator<E>() {
             private final Iterator<? extends E> iterator = UnmodifiableTreeSet.super.descendingIterator();
 
             @Override
             public boolean hasNext() {
-                   return iterator.hasNext();
+               return iterator.hasNext();
             }
             @Override
             public E next() {
-                   return iterator.next();
+               return iterator.next();
             }
             @Override
             public void remove() {throw new UnsupportedOperationException();}
             @Override
             public void forEachRemaining(Consumer<? super E> action) {
-                   iterator.forEachRemaining(action);
+               iterator.forEachRemaining(action);
             }
-            };
+         };
       }
 
 
@@ -419,9 +419,9 @@ public class StringParameterInjector
       }
       
       //Step2: try to find a conversion mechanism if the type is an array type
-     if (type.isArray())
+      if (type.isArray())
       {
-      isArray = true;
+         isArray = true;
          baseType = type.getComponentType();
          if(initialize(annotations, factory))
          {
@@ -429,11 +429,11 @@ public class StringParameterInjector
          }
       }
 
-     //Step 3: try to find a conversion mechanism if the type is a collection type
-     collectionType = convertParameterTypeToCollectionType();
-     if (collectionType != null)
-     {
-      isCollection = true;
+      //Step 3: try to find a conversion mechanism if the type is a collection type
+      collectionType = convertParameterTypeToCollectionType();
+      if (collectionType != null)
+      {
+         isCollection = true;
          if (genericType instanceof ParameterizedType)
          {
             ParameterizedType zType = (ParameterizedType) baseGenericType;
@@ -449,9 +449,9 @@ public class StringParameterInjector
          {
             return;
          }
-     }
+      }
       
-     throw new RuntimeException(Messages.MESSAGES.unableToFindConstructor(getParamSignature(), target, baseType.getName()));
+      throw new RuntimeException(Messages.MESSAGES.unableToFindConstructor(getParamSignature(), target, baseType.getName()));
 
    }
    
@@ -485,15 +485,15 @@ public class StringParameterInjector
          {
             try
             {
-            unmarshaller = binder.value().newInstance();
+               unmarshaller = binder.value().newInstance();
             }
             catch (InstantiationException e)
             {
-            throw new RuntimeException(e.getCause());
+               throw new RuntimeException(e.getCause());
             }
             catch (IllegalAccessException e)
             {
-            throw new RuntimeException(e);
+               throw new RuntimeException(e);
             }
             factory.injectProperties(unmarshaller);
             unmarshaller.setAnnotations(annotations);
@@ -645,13 +645,13 @@ public class StringParameterInjector
          {
             collection.add(extractValue(str));
          }
-      if (ArrayList.class.equals(collectionType)) {
-         return new UnmodifiableArrayList<>(collection);
-      } else if (TreeSet.class.equals(collectionType)) {
-         return new UnmodifiableTreeSet<>(collection);
-      } else if (HashSet.class.equals(collectionType)) {
-         return new UnmodifiableHashSet<>(collection);
-      }
+         if (ArrayList.class.equals(collectionType)) {
+            return new UnmodifiableArrayList<>(collection);
+         } else if (TreeSet.class.equals(collectionType)) {
+            return new UnmodifiableTreeSet<>(collection);
+         } else if (HashSet.class.equals(collectionType)) {
+            return new UnmodifiableHashSet<>(collection);
+         }
          throw new RuntimeException("Unable to handle "+collectionType);
       }
       else

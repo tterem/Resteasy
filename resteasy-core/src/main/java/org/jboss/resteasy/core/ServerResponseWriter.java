@@ -162,30 +162,30 @@ public class ServerResponseWriter
    
    public static MediaType getResponseMediaType(BuiltResponse jaxrsResponse, HttpRequest request, HttpResponse response, ResteasyProviderFactory providerFactory, ResourceMethodInvoker method)
    {
-     MediaType mt = null;
+      MediaType mt = null;
       if (jaxrsResponse.getEntity() != null)
       {
-      if ((mt = jaxrsResponse.getMediaType()) == null)
-      {
-         mt = getDefaultContentType(request, jaxrsResponse, providerFactory, method);
-      }
-      
-      boolean addCharset = true;
-      ResteasyDeployment deployment = ResteasyContext.getContextData(ResteasyDeployment.class);
-      if (deployment != null)
-      {
-         addCharset = deployment.isAddCharset();
-      }
-      if (addCharset)
-      {
-         if (!mt.getParameters().containsKey(MediaType.CHARSET_PARAMETER))
+         if ((mt = jaxrsResponse.getMediaType()) == null)
          {
-              if (MediaTypeHelper.isTextLike(mt))
-              {
-                 mt = mt.withCharset(StandardCharsets.UTF_8.toString());
-              }
+            mt = getDefaultContentType(request, jaxrsResponse, providerFactory, method);
          }
-      }
+
+         boolean addCharset = true;
+         ResteasyDeployment deployment = ResteasyContext.getContextData(ResteasyDeployment.class);
+         if (deployment != null)
+         {
+            addCharset = deployment.isAddCharset();
+         }
+         if (addCharset)
+         {
+            if (!mt.getParameters().containsKey(MediaType.CHARSET_PARAMETER))
+            {
+               if (MediaTypeHelper.isTextLike(mt))
+               {
+                  mt = mt.withCharset(StandardCharsets.UTF_8.toString());
+               }
+            }
+         }
       }
       return mt;
    }

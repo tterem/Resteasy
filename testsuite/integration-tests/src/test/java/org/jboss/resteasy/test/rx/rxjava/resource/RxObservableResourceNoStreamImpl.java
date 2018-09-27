@@ -277,15 +277,14 @@ public class RxObservableResourceNoStreamImpl {
    static Observable<byte[]> buildObservableBytes(int n) {
       return Observable.create(
          new Observable.OnSubscribe<byte[]>() {
-
-               @Override
-               public void call(Subscriber<? super byte[]> t) {
-                   for (int i = 0; i < n; i++)
-                   {
-                       t.onNext(Bytes.BYTES);
-                   }
-                   t.onCompleted();
+            @Override
+            public void call(Subscriber<? super byte[]> t) {
+               for (int i = 0; i < n; i++)
+               {
+                  t.onNext(Bytes.BYTES);
                }
+               t.onCompleted();
+            }
          });
    }
 }

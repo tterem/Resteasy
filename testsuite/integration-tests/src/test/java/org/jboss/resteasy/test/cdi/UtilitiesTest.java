@@ -106,14 +106,14 @@ public class UtilitiesTest {
    public void testAnnotationPresent() throws Exception {
       assertTrue("Wrong annotations for CDIExtensionsBoston class", Utilities.isAnnotationPresent(C.class,
             new AnnotationLiteral<CDIExtensionsBoston>() {
-      }.annotationType()));
+         }.annotationType()));
 
       assertTrue("Wrong annotations for AnnotationLiteral class", Utilities.isAnnotationPresent(C.class,
             new AnnotationLiteral<RequestScoped>() {
-      }.annotationType()));
+         }.annotationType()));
 
       assertFalse("Wrong annotations for SessionScoped class", Utilities.isAnnotationPresent(C.class,
             new AnnotationLiteral<SessionScoped>() {
-      }.annotationType()));
+         }.annotationType()));
    }
 }

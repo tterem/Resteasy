@@ -434,9 +434,9 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
          final Class<?> beanClass = getBeanClass(factoryClassName);
          final Method[] methods = ReflectionUtils.getAllDeclaredMethods(beanClass);
          for (Method method : methods) {
-              if (method.getName().equals(factoryMethodName)) {
-                  return method.getReturnType();
-              }
+            if (method.getName().equals(factoryMethodName)) {
+               return method.getReturnType();
+            }
          }
 
          /*
@@ -457,19 +457,19 @@ public class SpringBeanProcessor implements BeanFactoryPostProcessor, SmartAppli
 
          */
          if (FactoryBean.class.isAssignableFrom(beanClass)) {
-              String defaultFactoryMethod = "getObject";
-              Class<?> returnType = null;
-              for (Method method : methods) {
-                  if (method.getName().equals(defaultFactoryMethod)) {
-                      returnType = method.getReturnType();
-                      if (returnType != Object.class) {
-                          break;
-                      }
+            String defaultFactoryMethod = "getObject";
+            Class<?> returnType = null;
+            for (Method method : methods) {
+               if (method.getName().equals(defaultFactoryMethod)) {
+                  returnType = method.getReturnType();
+                  if (returnType != Object.class) {
+                     break;
                   }
-              }
-              if (returnType != null) {
-                  return returnType;
-              }
+               }
+            }
+            if (returnType != null) {
+               return returnType;
+            }
          }
       }
 

@@ -82,7 +82,7 @@ public class OnDemandTracingTest extends TracingTestBase {
       boolean hasTracing = false;
       for (Map.Entry entry : response.getStringHeaders().entrySet()) {
          if (entry.getKey().toString().startsWith(RESTEasyTracing.HEADER_TRACING_PREFIX)) {
-         LOG.info("<K, V> ->" + entry);
+            LOG.info("<K, V> ->" + entry);
             hasTracing = true;
             break;
          }

@@ -52,11 +52,11 @@ public class SegmentTest {
             .getInstance());
       registry.addPerRequestResource(SegmentResource.class);
       try {
-            ResourceInvoker invoker = registry.getResourceInvoker(MockHttpRequest.options("/resource/sub"));
+         ResourceInvoker invoker = registry.getResourceInvoker(MockHttpRequest.options("/resource/sub"));
       } catch (DefaultOptionsMethodException e) {
       }
       try {
-            ResourceInvoker invoker = registry.getResourceInvoker(MockHttpRequest.put("/resource/sub"));
+         ResourceInvoker invoker = registry.getResourceInvoker(MockHttpRequest.put("/resource/sub"));
       } catch (NotAllowedException e) {
       }
    }

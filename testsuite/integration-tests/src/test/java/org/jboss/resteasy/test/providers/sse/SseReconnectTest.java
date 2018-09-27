@@ -33,7 +33,7 @@ public class SseReconnectTest {
    @Deployment
    public static Archive<?> deploy() {
       WebArchive war = TestUtil.prepareArchive(SseReconnectTest.class.getSimpleName());
-         return TestUtil.finishContainerPrepare(war, null, SseReconnectResource.class);
+      return TestUtil.finishContainerPrepare(war, null, SseReconnectResource.class);
    }
 
    private String generateURL(String path)
@@ -101,9 +101,9 @@ public class SseReconnectTest {
                results.add(event.readData(String.class));
                latch.countDown();
             }, ex -> {
-               errors.incrementAndGet();
-               Assert.assertTrue("ServiceUnavalile exception is expected", ex instanceof ServiceUnavailableException);
-            });
+                  errors.incrementAndGet();
+                  Assert.assertTrue("ServiceUnavalile exception is expected", ex instanceof ServiceUnavailableException);
+               });
             eventSource.open();
 
             boolean waitResult = latch.await(30, TimeUnit.SECONDS);

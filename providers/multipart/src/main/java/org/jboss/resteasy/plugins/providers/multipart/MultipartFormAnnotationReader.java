@@ -109,7 +109,7 @@ public class MultipartFormAnnotationReader implements MessageBodyReader<Object>
             {
                if (InputStream.class.equals(type1))
                {
-                   hasInputStream = true;
+                  hasInputStream = true;
                }
                data = part.getBody(type1, method.getGenericParameterTypes()[0]);
             }

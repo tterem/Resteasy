@@ -196,7 +196,7 @@ public abstract class ContextProvidersTestBase {
       Assert.assertTrue(RESPONSE_ERROR_MSG, keys.contains("bob"));
       Set<String> parts = new HashSet<String>();
       for (Iterator<InputPart> it = map.values().iterator(); it.hasNext(); ) {
-            parts.add(it.next().getBody(String.class, null));
+         parts.add(it.next().getBody(String.class, null));
       }
       Assert.assertTrue(RESPONSE_ERROR_MSG, parts.contains("Bill"));
       Assert.assertTrue(RESPONSE_ERROR_MSG, parts.contains("Bob"));

@@ -388,7 +388,7 @@ public class Entry extends CommonAttributes
          }
 
          if (obj == null)
-         return null;
+            return null;
       }
  
       if (obj instanceof JAXBElement) {

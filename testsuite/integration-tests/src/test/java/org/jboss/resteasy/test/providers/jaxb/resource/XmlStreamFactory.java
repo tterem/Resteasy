@@ -25,19 +25,19 @@ public final class XmlStreamFactory {
 
    public static XMLStreamWriter getXMLStreamWriter(OutputStream out) {
       try {
-            return XMLOutputFactory.newInstance().createXMLStreamWriter(out);
+         return XMLOutputFactory.newInstance().createXMLStreamWriter(out);
       } catch (XMLStreamException e) {
-            throw new ExceptionAdapter(e);
+         throw new ExceptionAdapter(e);
       }
    }
 
    static XMLStreamReader getXMLStreamReader(InputStream entityStream) {
       InputStream in = new BufferedInputStream(entityStream, 2048);
       try {
-            XMLInputFactory factory = XMLInputFactory.newInstance();
-            return factory.createXMLStreamReader(in);
+         XMLInputFactory factory = XMLInputFactory.newInstance();
+         return factory.createXMLStreamReader(in);
       } catch (XMLStreamException e) {
-            throw new ExceptionAdapter(e);
+         throw new ExceptionAdapter(e);
       }
    }
 }

@@ -52,19 +52,19 @@ public class RestEasyHttpResponseEncoder extends OneToOneEncoder
 
          for (Map.Entry<String, List<Object>> entry : nettyResponse.getOutputHeaders().entrySet())
          {
-               String key = entry.getKey();
-               for (Object value : entry.getValue())
+            String key = entry.getKey();
+            for (Object value : entry.getValue())
+            {
+               RuntimeDelegate.HeaderDelegate delegate = dispatcher.providerFactory.getHeaderDelegate(value.getClass());
+               if (delegate != null)
                {
-                  RuntimeDelegate.HeaderDelegate delegate = dispatcher.providerFactory.getHeaderDelegate(value.getClass());
-                  if (delegate != null)
-                  {
-                     response.headers().add(key, delegate.toString(value));
-                  }
-                  else
-                  {
-                     response.headers().add(key, value.toString());
-                  }
+                  response.headers().add(key, delegate.toString(value));
                }
+               else
+               {
+                  response.headers().add(key, value.toString());
+               }
+            }
          }
 
          nettyResponse.getOutputStream().flush();

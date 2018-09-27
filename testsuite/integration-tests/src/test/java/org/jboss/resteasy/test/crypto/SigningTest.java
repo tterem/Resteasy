@@ -114,7 +114,7 @@ public class SigningTest {
 
       PrivateKey privateKey = repository.getKeyStore().getPrivateKey("test._domainKey.samplezone.org");
       if (privateKey == null) {
-            throw new Exception("Private Key is null!!!");
+         throw new Exception("Private Key is null!!!");
       }
       PublicKey publicKey = repository.getKeyStore().getPublicKey("test._domainKey.samplezone.org");
       keys = new KeyPair(publicKey, privateKey);
@@ -293,9 +293,9 @@ public class SigningTest {
       logger.info(response.getHeaderString(DKIMSignature.DKIM_SIGNATURE));
       Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
       try {
-            response.readEntity(String.class);
+         response.readEntity(String.class);
       } catch (Exception e) {
-            throw e;
+         throw e;
       }
       response.close();
    }
@@ -319,12 +319,12 @@ public class SigningTest {
       Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
       Thread.sleep(1500);
       try {
-            response.readEntity(String.class);
-            Assert.fail("Validation error excepted.");
+         response.readEntity(String.class);
+         Assert.fail("Validation error excepted.");
       } catch (ProcessingException pe) {
-            UnauthorizedSignatureException e = (UnauthorizedSignatureException) pe.getCause();
-            Assert.assertThat("Unexcepted error", e.getMessage(), containsString("Failed to verify signatures:\r\n"));
-            Assert.assertThat("Unexcepted error", e.getMessage(), containsString("Signature is stale"));
+         UnauthorizedSignatureException e = (UnauthorizedSignatureException) pe.getCause();
+         Assert.assertThat("Unexcepted error", e.getMessage(), containsString("Failed to verify signatures:\r\n"));
+         Assert.assertThat("Unexcepted error", e.getMessage(), containsString("Signature is stale"));
       }
       response.close();
    }
@@ -441,12 +441,12 @@ public class SigningTest {
       Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
       Thread.sleep(1500);
       try {
-            response.readEntity(String.class);
-            throw new Exception("Signing error excepted");
+         response.readEntity(String.class);
+         throw new Exception("Signing error excepted");
       } catch (ProcessingException pe) {
-            UnauthorizedSignatureException e = (UnauthorizedSignatureException) pe.getCause();
-            Assert.assertThat("Unexcepted error", e.getMessage(), containsString("Failed to verify signatures:\r\n"));
-            Assert.assertThat("Unexcepted error", e.getMessage(), containsString("Signature expired"));
+         UnauthorizedSignatureException e = (UnauthorizedSignatureException) pe.getCause();
+         Assert.assertThat("Unexcepted error", e.getMessage(), containsString("Failed to verify signatures:\r\n"));
+         Assert.assertThat("Unexcepted error", e.getMessage(), containsString("Signature expired"));
       }
       response.close();
    }
@@ -472,13 +472,13 @@ public class SigningTest {
       Assert.assertNotNull("DKIM_SIGNATURE header is missing", response.getHeaderString(DKIMSignature.DKIM_SIGNATURE));
       Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
       try {
-            response.readEntity(String.class);
-            throw new Exception("unreachable!");
+         response.readEntity(String.class);
+         throw new Exception("unreachable!");
       } catch (ProcessingException pe) {
-            UnauthorizedSignatureException e = (UnauthorizedSignatureException) pe.getCause();
-            logger.info("UnauthorizedSignatureException message: " + e.getMessage());
-            Assert.assertThat("Unexcepted error", e.getMessage(), containsString("Failed to verify signatures:\r\n"));
-            Assert.assertThat("Unexcepted error", e.getMessage(), containsString("Failed to verify signature."));
+         UnauthorizedSignatureException e = (UnauthorizedSignatureException) pe.getCause();
+         logger.info("UnauthorizedSignatureException message: " + e.getMessage());
+         Assert.assertThat("Unexcepted error", e.getMessage(), containsString("Failed to verify signatures:\r\n"));
+         Assert.assertThat("Unexcepted error", e.getMessage(), containsString("Failed to verify signature."));
       }
       response.close();
    }
@@ -544,10 +544,10 @@ public class SigningTest {
       });
 
       try {
-            contentSignature.verify(response.getStringHeaders(), entity.getMarshalledBytes(), keys.getPublic());
-            Assert.fail("Signing error excepted");
+         contentSignature.verify(response.getStringHeaders(), entity.getMarshalledBytes(), keys.getPublic());
+         Assert.fail("Signing error excepted");
       } catch (SignatureException e) {
-            logger.info("SignatureException message: " + e.getMessage());
+         logger.info("SignatureException message: " + e.getMessage());
       }
       response.close();
    }
@@ -571,10 +571,10 @@ public class SigningTest {
       });
 
       try {
-            contentSignature.verify(response.getStringHeaders(), entity.getMarshalledBytes(), keys.getPublic());
-            Assert.fail("Signing error excepted");
+         contentSignature.verify(response.getStringHeaders(), entity.getMarshalledBytes(), keys.getPublic());
+         Assert.fail("Signing error excepted");
       } catch (SignatureException e) {
-            logger.info("SignatureException message: " + e.getMessage());
+         logger.info("SignatureException message: " + e.getMessage());
       }
       response.close();
    }
@@ -602,10 +602,10 @@ public class SigningTest {
       target.property(KeyRepository.class.getName(), repository);
       SigningProxy proxy = target.proxy(SigningProxy.class);
       try {
-            proxy.bad();
-            Assert.fail("Signing error excepted");
+         proxy.bad();
+         Assert.fail("Signing error excepted");
       } catch (ResponseProcessingException e) {
-            logger.info("ResponseProcessingException cause: " + e.getCause().getClass().getName());
+         logger.info("ResponseProcessingException cause: " + e.getCause().getClass().getName());
       }
    }
 

@@ -23,7 +23,7 @@ public class ObjectFilterModifierConditional extends ObjectWriterModifier {
       PropertyFilter theFilter = new SimpleBeanPropertyFilter() {
          @Override
          public void serializeAsField
-               (Object pojo, JsonGenerator jgen, SerializerProvider provider, PropertyWriter writer)
+            (Object pojo, JsonGenerator jgen, SerializerProvider provider, PropertyWriter writer)
                throws Exception {
             if (include(writer)) {
                if (!writer.getName().equals("id")) {

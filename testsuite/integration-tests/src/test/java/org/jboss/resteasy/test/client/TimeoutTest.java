@@ -63,18 +63,18 @@ public class TimeoutTest extends ClientTestBase{
       ResteasyClient client = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
       ResteasyWebTarget target = client.target(generateURL("/timeout"));
       try {
-            target.queryParam("sleep", "5").request().get();
-            Assert.fail("The request didn't timeout as expected");
+         target.queryParam("sleep", "5").request().get();
+         Assert.fail("The request didn't timeout as expected");
       } catch (ProcessingException e) {
-            Assert.assertEquals("Expected SocketTimeoutException", e.getCause().getClass(), SocketTimeoutException.class);
+         Assert.assertEquals("Expected SocketTimeoutException", e.getCause().getClass(), SocketTimeoutException.class);
       }
 
       TimeoutResourceInterface proxy = client.target(generateURL("")).proxy(TimeoutResourceInterface.class);
       try {
-            proxy.get(5);
-            Assert.fail("The request didn't timeout as expected when using client proxy");
+         proxy.get(5);
+         Assert.fail("The request didn't timeout as expected when using client proxy");
       } catch (ProcessingException e) {
-            Assert.assertEquals("Expected SocketTimeoutException", e.getCause().getClass(), SocketTimeoutException.class);
+         Assert.assertEquals("Expected SocketTimeoutException", e.getCause().getClass(), SocketTimeoutException.class);
       }
       clientengine.close();
    }

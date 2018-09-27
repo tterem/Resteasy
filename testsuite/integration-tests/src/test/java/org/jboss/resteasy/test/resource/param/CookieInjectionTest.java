@@ -90,7 +90,7 @@ public class CookieInjectionTest {
 //            }
          response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 
@@ -118,7 +118,7 @@ public class CookieInjectionTest {
          Assert.assertTrue("Unexpected cookie expires:" + res, headers.get("Set-Cookie").contains(res));
          response.close();
       } catch (Exception e) {
-            throw new RuntimeException(e);
+         throw new RuntimeException(e);
       }
    }
 

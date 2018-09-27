@@ -55,24 +55,24 @@ class RESTEasyTracingLoggerImpl extends RESTEasyTracing implements RESTEasyTraci
 
    @Override
    public boolean isLogEnabled(String eventName) {
-       return isLogEnabled(getEvent(eventName));
+      return isLogEnabled(getEvent(eventName));
    }
 
    @Override
    public void log(String eventName, Object... args) {
-       log(getEvent(eventName), args);
+      log(getEvent(eventName), args);
    }
 
    @Override
    public void logDuration(String eventName, long fromTimestamp, Object... args)
    {
-       logDuration(getEvent(eventName), fromTimestamp, args);
+      logDuration(getEvent(eventName), fromTimestamp, args);
    }
 
    @Override
    public long timestamp(String eventName)
    {
-       return timestamp(getEvent(eventName));
+      return timestamp(getEvent(eventName));
    }
 
    private boolean isEnabled(final RESTEasyTracingLevel level) {
@@ -92,31 +92,31 @@ class RESTEasyTracingLoggerImpl extends RESTEasyTracing implements RESTEasyTraci
    @Override
    public void logDuration(final RESTEasyTracingEvent event, final long fromTimestamp, final Object... args) {
       if (isEnabled(event.level())) {
-            final long toTimestamp;
-            if (fromTimestamp == -1) {
+         final long toTimestamp;
+         if (fromTimestamp == -1) {
             toTimestamp = -1;
-            } else {
+         } else {
             toTimestamp = System.nanoTime();
-            }
-            long duration = 0;
-            if ((fromTimestamp != -1) && (toTimestamp != -1)) {
+         }
+         long duration = 0;
+         if ((fromTimestamp != -1) && (toTimestamp != -1)) {
             duration = toTimestamp - fromTimestamp;
-            }
-            logImpl(event, duration, args);
+         }
+         logImpl(event, duration, args);
       }
    }
 
    private void logImpl(final RESTEasyTracingEvent event, final long duration, final Object... messageArgs) {
       if (isEnabled(event.level())) {
-            final String[] messageArgsStr = new String[messageArgs.length];
-            for (int i = 0; i < messageArgs.length; i++) {
+         final String[] messageArgsStr = new String[messageArgs.length];
+         for (int i = 0; i < messageArgs.length; i++) {
             messageArgsStr[i] = formatInstance(messageArgs[i]);
-            }
-            final RESTEasyTracingMessage message = new RESTEasyTracingMessage(event, duration, messageArgsStr);
-            tracingInfo.addMessage(message);
+         }
+         final RESTEasyTracingMessage message = new RESTEasyTracingMessage(event, duration, messageArgsStr);
+         tracingInfo.addMessage(message);
 
-            final Logger.Level loggingLevel;
-            switch (event.level()) {
+         final Logger.Level loggingLevel;
+         switch (event.level()) {
             case SUMMARY:
                loggingLevel = Logger.Level.INFO;
                break;
@@ -128,11 +128,11 @@ class RESTEasyTracingLoggerImpl extends RESTEasyTracing implements RESTEasyTraci
                break;
             default:
                loggingLevel = Logger.Level.INFO;
-            }
-            if (logger.isEnabled(loggingLevel)) {
+         }
+         if (logger.isEnabled(loggingLevel)) {
             logger.log(loggingLevel,
-                        event.name() + ' ' + message.toString() + " [" + tracingInfo.formatDuration(duration) + " ms]");
-            }
+                     event.name() + ' ' + message.toString() + " [" + tracingInfo.formatDuration(duration) + " ms]");
+         }
       }
    }
 
@@ -144,9 +144,9 @@ class RESTEasyTracingLoggerImpl extends RESTEasyTracing implements RESTEasyTraci
    private static void formatResponse(final Response response, final StringBuilder text) {
       text.append(" <").append(formatStatusInfo(response.getStatusInfo())).append('|');
       if (response.hasEntity()) {
-            formatInstance(response.getEntity(), text);
+         formatInstance(response.getEntity(), text);
       } else {
-            text.append("-no-entity-");
+         text.append("-no-entity-");
       }
       text.append('>');
    }
@@ -158,23 +158,23 @@ class RESTEasyTracingLoggerImpl extends RESTEasyTracing implements RESTEasyTraci
    private String formatInstance(Object instance) {
       final StringBuilder text = new StringBuilder();
       if (instance == null) {
-            text.append("null");
+         text.append("null");
       } else if ((instance instanceof Number) || (instance instanceof String) || (instance instanceof Method)) {
-            text.append(instance.toString());
+         text.append(instance.toString());
       } else if (instance instanceof Response.StatusType) {
-            text.append(formatStatusInfo((Response.StatusType) instance));
+         text.append(formatStatusInfo((Response.StatusType) instance));
       } else {
-            text.append('[');
-            formatInstance(instance, text);
-            if (instance.getClass().isAnnotationPresent(Priority.class)) {
+         text.append('[');
+         formatInstance(instance, text);
+         if (instance.getClass().isAnnotationPresent(Priority.class)) {
             text.append(" #").append(instance.getClass().getAnnotation(Priority.class).value());
-            }
-            if (instance instanceof WebApplicationException) {
+         }
+         if (instance instanceof WebApplicationException) {
             formatResponse(((WebApplicationException) instance).getResponse(), text);
-            } else if (instance instanceof Response) {
+         } else if (instance instanceof Response) {
             formatResponse(((Response) instance), text);
-            }
-            text.append(']');
+         }
+         text.append(']');
       }
       return text.toString();
    }
@@ -182,7 +182,7 @@ class RESTEasyTracingLoggerImpl extends RESTEasyTracing implements RESTEasyTraci
    @Override
    public long timestamp(final RESTEasyTracingEvent event) {
       if (isEnabled(event.level())) {
-            return System.nanoTime();
+         return System.nanoTime();
       }
       return -1;
    }
@@ -191,7 +191,7 @@ class RESTEasyTracingLoggerImpl extends RESTEasyTracing implements RESTEasyTraci
    public void flush(final MultivaluedMap<String, Object> headers) {
       final String[] messages = tracingInfo.getMessages();
       for (int i = 0; i < messages.length; i++) {
-            headers.putSingle(String.format(RESTEasyTracing.HEADER_RESPONSE_FORMAT, i), messages[i]);
+         headers.putSingle(String.format(RESTEasyTracing.HEADER_RESPONSE_FORMAT, i), messages[i]);
       }
    }
 }

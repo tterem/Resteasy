@@ -97,35 +97,35 @@ public class ClientHttpEngineBuilder43 implements ClientHttpEngineBuilder {
                      sslParameters.setServerNames(sniNames);
                      socket.setSSLParameters(sslParameters);
                   }
-            }
-         };
+               }
+            };
          }
          else if (that.getKeyStore() != null || that.getTrustStore() != null)
          {
-         SSLContext ctx = SSLContexts.custom()
-            .useProtocol(SSLConnectionSocketFactory.TLS)
-            .setSecureRandom(null)
-            .loadKeyMaterial(that.getKeyStore(),
-                     that.getKeyStorePassword() != null ? that.getKeyStorePassword().toCharArray() : null)
-            .loadTrustMaterial(that.getTrustStore(), TrustSelfSignedStrategy.INSTANCE)
-            .build();
-         sslsf = new SSLConnectionSocketFactory(ctx, verifier) {
-            @Override
-            protected void prepareSocket(SSLSocket socket) throws IOException
-            {
-               List<String> sniHostNames = that.getSniHostNames();
-               if(!sniHostNames.isEmpty()) {
-                  List<SNIServerName> sniNames = new ArrayList<>(sniHostNames.size());
-                  for (String sniHostName : sniHostNames) {
-                     sniNames.add(new SNIHostName(sniHostName));
-                  }
+            SSLContext ctx = SSLContexts.custom()
+               .useProtocol(SSLConnectionSocketFactory.TLS)
+               .setSecureRandom(null)
+               .loadKeyMaterial(that.getKeyStore(),
+                        that.getKeyStorePassword() != null ? that.getKeyStorePassword().toCharArray() : null)
+               .loadTrustMaterial(that.getTrustStore(), TrustSelfSignedStrategy.INSTANCE)
+               .build();
+            sslsf = new SSLConnectionSocketFactory(ctx, verifier) {
+               @Override
+               protected void prepareSocket(SSLSocket socket) throws IOException
+               {
+                  List<String> sniHostNames = that.getSniHostNames();
+                  if(!sniHostNames.isEmpty()) {
+                     List<SNIServerName> sniNames = new ArrayList<>(sniHostNames.size());
+                     for (String sniHostName : sniHostNames) {
+                        sniNames.add(new SNIHostName(sniHostName));
+                     }
 
-                  SSLParameters sslParameters = socket.getSSLParameters();
-                  sslParameters.setServerNames(sniNames);
-                  socket.setSSLParameters(sslParameters);
+                     SSLParameters sslParameters = socket.getSSLParameters();
+                     sslParameters.setServerNames(sniNames);
+                     socket.setSSLParameters(sslParameters);
+                  }
                }
-            }
-         };
+            };
          }
          else
          {
@@ -135,21 +135,21 @@ public class ClientHttpEngineBuilder43 implements ClientHttpEngineBuilder {
          }
 
          final Registry<ConnectionSocketFactory> registry = RegistryBuilder.<ConnectionSocketFactory>create()
-         .register("http", PlainConnectionSocketFactory.getSocketFactory())
-         .register("https", sslsf)
-         .build();
+            .register("http", PlainConnectionSocketFactory.getSocketFactory())
+            .register("https", sslsf)
+            .build();
 
          HttpClientConnectionManager cm = null;
          if (that.getConnectionPoolSize() > 0)
          {
             PoolingHttpClientConnectionManager tcm = new PoolingHttpClientConnectionManager(
                registry, null, null ,null, that.getConnectionTTL(TimeUnit.MILLISECONDS), TimeUnit.MILLISECONDS);
-         tcm.setMaxTotal(that.getConnectionPoolSize());
-         if (that.getMaxPooledPerRoute() == 0) {
-            that.maxPooledPerRoute(that.getConnectionPoolSize());
-         }
-         tcm.setDefaultMaxPerRoute(that.getMaxPooledPerRoute());
-         cm = tcm;
+            tcm.setMaxTotal(that.getConnectionPoolSize());
+            if (that.getMaxPooledPerRoute() == 0) {
+               that.maxPooledPerRoute(that.getConnectionPoolSize());
+            }
+            tcm.setDefaultMaxPerRoute(that.getMaxPooledPerRoute());
+            cm = tcm;
 
          }
          else
@@ -166,7 +166,7 @@ public class ClientHttpEngineBuilder43 implements ClientHttpEngineBuilder {
          {
             rcBuilder.setConnectTimeout((int)that.getConnectionTimeout(TimeUnit.MILLISECONDS));
          }
-            if (that.getConnectionCheckoutTimeout(TimeUnit.MILLISECONDS) > -1)
+         if (that.getConnectionCheckoutTimeout(TimeUnit.MILLISECONDS) > -1)
          {
             rcBuilder.setConnectionRequestTimeout((int)that.getConnectionCheckoutTimeout(TimeUnit.MILLISECONDS));
          }
@@ -190,7 +190,7 @@ public class ClientHttpEngineBuilder43 implements ClientHttpEngineBuilder {
       final HttpClient httpClient;
       if (System.getSecurityManager() == null)
       {
-           httpClient = HttpClientBuilder.create()
+         httpClient = HttpClientBuilder.create()
                  .setConnectionManager(cm)
                  .setDefaultRequestConfig(rcBuilder.build())
                  .setProxy(defaultProxy)
@@ -202,14 +202,14 @@ public class ClientHttpEngineBuilder43 implements ClientHttpEngineBuilder {
             @Override
             public HttpClient run()
             {
-                return HttpClientBuilder.create()
+               return HttpClientBuilder.create()
                         .setConnectionManager(cm)
                         .setDefaultRequestConfig(rcBuilder.build())
                         .setProxy(defaultProxy)
                         .disableContentCompression().build();
             }
          });
-       }
+      }
 
       ApacheHttpClient43Engine engine = new ApacheHttpClient43Engine(httpClient, true);
       engine.setResponseBufferSize(responseBufferSize);

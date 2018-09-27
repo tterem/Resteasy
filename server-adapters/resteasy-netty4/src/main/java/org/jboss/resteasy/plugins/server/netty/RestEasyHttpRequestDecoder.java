@@ -64,11 +64,11 @@ public class RestEasyHttpRequestDecoder extends MessageToMessageDecoder<io.netty
          Throwable t = decoderResult.cause();
          if (t != null && t.getLocalizedMessage() != null)
          {
-              response.sendError(400, t.getLocalizedMessage());
+            response.sendError(400, t.getLocalizedMessage());
          }
          else
          {
-              response.sendError(400);
+            response.sendError(400);
          }
          return;
       }
@@ -83,16 +83,16 @@ public class RestEasyHttpRequestDecoder extends MessageToMessageDecoder<io.netty
          NettyHttpRequest nettyRequest = new NettyHttpRequest(ctx, headers, uriInfo, request.method().name(), dispatcher, response, HttpUtil.is100ContinueExpected(request) );
          if (request instanceof HttpContent)
          {
-               HttpContent content = (HttpContent) request;
-               ByteBuf byteBuf = content.content();
+            HttpContent content = (HttpContent) request;
+            ByteBuf byteBuf = content.content();
 
-               // Does the request contain a body that will need to be retained
-               if(byteBuf.readableBytes() > 0) {
-                 ByteBuf buf = byteBuf.retain();
-                 nettyRequest.setContentBuffer(buf);
-               }
+            // Does the request contain a body that will need to be retained
+            if(byteBuf.readableBytes() > 0) {
+               ByteBuf buf = byteBuf.retain();
+               nettyRequest.setContentBuffer(buf);
+            }
 
-               out.add(nettyRequest);
+            out.add(nettyRequest);
          }
       }
       catch (Exception e)

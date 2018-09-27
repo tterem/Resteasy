@@ -45,7 +45,7 @@ public class RSADecrypter
                         final String encodedCipherText,
                         final String encodedAuthTag,
                         final RSAPrivateKey privateKey
-                               )
+   )
    {
 
       // Validate required JWE parts

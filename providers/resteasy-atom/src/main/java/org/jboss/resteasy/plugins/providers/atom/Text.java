@@ -68,30 +68,30 @@ public class Text extends CommonAttributes
 
    public Text(String text, String type)
    {
-     setText(text);
-     setRawType(type);
+      setText(text);
+      setRawType(type);
    }
 
    public Text(String text)
    {
-   setText(text);
+      setText(text);
    }  
   
    protected void setFinder(JAXBContextFinder finder)
    {
-     this.finder = finder;
+      this.finder = finder;
    }
 
    @XmlAnyElement
    @XmlMixed
    public List<Object> getValue()
    {
-     return value;
+      return value;
    }
 
    public void setValue(List<Object> value)
    {
-     this.value = value;
+      this.value = value;
    }
     
    /**
@@ -102,34 +102,34 @@ public class Text extends CommonAttributes
    @XmlTransient
    public MediaType getType()
    {
-     if (mediaType == null)
-     {
-      if (type.equals("html")) mediaType = MediaType.TEXT_HTML_TYPE;
-      else if (type.equals("text")) mediaType = MediaType.TEXT_PLAIN_TYPE;
-      else if (type.equals("xhtml")) mediaType = MediaType.APPLICATION_XHTML_XML_TYPE;
-      else mediaType = MediaType.valueOf(type);
-     }
-     return mediaType;
+      if (mediaType == null)
+      {
+         if (type.equals("html")) mediaType = MediaType.TEXT_HTML_TYPE;
+         else if (type.equals("text")) mediaType = MediaType.TEXT_PLAIN_TYPE;
+         else if (type.equals("xhtml")) mediaType = MediaType.APPLICATION_XHTML_XML_TYPE;
+         else mediaType = MediaType.valueOf(type);
+      }
+      return mediaType;
    }
 
    public void setType(MediaType type)
    {
-     mediaType = type;
-     if (type.equals(MediaType.TEXT_PLAIN_TYPE)) this.type = "text";
-     else if (type.equals(MediaType.TEXT_HTML_TYPE)) this.type = "html";
-     else if (type.equals(MediaType.APPLICATION_XHTML_XML_TYPE)) this.type = "xhtml";
-     else this.type = type.toString();
+      mediaType = type;
+      if (type.equals(MediaType.TEXT_PLAIN_TYPE)) this.type = "text";
+      else if (type.equals(MediaType.TEXT_HTML_TYPE)) this.type = "html";
+      else if (type.equals(MediaType.APPLICATION_XHTML_XML_TYPE)) this.type = "xhtml";
+      else this.type = type.toString();
    }
   
    @XmlAttribute(name = "type")
    public String getRawType()
    {
-     return type;
+      return type;
    }
 
    public void setRawType(String type)
    {
-     this.type = type;
+      this.type = type;
    }
   
    /**
@@ -140,16 +140,16 @@ public class Text extends CommonAttributes
    @XmlTransient
    public String getText()
    {
-     if (value == null) return null;
-     if (value.size() == 0) return null;
-     if (text != null) return text;
-     StringBuffer buf = new StringBuffer();
-     for (Object obj : value)
-     {
-      if (obj instanceof String) buf.append(obj.toString());
-     }
-     text = buf.toString();
-     return text;
+      if (value == null) return null;
+      if (value.size() == 0) return null;
+      if (text != null) return text;
+      StringBuffer buf = new StringBuffer();
+      for (Object obj : value)
+      {
+         if (obj instanceof String) buf.append(obj.toString());
+      }
+      text = buf.toString();
+      return text;
    }
   
    /**
@@ -159,10 +159,10 @@ public class Text extends CommonAttributes
    */
    public void setText(String text)
    {
-     if (value == null) value = new ArrayList<Object>();
-     if (this.text != null && value != null) value.clear();
-     this.text = text;
-     value.add(text);
+      if (value == null) value = new ArrayList<Object>();
+      if (this.text != null && value != null) value.clear();
+      this.text = text;
+      value.add(text);
    }
 
    /**
@@ -173,17 +173,17 @@ public class Text extends CommonAttributes
    @XmlTransient
    public Element getElement()
    {
-     if (value == null) return null;
-     if (element != null) return element;
-     for (Object obj : value)
-     {
-      if (obj instanceof Element)
+      if (value == null) return null;
+      if (element != null) return element;
+      for (Object obj : value)
       {
-         element = (Element) obj;
-         return element;
+         if (obj instanceof Element)
+         {
+            element = (Element) obj;
+            return element;
+         }
       }
-     }
-     return null;
+      return null;
    }
 
    /**
@@ -193,10 +193,10 @@ public class Text extends CommonAttributes
    */
    public void setElement(Element element)
    {
-     if (value == null) value = new ArrayList<Object>();
-     if (this.element != null && value != null) value.clear();
-     this.element = element;
-     value.add(element);
+      if (value == null) value = new ArrayList<Object>();
+      if (this.element != null && value != null) value.clear();
+      this.element = element;
+      value.add(element);
 
    }
     
@@ -215,34 +215,34 @@ public class Text extends CommonAttributes
    @SuppressWarnings(value = "unchecked")
    public <T> T getJAXBObject(Class<T> clazz, Class... otherPossibleClasses) throws JAXBException
    {
-     JAXBContext ctx = null;
-     Class[] classes = {clazz};
-     if (otherPossibleClasses != null && otherPossibleClasses.length > 0)
-     {
-      classes = new Class[1 + otherPossibleClasses.length];
-      classes[0] = clazz;
-      for (int i = 0; i < otherPossibleClasses.length; i++) classes[i + 1] = otherPossibleClasses[i];
-     }
-     if (finder != null)
-     {
-      ctx = finder.findCacheContext(MediaType.APPLICATION_XML_TYPE, null, classes);
-     }
-     else
-     {
-      ctx = JAXBContext.newInstance(classes);
-     }
-     if (getElement() == null) return null;
-     Object obj = ctx.createUnmarshaller().unmarshal(getElement());
-     if (obj instanceof JAXBElement)
-     {
-      jaxbObject = ((JAXBElement) obj).getValue();
-      return (T) jaxbObject;
-     }
-     else
-     {
-      jaxbObject = obj;
-      return (T) obj;
-     }
+      JAXBContext ctx = null;
+      Class[] classes = {clazz};
+      if (otherPossibleClasses != null && otherPossibleClasses.length > 0)
+      {
+         classes = new Class[1 + otherPossibleClasses.length];
+         classes[0] = clazz;
+         for (int i = 0; i < otherPossibleClasses.length; i++) classes[i + 1] = otherPossibleClasses[i];
+      }
+      if (finder != null)
+      {
+         ctx = finder.findCacheContext(MediaType.APPLICATION_XML_TYPE, null, classes);
+      }
+      else
+      {
+         ctx = JAXBContext.newInstance(classes);
+      }
+      if (getElement() == null) return null;
+      Object obj = ctx.createUnmarshaller().unmarshal(getElement());
+      if (obj instanceof JAXBElement)
+      {
+         jaxbObject = ((JAXBElement) obj).getValue();
+         return (T) jaxbObject;
+      }
+      else
+      {
+         jaxbObject = obj;
+         return (T) obj;
+      }
    }
 
    /**
@@ -254,21 +254,21 @@ public class Text extends CommonAttributes
    @XmlTransient
    public Object getJAXBObject()
    {
-     return jaxbObject;
+      return jaxbObject;
    }
 
    public void setJAXBObject(Object obj)
    {
-     if (value == null) value = new ArrayList<Object>();
-     if (jaxbObject != null && value != null) value.clear();
-     if (!obj.getClass().isAnnotationPresent(XmlRootElement.class) && obj.getClass().isAnnotationPresent(XmlType.class))
-     {
-      value.add(JAXBXmlTypeProvider.wrapInJAXBElement(obj, obj.getClass()));
-     }
-     else
-     {
-      value.add(obj);
-     }
-     jaxbObject = obj;
+      if (value == null) value = new ArrayList<Object>();
+      if (jaxbObject != null && value != null) value.clear();
+      if (!obj.getClass().isAnnotationPresent(XmlRootElement.class) && obj.getClass().isAnnotationPresent(XmlType.class))
+      {
+         value.add(JAXBXmlTypeProvider.wrapInJAXBElement(obj, obj.getClass()));
+      }
+      else
+      {
+         value.add(obj);
+      }
+      jaxbObject = obj;
    }  
 }

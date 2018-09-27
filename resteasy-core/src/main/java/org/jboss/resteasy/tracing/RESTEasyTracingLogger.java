@@ -18,10 +18,10 @@ public interface RESTEasyTracingLogger
       static {
          boolean b;
          try {
-         Class.forName("org.jboss.resteasy.tracing.api.RESTEasyTracing");
-         b = true;
+            Class.forName("org.jboss.resteasy.tracing.api.RESTEasyTracing");
+            b = true;
          } catch (Throwable t) {
-         b = false;
+            b = false;
          }
          AVAILABLE = b;
       }
@@ -179,7 +179,7 @@ public interface RESTEasyTracingLogger
                    request.getUri().getBaseUri(), request.getUri().getRequestUri(), request.getHttpMethod(),
                    RESTEasyTracingUtils.toStringOrNA(securityContext == null ? null : securityContext.getAuthenticationScheme())));
          for (String header : RESTEasyTracingUtils.SUMMARY_HEADERS) {
-               text.append(String.format(" %s=%s", header, RESTEasyTracingUtils.toStringOrNA(RESTEasyTracingUtils.getHeaderString(request, header))));
+            text.append(String.format(" %s=%s", header, RESTEasyTracingUtils.toStringOrNA(RESTEasyTracingUtils.getHeaderString(request, header))));
          }
          tracingLogger.log("START", text.toString());
       }
@@ -187,15 +187,15 @@ public interface RESTEasyTracingLogger
          StringBuilder text = new StringBuilder();
          HttpHeaders headers = request.getHttpHeaders();
          if (headers != null) {
-               for (String header : headers.getRequestHeaders().keySet()) {
-                   if (!RESTEasyTracingUtils.SUMMARY_HEADERS.contains(header)) {
-                       text.append(String.format(" %s=%s", header, RESTEasyTracingUtils.toStringOrNA(headers.getRequestHeaders().get(header))));
-                   }
+            for (String header : headers.getRequestHeaders().keySet()) {
+               if (!RESTEasyTracingUtils.SUMMARY_HEADERS.contains(header)) {
+                  text.append(String.format(" %s=%s", header, RESTEasyTracingUtils.toStringOrNA(headers.getRequestHeaders().get(header))));
                }
-               if (text.length() > 0) {
-                   text.insert(0, "Other request headers:");
-               }
-               tracingLogger.log("START_HEADERS", text.toString());
+            }
+            if (text.length() > 0) {
+               text.insert(0, "Other request headers:");
+            }
+            tracingLogger.log("START_HEADERS", text.toString());
          }
       }
    }

@@ -31,18 +31,18 @@ public class RequestScopedBeanQualifierInjectorFactoryImpl extends InjectorFacto
       final Qualifier qualifier = FindAnnotation.findAnnotation(annotations, Qualifier.class);
       if (qualifier == null) {
          return super.createParameterExtractor(injectTargetClass, injectTarget, defaultName, type,
-               genericType, annotations, factory);
+            genericType, annotations, factory);
       } else {
          return new ValueInjector() {
             @Override
             public CompletionStage<Object> inject(HttpRequest request, HttpResponse response, boolean unwrapAsync) {
-                   return CompletableFuture.completedFuture(beanFactory.getBean(qualifier.value()));
+               return CompletableFuture.completedFuture(beanFactory.getBean(qualifier.value()));
             }
 
             @Override
             public CompletionStage<Object> inject(boolean unwrapAsync) {
-                   // do nothing.
-                   return CompletableFuture.completedFuture(null);
+               // do nothing.
+               return CompletableFuture.completedFuture(null);
             }
          };
       }
@@ -57,13 +57,13 @@ public class RequestScopedBeanQualifierInjectorFactoryImpl extends InjectorFacto
          return new ValueInjector() {
             @Override
             public CompletionStage<Object> inject(HttpRequest request, HttpResponse response, boolean unwrapAsync) {
-                   return CompletableFuture.completedFuture(beanFactory.getBean(qualifier.value()));
+               return CompletableFuture.completedFuture(beanFactory.getBean(qualifier.value()));
             }
 
             @Override
             public CompletionStage<Object> inject(boolean unwrapAsync) {
-                   // do nothing.
-                   return CompletableFuture.completedFuture(null);
+               // do nothing.
+               return CompletableFuture.completedFuture(null);
             }
          };
       }

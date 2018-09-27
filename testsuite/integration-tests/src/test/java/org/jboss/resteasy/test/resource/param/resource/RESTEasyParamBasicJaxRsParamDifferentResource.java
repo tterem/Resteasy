@@ -56,7 +56,7 @@ public class RESTEasyParamBasicJaxRsParamDifferentResource
          @MatrixParam String matrixParam0,
          @PathParam String pathParam0,
          @QueryParam String queryParam0
-         )
+   )
    {
       this.cookieParam0 = cookieParam0;
       this.formParam0 = formParam0;

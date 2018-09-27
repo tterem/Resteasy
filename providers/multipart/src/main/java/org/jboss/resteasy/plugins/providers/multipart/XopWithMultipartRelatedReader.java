@@ -29,9 +29,7 @@ import org.jboss.resteasy.spi.util.FindAnnotation;
 @Consumes("multipart/related")
 public class XopWithMultipartRelatedReader implements MessageBodyReader<Object>
 {
-   protected
-   @Context
-   Providers workers;
+   protected @Context Providers workers;
 
    public boolean isReadable(Class<?> type, Type genericType,
                              Annotation[] annotations, MediaType mediaType)

@@ -182,10 +182,10 @@ public class ResteasyJackson2Provider extends JacksonJaxbJsonProvider
       // we can't cache this.
       if (annotations != null) {
          for (Annotation annotation : annotations) {
-               if (annotation.annotationType().equals(Formatted.class)) {
-                   withIndentOutput = true;
-                   break;
-               }
+            if (annotation.annotationType().equals(Formatted.class)) {
+               withIndentOutput = true;
+               break;
+            }
          }
       }
 
@@ -237,18 +237,18 @@ public class ResteasyJackson2Provider extends JacksonJaxbJsonProvider
             ClassLoader tccl;
             if (System.getSecurityManager() == null)
             {
-            tccl = Thread.currentThread().getContextClassLoader();
+               tccl = Thread.currentThread().getContextClassLoader();
             }
             else
             {
-            tccl = AccessController.doPrivileged(new PrivilegedAction<ClassLoader>()
-            {
-               @Override
-               public ClassLoader run()
+               tccl = AccessController.doPrivileged(new PrivilegedAction<ClassLoader>()
                {
-                        return Thread.currentThread().getContextClassLoader();
-               }
-            });
+                  @Override
+                  public ClassLoader run()
+                  {
+                     return Thread.currentThread().getContextClassLoader();
+                  }
+               });
             }
             mod = ResteasyObjectWriterInjector.get(tccl);
          }

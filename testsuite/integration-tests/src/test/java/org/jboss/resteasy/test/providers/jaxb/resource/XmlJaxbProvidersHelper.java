@@ -38,17 +38,17 @@ public final class XmlJaxbProvidersHelper {
                                                 InputStream entityStream,
                                                 XMLStreamReader reader) {
       try {
-            Unmarshaller unmarshaller = jaxb.createUnmarshaller();
-            JAXBElement<T> e = unmarshaller.unmarshal(reader, type);
-            return e;
+         Unmarshaller unmarshaller = jaxb.createUnmarshaller();
+         JAXBElement<T> e = unmarshaller.unmarshal(reader, type);
+         return e;
       } catch (JAXBException e) {
-            throw new ExceptionAdapter(e);
+         throw new ExceptionAdapter(e);
       }
    }
 
    public static String getCharset(final MediaType mediaType) {
       if (mediaType != null) {
-            return mediaType.getParameters().get("charset");
+         return mediaType.getParameters().get("charset");
       }
       return null;
    }

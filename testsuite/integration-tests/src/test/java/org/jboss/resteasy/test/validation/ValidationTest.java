@@ -103,64 +103,64 @@ public class ValidationTest {
       Assert.assertEquals(ERR_ENTITY_MESSAGE, validationFoo, response.readEntity(ValidationFoo.class));
 
       {
-            // Invalid native constraint
-            target = client.target(generateURL("/return/native"));
-            response = target.request().accept(MediaType.APPLICATION_XML).post(Entity.entity(new ValidationFoo("abcdef"),
-               "application/foo"));
-            ViolationReport r = response.readEntity(ViolationReport.class);
-            logger.info("entity: " + r);
-            Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
-            String header = response.getStringHeaders().getFirst(Validation.VALIDATION_HEADER);
-            Assert.assertNotNull(ERROR_HEADER_MESSAGE, header);
-            Assert.assertTrue(ERROR_HEADER_VALIDATION_EXCEPTION_MESSAGE, Boolean.valueOf(header));
-            ResteasyConstraintViolation violation = r.getReturnValueViolations().iterator().next();
-            logger.info("violation: " + violation);
-            Assert.assertTrue(ERR_CONSTRAINT_MESSAGE, violation.getMessage().equals("s must have length: 1 <= length <= 3"));
-            Assert.assertEquals(ERR_ENTITY_MESSAGE, "ValidationFoo[abcdef]", violation.getValue());
+         // Invalid native constraint
+         target = client.target(generateURL("/return/native"));
+         response = target.request().accept(MediaType.APPLICATION_XML).post(Entity.entity(new ValidationFoo("abcdef"),
+            "application/foo"));
+         ViolationReport r = response.readEntity(ViolationReport.class);
+         logger.info("entity: " + r);
+         Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
+         String header = response.getStringHeaders().getFirst(Validation.VALIDATION_HEADER);
+         Assert.assertNotNull(ERROR_HEADER_MESSAGE, header);
+         Assert.assertTrue(ERROR_HEADER_VALIDATION_EXCEPTION_MESSAGE, Boolean.valueOf(header));
+         ResteasyConstraintViolation violation = r.getReturnValueViolations().iterator().next();
+         logger.info("violation: " + violation);
+         Assert.assertTrue(ERR_CONSTRAINT_MESSAGE, violation.getMessage().equals("s must have length: 1 <= length <= 3"));
+         Assert.assertEquals(ERR_ENTITY_MESSAGE, "ValidationFoo[abcdef]", violation.getValue());
       }
 
       {
-            // Invalid imposed constraint
-            target = client.target(generateURL("/return/imposed"));
-            response = target.request().accept(MediaType.APPLICATION_XML).post(Entity.entity(new ValidationFoo("abcdef"),
-               "application/foo"));
-            Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
-            String header = response.getStringHeaders().getFirst(Validation.VALIDATION_HEADER);
-            Assert.assertNotNull(ERROR_HEADER_MESSAGE, header);
-            Assert.assertTrue(ERROR_HEADER_VALIDATION_EXCEPTION_MESSAGE, Boolean.valueOf(header));
-            ViolationReport r = response.readEntity(ViolationReport.class);
-            logger.info("entity: " + r);
-            TestUtil.countViolations(r, 0, 0, 0, 0, 1);
-            ResteasyConstraintViolation violation = r.getReturnValueViolations().iterator().next();
-            logger.info("violation: " + violation);
-            Assert.assertTrue(ERR_CONSTRAINT_MESSAGE, violation.getMessage().equals("s must have length: 3 <= length <= 5"));
-            Assert.assertEquals(ERR_ENTITY_MESSAGE, "ValidationFoo[abcdef]", violation.getValue());
+         // Invalid imposed constraint
+         target = client.target(generateURL("/return/imposed"));
+         response = target.request().accept(MediaType.APPLICATION_XML).post(Entity.entity(new ValidationFoo("abcdef"),
+            "application/foo"));
+         Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
+         String header = response.getStringHeaders().getFirst(Validation.VALIDATION_HEADER);
+         Assert.assertNotNull(ERROR_HEADER_MESSAGE, header);
+         Assert.assertTrue(ERROR_HEADER_VALIDATION_EXCEPTION_MESSAGE, Boolean.valueOf(header));
+         ViolationReport r = response.readEntity(ViolationReport.class);
+         logger.info("entity: " + r);
+         TestUtil.countViolations(r, 0, 0, 0, 0, 1);
+         ResteasyConstraintViolation violation = r.getReturnValueViolations().iterator().next();
+         logger.info("violation: " + violation);
+         Assert.assertTrue(ERR_CONSTRAINT_MESSAGE, violation.getMessage().equals("s must have length: 3 <= length <= 5"));
+         Assert.assertEquals(ERR_ENTITY_MESSAGE, "ValidationFoo[abcdef]", violation.getValue());
       }
 
       {
-            // Invalid native and imposed constraints
-            target = client.target(generateURL("/return/nativeAndImposed"));
-            response = target.request().accept(MediaType.APPLICATION_XML).post(Entity.entity(new ValidationFoo("abcdef"),
-               "application/foo"));
-            Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
-            String header = response.getStringHeaders().getFirst(Validation.VALIDATION_HEADER);
-            Assert.assertNotNull(ERROR_HEADER_MESSAGE, header);
-            Assert.assertTrue(ERROR_HEADER_VALIDATION_EXCEPTION_MESSAGE, Boolean.valueOf(header));
-            ViolationReport r = response.readEntity(ViolationReport.class);
-            logger.info("entity: " + r);
-            TestUtil.countViolations(r, 0, 0, 0, 0, 2);
-            Iterator<ResteasyConstraintViolation> it = r.getReturnValueViolations().iterator();
-            ResteasyConstraintViolation cv1 = it.next();
-            ResteasyConstraintViolation cv2 = it.next();
-            if (cv1.getMessage().indexOf('1') < 0) {
+         // Invalid native and imposed constraints
+         target = client.target(generateURL("/return/nativeAndImposed"));
+         response = target.request().accept(MediaType.APPLICATION_XML).post(Entity.entity(new ValidationFoo("abcdef"),
+            "application/foo"));
+         Assert.assertEquals(HttpResponseCodes.SC_INTERNAL_SERVER_ERROR, response.getStatus());
+         String header = response.getStringHeaders().getFirst(Validation.VALIDATION_HEADER);
+         Assert.assertNotNull(ERROR_HEADER_MESSAGE, header);
+         Assert.assertTrue(ERROR_HEADER_VALIDATION_EXCEPTION_MESSAGE, Boolean.valueOf(header));
+         ViolationReport r = response.readEntity(ViolationReport.class);
+         logger.info("entity: " + r);
+         TestUtil.countViolations(r, 0, 0, 0, 0, 2);
+         Iterator<ResteasyConstraintViolation> it = r.getReturnValueViolations().iterator();
+         ResteasyConstraintViolation cv1 = it.next();
+         ResteasyConstraintViolation cv2 = it.next();
+         if (cv1.getMessage().indexOf('1') < 0) {
             ResteasyConstraintViolation temp = cv1;
             cv1 = cv2;
             cv2 = temp;
-            }
-            Assert.assertTrue(ERR_CONSTRAINT_MESSAGE, cv1.getMessage().equals("s must have length: 1 <= length <= 3"));
-            Assert.assertEquals(ERR_ENTITY_MESSAGE, "ValidationFoo[abcdef]", cv1.getValue());
-            Assert.assertTrue(ERR_CONSTRAINT_MESSAGE, cv2.getMessage().equals("s must have length: 3 <= length <= 5"));
-            Assert.assertEquals(ERR_ENTITY_MESSAGE, "ValidationFoo[abcdef]", cv2.getValue());
+         }
+         Assert.assertTrue(ERR_CONSTRAINT_MESSAGE, cv1.getMessage().equals("s must have length: 1 <= length <= 3"));
+         Assert.assertEquals(ERR_ENTITY_MESSAGE, "ValidationFoo[abcdef]", cv1.getValue());
+         Assert.assertTrue(ERR_CONSTRAINT_MESSAGE, cv2.getMessage().equals("s must have length: 3 <= length <= 5"));
+         Assert.assertEquals(ERR_ENTITY_MESSAGE, "ValidationFoo[abcdef]", cv2.getValue());
       }
    }
 

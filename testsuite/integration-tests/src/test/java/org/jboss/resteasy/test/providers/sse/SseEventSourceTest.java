@@ -90,10 +90,10 @@ public class SseEventSourceTest {
                results.add(event);
                latch.countDown();
             }, ex -> {
-               errors.incrementAndGet();
-               logger.error(ex.getMessage(), ex);
-               throw new RuntimeException(ex);
-            });
+                  errors.incrementAndGet();
+                  logger.error(ex.getMessage(), ex);
+                  throw new RuntimeException(ex);
+               });
             eventSource.open();
 
             boolean waitResult = latch.await(30, TimeUnit.SECONDS);
@@ -127,12 +127,12 @@ public class SseEventSourceTest {
                results.add(event);
                latch.countDown();
             }, ex -> {
-               errors.incrementAndGet();
-               logger.error(ex.getMessage(), ex);
-               throw new RuntimeException(ex);
-            }, () -> {
-               completed.incrementAndGet();
-            });
+                  errors.incrementAndGet();
+                  logger.error(ex.getMessage(), ex);
+                  throw new RuntimeException(ex);
+               }, () -> {
+                  completed.incrementAndGet();
+               });
             eventSource.open();
 
             boolean waitResult = latch.await(30, TimeUnit.SECONDS);

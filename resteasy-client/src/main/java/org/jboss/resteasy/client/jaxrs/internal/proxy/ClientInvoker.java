@@ -154,7 +154,7 @@ public class ClientInvoker implements MethodInvoker
 
    protected ClientInvocation createRequest(Object[] args)
    {
-     WebTarget target = this.webTarget;
+      WebTarget target = this.webTarget;
       for (int i = 0; i < processors.length; i++)
       {
          if (processors != null && processors[i] instanceof WebTargetProcessor)
