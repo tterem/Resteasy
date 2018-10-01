@@ -20,28 +20,24 @@ import java.util.concurrent.TimeUnit;
  * @version $Revision: 1 $
  */
 @Path("/jaxrs")
-public class AsyncJaxrsResource
-{
+public class AsyncJaxrsResource{
+   private final static Logger logger=Logger.getLogger(AsyncJaxrsResource.class);
    protected boolean cancelled;
-   private final static Logger logger = Logger.getLogger(AsyncJaxrsResource.class);
 
    @GET
    @Path("resume/object")
    @Produces("application/xml")
-   public void resumeObject(@Suspended final AsyncResponse response) {
+   public void resumeObject(@Suspended final AsyncResponse response){
       response.resume(new XmlData("bill"));
    }
 
    @GET
    @Path("resume/object/thread")
    @Produces("application/xml")
-   public void resumeObjectThread(@Suspended final AsyncResponse response) throws Exception
-   {
-      Thread t = new Thread()
-      {
+   public void resumeObjectThread(@Suspended final AsyncResponse response) throws Exception{
+      Thread t=new Thread(){
          @Override
-         public void run()
-         {
+         public void run(){
             response.resume(new XmlData("bill"));
          }
       };
@@ -50,51 +46,43 @@ public class AsyncJaxrsResource
 
    @GET
    @Path("injection-failure/{param}")
-   public void injectionFailure(@Suspended final AsyncResponse response, @PathParam("param") int id) {
-      logger.debug("injectionFailure: " + id);
+   public void injectionFailure(@Suspended final AsyncResponse response,@PathParam("param") int id){
+      logger.debug("injectionFailure: "+id);
       throw new ForbiddenException("Should be unreachable");
    }
 
    @GET
    @Path("method-failure")
-   public void injectionFailure(@Suspended final AsyncResponse response) {
+   public void injectionFailure(@Suspended final AsyncResponse response){
       throw new ForbiddenException("Should be unreachable");
    }
 
    @GET
    @Path("cancelled")
-   public Response getCancelled()
-   {
-      if (cancelled) return Response.noContent().build();
+   public Response getCancelled(){
+      if(cancelled) return Response.noContent().build();
       else return Response.status(500).build();
    }
 
    @PUT
    @Path("cancelled")
-   public void resetCancelled()
-   {
-      cancelled = false;
+   public void resetCancelled(){
+      cancelled=false;
    }
 
    @GET
    @Produces("text/plain")
-   public void get(@Suspended final AsyncResponse response) throws Exception
-   {
-      response.setTimeout(200000, TimeUnit.MILLISECONDS);
-      Thread t = new Thread()
-      {
+   public void get(@Suspended final AsyncResponse response) throws Exception{
+      response.setTimeout(200000,TimeUnit.MILLISECONDS);
+      Thread t=new Thread(){
          @Override
-         public void run()
-         {
-            try
-            {
+         public void run(){
+            try{
                Thread.sleep(100);
-               Response jaxrs = Response.ok("hello").type(MediaType.TEXT_PLAIN).build();
+               Response jaxrs=Response.ok("hello").type(MediaType.TEXT_PLAIN).build();
                response.resume(jaxrs);
-            }
-            catch (Exception e)
-            {
-               logger.error(e.getMessage(), e);
+            }catch(Exception e){
+               logger.error(e.getMessage(),e);
             }
          }
       };
@@ -104,22 +92,16 @@ public class AsyncJaxrsResource
    @GET
    @Path("empty")
    @Produces("text/plain")
-   public void getEmpty(@Suspended final AsyncResponse response) throws Exception
-   {
-      response.setTimeout(200000, TimeUnit.MILLISECONDS);
-      Thread t = new Thread()
-      {
+   public void getEmpty(@Suspended final AsyncResponse response) throws Exception{
+      response.setTimeout(200000,TimeUnit.MILLISECONDS);
+      Thread t=new Thread(){
          @Override
-         public void run()
-         {
-            try
-            {
+         public void run(){
+            try{
                Thread.sleep(100);
                response.resume(Response.noContent().build());
-            }
-            catch (Exception e)
-            {
-               logger.error(e.getMessage(), e);
+            }catch(Exception e){
+               logger.error(e.getMessage(),e);
             }
          }
       };
@@ -129,23 +111,17 @@ public class AsyncJaxrsResource
    @GET
    @Path("timeout")
    @Produces("text/plain")
-   public void timeout(@Suspended final AsyncResponse response)
-   {
-      response.setTimeout(10, TimeUnit.MILLISECONDS);
-      Thread t = new Thread()
-      {
+   public void timeout(@Suspended final AsyncResponse response){
+      response.setTimeout(10,TimeUnit.MILLISECONDS);
+      Thread t=new Thread(){
          @Override
-         public void run()
-         {
-            try
-            {
+         public void run(){
+            try{
                Thread.sleep(100000);
-               Response jaxrs = Response.ok("goodbye").type(MediaType.TEXT_PLAIN).build();
+               Response jaxrs=Response.ok("goodbye").type(MediaType.TEXT_PLAIN).build();
                response.resume(jaxrs);
-            }
-            catch (Exception e)
-            {
-               logger.error(e.getMessage(), e);
+            }catch(Exception e){
+               logger.error(e.getMessage(),e);
             }
          }
       };
@@ -155,30 +131,24 @@ public class AsyncJaxrsResource
    @GET
    @Path("cancel")
    @Produces("text/plain")
-   public void cancel(@Suspended final AsyncResponse response) throws Exception
-   {
+   public void cancel(@Suspended final AsyncResponse response) throws Exception{
       logger.debug("entering cancel()");
-      response.setTimeout(10000, TimeUnit.MILLISECONDS);
-      final CountDownLatch sync = new CountDownLatch(1);
-      final CountDownLatch ready = new CountDownLatch(1);
-      Thread t = new Thread()
-      {
+      response.setTimeout(10000,TimeUnit.MILLISECONDS);
+      final CountDownLatch sync=new CountDownLatch(1);
+      final CountDownLatch ready=new CountDownLatch(1);
+      Thread t=new Thread(){
          @Override
-         public void run()
-         {
-            try
-            {
+         public void run(){
+            try{
                logger.debug("cancel(): starting thread");
                sync.countDown();
                ready.await();
-               Response jaxrs = Response.ok("hello").type(MediaType.TEXT_PLAIN).build();
+               Response jaxrs=Response.ok("hello").type(MediaType.TEXT_PLAIN).build();
                logger.debug("SETTING CANCELLED");
-               cancelled = !response.resume(jaxrs);
-               logger.debug("cancelled: " + cancelled);
-            }
-            catch (Exception e)
-            {
-               logger.error(e.getMessage(), e);
+               cancelled=!response.resume(jaxrs);
+               logger.debug("cancelled: "+cancelled);
+            }catch(Exception e){
+               logger.error(e.getMessage(),e);
             }
          }
       };

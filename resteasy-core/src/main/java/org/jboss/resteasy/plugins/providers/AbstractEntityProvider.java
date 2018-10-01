@@ -11,17 +11,14 @@ import java.lang.reflect.Type;
 
 /**
  * A AbstractEntityProvider.
- *
  * @param <T> type
  * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
  * @version $Revision: $
  */
 public abstract class AbstractEntityProvider<T>
-        implements MessageBodyReader<T>, MessageBodyWriter<T>
-{
+   implements MessageBodyReader<T>, MessageBodyWriter<T>{
 
-   public long getSize(T t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public long getSize(T t,Class<?> type,Type genericType,Annotation[] annotations,MediaType mediaType){
       return -1;
    }
 

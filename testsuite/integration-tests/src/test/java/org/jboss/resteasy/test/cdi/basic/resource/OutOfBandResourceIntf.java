@@ -6,11 +6,11 @@ import javax.ejb.Timer;
 import javax.ws.rs.core.Response;
 
 @Local
-public interface OutOfBandResourceIntf {
-    Response scheduleTimer();
+public interface OutOfBandResourceIntf{
+   Response scheduleTimer();
 
-    Response testTimer() throws InterruptedException;
+   Response testTimer() throws InterruptedException;
 
-    @Timeout
-    void timeout(Timer timer);
+   @Timeout
+   void timeout(Timer timer);
 }

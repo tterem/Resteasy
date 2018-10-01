@@ -12,7 +12,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Qualifier
 @Retention(RUNTIME)
-@Target({METHOD, FIELD, PARAMETER, TYPE})
-public @interface HolderBinding {
+@Target({METHOD,FIELD,PARAMETER,TYPE})
+public @interface HolderBinding{
 }
 

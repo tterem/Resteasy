@@ -4,19 +4,17 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-public class UserManager {
+public class UserManager{
 
-    @Inject
-    private UserRepository userRepository;
+   @Inject
+   private UserRepository userRepository;
 
-    /**
-     * Return all supported languages
-     *
-     * @return
-     */
-    public ApplicationUser getUser() {
-        ApplicationUser user = userRepository.find(1L);
-        return user;
-    }
+   /**
+    * Return all supported languages
+    */
+   public ApplicationUser getUser(){
+      ApplicationUser user=userRepository.find(1L);
+      return user;
+   }
 
 }

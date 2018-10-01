@@ -1,5 +1,5 @@
 package org.jboss.resteasy.test.resource.basic.resource;
 
-public class ResourceLocatorQueueReceiver extends ResourceLocatorReceiver {
+public class ResourceLocatorQueueReceiver extends ResourceLocatorReceiver{
 
 }

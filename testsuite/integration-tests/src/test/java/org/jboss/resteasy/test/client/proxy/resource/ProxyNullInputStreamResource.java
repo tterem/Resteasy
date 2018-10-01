@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
  * Created by rsearls on 8/23/17.
  */
 @Path("test")
-public interface ProxyNullInputStreamResource {
+public interface ProxyNullInputStreamResource{
    @HEAD
    @Path("/user/{db}")
    void getUserHead(@PathParam("db") String db);

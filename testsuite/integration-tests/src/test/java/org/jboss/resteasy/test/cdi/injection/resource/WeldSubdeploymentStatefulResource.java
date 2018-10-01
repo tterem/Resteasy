@@ -12,15 +12,15 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/stateful")
 @Stateful
-public class WeldSubdeploymentStatefulResource {
+public class WeldSubdeploymentStatefulResource{
 
-    @Inject
-    private WeldSubdeploymentCdiJpaInjectingBean bean;
+   @Inject
+   private WeldSubdeploymentCdiJpaInjectingBean bean;
 
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public void getMethod() {
-        Assert.assertNotNull(WeldSubdeploymentTest.ERROR_MESSAGE, bean.entityManagerFactory());
-    }
+   @GET
+   @Produces(MediaType.TEXT_PLAIN)
+   public void getMethod(){
+      Assert.assertNotNull(WeldSubdeploymentTest.ERROR_MESSAGE,bean.entityManagerFactory());
+   }
 
 }

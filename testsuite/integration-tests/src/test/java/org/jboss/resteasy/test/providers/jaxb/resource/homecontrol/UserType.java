@@ -48,78 +48,64 @@ import java.util.List;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "UserType", propOrder = {
-        "id",
-        "credentials",
-        "roles"
+@XmlType(name="UserType", propOrder={
+   "id",
+   "credentials",
+   "roles"
 })
-public class UserType {
-   @XmlElement(namespace = "http://creaity.de/homecontrol/rest/types/v1")
+public class UserType{
+   @XmlElement(namespace="http://creaity.de/homecontrol/rest/types/v1")
    protected String id;
-   @XmlElement(required = true)
+   @XmlElement(required=true)
    protected UserType.Credentials credentials;
-   @XmlElementWrapper(required = true)
-   @XmlElement(name = "role", namespace = "http://creaity.de/homecontrol/rest/types/v1")
-   protected List<RoleType> roles = new ArrayList<RoleType>();
+   @XmlElementWrapper(required=true)
+   @XmlElement(name="role", namespace="http://creaity.de/homecontrol/rest/types/v1")
+   protected List<RoleType> roles=new ArrayList<RoleType>();
 
    /**
     * Ruft den Wert der id-Eigenschaft ab.
-    *
-    * @return
-    *     possible object is
-    *     {@link String }
-    *
+    * @return possible object is
+    * {@link String }
     */
-   public String getId() {
+   public String getId(){
       return id;
    }
 
    /**
     * Legt den Wert der id-Eigenschaft fest.
-    *
-    * @param value
-    *     allowed object is
-    *     {@link String }
-    *
+    * @param value allowed object is
+    * {@link String }
     */
-   public void setId(String value) {
-      this.id = value;
+   public void setId(String value){
+      this.id=value;
    }
 
    /**
     * Ruft den Wert der credentials-Eigenschaft ab.
-    *
-    * @return
-    *     possible object is
-    *     {@link UserType.Credentials }
-    *
+    * @return possible object is
+    * {@link UserType.Credentials }
     */
-   public UserType.Credentials getCredentials() {
+   public UserType.Credentials getCredentials(){
       return credentials;
    }
 
    /**
     * Legt den Wert der credentials-Eigenschaft fest.
-    *
-    * @param value
-    *     allowed object is
-    *     {@link UserType.Credentials }
-    *
+    * @param value allowed object is
+    * {@link UserType.Credentials }
     */
-   public void setCredentials(UserType.Credentials value) {
-      this.credentials = value;
+   public void setCredentials(UserType.Credentials value){
+      this.credentials=value;
    }
 
-   public List<RoleType> getRoles() {
+   public List<RoleType> getRoles(){
       return roles;
    }
 
-   public void setRoles(List<RoleType> roles) {
-      this.roles = roles;
+   public void setRoles(List<RoleType> roles){
+      this.roles=roles;
    }
 
 
@@ -140,66 +126,52 @@ public class UserType {
     *   &lt;/complexContent&gt;
     * &lt;/complexType&gt;
     * </pre>
-    *
-    *
     */
    @XmlAccessorType(XmlAccessType.FIELD)
-   @XmlType(name = "", propOrder = {
-           "loginId",
-           "password"
+   @XmlType(name="", propOrder={
+      "loginId",
+      "password"
    })
-   public static class Credentials {
+   public static class Credentials{
 
-      @XmlElement(required = true)
+      @XmlElement(required=true)
       protected String loginId;
       protected String password;
 
       /**
        * Ruft den Wert der loginId-Eigenschaft ab.
-       *
-       * @return
-       *     possible object is
-       *     {@link String }
-       *
+       * @return possible object is
+       * {@link String }
        */
-      public String getLoginId() {
+      public String getLoginId(){
          return loginId;
       }
 
       /**
        * Legt den Wert der loginId-Eigenschaft fest.
-       *
-       * @param value
-       *     allowed object is
-       *     {@link String }
-       *
+       * @param value allowed object is
+       * {@link String }
        */
-      public void setLoginId(String value) {
-         this.loginId = value;
+      public void setLoginId(String value){
+         this.loginId=value;
       }
 
       /**
        * Ruft den Wert der password-Eigenschaft ab.
-       *
-       * @return
-       *     possible object is
-       *     {@link String }
-       *
+       * @return possible object is
+       * {@link String }
        */
-      public String getPassword() {
+      public String getPassword(){
          return password;
       }
 
       /**
        * Legt den Wert der password-Eigenschaft fest.
-       *
-       * @param value
-       *     allowed object is
-       *     {@link String }
-       *
+       * @param value allowed object is
+       * {@link String }
        */
-      public void setPassword(String value) {
-         this.password = value;
+      public void setPassword(String value){
+         this.password=value;
       }
 
    }

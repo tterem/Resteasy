@@ -4,15 +4,15 @@ import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
-public class WeldSubdeploymentCdiJpaInjectingBean {
+public class WeldSubdeploymentCdiJpaInjectingBean{
 
-    @Produces
-    @PersistenceUnit(unitName = "cdiPu")
-    EntityManagerFactory emf;
+   @Produces
+   @PersistenceUnit(unitName="cdiPu")
+   EntityManagerFactory emf;
 
-    public EntityManagerFactory entityManagerFactory() {
-        return emf;
-    }
+   public EntityManagerFactory entityManagerFactory(){
+      return emf;
+   }
 
 
 }

@@ -7,8 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/resteasy/registry")
-public interface StatsProxy {
-    @GET
-    @Produces("application/xml")
-    RegistryData get();
+public interface StatsProxy{
+   @GET
+   @Produces("application/xml")
+   RegistryData get();
 }

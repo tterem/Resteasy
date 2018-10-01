@@ -17,19 +17,16 @@ import java.lang.annotation.Target;
  * <p>
  * When using this with the Resteasy client framework, you must put your @*Param
  * annotations on either fields or getter methods.
- *
  * @author <a href="bill@burkecentral.com">Bill Burke</a>
  * @version $Revision:$
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.PARAMETER, ElementType.METHOD, ElementType.FIELD})
-public @interface Form
-{
+@Target({ElementType.PARAMETER,ElementType.METHOD,ElementType.FIELD})
+public @interface Form{
    /**
     * This is a form parameter prefix you want applied to any @FormParam variables in the object
     * See documentation for more details.
-    *
     * @return prefix
     */
    String prefix() default "";

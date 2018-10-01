@@ -4,12 +4,23 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.jboss.resteasy.client.jaxrs.ClientHttpEngine;
 
-public interface ApacheHttpClientEngine extends ClientHttpEngine
-{
+public interface ApacheHttpClientEngine extends ClientHttpEngine{
+   public static ApacheHttpClientEngine create(){
+      return new ApacheHttpClient43Engine();
+   }
+
+   public static ApacheHttpClientEngine create(CloseableHttpClient httpClient){
+      return new ApacheHttpClient43Engine(httpClient);
+   }
+
+   public static ApacheHttpClientEngine create(HttpClient httpClient,boolean closeHttpClient){
+      return new ApacheHttpClient43Engine(httpClient,closeHttpClient);
+   }
+
    /**
     * Enumeration to represent memory units.
     */
-   public enum MemoryUnit {
+   public enum MemoryUnit{
       /**
        * Bytes
        */
@@ -28,20 +39,5 @@ public interface ApacheHttpClientEngine extends ClientHttpEngine
        * Giga Bytes
        */
       GB
-   }
-
-   public static ApacheHttpClientEngine create()
-   {
-      return new ApacheHttpClient43Engine();
-   }
-
-   public static ApacheHttpClientEngine create(CloseableHttpClient httpClient)
-   {
-      return new ApacheHttpClient43Engine(httpClient);
-   }
-
-   public static ApacheHttpClientEngine create(HttpClient httpClient, boolean closeHttpClient)
-   {
-      return new ApacheHttpClient43Engine(httpClient, closeHttpClient);
    }
 }

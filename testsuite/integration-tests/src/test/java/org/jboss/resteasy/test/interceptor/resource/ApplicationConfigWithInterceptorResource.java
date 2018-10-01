@@ -10,28 +10,24 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 @Path("/my")
-public class ApplicationConfigWithInterceptorResource
-{
+public class ApplicationConfigWithInterceptorResource{
    @GET
    @Produces("text/plain")
    @Path("/good")
-   public String get()
-   {
+   public String get(){
       return "hello";
    }
 
    @GET
    @Produces("text/plain")
    @Path("/bad")
-   public String response()
-   {
+   public String response(){
       throw new WebApplicationException(Response.status(Status.CONFLICT).entity("conflicted").build());
    }
 
    @DELETE
    @Path("{id}")
-   public void remove(@PathParam("id") String id)
-   {
+   public void remove(@PathParam("id") String id){
       return;
    }
 }

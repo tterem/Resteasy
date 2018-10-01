@@ -9,10 +9,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/testreq")
-public interface ApplicationScopeIRestServiceReqScoped {
-   
-    @POST
-    @Path("/send")
-    @Consumes(MediaType.APPLICATION_JSON)
-    Response sendDto(@NotNull @Valid ApplicationScopeMyDto myDto);
+public interface ApplicationScopeIRestServiceReqScoped{
+
+   @POST
+   @Path("/send")
+   @Consumes(MediaType.APPLICATION_JSON)
+   Response sendDto(@NotNull @Valid ApplicationScopeMyDto myDto);
 }

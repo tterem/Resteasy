@@ -1,15 +1,14 @@
 package org.jboss.resteasy.test.resource.basic.resource;
 
+import javax.enterprise.context.RequestScoped;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.enterprise.context.RequestScoped;
-
 @RequestScoped
-public class RequestScopedObject
-{
+public class RequestScopedObject{
 
-   AtomicInteger count = new AtomicInteger();
-   public int getCount() {
+   AtomicInteger count=new AtomicInteger();
+
+   public int getCount(){
       return count.incrementAndGet();
    }
 }

@@ -9,13 +9,13 @@ import javax.ws.rs.core.MediaType;
 import java.io.ByteArrayInputStream;
 
 @Path("/rest/zba")
-public class EmptyInputStreamMultipartProviderResource {
-    @GET
-    @Produces(MediaType.MULTIPART_FORM_DATA)
-    @MultipartForm
-    public EmptyInputStreamMultipartProviderMyBean get() {
-        EmptyInputStreamMultipartProviderMyBean myBean = new EmptyInputStreamMultipartProviderMyBean();
-        myBean.setSomeBinary(new ByteArrayInputStream(new byte[0]));
-        return myBean;
-    }
+public class EmptyInputStreamMultipartProviderResource{
+   @GET
+   @Produces(MediaType.MULTIPART_FORM_DATA)
+   @MultipartForm
+   public EmptyInputStreamMultipartProviderMyBean get(){
+      EmptyInputStreamMultipartProviderMyBean myBean=new EmptyInputStreamMultipartProviderMyBean();
+      myBean.setSomeBinary(new ByteArrayInputStream(new byte[0]));
+      return myBean;
+   }
 }

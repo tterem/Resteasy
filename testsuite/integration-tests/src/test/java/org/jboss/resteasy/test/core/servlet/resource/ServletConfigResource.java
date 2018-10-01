@@ -10,48 +10,48 @@ import javax.ws.rs.Produces;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Path("my")
-public class ServletConfigResource {
-    @XmlRootElement
-    public static class Foo {
-        private String name;
+public class ServletConfigResource{
+   public static int num_instatiations=0;
 
-        public String getName() {
-            return name;
-        }
+   @Path("count")
+   @GET
+   @Produces("text/plain")
+   public String getCount(){
+      return Integer.toString(num_instatiations);
+   }
 
-        public void setName(String name) {
-            this.name = name;
-        }
+   @Path("application/count")
+   @GET
+   @Produces("text/plain")
+   public String getApplicationCount(){
+      return Integer.toString(ServletConfigApplication.num_instantiations);
+   }
 
-    }
+   @Path("exception")
+   @GET
+   @Produces("text/plain")
+   public String getException(){
+      throw new ServletConfigException();
+   }
 
-    public static int num_instatiations = 0;
+   @Path("null")
+   @POST
+   @Consumes("application/xml")
+   public void nullFoo(Foo foo){
+      Assert.assertNull(foo);
+   }
 
-    @Path("count")
-    @GET
-    @Produces("text/plain")
-    public String getCount() {
-        return Integer.toString(num_instatiations);
-    }
+   @XmlRootElement
+   public static class Foo{
+      private String name;
 
-    @Path("application/count")
-    @GET
-    @Produces("text/plain")
-    public String getApplicationCount() {
-        return Integer.toString(ServletConfigApplication.num_instantiations);
-    }
+      public String getName(){
+         return name;
+      }
 
-    @Path("exception")
-    @GET
-    @Produces("text/plain")
-    public String getException() {
-        throw new ServletConfigException();
-    }
+      public void setName(String name){
+         this.name=name;
+      }
 
-    @Path("null")
-    @POST
-    @Consumes("application/xml")
-    public void nullFoo(Foo foo) {
-        Assert.assertNull(foo);
-    }
+   }
 }

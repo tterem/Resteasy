@@ -22,19 +22,19 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "archived")
+@XmlRootElement(name="archived")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AtomComplexModelArchived {
+public class AtomComplexModelArchived{
 
-    @XmlElement
-    private boolean value;
+   @XmlElement
+   private boolean value;
 
-    public boolean getValue() {
-        return value;
-    }
+   public boolean getValue(){
+      return value;
+   }
 
-    public void setValue(boolean archived) {
-        value = archived;
-    }
+   public void setValue(boolean archived){
+      value=archived;
+   }
 
 }

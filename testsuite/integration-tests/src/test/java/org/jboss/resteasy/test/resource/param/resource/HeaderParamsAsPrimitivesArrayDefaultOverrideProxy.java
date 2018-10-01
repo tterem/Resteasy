@@ -7,12 +7,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/array/default/override")
-public interface HeaderParamsAsPrimitivesArrayDefaultOverrideProxy {
-    @GET
-    @Produces("application/boolean")
-    String doGetBoolean(@HeaderParam("boolean") @DefaultValue("false") boolean[] v);
+public interface HeaderParamsAsPrimitivesArrayDefaultOverrideProxy{
+   @GET
+   @Produces("application/boolean")
+   String doGetBoolean(@HeaderParam("boolean") @DefaultValue("false") boolean[] v);
 
-    @GET
-    @Produces("application/short")
-    String doGetShort(@HeaderParam("int") @DefaultValue("0") short[] v);
+   @GET
+   @Produces("application/short")
+   String doGetShort(@HeaderParam("int") @DefaultValue("0") short[] v);
 }

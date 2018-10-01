@@ -8,8 +8,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target({ElementType.TYPE, ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD})
+@Target({ElementType.TYPE,ElementType.METHOD,ElementType.PARAMETER,ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Decorator(processor = AtomComplexModelAtomAssetMetadtaProcessor.class, target = Marshaller.class)
-public @interface AtomComplexModelAtomAssetMetadataDecorators {
+@Decorator(processor=AtomComplexModelAtomAssetMetadtaProcessor.class, target=Marshaller.class)
+public @interface AtomComplexModelAtomAssetMetadataDecorators{
 }

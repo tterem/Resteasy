@@ -5,6 +5,6 @@ import javax.ws.rs.Path;
 
 @Stateless
 @Path("/test")
-public class GenericResourceResource extends GenericResourceOtherAbstractResource<GenericResourceModel> {
+public class GenericResourceResource extends GenericResourceOtherAbstractResource<GenericResourceModel>{
 
 }

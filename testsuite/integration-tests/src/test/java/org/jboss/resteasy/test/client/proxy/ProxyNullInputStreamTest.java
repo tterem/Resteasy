@@ -1,8 +1,5 @@
 package org.jboss.resteasy.test.client.proxy;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -17,6 +14,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+
 
 /**
  * @tpSubChapter Resteasy-client
@@ -28,32 +28,31 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class ProxyNullInputStreamTest {
+public class ProxyNullInputStreamTest{
 
    @Deployment
-   public static Archive<?> deploySimpleResource() {
-      WebArchive war = TestUtil.prepareArchive(ProxyNullInputStreamTest.class.getSimpleName());
+   public static Archive<?> deploySimpleResource(){
+      WebArchive war=TestUtil.prepareArchive(ProxyNullInputStreamTest.class.getSimpleName());
       war.addClasses(ProxyNullInputStreamResource.class,
-              ProxyNullInputStreamClientResponseFilter.class);
-      return TestUtil.finishContainerPrepare(war, null, (Class<?>[]) null);
+         ProxyNullInputStreamClientResponseFilter.class);
+      return TestUtil.finishContainerPrepare(war,null,(Class<?>[])null);
    }
 
-   private String generateURL(String path) {
-      return PortProviderUtil.generateURL(path, ProxyNullInputStreamTest.class.getSimpleName());
+   private String generateURL(String path){
+      return PortProviderUtil.generateURL(path,ProxyNullInputStreamTest.class.getSimpleName());
    }
 
 
    @Test
-   public void testNullPointerEx () throws Exception {
-      Client client = ClientBuilder.newBuilder().register(ProxyNullInputStreamClientResponseFilter.class).build();
-      ProxyNullInputStreamResource pResource = ((ResteasyWebTarget)client.target(generateURL("/test/user/mydb")))
-              .proxyBuilder(ProxyNullInputStreamResource.class)
-              .build();
-      try
-      {
+   public void testNullPointerEx() throws Exception{
+      Client client=ClientBuilder.newBuilder().register(ProxyNullInputStreamClientResponseFilter.class).build();
+      ProxyNullInputStreamResource pResource=((ResteasyWebTarget)client.target(generateURL("/test/user/mydb")))
+         .proxyBuilder(ProxyNullInputStreamResource.class)
+         .build();
+      try{
          pResource.getUserHead("myDb");
-      } catch (Exception e) {
-         Assert.assertEquals("HTTP 404 Not Found", e.getMessage());
+      }catch(Exception e){
+         Assert.assertEquals("HTTP 404 Not Found",e.getMessage());
       }
 
    }

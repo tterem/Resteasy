@@ -5,8 +5,8 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class ContentTypeMatchingErrorExceptionMapper implements ExceptionMapper<ContentTypeMatchingErrorException> {
-    public Response toResponse(ContentTypeMatchingErrorException exception) {
-        return Response.status(412).entity(new ContentTypeMatchingError()).build();
-    }
+public class ContentTypeMatchingErrorExceptionMapper implements ExceptionMapper<ContentTypeMatchingErrorException>{
+   public Response toResponse(ContentTypeMatchingErrorException exception){
+      return Response.status(412).entity(new ContentTypeMatchingError()).build();
+   }
 }

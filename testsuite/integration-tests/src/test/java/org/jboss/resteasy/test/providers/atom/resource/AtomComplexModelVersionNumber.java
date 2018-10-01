@@ -21,19 +21,19 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "versionNumber")
+@XmlRootElement(name="versionNumber")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AtomComplexModelVersionNumber {
+public class AtomComplexModelVersionNumber{
 
-    @XmlElement
-    private long value;
+   @XmlElement
+   private long value;
 
-    public long getValue() {
-        return value;
-    }
+   public long getValue(){
+      return value;
+   }
 
-    public void setValue(long uuid) {
-        value = uuid;
-    }
+   public void setValue(long uuid){
+      value=uuid;
+   }
 
 }

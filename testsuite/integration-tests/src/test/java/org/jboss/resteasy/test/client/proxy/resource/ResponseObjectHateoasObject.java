@@ -8,14 +8,14 @@ import javax.ws.rs.GET;
 import java.net.URI;
 
 @ResponseObject
-public interface ResponseObjectHateoasObject {
-    @Status
-    int status();
+public interface ResponseObjectHateoasObject{
+   @Status
+   int status();
 
-    @LinkHeaderParam(rel = "nextLink")
-    URI nextLink();
+   @LinkHeaderParam(rel="nextLink")
+   URI nextLink();
 
-    @GET
-    @LinkHeaderParam(rel = "nextLink")
-    String followNextLink();
+   @GET
+   @LinkHeaderParam(rel="nextLink")
+   String followNextLink();
 }

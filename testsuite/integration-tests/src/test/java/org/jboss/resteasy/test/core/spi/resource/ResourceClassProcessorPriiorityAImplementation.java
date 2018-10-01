@@ -10,13 +10,13 @@ import javax.ws.rs.ext.Provider;
 
 @Provider
 @Priority(40)
-public class ResourceClassProcessorPriiorityAImplementation implements ResourceClassProcessor {
-    protected static final Logger logger = Logger.getLogger(ResourceClassProcessorPriiorityAImplementation.class.getName());
+public class ResourceClassProcessorPriiorityAImplementation implements ResourceClassProcessor{
+   protected static final Logger logger=Logger.getLogger(ResourceClassProcessorPriiorityAImplementation.class.getName());
 
-    @Override
-    public ResourceClass process(ResourceClass clazz) {
-        logger.info("ResourceClassProcessorPriiorityAImplementation visited on server");
-        ResourceClassProcessorPriorityTest.addToVisitedProcessors("A");
-        return clazz;
-    }
+   @Override
+   public ResourceClass process(ResourceClass clazz){
+      logger.info("ResourceClassProcessorPriiorityAImplementation visited on server");
+      ResourceClassProcessorPriorityTest.addToVisitedProcessors("A");
+      return clazz;
+   }
 }

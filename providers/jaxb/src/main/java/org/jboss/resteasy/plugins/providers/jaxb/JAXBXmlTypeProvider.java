@@ -21,7 +21,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.transform.sax.SAXSource;
 import javax.xml.transform.stream.StreamSource;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -56,18 +55,74 @@ import java.security.PrivilegedExceptionAction;
  * <code>
  * public JAXBElement{@literal <}Contact{@literal >} createContact(Contact value);
  * </code>
- *
  * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
  * @version $Revision:$
  */
 @Provider
-@Produces({"application/xml", "application/*+xml", "text/xml", "text/*+xml"})
-@Consumes({"application/xml", "application/*+xml", "text/xml", "text/*+xml"})
-public class JAXBXmlTypeProvider extends AbstractJAXBProvider<Object>
-{
+@Produces({"application/xml","application/*+xml","text/xml","text/*+xml"})
+@Consumes({"application/xml","application/*+xml","text/xml","text/*+xml"})
+public class JAXBXmlTypeProvider extends AbstractJAXBProvider<Object>{
 
-   protected static final String OBJECT_FACTORY_NAME = ".ObjectFactory";
-   
+   protected static final String OBJECT_FACTORY_NAME=".ObjectFactory";
+
+   /**
+    * Attempts to locate {@link XmlRegistry} for the XML type. Usually, a class named ObjectFactory is located
+    * in the same package as the type we're trying to marshall. This method simply locates this class and
+    * instantiates it if found.
+    * @param type type class
+    * @return object factory instance
+    */
+   public static Object findObjectFactory(Class<?> type){
+      try{
+         Class<?> factoryClass=AbstractJAXBContextFinder.findDefaultObjectFactoryClass(type);
+         if(factoryClass!=null&&factoryClass.isAnnotationPresent(XmlRegistry.class)){
+            return factoryClass.newInstance();
+         }else{
+            throw new JAXBMarshalException(Messages.MESSAGES.validXmlRegistryCouldNotBeLocated());
+         }
+      }catch(InstantiationException|IllegalAccessException e){
+         throw new JAXBMarshalException(e);
+      }
+
+   }
+
+   /**
+    * If this object is managed by an XmlRegistry, this method will invoke the registry and wrap the object in
+    * a JAXBElement so that it can be marshalled.
+    * @param t object to wrap
+    * @param type type class
+    * @return jaxb element
+    */
+   public static JAXBElement<?> wrapInJAXBElement(Object t,Class<?> type){
+      try{
+         final Object factory=findObjectFactory(type);
+         Method[] method;
+         if(System.getSecurityManager()==null){
+            method=factory.getClass().getDeclaredMethods();
+         }else{
+            method=AccessController.doPrivileged(new PrivilegedExceptionAction<Method[]>(){
+               @Override
+               public Method[] run() throws Exception{
+                  return factory.getClass().getDeclaredMethods();
+               }
+            });
+         }
+
+         for(Method current : method){
+            if(current.getParameterTypes().length==1&&current.getParameterTypes()[0].equals(type)
+               &&current.getName().startsWith("create")){
+               Object result=current.invoke(factory,t);
+               return JAXBElement.class.cast(result);
+            }
+         }
+         throw new JAXBMarshalException(Messages.MESSAGES.createMethodNotFound(type));
+      }catch(IllegalArgumentException|IllegalAccessException|PrivilegedActionException e){
+         throw new JAXBMarshalException(e);
+      }catch(InvocationTargetException e){
+         throw new JAXBMarshalException(e.getCause());
+      }
+   }
+
    /**
     *
     */
@@ -77,95 +132,72 @@ public class JAXBXmlTypeProvider extends AbstractJAXBProvider<Object>
                        Type genericType,
                        Annotation[] annotations,
                        MediaType mediaType,
-                       MultivaluedMap<String, Object> httpHeaders,
-                       OutputStream entityStream) throws IOException
-   {
-      LogMessages.LOGGER.debugf("Provider : %s,  Method : writeTo", getClass().getName());
-      JAXBElement<?> result = wrapInJAXBElement(t, type);
-      super.writeTo(result, type, genericType, annotations, mediaType, httpHeaders, entityStream);
+                       MultivaluedMap<String,Object> httpHeaders,
+                       OutputStream entityStream) throws IOException{
+      LogMessages.LOGGER.debugf("Provider : %s,  Method : writeTo",getClass().getName());
+      JAXBElement<?> result=wrapInJAXBElement(t,type);
+      super.writeTo(result,type,genericType,annotations,mediaType,httpHeaders,entityStream);
    }
 
    @Override
-   public Object readFrom(Class<Object> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, String> httpHeaders, InputStream entityStream) throws IOException
-   {
-      try
-      {
-         LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom", getClass().getName());
-         JAXBContext jaxb = getJAXBContext(type, mediaType);
+   public Object readFrom(Class<Object> type,Type genericType,Annotation[] annotations,MediaType mediaType,MultivaluedMap<String,String> httpHeaders,InputStream entityStream) throws IOException{
+      try{
+         LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom",getClass().getName());
+         JAXBContext jaxb=getJAXBContext(type,mediaType);
 
-         if (jaxb == null) {
-            jaxb = getJAXBContextFinder(type, annotations, mediaType);
+         if(jaxb==null){
+            jaxb=getJAXBContextFinder(type,annotations,mediaType);
          }
 
-         Unmarshaller unmarshaller = jaxb.createUnmarshaller();
-         unmarshaller = decorateUnmarshaller(type, annotations, mediaType, unmarshaller);
+         Unmarshaller unmarshaller=jaxb.createUnmarshaller();
+         unmarshaller=decorateUnmarshaller(type,annotations,mediaType,unmarshaller);
 
-         Object obj = null;
-         if (needsSecurity())
-         {
-            SAXSource source = null;
-            if (getCharset(mediaType) == null)
-            {
-               source = new SAXSource(new InputSource(new InputStreamReader(entityStream, StandardCharsets.UTF_8)));
+         Object obj=null;
+         if(needsSecurity()){
+            SAXSource source=null;
+            if(getCharset(mediaType)==null){
+               source=new SAXSource(new InputSource(new InputStreamReader(entityStream,StandardCharsets.UTF_8)));
+            }else{
+               source=new SAXSource(new InputSource(entityStream));
             }
-            else
-            {
-               source = new SAXSource(new InputSource(entityStream));
-            }
-            unmarshaller = new SecureUnmarshaller(unmarshaller, isDisableExternalEntities(), isEnableSecureProcessingFeature(), isDisableDTDs());
-            obj = unmarshaller.unmarshal(source);
-         }
-         else
-         {
-            if (getCharset(mediaType) == null)
-            {
-               InputSource is = new InputSource(entityStream);
+            unmarshaller=new SecureUnmarshaller(unmarshaller,isDisableExternalEntities(),isEnableSecureProcessingFeature(),isDisableDTDs());
+            obj=unmarshaller.unmarshal(source);
+         }else{
+            if(getCharset(mediaType)==null){
+               InputSource is=new InputSource(entityStream);
                is.setEncoding(StandardCharsets.UTF_8.name());
-               StreamSource source = new StreamSource(new InputStreamReader(entityStream, StandardCharsets.UTF_8));
+               StreamSource source=new StreamSource(new InputStreamReader(entityStream,StandardCharsets.UTF_8));
                source.setInputStream(entityStream);
-               obj = unmarshaller.unmarshal(source);
-            }
-            else
-            {
-               obj = unmarshaller.unmarshal(new StreamSource(entityStream));
+               obj=unmarshaller.unmarshal(source);
+            }else{
+               obj=unmarshaller.unmarshal(new StreamSource(entityStream));
             }
          }
-         if (obj instanceof JAXBElement)
-         {
-            JAXBElement element = (JAXBElement) obj;
+         if(obj instanceof JAXBElement){
+            JAXBElement element=(JAXBElement)obj;
             return element.getValue();
 
-         }
-         else
-         {
+         }else{
             return obj;
          }
-      }
-      catch (JAXBException e)
-      {
+      }catch(JAXBException e){
          throw new JAXBUnmarshalException(e);
       }
    }
 
    /**
     * Check for a user provided JAXBContext implementation.  It takes priority over our builtin one.
-    * @param type
-    * @param mediaType
-    * @return
-    * @throws IOException
     */
-   private javax.xml.bind.JAXBContext getJAXBContext(Class<Object> type, MediaType mediaType) throws IOException {
-      LogMessages.LOGGER.debugf("Provider : %s,  Method : getJAXBContext", getClass().getName());
+   private javax.xml.bind.JAXBContext getJAXBContext(Class<Object> type,MediaType mediaType) throws IOException{
+      LogMessages.LOGGER.debugf("Provider : %s,  Method : getJAXBContext",getClass().getName());
 
-      ContextResolver<javax.xml.bind.JAXBContext> resolver = providers.getContextResolver(
-              javax.xml.bind.JAXBContext.class, mediaType);
+      ContextResolver<javax.xml.bind.JAXBContext> resolver=providers.getContextResolver(
+         javax.xml.bind.JAXBContext.class,mediaType);
 
-      javax.xml.bind.JAXBContext finder = null;
-      if (resolver != null)
-      {
-         finder = resolver.getContext(type);
-         if (finder == null)
-         {
+      javax.xml.bind.JAXBContext finder=null;
+      if(resolver!=null){
+         finder=resolver.getContext(type);
+         if(finder==null){
             throw new JAXBUnmarshalException(Messages.MESSAGES.couldNotFindUsersJAXBContext(mediaType));
          }
       }
@@ -175,28 +207,18 @@ public class JAXBXmlTypeProvider extends AbstractJAXBProvider<Object>
 
    /**
     * Check for the resteasy builtin JAXBContext implementation.
-    * @param type
-    * @param annotations
-    * @param mediaType
-    * @return
-    * @throws IOException
     */
-   private JAXBContext getJAXBContextFinder(Class<Object> type, Annotation[] annotations, MediaType mediaType) throws IOException
-   {
-      try
-      {
-         LogMessages.LOGGER.debugf("Provider : %s,  Method : getJAXBContextFinder", getClass().getName());
-         ContextResolver<JAXBContextFinder> resolver = providers.getContextResolver(JAXBContextFinder.class, mediaType);
-         JAXBContextFinder finder = resolver.getContext(type);
-         if (finder == null)
-         {
+   private JAXBContext getJAXBContextFinder(Class<Object> type,Annotation[] annotations,MediaType mediaType) throws IOException{
+      try{
+         LogMessages.LOGGER.debugf("Provider : %s,  Method : getJAXBContextFinder",getClass().getName());
+         ContextResolver<JAXBContextFinder> resolver=providers.getContextResolver(JAXBContextFinder.class,mediaType);
+         JAXBContextFinder finder=resolver.getContext(type);
+         if(finder==null){
             throw new JAXBUnmarshalException(Messages.MESSAGES.couldNotFindJAXBContextFinder(mediaType));
          }
-         JAXBContext jaxb = finder.findCacheXmlTypeContext(mediaType, annotations, type);
+         JAXBContext jaxb=finder.findCacheXmlTypeContext(mediaType,annotations,type);
          return jaxb;
-      }
-      catch (JAXBException e)
-      {
+      }catch(JAXBException e){
          throw new JAXBUnmarshalException(e);
       }
    }
@@ -208,88 +230,7 @@ public class JAXBXmlTypeProvider extends AbstractJAXBProvider<Object>
    protected boolean isReadWritable(Class<?> type,
                                     Type genericType,
                                     Annotation[] annotations,
-                                    MediaType mediaType)
-   {
-      return (type.isAnnotationPresent(XmlType.class) && !type.isAnnotationPresent(XmlRootElement.class)) && (FindAnnotation.findAnnotation(type, annotations, DoNotUseJAXBProvider.class) == null) && !IgnoredMediaTypes.ignored(type, annotations, mediaType);
-   }
-
-   /**
-    * Attempts to locate {@link XmlRegistry} for the XML type. Usually, a class named ObjectFactory is located
-    * in the same package as the type we're trying to marshall. This method simply locates this class and
-    * instantiates it if found.
-    *
-    * @param type type class
-    * @return object factory instance
-    */
-   public static Object findObjectFactory(Class<?> type)
-   {
-      try
-      {
-         Class<?> factoryClass = AbstractJAXBContextFinder.findDefaultObjectFactoryClass(type);
-         if (factoryClass != null && factoryClass.isAnnotationPresent(XmlRegistry.class))
-         {
-            return factoryClass.newInstance();
-         }
-         else
-         {
-            throw new JAXBMarshalException(Messages.MESSAGES.validXmlRegistryCouldNotBeLocated());
-         }
-      }
-      catch (InstantiationException | IllegalAccessException e)
-      {
-         throw new JAXBMarshalException(e);
-      }
-
-   }
-
-   /**
-    * If this object is managed by an XmlRegistry, this method will invoke the registry and wrap the object in
-    * a JAXBElement so that it can be marshalled.
-    *
-    * @param t object to wrap
-    * @param type type class
-    * @return jaxb element
-    */
-   public static JAXBElement<?> wrapInJAXBElement(Object t, Class<?> type)
-   {
-      try
-      {
-         final Object factory = findObjectFactory(type);
-         Method[] method;
-         if (System.getSecurityManager() == null)
-         {
-            method = factory.getClass().getDeclaredMethods();
-         }
-         else
-         {
-            method =  AccessController.doPrivileged(new PrivilegedExceptionAction<Method[]>()
-            {
-               @Override
-               public Method[] run() throws Exception
-               {
-                  return factory.getClass().getDeclaredMethods();
-               }
-            });
-         }
-
-         for (Method current : method)
-         {
-            if (current.getParameterTypes().length == 1 && current.getParameterTypes()[0].equals(type)
-                    && current.getName().startsWith("create"))
-            {
-               Object result = current.invoke(factory, t);
-               return JAXBElement.class.cast(result);
-            }
-         }
-         throw new JAXBMarshalException(Messages.MESSAGES.createMethodNotFound(type));
-      }
-      catch (IllegalArgumentException | IllegalAccessException | PrivilegedActionException e)
-      {
-         throw new JAXBMarshalException(e);
-      }
-      catch (InvocationTargetException e)
-      {
-         throw new JAXBMarshalException(e.getCause());
-      }
+                                    MediaType mediaType){
+      return (type.isAnnotationPresent(XmlType.class)&&!type.isAnnotationPresent(XmlRootElement.class))&&(FindAnnotation.findAnnotation(type,annotations,DoNotUseJAXBProvider.class)==null)&&!IgnoredMediaTypes.ignored(type,annotations,mediaType);
    }
 }

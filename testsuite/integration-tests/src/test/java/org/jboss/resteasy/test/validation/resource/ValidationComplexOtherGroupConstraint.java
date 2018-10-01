@@ -10,15 +10,15 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Documented
-@Constraint(validatedBy = ValidationComplexOtherGroupValidator.class)
+@Constraint(validatedBy=ValidationComplexOtherGroupValidator.class)
 @Target({TYPE})
 @Retention(RUNTIME)
-public @interface ValidationComplexOtherGroupConstraint {
-    String message() default "Concatenation of s and t must have length > {value}";
+public @interface ValidationComplexOtherGroupConstraint{
+   String message() default "Concatenation of s and t must have length > {value}";
 
-    Class<?>[] groups() default {};
+   Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+   Class<? extends Payload>[] payload() default {};
 
-    String value() default "";
+   String value() default "";
 }

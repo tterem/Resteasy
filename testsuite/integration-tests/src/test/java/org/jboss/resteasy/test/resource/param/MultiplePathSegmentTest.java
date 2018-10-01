@@ -1,10 +1,5 @@
 package org.jboss.resteasy.test.resource.param;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -19,6 +14,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.Response;
+
 /**
  * @tpSubChapter Parameters
  * @tpChapter Integration tests
@@ -27,40 +27,39 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class MultiplePathSegmentTest {
+public class MultiplePathSegmentTest{
 
    private static Client client;
 
    @Deployment
-   public static Archive<?> deploy() {
-      WebArchive war = TestUtil.prepareArchive(MultiplePathSegmentTest.class.getSimpleName());
-      return TestUtil.finishContainerPrepare(war, null, MultiplePathSegmentResource.class);
-   }
-
-   private String generateURL(String path) {
-      return PortProviderUtil.generateURL(path, MultiplePathSegmentTest.class.getSimpleName());
+   public static Archive<?> deploy(){
+      WebArchive war=TestUtil.prepareArchive(MultiplePathSegmentTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war,null,MultiplePathSegmentResource.class);
    }
 
    @BeforeClass
-   public static void setup() {
-       client = ClientBuilder.newClient();
+   public static void setup(){
+      client=ClientBuilder.newClient();
    }
 
    @AfterClass
-   public static void cleanup() {
-       client.close();
+   public static void cleanup(){
+      client.close();
    }
-   
+
+   private String generateURL(String path){
+      return PortProviderUtil.generateURL(path,MultiplePathSegmentTest.class.getSimpleName());
+   }
+
    /**
     * @tpTestDetails Array of PathSegments captured by wildcard
     * @tpSince RESTEasy 3.1.3.Final
     */
    @Test
-   public void testWildcardArray() throws Exception
-   {
-      Invocation.Builder request = client.target(generateURL("/a/b/c/array/3")).request();
-      Response response = request.get();
-      Assert.assertEquals(200, response.getStatus());
+   public void testWildcardArray() throws Exception{
+      Invocation.Builder request=client.target(generateURL("/a/b/c/array/3")).request();
+      Response response=request.get();
+      Assert.assertEquals(200,response.getStatus());
       response.close();
    }
 
@@ -69,11 +68,10 @@ public class MultiplePathSegmentTest {
     * @tpSince RESTEasy 3.1.3.Final
     */
    @Test
-   public void testWildcardList() throws Exception
-   {
-      Invocation.Builder request = client.target(generateURL("/a/b/c/list/3")).request();
-      Response response = request.get();
-      Assert.assertEquals(200, response.getStatus());
+   public void testWildcardList() throws Exception{
+      Invocation.Builder request=client.target(generateURL("/a/b/c/list/3")).request();
+      Response response=request.get();
+      Assert.assertEquals(200,response.getStatus());
       response.close();
    }
 
@@ -82,11 +80,10 @@ public class MultiplePathSegmentTest {
     * @tpSince RESTEasy 3.1.3.Final
     */
    @Test
-   public void testWildcardArrayList() throws Exception
-   {
-      Invocation.Builder request = client.target(generateURL("/a/b/c/arraylist/3")).request();
-      Response response = request.get();
-      Assert.assertEquals(200, response.getStatus());
+   public void testWildcardArrayList() throws Exception{
+      Invocation.Builder request=client.target(generateURL("/a/b/c/arraylist/3")).request();
+      Response response=request.get();
+      Assert.assertEquals(200,response.getStatus());
       response.close();
    }
 
@@ -95,11 +92,10 @@ public class MultiplePathSegmentTest {
     * @tpSince RESTEasy 3.1.3.Final
     */
    @Test
-   public void testTwoSegmentsArray() throws Exception
-   {
-      Invocation.Builder request = client.target(generateURL("/a/b/array")).request();
-      Response response = request.get();
-      Assert.assertEquals(200, response.getStatus());
+   public void testTwoSegmentsArray() throws Exception{
+      Invocation.Builder request=client.target(generateURL("/a/b/array")).request();
+      Response response=request.get();
+      Assert.assertEquals(200,response.getStatus());
       response.close();
    }
 
@@ -108,11 +104,10 @@ public class MultiplePathSegmentTest {
     * @tpSince RESTEasy 3.1.3.Final
     */
    @Test
-   public void testTwoSegmentsList() throws Exception
-   {
-      Invocation.Builder request = client.target(generateURL("/a/b/list")).request();
-      Response response = request.get();
-      Assert.assertEquals(200, response.getStatus());
+   public void testTwoSegmentsList() throws Exception{
+      Invocation.Builder request=client.target(generateURL("/a/b/list")).request();
+      Response response=request.get();
+      Assert.assertEquals(200,response.getStatus());
       response.close();
    }
 
@@ -121,11 +116,10 @@ public class MultiplePathSegmentTest {
     * @tpSince RESTEasy 3.1.3.Final
     */
    @Test
-   public void testTwoSegmentsArrayList() throws Exception
-   {
-      Invocation.Builder request = client.target(generateURL("/a/b/arraylist")).request();
-      Response response = request.get();
-      Assert.assertEquals(200, response.getStatus());
+   public void testTwoSegmentsArrayList() throws Exception{
+      Invocation.Builder request=client.target(generateURL("/a/b/arraylist")).request();
+      Response response=request.get();
+      Assert.assertEquals(200,response.getStatus());
       response.close();
    }
 }

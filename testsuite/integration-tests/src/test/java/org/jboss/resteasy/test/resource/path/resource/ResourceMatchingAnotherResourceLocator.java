@@ -7,22 +7,22 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-public class ResourceMatchingAnotherResourceLocator {
+public class ResourceMatchingAnotherResourceLocator{
 
-    @GET
-    public String get() {
-        return getClass().getSimpleName();
-    }
+   @GET
+   public String get(){
+      return getClass().getSimpleName();
+   }
 
-    @POST
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String post() {
-        return get();
-    }
+   @POST
+   @Consumes(MediaType.TEXT_PLAIN)
+   @Produces(MediaType.TEXT_PLAIN)
+   public String post(){
+      return get();
+   }
 
-    @DELETE
-    public String delete() {
-        return get();
-    }
+   @DELETE
+   public String delete(){
+      return get();
+   }
 }

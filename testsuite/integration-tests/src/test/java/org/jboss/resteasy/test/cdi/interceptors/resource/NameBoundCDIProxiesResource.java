@@ -4,11 +4,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 @Path("")
-public class NameBoundCDIProxiesResource {
+public class NameBoundCDIProxiesResource{
 
    @Path("test")
    @GET
-   public String test() {
+   public String test(){
       return "test";
    }
 }

@@ -4,23 +4,23 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import javax.ws.rs.client.ClientBuilder;
-import org.jboss.resteasy.test.client.proxy.resource.ClientResponseFailureResource;
 import org.jboss.resteasy.spi.HttpResponseCodes;
+import org.jboss.resteasy.test.client.proxy.resource.ClientResponseFailureResource;
 import org.jboss.resteasy.utils.PortProviderUtil;
 import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Test;
-import org.junit.Before;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.client.ClientBuilder;
 
 /**
  * @tpSubChapter Resteasy-client
@@ -29,64 +29,64 @@ import javax.ws.rs.Produces;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class ClientResponseFailureTest {
+public class ClientResponseFailureTest{
 
-    @Path("/test")
-    public interface ClientResponseFailureResourceInterface {
-        @GET
-        @Produces("text/plain")
-        String get();
+   static ResteasyClient client;
 
-        @GET
-        @Path("error")
-        @Produces("text/plain")
-        String error();
-    }
+   @Deployment
+   public static Archive<?> deploy(){
+      WebArchive war=TestUtil.prepareArchive(ClientResponseFailureTest.class.getSimpleName());
+      war.addClass(ClientResponseFailureTest.class);
+      return TestUtil.finishContainerPrepare(war,null,ClientResponseFailureResource.class);
+   }
 
-    static ResteasyClient client;
+   @Before
+   public void init(){
+      client=(ResteasyClient)ClientBuilder.newClient();
+   }
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(ClientResponseFailureTest.class.getSimpleName());
-        war.addClass(ClientResponseFailureTest.class);
-        return TestUtil.finishContainerPrepare(war, null, ClientResponseFailureResource.class);
-    }
+   @After
+   public void after() throws Exception{
+      client.close();
+   }
 
-    @Before
-    public void init() {
-         client = (ResteasyClient)ClientBuilder.newClient();
-    }
+   private String generateURL(String path){
+      return PortProviderUtil.generateURL(path,ClientResponseFailureTest.class.getSimpleName());
+   }
 
-    @After
-    public void after() throws Exception {
-        client.close();
-    }
+   /**
+    * @tpTestDetails Client sends async GET requests thru client proxy. The NotFoundException should be thrown as response.
+    * @tpPassCrit Exception NotFoundException is thrown
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testStreamStillOpen() throws Exception{
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, ClientResponseFailureTest.class.getSimpleName());
-    }
+      final ClientResponseFailureResourceInterface proxy=client.target(generateURL(""))
+         .proxy(ClientResponseFailureResourceInterface.class);
+      boolean failed=true;
+      try{
+         proxy.error();
+         failed=false;
+      }catch(NotFoundException e){
+         Assert.assertEquals(HttpResponseCodes.SC_NOT_FOUND,e.getResponse().getStatus());
+         Assert.assertEquals("There wasn't expected message",e.getResponse().readEntity(String.class),
+            "there was an error");
+         e.getResponse().close();
+      }
 
-    /**
-     * @tpTestDetails Client sends async GET requests thru client proxy. The NotFoundException should be thrown as response.
-     * @tpPassCrit Exception NotFoundException is thrown
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testStreamStillOpen() throws Exception {
+      Assert.assertTrue("The expected NotFoundException didn't happened",failed);
+   }
 
-        final ClientResponseFailureResourceInterface proxy = client.target(generateURL(""))
-                .proxy(ClientResponseFailureResourceInterface.class);
-        boolean failed = true;
-        try {
-            proxy.error();
-            failed = false;
-        } catch (NotFoundException e) {
-            Assert.assertEquals(HttpResponseCodes.SC_NOT_FOUND, e.getResponse().getStatus());
-            Assert.assertEquals("There wasn't expected message", e.getResponse().readEntity(String.class),
-                    "there was an error");
-            e.getResponse().close();
-        }
+   @Path("/test")
+   public interface ClientResponseFailureResourceInterface{
+      @GET
+      @Produces("text/plain")
+      String get();
 
-        Assert.assertTrue("The expected NotFoundException didn't happened", failed);
-    }
+      @GET
+      @Path("error")
+      @Produces("text/plain")
+      String error();
+   }
 }

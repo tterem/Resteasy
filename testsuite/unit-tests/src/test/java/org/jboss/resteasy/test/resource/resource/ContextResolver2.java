@@ -6,11 +6,11 @@ import javax.ws.rs.ext.Provider;
 
 @Provider
 @Produces("text/plain")
-public class ContextResolver2 implements ContextResolver<String> {
-    public String getContext(Class<?> type) {
-        if (type.equals(int.class)) {
-            return "2";
-        }
-        return null;
-    }
+public class ContextResolver2 implements ContextResolver<String>{
+   public String getContext(Class<?> type){
+      if(type.equals(int.class)){
+         return "2";
+      }
+      return null;
+   }
 }

@@ -11,17 +11,17 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 @Provider
-public class ResourceInfoInjectionFilter implements ContainerResponseFilter {
-    @Context
-    private ResourceInfo resourceInfo;
+public class ResourceInfoInjectionFilter implements ContainerResponseFilter{
+   @Context
+   private ResourceInfo resourceInfo;
 
-    @Override
-    public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
-        Method method = resourceInfo.getResourceMethod();
-        if (method == null) {
-            responseContext.setStatus(responseContext.getStatus() * 2);
-        } else {
-            responseContext.setEntity(method.getName(), null, MediaType.TEXT_PLAIN_TYPE);
-        }
-    }
+   @Override
+   public void filter(ContainerRequestContext requestContext,ContainerResponseContext responseContext) throws IOException{
+      Method method=resourceInfo.getResourceMethod();
+      if(method==null){
+         responseContext.setStatus(responseContext.getStatus()*2);
+      }else{
+         responseContext.setEntity(method.getName(),null,MediaType.TEXT_PLAIN_TYPE);
+      }
+   }
 }

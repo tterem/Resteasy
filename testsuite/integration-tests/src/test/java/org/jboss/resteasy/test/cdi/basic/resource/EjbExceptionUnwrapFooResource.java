@@ -8,7 +8,7 @@ import javax.ws.rs.Produces;
 @Local
 @Path("/exception")
 @Produces("text/plain")
-public interface EjbExceptionUnwrapFooResource {
-    @GET
-    void testException();
+public interface EjbExceptionUnwrapFooResource{
+   @GET
+   void testException();
 }

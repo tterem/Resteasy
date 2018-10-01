@@ -5,8 +5,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 @Path("root")
-public interface RootResource
-{
+public interface RootResource{
    @Path("/sub")
    SubResource getSubResource();
 

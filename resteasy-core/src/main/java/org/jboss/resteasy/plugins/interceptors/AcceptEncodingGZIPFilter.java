@@ -12,29 +12,22 @@ import java.io.IOException;
  * Must be used in conjunction with GZIPDecodingInterceptor
  * <p>
  * Sets
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
 @Provider
 @Priority(Priorities.HEADER_DECORATOR)
-public class AcceptEncodingGZIPFilter implements ClientRequestFilter
-{
+public class AcceptEncodingGZIPFilter implements ClientRequestFilter{
 
    @Override
-   public void filter(ClientRequestContext ctx) throws IOException
-   {
-      String encoding = ctx.getHeaderString(HttpHeaders.ACCEPT_ENCODING);
-      if (encoding == null)
-      {
-         ctx.getHeaders().add(HttpHeaders.ACCEPT_ENCODING, "gzip, deflate");
-      }
-      else
-      {
-         if (!encoding.contains("gzip"))
-         {
-            encoding += ", gzip";
-            ctx.getHeaders().add(HttpHeaders.ACCEPT_ENCODING, encoding);
+   public void filter(ClientRequestContext ctx) throws IOException{
+      String encoding=ctx.getHeaderString(HttpHeaders.ACCEPT_ENCODING);
+      if(encoding==null){
+         ctx.getHeaders().add(HttpHeaders.ACCEPT_ENCODING,"gzip, deflate");
+      }else{
+         if(!encoding.contains("gzip")){
+            encoding+=", gzip";
+            ctx.getHeaders().add(HttpHeaders.ACCEPT_ENCODING,encoding);
          }
       }
    }

@@ -6,11 +6,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @ApplicationPath("a")
-public class DuplicitePathDupliciteApplicationTwo extends Application {
-    @Override
-    public Set<Class<?>> getClasses() {
-        HashSet<Class<?>> set = new HashSet<Class<?>>();
-        set.add(DuplicitePathDupliciteResourceTwo.class);
-        return set;
-    }
+public class DuplicitePathDupliciteApplicationTwo extends Application{
+   @Override
+   public Set<Class<?>> getClasses(){
+      HashSet<Class<?>> set=new HashSet<Class<?>>();
+      set.add(DuplicitePathDupliciteResourceTwo.class);
+      return set;
+   }
 }

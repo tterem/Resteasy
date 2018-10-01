@@ -8,12 +8,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 @Path("/unlimited")
-public class ComplexPathParamUnlimitedResource {
-    @Path("{1}-{rest:.*}")
-    @GET
-    public String get(@PathParam("1") int one, @PathParam("rest") String rest) {
-        Assert.assertEquals(ComplexPathParamTest.WRONG_REQUEST_ERROR_MESSAGE, 1, one);
-        Assert.assertEquals(ComplexPathParamTest.WRONG_REQUEST_ERROR_MESSAGE, "on/and/on", rest);
-        return "ok";
-    }
+public class ComplexPathParamUnlimitedResource{
+   @Path("{1}-{rest:.*}")
+   @GET
+   public String get(@PathParam("1") int one,@PathParam("rest") String rest){
+      Assert.assertEquals(ComplexPathParamTest.WRONG_REQUEST_ERROR_MESSAGE,1,one);
+      Assert.assertEquals(ComplexPathParamTest.WRONG_REQUEST_ERROR_MESSAGE,"on/and/on",rest);
+      return "ok";
+   }
 }

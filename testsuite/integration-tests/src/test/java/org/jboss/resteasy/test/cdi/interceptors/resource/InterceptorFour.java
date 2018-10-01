@@ -8,17 +8,17 @@ import java.util.logging.Logger;
 
 @Interceptor
 @InterceptorMethodBinding
-public class InterceptorFour {
-    @Inject
-    private Logger log;
+public class InterceptorFour{
+   @Inject
+   private Logger log;
 
-    @AroundInvoke
-    public Object intercept(InvocationContext ctx) throws Exception {
-        log.info("*** Intercepting call in InterceptorFour.intercept()");
-        InterceptorVisitList.add(this);
-        Object result = ctx.proceed();
-        log.info("*** Back from intercepting call in InterceptorFour.intercept()");
-        return result;
-    }
+   @AroundInvoke
+   public Object intercept(InvocationContext ctx) throws Exception{
+      log.info("*** Intercepting call in InterceptorFour.intercept()");
+      InterceptorVisitList.add(this);
+      Object result=ctx.proceed();
+      log.info("*** Back from intercepting call in InterceptorFour.intercept()");
+      return result;
+   }
 }
 

@@ -5,10 +5,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/interception")
-public class PreProcessorExceptionMapperResource {
-    @GET
-    @Produces("text/plain")
-    public String get() {
-        return "hello world";
-    }
+public class PreProcessorExceptionMapperResource{
+   @GET
+   @Produces("text/plain")
+   public String get(){
+      return "hello world";
+   }
 }

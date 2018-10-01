@@ -9,11 +9,11 @@ import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 
 @Path("/")
-public class UriInfoRelativizeResource {
-    @Produces("text/plain")
-    @GET
-    @Path("{path : .*}")
-    public String relativize(@Context UriInfo info, @QueryParam("to") String to) {
-        return info.relativize(URI.create(to)).toString();
-    }
+public class UriInfoRelativizeResource{
+   @Produces("text/plain")
+   @GET
+   @Path("{path : .*}")
+   public String relativize(@Context UriInfo info,@QueryParam("to") String to){
+      return info.relativize(URI.create(to)).toString();
+   }
 }

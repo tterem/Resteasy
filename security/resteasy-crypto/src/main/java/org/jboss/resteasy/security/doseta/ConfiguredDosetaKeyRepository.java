@@ -13,39 +13,37 @@ import java.security.PublicKey;
  * <p>
  * Private keys are stored in a java keystore.  Public keys may be stored in either a java keystore or discovered via
  * DNS.
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class ConfiguredDosetaKeyRepository implements KeyRepository
-{
+public class ConfiguredDosetaKeyRepository implements KeyRepository{
    /**
     * Context parameter.
     * <p>
     * Hardcoded file path to your keystore
     */
-   public static String RESTEASY_KEY_STORE_FILE_NAME = "resteasy.doseta.keystore.filename";
+   public static String RESTEASY_KEY_STORE_FILE_NAME="resteasy.doseta.keystore.filename";
 
    /**
     * Context parameter.
     * <p>
     * Find the java keystore by searching the classpath.  This points to a file on the classpath
     */
-   public static String RESTEASY_KEY_STORE_CLASSPATH = "resteasy.doseta.keystore.classpath";
+   public static String RESTEASY_KEY_STORE_CLASSPATH="resteasy.doseta.keystore.classpath";
 
    /**
     * Context parameter.
     * <p>
     * Password of the java keystore.
     */
-   public static String RESTEASY_KEY_STORE_PASSWORD = "resteasy.doseta.keystore.password";
+   public static String RESTEASY_KEY_STORE_PASSWORD="resteasy.doseta.keystore.password";
 
    /**
     * Context parameter.
     * <p>
     * true|false.  Whether or not to use DNS to discover public keys.  By default looks in keystore
     */
-   public static String RESTEASY_DOSETA_USE_DNS = "resteasy.doseta.use.dns";
+   public static String RESTEASY_DOSETA_USE_DNS="resteasy.doseta.use.dns";
 
    /**
     * Context parameter.
@@ -54,70 +52,58 @@ public class ConfiguredDosetaKeyRepository implements KeyRepository
     * <p>
     * dns://hostname:port
     */
-   public static String RESTEASY_DOSETA_DNS_URI = "resteasy.doseta.dns.uri";
+   public static String RESTEASY_DOSETA_DNS_URI="resteasy.doseta.dns.uri";
 
    /**
     * Context parameter.
     * <p>
     * When signing, if no domain is specified, use this domain.
     */
-   public static String RESTEASY_DOSETA_DEFAULT_PRIVATE_DOMAIN = "resteasy.doseta.default.private.domain";
+   public static String RESTEASY_DOSETA_DEFAULT_PRIVATE_DOMAIN="resteasy.doseta.default.private.domain";
 
    /**
     * Public keys are cached.  Specify a timeout for these keys.
     */
-   public static String RESTEASY_DOSETA_CACHE_TIMEOUT = "resteasy.doseta.cache.timeout";
+   public static String RESTEASY_DOSETA_CACHE_TIMEOUT="resteasy.doseta.cache.timeout";
 
    /**
     * true|false.  When signing, if no selector is specified, use the user principal as the selector value.
     */
-   public static String RESTEASY_DOSETA_PRINCIPAL_FOR_PRIVATE = "resteasy.doseta.principal.for.private";
+   public static String RESTEASY_DOSETA_PRINCIPAL_FOR_PRIVATE="resteasy.doseta.principal.for.private";
 
-   protected DosetaKeyRepository keyRepository = new DosetaKeyRepository();
+   protected DosetaKeyRepository keyRepository=new DosetaKeyRepository();
 
-   private static String getVariable(ResteasyConfiguration config, String name)
-   {
-      String variable = config.getParameter(name);
-      if (variable != null) variable = variable.trim();
-      return variable;
-   }
-
-   public ConfiguredDosetaKeyRepository(@Context ResteasyConfiguration config)
-   {
-      String password = getVariable(config, RESTEASY_KEY_STORE_PASSWORD);
+   public ConfiguredDosetaKeyRepository(@Context ResteasyConfiguration config){
+      String password=getVariable(config,RESTEASY_KEY_STORE_PASSWORD);
       keyRepository.setKeyStorePassword(password);
 
-      String keyStoreFileName = getVariable(config, RESTEASY_KEY_STORE_FILE_NAME);
+      String keyStoreFileName=getVariable(config,RESTEASY_KEY_STORE_FILE_NAME);
       keyRepository.setKeyStoreFile(keyStoreFileName);
 
-      String keyStorePath = getVariable(config, RESTEASY_KEY_STORE_CLASSPATH);
+      String keyStorePath=getVariable(config,RESTEASY_KEY_STORE_CLASSPATH);
       keyRepository.setKeyStorePath(keyStorePath);
 
 
-      String principal = getVariable(config, RESTEASY_DOSETA_PRINCIPAL_FOR_PRIVATE);
-      if (principal != null)
-      {
+      String principal=getVariable(config,RESTEASY_DOSETA_PRINCIPAL_FOR_PRIVATE);
+      if(principal!=null){
          keyRepository.setUserPrincipalAsPrivateSelector(Boolean.parseBoolean(principal));
       }
 
-      String useDns = getVariable(config, RESTEASY_DOSETA_USE_DNS);
-      if (useDns != null)
-      {
+      String useDns=getVariable(config,RESTEASY_DOSETA_USE_DNS);
+      if(useDns!=null){
          keyRepository.setUseDns(Boolean.parseBoolean(useDns));
       }
 
-      String dnsUri = getVariable(config, RESTEASY_DOSETA_DNS_URI);
-      if (dnsUri != null)
-      {
+      String dnsUri=getVariable(config,RESTEASY_DOSETA_DNS_URI);
+      if(dnsUri!=null){
          keyRepository.setDnsUri(dnsUri.trim());
       }
 
-      String defaultDomain = getVariable(config, RESTEASY_DOSETA_DEFAULT_PRIVATE_DOMAIN);
+      String defaultDomain=getVariable(config,RESTEASY_DOSETA_DEFAULT_PRIVATE_DOMAIN);
       keyRepository.setDefaultPrivateDomain(defaultDomain);
 
-      String timeout = getVariable(config, RESTEASY_DOSETA_CACHE_TIMEOUT);
-      if (timeout != null)
-      {
+      String timeout=getVariable(config,RESTEASY_DOSETA_CACHE_TIMEOUT);
+      if(timeout!=null){
          keyRepository.setCacheTimeout(Long.parseLong(timeout.trim()));
       }
 
@@ -126,23 +112,25 @@ public class ConfiguredDosetaKeyRepository implements KeyRepository
 
    }
 
-   public PrivateKey findPrivateKey(DKIMSignature header)
-   {
+   private static String getVariable(ResteasyConfiguration config,String name){
+      String variable=config.getParameter(name);
+      if(variable!=null) variable=variable.trim();
+      return variable;
+   }
+
+   public PrivateKey findPrivateKey(DKIMSignature header){
       return keyRepository.findPrivateKey(header);
    }
 
-   public PublicKey findPublicKey(DKIMSignature header)
-   {
+   public PublicKey findPublicKey(DKIMSignature header){
       return keyRepository.findPublicKey(header);
    }
 
-   public String getDefaultPrivateSelector()
-   {
+   public String getDefaultPrivateSelector(){
       return keyRepository.getDefaultPrivateSelector();
    }
 
-   public String getDefaultPrivateDomain()
-   {
+   public String getDefaultPrivateDomain(){
       return keyRepository.getDefaultPrivateDomain();
    }
 }

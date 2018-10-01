@@ -9,16 +9,16 @@ import javax.ws.rs.core.Response;
  * Date: 2/17/17
  */
 @Produces("text/plain")
-public class ResourceLocatorRegexCapturingGroupSubResourceNoPath {
-    private String name;
+public class ResourceLocatorRegexCapturingGroupSubResourceNoPath{
+   private String name;
 
-    public ResourceLocatorRegexCapturingGroupSubResourceNoPath(String name) {
-        this.name = name;
-    }
+   public ResourceLocatorRegexCapturingGroupSubResourceNoPath(String name){
+      this.name=name;
+   }
 
-    @GET
-    public Response get() {
-        return Response.ok(name +" success").build();
-    }
+   @GET
+   public Response get(){
+      return Response.ok(name+" success").build();
+   }
 }
 

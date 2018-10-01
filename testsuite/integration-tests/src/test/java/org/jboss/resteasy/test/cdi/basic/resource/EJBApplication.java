@@ -8,14 +8,14 @@ import java.util.Set;
 
 @Singleton
 @ApplicationScoped
-public class EJBApplication extends Application {
-    @Override
-    public Set<Class<?>> getClasses() {
-        HashSet<Class<?>> classes = new HashSet<Class<?>>();
-        classes.add(EJBBookReaderImpl.class);
-        classes.add(EJBBookWriterImpl.class);
-        classes.add(EJBBookResource.class);
-        return classes;
-    }
+public class EJBApplication extends Application{
+   @Override
+   public Set<Class<?>> getClasses(){
+      HashSet<Class<?>> classes=new HashSet<Class<?>>();
+      classes.add(EJBBookReaderImpl.class);
+      classes.add(EJBBookWriterImpl.class);
+      classes.add(EJBBookResource.class);
+      return classes;
+   }
 }
 

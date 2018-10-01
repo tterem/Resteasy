@@ -7,5 +7,5 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 @StringParameterUnmarshallerBinder(StringParameterInjectorUnmarshaller.class)
-public @interface StringParameterInjectorSpecialString {
+public @interface StringParameterInjectorSpecialString{
 }

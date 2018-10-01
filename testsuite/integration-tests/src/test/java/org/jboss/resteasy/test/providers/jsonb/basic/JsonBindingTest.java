@@ -17,14 +17,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -44,45 +42,43 @@ import static org.hamcrest.CoreMatchers.not;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class JsonBindingTest {
+public class JsonBindingTest{
 
-   protected static final Logger logger = Logger.getLogger(JsonBindingTest.class.getName());
-
+   protected static final Logger logger=Logger.getLogger(JsonBindingTest.class.getName());
+   private static final String WAR_WITH_JSONB="war_with_jsonb";
+   private static final String CUSTOM_JSON_PROVIDER="custom_json_provider";
    static Client client;
 
-   private static final String WAR_WITH_JSONB = "war_with_jsonb";
-   private static final String CUSTOM_JSON_PROVIDER = "custom_json_provider";
-
-   @Deployment(name = WAR_WITH_JSONB)
-   public static Archive<?> deployWithJsonB() {
-      return deploy(WAR_WITH_JSONB, true);
+   @Deployment(name=WAR_WITH_JSONB)
+   public static Archive<?> deployWithJsonB(){
+      return deploy(WAR_WITH_JSONB,true);
    }
 
-   @Deployment(name = CUSTOM_JSON_PROVIDER)
-   public static Archive<?> deployWithoutJsonB() {
-      return deploy(CUSTOM_JSON_PROVIDER, false);
+   @Deployment(name=CUSTOM_JSON_PROVIDER)
+   public static Archive<?> deployWithoutJsonB(){
+      return deploy(CUSTOM_JSON_PROVIDER,false);
    }
 
-   public static Archive<?> deploy(String archiveName, boolean useJsonB) {
-      WebArchive war = TestUtil.prepareArchive(archiveName);
+   public static Archive<?> deploy(String archiveName,boolean useJsonB){
+      WebArchive war=TestUtil.prepareArchive(archiveName);
       war.addClass(JsonBindingTest.class);
       war.addClass(Cat.class);
-      if (useJsonB) {
-         war.addAsManifestResource("jboss-deployment-structure-json-b.xml", "jboss-deployment-structure.xml");
-         return TestUtil.finishContainerPrepare(war, null, JsonBindingResource.class);
+      if(useJsonB){
+         war.addAsManifestResource("jboss-deployment-structure-json-b.xml","jboss-deployment-structure.xml");
+         return TestUtil.finishContainerPrepare(war,null,JsonBindingResource.class);
       }
-      return TestUtil.finishContainerPrepare(war, null, JsonBindingResource.class, JsonBindingCustomRepeaterProvider.class);
+      return TestUtil.finishContainerPrepare(war,null,JsonBindingResource.class,JsonBindingCustomRepeaterProvider.class);
    }
 
    @BeforeClass
-   public static void init() {
-      client = ClientBuilder.newClient();
+   public static void init(){
+      client=ClientBuilder.newClient();
    }
 
    @AfterClass
-   public static void after() throws Exception {
+   public static void after() throws Exception{
       client.close();
-      client = null;
+      client=null;
    }
 
    /**
@@ -97,44 +93,44 @@ public class JsonBindingTest {
     * @tpSince RESTEasy 4.0.0
     */
    @Test
-   public void jsonbOnServerAndClientTest() throws Exception {
-      String charset = "UTF-8";
-      WebTarget target = client.target(PortProviderUtil.generateURL("/test/jsonBinding/cat/transient", WAR_WITH_JSONB));
-      MediaType mediaType = MediaType.APPLICATION_JSON_TYPE.withCharset(charset);
-      Entity<Cat> entity = Entity.entity(
-              new Cat("Rosa", "semi-british", "tabby", true, JsonBindingResource.CLIENT_TRANSIENT_VALUE), mediaType);
-      Cat json = target.request().post(entity, Cat.class);
-      logger.info("Request entity: " + entity);
-      Assert.assertTrue("Failed to return the correct name", "Alfred".equals(json.getName()));
+   public void jsonbOnServerAndClientTest() throws Exception{
+      String charset="UTF-8";
+      WebTarget target=client.target(PortProviderUtil.generateURL("/test/jsonBinding/cat/transient",WAR_WITH_JSONB));
+      MediaType mediaType=MediaType.APPLICATION_JSON_TYPE.withCharset(charset);
+      Entity<Cat> entity=Entity.entity(
+         new Cat("Rosa","semi-british","tabby",true,JsonBindingResource.CLIENT_TRANSIENT_VALUE),mediaType);
+      Cat json=target.request().post(entity,Cat.class);
+      logger.info("Request entity: "+entity);
+      Assert.assertTrue("Failed to return the correct name","Alfred".equals(json.getName()));
       Assert.assertThat("Variable with JsonbTransient annotation should be transient, if JSON-B is used",
-              json.getTransientVar(), is(Cat.DEFAULT_TRANSIENT_VAR_VALUE));
+         json.getTransientVar(),is(Cat.DEFAULT_TRANSIENT_VAR_VALUE));
 
-      String jsonbResponse = target.request().post(entity).readEntity(String.class);
-      Assert.assertEquals("JsonBindingProvider is not enabled", "{\"color\":\"ginger\",\"sort\":\"semi-british\",\"name\":\"Alfred\",\"domesticated\":true}", jsonbResponse);
+      String jsonbResponse=target.request().post(entity).readEntity(String.class);
+      Assert.assertEquals("JsonBindingProvider is not enabled","{\"color\":\"ginger\",\"sort\":\"semi-british\",\"name\":\"Alfred\",\"domesticated\":true}",jsonbResponse);
    }
 
-    /**
-     * @tpTestDetails JSON-B is used on client, JSON-B is not used on server, server uses test's custom json provider
-     *                client should not ignore @JsonbTransient annotation and should not send a value in this variable
-     *                server verify that client doesn't sent a value in a variable with @JsonbTransient annotation
-     *                server returns json data with a value in a variable with @JsonbTransient annotation
-     *                client should not ignore @JsonbTransient annotation and should not receive a value in this variable
-     *
-     * @tpPassCrit The resource returns object with correct values
-     * @tpSince RESTEasy 3.5
-     */
+   /**
+    * @tpTestDetails JSON-B is used on client, JSON-B is not used on server, server uses test's custom json provider
+    *                client should not ignore @JsonbTransient annotation and should not send a value in this variable
+    *                server verify that client doesn't sent a value in a variable with @JsonbTransient annotation
+    *                server returns json data with a value in a variable with @JsonbTransient annotation
+    *                client should not ignore @JsonbTransient annotation and should not receive a value in this variable
+    *
+    * @tpPassCrit The resource returns object with correct values
+    * @tpSince RESTEasy 3.5
+    */
    @Test
-   public void jsonbOnClientTest() throws Exception {
-      String charset = "UTF-8";
-      WebTarget target = client.target(PortProviderUtil.generateURL("/test/jsonBinding/client/test/transient", CUSTOM_JSON_PROVIDER));
-      MediaType mediaType = MediaType.APPLICATION_JSON_TYPE.withCharset(charset);
-      Entity<Cat> entity = Entity.entity(
-              new Cat("Rosa", "semi-british", "tabby", true,
-                      JsonBindingResource.CLIENT_TRANSIENT_VALUE), mediaType);
-      Cat response = target.request().post(entity, Cat.class);
-      Assert.assertThat("Failed to return the correct name", response.getName(), is("Rosa"));
+   public void jsonbOnClientTest() throws Exception{
+      String charset="UTF-8";
+      WebTarget target=client.target(PortProviderUtil.generateURL("/test/jsonBinding/client/test/transient",CUSTOM_JSON_PROVIDER));
+      MediaType mediaType=MediaType.APPLICATION_JSON_TYPE.withCharset(charset);
+      Entity<Cat> entity=Entity.entity(
+         new Cat("Rosa","semi-british","tabby",true,
+            JsonBindingResource.CLIENT_TRANSIENT_VALUE),mediaType);
+      Cat response=target.request().post(entity,Cat.class);
+      Assert.assertThat("Failed to return the correct name",response.getName(),is("Rosa"));
       Assert.assertThat("Variable with JsonbTransient annotation should be transient, if JSON-B is used",
-             response.getTransientVar(), is(Cat.DEFAULT_TRANSIENT_VAR_VALUE));
+         response.getTransientVar(),is(Cat.DEFAULT_TRANSIENT_VAR_VALUE));
    }
 
 
@@ -147,32 +143,31 @@ public class JsonBindingTest {
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void negativeScenarioOnClient() throws Exception {
+   public void negativeScenarioOnClient() throws Exception{
       // call and log get request
-      WebTarget target = client.target(PortProviderUtil.generateURL("/test/jsonBinding/get/cat", CUSTOM_JSON_PROVIDER));
-      Response response = target.request().get();
-      String responseAsString = response.readEntity(String.class);
-      Assert.assertThat("Server should use custom JSON provider", responseAsString, containsString(Cat.CUSTOM_TO_STRING_FORMAT));
-      logger.info("Response as a String: " + responseAsString);
+      WebTarget target=client.target(PortProviderUtil.generateURL("/test/jsonBinding/get/cat",CUSTOM_JSON_PROVIDER));
+      Response response=target.request().get();
+      String responseAsString=response.readEntity(String.class);
+      Assert.assertThat("Server should use custom JSON provider",responseAsString,containsString(Cat.CUSTOM_TO_STRING_FORMAT));
+      logger.info("Response as a String: "+responseAsString);
       response.close();
 
       // call get request, try to get Cat data
-      response = target.request().get();
-      try {
-         Cat wrongObject = response.readEntity(Cat.class);
+      response=target.request().get();
+      try{
+         Cat wrongObject=response.readEntity(Cat.class);
          logger.info("JSON-B parse server toString method, although JSON-B should not do that. Received object:");
          logger.info(wrongObject.toString());
          Assert.fail("Client should throw exception because JSON-B should not be able to parse wrong data");
-      }
-      catch (Throwable e) {
-         StringWriter errors = new StringWriter();
+      }catch(Throwable e){
+         StringWriter errors=new StringWriter();
          e.printStackTrace(new PrintWriter(errors));
-         String stackTraceString = errors.toString();
+         String stackTraceString=errors.toString();
          logger.info("StackTrace of exception:");
          logger.info(stackTraceString);
-         for (String stackTraceLine : stackTraceString.split(System.lineSeparator())) {
-            Assert.assertThat("User-unfriendly error message in JSON-B", stackTraceLine,
-                    not(containsString("Messages (implementation not found)")));
+         for(String stackTraceLine : stackTraceString.split(System.lineSeparator())){
+            Assert.assertThat("User-unfriendly error message in JSON-B",stackTraceLine,
+               not(containsString("Messages (implementation not found)")));
          }
       }
    }

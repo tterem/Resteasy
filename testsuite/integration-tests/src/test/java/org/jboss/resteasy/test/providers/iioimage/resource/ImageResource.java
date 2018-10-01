@@ -9,12 +9,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/image")
-public class ImageResource {
-    @POST
-    @Consumes("image/*")
-    @Produces("image/png")
-    @ImageWriterParams(compressionQuality = 0.2f)
-    public IIOImage transcodeImage(IIOImage image) {
-        return image;
-    }
+public class ImageResource{
+   @POST
+   @Consumes("image/*")
+   @Produces("image/png")
+   @ImageWriterParams(compressionQuality=0.2f)
+   public IIOImage transcodeImage(IIOImage image){
+      return image;
+   }
 }

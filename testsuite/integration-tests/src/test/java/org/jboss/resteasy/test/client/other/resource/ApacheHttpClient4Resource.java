@@ -7,19 +7,19 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/test")
-public interface ApacheHttpClient4Resource {
-    @GET
-    @Produces("text/plain")
-    String get();
+public interface ApacheHttpClient4Resource{
+   @GET
+   @Produces("text/plain")
+   String get();
 
-    @GET
-    @Path("error")
-    @Produces("text/plain")
-    String error();
+   @GET
+   @Path("error")
+   @Produces("text/plain")
+   String error();
 
-    @POST
-    @Path("data")
-    @Produces("text/plain")
-    @Consumes("text/plain")
-    String getData(String data);
+   @POST
+   @Path("data")
+   @Produces("text/plain")
+   @Consumes("text/plain")
+   String getData(String data);
 }

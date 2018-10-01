@@ -1,10 +1,10 @@
 package org.jboss.resteasy.test.providers.jaxb.resource;
 
 import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAnyElement;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyAttribute;
+import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.namespace.QName;
 import java.util.ArrayList;
@@ -13,81 +13,81 @@ import java.util.List;
 import java.util.Map;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class MapJaxb {
-    @XmlAnyElement
-    List<JAXBElement<Entry>> value = new ArrayList<JAXBElement<Entry>>();
+public class MapJaxb{
+   @XmlAnyElement
+   List<JAXBElement<Entry>> value=new ArrayList<JAXBElement<Entry>>();
 
-    @XmlTransient
-    private String entryName;
-    @XmlTransient
-    private String keyAttributeName;
-    @XmlTransient
-    private String namespace;
+   @XmlTransient
+   private String entryName;
+   @XmlTransient
+   private String keyAttributeName;
+   @XmlTransient
+   private String namespace;
 
-    public MapJaxb() {
-    }
+   public MapJaxb(){
+   }
 
-    public MapJaxb(final String entryName, final String keyAttributeName, final String namespace) {
-        this.entryName = entryName;
-        this.namespace = namespace;
-        this.keyAttributeName = keyAttributeName;
-    }
+   public MapJaxb(final String entryName,final String keyAttributeName,final String namespace){
+      this.entryName=entryName;
+      this.namespace=namespace;
+      this.keyAttributeName=keyAttributeName;
+   }
 
-    @XmlAccessorType(XmlAccessType.FIELD)
-    public static class Entry {
-        @XmlAnyElement
-        Object value;
+   public void addEntry(String key,Object val){
+      Entry entry=new Entry(keyAttributeName,key,val);
+      JAXBElement<Entry> element=new JAXBElement<Entry>(new QName(namespace,entryName),Entry.class,entry);
+      value.add(element);
+   }
 
-        @XmlAnyAttribute
-        Map<QName, Object> attribute = new HashMap<QName, Object>();
+   public List<JAXBElement<Entry>> getValue(){
+      return value;
+   }
 
-        @XmlTransient
-        private String key;
+   @XmlAccessorType(XmlAccessType.FIELD)
+   public static class Entry{
+      @XmlAnyElement
+      Object value;
 
-        @XmlTransient
-        private String keyAttributeName;
+      @XmlAnyAttribute
+      Map<QName,Object> attribute=new HashMap<QName,Object>();
 
-        public Entry() {
-        }
+      @XmlTransient
+      private String key;
 
-        public Entry(final String keyAttributeName, final String key, final Object value) {
-            this.value = value;
-            this.keyAttributeName = keyAttributeName;
-            setKey(key);
-        }
+      @XmlTransient
+      private String keyAttributeName;
 
-        public Object getValue() {
-            return value;
-        }
+      public Entry(){
+      }
 
-        public void setValue(Object value) {
-            this.value = value;
-        }
+      public Entry(final String keyAttributeName,final String key,final Object value){
+         this.value=value;
+         this.keyAttributeName=keyAttributeName;
+         setKey(key);
+      }
 
-        public String getKey() {
-            if (key != null) {
-                return key;
-            }
-            key = (String) attribute.values().iterator().next();
+      public Object getValue(){
+         return value;
+      }
+
+      public void setValue(Object value){
+         this.value=value;
+      }
+
+      public String getKey(){
+         if(key!=null){
             return key;
-        }
+         }
+         key=(String)attribute.values().iterator().next();
+         return key;
+      }
 
-        public void setKey(String keyValue) {
-            this.key = keyValue;
-            attribute.clear();
+      public void setKey(String keyValue){
+         this.key=keyValue;
+         attribute.clear();
 
-            QName name = new QName(keyAttributeName);
-            attribute.put(name, keyValue);
-        }
-    }
-
-    public void addEntry(String key, Object val) {
-        Entry entry = new Entry(keyAttributeName, key, val);
-        JAXBElement<Entry> element = new JAXBElement<Entry>(new QName(namespace, entryName), Entry.class, entry);
-        value.add(element);
-    }
-
-    public List<JAXBElement<Entry>> getValue() {
-        return value;
-    }
+         QName name=new QName(keyAttributeName);
+         attribute.put(name,keyValue);
+      }
+   }
 }

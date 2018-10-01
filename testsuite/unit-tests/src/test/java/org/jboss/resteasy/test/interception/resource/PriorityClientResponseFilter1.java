@@ -7,9 +7,9 @@ import javax.ws.rs.client.ClientResponseFilter;
 import java.io.IOException;
 
 @Priority(100)
-public class PriorityClientResponseFilter1 implements ClientResponseFilter {
-    @Override
-    public void filter(ClientRequestContext requestContext, ClientResponseContext responseContext) throws IOException {
+public class PriorityClientResponseFilter1 implements ClientResponseFilter{
+   @Override
+   public void filter(ClientRequestContext requestContext,ClientResponseContext responseContext) throws IOException{
 
-    }
+   }
 }

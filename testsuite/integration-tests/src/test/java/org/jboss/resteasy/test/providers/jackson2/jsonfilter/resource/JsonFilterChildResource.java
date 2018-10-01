@@ -6,11 +6,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 @Path("/superclass")
-public class JsonFilterChildResource {
-    @GET
-    @Produces("application/json")
-    @Path("{id}")
-    public JsonFilterChild getProduct(@PathParam("id") int id) {
-        return new JsonFilterChild(PersonType.CUSTOMER, id, "Melissa");
-    }
+public class JsonFilterChildResource{
+   @GET
+   @Produces("application/json")
+   @Path("{id}")
+   public JsonFilterChild getProduct(@PathParam("id") int id){
+      return new JsonFilterChild(PersonType.CUSTOMER,id,"Melissa");
+   }
 }

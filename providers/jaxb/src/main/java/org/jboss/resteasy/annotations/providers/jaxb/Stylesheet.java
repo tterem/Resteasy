@@ -18,18 +18,16 @@ import java.lang.annotation.Target;
  * </pre>
  * <p>
  * You can use replacement expressions in value string.
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  * @see org.jboss.resteasy.util.StringContextReplacement
  */
-@Target({ElementType.TYPE, ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD})
+@Target({ElementType.TYPE,ElementType.METHOD,ElementType.PARAMETER,ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Decorator(processor = StylesheetProcessor.class, target = Marshaller.class)
-public @interface Stylesheet
-{
-   String XSL = "text/xsl";
-   String CSS = "text/css";
+@Decorator(processor=StylesheetProcessor.class, target=Marshaller.class)
+public @interface Stylesheet{
+   String XSL="text/xsl";
+   String CSS="text/css";
 
    String href();
 

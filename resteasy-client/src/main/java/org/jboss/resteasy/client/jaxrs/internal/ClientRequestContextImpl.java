@@ -24,66 +24,143 @@ import java.util.Map;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class ClientRequestContextImpl implements ClientRequestContext
-{
+public class ClientRequestContextImpl implements ClientRequestContext{
    protected ClientInvocation invocation;
    protected Response abortedWithResponse;
 
-   public ClientRequestContextImpl(ClientInvocation invocation)
-   {
-      this.invocation = invocation;
+   public ClientRequestContextImpl(ClientInvocation invocation){
+      this.invocation=invocation;
    }
 
-   public Response getAbortedWithResponse()
-   {
+   public Response getAbortedWithResponse(){
       return abortedWithResponse;
    }
 
    @Override
-   public Object getProperty(String name)
-   {
+   public Object getProperty(String name){
       return invocation.getMutableProperties().get(name);
    }
 
    @Override
-   public Collection<String> getPropertyNames()
-   {
+   public Collection<String> getPropertyNames(){
       return Collections.unmodifiableSet(invocation.getMutableProperties().keySet());
    }
 
    @Override
-   public void setProperty(String name, Object object)
-   {
-      invocation.getMutableProperties().put(name, object);
+   public void setProperty(String name,Object object){
+      invocation.getMutableProperties().put(name,object);
    }
 
    @Override
-   public void removeProperty(String name)
-   {
+   public void removeProperty(String name){
       invocation.getMutableProperties().remove(name);
    }
 
    @Override
-   public Class<?> getEntityClass()
-   {
+   public Class<?> getEntityClass(){
       return invocation.getEntityClass();
    }
 
    @Override
-   public Type getEntityType()
-   {
+   public Type getEntityType(){
       return invocation.getEntityGenericType();
    }
 
    @Override
-   public void setEntity(Object entity)
-   {
-      if (entity instanceof Entity)
-      {
+   public void setEntity(Object entity,Annotation[] annotations,MediaType mediaType){
+      if(entity instanceof Entity){
          invocation.setEntity((Entity)entity);
+      }else{
+         invocation.setEntity(Entity.entity(entity,mediaType));
       }
-      else
-      {
+      invocation.setEntityAnnotations(annotations);
+   }
+
+   @Override
+   public URI getUri(){
+      return invocation.getUri();
+   }
+
+   @Override
+   public void setUri(URI uri){
+      invocation.setUri(uri);
+   }
+
+   @Override
+   public String getMethod(){
+      return invocation.getMethod();
+   }
+
+   @Override
+   public void setMethod(String method){
+      invocation.setMethod(method);
+   }
+
+   @Override
+   public MultivaluedMap<String,Object> getHeaders(){
+      return invocation.getHeaders().getHeaders();
+   }
+
+   @Override
+   public Date getDate(){
+      return invocation.getHeaders().getDate();
+   }
+
+   @Override
+   public Locale getLanguage(){
+      return invocation.getHeaders().getLanguage();
+   }
+
+   @Override
+   public MediaType getMediaType(){
+      return invocation.getHeaders().getMediaType();
+   }
+
+   @Override
+   public List<MediaType> getAcceptableMediaTypes(){
+      List<MediaType> rtn=invocation.getHeaders().getAcceptableMediaTypes();
+      if(rtn.size()==0){
+         rtn=new ArrayList<MediaType>();
+         rtn.add(MediaType.WILDCARD_TYPE);
+      }
+      return rtn;
+   }
+
+   @Override
+   public List<Locale> getAcceptableLanguages(){
+      return invocation.getHeaders().getAcceptableLanguages();
+   }
+
+   @Override
+   public Map<String,Cookie> getCookies(){
+      return invocation.getHeaders().getCookies();
+   }
+
+   @Override
+   public boolean hasEntity(){
+      return invocation.getEntity()!=null;
+   }
+
+   @Override
+   public OutputStream getEntityStream(){
+      return invocation.getEntityStream();
+   }
+
+   @Override
+   public void setEntityStream(OutputStream entityStream){
+      invocation.setEntityStream(entityStream);
+   }
+
+   @Override
+   public Object getEntity(){
+      return invocation.getEntity();
+   }
+
+   @Override
+   public void setEntity(Object entity){
+      if(entity instanceof Entity){
+         invocation.setEntity((Entity)entity);
+      }else{
 
          invocation.setEntityObject(entity);
       }
@@ -91,148 +168,32 @@ public class ClientRequestContextImpl implements ClientRequestContext
    }
 
    @Override
-   public void setEntity(Object entity, Annotation[] annotations, MediaType mediaType)
-   {
-      if (entity instanceof Entity)
-      {
-         invocation.setEntity((Entity)entity);
-      }
-      else
-      {
-         invocation.setEntity(Entity.entity(entity, mediaType));
-      }
-      invocation.setEntityAnnotations(annotations);
-   }
-
-   @Override
-   public URI getUri()
-   {
-      return invocation.getUri();
-   }
-
-   @Override
-   public void setUri(URI uri)
-   {
-      invocation.setUri(uri);
-   }
-
-   @Override
-   public String getMethod()
-   {
-      return invocation.getMethod();
-   }
-
-   @Override
-   public void setMethod(String method)
-   {
-      invocation.setMethod(method);
-   }
-
-   @Override
-   public MultivaluedMap<String, Object> getHeaders()
-   {
-      return invocation.getHeaders().getHeaders();
-   }
-
-   @Override
-   public Date getDate()
-   {
-      return invocation.getHeaders().getDate();
-   }
-
-   @Override
-   public Locale getLanguage()
-   {
-      return invocation.getHeaders().getLanguage();
-   }
-
-   @Override
-   public MediaType getMediaType()
-   {
-      return invocation.getHeaders().getMediaType();
-   }
-
-   @Override
-   public List<MediaType> getAcceptableMediaTypes()
-   {
-      List<MediaType> rtn = invocation.getHeaders().getAcceptableMediaTypes();
-      if (rtn.size() == 0)
-      {
-         rtn = new ArrayList<MediaType>();
-         rtn.add(MediaType.WILDCARD_TYPE);
-      }
-      return rtn;
-   }
-
-   @Override
-   public List<Locale> getAcceptableLanguages()
-   {
-      return invocation.getHeaders().getAcceptableLanguages();
-   }
-
-   @Override
-   public Map<String, Cookie> getCookies()
-   {
-      return invocation.getHeaders().getCookies();
-   }
-
-   @Override
-   public boolean hasEntity()
-   {
-      return invocation.getEntity() != null;
-   }
-
-   @Override
-   public OutputStream getEntityStream()
-   {
-      return invocation.getEntityStream();
-   }
-
-   @Override
-   public void setEntityStream(OutputStream entityStream)
-   {
-      invocation.setEntityStream(entityStream);
-   }
-
-   @Override
-   public Object getEntity()
-   {
-      return invocation.getEntity();
-   }
-
-   @Override
-   public Annotation[] getEntityAnnotations()
-   {
+   public Annotation[] getEntityAnnotations(){
       return invocation.getEntityAnnotations();
    }
 
    @Override
-   public Client getClient()
-   {
+   public Client getClient(){
       return invocation.getClient();
    }
 
    @Override
-   public Configuration getConfiguration()
-   {
+   public Configuration getConfiguration(){
       return invocation.getConfiguration();
    }
 
    @Override
-   public void abortWith(Response response)
-   {
-      abortedWithResponse = response;
+   public void abortWith(Response response){
+      abortedWithResponse=response;
    }
 
    @Override
-   public MultivaluedMap<String, String> getStringHeaders()
-   {
+   public MultivaluedMap<String,String> getStringHeaders(){
       return invocation.getHeaders().asMap();
    }
 
    @Override
-   public String getHeaderString(String name)
-   {
+   public String getHeaderString(String name){
       return invocation.getHeaders().getHeader(name);
    }
 }

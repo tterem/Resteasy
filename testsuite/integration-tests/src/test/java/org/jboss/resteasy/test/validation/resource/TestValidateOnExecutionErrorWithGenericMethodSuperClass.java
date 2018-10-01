@@ -6,10 +6,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 @Path("")
-public class TestValidateOnExecutionErrorWithGenericMethodSuperClass<T> {
-    @POST
-    @Path("bar")
-    @ValidateOnExecution(type = {ExecutableType.ALL})
-    public void override(T qux) {
-    }
+public class TestValidateOnExecutionErrorWithGenericMethodSuperClass<T>{
+   @POST
+   @Path("bar")
+   @ValidateOnExecution(type={ExecutableType.ALL})
+   public void override(T qux){
+   }
 }

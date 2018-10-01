@@ -11,12 +11,12 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Target({TYPE, METHOD, FIELD})
+@Target({TYPE,METHOD,FIELD})
 @Retention(RUNTIME)
 @Documented
 @NormalScope
 @Inherited
-public @interface ScopeExtensionPlannedObsolescenceScope {
-    int value() default 1;
+public @interface ScopeExtensionPlannedObsolescenceScope{
+   int value() default 1;
 }
 

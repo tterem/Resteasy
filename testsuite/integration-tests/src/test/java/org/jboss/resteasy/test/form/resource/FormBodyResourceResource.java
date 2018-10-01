@@ -8,11 +8,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("body")
-public class FormBodyResourceResource {
-    @PUT
-    @Consumes("text/plain")
-    @Produces("text/plain")
-    public String put(@Form FormBodyResourceForm form) {
-        return form.body + ".gotIt";
-    }
+public class FormBodyResourceResource{
+   @PUT
+   @Consumes("text/plain")
+   @Produces("text/plain")
+   public String put(@Form FormBodyResourceForm form){
+      return form.body+".gotIt";
+   }
 }

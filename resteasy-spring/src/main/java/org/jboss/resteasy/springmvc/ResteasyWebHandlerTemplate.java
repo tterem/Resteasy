@@ -1,52 +1,46 @@
 package org.jboss.resteasy.springmvc;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.SecurityContext;
-
 import org.jboss.resteasy.core.ResteasyContext;
 import org.jboss.resteasy.plugins.server.servlet.HttpServletResponseWrapper;
 import org.jboss.resteasy.plugins.server.servlet.ServletSecurityContext;
 import org.jboss.resteasy.spi.HttpResponse;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
-public abstract class ResteasyWebHandlerTemplate<T>
-{
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.SecurityContext;
+
+public abstract class ResteasyWebHandlerTemplate<T>{
    protected ResteasyProviderFactory factory;
 
-   public ResteasyWebHandlerTemplate(ResteasyProviderFactory factory)
-   {
-      this.factory = factory;
+   public ResteasyWebHandlerTemplate(ResteasyProviderFactory factory){
+      this.factory=factory;
    }
 
    public T handle(ResteasyRequestWrapper requestWrapper,
-                   HttpServletResponse httpServletResponse) throws Exception
-   {
+                   HttpServletResponse httpServletResponse) throws Exception{
 
-      T result = null;
-      HttpResponse response = new HttpServletResponseWrapper(httpServletResponse,
-              factory);
+      T result=null;
+      HttpResponse response=new HttpServletResponseWrapper(httpServletResponse,
+         factory);
 
-      HttpServletRequest servletRequest = requestWrapper.getHttpServletRequest();
-      try
-      {
+      HttpServletRequest servletRequest=requestWrapper.getHttpServletRequest();
+      try{
          ResteasyContext.pushContext(HttpServletRequest.class,
-                 servletRequest);
+            servletRequest);
          ResteasyContext.pushContext(HttpServletResponse.class,
-                 httpServletResponse);
+            httpServletResponse);
          ResteasyContext.pushContext(SecurityContext.class,
-                 new ServletSecurityContext(servletRequest));
+            new ServletSecurityContext(servletRequest));
 
-         result = handle(requestWrapper, response);
+         result=handle(requestWrapper,response);
 
-      }
-      finally
-      {
+      }finally{
          ResteasyContext.clearContextData();
       }
       return result;
    }
 
-   abstract protected T handle(ResteasyRequestWrapper requestWrapper, HttpResponse response) throws Exception;
+   abstract protected T handle(ResteasyRequestWrapper requestWrapper,HttpResponse response) throws Exception;
 
 }

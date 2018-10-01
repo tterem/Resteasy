@@ -7,14 +7,12 @@ import java.lang.annotation.Target;
 
 /**
  * Set response Cache-Control header automatically.
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-@Target({ElementType.TYPE, ElementType.METHOD})
+@Target({ElementType.TYPE,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Cache
-{
+public @interface Cache{
    int maxAge() default -1;
 
    int sMaxAge() default -1;

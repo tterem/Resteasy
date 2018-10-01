@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ParsingAbstractData")
+@XmlType(name="ParsingAbstractData")
 @XmlSeeAlso(ParsingDataCollectionPackage.class)
-public class ParsingAbstractData {
+public class ParsingAbstractData{
 }

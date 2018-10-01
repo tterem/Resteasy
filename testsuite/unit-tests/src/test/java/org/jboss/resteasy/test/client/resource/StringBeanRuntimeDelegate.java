@@ -7,70 +7,70 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.Variant.VariantListBuilder;
 import javax.ws.rs.ext.RuntimeDelegate;
 
-public class StringBeanRuntimeDelegate extends RuntimeDelegate {
+public class StringBeanRuntimeDelegate extends RuntimeDelegate{
 
-    public StringBeanRuntimeDelegate(final RuntimeDelegate orig) {
-        super();
-        this.original = orig;
-        assertNotStringBeanRuntimeDelegate(orig);
-    }
+   private RuntimeDelegate original;
 
-    private RuntimeDelegate original;
+   public StringBeanRuntimeDelegate(final RuntimeDelegate orig){
+      super();
+      this.original=orig;
+      assertNotStringBeanRuntimeDelegate(orig);
+   }
 
-    @Override
-    public <T> T createEndpoint(Application arg0, Class<T> arg1)
-            throws IllegalArgumentException, UnsupportedOperationException {
-        return original.createEndpoint(arg0, arg1);
-    }
+   public static final void assertNotStringBeanRuntimeDelegate(){
+      RuntimeDelegate delegate=RuntimeDelegate.getInstance();
+      assertNotStringBeanRuntimeDelegate(delegate);
+   }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> HeaderDelegate<T> createHeaderDelegate(Class<T> arg0)
-            throws IllegalArgumentException {
-        if (arg0 == StringBean.class) {
-            return (HeaderDelegate<T>) new StringBeanHeaderDelegate();
-        } else {
-            return original.createHeaderDelegate(arg0);
-        }
-    }
+   public static final void assertNotStringBeanRuntimeDelegate(RuntimeDelegate delegate){
+      if(delegate instanceof StringBeanRuntimeDelegate){
+         StringBeanRuntimeDelegate sbrd=(StringBeanRuntimeDelegate)delegate;
+         if(sbrd.getOriginal()!=null){
+            RuntimeDelegate.setInstance(sbrd.getOriginal());
+         }
+         throw new RuntimeException(
+            "RuntimeDelegate.getInstance() is StringBeanRuntimeDelegate");
+      }
+   }
 
-    @Override
-    public ResponseBuilder createResponseBuilder() {
-        return original.createResponseBuilder();
-    }
+   @Override
+   public <T> T createEndpoint(Application arg0,Class<T> arg1)
+      throws IllegalArgumentException, UnsupportedOperationException{
+      return original.createEndpoint(arg0,arg1);
+   }
 
-    @Override
-    public UriBuilder createUriBuilder() {
-        return original.createUriBuilder();
-    }
+   @SuppressWarnings("unchecked")
+   @Override
+   public <T> HeaderDelegate<T> createHeaderDelegate(Class<T> arg0)
+      throws IllegalArgumentException{
+      if(arg0==StringBean.class){
+         return (HeaderDelegate<T>)new StringBeanHeaderDelegate();
+      }else{
+         return original.createHeaderDelegate(arg0);
+      }
+   }
 
-    @Override
-    public VariantListBuilder createVariantListBuilder() {
-        return original.createVariantListBuilder();
-    }
+   @Override
+   public ResponseBuilder createResponseBuilder(){
+      return original.createResponseBuilder();
+   }
 
-    public RuntimeDelegate getOriginal() {
-        return original;
-    }
+   @Override
+   public UriBuilder createUriBuilder(){
+      return original.createUriBuilder();
+   }
 
-    public static final void assertNotStringBeanRuntimeDelegate() {
-        RuntimeDelegate delegate = RuntimeDelegate.getInstance();
-        assertNotStringBeanRuntimeDelegate(delegate);
-    }
+   @Override
+   public VariantListBuilder createVariantListBuilder(){
+      return original.createVariantListBuilder();
+   }
 
-    public static final void assertNotStringBeanRuntimeDelegate(RuntimeDelegate delegate) {
-        if (delegate instanceof StringBeanRuntimeDelegate) {
-            StringBeanRuntimeDelegate sbrd = (StringBeanRuntimeDelegate) delegate;
-            if (sbrd.getOriginal() != null) {
-                RuntimeDelegate.setInstance(sbrd.getOriginal());
-            }
-            throw new RuntimeException(
-                    "RuntimeDelegate.getInstance() is StringBeanRuntimeDelegate");
-        }
-    }
+   public RuntimeDelegate getOriginal(){
+      return original;
+   }
 
-    @Override
-    public Builder createLinkBuilder() {
-        return original.createLinkBuilder();
-    }
+   @Override
+   public Builder createLinkBuilder(){
+      return original.createLinkBuilder();
+   }
 }

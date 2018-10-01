@@ -4,9 +4,9 @@ package org.jboss.resteasy.test.resource.basic;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.resteasy.spi.HttpResponseCodes;
 import org.jboss.resteasy.test.resource.basic.resource.WiderMappingDefaultOptions;
 import org.jboss.resteasy.test.resource.basic.resource.WiderMappingResource;
-import org.jboss.resteasy.spi.HttpResponseCodes;
 import org.jboss.resteasy.utils.PortProviderUtil;
 import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.shrinkwrap.api.Archive;
@@ -31,33 +31,32 @@ import java.util.Map;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class WiderMappingTest {
+public class WiderMappingTest{
 
    static Client client;
 
-   private String generateURL(String path) {
-      return PortProviderUtil.generateURL(path, WiderMappingNegativeTest.class.getSimpleName());
-   }
-
    @Deployment
-   public static Archive<?> deployUriInfoSimpleResource() {
-      WebArchive war = TestUtil.prepareArchive(WiderMappingNegativeTest.class.getSimpleName());
+   public static Archive<?> deployUriInfoSimpleResource(){
+      WebArchive war=TestUtil.prepareArchive(WiderMappingNegativeTest.class.getSimpleName());
       war.addClass(PortProviderUtil.class);
 
-      Map<String, String> contextParam = new HashMap<>();
-      contextParam.put("resteasy.wider.request.matching", "true");
-      return TestUtil.finishContainerPrepare(war, contextParam, WiderMappingResource.class, WiderMappingDefaultOptions.class);
+      Map<String,String> contextParam=new HashMap<>();
+      contextParam.put("resteasy.wider.request.matching","true");
+      return TestUtil.finishContainerPrepare(war,contextParam,WiderMappingResource.class,WiderMappingDefaultOptions.class);
    }
 
-
    @BeforeClass
-   public static void setup() {
-      client = ClientBuilder.newClient();
+   public static void setup(){
+      client=ClientBuilder.newClient();
    }
 
    @AfterClass
-   public static void cleanup() {
+   public static void cleanup(){
       client.close();
+   }
+
+   private String generateURL(String path){
+      return PortProviderUtil.generateURL(path,WiderMappingNegativeTest.class.getSimpleName());
    }
 
    /**
@@ -65,10 +64,10 @@ public class WiderMappingTest {
     * @tpSince RESTEasy 3.0.16
     */
    @Test
-   public void testOptions() {
-      Response response = client.target(generateURL("/hello/int")).request().options();
-      Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
-      Assert.assertEquals(response.readEntity(String.class), "hello");
+   public void testOptions(){
+      Response response=client.target(generateURL("/hello/int")).request().options();
+      Assert.assertEquals(HttpResponseCodes.SC_OK,response.getStatus());
+      Assert.assertEquals(response.readEntity(String.class),"hello");
       response.close();
    }
 

@@ -13,8 +13,7 @@ import java.util.concurrent.CompletionStage;
 /**
  * Extension of {@link FormInjector} that handles prefixes for associated classes.
  */
-public class PrefixedFormInjector extends FormInjector
-{
+public class PrefixedFormInjector extends FormInjector{
 
    private final String prefix;
 
@@ -24,35 +23,31 @@ public class PrefixedFormInjector extends FormInjector
     * @param prefix prefix
     * @param factory provider factory
     */
-   public PrefixedFormInjector(Class type, String prefix, ResteasyProviderFactory factory)
-   {
-      super(type, factory);
-      this.prefix = prefix;
+   public PrefixedFormInjector(Class type,String prefix,ResteasyProviderFactory factory){
+      super(type,factory);
+      this.prefix=prefix;
    }
 
    /**
     * {@inheritDoc} Wraps the request in a
     */
    @Override
-   public CompletionStage<Object> inject(HttpRequest request, HttpResponse response, boolean unwrapAsync)
-   {
-      if (!containsPrefixedFormFieldsWithValue(request.getDecodedFormParameters()))
-      {
+   public CompletionStage<Object> inject(HttpRequest request,HttpResponse response,boolean unwrapAsync){
+      if(!containsPrefixedFormFieldsWithValue(request.getDecodedFormParameters())){
          return CompletableFuture.completedFuture(null);
       }
-      return doInject(prefix, request, response, unwrapAsync);
+      return doInject(prefix,request,response,unwrapAsync);
    }
 
    /**
-    * Calls the super {@link #inject(org.jboss.resteasy.spi.HttpRequest, org.jboss.resteasy.spi.HttpResponse)} method.
+    * Calls the super {@link #inject(org.jboss.resteasy.spi.HttpRequest,org.jboss.resteasy.spi.HttpResponse)} method.
     * @param prefix prefix
     * @param request http request
     * @param response http response
     * @return injector instance
     */
-   protected CompletionStage<Object> doInject(String prefix, HttpRequest request, HttpResponse response, boolean unwrapAsync)
-   {
-      return super.inject(new PrefixedFormFieldsHttpRequest(prefix, request), response, unwrapAsync);
+   protected CompletionStage<Object> doInject(String prefix,HttpRequest request,HttpResponse response,boolean unwrapAsync){
+      return super.inject(new PrefixedFormFieldsHttpRequest(prefix,request),response,unwrapAsync);
    }
 
    /**
@@ -60,14 +55,10 @@ public class PrefixedFormInjector extends FormInjector
     * @param decodedFormParameters decoded parameters map
     * @return boolean result
     */
-   private boolean containsPrefixedFormFieldsWithValue(MultivaluedMap<String, String> decodedFormParameters)
-   {
-      for (String parameterName : decodedFormParameters.keySet())
-      {
-         if (parameterName.startsWith(prefix))
-         {
-            if (hasValue(decodedFormParameters.get(parameterName)))
-            {
+   private boolean containsPrefixedFormFieldsWithValue(MultivaluedMap<String,String> decodedFormParameters){
+      for(String parameterName : decodedFormParameters.keySet()){
+         if(parameterName.startsWith(prefix)){
+            if(hasValue(decodedFormParameters.get(parameterName))){
                return true;
             }
          }
@@ -80,8 +71,7 @@ public class PrefixedFormInjector extends FormInjector
     * @param list list of values
     * @return true if the list contains values
     */
-   protected boolean hasValue(List<String> list)
-   {
-      return !list.isEmpty() && list.get(0).length() > 0;
+   protected boolean hasValue(List<String> list){
+      return !list.isEmpty()&&list.get(0).length()>0;
    }
 }

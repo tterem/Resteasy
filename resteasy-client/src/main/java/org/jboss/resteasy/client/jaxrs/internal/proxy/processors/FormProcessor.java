@@ -24,40 +24,22 @@ import java.util.Map;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class FormProcessor implements InvocationProcessor, WebTargetProcessor
-{
-   protected HashMap<Field, Object> fieldMap = new HashMap<Field, Object>();
-
-   private static class GetterMethod
-   {
-      private GetterMethod(Method method, Object processor)
-      {
-         this.method = method;
-         this.processor = processor;
-      }
-
-      public Method method;
-      public Object processor;
-   }
-
-   protected List<GetterMethod> getters = new ArrayList<GetterMethod>();
-   protected HashMap<Long, Method> getterHashes = new HashMap<Long, Method>();
+public class FormProcessor implements InvocationProcessor, WebTargetProcessor{
+   protected HashMap<Field,Object> fieldMap=new HashMap<Field,Object>();
+   protected List<GetterMethod> getters=new ArrayList<GetterMethod>();
+   protected HashMap<Long,Method> getterHashes=new HashMap<Long,Method>();
    protected Class clazz;
+   public FormProcessor(Class clazz,ClientConfiguration configuration){
+      this.clazz=clazz;
 
-   public FormProcessor(Class clazz, ClientConfiguration configuration)
-   {
-      this.clazz = clazz;
-
-      populateMap(clazz, configuration);
+      populateMap(clazz,configuration);
    }
 
    public static long methodHash(Method method)
-           throws Exception
-   {
-      Class[] parameterTypes = method.getParameterTypes();
-      StringBuilder methodDesc = new StringBuilder(method.getName()).append("(");
-      for (int j = 0; j < parameterTypes.length; j++)
-      {
+      throws Exception{
+      Class[] parameterTypes=method.getParameterTypes();
+      StringBuilder methodDesc=new StringBuilder(method.getName()).append("(");
+      for(int j=0;j<parameterTypes.length;j++){
          methodDesc.append(getTypeString(parameterTypes[j]));
       }
       methodDesc.append(")").append(getTypeString(method.getReturnType()));
@@ -65,218 +47,173 @@ public class FormProcessor implements InvocationProcessor, WebTargetProcessor
    }
 
    public static long createHash(String methodDesc)
-           throws Exception
-   {
-      long hash = 0;
-      ByteArrayOutputStream bytearrayoutputstream = new ByteArrayOutputStream(512);
-      MessageDigest messagedigest = MessageDigest.getInstance("SHA");
-      DataOutputStream dataoutputstream = new DataOutputStream(new DigestOutputStream(bytearrayoutputstream, messagedigest));
+      throws Exception{
+      long hash=0;
+      ByteArrayOutputStream bytearrayoutputstream=new ByteArrayOutputStream(512);
+      MessageDigest messagedigest=MessageDigest.getInstance("SHA");
+      DataOutputStream dataoutputstream=new DataOutputStream(new DigestOutputStream(bytearrayoutputstream,messagedigest));
       dataoutputstream.writeUTF(methodDesc);
       dataoutputstream.flush();
-      byte abyte0[] = messagedigest.digest();
-      for (int j = 0; j < Math.min(8, abyte0.length); j++)
-         hash += (long) (abyte0[j] & 0xff) << j * 8;
+      byte abyte0[]=messagedigest.digest();
+      for(int j=0;j<Math.min(8,abyte0.length);j++)
+         hash+=(long)(abyte0[j]&0xff)<<j*8;
       return hash;
 
    }
 
-   static String getTypeString(Class cl)
-   {
-      if (cl == Byte.TYPE)
-      {
+   static String getTypeString(Class cl){
+      if(cl==Byte.TYPE){
          return "B";
-      }
-      else if (cl == Character.TYPE)
-      {
+      }else if(cl==Character.TYPE){
          return "C";
-      }
-      else if (cl == Double.TYPE)
-      {
+      }else if(cl==Double.TYPE){
          return "D";
-      }
-      else if (cl == Float.TYPE)
-      {
+      }else if(cl==Float.TYPE){
          return "F";
-      }
-      else if (cl == Integer.TYPE)
-      {
+      }else if(cl==Integer.TYPE){
          return "I";
-      }
-      else if (cl == Long.TYPE)
-      {
+      }else if(cl==Long.TYPE){
          return "J";
-      }
-      else if (cl == Short.TYPE)
-      {
+      }else if(cl==Short.TYPE){
          return "S";
-      }
-      else if (cl == Boolean.TYPE)
-      {
+      }else if(cl==Boolean.TYPE){
          return "Z";
-      }
-      else if (cl == Void.TYPE)
-      {
+      }else if(cl==Void.TYPE){
          return "V";
-      }
-      else if (cl.isArray())
-      {
-         return "[" + getTypeString(cl.getComponentType());
-      }
-      else
-      {
-         return "L" + cl.getName().replace('.', '/') + ";";
+      }else if(cl.isArray()){
+         return "["+getTypeString(cl.getComponentType());
+      }else{
+         return "L"+cl.getName().replace('.','/')+";";
       }
    }
 
-   protected void populateMap(Class clazz, ClientConfiguration configuration)
-   {
-      for (Field field : clazz.getDeclaredFields())
-      {
-         Annotation[] annotations = field.getAnnotations();
-         if (annotations == null || annotations.length == 0) continue;
-         Class type = field.getType();
-         Type genericType = field.getGenericType();
+   protected void populateMap(Class clazz,ClientConfiguration configuration){
+      for(Field field : clazz.getDeclaredFields()){
+         Annotation[] annotations=field.getAnnotations();
+         if(annotations==null||annotations.length==0) continue;
+         Class type=field.getType();
+         Type genericType=field.getGenericType();
 
-         Object processor = ProcessorFactory.createProcessor(
-                 clazz, configuration, type, annotations, genericType, field, true);
-         if (processor != null)
-         {
-            if (!Modifier.isPublic(field.getModifiers())) field.setAccessible(true);
-            fieldMap.put(field, processor);
+         Object processor=ProcessorFactory.createProcessor(
+            clazz,configuration,type,annotations,genericType,field,true);
+         if(processor!=null){
+            if(!Modifier.isPublic(field.getModifiers())) field.setAccessible(true);
+            fieldMap.put(field,processor);
          }
       }
-      for (Method method : clazz.getDeclaredMethods())
-      {
-         if (!method.getName().startsWith("get")) continue;
+      for(Method method : clazz.getDeclaredMethods()){
+         if(!method.getName().startsWith("get")) continue;
 
-         if (method.getParameterTypes().length > 0) continue;
+         if(method.getParameterTypes().length>0) continue;
 
-         Annotation[] annotations = method.getAnnotations();
-         if (annotations == null || annotations.length == 0) continue;
+         Annotation[] annotations=method.getAnnotations();
+         if(annotations==null||annotations.length==0) continue;
 
-         Class type = method.getReturnType();
-         Type genericType = method.getGenericReturnType();
+         Class type=method.getReturnType();
+         Type genericType=method.getGenericReturnType();
 
-         Object processor = ProcessorFactory
-                 .createProcessor(clazz, configuration, type, annotations,
-                         genericType, method, true);
-         if (processor != null)
-         {
-            long hash = 0;
-            try
-            {
-               hash = methodHash(method);
-            }
-            catch (Exception e)
-            {
+         Object processor=ProcessorFactory
+            .createProcessor(clazz,configuration,type,annotations,
+               genericType,method,true);
+         if(processor!=null){
+            long hash=0;
+            try{
+               hash=methodHash(method);
+            }catch(Exception e){
                throw new RuntimeException(e);
             }
-            if (!Modifier.isPrivate(method.getModifiers()))
-            {
-               Method older = getterHashes.get(hash);
-               if (older != null) continue;
+            if(!Modifier.isPrivate(method.getModifiers())){
+               Method older=getterHashes.get(hash);
+               if(older!=null) continue;
             }
 
-            if (!Modifier.isPublic(method.getModifiers())) method.setAccessible(true);
-            getters.add(new GetterMethod(method, processor));
-            getterHashes.put(hash, method);
+            if(!Modifier.isPublic(method.getModifiers())) method.setAccessible(true);
+            getters.add(new GetterMethod(method,processor));
+            getterHashes.put(hash,method);
          }
 
       }
-      if (clazz.getSuperclass() != null && !clazz.getSuperclass().equals(Object.class))
-         populateMap(clazz.getSuperclass(), configuration);
+      if(clazz.getSuperclass()!=null&&!clazz.getSuperclass().equals(Object.class))
+         populateMap(clazz.getSuperclass(),configuration);
 
 
-   }
-
-
-   interface Process
-   {
-      Object process(Object target, Object value, Object processor);
    }
 
    @Override
-   public WebTarget build(WebTarget target, Object param)
-   {
-      if (param == null) return target;
-      return (WebTarget) process(new Process()  {
+   public WebTarget build(WebTarget target,Object param){
+      if(param==null) return target;
+      return (WebTarget)process(new Process(){
          @Override
-         public Object process(Object target, Object value, Object processor)
-         {
-            return build((WebTarget)target, value, processor);
+         public Object process(Object target,Object value,Object processor){
+            return build((WebTarget)target,value,processor);
          }
-      }, target, param);
+      },target,param);
    }
 
    @Override
-   public void process(ClientInvocation invocation, Object param)
-   {
-      process(new Process()  {
+   public void process(ClientInvocation invocation,Object param){
+      process(new Process(){
          @Override
-         public Object process(Object target, Object value, Object processor)
-         {
-            processParam((ClientInvocation)target, value, processor);
+         public Object process(Object target,Object value,Object processor){
+            processParam((ClientInvocation)target,value,processor);
             return target;
          }
-      }, invocation, param);
+      },invocation,param);
    }
 
+   protected Object process(Process process,Object target,Object param){
+      if(param==null) return target;
 
-   protected Object process(Process process, Object target, Object param)
-   {
-      if (param == null) return target;
+      for(Map.Entry<Field,Object> entry : fieldMap.entrySet()){
 
-      for (Map.Entry<Field, Object> entry : fieldMap.entrySet())
-      {
-
-         try
-         {
-            Object val = entry.getKey().get(param);
-            Object proc = entry.getValue();
-            target = process.process(target, val, proc);
-         }
-         catch (IllegalAccessException e)
-         {
+         try{
+            Object val=entry.getKey().get(param);
+            Object proc=entry.getValue();
+            target=process.process(target,val,proc);
+         }catch(IllegalAccessException e){
             throw new LoggableFailure(e);
          }
       }
-      for (GetterMethod getter : getters)
-      {
-         Object val = null;
-         try
-         {
-            val = getter.method.invoke(param);
-         }
-         catch (IllegalAccessException e)
-         {
+      for(GetterMethod getter : getters){
+         Object val=null;
+         try{
+            val=getter.method.invoke(param);
+         }catch(IllegalAccessException e){
+            throw new RuntimeException(e);
+         }catch(InvocationTargetException e){
             throw new RuntimeException(e);
          }
-         catch (InvocationTargetException e)
-         {
-            throw new RuntimeException(e);
-         }
-         Object proc = getter.processor;
-         target = process.process(target, val, proc);
+         Object proc=getter.processor;
+         target=process.process(target,val,proc);
       }
       return target;
    }
 
-   private WebTarget build(WebTarget target, Object val, Object proc)
-   {
-      if (proc instanceof WebTargetProcessor)
-      {
-         WebTargetProcessor processor = (WebTargetProcessor) proc;
-         target = processor.build(target, val);
+   private WebTarget build(WebTarget target,Object val,Object proc){
+      if(proc instanceof WebTargetProcessor){
+         WebTargetProcessor processor=(WebTargetProcessor)proc;
+         target=processor.build(target,val);
       }
       return target;
    }
 
-   private void processParam(ClientInvocation invocation, Object val, Object proc)
-   {
-      if (proc instanceof InvocationProcessor)
-      {
-         InvocationProcessor processor = (InvocationProcessor) proc;
-         processor.process(invocation, val);
+   private void processParam(ClientInvocation invocation,Object val,Object proc){
+      if(proc instanceof InvocationProcessor){
+         InvocationProcessor processor=(InvocationProcessor)proc;
+         processor.process(invocation,val);
+      }
+   }
+
+   interface Process{
+      Object process(Object target,Object value,Object processor);
+   }
+
+   private static class GetterMethod{
+      public Method method;
+      public Object processor;
+      private GetterMethod(Method method,Object processor){
+         this.method=method;
+         this.processor=processor;
       }
    }
 }

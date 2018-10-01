@@ -12,10 +12,10 @@ import javax.ws.rs.core.Response;
  * Created by rsearls on 8/21/17.
  */
 @PreMatching
-public class PreMatchingClientRequestFilterImpl implements ClientRequestFilter {
+public class PreMatchingClientRequestFilterImpl implements ClientRequestFilter{
 
    @Override
-   public void filter(ClientRequestContext requestContext) {
+   public void filter(ClientRequestContext requestContext){
       requestContext.abortWith(Response.status(404).build());
    }
 }

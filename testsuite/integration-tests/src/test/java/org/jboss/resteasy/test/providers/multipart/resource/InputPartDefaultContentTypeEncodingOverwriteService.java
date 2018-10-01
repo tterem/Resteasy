@@ -9,12 +9,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/mime")
-public class InputPartDefaultContentTypeEncodingOverwriteService {
+public class InputPartDefaultContentTypeEncodingOverwriteService{
 
-    @POST
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String sendDefaultContentType(MultipartInput input) {
-        return input.getParts().get(0).getMediaType().toString();
-    }
+   @POST
+   @Consumes(MediaType.MULTIPART_FORM_DATA)
+   @Produces(MediaType.TEXT_PLAIN)
+   public String sendDefaultContentType(MultipartInput input){
+      return input.getParts().get(0).getMediaType().toString();
+   }
 }

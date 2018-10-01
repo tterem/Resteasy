@@ -11,15 +11,13 @@ import java.util.TreeSet;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 2 $
  */
-@XmlRootElement(name = "registry")
+@XmlRootElement(name="registry")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RegistryData
-{
+public class RegistryData{
    @XmlElementRef
-   private Set<RegistryEntry> entries = new TreeSet<RegistryEntry>();
+   private Set<RegistryEntry> entries=new TreeSet<RegistryEntry>();
 
-   public Set<RegistryEntry> getEntries()
-   {
+   public Set<RegistryEntry> getEntries(){
       return entries;
    }
 }

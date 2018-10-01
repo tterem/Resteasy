@@ -22,14 +22,12 @@ import java.net.URI;
  *        undefinedContent
  *     }
  * </pre>
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-@XmlRootElement(name = "category")
+@XmlRootElement(name="category")
 @XmlAccessorType(XmlAccessType.PROPERTY)
-public class Category extends CommonAttributes
-{
+public class Category extends CommonAttributes{
    private String term;
 
    private URI scheme;
@@ -37,35 +35,29 @@ public class Category extends CommonAttributes
    private String label;
 
    @XmlAttribute
-   public String getTerm()
-   {
+   public String getTerm(){
       return term;
    }
 
-   public void setTerm(String term)
-   {
-      this.term = term;
+   public void setTerm(String term){
+      this.term=term;
    }
 
    @XmlAttribute
-   public URI getScheme()
-   {
+   public URI getScheme(){
       return scheme;
    }
 
-   public void setScheme(URI scheme)
-   {
-      this.scheme = scheme;
+   public void setScheme(URI scheme){
+      this.scheme=scheme;
    }
 
    @XmlAttribute
-   public String getLabel()
-   {
+   public String getLabel(){
       return label;
    }
 
-   public void setLabel(String label)
-   {
-      this.label = label;
+   public void setLabel(String label){
+      this.label=label;
    }
 }

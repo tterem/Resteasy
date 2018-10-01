@@ -10,13 +10,13 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target(TYPE)
 @Retention(RUNTIME)
-@Constraint(validatedBy = MultipleWarSumValidator.class)
-public @interface MultipleWarSumConstraint {
-    String message() default "{org.jboss.resteasy.resteasy1058.MultipleWarSumConstraint}";
+@Constraint(validatedBy=MultipleWarSumValidator.class)
+public @interface MultipleWarSumConstraint{
+   String message() default "{org.jboss.resteasy.resteasy1058.MultipleWarSumConstraint}";
 
-    Class<?>[] groups() default {};
+   Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+   Class<? extends Payload>[] payload() default {};
 
-    int min() default 0;
+   int min() default 0;
 }

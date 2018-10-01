@@ -21,40 +21,34 @@ import java.util.Map;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class VertxUtil
-{
-   public static ResteasyUriInfo extractUriInfo(HttpServerRequest req, String contextPath)
-   {
-      String host = req.host();
-      if (host == null)
-      {
-         host = "unknown";
+public class VertxUtil{
+   public static ResteasyUriInfo extractUriInfo(HttpServerRequest req,String contextPath){
+      String host=req.host();
+      if(host==null){
+         host="unknown";
       }
-      String uri = req.absoluteURI();
-      String protocol = req.scheme();
+      String uri=req.absoluteURI();
+      String protocol=req.scheme();
 
       String uriString;
 
       // If we appear to have an absolute URL, don't try to recreate it from the host and request line.
-      if (uri.startsWith(protocol + "://"))
-      {
-         uriString = uri;
-      } else
-      {
-         uriString = protocol + "://" + host + uri;
+      if(uri.startsWith(protocol+"://")){
+         uriString=uri;
+      }else{
+         uriString=protocol+"://"+host+uri;
       }
 
-      URI absoluteURI = URI.create(uriString);
-      return new ResteasyUriInfo(uriString, absoluteURI.getRawQuery(), contextPath);
+      URI absoluteURI=URI.create(uriString);
+      return new ResteasyUriInfo(uriString,absoluteURI.getRawQuery(),contextPath);
    }
 
-   public static ResteasyHttpHeaders extractHttpHeaders(HttpServerRequest request)
-   {
+   public static ResteasyHttpHeaders extractHttpHeaders(HttpServerRequest request){
 
-      MultivaluedMap<String, String> requestHeaders = extractRequestHeaders(request);
-      ResteasyHttpHeaders headers = new ResteasyHttpHeaders(requestHeaders);
+      MultivaluedMap<String,String> requestHeaders=extractRequestHeaders(request);
+      ResteasyHttpHeaders headers=new ResteasyHttpHeaders(requestHeaders);
 
-      Map<String, Cookie> cookies = extractCookies(requestHeaders);
+      Map<String,Cookie> cookies=extractCookies(requestHeaders);
       headers.setCookies(cookies);
       // test parsing should throw an exception on error
       headers.testParsing();
@@ -62,56 +56,47 @@ public class VertxUtil
 
    }
 
-   static Map<String, Cookie> extractCookies(MultivaluedMap<String, String> headers)
-   {
-      Map<String, Cookie> cookies = new HashMap<String, Cookie>();
-      List<String> cookieHeaders = headers.get("Cookie");
-      if (cookieHeaders == null) return cookies;
+   static Map<String,Cookie> extractCookies(MultivaluedMap<String,String> headers){
+      Map<String,Cookie> cookies=new HashMap<String,Cookie>();
+      List<String> cookieHeaders=headers.get("Cookie");
+      if(cookieHeaders==null) return cookies;
 
-      for (String cookieHeader : cookieHeaders)
-      {
-         for (Cookie cookie : CookieParser.parseCookies(cookieHeader))
-         {
-            cookies.put(cookie.getName(), cookie);
+      for(String cookieHeader : cookieHeaders){
+         for(Cookie cookie : CookieParser.parseCookies(cookieHeader)){
+            cookies.put(cookie.getName(),cookie);
          }
       }
       return cookies;
    }
 
-   public static List<MediaType> extractAccepts(MultivaluedMap<String, String> requestHeaders)
-   {
-      List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
-      List<String> accepts = requestHeaders.get(HttpHeaderNames.ACCEPT);
-      if (accepts == null) return acceptableMediaTypes;
+   public static List<MediaType> extractAccepts(MultivaluedMap<String,String> requestHeaders){
+      List<MediaType> acceptableMediaTypes=new ArrayList<MediaType>();
+      List<String> accepts=requestHeaders.get(HttpHeaderNames.ACCEPT);
+      if(accepts==null) return acceptableMediaTypes;
 
-      for (String accept : accepts)
-      {
+      for(String accept : accepts){
          acceptableMediaTypes.addAll(MediaTypeHelper.parseHeader(accept));
       }
       return acceptableMediaTypes;
    }
 
-   public static List<String> extractLanguages(MultivaluedMap<String, String> requestHeaders)
-   {
-      List<String> acceptable = new ArrayList<String>();
-      List<String> accepts = requestHeaders.get(HttpHeaderNames.ACCEPT_LANGUAGE);
-      if (accepts == null) return acceptable;
+   public static List<String> extractLanguages(MultivaluedMap<String,String> requestHeaders){
+      List<String> acceptable=new ArrayList<String>();
+      List<String> accepts=requestHeaders.get(HttpHeaderNames.ACCEPT_LANGUAGE);
+      if(accepts==null) return acceptable;
 
-      for (String accept : accepts)
-      {
-         String[] splits = accept.split(",");
-         for (String split : splits) acceptable.add(split.trim());
+      for(String accept : accepts){
+         String[] splits=accept.split(",");
+         for(String split : splits) acceptable.add(split.trim());
       }
       return acceptable;
    }
 
-   public static MultivaluedMap<String, String> extractRequestHeaders(HttpServerRequest request)
-   {
-      Headers<String> requestHeaders = new Headers<String>();
+   public static MultivaluedMap<String,String> extractRequestHeaders(HttpServerRequest request){
+      Headers<String> requestHeaders=new Headers<String>();
 
-      for (Map.Entry<String, String> header : request.headers())
-      {
-         requestHeaders.add(header.getKey(), header.getValue());
+      for(Map.Entry<String,String> header : request.headers()){
+         requestHeaders.add(header.getKey(),header.getValue());
       }
       return requestHeaders;
    }

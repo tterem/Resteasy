@@ -5,24 +5,24 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "foo", namespace = "http://foo.com")
+@XmlRootElement(name="foo", namespace="http://foo.com")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class JsonCollectionNamespacedFoo {
-    @XmlAttribute
-    private String test;
+public class JsonCollectionNamespacedFoo{
+   @XmlAttribute
+   private String test;
 
-    public JsonCollectionNamespacedFoo() {
-    }
+   public JsonCollectionNamespacedFoo(){
+   }
 
-    public JsonCollectionNamespacedFoo(final String test) {
-        this.test = test;
-    }
+   public JsonCollectionNamespacedFoo(final String test){
+      this.test=test;
+   }
 
-    public String getTest() {
-        return test;
-    }
+   public String getTest(){
+      return test;
+   }
 
-    public void setTest(String test) {
-        this.test = test;
-    }
+   public void setTest(String test){
+      this.test=test;
+   }
 }

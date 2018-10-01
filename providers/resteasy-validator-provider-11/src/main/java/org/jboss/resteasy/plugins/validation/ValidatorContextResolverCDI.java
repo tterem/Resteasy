@@ -1,12 +1,11 @@
 package org.jboss.resteasy.plugins.validation;
 
+import org.jboss.resteasy.spi.validation.GeneralValidatorCDI;
+
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Provider;
 
-import org.jboss.resteasy.spi.validation.GeneralValidatorCDI;
-
 /**
- * 
  * @author Leandro Ferro Luzia
  * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
  * @version $Revision: 1.1 $
@@ -15,6 +14,5 @@ import org.jboss.resteasy.spi.validation.GeneralValidatorCDI;
  */
 @Provider
 public class ValidatorContextResolverCDI extends AbstractValidatorContextResolver
-implements ContextResolver<GeneralValidatorCDI>
-{
+   implements ContextResolver<GeneralValidatorCDI>{
 }

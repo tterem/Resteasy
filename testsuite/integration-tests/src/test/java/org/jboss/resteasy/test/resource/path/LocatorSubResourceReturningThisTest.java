@@ -32,60 +32,60 @@ import javax.ws.rs.core.Response;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class LocatorSubResourceReturningThisTest {
+public class LocatorSubResourceReturningThisTest{
 
-    @Path("resource")
-    public static class LocatorSubResourceReturningThisSubResource extends LocatorSubResourceReturningThisPathParamTest {
+   static Client client;
 
-        @Path("subresource")
-        public LocatorSubResourceReturningThisSubResource subresorce() {
-            return this;
-        }
-    }
+   @Deployment
+   public static Archive<?> deploy(){
+      WebArchive war=TestUtil.prepareArchive(LocatorSubResourceReturningThisTest.class.getSimpleName());
+      war.addClasses(LocatorSubResourceReturningThisPathParamTest.class,LocatorSubResourceReturningThisParamEntityPrototype.class,
+         LocatorSubResourceReturningThisParamEntityWithConstructor.class);
+      return TestUtil.finishContainerPrepare(war,null,LocatorSubResourceReturningThisSubResource.class);
+   }
 
-    @Path(value = "/PathParamTest")
-    public static class LocatorSubResourceReturningThisPathParamTest {
+   @BeforeClass
+   public static void setup(){
+      client=ClientBuilder.newClient();
+   }
 
-        @Produces(MediaType.TEXT_PLAIN)
-        @GET
-        @Path("/ParamEntityWithConstructor/{id}")
-        public String paramEntityWithConstructorTest(
-                @DefaultValue("PathParamTest") @PathParam("id") LocatorSubResourceReturningThisParamEntityWithConstructor paramEntityWithConstructor) {
-            return paramEntityWithConstructor.getValue();
-        }
-    }
+   @AfterClass
+   public static void close(){
+      client.close();
+   }
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(LocatorSubResourceReturningThisTest.class.getSimpleName());
-        war.addClasses(LocatorSubResourceReturningThisPathParamTest.class, LocatorSubResourceReturningThisParamEntityPrototype.class,
-                LocatorSubResourceReturningThisParamEntityWithConstructor.class);
-        return TestUtil.finishContainerPrepare(war, null, LocatorSubResourceReturningThisSubResource.class);
-    }
+   /**
+    * @tpTestDetails Client sends GET request for the resource Locator, which returns itself. The Resource Locator here
+    * extends the resource with HTTP methods annotations directly.
+    * @tpPassCrit Correct response is returned from the server
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void LocatorWithSubWithPathAnnotationTest(){
+      Response response=client.target(PortProviderUtil.generateURL("/resource/subresource/ParamEntityWithConstructor/ParamEntityWithConstructor=JAXRS",LocatorSubResourceReturningThisTest.class.getSimpleName())).request().get();
+      Assert.assertEquals(200,response.getStatus());
+      response.close();
+   }
 
-    static Client client;
+   @Path("resource")
+   public static class LocatorSubResourceReturningThisSubResource extends LocatorSubResourceReturningThisPathParamTest{
 
-    @BeforeClass
-    public static void setup() {
-        client = ClientBuilder.newClient();
-    }
+      @Path("subresource")
+      public LocatorSubResourceReturningThisSubResource subresorce(){
+         return this;
+      }
+   }
 
-    @AfterClass
-    public static void close() {
-        client.close();
-    }
+   @Path(value="/PathParamTest")
+   public static class LocatorSubResourceReturningThisPathParamTest{
 
-    /**
-     * @tpTestDetails Client sends GET request for the resource Locator, which returns itself. The Resource Locator here
-     * extends the resource with HTTP methods annotations directly.
-     * @tpPassCrit Correct response is returned from the server
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void LocatorWithSubWithPathAnnotationTest() {
-        Response response = client.target(PortProviderUtil.generateURL("/resource/subresource/ParamEntityWithConstructor/ParamEntityWithConstructor=JAXRS", LocatorSubResourceReturningThisTest.class.getSimpleName())).request().get();
-        Assert.assertEquals(200, response.getStatus());
-        response.close();
-    }
+      @Produces(MediaType.TEXT_PLAIN)
+      @GET
+      @Path("/ParamEntityWithConstructor/{id}")
+      public String paramEntityWithConstructorTest(
+         @DefaultValue("PathParamTest") @PathParam("id") LocatorSubResourceReturningThisParamEntityWithConstructor paramEntityWithConstructor){
+         return paramEntityWithConstructor.getValue();
+      }
+   }
 
 }

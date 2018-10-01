@@ -8,18 +8,18 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 @Path("/test")
-public class IndirectInvocationTestResource {
-    @GET
-    @Path("/query")
-    @Produces("text/plain")
-    public String get(@QueryParam("param") String p, @QueryParam("id") String id) {
-        return p + " " + id;
-    }
+public class IndirectInvocationTestResource{
+   @GET
+   @Path("/query")
+   @Produces("text/plain")
+   public String get(@QueryParam("param") String p,@QueryParam("id") String id){
+      return p+" "+id;
+   }
 
-    @POST
-    @Path("/send")
-    @Consumes("text/plain")
-    public String post(@QueryParam("param") String p, @QueryParam("id") String id, String str) {
-        return str;
-    }
+   @POST
+   @Path("/send")
+   @Consumes("text/plain")
+   public String post(@QueryParam("param") String p,@QueryParam("id") String id,String str){
+      return str;
+   }
 }

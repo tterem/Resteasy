@@ -11,13 +11,11 @@ import javax.ws.rs.ext.Provider;
  * @version $Revision: 1 $
  */
 @Provider
-@Produces({"application/json", "application/*+json"})
-@Consumes({"application/json", "application/*+json"})
-public class JettisonXmlTypeProvider extends JAXBXmlTypeProvider
-{
+@Produces({"application/json","application/*+json"})
+@Consumes({"application/json","application/*+json"})
+public class JettisonXmlTypeProvider extends JAXBXmlTypeProvider{
    @Override
-   protected boolean needsSecurity()
-   {
+   protected boolean needsSecurity(){
       return false;
    }
 }

@@ -1,18 +1,15 @@
 package org.jboss.resteasy.spi;
 
+import javax.ws.rs.core.Application;
 import java.util.List;
 import java.util.Map;
 
-import javax.ws.rs.core.Application;
-
 /**
  * This class is used to configure and initialize the core components of RESTEasy.
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface ResteasyDeployment
-{
+public interface ResteasyDeployment{
    void start();
 
    void merge(ResteasyDeployment other);
@@ -97,17 +94,17 @@ public interface ResteasyDeployment
 
    void setResourceClasses(List<String> resourceClasses);
 
-   Map<String, String> getMediaTypeMappings();
+   Map<String,String> getMediaTypeMappings();
 
-   void setMediaTypeMappings(Map<String, String> mediaTypeMappings);
+   void setMediaTypeMappings(Map<String,String> mediaTypeMappings);
 
    List<Object> getResources();
 
    void setResources(List<Object> resources);
 
-   Map<String, String> getLanguageExtensions();
+   Map<String,String> getLanguageExtensions();
 
-   void setLanguageExtensions(Map<String, String> languageExtensions);
+   void setLanguageExtensions(Map<String,String> languageExtensions);
 
    Registry getRegistry();
 
@@ -131,13 +128,13 @@ public interface ResteasyDeployment
 
    void setUnwrappedExceptions(List<String> unwrappedExceptions);
 
-   Map<String, String> getConstructedDefaultContextObjects();
+   Map<String,String> getConstructedDefaultContextObjects();
 
-   void setConstructedDefaultContextObjects(Map<String, String> constructedDefaultContextObjects);
+   void setConstructedDefaultContextObjects(Map<String,String> constructedDefaultContextObjects);
 
-   Map<Class, Object> getDefaultContextObjects();
+   Map<Class,Object> getDefaultContextObjects();
 
-   void setDefaultContextObjects(Map<Class, Object> defaultContextObjects);
+   void setDefaultContextObjects(Map<Class,Object> defaultContextObjects);
 
    List<String> getScannedResourceClasses();
 

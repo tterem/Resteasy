@@ -6,10 +6,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 @Path("test")
-public class InvalidMediaTypeResource {
-    @GET
-    @Produces("*/*")
-    public Response test() {
-        return Response.ok().entity("ok").build();
-    }
+public class InvalidMediaTypeResource{
+   @GET
+   @Produces("*/*")
+   public Response test(){
+      return Response.ok().entity("ok").build();
+   }
 }

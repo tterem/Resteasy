@@ -8,10 +8,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/mime")
-public interface MyServiceProxy {
+public interface MyServiceProxy{
 
-    @GET
-    @Produces(MediaType.MULTIPART_FORM_DATA)
-    @MultipartForm
-    NullPartBean createMyBean();
+   @GET
+   @Produces(MediaType.MULTIPART_FORM_DATA)
+   @MultipartForm
+   NullPartBean createMyBean();
 }

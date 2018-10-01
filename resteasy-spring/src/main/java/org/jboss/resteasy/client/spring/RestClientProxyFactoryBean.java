@@ -10,9 +10,8 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 
-import java.net.URI;
-
 import javax.ws.rs.client.ClientBuilder;
+import java.net.URI;
 
 /**
  * {@link org.springframework.beans.factory.FactoryBean} to generate a client
@@ -26,13 +25,11 @@ import javax.ws.rs.client.ClientBuilder;
  * &lt;bean id=&quot;echoClient&quot; class=&quot;org.jboss.resteasy.client.spring.RestClientProxyFactoryBean&quot;
  * p:serviceInterface=&quot;a.b.c.Echo&quot; p:baseUri=&quot;http://server.far.far.away:8080/echo&quot; /&gt;
  * </pre>
- *
- * @author Attila Kiraly
  * @param <T> The type representing the client interface.
+ * @author Attila Kiraly
  */
 public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
-        InitializingBean
-{
+   InitializingBean{
    private Class<T> serviceInterface;
    private URI baseUri;
    private T client;
@@ -41,96 +38,81 @@ public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
    private ResteasyProviderFactory resteasyProviderFactory;
 
    /*
-     * (non-Javadoc)
-     *
-     * @see org.springframework.beans.factory.FactoryBean#getObject()
-     */
-   public T getObject() throws Exception
-   {
+    * (non-Javadoc)
+    *
+    * @see org.springframework.beans.factory.FactoryBean#getObject()
+    */
+   public T getObject() throws Exception{
       return client;
    }
 
    /*
-     * (non-Javadoc)
-     *
-     * @see org.springframework.beans.factory.FactoryBean#getObjectType()
-     */
-   public Class<T> getObjectType()
-   {
+    * (non-Javadoc)
+    *
+    * @see org.springframework.beans.factory.FactoryBean#getObjectType()
+    */
+   public Class<T> getObjectType(){
       return serviceInterface;
    }
 
    /*
-     * (non-Javadoc)
-     *
-     * @see org.springframework.beans.factory.FactoryBean#isSingleton()
-     */
-   public boolean isSingleton()
-   {
+    * (non-Javadoc)
+    *
+    * @see org.springframework.beans.factory.FactoryBean#isSingleton()
+    */
+   public boolean isSingleton(){
       return true;
    }
 
    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
-     */
-   public void afterPropertiesSet() throws Exception
-   {
-      if (resteasyProviderFactory == null)
-         resteasyProviderFactory = ResteasyProviderFactory.getInstance();
+    * (non-Javadoc)
+    *
+    * @see
+    * org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
+    */
+   public void afterPropertiesSet() throws Exception{
+      if(resteasyProviderFactory==null)
+         resteasyProviderFactory=ResteasyProviderFactory.getInstance();
       RegisterBuiltin.register(resteasyProviderFactory);
-      ResteasyClientBuilder clientBuilder = (ResteasyClientBuilder)ClientBuilder.newBuilder();
+      ResteasyClientBuilder clientBuilder=(ResteasyClientBuilder)ClientBuilder.newBuilder();
       clientBuilder.providerFactory(resteasyProviderFactory);
-      
-      if (clientEngine == null)
-      {
-         if (httpClient == null)
-         {
-            clientEngine = ApacheHttpClientEngine.create();
-         }
-         else
-         {
-            clientEngine = ApacheHttpClientEngine.create(httpClient, true);
+
+      if(clientEngine==null){
+         if(httpClient==null){
+            clientEngine=ApacheHttpClientEngine.create();
+         }else{
+            clientEngine=ApacheHttpClientEngine.create(httpClient,true);
          }
       }
-      ResteasyWebTarget target = clientBuilder.httpEngine(clientEngine).build().target(baseUri);
-      client = target.proxy(serviceInterface);
+      ResteasyWebTarget target=clientBuilder.httpEngine(clientEngine).build().target(baseUri);
+      client=target.proxy(serviceInterface);
    }
 
-   public Class<T> getServiceInterface()
-   {
+   public Class<T> getServiceInterface(){
       return serviceInterface;
    }
 
    /**
     * This is a mandatory property that needs to be set.
-    *
     * @param serviceInterface the interface for which a proxy is needed to be generated.
     */
-   public void setServiceInterface(Class<T> serviceInterface)
-   {
-      this.serviceInterface = serviceInterface;
+   public void setServiceInterface(Class<T> serviceInterface){
+      this.serviceInterface=serviceInterface;
    }
 
-   public URI getBaseUri()
-   {
+   public URI getBaseUri(){
       return baseUri;
    }
 
    /**
     * This is a mandatory property that needs to be set.
-    *
     * @param baseUri the remote service base address.
     */
-   public void setBaseUri(URI baseUri)
-   {
-      this.baseUri = baseUri;
+   public void setBaseUri(URI baseUri){
+      this.baseUri=baseUri;
    }
 
-   public HttpClient getHttpClient()
-   {
+   public HttpClient getHttpClient(){
       return httpClient;
    }
 
@@ -142,16 +124,13 @@ public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
     * instead of a
     * {@link org.apache.http.impl.conn.SingleClientConnManager} which
     * is the default in {@link org.apache.http.client.HttpClient}.
-    *
     * @param httpClient the instance to be used by proxy generation
     */
-   public void setHttpClient(HttpClient httpClient)
-   {
-      this.httpClient = httpClient;
+   public void setHttpClient(HttpClient httpClient){
+      this.httpClient=httpClient;
    }
 
-   public ClientHttpEngine getClientEngine()
-   {
+   public ClientHttpEngine getClientEngine(){
       return clientEngine;
    }
 
@@ -159,29 +138,24 @@ public class RestClientProxyFactoryBean<T> implements FactoryBean<T>,
     * Optional property for advanced usage. If this property is set it will be
     * used by proxy generation. If this property is set the {@link #httpClient}
     * property is ignored.
-    *
     * @param clientEngine the instance to be used by proxy generation
     */
-   public void setClientExecutor(ClientHttpEngine clientEngine)
-   {
-      this.clientEngine = clientEngine;
+   public void setClientExecutor(ClientHttpEngine clientEngine){
+      this.clientEngine=clientEngine;
    }
 
-   public ResteasyProviderFactory getResteasyProviderFactory()
-   {
+   public ResteasyProviderFactory getResteasyProviderFactory(){
       return resteasyProviderFactory;
    }
 
    /**
     * Optional property for advanced usage. For the most cases this property is
     * not needed to be set.
-    *
     * @param resteasyProviderFactory the instance to be used by proxy generation.
     */
    public void setResteasyProviderFactory(
-           ResteasyProviderFactory resteasyProviderFactory)
-   {
-      this.resteasyProviderFactory = resteasyProviderFactory;
+      ResteasyProviderFactory resteasyProviderFactory){
+      this.resteasyProviderFactory=resteasyProviderFactory;
    }
 
 }

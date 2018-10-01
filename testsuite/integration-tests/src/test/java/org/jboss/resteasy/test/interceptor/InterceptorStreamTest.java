@@ -3,9 +3,9 @@ package org.jboss.resteasy.test.interceptor;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.resteasy.spi.HttpResponseCodes;
 import org.jboss.resteasy.test.interceptor.resource.InterceptorStreamCustom;
 import org.jboss.resteasy.test.interceptor.resource.InterceptorStreamResource;
-import org.jboss.resteasy.spi.HttpResponseCodes;
 import org.jboss.resteasy.utils.PortProviderUtil;
 import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.shrinkwrap.api.Archive;
@@ -29,38 +29,39 @@ import javax.ws.rs.core.Response;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class InterceptorStreamTest {
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(InterceptorStreamTest.class.getSimpleName());
-        return TestUtil.finishContainerPrepare(war, null, InterceptorStreamResource.class, InterceptorStreamCustom.class);
-    }
+public class InterceptorStreamTest{
+   static Client client;
 
-    static Client client;
+   @Deployment
+   public static Archive<?> deploy(){
+      WebArchive war=TestUtil.prepareArchive(InterceptorStreamTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war,null,InterceptorStreamResource.class,InterceptorStreamCustom.class);
+   }
 
-    @Before
-    public void setup() {
-        client = ClientBuilder.newClient();
-    }
+   @Before
+   public void setup(){
+      client=ClientBuilder.newClient();
+   }
 
-    @After
-    public void cleanup() {
-        client.close();
-    }
+   @After
+   public void cleanup(){
+      client.close();
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, InterceptorStreamTest.class.getSimpleName());
-    }
-    /**
-     * @tpTestDetails Use ReaderInterceptor and WriterInterceptor together
-     * @tpSince RESTEasy 3.1.0
-     */
-    @Test
-    public void testPriority() throws Exception {
-        Response response = client.target(generateURL("/test")).request().post(Entity.text("test"));
-        response.bufferEntity();
-        Assert.assertEquals("Wrong response status, interceptors don't work correctly", HttpResponseCodes.SC_OK, response.getStatus());
-        Assert.assertEquals("Wrong content of response, interceptors don't work correctly", "writer_interceptor_testtest", response.readEntity(String.class));
+   private String generateURL(String path){
+      return PortProviderUtil.generateURL(path,InterceptorStreamTest.class.getSimpleName());
+   }
 
-    }
+   /**
+    * @tpTestDetails Use ReaderInterceptor and WriterInterceptor together
+    * @tpSince RESTEasy 3.1.0
+    */
+   @Test
+   public void testPriority() throws Exception{
+      Response response=client.target(generateURL("/test")).request().post(Entity.text("test"));
+      response.bufferEntity();
+      Assert.assertEquals("Wrong response status, interceptors don't work correctly",HttpResponseCodes.SC_OK,response.getStatus());
+      Assert.assertEquals("Wrong content of response, interceptors don't work correctly","writer_interceptor_testtest",response.readEntity(String.class));
+
+   }
 }

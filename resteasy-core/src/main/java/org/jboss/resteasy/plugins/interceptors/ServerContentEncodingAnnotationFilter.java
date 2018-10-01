@@ -22,37 +22,30 @@ import java.util.Set;
  */
 @ConstrainedTo(RuntimeType.SERVER)
 @Priority(Priorities.HEADER_DECORATOR)
-public class ServerContentEncodingAnnotationFilter implements WriterInterceptor
-{
+public class ServerContentEncodingAnnotationFilter implements WriterInterceptor{
    protected
    @Context
    HttpRequest request;
 
    Set<String> encodings;
 
-   public ServerContentEncodingAnnotationFilter(Set<String> encodings)
-   {
-      this.encodings = encodings;
+   public ServerContentEncodingAnnotationFilter(Set<String> encodings){
+      this.encodings=encodings;
    }
 
    @Override
-   public void aroundWriteTo(WriterInterceptorContext context) throws IOException, WebApplicationException
-   {
-      List<String> acceptEncoding = request.getHttpHeaders().getRequestHeaders().get(HttpHeaders.ACCEPT_ENCODING);
-      if (acceptEncoding != null)
-      {
-         StringBuffer buf = new StringBuffer();
-         for (String accept : acceptEncoding)
-         {
-            if (buf.length() > 0) buf.append(",");
+   public void aroundWriteTo(WriterInterceptorContext context) throws IOException, WebApplicationException{
+      List<String> acceptEncoding=request.getHttpHeaders().getRequestHeaders().get(HttpHeaders.ACCEPT_ENCODING);
+      if(acceptEncoding!=null){
+         StringBuffer buf=new StringBuffer();
+         for(String accept : acceptEncoding){
+            if(buf.length()>0) buf.append(",");
             buf.append(accept);
          }
-         List<String> accepts = AcceptParser.parseAcceptHeader(buf.toString());
-         for (String encoding : accepts)
-         {
-            if (encodings.contains(encoding.toLowerCase()))
-            {
-               context.getHeaders().putSingle(HttpHeaders.CONTENT_ENCODING, encoding);
+         List<String> accepts=AcceptParser.parseAcceptHeader(buf.toString());
+         for(String encoding : accepts){
+            if(encodings.contains(encoding.toLowerCase())){
+               context.getHeaders().putSingle(HttpHeaders.CONTENT_ENCODING,encoding);
                break;
             }
          }

@@ -5,10 +5,9 @@ import javax.ws.rs.ext.Provider;
 
 @Priority(2)
 @Provider
-public class AsyncResponseFilter2 extends AsyncResponseFilter {
+public class AsyncResponseFilter2 extends AsyncResponseFilter{
 
-   public AsyncResponseFilter2()
-   {
+   public AsyncResponseFilter2(){
       super("ResponseFilter2");
    }
 }

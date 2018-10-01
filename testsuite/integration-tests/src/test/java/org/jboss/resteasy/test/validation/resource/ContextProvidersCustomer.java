@@ -5,20 +5,20 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "customer")
+@XmlRootElement(name="customer")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ContextProvidersCustomer {
-    @XmlElement
-    private String name;
+public class ContextProvidersCustomer{
+   @XmlElement
+   private String name;
 
-    public ContextProvidersCustomer() {
-    }
+   public ContextProvidersCustomer(){
+   }
 
-    public ContextProvidersCustomer(final String name) {
-        this.name = name;
-    }
+   public ContextProvidersCustomer(final String name){
+      this.name=name;
+   }
 
-    public String getName() {
-        return name;
-    }
+   public String getName(){
+      return name;
+   }
 }

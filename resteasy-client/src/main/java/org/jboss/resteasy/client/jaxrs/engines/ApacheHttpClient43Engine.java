@@ -1,21 +1,5 @@
 package org.jboss.resteasy.client.jaxrs.engines;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.management.ManagementFactory;
-import java.util.List;
-import java.util.Map;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.ws.rs.ProcessingException;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
-
 import org.apache.commons.io.output.DeferredFileOutputStream;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -42,20 +26,33 @@ import org.jboss.resteasy.client.jaxrs.internal.ClientInvocation;
 import org.jboss.resteasy.client.jaxrs.internal.ClientResponse;
 import org.jboss.resteasy.util.CaseInsensitiveMap;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.ws.rs.ProcessingException;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.management.ManagementFactory;
+import java.util.List;
+import java.util.Map;
+
 /**
  * An Apache HTTP engine for use with the new Builder Config style.
  */
-public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
-{
+public class ApacheHttpClient43Engine implements ApacheHttpClientEngine{
 
    /**
     * Used to build temp file prefix.
     */
-   private static String processId = null;
+   private static String processId=null;
 
-   static
-   {
-      processId = ManagementFactory.getRuntimeMXBean().getName().replaceAll("[^0-9a-zA-Z]", "");
+   static{
+      processId=ManagementFactory.getRuntimeMXBean().getName().replaceAll("[^0-9a-zA-Z]","");
    }
 
    protected HttpClient httpClient;
@@ -70,13 +67,13 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
 
    protected HostnameVerifier hostnameVerifier;
 
-   protected int responseBufferSize = 8192;
+   protected int responseBufferSize=8192;
 
-   protected HttpHost defaultProxy = null;
+   protected HttpHost defaultProxy=null;
 
-   protected boolean chunked = false;
+   protected boolean chunked=false;
 
-   protected boolean followRedirects = false;
+   protected boolean followRedirects=false;
 
    /**
     * For uploading File's over JAX-RS framework, this property, together with {@link #fileUploadMemoryUnit},
@@ -85,16 +82,15 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
     * <br>
     * Defaults to 1 MB
     */
-   protected int fileUploadInMemoryThresholdLimit = 1;
+   protected int fileUploadInMemoryThresholdLimit=1;
 
    /**
     * The unit for {@link #fileUploadInMemoryThresholdLimit}. <br>
     * <br>
     * Defaults to MB.
-    *
     * @see MemoryUnit
     */
-   protected MemoryUnit fileUploadMemoryUnit = MemoryUnit.MB;
+   protected MemoryUnit fileUploadMemoryUnit=MemoryUnit.MB;
 
    /**
     * Temp directory to write output request stream to. Any file to be uploaded has to be written out to the
@@ -103,206 +99,160 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
     * <br>
     * Defaults to JVM temp directory.
     */
-   protected File fileUploadTempFileDir = new File(System.getProperty("java.io.tmpdir"));
+   protected File fileUploadTempFileDir=new File(System.getProperty("java.io.tmpdir"));
 
-   public ApacheHttpClient43Engine()
-   {
-      this.httpClient = createDefaultHttpClient();
-      this.allowClosingHttpClient = true;
+   public ApacheHttpClient43Engine(){
+      this.httpClient=createDefaultHttpClient();
+      this.allowClosingHttpClient=true;
    }
 
-   public ApacheHttpClient43Engine(final HttpHost defaultProxy)
-   {
-      this.defaultProxy = defaultProxy;
-      this.httpClient = createDefaultHttpClient();
-      this.allowClosingHttpClient = true;
+   public ApacheHttpClient43Engine(final HttpHost defaultProxy){
+      this.defaultProxy=defaultProxy;
+      this.httpClient=createDefaultHttpClient();
+      this.allowClosingHttpClient=true;
    }
 
-   public ApacheHttpClient43Engine(HttpClient httpClient)
-   {
-      this.httpClient = httpClient;
-      this.allowClosingHttpClient = true;
+   public ApacheHttpClient43Engine(HttpClient httpClient){
+      this.httpClient=httpClient;
+      this.allowClosingHttpClient=true;
    }
 
-   public ApacheHttpClient43Engine(HttpClient httpClient, boolean closeHttpClient)
-   {
-      if (closeHttpClient && !(httpClient instanceof CloseableHttpClient))
-      {
+   public ApacheHttpClient43Engine(HttpClient httpClient,boolean closeHttpClient){
+      if(closeHttpClient&&!(httpClient instanceof CloseableHttpClient)){
          throw new IllegalArgumentException(
-               "httpClient must be a CloseableHttpClient instance in order for allowing engine to close it!");
+            "httpClient must be a CloseableHttpClient instance in order for allowing engine to close it!");
       }
-      this.httpClient = httpClient;
-      this.allowClosingHttpClient = closeHttpClient;
+      this.httpClient=httpClient;
+      this.allowClosingHttpClient=closeHttpClient;
    }
 
-   public ApacheHttpClient43Engine(HttpClient httpClient, HttpContextProvider httpContextProvider)
-   {
-      this.httpClient = httpClient;
-      this.httpContextProvider = httpContextProvider;
-      this.allowClosingHttpClient = true;
+   public ApacheHttpClient43Engine(HttpClient httpClient,HttpContextProvider httpContextProvider){
+      this.httpClient=httpClient;
+      this.httpContextProvider=httpContextProvider;
+      this.allowClosingHttpClient=true;
+   }
+
+   public static CaseInsensitiveMap<String> extractHeaders(HttpResponse response){
+      final CaseInsensitiveMap<String> headers=new CaseInsensitiveMap<String>();
+
+      for(Header header : response.getAllHeaders()){
+         headers.add(header.getName(),header.getValue());
+      }
+      return headers;
    }
 
    /**
     * Response stream is wrapped in a BufferedInputStream.  Default is 8192.  Value of 0 will not wrap it.
     * Value of -1 will use a SelfExpandingBufferedInputStream
-    *
     * @return response buffer size
     */
-   public int getResponseBufferSize()
-   {
+   public int getResponseBufferSize(){
       return responseBufferSize;
    }
 
    /**
     * Response stream is wrapped in a BufferedInputStream.  Default is 8192.  Value of 0 will not wrap it.
     * Value of -1 will use a SelfExpandingBufferedInputStream
-    *
     * @param responseBufferSize response buffer size
     */
-   public void setResponseBufferSize(int responseBufferSize)
-   {
-      this.responseBufferSize = responseBufferSize;
+   public void setResponseBufferSize(int responseBufferSize){
+      this.responseBufferSize=responseBufferSize;
    }
 
    /**
     * Based on memory unit
     * @return threshold limit
     */
-   public int getFileUploadInMemoryThresholdLimit()
-   {
+   public int getFileUploadInMemoryThresholdLimit(){
       return fileUploadInMemoryThresholdLimit;
    }
 
-   public void setFileUploadInMemoryThresholdLimit(int fileUploadInMemoryThresholdLimit)
-   {
-      this.fileUploadInMemoryThresholdLimit = fileUploadInMemoryThresholdLimit;
+   public void setFileUploadInMemoryThresholdLimit(int fileUploadInMemoryThresholdLimit){
+      this.fileUploadInMemoryThresholdLimit=fileUploadInMemoryThresholdLimit;
    }
 
-   public MemoryUnit getFileUploadMemoryUnit()
-   {
+   public MemoryUnit getFileUploadMemoryUnit(){
       return fileUploadMemoryUnit;
    }
 
-   public void setFileUploadMemoryUnit(MemoryUnit fileUploadMemoryUnit)
-   {
-      this.fileUploadMemoryUnit = fileUploadMemoryUnit;
+   public void setFileUploadMemoryUnit(MemoryUnit fileUploadMemoryUnit){
+      this.fileUploadMemoryUnit=fileUploadMemoryUnit;
    }
 
-   public File getFileUploadTempFileDir()
-   {
+   public File getFileUploadTempFileDir(){
       return fileUploadTempFileDir;
    }
 
-   public void setFileUploadTempFileDir(File fileUploadTempFileDir)
-   {
-      this.fileUploadTempFileDir = fileUploadTempFileDir;
+   public void setFileUploadTempFileDir(File fileUploadTempFileDir){
+      this.fileUploadTempFileDir=fileUploadTempFileDir;
    }
 
-   public HttpClient getHttpClient()
-   {
+   public HttpClient getHttpClient(){
       return httpClient;
    }
 
    @Override
-   public SSLContext getSslContext()
-   {
+   public SSLContext getSslContext(){
       return sslContext;
    }
 
-   public void setSslContext(SSLContext sslContext)
-   {
-      this.sslContext = sslContext;
+   public void setSslContext(SSLContext sslContext){
+      this.sslContext=sslContext;
    }
 
    @Override
-   public HostnameVerifier getHostnameVerifier()
-   {
+   public HostnameVerifier getHostnameVerifier(){
       return hostnameVerifier;
    }
 
-   public void setHostnameVerifier(HostnameVerifier hostnameVerifier)
-   {
-      this.hostnameVerifier = hostnameVerifier;
+   public void setHostnameVerifier(HostnameVerifier hostnameVerifier){
+      this.hostnameVerifier=hostnameVerifier;
    }
 
-   public static CaseInsensitiveMap<String> extractHeaders(HttpResponse response)
-   {
-      final CaseInsensitiveMap<String> headers = new CaseInsensitiveMap<String>();
-
-      for (Header header : response.getAllHeaders())
-      {
-         headers.add(header.getName(), header.getValue());
-      }
-      return headers;
-   }
-
-   protected InputStream createBufferedStream(InputStream is)
-   {
-      if (responseBufferSize == 0)
-      {
+   protected InputStream createBufferedStream(InputStream is){
+      if(responseBufferSize==0){
          return is;
       }
-      if (responseBufferSize < 0)
-      {
+      if(responseBufferSize<0){
          return new SelfExpandingBufferredInputStream(is);
       }
-      return new BufferedInputStream(is, responseBufferSize);
+      return new BufferedInputStream(is,responseBufferSize);
    }
 
    @Override
-   public Response invoke(Invocation inv)
-   {
-      ClientInvocation request = (ClientInvocation)inv;
-      String uri = request.getUri().toString();
-      final HttpRequestBase httpMethod = createHttpMethod(uri, request.getMethod());
+   public Response invoke(Invocation inv){
+      ClientInvocation request=(ClientInvocation)inv;
+      String uri=request.getUri().toString();
+      final HttpRequestBase httpMethod=createHttpMethod(uri,request.getMethod());
       final HttpResponse res;
-      try
-      {
-         loadHttpMethod(request, httpMethod);
+      try{
+         loadHttpMethod(request,httpMethod);
 
-         HttpContext ctx = null;
-         if (httpContextProvider != null)
-         {
-            ctx = httpContextProvider.getContext();
+         HttpContext ctx=null;
+         if(httpContextProvider!=null){
+            ctx=httpContextProvider.getContext();
          }
-         res = httpClient.execute(httpMethod, ctx);
-      }
-      catch (Exception e)
-      {
-         throw new ProcessingException(Messages.MESSAGES.unableToInvokeRequest(), e);
-      }
-      finally
-      {
+         res=httpClient.execute(httpMethod,ctx);
+      }catch(Exception e){
+         throw new ProcessingException(Messages.MESSAGES.unableToInvokeRequest(),e);
+      }finally{
          cleanUpAfterExecute(httpMethod);
       }
 
-      ClientResponse response = new ClientResponse(request.getClientConfiguration(), request.getTracingLogger())
-      {
+      ClientResponse response=new ClientResponse(request.getClientConfiguration(),request.getTracingLogger()){
          InputStream stream;
 
          InputStream hc4Stream;
 
-         @Override
-         protected void setInputStream(InputStream is)
-         {
-            stream = is;
-            resetEntity();
-         }
-
-         public InputStream getInputStream()
-         {
-            if (stream == null)
-            {
-               HttpEntity entity = res.getEntity();
-               if (entity == null)
+         public InputStream getInputStream(){
+            if(stream==null){
+               HttpEntity entity=res.getEntity();
+               if(entity==null)
                   return null;
-               try
-               {
-                  hc4Stream = entity.getContent();
-                  stream = createBufferedStream(hc4Stream);
-               }
-               catch (IOException e)
-               {
+               try{
+                  hc4Stream=entity.getContent();
+                  stream=createBufferedStream(hc4Stream);
+               }catch(IOException e){
                   throw new RuntimeException(e);
                }
             }
@@ -310,76 +260,58 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
          }
 
          @Override
-         public void releaseConnection() throws IOException
-         {
+         protected void setInputStream(InputStream is){
+            stream=is;
+            resetEntity();
+         }
+
+         @Override
+         public void releaseConnection() throws IOException{
             releaseConnection(true);
          }
 
          @Override
-         public void releaseConnection(boolean consumeInputStream) throws IOException
-         {
-            if (consumeInputStream)
-            {
+         public void releaseConnection(boolean consumeInputStream) throws IOException{
+            if(consumeInputStream){
                // Apache Client 4 is stupid,  You have to get the InputStream and close it if there is an entity
                // otherwise the connection is never released.  There is, of course, no close() method on response
                // to make this easier.
-               try
-               {
+               try{
                   // Another stupid thing...TCK is testing a specific exception from stream.close()
                   // so, we let it propagate up.
-                  if (stream != null)
-                  {
+                  if(stream!=null){
                      stream.close();
-                  }
-                  else
-                  {
-                     InputStream is = getInputStream();
-                     if (is != null)
-                     {
+                  }else{
+                     InputStream is=getInputStream();
+                     if(is!=null){
                         is.close();
                      }
                   }
-               }
-               finally
-               {
+               }finally{
                   // just in case the input stream was entirely replaced and not wrapped, we need
                   // to close the apache client input stream.
-                  if (hc4Stream != null)
-                  {
-                     try
-                     {
+                  if(hc4Stream!=null){
+                     try{
                         hc4Stream.close();
-                     }
-                     catch (IOException ignored)
-                     {
+                     }catch(IOException ignored){
 
                      }
-                  }
-                  else
-                  {
-                     try
-                     {
-                        HttpEntity entity = res.getEntity();
-                        if (entity != null)
+                  }else{
+                     try{
+                        HttpEntity entity=res.getEntity();
+                        if(entity!=null)
                            entity.getContent().close();
-                     }
-                     catch (IOException ignored)
-                     {
+                     }catch(IOException ignored){
                      }
 
                   }
 
                }
-            }
-            else if (res instanceof CloseableHttpResponse)
-            {
-               try
-               {
-                  ((CloseableHttpResponse) res).close();
-               }
-               catch (IOException e)
-               {
-                  LogMessages.LOGGER.warn(Messages.MESSAGES.couldNotCloseHttpResponse(), e);
+            }else if(res instanceof CloseableHttpResponse){
+               try{
+                  ((CloseableHttpResponse)res).close();
+               }catch(IOException e){
+                  LogMessages.LOGGER.warn(Messages.MESSAGES.couldNotCloseHttpResponse(),e);
                }
             }
          }
@@ -393,132 +325,99 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
       return response;
    }
 
-   protected HttpRequestBase createHttpMethod(String url, String restVerb)
-   {
-      if ("GET".equals(restVerb))
-      {
+   protected HttpRequestBase createHttpMethod(String url,String restVerb){
+      if("GET".equals(restVerb)){
          return new HttpGet(url);
-      }
-      else if ("POST".equals(restVerb))
-      {
+      }else if("POST".equals(restVerb)){
          return new HttpPost(url);
-      }
-      else
-      {
-         final String verb = restVerb;
-         return new HttpPost(url)
-         {
+      }else{
+         final String verb=restVerb;
+         return new HttpPost(url){
             @Override
-            public String getMethod()
-            {
+            public String getMethod(){
                return verb;
             }
          };
       }
    }
 
-   protected void loadHttpMethod(final ClientInvocation request, HttpRequestBase httpMethod) throws Exception
-   {
-      if (isFollowRedirects())
-      {
-         setRedirectRequired(request, httpMethod);
-      }
-      else
-      {
-         setRedirectNotRequired(request, httpMethod);
+   protected void loadHttpMethod(final ClientInvocation request,HttpRequestBase httpMethod) throws Exception{
+      if(isFollowRedirects()){
+         setRedirectRequired(request,httpMethod);
+      }else{
+         setRedirectNotRequired(request,httpMethod);
       }
 
-      if (request.getEntity() != null)
-      {
-         if (httpMethod instanceof HttpGet)
+      if(request.getEntity()!=null){
+         if(httpMethod instanceof HttpGet)
             throw new ProcessingException(Messages.MESSAGES.getRequestCannotHaveBody());
 
-         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+         ByteArrayOutputStream baos=new ByteArrayOutputStream();
          request.getDelegatingOutputStream().setDelegate(baos);
-         try
-         {
-            HttpEntity entity = buildEntity(request);
-            HttpPost post = (HttpPost) httpMethod;
-            commitHeaders(request, httpMethod);
+         try{
+            HttpEntity entity=buildEntity(request);
+            HttpPost post=(HttpPost)httpMethod;
+            commitHeaders(request,httpMethod);
             post.setEntity(entity);
-         }
-         catch (IOException e)
-         {
+         }catch(IOException e){
             throw new RuntimeException(e);
          }
-      }
-      else // no body
+      }else // no body
       {
-         commitHeaders(request, httpMethod);
+         commitHeaders(request,httpMethod);
       }
    }
 
-   protected void commitHeaders(ClientInvocation request, HttpRequestBase httpMethod)
-   {
-      MultivaluedMap<String, String> headers = request.getHeaders().asMap();
-      for (Map.Entry<String, List<String>> header : headers.entrySet())
-      {
-         List<String> values = header.getValue();
-         for (String value : values)
-         {
-            httpMethod.addHeader(header.getKey(), value);
+   protected void commitHeaders(ClientInvocation request,HttpRequestBase httpMethod){
+      MultivaluedMap<String,String> headers=request.getHeaders().asMap();
+      for(Map.Entry<String,List<String>> header : headers.entrySet()){
+         List<String> values=header.getValue();
+         for(String value : values){
+            httpMethod.addHeader(header.getKey(),value);
          }
       }
    }
 
-   public void finalize() throws Throwable
-   {
+   public void finalize() throws Throwable{
       close();
       super.finalize();
    }
 
-   public boolean isChunked()
-   {
+   public boolean isChunked(){
       return chunked;
    }
 
-   public void setChunked(boolean chunked)
-   {
-      this.chunked = chunked;
+   public void setChunked(boolean chunked){
+      this.chunked=chunked;
    }
 
-   public boolean isFollowRedirects()
-   {
+   public boolean isFollowRedirects(){
       return followRedirects;
    }
 
-   public void setFollowRedirects(boolean followRedirects)
-   {
-      this.followRedirects = followRedirects;
+   public void setFollowRedirects(boolean followRedirects){
+      this.followRedirects=followRedirects;
    }
 
    /**
     * If passed httpMethod is of type HttpPost then obtain its entity. If the entity has an enclosing File then
     * delete it by invoking this method after the request has completed. The entity will have an enclosing File
     * only if it was too huge to fit into memory.
-    *
     * @param httpMethod - the httpMethod to clean up.
     */
-   protected void cleanUpAfterExecute(final HttpRequestBase httpMethod)
-   {
-      if (httpMethod != null && httpMethod instanceof HttpPost)
-      {
-         HttpPost postMethod = (HttpPost) httpMethod;
-         HttpEntity entity = postMethod.getEntity();
-         if (entity != null && entity instanceof FileExposingFileEntity)
-         {
-            File tempRequestFile = ((FileExposingFileEntity) entity).getFile();
-            try
-            {
-               boolean isDeleted = tempRequestFile.delete();
-               if (!isDeleted)
-               {
-                  handleFileNotDeletedError(tempRequestFile, null);
+   protected void cleanUpAfterExecute(final HttpRequestBase httpMethod){
+      if(httpMethod!=null&&httpMethod instanceof HttpPost){
+         HttpPost postMethod=(HttpPost)httpMethod;
+         HttpEntity entity=postMethod.getEntity();
+         if(entity!=null&&entity instanceof FileExposingFileEntity){
+            File tempRequestFile=((FileExposingFileEntity)entity).getFile();
+            try{
+               boolean isDeleted=tempRequestFile.delete();
+               if(!isDeleted){
+                  handleFileNotDeletedError(tempRequestFile,null);
                }
-            }
-            catch (Exception ex)
-            {
-               handleFileNotDeletedError(tempRequestFile, ex);
+            }catch(Exception ex){
+               handleFileNotDeletedError(tempRequestFile,ex);
             }
          }
       }
@@ -528,50 +427,41 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
     * Build the HttpEntity to be sent to the Service as part of (POST) request. Creates a off-memory
     * {@link FileExposingFileEntity} or a regular in-memory {@link ByteArrayEntity} depending on if the request
     * OutputStream fit into memory when built by calling.
-    *
     * @param request -
     * @return - the built HttpEntity
     * @throws IOException -
     */
-   protected HttpEntity buildEntity(final ClientInvocation request) throws IOException
-   {
-      AbstractHttpEntity entityToBuild = null;
-      DeferredFileOutputStream memoryManagedOutStream = writeRequestBodyToOutputStream(request);
+   protected HttpEntity buildEntity(final ClientInvocation request) throws IOException{
+      AbstractHttpEntity entityToBuild=null;
+      DeferredFileOutputStream memoryManagedOutStream=writeRequestBodyToOutputStream(request);
 
-      if (memoryManagedOutStream.isInMemory())
-      {
-         ByteArrayEntity entityToBuildByteArray = new ByteArrayEntity(memoryManagedOutStream.getData());
+      if(memoryManagedOutStream.isInMemory()){
+         ByteArrayEntity entityToBuildByteArray=new ByteArrayEntity(memoryManagedOutStream.getData());
          entityToBuildByteArray
-               .setContentType(new BasicHeader(HTTP.CONTENT_TYPE, request.getHeaders().getMediaType().toString()));
-         entityToBuild = entityToBuildByteArray;
+            .setContentType(new BasicHeader(HTTP.CONTENT_TYPE,request.getHeaders().getMediaType().toString()));
+         entityToBuild=entityToBuildByteArray;
+      }else{
+         entityToBuild=new FileExposingFileEntity(memoryManagedOutStream.getFile(),
+            request.getHeaders().getMediaType().toString());
       }
-      else
-      {
-         entityToBuild = new FileExposingFileEntity(memoryManagedOutStream.getFile(),
-               request.getHeaders().getMediaType().toString());
-      }
-      if (request.isChunked())
-      {
+      if(request.isChunked()){
          entityToBuild.setChunked(true);
       }
-      return (HttpEntity) entityToBuild;
+      return (HttpEntity)entityToBuild;
    }
 
    /**
     * Creates the request OutputStream, to be sent to the end Service invoked, as a
     * <a href="http://commons.apache.org/io/api-release/org/apache/commons/io/output/DeferredFileOutputStream.html"
     * >DeferredFileOutputStream</a>.
-    *
-    *
     * @param request -
     * @return - DeferredFileOutputStream with the ClientRequest written out per HTTP specification.
     * @throws IOException -
     */
-   private DeferredFileOutputStream writeRequestBodyToOutputStream(final ClientInvocation request) throws IOException
-   {
-      DeferredFileOutputStream memoryManagedOutStream = new DeferredFileOutputStream(
-            this.fileUploadInMemoryThresholdLimit * getMemoryUnitMultiplier(), getTempfilePrefix(), ".tmp",
-            this.fileUploadTempFileDir);
+   private DeferredFileOutputStream writeRequestBodyToOutputStream(final ClientInvocation request) throws IOException{
+      DeferredFileOutputStream memoryManagedOutStream=new DeferredFileOutputStream(
+         this.fileUploadInMemoryThresholdLimit*getMemoryUnitMultiplier(),getTempfilePrefix(),".tmp",
+         this.fileUploadTempFileDir);
       request.getDelegatingOutputStream().setDelegate(memoryManagedOutStream);
       request.writeRequestBody(request.getEntityStream());
       memoryManagedOutStream.close();
@@ -581,30 +471,26 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
    /**
     * Use context information, which will include node name, to avoid conflicts in case of multiple VMS using same
     * temp directory location.
-    *
     * @return -
     */
-   protected String getTempfilePrefix()
-   {
+   protected String getTempfilePrefix(){
       return processId;
    }
 
    /**
     * @return - the constant to multiply {@link #fileUploadInMemoryThresholdLimit} with based on
-    *         {@link #fileUploadMemoryUnit} enumeration value.
+    * {@link #fileUploadMemoryUnit} enumeration value.
     */
-   private int getMemoryUnitMultiplier()
-   {
-      switch (this.fileUploadMemoryUnit)
-      {
-         case BY :
+   private int getMemoryUnitMultiplier(){
+      switch(this.fileUploadMemoryUnit){
+         case BY:
             return 1;
-         case KB :
+         case KB:
             return 1024;
-         case MB :
-            return 1024 * 1024;
-         case GB :
-            return 1024 * 1024 * 1024;
+         case MB:
+            return 1024*1024;
+         case GB:
+            return 1024*1024*1024;
       }
       return 1;
    }
@@ -612,14 +498,73 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
    /**
     * Log that the file did not get deleted but prevent the request from failing by eating the exception.
     * Register the file to be deleted on exit, so it will get deleted eventually.
-    *
     * @param tempRequestFile -
     * @param ex - a null may be passed in which case this param gets ignored.
     */
-   private void handleFileNotDeletedError(File tempRequestFile, Exception ex)
-   {
-      LogMessages.LOGGER.warn(Messages.MESSAGES.couldNotDeleteFile(tempRequestFile.getAbsolutePath()), ex);
+   private void handleFileNotDeletedError(File tempRequestFile,Exception ex){
+      LogMessages.LOGGER.warn(Messages.MESSAGES.couldNotDeleteFile(tempRequestFile.getAbsolutePath()),ex);
       tempRequestFile.deleteOnExit();
+   }
+
+   protected HttpClient createDefaultHttpClient(){
+      final HttpClientBuilder builder=HttpClientBuilder.create();
+      RequestConfig.Builder requestBuilder=RequestConfig.custom();
+      if(defaultProxy!=null){
+         requestBuilder.setProxy(defaultProxy);
+      }
+      builder.disableContentCompression();
+      builder.setDefaultRequestConfig(requestBuilder.build());
+      return builder.build();
+   }
+
+   public HttpHost getDefaultProxy(){
+      Configurable clientConfiguration=(Configurable)httpClient;
+      return clientConfiguration.getConfig().getProxy();
+   }
+
+   protected void setRedirectRequired(final ClientInvocation request,final HttpRequestBase httpMethod){
+      RequestConfig.Builder requestBuilder=RequestConfig.copy(getCurrentConfiguration(request,httpMethod));
+      requestBuilder.setRedirectsEnabled(true);
+      httpMethod.setConfig(requestBuilder.build());
+   }
+
+   protected void setRedirectNotRequired(final ClientInvocation request,final HttpRequestBase httpMethod){
+      RequestConfig.Builder requestBuilder=RequestConfig.copy(getCurrentConfiguration(request,httpMethod));
+      requestBuilder.setRedirectsEnabled(false);
+      httpMethod.setConfig(requestBuilder.build());
+   }
+
+   private RequestConfig getCurrentConfiguration(final ClientInvocation request,final HttpRequestBase httpMethod){
+      RequestConfig baseConfig;
+      if(httpMethod!=null&&httpMethod.getConfig()!=null){
+         baseConfig=httpMethod.getConfig();
+      }else{
+         ApacheHttpClient43Engine engine=((ApacheHttpClient43Engine)request.getClient().httpEngine());
+         baseConfig=((Configurable)engine.getHttpClient()).getConfig();
+         if(baseConfig==null){
+            Configurable clientConfiguration=(Configurable)httpClient;
+            baseConfig=clientConfiguration.getConfig();
+         }
+      }
+      return baseConfig;
+   }
+
+   public boolean isClosed(){
+      return closed;
+   }
+
+   public void close(){
+      if(closed)
+         return;
+
+      if(allowClosingHttpClient&&httpClient!=null){
+         try{
+            ((CloseableHttpClient)httpClient).close();
+         }catch(Exception e){
+            throw new RuntimeException(e);
+         }
+      }
+      closed=true;
    }
 
    /**
@@ -630,105 +575,24 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
     * content File as a protected field. For the enclosing parent class ( {@link ApacheHttpClient4Engine} ) to be
     * able to get a handle to this content File and delete it, this class expose the content File.<br>
     * This class is private scoped to prevent access to this content File outside of the parent class.
-    *
     * @author <a href="mailto:stikoo@digitalriver.com">Sandeep Tikoo</a>
     */
-   private static class FileExposingFileEntity extends FileEntity
-   {
+   private static class FileExposingFileEntity extends FileEntity{
       /**
        * @param pFile -
        * @param pContentType -
        */
       @SuppressWarnings("deprecation")
-      FileExposingFileEntity(File pFile, String pContentType)
-      {
-         super(pFile, pContentType);
+      FileExposingFileEntity(File pFile,String pContentType){
+         super(pFile,pContentType);
       }
 
       /**
        * @return - the content File enclosed by this FileEntity.
        */
-      File getFile()
-      {
+      File getFile(){
          return this.file;
       }
-   }
-
-   protected HttpClient createDefaultHttpClient()
-   {
-      final HttpClientBuilder builder = HttpClientBuilder.create();
-      RequestConfig.Builder requestBuilder = RequestConfig.custom();
-      if (defaultProxy != null)
-      {
-         requestBuilder.setProxy(defaultProxy);
-      }
-      builder.disableContentCompression();
-      builder.setDefaultRequestConfig(requestBuilder.build());
-      return builder.build();
-   }
-
-   public HttpHost getDefaultProxy()
-   {
-      Configurable clientConfiguration = (Configurable) httpClient;
-      return clientConfiguration.getConfig().getProxy();
-   }
-
-   protected void setRedirectRequired(final ClientInvocation request, final HttpRequestBase httpMethod)
-   {
-      RequestConfig.Builder requestBuilder = RequestConfig.copy(getCurrentConfiguration(request, httpMethod));
-      requestBuilder.setRedirectsEnabled(true);
-      httpMethod.setConfig(requestBuilder.build());
-   }
-
-   protected void setRedirectNotRequired(final ClientInvocation request, final HttpRequestBase httpMethod)
-   {
-      RequestConfig.Builder requestBuilder = RequestConfig.copy(getCurrentConfiguration(request, httpMethod));
-      requestBuilder.setRedirectsEnabled(false);
-      httpMethod.setConfig(requestBuilder.build());
-   }
-
-   private RequestConfig getCurrentConfiguration(final ClientInvocation request, final HttpRequestBase httpMethod)
-   {
-      RequestConfig baseConfig;
-      if (httpMethod != null && httpMethod.getConfig() != null)
-      {
-         baseConfig = httpMethod.getConfig();
-      }
-      else
-      {
-         ApacheHttpClient43Engine engine = ((ApacheHttpClient43Engine) request.getClient().httpEngine());
-         baseConfig = ((Configurable) engine.getHttpClient()).getConfig();
-         if (baseConfig == null)
-         {
-            Configurable clientConfiguration = (Configurable) httpClient;
-            baseConfig = clientConfiguration.getConfig();
-         }
-      }
-      return baseConfig;
-   }
-
-   public boolean isClosed()
-   {
-      return closed;
-   }
-
-   public void close()
-   {
-      if (closed)
-         return;
-
-      if (allowClosingHttpClient && httpClient != null)
-      {
-         try
-         {
-            ((CloseableHttpClient) httpClient).close();
-         }
-         catch (Exception e)
-         {
-            throw new RuntimeException(e);
-         }
-      }
-      closed = true;
    }
 
 }

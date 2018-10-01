@@ -6,11 +6,11 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
 @Provider
-public class ProviderContextInjectionIOExceptionExceptionMapper implements ExceptionMapper<IOException> {
+public class ProviderContextInjectionIOExceptionExceptionMapper implements ExceptionMapper<IOException>{
 
-    @Override
-    public Response toResponse(IOException exception) {
-        return Response.status(Response.Status.ACCEPTED).build();
-    }
+   @Override
+   public Response toResponse(IOException exception){
+      return Response.status(Response.Status.ACCEPTED).build();
+   }
 
 }

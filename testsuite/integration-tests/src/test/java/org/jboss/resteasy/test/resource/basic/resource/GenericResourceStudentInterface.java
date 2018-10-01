@@ -9,18 +9,16 @@ import javax.ws.rs.Produces;
 
 /**
  * This interface is used on the client side only.
- *
  * @author Jozef Hartinger
  */
 
 @Path("/student/{id}")
 @Produces("application/student")
 @Consumes("application/student")
-public interface GenericResourceStudentInterface
-{
+public interface GenericResourceStudentInterface{
    @GET
    GenericResourceStudent get(@PathParam("id") Integer id);
 
    @PUT
-   void put(@PathParam("id") Integer id, GenericResourceStudent entity);
+   void put(@PathParam("id") Integer id,GenericResourceStudent entity);
 }

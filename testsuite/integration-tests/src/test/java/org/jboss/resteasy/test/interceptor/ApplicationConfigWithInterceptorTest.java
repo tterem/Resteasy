@@ -1,9 +1,5 @@
 package org.jboss.resteasy.test.interceptor;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -20,6 +16,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.Invocation.Builder;
+import javax.ws.rs.core.Response;
+
 /**
  * @tpSubChapter Interceptors
  * @tpChapter Integration tests
@@ -27,61 +27,53 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class ApplicationConfigWithInterceptorTest
-{
+public class ApplicationConfigWithInterceptorTest{
    private static Client client;
-   
-   @Deployment
-   public static Archive<?> deploy() {
-       WebArchive war = TestUtil.prepareArchive(ApplicationConfigWithInterceptorTest.class.getSimpleName());
-       war.addClasses(TestUtil.class, PortProviderUtil.class);
-       return TestUtil.finishContainerPrepare(war, null, ApplicationConfigWithInterceptorResource.class, AddHeaderContainerResponseFilter.class);
-   }
 
-   private String generateURL(String path) {
-       return PortProviderUtil.generateURL(path, ApplicationConfigWithInterceptorTest.class.getSimpleName());
+   @Deployment
+   public static Archive<?> deploy(){
+      WebArchive war=TestUtil.prepareArchive(ApplicationConfigWithInterceptorTest.class.getSimpleName());
+      war.addClasses(TestUtil.class,PortProviderUtil.class);
+      return TestUtil.finishContainerPrepare(war,null,ApplicationConfigWithInterceptorResource.class,AddHeaderContainerResponseFilter.class);
    }
 
    @BeforeClass
-   public static void before() throws Exception
-   {
-      client = ResteasyClientBuilder.newClient();
+   public static void before() throws Exception{
+      client=ResteasyClientBuilder.newClient();
    }
 
    @AfterClass
-   public static void after() throws Exception
-   {
+   public static void after() throws Exception{
       client.close();
    }
 
-   @Test
-   public void testNormalReturn() throws Exception
-   {
-      doTest("/my/good", 200);
+   private String generateURL(String path){
+      return PortProviderUtil.generateURL(path,ApplicationConfigWithInterceptorTest.class.getSimpleName());
    }
 
    @Test
-   public void testWebApplicationExceptionWithResponse() throws Exception
-   {
-      doTest("/my/bad", 409);
+   public void testNormalReturn() throws Exception{
+      doTest("/my/good",200);
    }
 
    @Test
-   public void testNoContentResponse() throws Exception
-   {
-      doTest("/my/123", 204, false);
+   public void testWebApplicationExceptionWithResponse() throws Exception{
+      doTest("/my/bad",409);
    }
 
-   private void doTest(String path, int expectedStatus) throws Exception
-   {
-      doTest(path, expectedStatus, true);
+   @Test
+   public void testNoContentResponse() throws Exception{
+      doTest("/my/123",204,false);
    }
 
-   private void doTest(String path, int expectedStatus, boolean get) throws Exception
-   {
-      Builder builder = client.target(generateURL(path)).request();
-      Response response = get ? builder.get() : builder.delete();
-      Assert.assertEquals(expectedStatus, response.getStatus());
+   private void doTest(String path,int expectedStatus) throws Exception{
+      doTest(path,expectedStatus,true);
+   }
+
+   private void doTest(String path,int expectedStatus,boolean get) throws Exception{
+      Builder builder=client.target(generateURL(path)).request();
+      Response response=get?builder.get():builder.delete();
+      Assert.assertEquals(expectedStatus,response.getStatus());
       Assert.assertNotNull(response.getHeaderString("custom-header"));
       response.close();
    }

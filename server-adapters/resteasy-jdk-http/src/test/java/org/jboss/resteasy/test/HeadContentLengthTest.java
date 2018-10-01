@@ -1,13 +1,12 @@
 package org.jboss.resteasy.test;
 
+import com.sun.net.httpserver.HttpServer;
 import org.jboss.resteasy.client.jaxrs.internal.ClientInvocation;
 import org.jboss.resteasy.plugins.server.sun.http.HttpContextBuilder;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import com.sun.net.httpserver.HttpServer;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.HttpMethod;
@@ -18,34 +17,19 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+import java.net.InetSocketAddress;
 
 import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 
-import java.net.InetSocketAddress;
-
-public class HeadContentLengthTest
-{
-   @Path("/")
-   public static class Resource
-   {
-      @GET
-      @Path("/test")
-      @Produces("text/plain")
-      public String hello()
-      {
-         return "hello world";
-      }
-   }
-   
+public class HeadContentLengthTest{
    private static HttpServer httpServer;
    private static HttpContextBuilder contextBuilder;
 
    @BeforeClass
-   public static void before() throws Exception
-   {
-      int port = TestPortProvider.getPort();
-      httpServer = HttpServer.create(new InetSocketAddress(port), 10);
-      contextBuilder = new HttpContextBuilder();
+   public static void before() throws Exception{
+      int port=TestPortProvider.getPort();
+      httpServer=HttpServer.create(new InetSocketAddress(port),10);
+      contextBuilder=new HttpContextBuilder();
       contextBuilder.getDeployment().getActualResourceClasses().add(Resource.class);
       contextBuilder.bind(httpServer);
       httpServer.start();
@@ -53,30 +37,37 @@ public class HeadContentLengthTest
    }
 
    @AfterClass
-   public static void after() throws Exception
-   {
+   public static void after() throws Exception{
       contextBuilder.cleanup();
       httpServer.stop(0);
    }
 
    @Test
-   public void testBasic() throws Exception
-   {
-      Client client = ClientBuilder.newClient();
-      WebTarget target = client.target(generateURL("/test"));
-      String val = target.request().get(String.class);
-      Assert.assertEquals("hello world", val);
+   public void testBasic() throws Exception{
+      Client client=ClientBuilder.newClient();
+      WebTarget target=client.target(generateURL("/test"));
+      String val=target.request().get(String.class);
+      Assert.assertEquals("hello world",val);
    }
 
    @Test
-   public void testHeadContentLength() throws Exception
-   {
-      Client client = ClientBuilder.newClient();
-      WebTarget target = client.target(generateURL("/test"));
-      Response getResponse = target.request().buildGet().invoke();
-      String val = ClientInvocation.extractResult(new GenericType<String>(String.class), getResponse, null);
-      Assert.assertEquals("hello world", val);
-      Response headResponse = target.request().build(HttpMethod.HEAD).invoke();
+   public void testHeadContentLength() throws Exception{
+      Client client=ClientBuilder.newClient();
+      WebTarget target=client.target(generateURL("/test"));
+      Response getResponse=target.request().buildGet().invoke();
+      String val=ClientInvocation.extractResult(new GenericType<String>(String.class),getResponse,null);
+      Assert.assertEquals("hello world",val);
+      Response headResponse=target.request().build(HttpMethod.HEAD).invoke();
       Assert.assertNull(headResponse.getHeaderString("Content-Length"));
+   }
+
+   @Path("/")
+   public static class Resource{
+      @GET
+      @Path("/test")
+      @Produces("text/plain")
+      public String hello(){
+         return "hello world";
+      }
    }
 }

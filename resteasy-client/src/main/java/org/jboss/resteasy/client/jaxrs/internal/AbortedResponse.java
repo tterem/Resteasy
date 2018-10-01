@@ -8,7 +8,6 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.MessageBodyWriter;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,26 +21,22 @@ import java.util.Map;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class AbortedResponse extends ClientResponse
-{
+public class AbortedResponse extends ClientResponse{
    protected InputStream is;
 
    @SuppressWarnings("unchecked")
-   public AbortedResponse(ClientConfiguration configuration, Response response)
-   {
+   public AbortedResponse(ClientConfiguration configuration,Response response){
       super(configuration);
 
-      for (Map.Entry<String, List<Object>> entry : response.getMetadata().entrySet())
-      {
-         for (Object obj : entry.getValue())
-         {
-             getMetadata().add(entry.getKey(), configuration.toHeaderString(obj));
+      for(Map.Entry<String,List<Object>> entry : response.getMetadata().entrySet()){
+         for(Object obj : entry.getValue()){
+            getMetadata().add(entry.getKey(),configuration.toHeaderString(obj));
          }
       }
       setStatus(response.getStatus());
       setEntity(response.getEntity());
-      if (response instanceof BuiltResponse) {
-         BuiltResponse built = (BuiltResponse) response;
+      if(response instanceof BuiltResponse){
+         BuiltResponse built=(BuiltResponse)response;
          setEntityClass(built.getEntityClass());
          setGenericType(built.getGenericType());
          setAnnotations(built.getAnnotations());
@@ -49,35 +44,32 @@ public class AbortedResponse extends ClientResponse
 
       // spec requires that aborting a request still acts like it went over the wire
       // so we must marshall the entity and buffer it.
-      if (response.getEntity() != null) {
-         MediaType mediaType = getMediaType();
-         if (mediaType == null) {
-            mediaType = MediaType.WILDCARD_TYPE;
-            getHeaders().putSingle(HttpHeaders.CONTENT_TYPE, MediaType.WILDCARD);
+      if(response.getEntity()!=null){
+         MediaType mediaType=getMediaType();
+         if(mediaType==null){
+            mediaType=MediaType.WILDCARD_TYPE;
+            getHeaders().putSingle(HttpHeaders.CONTENT_TYPE,MediaType.WILDCARD);
          }
 
-         if (!(response.getEntity() instanceof InputStream)) {
+         if(!(response.getEntity() instanceof InputStream)){
 
             @SuppressWarnings("rawtypes")
-            MessageBodyWriter writer = configuration
-                    .getMessageBodyWriter(getEntityClass(), getGenericType(),
-                            null, mediaType);
-            if (writer == null) {
-               throw new ProcessingException(Messages.MESSAGES.failedToBufferAbortedResponseNoWriter(mediaType, entityClass.getName()));
+            MessageBodyWriter writer=configuration
+               .getMessageBodyWriter(getEntityClass(),getGenericType(),
+                  null,mediaType);
+            if(writer==null){
+               throw new ProcessingException(Messages.MESSAGES.failedToBufferAbortedResponseNoWriter(mediaType,entityClass.getName()));
             }
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            try {
-               writer.writeTo(getEntity(), getEntityClass(), getGenericType(), getAnnotations(), mediaType, getHeaders(), baos);
+            ByteArrayOutputStream baos=new ByteArrayOutputStream();
+            try{
+               writer.writeTo(getEntity(),getEntityClass(),getGenericType(),getAnnotations(),mediaType,getHeaders(),baos);
+            }catch(IOException e){
+               throw new ProcessingException(Messages.MESSAGES.failedToBufferAbortedResponse(),e);
             }
-            catch (IOException e) {
-               throw new ProcessingException(Messages.MESSAGES.failedToBufferAbortedResponse(), e);
-            }
-            bufferedEntity = baos.toByteArray();
+            bufferedEntity=baos.toByteArray();
             setInputStream(new ByteArrayInputStream(bufferedEntity));
-         }
-         else
-         {
-            InputStream is = (InputStream)response.getEntity();
+         }else{
+            InputStream is=(InputStream)response.getEntity();
             setInputStream(is);
          }
 //  The following lines commented for RESTEASY-1540
@@ -89,57 +81,46 @@ public class AbortedResponse extends ClientResponse
    }
 
    @Override
-   protected InputStream getInputStream()
-   {
-      if (is == null && entity != null && entity instanceof InputStream) {
-         is = (InputStream) entity;
+   protected InputStream getInputStream(){
+      if(is==null&&entity!=null&&entity instanceof InputStream){
+         is=(InputStream)entity;
       }
       return is;
    }
 
    @Override
-   protected void setInputStream(InputStream is)
-   {
-      this.is = is;
+   protected void setInputStream(InputStream is){
+      this.is=is;
    }
 
    @Override
-   public void releaseConnection()
-   {
+   public void releaseConnection(){
       releaseConnection(false);
    }
-   
+
    @Override
-   public void releaseConnection(boolean consumeInputStream)
-   {
-      try
-      {
-         if (is != null)
-         {
-            if (consumeInputStream)
-            {
-               while (is.read() > 0)
-               {
+   public void releaseConnection(boolean consumeInputStream){
+      try{
+         if(is!=null){
+            if(consumeInputStream){
+               while(is.read()>0){
                }
             }
             is.close();
          }
-      }
-      catch (IOException e)
-      {
+      }catch(IOException e){
 
       }
 
    }
-   
+
    /**
     * Added for RESTEASY-1540.
     */
    @Override
-   public synchronized <T> T readEntity(Class<T> type, Type genericType, Annotation[] anns)
-   {
+   public synchronized <T> T readEntity(Class<T> type,Type genericType,Annotation[] anns){
       setEntity(null); // clear all entity information
       setAnnotations(null);
-      return super.readEntity(type, genericType, anns);
+      return super.readEntity(type,genericType,anns);
    }
 }

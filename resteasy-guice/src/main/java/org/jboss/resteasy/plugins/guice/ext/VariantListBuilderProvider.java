@@ -6,18 +6,15 @@ import com.google.inject.Provider;
 import javax.ws.rs.core.Variant;
 import javax.ws.rs.ext.RuntimeDelegate;
 
-public class VariantListBuilderProvider implements Provider<Variant.VariantListBuilder>
-{
+public class VariantListBuilderProvider implements Provider<Variant.VariantListBuilder>{
    private final RuntimeDelegate runtimeDelegate;
 
    @Inject
-   public VariantListBuilderProvider(final RuntimeDelegate runtimeDelegate)
-   {
-      this.runtimeDelegate = runtimeDelegate;
+   public VariantListBuilderProvider(final RuntimeDelegate runtimeDelegate){
+      this.runtimeDelegate=runtimeDelegate;
    }
 
-   public Variant.VariantListBuilder get()
-   {
+   public Variant.VariantListBuilder get(){
       return runtimeDelegate.createVariantListBuilder();
    }
 }

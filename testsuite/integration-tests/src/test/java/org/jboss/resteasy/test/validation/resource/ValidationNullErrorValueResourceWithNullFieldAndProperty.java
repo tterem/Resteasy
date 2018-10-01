@@ -5,21 +5,21 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 @Path("")
-public class ValidationNullErrorValueResourceWithNullFieldAndProperty {
-    @NotNull
-    private String s;
+public class ValidationNullErrorValueResourceWithNullFieldAndProperty{
+   @NotNull
+   private String s;
 
-    @Path("get")
-    @GET
-    public void doGet() {
-    }
+   @Path("get")
+   @GET
+   public void doGet(){
+   }
 
-    @NotNull
-    public String getT() {
-        return null;
-    }
+   @NotNull
+   public String getT(){
+      return null;
+   }
 
-    public void setS(String s) {
-        this.s = s;
-    }
+   public void setS(String s){
+      this.s=s;
+   }
 }

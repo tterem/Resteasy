@@ -8,7 +8,7 @@ import javax.ws.rs.ext.Provider;
 public class TestExceptionMapper implements ExceptionMapper<TestException>{
 
    @Override
-   public Response toResponse(TestException exception) {
+   public Response toResponse(TestException exception){
       return Response.status(444).entity(exception.getMessage()).build();
    }
 }

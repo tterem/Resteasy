@@ -6,12 +6,10 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class AsyncFilterExceptionMapper implements ExceptionMapper<AsyncFilterException>
-{
+public class AsyncFilterExceptionMapper implements ExceptionMapper<AsyncFilterException>{
 
    @Override
-   public Response toResponse(AsyncFilterException exception)
-   {
+   public Response toResponse(AsyncFilterException exception){
       return Response.ok("exception was mapped").status(Status.ACCEPTED).build();
    }
 

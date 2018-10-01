@@ -1,4 +1,4 @@
 package org.jboss.resteasy.test.resource.param.resource;
 
-public interface HeaderDelegateInterface2 extends HeaderDelegateInterface1 {
+public interface HeaderDelegateInterface2 extends HeaderDelegateInterface1{
 }

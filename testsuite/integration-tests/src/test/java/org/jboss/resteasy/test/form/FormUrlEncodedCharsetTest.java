@@ -36,76 +36,74 @@ import java.nio.charset.StandardCharsets;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class FormUrlEncodedCharsetTest {
-    protected static MediaType testMediaType8 = MediaType.APPLICATION_FORM_URLENCODED_TYPE.withCharset(StandardCharsets.UTF_8.displayName());
-    protected static MediaType testMediaType16 = MediaType.APPLICATION_FORM_URLENCODED_TYPE.withCharset(StandardCharsets.UTF_16.displayName());
-    protected static String alephBetGimel = "אבג";
+public class FormUrlEncodedCharsetTest{
+   protected static final Logger logger=LogManager.getLogger(FormUrlEncodedCharsetTest.class.getName());
+   protected static MediaType testMediaType8=MediaType.APPLICATION_FORM_URLENCODED_TYPE.withCharset(StandardCharsets.UTF_8.displayName());
+   protected static MediaType testMediaType16=MediaType.APPLICATION_FORM_URLENCODED_TYPE.withCharset(StandardCharsets.UTF_16.displayName());
+   protected static String alephBetGimel="אבג";
+   private static Client client;
+   private static WebTarget target;
 
-    private static Client client;
-    private static WebTarget target;
+   @Deployment
+   public static Archive<?> createTestArchive(){
+      WebArchive war=TestUtil.prepareArchive(FormUrlEncodedCharsetTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war,null,FormUrlEncodedCharsetResource.class);
+   }
 
-    protected static final Logger logger = LogManager.getLogger(FormUrlEncodedCharsetTest.class.getName());
+   @BeforeClass
+   public static void init(){
+      client=ClientBuilder.newClient();
+      target=client.target(PortProviderUtil.generateURL("/test",FormUrlEncodedCharsetTest.class.getSimpleName()));
+   }
 
-    @Deployment
-    public static Archive<?> createTestArchive() {
-        WebArchive war = TestUtil.prepareArchive(FormUrlEncodedCharsetTest.class.getSimpleName());
-        return TestUtil.finishContainerPrepare(war, null, FormUrlEncodedCharsetResource.class);
-    }
+   @AfterClass
+   public static void end(){
+      client.close();
+   }
 
-    @BeforeClass
-    public static void init() {
-        client = ClientBuilder.newClient();
-        target = client.target(PortProviderUtil.generateURL("/test", FormUrlEncodedCharsetTest.class.getSimpleName()));
-    }
+   /**
+    * @tpTestDetails Test for default charset.
+    * @tpSince RESTEasy 3.0.17
+    */
+   @Test
+   public void testFormDefault() throws UnsupportedEncodingException{
+      Form form=new Form();
+      form.param("name",alephBetGimel);
+      Entity<Form> entity=Entity.entity(form,MediaType.APPLICATION_FORM_URLENCODED_TYPE);
+      Response response=target.request().post(entity);
+      String result=response.readEntity(String.class);
+      logger.info("result: "+result);
+      Assert.assertEquals("EAP is unable to encode default charset",result,alephBetGimel);
+   }
 
-    @AfterClass
-    public static void end() {
-        client.close();
-    }
+   /**
+    * @tpTestDetails Test for UTF8 charset.
+    * @tpSince RESTEasy 3.0.17
+    */
+   @Test
+   public void testFormUTF8() throws UnsupportedEncodingException{
+      Form form=new Form();
+      form.param("name",alephBetGimel);
+      Entity<Form> entity=Entity.entity(form,testMediaType8);
+      Response response=target.request().post(entity);
+      String result=response.readEntity(String.class);
+      logger.info("result: "+result);
+      Assert.assertEquals("EAP is unable to encode UTF8 charset",result,alephBetGimel);
+   }
 
-    /**
-     * @tpTestDetails Test for default charset.
-     * @tpSince RESTEasy 3.0.17
-     */
-    @Test
-    public void testFormDefault() throws UnsupportedEncodingException {
-        Form form = new Form();
-        form.param("name", alephBetGimel);
-        Entity<Form> entity = Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE);
-        Response response = target.request().post(entity);
-        String result = response.readEntity(String.class);
-        logger.info("result: " + result);
-        Assert.assertEquals("EAP is unable to encode default charset", result, alephBetGimel);
-    }
-
-    /**
-     * @tpTestDetails Test for UTF8 charset.
-     * @tpSince RESTEasy 3.0.17
-     */
-    @Test
-    public void testFormUTF8() throws UnsupportedEncodingException {
-        Form form = new Form();
-        form.param("name", alephBetGimel);
-        Entity<Form> entity = Entity.entity(form, testMediaType8);
-        Response response = target.request().post(entity);
-        String result = response.readEntity(String.class);
-        logger.info("result: " + result);
-        Assert.assertEquals("EAP is unable to encode UTF8 charset", result, alephBetGimel);
-    }
-
-    /**
-     * @tpTestDetails Test for UTF16 charset.
-     * @tpSince RESTEasy 3.0.17
-     */
-    @Test
-    @Category({NotForForwardCompatibility.class})
-    public void testFormUTF16() throws UnsupportedEncodingException {
-        Form form = new Form();
-        form.param("name", alephBetGimel);
-        Entity<Form> entity = Entity.entity(form, testMediaType16);
-        Response response = target.request().post(entity);
-        String result = response.readEntity(String.class);
-        logger.info("result: " + result);
-        Assert.assertEquals("EAP is unable to encode UTF16 charset", result, alephBetGimel);
-    }
+   /**
+    * @tpTestDetails Test for UTF16 charset.
+    * @tpSince RESTEasy 3.0.17
+    */
+   @Test
+   @Category({NotForForwardCompatibility.class})
+   public void testFormUTF16() throws UnsupportedEncodingException{
+      Form form=new Form();
+      form.param("name",alephBetGimel);
+      Entity<Form> entity=Entity.entity(form,testMediaType16);
+      Response response=target.request().post(entity);
+      String result=response.readEntity(String.class);
+      logger.info("result: "+result);
+      Assert.assertEquals("EAP is unable to encode UTF16 charset",result,alephBetGimel);
+   }
 }

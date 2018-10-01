@@ -5,10 +5,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("")
-public class CustomValueInjectorHelloResource {
-    @GET
-    @Produces("text/plain")
-    public String get(@CustomValueInjectorHello("world") String hello) {
-        return hello;
-    }
+public class CustomValueInjectorHelloResource{
+   @GET
+   @Produces("text/plain")
+   public String get(@CustomValueInjectorHello("world") String hello){
+      return hello;
+   }
 }

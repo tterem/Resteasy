@@ -23,75 +23,63 @@ import java.util.Enumeration;
  * @version $Revision: 1 $
  */
 @SuppressWarnings("rawtypes")
-public class ServerWriterInterceptorContext extends AbstractWriterInterceptorContext
-{
+public class ServerWriterInterceptorContext extends AbstractWriterInterceptorContext{
    private HttpRequest request;
 
-   public ServerWriterInterceptorContext(WriterInterceptor[] interceptors, ResteasyProviderFactory providerFactory,
-                                         Object entity, Class type, Type genericType, Annotation[] annotations,
-                                         MediaType mediaType, MultivaluedMap<String, Object> headers,
+   public ServerWriterInterceptorContext(WriterInterceptor[] interceptors,ResteasyProviderFactory providerFactory,
+                                         Object entity,Class type,Type genericType,Annotation[] annotations,
+                                         MediaType mediaType,MultivaluedMap<String,Object> headers,
                                          OutputStream outputStream,
-                                         HttpRequest request)
-   {
+                                         HttpRequest request){
       // server side must use request instead of provider factory to get tracing logger.
-      super(interceptors, annotations, entity, genericType, mediaType, type, outputStream, providerFactory, headers, RESTEasyTracingLogger.getInstance(request));
-      this.request = request;
+      super(interceptors,annotations,entity,genericType,mediaType,type,outputStream,providerFactory,headers,RESTEasyTracingLogger.getInstance(request));
+      this.request=request;
    }
 
-   @SuppressWarnings(value = "unchecked")
+   @SuppressWarnings(value="unchecked")
    @Override
-   protected MessageBodyWriter resolveWriter()
-   {
+   protected MessageBodyWriter resolveWriter(){
       return ((ResteasyProviderFactoryImpl)providerFactory).getServerMessageBodyWriter(
-              type, genericType, annotations, mediaType, tracingLogger);
+         type,genericType,annotations,mediaType,tracingLogger);
 
-   }
-   @Override
-   void throwWriterNotFoundException()
-   {
-      throw new NoMessageBodyWriterFoundFailure(type, mediaType);
    }
 
    @Override
-   public Object getProperty(String name)
-   {
+   void throwWriterNotFoundException(){
+      throw new NoMessageBodyWriterFoundFailure(type,mediaType);
+   }
+
+   @Override
+   public Object getProperty(String name){
       return request.getAttribute(name);
    }
 
    @Override
-   protected void writeTo(MessageBodyWriter writer) throws IOException
-   {
+   protected void writeTo(MessageBodyWriter writer) throws IOException{
       super.writeTo(writer);
    }
 
    @Override
-   public Collection<String> getPropertyNames()
-   {
-      ArrayList<String> names = new ArrayList<String>();
-      Enumeration<String> enames = request.getAttributeNames();
-      while (enames.hasMoreElements())
-      {
+   public Collection<String> getPropertyNames(){
+      ArrayList<String> names=new ArrayList<String>();
+      Enumeration<String> enames=request.getAttributeNames();
+      while(enames.hasMoreElements()){
          names.add(enames.nextElement());
       }
       return names;
    }
 
    @Override
-   public void setProperty(String name, Object object)
-   {
-      if (object == null)
-      {
+   public void setProperty(String name,Object object){
+      if(object==null){
          request.removeAttribute(name);
-      }
-      else
-      {
-         request.setAttribute(name, object);
+      }else{
+         request.setAttribute(name,object);
       }
    }
 
    @Override
-   public void removeProperty(String name)
-   {
+   public void removeProperty(String name){
       request.removeAttribute(name);
    }
 }

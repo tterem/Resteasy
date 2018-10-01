@@ -8,23 +8,23 @@ import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
 
 @Path("/products")
-public class AsynchContextualDataResource {
-    private AsyncResponse resumable;
+public class AsynchContextualDataResource{
+   private AsyncResponse resumable;
 
-    @GET
-    @Produces("application/json")
-    @Path("wait/{id}")
-    public void getProduct(@Suspended final AsyncResponse ar, @PathParam("id") final int id) {
-        resumable = ar;
-    }
+   @GET
+   @Produces("application/json")
+   @Path("wait/{id}")
+   public void getProduct(@Suspended final AsyncResponse ar,@PathParam("id") final int id){
+      resumable=ar;
+   }
 
-    @GET
-    @Produces("application/json")
-    @Path("res/{id}")
-    public AsynchContextualDataProduct getProduct(@PathParam("id") final int id) {
-        if(resumable != null) {
-            resumable.resume(new AsynchContextualDataProduct(id, "Iphone"));
-        }
-        return new AsynchContextualDataProduct(id, "Nexus 7");
-    }
+   @GET
+   @Produces("application/json")
+   @Path("res/{id}")
+   public AsynchContextualDataProduct getProduct(@PathParam("id") final int id){
+      if(resumable!=null){
+         resumable.resume(new AsynchContextualDataProduct(id,"Iphone"));
+      }
+      return new AsynchContextualDataProduct(id,"Nexus 7");
+   }
 }

@@ -1,4 +1,4 @@
 package org.jboss.resteasy.test.spring.deployment.resource;
 
-public class SpringBeanProcessorSpringBeanProcessorMyInnerBeanImpl implements SpringBeanProcessorMyInnerBean {
+public class SpringBeanProcessorSpringBeanProcessorMyInnerBeanImpl implements SpringBeanProcessorMyInnerBean{
 }

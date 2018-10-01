@@ -1,6 +1,8 @@
 package org.jboss.resteasy.test.rx.rxjava.resource;
 
-import java.util.List;
+import org.jboss.resteasy.test.rx.resource.TRACE;
+import org.jboss.resteasy.test.rx.resource.Thing;
+import rx.Single;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -12,14 +14,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import org.jboss.resteasy.test.rx.resource.TRACE;
-import org.jboss.resteasy.test.rx.resource.Thing;
-
-import rx.Single;
+import java.util.List;
 
 @Path("")
-public interface RxSingleResource {
+public interface RxSingleResource{
 
    @GET
    @Path("get/string")
@@ -121,7 +119,7 @@ public interface RxSingleResource {
    @Path("trace/thing/list")
    @Produces(MediaType.APPLICATION_JSON)
    Single<List<Thing>> traceThingList();
-   
+
    @GET
    @Path("exception/unhandled")
    Single<Thing> exceptionUnhandled() throws Exception;

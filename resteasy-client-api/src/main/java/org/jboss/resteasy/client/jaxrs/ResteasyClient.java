@@ -1,15 +1,13 @@
 package org.jboss.resteasy.client.jaxrs;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.core.Link;
+import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.core.Link;
-import javax.ws.rs.core.UriBuilder;
-
-public interface ResteasyClient extends Client
-{
+public interface ResteasyClient extends Client{
    @Override
    ResteasyWebTarget target(URI uri);
 

@@ -1,23 +1,23 @@
 package org.jboss.resteasy.test.resource.path.resource;
 
-public class ResourceMatchingStringBean {
-    private String header;
+public class ResourceMatchingStringBean{
+   private String header;
 
-    public String get() {
-        return header;
-    }
+   public ResourceMatchingStringBean(final String header){
+      super();
+      this.header=header;
+   }
 
-    public void set(String header) {
-        this.header = header;
-    }
+   public String get(){
+      return header;
+   }
 
-    @Override
-    public String toString() {
-        return "CallbackStringBean. To get a value, use rather #get() method.";
-    }
+   public void set(String header){
+      this.header=header;
+   }
 
-    public ResourceMatchingStringBean(final String header) {
-        super();
-        this.header = header;
-    }
+   @Override
+   public String toString(){
+      return "CallbackStringBean. To get a value, use rather #get() method.";
+   }
 }

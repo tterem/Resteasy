@@ -5,7 +5,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 @Path("/byte/{arg}")
-public interface UriParamAsPrimitiveResourceUriByteInterface {
-    @GET
-    String doGet(@PathParam("arg") byte v);
+public interface UriParamAsPrimitiveResourceUriByteInterface{
+   @GET
+   String doGet(@PathParam("arg") byte v);
 }

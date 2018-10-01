@@ -2,15 +2,15 @@ package org.jboss.resteasy.test.asynch.resource;
 
 import java.io.IOException;
 
-public class CallbackExceptionThrowingStringBean extends CallbackStringBean {
+public class CallbackExceptionThrowingStringBean extends CallbackStringBean{
 
-    public CallbackExceptionThrowingStringBean(final String header) {
-        super(header);
-    }
+   public CallbackExceptionThrowingStringBean(final String header){
+      super(header);
+   }
 
-    @Override
-    public String get() {
-        throw new RuntimeException(new IOException(super.get()));
-    }
+   @Override
+   public String get(){
+      throw new RuntimeException(new IOException(super.get()));
+   }
 
 }

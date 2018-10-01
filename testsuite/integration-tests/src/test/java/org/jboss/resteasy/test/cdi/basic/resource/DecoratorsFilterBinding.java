@@ -9,7 +9,7 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @NameBinding
-@Target({TYPE, METHOD})
-@Retention(value = RUNTIME)
-public @interface DecoratorsFilterBinding {
+@Target({TYPE,METHOD})
+@Retention(value=RUNTIME)
+public @interface DecoratorsFilterBinding{
 }

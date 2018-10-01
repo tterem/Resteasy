@@ -4,11 +4,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 @Path("/test")
-public class TypeMappingResource {
+public class TypeMappingResource{
 
-    @GET
-    @Path("/noproduces")
-    public TypeMappingBean get() {
-        return new TypeMappingBean("name");
-    }
+   @GET
+   @Path("/noproduces")
+   public TypeMappingBean get(){
+      return new TypeMappingBean("name");
+   }
 }

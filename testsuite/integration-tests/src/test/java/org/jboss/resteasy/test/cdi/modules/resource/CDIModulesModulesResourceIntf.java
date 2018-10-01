@@ -6,8 +6,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 @Local
-public interface CDIModulesModulesResourceIntf {
-    @GET
-    @Path("test")
-    Response test();
+public interface CDIModulesModulesResourceIntf{
+   @GET
+   @Path("test")
+   Response test();
 }

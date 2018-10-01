@@ -17,16 +17,14 @@ import javax.ws.rs.core.Response;
  * @version $Revision: 1 $
  */
 @Path("/")
-public class SimpleResource
-{
+public class SimpleResource{
 
-   private static final Logger LOG = Logger.getLogger(SimpleResource.class);
+   private static final Logger LOG=Logger.getLogger(SimpleResource.class);
 
    @GET
    @Path("basic")
    @Produces("text/plain")
-   public String getBasic()
-   {
+   public String getBasic(){
       LOG.info("getBasic()");
       return "basic";
    }
@@ -34,40 +32,35 @@ public class SimpleResource
    @PUT
    @Path("basic")
    @Consumes("text/plain")
-   public void putBasic(String body)
-   {
+   public void putBasic(String body){
       LOG.info(body);
    }
 
    @GET
    @Path("queryParam")
    @Produces("text/plain")
-   public String getQueryParam(@QueryParam("param") String param)
-   {
-      LOG.info("query param: " + param);
+   public String getQueryParam(@QueryParam("param") String param){
+      LOG.info("query param: "+param);
       return param;
    }
 
    @GET
    @Path("matrixParam")
    @Produces("text/plain")
-   public String getMatrixParam(@MatrixParam("param") String param)
-   {
+   public String getMatrixParam(@MatrixParam("param") String param){
       return param;
    }
 
    @GET
    @Path("uriParam/{param}")
    @Produces("text/plain")
-   public int getUriParam(@PathParam("param") int param)
-   {
+   public int getUriParam(@PathParam("param") int param){
       return param;
    }
 
    @GET
    @Path("header")
-   public Response getHeader()
-   {
-      return Response.ok().header("header", "headervalue").build();
+   public Response getHeader(){
+      return Response.ok().header("header","headervalue").build();
    }
 }

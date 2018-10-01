@@ -11,10 +11,10 @@ import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Qualifier
-@Target({FIELD, PARAMETER})
+@Target({FIELD,PARAMETER})
 @Retention(RUNTIME)
 @Documented
 @Inherited
-public @interface EventsReadIntercept {
+public @interface EventsReadIntercept{
 }
 

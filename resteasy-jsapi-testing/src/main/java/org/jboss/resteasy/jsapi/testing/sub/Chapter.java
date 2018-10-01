@@ -8,14 +8,14 @@ import javax.ws.rs.Produces;
  * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
  */
 @Path("")
-public interface Chapter {
-    @GET
-    @Path("title")
-    @Produces("text/plain")
-    String getTitle();
+public interface Chapter{
+   @GET
+   @Path("title")
+   @Produces("text/plain")
+   String getTitle();
 
-    @GET
-    @Path("body")
-    @Produces("text/plain")
-    String getBody();
+   @GET
+   @Path("body")
+   @Produces("text/plain")
+   String getBody();
 }

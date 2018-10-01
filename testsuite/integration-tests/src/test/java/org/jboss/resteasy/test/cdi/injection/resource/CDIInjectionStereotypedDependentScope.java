@@ -4,5 +4,5 @@ import javax.enterprise.context.Dependent;
 
 @Dependent
 @CDIInjectionScopeInheritingStereotype
-public class CDIInjectionStereotypedDependentScope {
+public class CDIInjectionStereotypedDependentScope{
 }

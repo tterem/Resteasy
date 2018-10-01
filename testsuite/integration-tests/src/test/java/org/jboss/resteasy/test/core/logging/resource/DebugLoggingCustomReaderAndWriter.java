@@ -21,45 +21,45 @@ import java.nio.charset.StandardCharsets;
 @Provider
 @Produces("aaa/bbb")
 @Consumes("aaa/bbb")
-public class DebugLoggingCustomReaderAndWriter implements MessageBodyReader<String>, MessageBodyWriter<String> {
-    private static Logger logger = Logger.getLogger(DebugLoggingCustomReaderAndWriter.class);
+public class DebugLoggingCustomReaderAndWriter implements MessageBodyReader<String>, MessageBodyWriter<String>{
+   private static Logger logger=Logger.getLogger(DebugLoggingCustomReaderAndWriter.class);
 
-    public boolean isWriteable(Class type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return true;
-    }
+   public boolean isWriteable(Class type,Type genericType,Annotation[] annotations,MediaType mediaType){
+      return true;
+   }
 
-    public long getSize(String o, Class type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return o.getBytes().length;
-    }
+   public long getSize(String o,Class type,Type genericType,Annotation[] annotations,MediaType mediaType){
+      return o.getBytes().length;
+   }
 
-    public void writeTo(String o,
-                        Class<?> type,
-                        Type genericType,
-                        Annotation[] annotations,
-                        MediaType mediaType,
-                        MultivaluedMap<String, Object> httpHeaders,
-                        OutputStream entityStream) throws IOException {
-        logger.info("my writeTo");
-        String charset = mediaType.getParameters().get("charset");
-        if (charset == null) entityStream.write(o.getBytes(StandardCharsets.UTF_8));
-        else entityStream.write(o.getBytes(charset));
+   public void writeTo(String o,
+                       Class<?> type,
+                       Type genericType,
+                       Annotation[] annotations,
+                       MediaType mediaType,
+                       MultivaluedMap<String,Object> httpHeaders,
+                       OutputStream entityStream) throws IOException{
+      logger.info("my writeTo");
+      String charset=mediaType.getParameters().get("charset");
+      if(charset==null) entityStream.write(o.getBytes(StandardCharsets.UTF_8));
+      else entityStream.write(o.getBytes(charset));
 
-    }
+   }
 
-    public boolean isReadable(Class type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return true;
-    }
+   public boolean isReadable(Class type,Type genericType,Annotation[] annotations,MediaType mediaType){
+      return true;
+   }
 
 
-    @SuppressWarnings(value = "unchecked")
-    public String readFrom(Class<String> type,
-                           Type genericType,
-                           Annotation[] annotations,
-                           MediaType mediaType,
-                           MultivaluedMap<String, String> httpHeaders,
-                           InputStream entityStream) throws IOException {
-        logger.info("my readFrom");
-        if (NoContent.isContentLengthZero(httpHeaders)) return "";
-        return ProviderHelper.readString(entityStream, mediaType);
-    }
+   @SuppressWarnings(value="unchecked")
+   public String readFrom(Class<String> type,
+                          Type genericType,
+                          Annotation[] annotations,
+                          MediaType mediaType,
+                          MultivaluedMap<String,String> httpHeaders,
+                          InputStream entityStream) throws IOException{
+      logger.info("my readFrom");
+      if(NoContent.isContentLengthZero(httpHeaders)) return "";
+      return ProviderHelper.readString(entityStream,mediaType);
+   }
 }

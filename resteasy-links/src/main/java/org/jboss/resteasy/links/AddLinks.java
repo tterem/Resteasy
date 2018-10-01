@@ -17,10 +17,10 @@ import java.lang.annotation.Target;
  * entity.
  * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
  */
-@Target( { ElementType.TYPE, ElementType.METHOD, ElementType.PARAMETER,
-		ElementType.FIELD })
+@Target({ElementType.TYPE,ElementType.METHOD,ElementType.PARAMETER,
+   ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Decorator(processor = LinkDecorator.class, target = Marshaller.class)
+@Decorator(processor=LinkDecorator.class, target=Marshaller.class)
 @Documented
-public @interface AddLinks {
+public @interface AddLinks{
 }

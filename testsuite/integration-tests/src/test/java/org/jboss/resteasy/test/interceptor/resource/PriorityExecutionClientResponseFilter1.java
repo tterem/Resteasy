@@ -9,10 +9,10 @@ import javax.ws.rs.client.ClientResponseFilter;
 import java.io.IOException;
 
 @Priority(-100)
-public class PriorityExecutionClientResponseFilter1 implements ClientResponseFilter {
-    @Override
-    public void filter(ClientRequestContext requestContext, ClientResponseContext responseContext) throws IOException {
-        PriorityExecutionTest.logger.info(this);
-        PriorityExecutionTest.interceptors.add("PriorityExecutionClientResponseFilter1");
-    }
+public class PriorityExecutionClientResponseFilter1 implements ClientResponseFilter{
+   @Override
+   public void filter(ClientRequestContext requestContext,ClientResponseContext responseContext) throws IOException{
+      PriorityExecutionTest.logger.info(this);
+      PriorityExecutionTest.interceptors.add("PriorityExecutionClientResponseFilter1");
+   }
 }

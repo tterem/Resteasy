@@ -10,16 +10,16 @@ import org.junit.Test;
  * @tpTestCaseDetails Test for CaseInsensitiveMap class.
  * @tpSince RESTEasy 3.0.16
  */
-public class CaseInsentiveMapTest {
+public class CaseInsentiveMapTest{
 
-    /**
-     * @tpTestDetails Test for CaseInsensitiveMap class, key of map should be case insensitive.
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testMap() {
-        CaseInsensitiveMap<String> map = new CaseInsensitiveMap<String>();
-        map.add("Cache-Control", "nocache");
-        Assert.assertEquals("key of map should be case insensitive", "nocache", map.getFirst("caChe-CONTROL"));
-    }
+   /**
+    * @tpTestDetails Test for CaseInsensitiveMap class, key of map should be case insensitive.
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testMap(){
+      CaseInsensitiveMap<String> map=new CaseInsensitiveMap<String>();
+      map.add("Cache-Control","nocache");
+      Assert.assertEquals("key of map should be case insensitive","nocache",map.getFirst("caChe-CONTROL"));
+   }
 }

@@ -31,27 +31,26 @@ import javax.ws.rs.core.Response;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class PreMatchingClientRequestFilterTest extends ClientTestBase {
-
-   @Rule
-   public ExpectedException thrown = ExpectedException.none();
+public class PreMatchingClientRequestFilterTest extends ClientTestBase{
 
    static Client client;
+   @Rule
+   public ExpectedException thrown=ExpectedException.none();
 
    @Deployment
-   public static Archive<?> deploy() {
-      WebArchive war = TestUtil.prepareArchive(PreMatchingClientRequestFilterTest.class.getSimpleName());
+   public static Archive<?> deploy(){
+      WebArchive war=TestUtil.prepareArchive(PreMatchingClientRequestFilterTest.class.getSimpleName());
       //rls //war.addClass(ClientExceptionsData.class);
-      return TestUtil.finishContainerPrepare(war, null, PreMatchingClientResource.class);
+      return TestUtil.finishContainerPrepare(war,null,PreMatchingClientResource.class);
    }
 
    @Before
-   public void before() {
-      client = ClientBuilder.newClient();
+   public void before(){
+      client=ClientBuilder.newClient();
    }
 
    @After
-   public void close() {
+   public void close(){
       client.close();
    }
 
@@ -61,10 +60,10 @@ public class PreMatchingClientRequestFilterTest extends ClientTestBase {
     * @tpSince RESTEasy 4.0.0
     */
    @Test
-   public void preMatchingTest() throws Exception {
-      WebTarget base = client.target(generateURL("/") + "testIt");
-      Response response = base.register(PreMatchingClientRequestFilterImpl.class).request().get();
-      Assert.assertEquals(404, response.getStatus());
+   public void preMatchingTest() throws Exception{
+      WebTarget base=client.target(generateURL("/")+"testIt");
+      Response response=base.register(PreMatchingClientRequestFilterImpl.class).request().get();
+      Assert.assertEquals(404,response.getStatus());
    }
 
 }

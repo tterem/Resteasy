@@ -5,11 +5,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("")
-public class GenericReturnTypeResource implements GenericReturnTypeInterface<String> {
-    @GET
-    @Path("t")
-    @Produces("text/plain")
-    public String t() {
-        return "abc";
-    }
+public class GenericReturnTypeResource implements GenericReturnTypeInterface<String>{
+   @GET
+   @Path("t")
+   @Produces("text/plain")
+   public String t(){
+      return "abc";
+   }
 }

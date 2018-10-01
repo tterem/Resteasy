@@ -6,7 +6,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Produces(MediaType.TEXT_PLAIN)
-public interface ResourceLocatorSubInterface extends ResourceLocatorRootInterface {
+public interface ResourceLocatorSubInterface extends ResourceLocatorRootInterface{
 
    @POST
    @Consumes(MediaType.TEXT_PLAIN)

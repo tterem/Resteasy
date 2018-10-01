@@ -7,14 +7,14 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
 @Path("test")
-public class NullHeaderResource {
-   
+public class NullHeaderResource{
+
    @GET
-   public Response get(@Context HttpHeaders headers) {
-      String clientHeader = headers.getRequestHeader("X-Client-Header").get(0);
-      if (clientHeader != null && !"".equals(clientHeader)) {
+   public Response get(@Context HttpHeaders headers){
+      String clientHeader=headers.getRequestHeader("X-Client-Header").get(0);
+      if(clientHeader!=null&&!"".equals(clientHeader)){
          return Response.serverError().build();
       }
-      return Response.ok().header("X-Server-Header", null).build();
+      return Response.ok().header("X-Server-Header",null).build();
    }
 }

@@ -5,9 +5,9 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 @Path("/test")
-public class ExceptionMapperJaxbResource {
-    @POST
-    @Consumes("application/xml")
-    public void post(AbstractJaxbClassPerson person) {
-    }
+public class ExceptionMapperJaxbResource{
+   @POST
+   @Consumes("application/xml")
+   public void post(AbstractJaxbClassPerson person){
+   }
 }

@@ -13,127 +13,127 @@ import java.util.List;
 import java.util.Map;
 
 @Path("/queryParams")
-public class UriInfoQueryParamsResource {
-    @GET
-    public String doGet(@QueryParam("a") String a, @Context UriInfo info) {
-        Assert.assertNotNull(info);
+public class UriInfoQueryParamsResource{
+   private static void assertNotMutable(MultivaluedMap<String,String> params){
 
-        Assert.assertNotNull(info.getQueryParameters());
-        assertNotMutable(info.getQueryParameters());
+      final String param="param";
+      final String key=params.keySet().iterator().next();
 
-        return "content";
-    }
+      try{
+         params.put(param,Collections.singletonList(param));
+         Assert.fail("mutable UriInfo");
+      }catch(UnsupportedOperationException uoe){
+         //OK
+      }
 
-    private static void assertNotMutable(MultivaluedMap<String, String> params) {
+      try{
+         params.add(param,param);
+         Assert.fail("mutable UriInfo");
+      }catch(UnsupportedOperationException uoe){
+         //OK
+      }
 
-        final String param = "param";
-        final String key = params.keySet().iterator().next();
+      try{
+         params.addAll(param,Collections.singletonList(param));
+         Assert.fail("mutable UriInfo");
+      }catch(UnsupportedOperationException uoe){
+         //OK
+      }
 
-        try {
-            params.put(param, Collections.singletonList(param));
-            Assert.fail("mutable UriInfo");
-        } catch (UnsupportedOperationException uoe) {
-            //OK
-        }
+      try{
+         params.addAll(param,param);
+         Assert.fail("mutable UriInfo");
+      }catch(UnsupportedOperationException uoe){
+         //OK
+      }
 
-        try {
-            params.add(param, param);
-            Assert.fail("mutable UriInfo");
-        } catch (UnsupportedOperationException uoe) {
-            //OK
-        }
+      try{
+         params.addFirst(param,param);
+         Assert.fail("mutable UriInfo");
+      }catch(UnsupportedOperationException uoe){
+         //OK
+      }
 
-        try {
-            params.addAll(param, Collections.singletonList(param));
-            Assert.fail("mutable UriInfo");
-        } catch (UnsupportedOperationException uoe) {
-            //OK
-        }
+      try{
+         params.putSingle(param,param);
+         Assert.fail("mutable UriInfo");
+      }catch(UnsupportedOperationException uoe){
+         //OK
+      }
 
-        try {
-            params.addAll(param, param);
-            Assert.fail("mutable UriInfo");
-        } catch (UnsupportedOperationException uoe) {
-            //OK
-        }
+      try{
+         params.entrySet().add(new Map.Entry<String,List<String>>(){
+            @Override
+            public String getKey(){
+               return param;
+            }
 
-        try {
-            params.addFirst(param, param);
-            Assert.fail("mutable UriInfo");
-        } catch (UnsupportedOperationException uoe) {
-            //OK
-        }
+            @Override
+            public List<String> getValue(){
+               return Collections.singletonList(param);
+            }
 
-        try {
-            params.putSingle(param, param);
-            Assert.fail("mutable UriInfo");
-        } catch (UnsupportedOperationException uoe) {
-            //OK
-        }
+            @Override
+            public List<String> setValue(List<String> value){
+               return Collections.singletonList(param);
+            }
+         });
+         Assert.fail("mutable UriInfo");
+      }catch(UnsupportedOperationException uoe){
+         //OK
+      }
 
-        try {
-            params.entrySet().add(new Map.Entry<String, List<String>>() {
-                @Override
-                public String getKey() {
-                    return param;
-                }
+      try{
+         params.keySet().add(param);
+         Assert.fail("mutable UriInfo");
+      }catch(UnsupportedOperationException uoe){
+         //OK
+      }
 
-                @Override
-                public List<String> getValue() {
-                    return Collections.singletonList(param);
-                }
+      try{
+         params.clear();
+         Assert.fail("mutable UriInfo");
+      }catch(UnsupportedOperationException uoe){
+         //OK
+      }
 
-                @Override
-                public List<String> setValue(List<String> value) {
-                    return Collections.singletonList(param);
-                }
-            });
-            Assert.fail("mutable UriInfo");
-        } catch (UnsupportedOperationException uoe) {
-            //OK
-        }
+      try{
+         params.putAll(params);
+         Assert.fail("mutable UriInfo");
+      }catch(UnsupportedOperationException uoe){
+         //OK
+      }
 
-        try {
-            params.keySet().add(param);
-            Assert.fail("mutable UriInfo");
-        } catch (UnsupportedOperationException uoe) {
-            //OK
-        }
+      try{
+         params.remove(key);
+         Assert.fail("mutable UriInfo");
+      }catch(UnsupportedOperationException uoe){
+         //OK
+      }
 
-        try {
-            params.clear();
-            Assert.fail("mutable UriInfo");
-        } catch (UnsupportedOperationException uoe) {
-            //OK
-        }
+      try{
+         params.remove(null);
+         Assert.fail("mutable UriInfo");
+      }catch(UnsupportedOperationException uoe){
+         //OK
+      }
 
-        try {
-            params.putAll(params);
-            Assert.fail("mutable UriInfo");
-        } catch (UnsupportedOperationException uoe) {
-            //OK
-        }
+      try{
+         params.values().add(Collections.singletonList(param));
+         Assert.fail("mutable UriInfo");
+      }catch(UnsupportedOperationException uoe){
+         //OK
+      }
 
-        try {
-            params.remove(key);
-            Assert.fail("mutable UriInfo");
-        } catch (UnsupportedOperationException uoe) {
-            //OK
-        }
+   }
 
-        try {
-            params.remove(null);
-            Assert.fail("mutable UriInfo");
-        } catch (UnsupportedOperationException uoe) {
-            //OK
-        }
+   @GET
+   public String doGet(@QueryParam("a") String a,@Context UriInfo info){
+      Assert.assertNotNull(info);
 
-        try {
-            params.values().add(Collections.singletonList(param));
-            Assert.fail("mutable UriInfo");
-        } catch (UnsupportedOperationException uoe) {
-            //OK
-        }
+      Assert.assertNotNull(info.getQueryParameters());
+      assertNotMutable(info.getQueryParameters());
 
-    }
+      return "content";
+   }
 }

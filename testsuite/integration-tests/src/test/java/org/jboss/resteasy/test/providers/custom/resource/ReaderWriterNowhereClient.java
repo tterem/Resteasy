@@ -6,8 +6,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 @Path("/nowhere")
-public interface ReaderWriterNowhereClient {
-    @GET
-    @Produces("text/plain")
-    Response read();
+public interface ReaderWriterNowhereClient{
+   @GET
+   @Produces("text/plain")
+   Response read();
 }

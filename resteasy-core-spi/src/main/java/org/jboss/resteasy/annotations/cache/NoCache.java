@@ -7,13 +7,11 @@ import java.lang.annotation.Target;
 
 /**
  * Set Cache-Control response header of "nocache"
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-@Target({ElementType.TYPE, ElementType.METHOD})
+@Target({ElementType.TYPE,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface NoCache
-{
+public @interface NoCache{
    String[] fields() default {};
 }

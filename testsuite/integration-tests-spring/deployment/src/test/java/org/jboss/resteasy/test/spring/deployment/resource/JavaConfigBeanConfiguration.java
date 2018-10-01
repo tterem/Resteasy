@@ -7,14 +7,14 @@ import org.springframework.context.annotation.Configuration;
  * This java class defines the beans for the application.
  */
 @Configuration
-public class JavaConfigBeanConfiguration {
-    @Bean
-    public JavaConfigService service() {
-        return new JavaConfigService();
-    }
+public class JavaConfigBeanConfiguration{
+   @Bean
+   public JavaConfigService service(){
+      return new JavaConfigService();
+   }
 
-    @Bean
-    public JavaConfigResource resource() {
-        return new JavaConfigResource();
-    }
+   @Bean
+   public JavaConfigResource resource(){
+      return new JavaConfigResource();
+   }
 }

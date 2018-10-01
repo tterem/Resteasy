@@ -3,29 +3,29 @@ package org.jboss.resteasy.test.validation.cdi.resource;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class ApplicationScopeMyDto {
-   
-    @NotNull
-    @Size(min = 1)
-    private String test;
+public class ApplicationScopeMyDto{
 
-    @NotNull
-    @Size(min = 1)
-    private String path;
+   @NotNull
+   @Size(min=1)
+   private String test;
 
-    public String getTest() {
-        return test;
-    }
+   @NotNull
+   @Size(min=1)
+   private String path;
 
-    public void setTest(String test) {
-        this.test = test;
-    }
+   public String getTest(){
+      return test;
+   }
 
-    public String getPath() {
-        return path;
-    }
+   public void setTest(String test){
+      this.test=test;
+   }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
+   public String getPath(){
+      return path;
+   }
+
+   public void setPath(String path){
+      this.path=path;
+   }
 }

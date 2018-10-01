@@ -8,9 +8,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 
 @Path("/")
-public interface ParamConverterClient {
-    @Path("{pojo}")
-    @PUT
-    void put(@QueryParam("pojo") String q, @PathParam("pojo") String pp, @MatrixParam("pojo") String mp,
-             @HeaderParam("pojo") String hp);
+public interface ParamConverterClient{
+   @Path("{pojo}")
+   @PUT
+   void put(@QueryParam("pojo") String q,@PathParam("pojo") String pp,@MatrixParam("pojo") String mp,
+            @HeaderParam("pojo") String hp);
 }

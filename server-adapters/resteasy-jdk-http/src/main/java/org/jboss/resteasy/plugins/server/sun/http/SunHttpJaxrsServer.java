@@ -11,84 +11,63 @@ import java.net.InetSocketAddress;
 /**
  * com.sun.net.httpserver.HttpServer adapter for Resteasy.  You may instead want to create and manage your own HttpServer.
  * Use the HttpContextBuilder class in this case to build and register a specific HttpContext.
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class SunHttpJaxrsServer implements EmbeddedJaxrsServer
-{
-   protected HttpContextBuilder context = new HttpContextBuilder();
+public class SunHttpJaxrsServer implements EmbeddedJaxrsServer{
+   protected HttpContextBuilder context=new HttpContextBuilder();
    protected HttpServer httpServer;
-   protected int configuredPort = 8080;
-   protected int runtimePort = -1;
+   protected int configuredPort=8080;
+   protected int runtimePort=-1;
 
-   public void setRootResourcePath(String rootResourcePath)
-   {
+   public void setRootResourcePath(String rootResourcePath){
       context.setPath(rootResourcePath);
    }
 
-   public ResteasyDeployment getDeployment()
-   {
+   public ResteasyDeployment getDeployment(){
       return context.getDeployment();
    }
 
-   public void setDeployment(ResteasyDeployment deployment)
-   {
+   public void setDeployment(ResteasyDeployment deployment){
       this.context.setDeployment(deployment);
    }
 
    /**
     * Setting a security domain will turn on Basic Authentication
-    *
-    * @param securityDomain
     */
-   public void setSecurityDomain(SecurityDomain securityDomain)
-   {
+   public void setSecurityDomain(SecurityDomain securityDomain){
       this.context.setSecurityDomain(securityDomain);
    }
 
    /**
     * If you do not provide an HttpServer instance, one will be created on startup
-    *
-    * @param httpServer
     */
-   public void setHttpServer(HttpServer httpServer)
-   {
-      this.httpServer = httpServer;
-   }
-
-   /**
-    * Value is ignored if HttpServer property is set. Default value is 8080
-    *
-    * @param port
-    */
-   public void setPort(int port)
-   {
-      this.configuredPort = port;
+   public void setHttpServer(HttpServer httpServer){
+      this.httpServer=httpServer;
    }
 
    /**
     * Gets port number of this HttpServer.
-    *
     * @return port number.
-     */
-   public int getPort()
-   {
-      return runtimePort > 0 ? runtimePort : configuredPort;
+    */
+   public int getPort(){
+      return runtimePort>0?runtimePort:configuredPort;
+   }
+
+   /**
+    * Value is ignored if HttpServer property is set. Default value is 8080
+    */
+   public void setPort(int port){
+      this.configuredPort=port;
    }
 
    @Override
-   public void start()
-   {
-      if (httpServer == null)
-      {
-         try
-         {
-            httpServer = HttpServer.create(new InetSocketAddress(configuredPort), 10);
-            runtimePort = httpServer.getAddress().getPort();
-         }
-         catch (IOException e)
-         {
+   public void start(){
+      if(httpServer==null){
+         try{
+            httpServer=HttpServer.create(new InetSocketAddress(configuredPort),10);
+            runtimePort=httpServer.getAddress().getPort();
+         }catch(IOException e){
             throw new RuntimeException(e);
          }
       }
@@ -97,9 +76,8 @@ public class SunHttpJaxrsServer implements EmbeddedJaxrsServer
    }
 
    @Override
-   public void stop()
-   {
-      runtimePort = -1;
+   public void stop(){
+      runtimePort=-1;
       httpServer.stop(0);
       context.cleanup();
    }

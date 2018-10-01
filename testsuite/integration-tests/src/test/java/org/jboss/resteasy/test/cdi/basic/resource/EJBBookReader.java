@@ -10,8 +10,8 @@ import javax.ws.rs.ext.Provider;
 @Local
 @Provider
 @Consumes(Constants.MEDIA_TYPE_TEST_XML)
-public interface EJBBookReader extends MessageBodyReader<EJBBook> {
-    int getUses();
+public interface EJBBookReader extends MessageBodyReader<EJBBook>{
+   int getUses();
 
-    void reset();
+   void reset();
 }

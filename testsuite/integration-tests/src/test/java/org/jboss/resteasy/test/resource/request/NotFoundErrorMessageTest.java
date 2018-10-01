@@ -4,8 +4,8 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.resteasy.category.NotForForwardCompatibility;
-import org.jboss.resteasy.test.core.basic.resource.DuplicateDeploymentResource;
 import org.jboss.resteasy.spi.HttpResponseCodes;
+import org.jboss.resteasy.test.core.basic.resource.DuplicateDeploymentResource;
 import org.jboss.resteasy.utils.PortProviderUtil;
 import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.shrinkwrap.api.Archive;
@@ -32,46 +32,46 @@ import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALI
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class NotFoundErrorMessageTest {
-    static Client client;
+public class NotFoundErrorMessageTest{
+   static Client client;
 
-    @BeforeClass
-    public static void before() throws Exception {
-        client = ClientBuilder.newClient();
-    }
+   @BeforeClass
+   public static void before() throws Exception{
+      client=ClientBuilder.newClient();
+   }
 
-    @AfterClass
-    public static void close() {
-        client.close();
-    }
+   @AfterClass
+   public static void close(){
+      client.close();
+   }
 
-    private static int getWarningCount() {
-        return TestUtil.getWarningCount("RESTEASY002010", false, DEFAULT_CONTAINER_QUALIFIER);
-    }
+   private static int getWarningCount(){
+      return TestUtil.getWarningCount("RESTEASY002010",false,DEFAULT_CONTAINER_QUALIFIER);
+   }
 
-    @Deployment
-    public static Archive<?> deploy() {
+   @Deployment
+   public static Archive<?> deploy(){
 
-        WebArchive war = TestUtil.prepareArchive(NotFoundErrorMessageTest.class.getSimpleName());
-        return TestUtil.finishContainerPrepare(war, null, DuplicateDeploymentResource.class);
-    }
+      WebArchive war=TestUtil.prepareArchive(NotFoundErrorMessageTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war,null,DuplicateDeploymentResource.class);
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, NotFoundErrorMessageTest.class.getSimpleName());
-    }
+   private String generateURL(String path){
+      return PortProviderUtil.generateURL(path,NotFoundErrorMessageTest.class.getSimpleName());
+   }
 
-    /**
-     * @tpTestDetails Check that no ERROR message was in logs after 404.
-     * @tpSince RESTEasy 3.0.17
-     */
-    @Test
-    @Category({NotForForwardCompatibility.class})
-    public void testDeploy() throws IOException {
-        int initWarningCount = getWarningCount();
-        Response response = client.target(generateURL("/nonsence")).request().get();
-        Assert.assertEquals(HttpResponseCodes.SC_NOT_FOUND, response.getStatus());
-        response.close();
+   /**
+    * @tpTestDetails Check that no ERROR message was in logs after 404.
+    * @tpSince RESTEasy 3.0.17
+    */
+   @Test
+   @Category({NotForForwardCompatibility.class})
+   public void testDeploy() throws IOException{
+      int initWarningCount=getWarningCount();
+      Response response=client.target(generateURL("/nonsence")).request().get();
+      Assert.assertEquals(HttpResponseCodes.SC_NOT_FOUND,response.getStatus());
+      response.close();
 
-        Assert.assertEquals("Wrong count of warning messages in logs", 0, getWarningCount() - initWarningCount);
-    }
+      Assert.assertEquals("Wrong count of warning messages in logs",0,getWarningCount()-initWarningCount);
+   }
 }

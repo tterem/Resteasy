@@ -36,15 +36,13 @@ import java.lang.reflect.Type;
  * <p>
  * When the {@link MimeMultipart} is passed to the method body, it is up to the
  * developer to extract the various parts.
- * 
  * @author <a href="mailto:ryan@damnhandy.com">Ryan J. McDonough</a>
  */
 
 @Provider
 @Produces("multipart/mixed")
-@Consumes({"multipart/mixed", "multipart/form-data"})
-public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>
-{
+@Consumes({"multipart/mixed","multipart/form-data"})
+public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>{
 
    /**
     * @param in input stream
@@ -52,10 +50,9 @@ public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>
     * @return data source
     * @throws IOException if I/O error occurred
     */
-   public static DataSource readDataSource(InputStream in, MediaType mediaType) throws IOException
-   {
-      ByteArrayDataSource ds = new ByteArrayDataSource(new BufferedInputStream(in), mediaType
-              .toString());
+   public static DataSource readDataSource(InputStream in,MediaType mediaType) throws IOException{
+      ByteArrayDataSource ds=new ByteArrayDataSource(new BufferedInputStream(in),mediaType
+         .toString());
 
       return ds;
    }
@@ -69,41 +66,37 @@ public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>
     * E.g. if the instance to be produced is {@code List<String>}, the {@code type} parameter
     * will be {@code java.util.List} and the {@code genericType} parameter will be
     * {@link java.lang.reflect.ParameterizedType java.lang.reflect.ParameterizedType}.
-    *
-    * @param type        the class of instance to be produced.
+    * @param type the class of instance to be produced.
     * @param genericType the type of instance to be produced. E.g. if the
-    *                    message body is to be converted into a method parameter, this will be
-    *                    the formal type of the method parameter as returned by
-    *                    {@code Method.getGenericParameterTypes}.
+    * message body is to be converted into a method parameter, this will be
+    * the formal type of the method parameter as returned by
+    * {@code Method.getGenericParameterTypes}.
     * @param annotations an array of the annotations on the declaration of the
-    *                    artifact that will be initialized with the produced instance. E.g. if the
-    *                    message body is to be converted into a method parameter, this will be
-    *                    the annotations on that parameter returned by
-    *                    {@code Method.getParameterAnnotations}.
-    * @param mediaType   the media type of the HTTP entity, if one is not
-    *                    specified in the request then {@code application/octet-stream} is
-    *                    used.
+    * artifact that will be initialized with the produced instance. E.g. if the
+    * message body is to be converted into a method parameter, this will be
+    * the annotations on that parameter returned by
+    * {@code Method.getParameterAnnotations}.
+    * @param mediaType the media type of the HTTP entity, if one is not
+    * specified in the request then {@code application/octet-stream} is
+    * used.
     * @return {@code true} if the type is supported, otherwise {@code false}.
     */
-   public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public boolean isReadable(Class<?> type,Type genericType,Annotation[] annotations,MediaType mediaType){
       return MimeMultipart.class.equals(type);
    }
 
    /**
     * Ascertain if the MessageBodyWriter supports a particular type.
-    *
-    * @param type        the class of instance that is to be written.
+    * @param type the class of instance that is to be written.
     * @param genericType the type of instance to be written, obtained either
-    *                    by reflection of a resource method return type or via inspection
-    *                    of the returned instance. {@link javax.ws.rs.core.GenericEntity}
-    *                    provides a way to specify this information at runtime.
+    * by reflection of a resource method return type or via inspection
+    * of the returned instance. {@link javax.ws.rs.core.GenericEntity}
+    * provides a way to specify this information at runtime.
     * @param annotations an array of the annotations attached to the message entity instance.
-    * @param mediaType   the media type of the HTTP entity.
+    * @param mediaType the media type of the HTTP entity.
     * @return {@code true} if the type is supported, otherwise {@code false}.
     */
-   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public boolean isWriteable(Class<?> type,Type genericType,Annotation[] annotations,MediaType mediaType){
       return MimeMultipart.class.equals(type);
    }
 
@@ -118,47 +111,42 @@ public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>
     * wrapping the original {@code NoContentException} and rethrown for a standard processing by
     * the registered {@link javax.ws.rs.ext.ExceptionMapper exception mappers}.
     * </p>
-    *
-    * @param type         the type that is to be read from the entity stream.
-    * @param genericType  the type of instance to be produced. E.g. if the
-    *                     message body is to be converted into a method parameter, this will be
-    *                     the formal type of the method parameter as returned by
-    *                     {@code Method.getGenericParameterTypes}.
-    * @param annotations  an array of the annotations on the declaration of the
-    *                     artifact that will be initialized with the produced instance. E.g.
-    *                     if the message body is to be converted into a method parameter, this
-    *                     will be the annotations on that parameter returned by
-    *                     {@code Method.getParameterAnnotations}.
-    * @param mediaType    the media type of the HTTP entity.
-    * @param httpHeaders  the read-only HTTP headers associated with HTTP entity.
+    * @param type the type that is to be read from the entity stream.
+    * @param genericType the type of instance to be produced. E.g. if the
+    * message body is to be converted into a method parameter, this will be
+    * the formal type of the method parameter as returned by
+    * {@code Method.getGenericParameterTypes}.
+    * @param annotations an array of the annotations on the declaration of the
+    * artifact that will be initialized with the produced instance. E.g.
+    * if the message body is to be converted into a method parameter, this
+    * will be the annotations on that parameter returned by
+    * {@code Method.getParameterAnnotations}.
+    * @param mediaType the media type of the HTTP entity.
+    * @param httpHeaders the read-only HTTP headers associated with HTTP entity.
     * @param entityStream the {@link InputStream} of the HTTP entity. The
-    *                     caller is responsible for ensuring that the input stream ends when the
-    *                     entity has been consumed. The implementation should not close the input
-    *                     stream.
+    * caller is responsible for ensuring that the input stream ends when the
+    * entity has been consumed. The implementation should not close the input
+    * stream.
     * @return the type that was read from the stream. In case the entity input stream is empty, the reader
-    *         is expected to either return an instance representing a zero-length entity or throw
-    *         a {@link javax.ws.rs.core.NoContentException} in case no zero-length entity representation is
-    *         defined for the supported Java type.
+    * is expected to either return an instance representing a zero-length entity or throw
+    * a {@link javax.ws.rs.core.NoContentException} in case no zero-length entity representation is
+    * defined for the supported Java type.
     * @throws java.io.IOException if an IO error arises. In case the entity input stream is empty
-    *                             and the reader is not able to produce a Java representation for
-    *                             a zero-length entity, {@code NoContentException} is expected to
-    *                             be thrown.
+    * and the reader is not able to produce a Java representation for
+    * a zero-length entity, {@code NoContentException} is expected to
+    * be thrown.
     */
    public MimeMultipart readFrom(Class<MimeMultipart> type,
                                  Type genericType,
                                  Annotation[] annotations,
                                  MediaType mediaType,
-                                 MultivaluedMap<String, String> httpHeaders,
-                                 InputStream entityStream) throws IOException
-   {
-      try
-      {
-         LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom", getClass().getName());
-         DataSource ds = readDataSource(entityStream, mediaType);
+                                 MultivaluedMap<String,String> httpHeaders,
+                                 InputStream entityStream) throws IOException{
+      try{
+         LogMessages.LOGGER.debugf("Provider : %s,  Method : readFrom",getClass().getName());
+         DataSource ds=readDataSource(entityStream,mediaType);
          return new MimeMultipart(ds);
-      }
-      catch (MessagingException e)
-      {
+      }catch(MessagingException e){
          throw new ReaderException(e);
       }
    }
@@ -167,16 +155,15 @@ public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>
     * Write a type to an HTTP message. The message header map is mutable
     * but any changes must be made before writing to the output stream since
     * the headers will be flushed prior to writing the message body.
-    *
     * @param mimeMultipart the instance to write.
-    * @param type         the class of instance that is to be written.
-    * @param genericType  the type of instance to be written. {@link javax.ws.rs.core.GenericEntity}
-    *                     provides a way to specify this information at runtime.
-    * @param annotations  an array of the annotations attached to the message entity instance.
-    * @param mediaType    the media type of the HTTP entity.
-    * @param httpHeaders  a mutable map of the HTTP message headers.
+    * @param type the class of instance that is to be written.
+    * @param genericType the type of instance to be written. {@link javax.ws.rs.core.GenericEntity}
+    * provides a way to specify this information at runtime.
+    * @param annotations an array of the annotations attached to the message entity instance.
+    * @param mediaType the media type of the HTTP entity.
+    * @param httpHeaders a mutable map of the HTTP message headers.
     * @param entityStream the {@link OutputStream} for the HTTP entity. The
-    *                     implementation should not close the output stream.
+    * implementation should not close the output stream.
     * @throws java.io.IOException if an IO error arises.
     */
    public void writeTo(MimeMultipart mimeMultipart,
@@ -184,19 +171,15 @@ public class MimeMultipartProvider extends AbstractEntityProvider<MimeMultipart>
                        Type genericType,
                        Annotation[] annotations,
                        MediaType mediaType,
-                       MultivaluedMap<String, Object> httpHeaders,
-                       OutputStream entityStream) throws IOException
-   {
-      try
-      {
-         LogMessages.LOGGER.debugf("Provider : %s,  Method : writeTo", getClass().getName());
+                       MultivaluedMap<String,Object> httpHeaders,
+                       OutputStream entityStream) throws IOException{
+      try{
+         LogMessages.LOGGER.debugf("Provider : %s,  Method : writeTo",getClass().getName());
          // replace the Content-Type header to include the boundry
          // information
-         httpHeaders.putSingle("Content-Type", MediaType.valueOf(mimeMultipart.getContentType()));
+         httpHeaders.putSingle("Content-Type",MediaType.valueOf(mimeMultipart.getContentType()));
          mimeMultipart.writeTo(entityStream);
-      }
-      catch (MessagingException e)
-      {
+      }catch(MessagingException e){
          throw new WriterException(e);
       }
 

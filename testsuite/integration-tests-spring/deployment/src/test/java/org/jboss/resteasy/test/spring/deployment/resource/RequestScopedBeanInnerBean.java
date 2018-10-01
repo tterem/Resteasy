@@ -1,4 +1,4 @@
 package org.jboss.resteasy.test.spring.deployment.resource;
 
-public interface RequestScopedBeanInnerBean {
+public interface RequestScopedBeanInnerBean{
 }

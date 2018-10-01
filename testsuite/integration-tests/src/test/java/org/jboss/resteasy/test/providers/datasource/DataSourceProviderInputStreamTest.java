@@ -1,18 +1,5 @@
 package org.jboss.resteasy.test.providers.datasource;
 
-import static org.junit.Assert.assertEquals;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.activation.DataSource;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -34,6 +21,18 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.activation.DataSource;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * @tpSubChapter DataSource provider
  * @tpChapter Integration tests
@@ -42,94 +41,94 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class DataSourceProviderInputStreamTest {
+public class DataSourceProviderInputStreamTest{
 
-    public static Logger logger = Logger.getLogger(DataSourceProviderInputStreamTest.class);
+   public static Logger logger=Logger.getLogger(DataSourceProviderInputStreamTest.class);
 
-    @Deployment
-    public static Archive<?> createTestArchive() {
-        WebArchive war = TestUtil.prepareArchive(DataSourceProviderInputStreamTest.class.getSimpleName());
-        return TestUtil.finishContainerPrepare(war, null, DataSourceProviderInputStreamResource.class);
-    }
+   @Deployment
+   public static Archive<?> createTestArchive(){
+      WebArchive war=TestUtil.prepareArchive(DataSourceProviderInputStreamTest.class.getSimpleName());
+      return TestUtil.finishContainerPrepare(war,null,DataSourceProviderInputStreamResource.class);
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, DataSourceProviderInputStreamTest.class.getSimpleName());
-    }
+   @AfterClass
+   public static void afterClass(){
+      String tmpdir=System.getProperty("java.io.tmpdir");
+      File dir=new File(tmpdir);
+      for(File file : dir.listFiles()){
+         if(file.getName().startsWith("resteasy-provider-datasource")){
+            file.delete();
+         }
+      }
+   }
 
-    /**
-     * @tpTestDetails Check DataSource provider with RESTEasy client.
-     * @tpSince RESTEasy 3.0.17
-     */
-    @Test
-    public void testDataSourceProviderRestClient() throws Exception {
-        Client client = ClientBuilder.newClient();
-        client.register(DataSourceProvider.class);
-        WebTarget target = client.target(generateURL("/"));
-        int expectedLength = DataSourceProviderInputStreamResource.KBs * 1024;
+   private String generateURL(String path){
+      return PortProviderUtil.generateURL(path,DataSourceProviderInputStreamTest.class.getSimpleName());
+   }
 
-        // as DataSource
-        Response response = target.request().get();
-        DataSource dataSource = response.readEntity(DataSource.class);
-        int length = TestUtil.readString(dataSource.getInputStream()).length();
-        logger.info(String.format("Length as DataSource: %d", length));
-        Assert.assertEquals("Wrong length of response", expectedLength, length);
+   /**
+    * @tpTestDetails Check DataSource provider with RESTEasy client.
+    * @tpSince RESTEasy 3.0.17
+    */
+   @Test
+   public void testDataSourceProviderRestClient() throws Exception{
+      Client client=ClientBuilder.newClient();
+      client.register(DataSourceProvider.class);
+      WebTarget target=client.target(generateURL("/"));
+      int expectedLength=DataSourceProviderInputStreamResource.KBs*1024;
 
-        // as String
-        response = target.request().get();
-        String string = response.readEntity(String.class);
-        length = string.length();
-        logger.info(String.format("Length as String: %d", length));
-        Assert.assertEquals("Wrong length of response", expectedLength, length);
+      // as DataSource
+      Response response=target.request().get();
+      DataSource dataSource=response.readEntity(DataSource.class);
+      int length=TestUtil.readString(dataSource.getInputStream()).length();
+      logger.info(String.format("Length as DataSource: %d",length));
+      Assert.assertEquals("Wrong length of response",expectedLength,length);
 
-        // as InputStream
-        response = target.request().get();
-        InputStream inputStream = response.readEntity(InputStream.class);
-        dataSource = DataSourceProvider.readDataSource(inputStream, MediaType.TEXT_PLAIN_TYPE);
-        length = TestUtil.readString(dataSource.getInputStream()).length();
-        logger.info(String.format("Length as InputStream: %d", length));
-        Assert.assertEquals("Wrong length of response", expectedLength, length);
+      // as String
+      response=target.request().get();
+      String string=response.readEntity(String.class);
+      length=string.length();
+      logger.info(String.format("Length as String: %d",length));
+      Assert.assertEquals("Wrong length of response",expectedLength,length);
 
-        client.close();
-    }
+      // as InputStream
+      response=target.request().get();
+      InputStream inputStream=response.readEntity(InputStream.class);
+      dataSource=DataSourceProvider.readDataSource(inputStream,MediaType.TEXT_PLAIN_TYPE);
+      length=TestUtil.readString(dataSource.getInputStream()).length();
+      logger.info(String.format("Length as InputStream: %d",length));
+      Assert.assertEquals("Wrong length of response",expectedLength,length);
 
-    /**
-     * @tpTestDetails Check DataSource provider with Apache client.
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testDataSourceProvider() throws Exception {
-        ConnectionConfig config = ConnectionConfig.custom().setBufferSize((DataSourceProviderInputStreamResource.KBs - 1) * 1024).build();
-        HttpClient httpClient = HttpClientBuilder.create().setDefaultConnectionConfig(config).build();
-        HttpGet httpGet = new HttpGet(generateURL("/"));
-        HttpResponse response = httpClient.execute(httpGet);
-        InputStream inputStream = null;
-        try {
-            inputStream = response.getEntity().getContent();
-            DataSourceProvider.readDataSource(inputStream, MediaType.TEXT_PLAIN_TYPE);
-            assertEquals("DataSourceProvider does not properly read InputStream", 0, findSizeOfRemainingDataInStream(inputStream));
-        } finally {
-            IOUtils.closeQuietly(inputStream);
-        }
-    }
+      client.close();
+   }
 
-    private int findSizeOfRemainingDataInStream(InputStream inputStream) throws IOException {
-        byte[] buf = new byte[4 * 1024];
-        int bytesRead, totalBytesRead = 0;
-        while ((bytesRead = inputStream.read(buf, 0, buf.length)) != -1) {
-            totalBytesRead += bytesRead;
-        }
-        return totalBytesRead;
-    }
+   /**
+    * @tpTestDetails Check DataSource provider with Apache client.
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testDataSourceProvider() throws Exception{
+      ConnectionConfig config=ConnectionConfig.custom().setBufferSize((DataSourceProviderInputStreamResource.KBs-1)*1024).build();
+      HttpClient httpClient=HttpClientBuilder.create().setDefaultConnectionConfig(config).build();
+      HttpGet httpGet=new HttpGet(generateURL("/"));
+      HttpResponse response=httpClient.execute(httpGet);
+      InputStream inputStream=null;
+      try{
+         inputStream=response.getEntity().getContent();
+         DataSourceProvider.readDataSource(inputStream,MediaType.TEXT_PLAIN_TYPE);
+         assertEquals("DataSourceProvider does not properly read InputStream",0,findSizeOfRemainingDataInStream(inputStream));
+      }finally{
+         IOUtils.closeQuietly(inputStream);
+      }
+   }
 
-    @AfterClass
-    public static void afterClass() {
-        String tmpdir = System.getProperty("java.io.tmpdir");
-        File dir = new File(tmpdir);
-        for (File file : dir.listFiles()) {
-            if (file.getName().startsWith("resteasy-provider-datasource")) {
-                file.delete();
-            }
-        }
-    }
+   private int findSizeOfRemainingDataInStream(InputStream inputStream) throws IOException{
+      byte[] buf=new byte[4*1024];
+      int bytesRead, totalBytesRead=0;
+      while((bytesRead=inputStream.read(buf,0,buf.length))!=-1){
+         totalBytesRead+=bytesRead;
+      }
+      return totalBytesRead;
+   }
 
 }

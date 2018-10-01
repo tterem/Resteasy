@@ -5,10 +5,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/test")
-public class ExceptionMapperApplicationRuntimeResource {
-    @GET
-    @Produces("text/plain")
-    public String get() {
-        throw new ExceptionMapperCustomRuntimeException();
-    }
+public class ExceptionMapperApplicationRuntimeResource{
+   @GET
+   @Produces("text/plain")
+   public String get(){
+      throw new ExceptionMapperCustomRuntimeException();
+   }
 }

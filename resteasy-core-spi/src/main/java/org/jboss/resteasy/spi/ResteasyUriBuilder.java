@@ -1,72 +1,64 @@
 package org.jboss.resteasy.spi;
 
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.ext.RuntimeDelegate;
 import java.net.URI;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import javax.ws.rs.core.UriBuilder;
-import javax.ws.rs.ext.RuntimeDelegate;
+public abstract class ResteasyUriBuilder extends UriBuilder{
+   public static final Pattern opaqueUri=Pattern.compile("^([^:/?#{]+):([^/].*)");
+   public static final Pattern hierarchicalUri=Pattern.compile("^(([^:/?#{]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?");
 
-public abstract class ResteasyUriBuilder extends UriBuilder
-{
-   public abstract UriBuilder clone();
-
-   public static final Pattern opaqueUri = Pattern.compile("^([^:/?#{]+):([^/].*)");
-   public static final Pattern hierarchicalUri = Pattern.compile("^(([^:/?#{]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?");
-
-   public static boolean compare(String s1, String s2)
-   {
-      if (s1 == s2) return true;
-      if (s1 == null || s2 == null) return false;
+   public static boolean compare(String s1,String s2){
+      if(s1==s2) return true;
+      if(s1==null||s2==null) return false;
       return s1.equals(s2);
    }
 
-   public static URI relativize(URI from, URI to)
-   {
-      if (!compare(from.getScheme(), to.getScheme())) return to;
-      if (!compare(from.getHost(), to.getHost())) return to;
-      if (from.getPort() != to.getPort()) return to;
-      if (from.getPath() == null && to.getPath() == null) return URI.create("");
-      else if (from.getPath() == null) return URI.create(to.getPath());
-      else if (to.getPath() == null) return to;
+   public static URI relativize(URI from,URI to){
+      if(!compare(from.getScheme(),to.getScheme())) return to;
+      if(!compare(from.getHost(),to.getHost())) return to;
+      if(from.getPort()!=to.getPort()) return to;
+      if(from.getPath()==null&&to.getPath()==null) return URI.create("");
+      else if(from.getPath()==null) return URI.create(to.getPath());
+      else if(to.getPath()==null) return to;
 
 
-      String fromPath = from.getPath();
-      if (fromPath.startsWith("/")) fromPath = fromPath.substring(1);
-      String[] fsplit = fromPath.split("/");
-      String toPath = to.getPath();
-      if (toPath.startsWith("/")) toPath = toPath.substring(1);
-      String[] tsplit = toPath.split("/");
+      String fromPath=from.getPath();
+      if(fromPath.startsWith("/")) fromPath=fromPath.substring(1);
+      String[] fsplit=fromPath.split("/");
+      String toPath=to.getPath();
+      if(toPath.startsWith("/")) toPath=toPath.substring(1);
+      String[] tsplit=toPath.split("/");
 
-      int f = 0;
+      int f=0;
 
-      for (;f < fsplit.length && f < tsplit.length; f++)
-      {
-         if (!fsplit[f].equals(tsplit[f])) break;
+      for(;f<fsplit.length&&f<tsplit.length;f++){
+         if(!fsplit[f].equals(tsplit[f])) break;
       }
 
-      UriBuilder builder = UriBuilder.fromPath("");
-      for (int i = f; i < fsplit.length; i++) builder.path("..");
-      for (int i = f; i < tsplit.length; i++) builder.path(tsplit[i]);
+      UriBuilder builder=UriBuilder.fromPath("");
+      for(int i=f;i<fsplit.length;i++) builder.path("..");
+      for(int i=f;i<tsplit.length;i++) builder.path(tsplit[i]);
       return builder.build();
    }
 
    /**
     * You may put path parameters anywhere within the uriTemplate except port.
-    *
     * @param uriTemplate uri template
     * @return uri builder
     */
-   public static ResteasyUriBuilder fromTemplate(String uriTemplate)
-   {
-      ResteasyUriBuilder impl = (ResteasyUriBuilder)RuntimeDelegate.getInstance().createUriBuilder();
+   public static ResteasyUriBuilder fromTemplate(String uriTemplate){
+      ResteasyUriBuilder impl=(ResteasyUriBuilder)RuntimeDelegate.getInstance().createUriBuilder();
       impl.uriTemplate(uriTemplate);
       return impl;
    }
 
+   public abstract UriBuilder clone();
+
    /**
     * You may put path parameters anywhere within the uriTemplate except port.
-    *
     * @param uriTemplate uri template
     * @return uri builder
     */
@@ -76,18 +68,16 @@ public abstract class ResteasyUriBuilder extends UriBuilder
 
    /**
     * Only replace path params in path of URI.  This changes state of URIBuilder.
-    *
     * @param name parameter name
     * @param value parameter value
     * @param isEncoded encoded flag
     * @return uri builder
     */
-   public abstract UriBuilder substitutePathParam(String name, Object value, boolean isEncoded);
+   public abstract UriBuilder substitutePathParam(String name,Object value,boolean isEncoded);
 
 
    /**
     * Return a unique order list of path params.
-    *
     * @return list of path parameters
     */
    public abstract List<String> getPathParamNamesInDeclarationOrder();
@@ -115,12 +105,11 @@ public abstract class ResteasyUriBuilder extends UriBuilder
     * "interpreting" such data; instead, it should faithfully transmit
     * this data over the wire).
     * </ul>
-    *
-    * @param name  the name of the query parameter.
+    * @param name the name of the query parameter.
     * @param value the value of the query parameter.
     * @return Returns this instance to allow call chaining.
     */
-   public abstract UriBuilder clientQueryParam(String name, Object value) throws IllegalArgumentException;
+   public abstract UriBuilder clientQueryParam(String name,Object value) throws IllegalArgumentException;
 
    public abstract String getHost();
 

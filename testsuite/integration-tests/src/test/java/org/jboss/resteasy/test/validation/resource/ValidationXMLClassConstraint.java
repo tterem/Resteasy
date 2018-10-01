@@ -10,15 +10,15 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Documented
-@Constraint(validatedBy = ValidationXMLClassValidator.class)
+@Constraint(validatedBy=ValidationXMLClassValidator.class)
 @Target({TYPE})
 @Retention(RUNTIME)
-public @interface ValidationXMLClassConstraint {
-    String message() default "Concatenation of s and u must have length > {value}";
+public @interface ValidationXMLClassConstraint{
+   String message() default "Concatenation of s and u must have length > {value}";
 
-    Class<?>[] groups() default {};
+   Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+   Class<? extends Payload>[] payload() default {};
 
-    int value();
+   int value();
 }

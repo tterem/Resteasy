@@ -9,7 +9,6 @@ import java.lang.annotation.Target;
 
 /**
  * Meta-annotation to be placed on another annotation that triggers decoration
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  * @see org.jboss.resteasy.spi.DecoratorProcessor
@@ -17,8 +16,7 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Decorator
-{
+public @interface Decorator{
    Class<? extends DecoratorProcessor> processor();
 
    Class<?> target();

@@ -5,28 +5,23 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
 public class AsyncronousDispatcherManager implements InitializingBean,
-      DisposableBean
-{
+   DisposableBean{
 
    AsynchronousDispatcher dispatcher;
 
-   public AsynchronousDispatcher getDispatcher()
-   {
+   public AsynchronousDispatcher getDispatcher(){
       return dispatcher;
    }
 
-   public void setDispatcher(AsynchronousDispatcher dispatcher)
-   {
-      this.dispatcher = dispatcher;
+   public void setDispatcher(AsynchronousDispatcher dispatcher){
+      this.dispatcher=dispatcher;
    }
 
-   public void afterPropertiesSet() throws Exception
-   {
+   public void afterPropertiesSet() throws Exception{
       dispatcher.start();
    }
 
-   public void destroy() throws Exception
-   {
+   public void destroy() throws Exception{
       dispatcher.stop();
    }
 

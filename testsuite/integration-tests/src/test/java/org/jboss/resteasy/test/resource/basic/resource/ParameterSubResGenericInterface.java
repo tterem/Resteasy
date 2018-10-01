@@ -4,7 +4,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.QueryParam;
 import java.util.List;
 
-public interface ParameterSubResGenericInterface<T> {
-    @GET
-    String get(@QueryParam("foo") List<T> params);
+public interface ParameterSubResGenericInterface<T>{
+   @GET
+   String get(@QueryParam("foo") List<T> params);
 }

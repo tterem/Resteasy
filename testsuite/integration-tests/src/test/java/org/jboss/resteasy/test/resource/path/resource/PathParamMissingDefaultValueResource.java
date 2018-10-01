@@ -5,14 +5,14 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 @Path("resource")
-public class PathParamMissingDefaultValueResource {
-	
+public class PathParamMissingDefaultValueResource{
+
    @BeanParam
    PathParamMissingDefaultValueBeanParamEntity beanParam;
 
    @GET
    @Path("test")
-   public String defaultParams() {
+   public String defaultParams(){
       return beanParam.toString();
    }
 }

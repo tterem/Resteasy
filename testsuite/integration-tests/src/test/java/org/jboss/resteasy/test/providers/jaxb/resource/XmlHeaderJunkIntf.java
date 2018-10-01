@@ -7,6 +7,6 @@ import javax.xml.bind.Marshaller;
 /**
  * Test correct type (Marshaller), but incorrect media type
  */
-@Decorator(processor = XmlHeaderDecorator.class, target = Marshaller.class)
-public @interface XmlHeaderJunkIntf {
+@Decorator(processor=XmlHeaderDecorator.class, target=Marshaller.class)
+public @interface XmlHeaderJunkIntf{
 }

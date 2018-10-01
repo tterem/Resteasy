@@ -21,19 +21,19 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "note")
+@XmlRootElement(name="note")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AtomComplexModelNote {
+public class AtomComplexModelNote{
 
-    @XmlElement
-    private String value;
+   @XmlElement
+   private String value;
 
-    public String getValue() {
-        return value;
-    }
+   public String getValue(){
+      return value;
+   }
 
-    public void setValue(String note) {
-        value = note;
-    }
+   public void setValue(String note){
+      value=note;
+   }
 
 }

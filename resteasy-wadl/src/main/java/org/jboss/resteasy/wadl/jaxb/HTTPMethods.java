@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for HTTPMethods.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
@@ -28,24 +28,23 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
- * 
  */
-@XmlType(name = "HTTPMethods")
+@XmlType(name="HTTPMethods")
 @XmlEnum
-public enum HTTPMethods {
+public enum HTTPMethods{
 
-    GET,
-    POST,
-    PUT,
-    HEAD,
-    DELETE;
+   GET,
+   POST,
+   PUT,
+   HEAD,
+   DELETE;
 
-    public String value() {
-        return name();
-    }
+   public static HTTPMethods fromValue(String v){
+      return valueOf(v);
+   }
 
-    public static HTTPMethods fromValue(String v) {
-        return valueOf(v);
-    }
+   public String value(){
+      return name();
+   }
 
 }

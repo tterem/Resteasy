@@ -6,21 +6,17 @@ import org.jboss.resteasy.specimpl.BuiltResponse;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class ServerResponse extends BuiltResponse
-{
-   public ServerResponse()
-   {
+public class ServerResponse extends BuiltResponse{
+   public ServerResponse(){
    }
 
-   public ServerResponse(Object entity, int status, Headers<Object> metadata)
-   {
+   public ServerResponse(Object entity,int status,Headers<Object> metadata){
       this.setEntity(entity);
-      this.status = status;
-      this.metadata = metadata;
+      this.status=status;
+      this.metadata=metadata;
    }
 
-   public ServerResponse(BuiltResponse response)
-   {
+   public ServerResponse(BuiltResponse response){
       this.setEntity(response.getEntity());
       this.setAnnotations(response.getAnnotations());
       this.setStatus(response.getStatus());

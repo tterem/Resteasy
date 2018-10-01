@@ -5,8 +5,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/regression")
-public interface UnauthorizedHttpCodeProxy {
-    @GET
-    @Produces("application/foo")
-    UnauthorizedHttpCodeObject getFoo();
+public interface UnauthorizedHttpCodeProxy{
+   @GET
+   @Produces("application/foo")
+   UnauthorizedHttpCodeObject getFoo();
 }

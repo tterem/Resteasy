@@ -4,11 +4,11 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 @Stateless
-public class EjbExceptionUnwrapLocatingResourceBean implements EjbExceptionUnwrapLocatingResource {
-    @EJB
-    EjbExceptionUnwrapSimpleResource simple;
+public class EjbExceptionUnwrapLocatingResourceBean implements EjbExceptionUnwrapLocatingResource{
+   @EJB
+   EjbExceptionUnwrapSimpleResource simple;
 
-    public EjbExceptionUnwrapSimpleResource getLocating() {
-        return simple;
-    }
+   public EjbExceptionUnwrapSimpleResource getLocating(){
+      return simple;
+   }
 }

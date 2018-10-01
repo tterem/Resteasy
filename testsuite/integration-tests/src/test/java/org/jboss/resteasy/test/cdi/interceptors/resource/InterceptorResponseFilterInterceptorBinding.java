@@ -9,7 +9,7 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @InterceptorBinding
-@Target({TYPE, METHOD})
-@Retention(value = RUNTIME)
-public @interface InterceptorResponseFilterInterceptorBinding {
+@Target({TYPE,METHOD})
+@Retention(value=RUNTIME)
+public @interface InterceptorResponseFilterInterceptorBinding{
 }

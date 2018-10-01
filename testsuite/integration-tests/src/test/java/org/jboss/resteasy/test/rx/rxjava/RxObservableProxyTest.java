@@ -1,19 +1,5 @@
 package org.jboss.resteasy.test.rx.rxjava;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.PropertyPermission;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
-
-import javax.ws.rs.ClientErrorException;
-import javax.ws.rs.InternalServerErrorException;
-import javax.ws.rs.client.ClientBuilder;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -43,605 +29,632 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import rx.Observable;
+
+import javax.ws.rs.ClientErrorException;
+import javax.ws.rs.InternalServerErrorException;
+import javax.ws.rs.client.ClientBuilder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.PropertyPermission;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 /**
  * @tpSubChapter Reactive classes
  * @tpChapter Integration tests
  * @tpSince RESTEasy 4.0
- * 
+ *
  * In these tests, the server uses Observables to create results asynchronously and streams the elements
  * of the Observables as they are created.
- * 
+ *
  * The client uses a proxy that calls an ObservableRxInvoker.
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class RxObservableProxyTest {
+public class RxObservableProxyTest{
 
+   private final static List<String> xStringList=new ArrayList<String>();
+   private final static List<String> aStringList=new ArrayList<String>();
+   private final static List<Thing> xThingList=new ArrayList<Thing>();
+   private final static List<Thing> aThingList=new ArrayList<Thing>();
+   private final static List<List<Thing>> xThingListList=new ArrayList<List<Thing>>();
+   private final static List<List<Thing>> aThingListList=new ArrayList<List<Thing>>();
+   private static final Logger LOG=LogManager.getLogger(RxObservableProxyTest.class);
    private static ResteasyClient client;
    private static RxObservableResource proxy;
    private static CountDownLatch latch;
    private static AtomicInteger errors;
+   private static AtomicReference<Object> value=new AtomicReference<Object>();
+   private static List<String> stringList=new ArrayList<String>();
+   private static List<Thing> thingList=new ArrayList<Thing>();
+   private static List<List<Thing>> thingListList=new ArrayList<List<Thing>>();
+   private static List<byte[]> bytesList=new ArrayList<byte[]>();
 
-   private static AtomicReference<Object> value = new AtomicReference<Object>();
-   private static List<String> stringList = new ArrayList<String>();
-   private static List<Thing>  thingList = new ArrayList<Thing>();
-   private static List<List<Thing>> thingListList = new ArrayList<List<Thing>>();
-   private static List<byte[]> bytesList = new ArrayList<byte[]>();
-
-   private final static List<String> xStringList = new ArrayList<String>();
-   private final static List<String> aStringList = new ArrayList<String>();
-   private final static List<Thing>  xThingList =  new ArrayList<Thing>();
-   private final static List<Thing>  aThingList =  new ArrayList<Thing>();
-   private final static List<List<Thing>> xThingListList = new ArrayList<List<Thing>>();
-   private final static List<List<Thing>> aThingListList = new ArrayList<List<Thing>>();
-   private static final Logger LOG = LogManager.getLogger(RxObservableProxyTest.class);
-
-   static {
-      for (int i = 0; i < 3; i++) {xStringList.add("x");}
-      for (int i = 0; i < 3; i++) {aStringList.add("a");}
-      for (int i = 0; i < 3; i++) {xThingList.add(new Thing("x"));}
-      for (int i = 0; i < 3; i++) {aThingList.add(new Thing("a"));}
-      for (int i = 0; i < 2; i++) {xThingListList.add(xThingList);}
-      for (int i = 0; i < 2; i++) {aThingListList.add(aThingList);}
+   static{
+      for(int i=0;i<3;i++){
+         xStringList.add("x");
+      }
+      for(int i=0;i<3;i++){
+         aStringList.add("a");
+      }
+      for(int i=0;i<3;i++){
+         xThingList.add(new Thing("x"));
+      }
+      for(int i=0;i<3;i++){
+         aThingList.add(new Thing("a"));
+      }
+      for(int i=0;i<2;i++){
+         xThingListList.add(xThingList);
+      }
+      for(int i=0;i<2;i++){
+         aThingListList.add(aThingList);
+      }
    }
 
    @Deployment
-   public static Archive<?> deploy() {
-      WebArchive war = TestUtil.prepareArchive(RxObservableProxyTest.class.getSimpleName());
+   public static Archive<?> deploy(){
+      WebArchive war=TestUtil.prepareArchive(RxObservableProxyTest.class.getSimpleName());
       war.addClass(Thing.class);
       war.addClass(TRACE.class);
       war.addClass(Bytes.class);
       war.addClass(RxScheduledExecutorService.class);
       war.addClass(TestException.class);
       war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(
-              new PropertyPermission("*", "read"),
-              new PropertyPermission("*", "write")
-      ), "permissions.xml");
+         new PropertyPermission("*","read"),
+         new PropertyPermission("*","write")
+      ),"permissions.xml");
       TestUtilRxJava.setupRxJava(war);
-      return TestUtil.finishContainerPrepare(war, null, RxObservableResourceImpl.class, TestExceptionMapper.class);
+      return TestUtil.finishContainerPrepare(war,null,RxObservableResourceImpl.class,TestExceptionMapper.class);
    }
 
-   private static String generateURL(String path) {
-      return PortProviderUtil.generateURL(path, RxObservableProxyTest.class.getSimpleName());
+   private static String generateURL(String path){
+      return PortProviderUtil.generateURL(path,RxObservableProxyTest.class.getSimpleName());
    }
 
    //////////////////////////////////////////////////////////////////////////////
    @BeforeClass
-   public static void beforeClass() throws Exception {
-      client = (ResteasyClient)ClientBuilder.newClient();
-      proxy = client.target(generateURL("/")).proxy(RxObservableResource.class);
+   public static void beforeClass() throws Exception{
+      client=(ResteasyClient)ClientBuilder.newClient();
+      proxy=client.target(generateURL("/")).proxy(RxObservableResource.class);
    }
 
    @AfterClass
-   public static void after() throws Exception {
+   public static void after() throws Exception{
       client.close();
    }
 
+   private static boolean throwableContains(Throwable t,String s){
+      while(t!=null){
+         if(t.getMessage().contains(s)){
+            return true;
+         }
+         t=t.getCause();
+      }
+      return false;
+   }
+
    @Before
-   public void before() throws Exception {
+   public void before() throws Exception{
       stringList.clear();
       thingList.clear();
       thingListList.clear();
       bytesList.clear();
-      latch = new CountDownLatch(1);
-      errors = new AtomicInteger(0);
+      latch=new CountDownLatch(1);
+      errors=new AtomicInteger(0);
       value.set(null);
    }
 
    //////////////////////////////////////////////////////////////////////////////
    @Test
-   public void testGet() throws Exception {
-      Observable<String> observable = proxy.get();
+   public void testGet() throws Exception{
+      Observable<String> observable=proxy.get();
       observable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(xStringList, stringList);
+         (String o)->stringList.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(xStringList,stringList);
    }
 
    @Test
-   public void testGetThing() throws Exception {
-      Observable<Thing> observable = proxy.getThing();
+   public void testGetThing() throws Exception{
+      Observable<Thing> observable=proxy.getThing();
       observable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(xThingList, thingList);
+         (Thing o)->thingList.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(xThingList,thingList);
    }
 
    @Test
-   public void testGetThingList() throws Exception {
-      Observable<List<Thing>> observable = proxy.getThingList();
+   public void testGetThingList() throws Exception{
+      Observable<List<Thing>> observable=proxy.getThingList();
       observable.subscribe(
-         (List<Thing> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(xThingListList, thingListList);
+         (List<Thing> l)->thingListList.add(l),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(xThingListList,thingListList);
    }
 
    @Test
-   public void testGetBytes() throws Exception {
-      Observable<byte[]> observable = proxy.getBytes();
+   public void testGetBytes() throws Exception{
+      Observable<byte[]> observable=proxy.getBytes();
       observable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(3, bytesList.size());
-      for (byte[] b : bytesList) {
-         Assert.assertTrue(Arrays.equals(Bytes.BYTES, b));
+         (byte[] b)->bytesList.add(b),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(3,bytesList.size());
+      for(byte[] b : bytesList){
+         Assert.assertTrue(Arrays.equals(Bytes.BYTES,b));
       }
    }
 
    @Test
-   public void testPut() throws Exception {
-      Observable<String> observable = proxy.put("a");
+   public void testPut() throws Exception{
+      Observable<String> observable=proxy.put("a");
       observable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(aStringList, stringList);
+         (String o)->stringList.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(aStringList,stringList);
    }
 
    @Test
-   public void testPutThing() throws Exception {
-      Observable<Thing> observable = proxy.putThing("a");
+   public void testPutThing() throws Exception{
+      Observable<Thing> observable=proxy.putThing("a");
       observable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(aThingList, thingList);
+         (Thing o)->thingList.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(aThingList,thingList);
    }
 
    @Test
-   public void testPutThingList() throws Exception {
-      Observable<List<Thing>> observable = proxy.putThingList("a");
+   public void testPutThingList() throws Exception{
+      Observable<List<Thing>> observable=proxy.putThingList("a");
       observable.subscribe(
-         (List<Thing> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(aThingListList, thingListList);
+         (List<Thing> l)->thingListList.add(l),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(aThingListList,thingListList);
    }
 
    @Test
-   public void testPutBytes() throws Exception {
-      Observable<byte[]> observable = proxy.putBytes("3");
+   public void testPutBytes() throws Exception{
+      Observable<byte[]> observable=proxy.putBytes("3");
       observable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(3, bytesList.size());
-      for (byte[] b : bytesList) {
-         Assert.assertTrue(Arrays.equals(Bytes.BYTES, b));
+         (byte[] b)->bytesList.add(b),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(3,bytesList.size());
+      for(byte[] b : bytesList){
+         Assert.assertTrue(Arrays.equals(Bytes.BYTES,b));
       }
    }
 
    @Test
-   public void testPost() throws Exception {
-      Observable<String> observable = proxy.post("a");
+   public void testPost() throws Exception{
+      Observable<String> observable=proxy.post("a");
       observable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(aStringList, stringList);
+         (String o)->stringList.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(aStringList,stringList);
    }
 
    @Test
-   public void testPostThing() throws Exception {
-      Observable<Thing> observable = proxy.postThing("a");
+   public void testPostThing() throws Exception{
+      Observable<Thing> observable=proxy.postThing("a");
       observable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(aThingList, thingList);
+         (Thing o)->thingList.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(aThingList,thingList);
    }
 
    @Test
-   public void testPostThingList() throws Exception {
-      Observable<List<Thing>> observable = proxy.postThingList("a");
+   public void testPostThingList() throws Exception{
+      Observable<List<Thing>> observable=proxy.postThingList("a");
       observable.subscribe(
-         (List<Thing> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(aThingListList, thingListList);
+         (List<Thing> l)->thingListList.add(l),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(aThingListList,thingListList);
    }
 
    @Test
-   public void testPostBytes() throws Exception {
-      Observable<byte[]> observable = proxy.postBytes("3");
+   public void testPostBytes() throws Exception{
+      Observable<byte[]> observable=proxy.postBytes("3");
       observable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(3, bytesList.size());
-      for (byte[] b : bytesList) {
-         Assert.assertTrue(Arrays.equals(Bytes.BYTES, b));
+         (byte[] b)->bytesList.add(b),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(3,bytesList.size());
+      for(byte[] b : bytesList){
+         Assert.assertTrue(Arrays.equals(Bytes.BYTES,b));
       }
    }
 
    @Test
-   public void testDelete() throws Exception {
-      Observable<String> observable = proxy.delete();
+   public void testDelete() throws Exception{
+      Observable<String> observable=proxy.delete();
       observable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(xStringList, stringList);
+         (String o)->stringList.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(xStringList,stringList);
    }
 
    @Test
-   public void testDeleteThing() throws Exception {
-      Observable<Thing> observable = proxy.deleteThing();
+   public void testDeleteThing() throws Exception{
+      Observable<Thing> observable=proxy.deleteThing();
       observable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(xThingList, thingList);
+         (Thing o)->thingList.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(xThingList,thingList);
    }
 
    @Test
-   public void testDeleteThingList() throws Exception {
-      Observable<List<Thing>> observable = proxy.deleteThingList();
+   public void testDeleteThingList() throws Exception{
+      Observable<List<Thing>> observable=proxy.deleteThingList();
       observable.subscribe(
-         (List<Thing> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(xThingListList, thingListList);
+         (List<Thing> l)->thingListList.add(l),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(xThingListList,thingListList);
    }
 
    @Test
-   public void testDeleteBytes() throws Exception {
-      Observable<byte[]> observable = proxy.deleteBytes();
+   public void testDeleteBytes() throws Exception{
+      Observable<byte[]> observable=proxy.deleteBytes();
       observable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(3, bytesList.size());
-      for (byte[] b : bytesList) {
-         Assert.assertTrue(Arrays.equals(Bytes.BYTES, b));
+         (byte[] b)->bytesList.add(b),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(3,bytesList.size());
+      for(byte[] b : bytesList){
+         Assert.assertTrue(Arrays.equals(Bytes.BYTES,b));
       }
    }
 
    @Test
-   public void testHead() throws Exception {
-      Observable<String> observable = proxy.head();
+   public void testHead() throws Exception{
+      Observable<String> observable=proxy.head();
       observable.subscribe(
-         (String s) -> LOG.info(s), // HEAD - no body
-         (Throwable t) -> throwableContains(t, "Input stream was empty"));
+         (String s)->LOG.info(s), // HEAD - no body
+         (Throwable t)->throwableContains(t,"Input stream was empty"));
 
       Assert.assertNull(value.get());
    }
 
    @Test
-   public void testOptions() throws Exception {
-      Observable<String> observable = proxy.options();
+   public void testOptions() throws Exception{
+      Observable<String> observable=proxy.options();
       observable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(xStringList, stringList);
+         (String o)->stringList.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(xStringList,stringList);
    }
 
    @Test
-   public void testOptionsThing() throws Exception {
-      Observable<Thing> observable = proxy.optionsThing();
+   public void testOptionsThing() throws Exception{
+      Observable<Thing> observable=proxy.optionsThing();
       observable.subscribe(
-         (Thing o) -> thingList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(xThingList, thingList);
+         (Thing o)->thingList.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(xThingList,thingList);
    }
 
    @Test
-   public void testOptionsThingList() throws Exception {
-      Observable<List<Thing>> observable = proxy.optionsThingList();
+   public void testOptionsThingList() throws Exception{
+      Observable<List<Thing>> observable=proxy.optionsThingList();
       observable.subscribe(
-         (List<Thing> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(xThingListList, thingListList);
+         (List<Thing> l)->thingListList.add(l),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(xThingListList,thingListList);
    }
 
    @Test
-   public void testOptionsBytes() throws Exception {
-      Observable<byte[]> observable = proxy.optionsBytes();
+   public void testOptionsBytes() throws Exception{
+      Observable<byte[]> observable=proxy.optionsBytes();
       observable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(3, bytesList.size());
-      for (byte[] b : bytesList) {
-         Assert.assertTrue(Arrays.equals(Bytes.BYTES, b));
+         (byte[] b)->bytesList.add(b),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(3,bytesList.size());
+      for(byte[] b : bytesList){
+         Assert.assertTrue(Arrays.equals(Bytes.BYTES,b));
       }
    }
 
    @Test
    @Ignore // TRACE is disabled by default in Wildfly
-   public void testTrace() throws Exception {
-      Observable<String> observable = proxy.trace();
+   public void testTrace() throws Exception{
+      Observable<String> observable=proxy.trace();
       observable.subscribe(
-         (String o) -> stringList.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(xStringList, stringList);
+         (String o)->stringList.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(xStringList,stringList);
    }
 
    @Test
    @Ignore // TRACE is disabled by default in Wildfly
-   public void testTraceThing() throws Exception {
-      Observable<Thing> observable = proxy.traceThing();
+   public void testTraceThing() throws Exception{
+      Observable<Thing> observable=proxy.traceThing();
       observable.subscribe(
-         (Thing t) -> thingList.add(t),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(xThingList, thingList);
+         (Thing t)->thingList.add(t),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(xThingList,thingList);
    }
 
    @Test
    @Ignore // TRACE is disabled by default in Wildfly
-   public void testTraceThingList() throws Exception {
-      Observable<List<Thing>> observable = proxy.traceThingList();
+   public void testTraceThingList() throws Exception{
+      Observable<List<Thing>> observable=proxy.traceThingList();
       observable.subscribe(
-         (List<Thing> l) -> thingListList.add(l),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(xThingListList, thingListList);
+         (List<Thing> l)->thingListList.add(l),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(xThingListList,thingListList);
    }
 
    @Test
    @Ignore // TRACE is disabled by default in Wildfly
-   public void testTraceBytes() throws Exception {
-      Observable<byte[]> observable = proxy.traceBytes();
+   public void testTraceBytes() throws Exception{
+      Observable<byte[]> observable=proxy.traceBytes();
       observable.subscribe(
-         (byte[] b) -> bytesList.add(b),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(3, bytesList.size());
-      for (byte[] b : bytesList) {
-         Assert.assertTrue(Arrays.equals(Bytes.BYTES, b));
+         (byte[] b)->bytesList.add(b),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(3,bytesList.size());
+      for(byte[] b : bytesList){
+         Assert.assertTrue(Arrays.equals(Bytes.BYTES,b));
       }
    }
 
    @Test
-   public void testScheduledExecutorService () throws Exception {
+   public void testScheduledExecutorService() throws Exception{
       {
-         RxScheduledExecutorService.used = false;
-         Observable<String> observable = proxy.get();
+         RxScheduledExecutorService.used=false;
+         Observable<String> observable=proxy.get();
          observable.subscribe(
-            (String o) -> stringList.add(o),
-            (Throwable t) -> errors.incrementAndGet(),
-            () -> latch.countDown());
-         boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-         Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-         Assert.assertEquals(0, errors.get());
+            (String o)->stringList.add(o),
+            (Throwable t)->errors.incrementAndGet(),
+            ()->latch.countDown());
+         boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+         Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+         Assert.assertEquals(0,errors.get());
          Assert.assertFalse(RxScheduledExecutorService.used);
-         Assert.assertEquals(xStringList, stringList);
+         Assert.assertEquals(xStringList,stringList);
       }
 
       {
          stringList.clear();
-         latch = new CountDownLatch(1);
-         RxScheduledExecutorService.used = false;
-         RxScheduledExecutorService executor = new RxScheduledExecutorService();
-         ResteasyClient client = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).executorService(executor).build();
+         latch=new CountDownLatch(1);
+         RxScheduledExecutorService.used=false;
+         RxScheduledExecutorService executor=new RxScheduledExecutorService();
+         ResteasyClient client=((ResteasyClientBuilder)ClientBuilder.newBuilder()).executorService(executor).build();
          client.register(ObservableRxInvokerProvider.class);
-         RxObservableResource proxy = client.target(generateURL("/")).proxy(RxObservableResource.class);
-         Observable<String> observable = proxy.get();
+         RxObservableResource proxy=client.target(generateURL("/")).proxy(RxObservableResource.class);
+         Observable<String> observable=proxy.get();
          observable.subscribe(
-            (String o) -> stringList.add(o),
-            (Throwable t) -> errors.incrementAndGet(),
-            () -> latch.countDown());
-         boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-         Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-         Assert.assertEquals(0, errors.get());
+            (String o)->stringList.add(o),
+            (Throwable t)->errors.incrementAndGet(),
+            ()->latch.countDown());
+         boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+         Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+         Assert.assertEquals(0,errors.get());
          Assert.assertTrue(RxScheduledExecutorService.used);
-         Assert.assertEquals(xStringList, stringList);
+         Assert.assertEquals(xStringList,stringList);
       }
    }
 
    @Test
-   public void testUnhandledException() throws Exception {
-      Observable<Thing> observable = proxy.exceptionUnhandled();
-      AtomicReference<Object> value = new AtomicReference<Object>();
+   public void testUnhandledException() throws Exception{
+      Observable<Thing> observable=proxy.exceptionUnhandled();
+      AtomicReference<Object> value=new AtomicReference<Object>();
       observable.subscribe(
-         (Thing t) -> thingList.add(t),
-         (Throwable t) -> {value.set(t); latch.countDown();},
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Throwable t = (Throwable) value.get();
-      Assert.assertEquals(InternalServerErrorException.class, t.getClass());
+         (Thing t)->thingList.add(t),
+         (Throwable t)->{
+            value.set(t);
+            latch.countDown();
+         },
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Throwable t=(Throwable)value.get();
+      Assert.assertEquals(InternalServerErrorException.class,t.getClass());
       Assert.assertTrue(t.getMessage().contains("500"));
    }
 
    @Test
-   public void testHandledException() throws Exception {
-      Observable<Thing> observable = proxy.exceptionHandled();
-      AtomicReference<Object> value = new AtomicReference<Object>();
+   public void testHandledException() throws Exception{
+      Observable<Thing> observable=proxy.exceptionHandled();
+      AtomicReference<Object> value=new AtomicReference<Object>();
       observable.subscribe(
-         (Thing t) -> thingList.add(t),
-         (Throwable t) -> {value.set(t); latch.countDown();},
-         () -> latch.countDown());
-      boolean waitResult = latch.await(30, TimeUnit.SECONDS);
-      Assert.assertTrue("Waiting for event to be delivered has timed out.", waitResult);
-      Assert.assertEquals(0, errors.get());
-      Throwable t = (Throwable) value.get();
-      Assert.assertEquals(ClientErrorException.class, t.getClass());
+         (Thing t)->thingList.add(t),
+         (Throwable t)->{
+            value.set(t);
+            latch.countDown();
+         },
+         ()->latch.countDown());
+      boolean waitResult=latch.await(30,TimeUnit.SECONDS);
+      Assert.assertTrue("Waiting for event to be delivered has timed out.",waitResult);
+      Assert.assertEquals(0,errors.get());
+      Throwable t=(Throwable)value.get();
+      Assert.assertEquals(ClientErrorException.class,t.getClass());
       Assert.assertTrue(t.getMessage().contains("444"));
    }
 
    @Test
-   public void testGetTwoClients() throws Exception {
-      CountDownLatch cdl = new CountDownLatch(2);
-      CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
+   public void testGetTwoClients() throws Exception{
+      CountDownLatch cdl=new CountDownLatch(2);
+      CopyOnWriteArrayList<String> list=new CopyOnWriteArrayList<String>();
 
-      ResteasyClient client1 = (ResteasyClient)ClientBuilder.newClient();
+      ResteasyClient client1=(ResteasyClient)ClientBuilder.newClient();
       client1.register(ObservableRxInvokerProvider.class);
-      RxObservableResource proxy1 = client1.target(generateURL("/")).proxy(RxObservableResource.class);
-      Observable<String> observable1 = proxy1.get();   
+      RxObservableResource proxy1=client1.target(generateURL("/")).proxy(RxObservableResource.class);
+      Observable<String> observable1=proxy1.get();
 
-      ResteasyClient client2 = (ResteasyClient)ClientBuilder.newClient();
+      ResteasyClient client2=(ResteasyClient)ClientBuilder.newClient();
       client2.register(ObservableRxInvokerProvider.class);
-      RxObservableResource proxy2 = client2.target(generateURL("/")).proxy(RxObservableResource.class);
-      Observable<String> observable2 = proxy2.get();
+      RxObservableResource proxy2=client2.target(generateURL("/")).proxy(RxObservableResource.class);
+      Observable<String> observable2=proxy2.get();
 
       observable1.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+         (String o)->list.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->cdl.countDown());
 
       observable2.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+         (String o)->list.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->cdl.countDown());
 
       cdl.await();
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(6, list.size());
-      for (int i = 0; i < 6; i++) {
-         Assert.assertEquals("x", list.get(i));
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(6,list.size());
+      for(int i=0;i<6;i++){
+         Assert.assertEquals("x",list.get(i));
       }
    }
 
    @Test
-   public void testGetTwoProxies() throws Exception {
-      CountDownLatch cdl = new CountDownLatch(2);
-      CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();   
+   public void testGetTwoProxies() throws Exception{
+      CountDownLatch cdl=new CountDownLatch(2);
+      CopyOnWriteArrayList<String> list=new CopyOnWriteArrayList<String>();
 
-      RxObservableResource proxy1 = client.target(generateURL("/")).proxy(RxObservableResource.class);
-      RxObservableResource proxy2 = client.target(generateURL("/")).proxy(RxObservableResource.class);
+      RxObservableResource proxy1=client.target(generateURL("/")).proxy(RxObservableResource.class);
+      RxObservableResource proxy2=client.target(generateURL("/")).proxy(RxObservableResource.class);
 
-      Observable<String> observable1 = proxy1.get();
-      Observable<String> observable2 = proxy2.get();
+      Observable<String> observable1=proxy1.get();
+      Observable<String> observable2=proxy2.get();
 
       observable1.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+         (String o)->list.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->cdl.countDown());
 
       observable2.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+         (String o)->list.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->cdl.countDown());
 
       cdl.await();
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(6, list.size());
-      for (int i = 0; i < 6; i++) {
-         Assert.assertEquals("x", list.get(i));
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(6,list.size());
+      for(int i=0;i<6;i++){
+         Assert.assertEquals("x",list.get(i));
       }
    }
 
    @Test
-   public void testGetTwoObservables() throws Exception {
-      CountDownLatch cdl = new CountDownLatch(2);
-      CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();   
+   public void testGetTwoObservables() throws Exception{
+      CountDownLatch cdl=new CountDownLatch(2);
+      CopyOnWriteArrayList<String> list=new CopyOnWriteArrayList<String>();
 
-      Observable<String> observable1 = proxy.get();
-      Observable<String> observable2 = proxy.get();
+      Observable<String> observable1=proxy.get();
+      Observable<String> observable2=proxy.get();
 
       observable1.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+         (String o)->list.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->cdl.countDown());
 
       observable2.subscribe(
-         (String o) -> list.add(o),
-         (Throwable t) -> errors.incrementAndGet(),
-         () -> cdl.countDown());
+         (String o)->list.add(o),
+         (Throwable t)->errors.incrementAndGet(),
+         ()->cdl.countDown());
 
       cdl.await();
-      Assert.assertEquals(0, errors.get());
-      Assert.assertEquals(6, list.size());
-      for (int i = 0; i < 6; i++) {
-         Assert.assertEquals("x", list.get(i));
+      Assert.assertEquals(0,errors.get());
+      Assert.assertEquals(6,list.size());
+      for(int i=0;i<6;i++){
+         Assert.assertEquals("x",list.get(i));
       }
-   }
-
-   private static boolean throwableContains(Throwable t, String s) {
-      while (t != null) {
-         if (t.getMessage().contains(s))
-         {
-            return true;
-         }
-         t = t.getCause();
-      }
-      return false;
    }
 }

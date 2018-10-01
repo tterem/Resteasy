@@ -14,17 +14,17 @@ import javax.enterprise.inject.spi.BeanManager;
  * @tpTestCaseDetails Test for weld initialize method
  * @tpSince RESTEasy 3.0.16
  */
-public class WeldInitCDITest {
-    /**
-     * @tpTestDetails Initialized weld should enable lookupBeanManagerCDIUtil method to work correctly.
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testInitWeld() {
-        Weld weld = new Weld();
-        WeldContainer weldContainer = weld.initialize(); // next assert fails without initialized weld
-        BeanManager bm = CdiInjectorFactory.lookupBeanManagerCDIUtil();
-        Assert.assertNotNull("Bean manager was not initialized successfully", bm);
-        weld.shutdown();
-    }
+public class WeldInitCDITest{
+   /**
+    * @tpTestDetails Initialized weld should enable lookupBeanManagerCDIUtil method to work correctly.
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testInitWeld(){
+      Weld weld=new Weld();
+      WeldContainer weldContainer=weld.initialize(); // next assert fails without initialized weld
+      BeanManager bm=CdiInjectorFactory.lookupBeanManagerCDIUtil();
+      Assert.assertNotNull("Bean manager was not initialized successfully",bm);
+      weld.shutdown();
+   }
 }

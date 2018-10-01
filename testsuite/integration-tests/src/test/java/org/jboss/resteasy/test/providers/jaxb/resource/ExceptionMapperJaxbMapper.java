@@ -7,9 +7,9 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class ExceptionMapperJaxbMapper implements ExceptionMapper<JAXBUnmarshalException> {
-    @Override
-    public Response toResponse(JAXBUnmarshalException exception) {
-        return Response.status(400).type("text/plain").entity(exception.getMessage()).build();
-    }
+public class ExceptionMapperJaxbMapper implements ExceptionMapper<JAXBUnmarshalException>{
+   @Override
+   public Response toResponse(JAXBUnmarshalException exception){
+      return Response.status(400).type("text/plain").entity(exception.getMessage()).build();
+   }
 }

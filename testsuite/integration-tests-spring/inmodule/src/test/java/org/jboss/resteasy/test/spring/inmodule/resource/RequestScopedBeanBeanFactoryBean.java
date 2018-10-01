@@ -8,20 +8,20 @@ import org.springframework.beans.factory.FactoryBean;
  * Date: 23/10/14
  * Time: 16:15
  */
-public class RequestScopedBeanBeanFactoryBean implements FactoryBean<RequestScopedBeanBean> {
+public class RequestScopedBeanBeanFactoryBean implements FactoryBean<RequestScopedBeanBean>{
 
-    @Override
-    public RequestScopedBeanBean getObject() throws Exception {
-        return new RequestScopedBeanBean();
-    }
+   @Override
+   public RequestScopedBeanBean getObject() throws Exception{
+      return new RequestScopedBeanBean();
+   }
 
-    @Override
-    public Class<?> getObjectType() {
-        return RequestScopedBeanBean.class;
-    }
+   @Override
+   public Class<?> getObjectType(){
+      return RequestScopedBeanBean.class;
+   }
 
-    @Override
-    public boolean isSingleton() {
-        return true;
-    }
+   @Override
+   public boolean isSingleton(){
+      return true;
+   }
 }

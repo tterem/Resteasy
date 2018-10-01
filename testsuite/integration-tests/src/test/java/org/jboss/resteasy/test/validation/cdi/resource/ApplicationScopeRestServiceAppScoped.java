@@ -5,15 +5,14 @@ import org.jboss.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class ApplicationScopeRestServiceAppScoped implements ApplicationScopeIRestServiceAppScoped {
+public class ApplicationScopeRestServiceAppScoped implements ApplicationScopeIRestServiceAppScoped{
 
-    private final static Logger logger = Logger.getLogger(ApplicationScopeRestServiceAppScoped.class);
+   private final static Logger logger=Logger.getLogger(ApplicationScopeRestServiceAppScoped.class);
 
-    public String sendDto(ApplicationScopeMyDto myDto) {
-        if (logger.isDebugEnabled())
-        {
-            logger.debug("RestServiceAppScoped: Nevertheless: " + myDto, new Exception("RestServiceAppScoped"));
-        }
-        return myDto == null ? null : myDto.getPath();
-    }
+   public String sendDto(ApplicationScopeMyDto myDto){
+      if(logger.isDebugEnabled()){
+         logger.debug("RestServiceAppScoped: Nevertheless: "+myDto,new Exception("RestServiceAppScoped"));
+      }
+      return myDto==null?null:myDto.getPath();
+   }
 }

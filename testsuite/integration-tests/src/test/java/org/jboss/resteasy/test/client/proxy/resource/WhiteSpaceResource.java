@@ -11,26 +11,25 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
-@Path(value = "/sayhello")
-public class WhiteSpaceResource {
+@Path(value="/sayhello")
+public class WhiteSpaceResource{
 
-    String SPACES_REQUEST = "something something";
-    private static final Logger logger = Logger.getLogger(WhiteSpaceResource.class);
+   private static final Logger logger=Logger.getLogger(WhiteSpaceResource.class);
+   String SPACES_REQUEST="something something";
+   @Context
+   UriInfo info;
 
-    @Context
-    UriInfo info;
+   @GET
+   @Path("/en/{in}")
+   @Produces("text/plain")
+   public String echo(@PathParam(value="in") String in){
+      Assert.assertEquals(SPACES_REQUEST,in);
+      List<String> params=info.getPathParameters(true).get("in");
+      logger.info("DECODE"+params.get(0));
 
-    @GET
-    @Path("/en/{in}")
-    @Produces("text/plain")
-    public String echo(@PathParam(value = "in") String in) {
-        Assert.assertEquals(SPACES_REQUEST, in);
-        List<String> params = info.getPathParameters(true).get("in");
-        logger.info("DECODE" + params.get(0));
+      params=info.getPathParameters(false).get("in");
+      logger.info("ENCODE"+params.get(0));
 
-        params = info.getPathParameters(false).get("in");
-        logger.info("ENCODE" + params.get(0));
-
-        return in;
-    }
+      return in;
+   }
 }

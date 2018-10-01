@@ -10,10 +10,10 @@ import javax.xml.bind.JAXBContext;
 @Provider
 @Produces(MediaType.APPLICATION_XML)
 @Consumes(MediaType.APPLICATION_XML)
-public class HomecontrolJaxbProvider implements ContextResolver<JAXBContext> {
+public class HomecontrolJaxbProvider implements ContextResolver<JAXBContext>{
 
    @Override
-   public JAXBContext getContext(Class<?> type) {
+   public JAXBContext getContext(Class<?> type){
       return new HomecontrolCustomJAXBContext(type);
    }
 }

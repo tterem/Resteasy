@@ -6,9 +6,9 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 @Path("")
-public interface TestValidateOnExecutionInterfaceWithGenericSupermethod<T> {
-    @POST
-    @Path("bar")
-    @ValidateOnExecution(type = {ExecutableType.NONE})
-    void override(T qux);
+public interface TestValidateOnExecutionInterfaceWithGenericSupermethod<T>{
+   @POST
+   @Path("bar")
+   @ValidateOnExecution(type={ExecutableType.NONE})
+   void override(T qux);
 }

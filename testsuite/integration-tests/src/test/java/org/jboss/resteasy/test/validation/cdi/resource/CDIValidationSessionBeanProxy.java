@@ -8,8 +8,8 @@ import javax.ws.rs.PathParam;
 
 @Local
 @Path("test")
-public interface CDIValidationSessionBeanProxy {
-    @GET
-    @Path("resource/{param}")
-    int test(@Min(7) @PathParam("param") int param);
+public interface CDIValidationSessionBeanProxy{
+   @GET
+   @Path("resource/{param}")
+   int test(@Min(7) @PathParam("param") int param);
 }

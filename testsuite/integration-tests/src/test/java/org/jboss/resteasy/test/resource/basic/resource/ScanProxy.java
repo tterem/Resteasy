@@ -5,12 +5,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/test")
-public interface ScanProxy {
-    @Path("/subrsource")
-    ScanSubresource doit();
+public interface ScanProxy{
+   @Path("/subrsource")
+   ScanSubresource doit();
 
-    @Path("/doit")
-    @GET
-    @Produces("text/plain")
-    String get();
+   @Path("/doit")
+   @GET
+   @Produces("text/plain")
+   String get();
 }

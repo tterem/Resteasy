@@ -4,7 +4,6 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import javax.ws.rs.client.ClientBuilder;
 import org.jboss.resteasy.test.client.proxy.resource.ContextTestResource;
 import org.jboss.resteasy.utils.PortProviderUtil;
 import org.jboss.resteasy.utils.TestUtil;
@@ -19,6 +18,7 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 
@@ -29,48 +29,48 @@ import javax.ws.rs.core.UriInfo;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class ContextTest {
+public class ContextTest{
 
-    @Path(value = "/test")
-    public interface ResourceInterface {
+   static ResteasyClient client;
 
-        @GET
-        @Produces("text/plain")
-        String echo(@Context UriInfo info);
-    }
+   @Deployment
+   public static Archive<?> deploy(){
+      WebArchive war=TestUtil.prepareArchive(ContextTest.class.getSimpleName());
+      war.addClass(ContextTest.class);
+      return TestUtil.finishContainerPrepare(war,null,ContextTestResource.class);
+   }
 
-    static ResteasyClient client;
+   @Before
+   public void init(){
+      client=(ResteasyClient)ClientBuilder.newClient();
+   }
 
-    @Deployment
-    public static Archive<?> deploy() {
-        WebArchive war = TestUtil.prepareArchive(ContextTest.class.getSimpleName());
-        war.addClass(ContextTest.class);
-        return TestUtil.finishContainerPrepare(war, null, ContextTestResource.class);
-    }
+   @After
+   public void after() throws Exception{
+      client.close();
+   }
 
-    @Before
-    public void init() {
-        client = (ResteasyClient)ClientBuilder.newClient();
-    }
+   private String generateURL(String path){
+      return PortProviderUtil.generateURL(path,ContextTest.class.getSimpleName());
+   }
 
-    @After
-    public void after() throws Exception {
-        client.close();
-    }
+   /**
+    * @tpTestDetails Client sends async GET requests thru client proxy. UriInfo is injected as argument of the GET
+    * method call.
+    * @tpPassCrit UriInfo was injected into method call
+    * @tpSince RESTEasy 3.0.16
+    */
+   @Test
+   public void testContextInjectionProxy(){
+      ResourceInterface proxy=client.target(generateURL("")).proxy(ResourceInterface.class);
+      Assert.assertEquals("UriInfo was not injected","content",proxy.echo(null));
+   }
 
-    private String generateURL(String path) {
-        return PortProviderUtil.generateURL(path, ContextTest.class.getSimpleName());
-    }
+   @Path(value="/test")
+   public interface ResourceInterface{
 
-    /**
-     * @tpTestDetails Client sends async GET requests thru client proxy. UriInfo is injected as argument of the GET
-     * method call.
-     * @tpPassCrit UriInfo was injected into method call
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testContextInjectionProxy() {
-        ResourceInterface proxy = client.target(generateURL("")).proxy(ResourceInterface.class);
-        Assert.assertEquals("UriInfo was not injected", "content", proxy.echo(null));
-    }
+      @GET
+      @Produces("text/plain")
+      String echo(@Context UriInfo info);
+   }
 }

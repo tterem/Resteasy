@@ -12,25 +12,25 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-public interface DecoratorsResourceIntf {
-    @POST
-    @Path("create")
-    @Consumes(Constants.MEDIA_TYPE_TEST_XML)
-    @Produces(MediaType.TEXT_PLAIN)
-    @DecoratorsFilterBinding
-    @DecoratorsResourceBinding
-    Response createBook(EJBBook book);
+public interface DecoratorsResourceIntf{
+   @POST
+   @Path("create")
+   @Consumes(Constants.MEDIA_TYPE_TEST_XML)
+   @Produces(MediaType.TEXT_PLAIN)
+   @DecoratorsFilterBinding
+   @DecoratorsResourceBinding
+   Response createBook(EJBBook book);
 
-    @GET
-    @Path("book/{id:[0-9][0-9]*}")
-    @Produces(Constants.MEDIA_TYPE_TEST_XML)
-    @DecoratorsFilterBinding
-    @DecoratorsResourceBinding
-    EJBBook lookupBookById(@PathParam("id") int id);
+   @GET
+   @Path("book/{id:[0-9][0-9]*}")
+   @Produces(Constants.MEDIA_TYPE_TEST_XML)
+   @DecoratorsFilterBinding
+   @DecoratorsResourceBinding
+   EJBBook lookupBookById(@PathParam("id") int id);
 
-    @POST
-    @Path("test")
-    @Produces(MediaType.TEXT_PLAIN)
-    Response test();
+   @POST
+   @Path("test")
+   @Produces(MediaType.TEXT_PLAIN)
+   Response test();
 
 }

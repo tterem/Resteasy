@@ -7,11 +7,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 @Path("/digits")
-public class PathParamDigits {
-    @Path("{id:\\d+}")
-    @GET
-    public String get(@PathParam("id") int id) {
-        Assert.assertEquals("Wrong request parameter", 5150, id);
-        return Integer.toString(id);
-    }
+public class PathParamDigits{
+   @Path("{id:\\d+}")
+   @GET
+   public String get(@PathParam("id") int id){
+      Assert.assertEquals("Wrong request parameter",5150,id);
+      return Integer.toString(id);
+   }
 }

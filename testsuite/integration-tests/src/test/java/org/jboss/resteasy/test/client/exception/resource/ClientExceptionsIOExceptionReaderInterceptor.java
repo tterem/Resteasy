@@ -5,9 +5,9 @@ import javax.ws.rs.ext.ReaderInterceptor;
 import javax.ws.rs.ext.ReaderInterceptorContext;
 import java.io.IOException;
 
-public class ClientExceptionsIOExceptionReaderInterceptor implements ReaderInterceptor {
-    @Override
-    public Object aroundReadFrom(final ReaderInterceptorContext context) throws IOException, WebApplicationException {
-        throw new IOException("client io");
-    }
+public class ClientExceptionsIOExceptionReaderInterceptor implements ReaderInterceptor{
+   @Override
+   public Object aroundReadFrom(final ReaderInterceptorContext context) throws IOException, WebApplicationException{
+      throw new IOException("client io");
+   }
 }

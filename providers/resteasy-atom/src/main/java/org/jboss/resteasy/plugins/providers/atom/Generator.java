@@ -17,14 +17,12 @@ import java.net.URI;
  *     text
  *  }
  * </pre>
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-@XmlRootElement(name = "generator")
+@XmlRootElement(name="generator")
 @XmlAccessorType(XmlAccessType.PROPERTY)
-public class Generator
-{
+public class Generator{
    private URI uri;
 
    private String version;
@@ -35,58 +33,48 @@ public class Generator
 
    private URI base;
 
-   @XmlAttribute(name = "lang")
-   public String getLanguage()
-   {
+   @XmlAttribute(name="lang")
+   public String getLanguage(){
       return language;
    }
 
-   public void setLanguage(String language)
-   {
-      this.language = language;
+   public void setLanguage(String language){
+      this.language=language;
    }
 
    @XmlAttribute
-   public URI getBase()
-   {
+   public URI getBase(){
       return base;
    }
 
-   public void setBase(URI base)
-   {
-      this.base = base;
+   public void setBase(URI base){
+      this.base=base;
    }
 
    @XmlAttribute
-   public URI getUri()
-   {
+   public URI getUri(){
       return uri;
    }
 
-   public void setUri(URI uri)
-   {
-      this.uri = uri;
+   public void setUri(URI uri){
+      this.uri=uri;
    }
 
    @XmlAttribute
-   public String getVersion()
-   {
+   public String getVersion(){
       return version;
    }
 
-   public void setVersion(String version)
-   {
-      this.version = version;
+   public void setVersion(String version){
+      this.version=version;
    }
 
    @XmlValue
-   public String getText()
-   {
+   public String getText(){
       return text;
    }
 
-   public void setText(String text)
-   {
-      this.text = text;
+   public void setText(String text){
+      this.text=text;
    }
 }

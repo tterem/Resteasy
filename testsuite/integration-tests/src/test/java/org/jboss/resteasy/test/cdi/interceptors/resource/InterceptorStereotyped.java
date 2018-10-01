@@ -4,11 +4,11 @@ import javax.inject.Inject;
 import java.util.logging.Logger;
 
 @InterceptorClassMethodInterceptorStereotype
-public class InterceptorStereotyped {
-    @Inject
-    private Logger log;
+public class InterceptorStereotyped{
+   @Inject
+   private Logger log;
 
-    public void test() {
-        log.info("Stereotyped.test()");
-    }
+   public void test(){
+      log.info("Stereotyped.test()");
+   }
 }

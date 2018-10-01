@@ -5,10 +5,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MultivaluedMap;
 
 @Path("/")
-public class MapProviderBuiltInResource {
-    @Path("map")
-    @POST
-    public MultivaluedMap<String, String> map(MultivaluedMap<String, String> map) {
-        return map;
-    }
+public class MapProviderBuiltInResource{
+   @Path("map")
+   @POST
+   public MultivaluedMap<String,String> map(MultivaluedMap<String,String> map){
+      return map;
+   }
 }

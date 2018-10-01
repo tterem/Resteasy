@@ -10,6 +10,6 @@ import javax.ws.rs.core.Application;
  * Date: 2/20/17
  */
 @ApplicationPath("/resources")
-public class JaxrsApplication extends Application {
+public class JaxrsApplication extends Application{
 
 }

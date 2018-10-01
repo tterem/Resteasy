@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Provider
-public class ExceptionMapperMarshalMyCustomExceptionMapper implements ExceptionMapper<ExceptionMapperMarshalMyCustomException> {
-    @Override
-    public Response toResponse(ExceptionMapperMarshalMyCustomException exception) {
-        List<ExceptionMapperMarshalErrorMessage> list = new ArrayList<ExceptionMapperMarshalErrorMessage>();
-        list.add(new ExceptionMapperMarshalErrorMessage("error"));
-        return Response.ok(list, MediaType.APPLICATION_JSON_TYPE).build();
-    }
+public class ExceptionMapperMarshalMyCustomExceptionMapper implements ExceptionMapper<ExceptionMapperMarshalMyCustomException>{
+   @Override
+   public Response toResponse(ExceptionMapperMarshalMyCustomException exception){
+      List<ExceptionMapperMarshalErrorMessage> list=new ArrayList<ExceptionMapperMarshalErrorMessage>();
+      list.add(new ExceptionMapperMarshalErrorMessage("error"));
+      return Response.ok(list,MediaType.APPLICATION_JSON_TYPE).build();
+   }
 }

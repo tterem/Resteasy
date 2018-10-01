@@ -6,17 +6,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 @Path("/test")
-public class ExceptionMapperWebRuntimeExceptionResource {
-    @GET
-    @Produces("text/plain")
-    public String get() {
-        throw new WebApplicationException(401);
-    }
+public class ExceptionMapperWebRuntimeExceptionResource{
+   @GET
+   @Produces("text/plain")
+   public String get(){
+      throw new WebApplicationException(401);
+   }
 
-    @GET
-    @Path("failure")
-    @Produces("text/plain")
-    public String getFailure() {
-        return "hello";
-    }
+   @GET
+   @Path("failure")
+   @Produces("text/plain")
+   public String getFailure(){
+      return "hello";
+   }
 }

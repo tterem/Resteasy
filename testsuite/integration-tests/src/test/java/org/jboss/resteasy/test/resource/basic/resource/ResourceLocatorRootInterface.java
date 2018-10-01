@@ -7,7 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Produces(MediaType.TEXT_PLAIN)
-public interface ResourceLocatorRootInterface {
+public interface ResourceLocatorRootInterface{
 
    @GET
    String get();

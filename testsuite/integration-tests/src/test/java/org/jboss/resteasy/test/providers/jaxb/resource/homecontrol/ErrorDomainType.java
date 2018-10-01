@@ -18,33 +18,29 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
- *
  */
-@XmlType(name = "ErrorDomainType")
+@XmlType(name="ErrorDomainType")
 @XmlEnum
-public enum ErrorDomainType {
+public enum ErrorDomainType{
 
 
    /**
     * The error happend on the server side and can't be corrected with changing the request
-    *                         format
-    *
-    *
+    * format
     */
    SERVER,
 
    /**
     * The error happend because of the request or the requests content.
-    *
     */
    REQUEST;
 
-   public String value() {
-      return name();
+   public static ErrorDomainType fromValue(String v){
+      return valueOf(v);
    }
 
-   public static ErrorDomainType fromValue(String v) {
-      return valueOf(v);
+   public String value(){
+      return name();
    }
 
 }

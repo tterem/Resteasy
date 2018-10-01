@@ -1,8 +1,5 @@
 package org.jboss.resteasy.test.rx.resource;
 
-import java.util.List;
-import java.util.concurrent.CompletionStage;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -13,9 +10,11 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
+import java.util.concurrent.CompletionStage;
 
 @Path("")
-public interface RxCompletionStageResource {
+public interface RxCompletionStageResource{
 
    @GET
    @Path("get/string")

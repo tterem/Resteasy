@@ -5,11 +5,11 @@ import javax.ws.rs.Path;
 
 @Path("/")
 @ValidationComplexClassInheritanceSubConstraint("[a-c]+")
-public class ValidationComplexInterfaceSub extends ValidationComplexInterfaceSuper {
-    public static String u;
+public class ValidationComplexInterfaceSub extends ValidationComplexInterfaceSuper{
+   public static String u;
 
-    @Pattern(regexp = "[a-c]+")
-    public String postOverride(String s) {
-        return s;
-    }
+   @Pattern(regexp="[a-c]+")
+   public String postOverride(String s){
+      return s;
+   }
 }

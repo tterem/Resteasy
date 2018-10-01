@@ -13,8 +13,7 @@ import java.util.regex.Pattern;
 /**
  * Can inject maps.
  */
-public class MapFormInjector extends AbstractCollectionFormInjector<Map>
-{
+public class MapFormInjector extends AbstractCollectionFormInjector<Map>{
 
    private final StringParameterInjector keyInjector;
 
@@ -26,25 +25,21 @@ public class MapFormInjector extends AbstractCollectionFormInjector<Map>
     * @param prefix prefix
     * @param factory provider factory
     */
-   public MapFormInjector(Class collectionType, Class keyType, Class valueType, String prefix, ResteasyProviderFactory factory)
-   {
-      super(collectionType, valueType, prefix, Pattern.compile("^" + prefix + "\\[([0-9a-zA-Z_\\-\\.~]+)\\]"), factory);
-      keyInjector = new StringParameterInjector(keyType, keyType, null, Form.class, null, null, new Annotation[0], factory);
+   public MapFormInjector(Class collectionType,Class keyType,Class valueType,String prefix,ResteasyProviderFactory factory){
+      super(collectionType,valueType,prefix,Pattern.compile("^"+prefix+"\\[([0-9a-zA-Z_\\-\\.~]+)\\]"),factory);
+      keyInjector=new StringParameterInjector(keyType,keyType,null,Form.class,null,null,new Annotation[0],factory);
    }
 
    /**
     * {@inheritDoc}
     */
-   @SuppressWarnings(value = "unchecked")
+   @SuppressWarnings(value="unchecked")
    @Override
-   protected Map createInstance(Class collectionType)
-   {
-      if (collectionType.isAssignableFrom(LinkedHashMap.class))
-      {
+   protected Map createInstance(Class collectionType){
+      if(collectionType.isAssignableFrom(LinkedHashMap.class)){
          return new LinkedHashMap();
       }
-      if (collectionType.isAssignableFrom(TreeMap.class))
-      {
+      if(collectionType.isAssignableFrom(TreeMap.class)){
          return new TreeMap();
       }
       throw new RuntimeException(Messages.MESSAGES.unsupportedCollectionType(collectionType));
@@ -53,10 +48,9 @@ public class MapFormInjector extends AbstractCollectionFormInjector<Map>
    /**
     * {@inheritDoc}
     */
-   @SuppressWarnings(value = "unchecked")
+   @SuppressWarnings(value="unchecked")
    @Override
-   protected void addTo(Map collection, String key, Object value)
-   {
-      collection.put(keyInjector.extractValue(key), value);
+   protected void addTo(Map collection,String key,Object value){
+      collection.put(keyInjector.extractValue(key),value);
    }
 }

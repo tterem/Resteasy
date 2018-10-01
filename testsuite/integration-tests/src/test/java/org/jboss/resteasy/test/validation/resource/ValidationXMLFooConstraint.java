@@ -12,17 +12,17 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Documented
-@Constraint(validatedBy = ValidationXMLFooValidator.class)
-@Target({TYPE, PARAMETER, METHOD})
+@Constraint(validatedBy=ValidationXMLFooValidator.class)
+@Target({TYPE,PARAMETER,METHOD})
 @Retention(RUNTIME)
-public @interface ValidationXMLFooConstraint {
-    String message() default "s must have length: {min} <= length <= {max}";
+public @interface ValidationXMLFooConstraint{
+   String message() default "s must have length: {min} <= length <= {max}";
 
-    Class<?>[] groups() default {};
+   Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+   Class<? extends Payload>[] payload() default {};
 
-    int min();
+   int min();
 
-    int max();
+   int max();
 }

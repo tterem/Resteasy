@@ -1,26 +1,5 @@
 package org.jboss.resteasy.client.jaxrs.engines;
 
-import java.io.ByteArrayOutputStream;
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.nio.ByteBuffer;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.ws.rs.ProcessingException;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.InvocationCallback;
-import javax.ws.rs.client.ResponseProcessingException;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.http.ContentTooLongException;
 import org.apache.http.Header;
@@ -56,6 +35,26 @@ import org.jboss.resteasy.client.jaxrs.internal.ClientInvocation;
 import org.jboss.resteasy.client.jaxrs.internal.ClientResponse;
 import org.jboss.resteasy.util.CaseInsensitiveMap;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.ws.rs.ProcessingException;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.InvocationCallback;
+import javax.ws.rs.client.ResponseProcessingException;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
 /**
  * AsyncClientHttpEngine using apache http components HttpAsyncClient 4.<p>
  *
@@ -82,77 +81,148 @@ import org.jboss.resteasy.util.CaseInsensitiveMap;
  * </ul>
  * @author Markus Kull
  */
-public class ApacheHttpAsyncClient4Engine implements AsyncClientHttpEngine, Closeable
-{
+public class ApacheHttpAsyncClient4Engine implements AsyncClientHttpEngine, Closeable{
    protected final CloseableHttpAsyncClient client;
    protected final boolean closeHttpClient;
 
-   public ApacheHttpAsyncClient4Engine(CloseableHttpAsyncClient client, boolean closeHttpClient)
-   {
-      if (client == null) throw new NullPointerException("client");
-      this.client = client;
-      this.closeHttpClient = closeHttpClient;
-      if (closeHttpClient && !client.isRunning()) {
+   public ApacheHttpAsyncClient4Engine(CloseableHttpAsyncClient client,boolean closeHttpClient){
+      if(client==null) throw new NullPointerException("client");
+      this.client=client;
+      this.closeHttpClient=closeHttpClient;
+      if(closeHttpClient&&!client.isRunning()){
          client.start();
       }
    }
 
+   private static HttpUriRequest buildHttpRequest(ClientInvocation request){
+      // Writers may change headers. Thus buffer the content before committing the headers.
+      // For simplicity's sake the content is buffered in memory. File-buffering (ZeroCopyConsumer...) would be
+      // possible, but resource management is error-prone.
+
+      HttpRequestBase httpRequest=createHttpMethod(request.getUri(),request.getMethod());
+      if(request.getEntity()!=null){
+         byte[] requestContent=requestContent(request);
+         ByteArrayEntity entity=new ByteArrayEntity(requestContent);
+         entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,request.getHeaders().getMediaType().toString()));
+         commitHeaders(request,httpRequest);
+         ((HttpEntityEnclosingRequest)httpRequest).setEntity(entity);
+      }else{
+         commitHeaders(request,httpRequest);
+      }
+
+      return httpRequest;
+   }
+
+   private static byte[] requestContent(ClientInvocation request){
+      ByteArrayOutputStream baos=new ByteArrayOutputStream();
+      request.getDelegatingOutputStream().setDelegate(baos);
+      try{
+         request.writeRequestBody(request.getEntityStream());
+         baos.close();
+         return baos.toByteArray();
+      }catch(IOException e){
+         throw new RuntimeException(e);
+      }
+   }
+
+   private static HttpRequestBase createHttpMethod(URI url,String restVerb){
+      if("GET".equals(restVerb)){
+         return new HttpGet(url);
+      }else if("POST".equals(restVerb)){
+         return new HttpPost(url);
+      }else{
+         final String verb=restVerb;
+         return new HttpPost(url){
+            @Override
+            public String getMethod(){
+               return verb;
+            }
+         };
+      }
+   }
+
+   private static void commitHeaders(ClientInvocation request,HttpRequestBase httpMethod){
+      MultivaluedMap<String,String> headers=request.getHeaders().asMap();
+      for(Map.Entry<String,List<String>> header : headers.entrySet()){
+         List<String> values=header.getValue();
+         for(String value : values){
+            httpMethod.addHeader(header.getKey(),value);
+         }
+      }
+   }
+
+   private static void copyResponse(HttpResponse httpResponse,ClientResponse clientResponse){
+      clientResponse.setStatus(httpResponse.getStatusLine().getStatusCode());
+      CaseInsensitiveMap<String> headers=new CaseInsensitiveMap<String>();
+      for(Header header : httpResponse.getAllHeaders()){
+         headers.add(header.getName(),header.getValue());
+      }
+      clientResponse.setHeaders(headers);
+   }
+
+   private static RuntimeException clientException(Throwable ex,Response clientResponse){
+      RuntimeException ret;
+      if(ex==null){
+         ret=new ProcessingException(new NullPointerException());
+      }else if(ex instanceof WebApplicationException){
+         ret=(WebApplicationException)ex;
+      }else if(ex instanceof ProcessingException){
+         ret=(ProcessingException)ex;
+      }else if(clientResponse!=null){
+         ret=new ResponseProcessingException(clientResponse,ex);
+      }else{
+         ret=new ProcessingException(ex);
+      }
+      return ret;
+   }
+
+   private static IOException ioException(Exception ex){
+      return (ex instanceof IOException)?(IOException)ex:new IOException(ex);
+   }
+
    @Override
-   public void close()
-   {
-      if (closeHttpClient)
-      {
+   public void close(){
+      if(closeHttpClient){
          IOUtils.closeQuietly(client);
       }
    }
 
    @Override
-   public SSLContext getSslContext()
-   {
+   public SSLContext getSslContext(){
       throw new UnsupportedOperationException();
    }
 
    @Override
-   public HostnameVerifier getHostnameVerifier()
-   {
+   public HostnameVerifier getHostnameVerifier(){
       throw new UnsupportedOperationException();
    }
 
    @Override
-   public Response invoke(Invocation request)
-   {
+   public Response invoke(Invocation request){
       // Doing blocking requests with an async httpclient is quite useless.
       // But it is better to use the same httpclient in any case just for sharing+configuring only one connectionpool.
-      Future<ClientResponse> future = submit((ClientInvocation)request, false, null, new ResultExtractor<ClientResponse>() {
+      Future<ClientResponse> future=submit((ClientInvocation)request,false,null,new ResultExtractor<ClientResponse>(){
          @Override
-         public ClientResponse extractResult(ClientResponse response)
-         {
+         public ClientResponse extractResult(ClientResponse response){
             return response;
          }
       });
-      try
-      {
+      try{
          return future.get();
-      }
-      catch (InterruptedException e)
-      {
+      }catch(InterruptedException e){
          future.cancel(true);
-         throw clientException(e, null);
-      }
-      catch (ExecutionException e)
-      {
-         throw clientException(e.getCause(), null);
+         throw clientException(e,null);
+      }catch(ExecutionException e){
+         throw clientException(e.getCause(),null);
       }
    }
 
    @Override
    public <T> Future<T> submit(
-      ClientInvocation request, boolean buffered, InvocationCallback<T> callback, ResultExtractor<T> extractor)
-   {
-      HttpUriRequest httpRequest = buildHttpRequest(request);
+      ClientInvocation request,boolean buffered,InvocationCallback<T> callback,ResultExtractor<T> extractor){
+      HttpUriRequest httpRequest=buildHttpRequest(request);
 
-      if (buffered)
-      {
+      if(buffered){
          // Request+Response fully buffered in memory. Optional callback is called inside io-thread after response-body and
          // after the returned future is signaled to be completed.
          //
@@ -167,45 +237,41 @@ public class ApacheHttpAsyncClient4Engine implements AsyncClientHttpEngine, Clos
          //     the future-response is unusable (bc. closed) together with a callback
          // Of course the one big drawback is that exceptions inside the callback are not visible to the application,
          // but callbacks are mostly treated as fire-and-forget, meaning their result is not checked anyway.
-         HttpAsyncRequestProducer requestProducer = HttpAsyncMethods.create(httpRequest);
-         HttpAsyncResponseConsumer<T> responseConsumer = new BufferingResponseConsumer<T>(request, extractor);
-         FutureCallback<T> httpCallback = callback != null ? new CallbackAdapter<T>(callback) : null;
+         HttpAsyncRequestProducer requestProducer=HttpAsyncMethods.create(httpRequest);
+         HttpAsyncResponseConsumer<T> responseConsumer=new BufferingResponseConsumer<T>(request,extractor);
+         FutureCallback<T> httpCallback=callback!=null?new CallbackAdapter<T>(callback):null;
 
-         return client.execute(requestProducer, responseConsumer, httpCallback);
-      }
-      else
-      {
+         return client.execute(requestProducer,responseConsumer,httpCallback);
+      }else{
          // unbuffered: Future returns immediately after headers. Reading the response-stream blocks, but one may check
          // InputStream#available() to prevent blocking.
 
          // would be easy to call an InvocationCallback after response-BODY, but cant see any usecase for it.
-         if (callback != null) throw new IllegalArgumentException("unbuffered InvocationCallback is not supported");
+         if(callback!=null) throw new IllegalArgumentException("unbuffered InvocationCallback is not supported");
 
-         HttpAsyncRequestProducer requestProducer = HttpAsyncMethods.create(httpRequest);
-         StreamingResponseConsumer<T> responseConsumer = new StreamingResponseConsumer<T>(request, extractor);
+         HttpAsyncRequestProducer requestProducer=HttpAsyncMethods.create(httpRequest);
+         StreamingResponseConsumer<T> responseConsumer=new StreamingResponseConsumer<T>(request,extractor);
 
-         Future<T> httpFuture = client.execute(requestProducer, responseConsumer, null);
+         Future<T> httpFuture=client.execute(requestProducer,responseConsumer,null);
          return responseConsumer.future(httpFuture);
       }
    }
-
 
    /**
     * ResponseConsumer which transfers the response piecewise from the io-thread to the blocking handler-thread.
     * {@link #future(Future)} returns a Future which completes immediately after receiving the response-headers
     * but reading the response-inputstream blocks until data is available.
     */
-   private static class StreamingResponseConsumer<T> implements HttpAsyncResponseConsumer<T>
-   {
-      private static final IOException unallowedBlockingReadException = new IOException("blocking reads inside an async io-handler are not allowed") {
-         public synchronized Throwable fillInStackTrace() {
+   private static class StreamingResponseConsumer<T> implements HttpAsyncResponseConsumer<T>{
+      private static final IOException unallowedBlockingReadException=new IOException("blocking reads inside an async io-handler are not allowed"){
+         public synchronized Throwable fillInStackTrace(){
             //do nothing and return
             return this;
-        }
+         }
       };
-      
+
       private ClientConfiguration configuration;
-      private Map<String, Object> properties;
+      private Map<String,Object> properties;
       private ResultExtractor<T> extractor;
 
       private ResultFuture<T> future;
@@ -216,159 +282,127 @@ public class ApacheHttpAsyncClient4Engine implements AsyncClientHttpEngine, Clos
       private volatile Exception exception;
       private volatile boolean completed;
 
-      StreamingResponseConsumer(ClientInvocation request, ResultExtractor<T> extractor)
-      {
-         this.configuration = request.getClientConfiguration();
-         this.properties = request.getMutableProperties();
-         this.extractor = extractor;
+      StreamingResponseConsumer(ClientInvocation request,ResultExtractor<T> extractor){
+         this.configuration=request.getClientConfiguration();
+         this.properties=request.getMutableProperties();
+         this.extractor=extractor;
       }
 
-      private void releaseResources()
-      {
-         this.configuration = null;
-         this.properties = null;
-         this.extractor = null;
+      private void releaseResources(){
+         this.configuration=null;
+         this.properties=null;
+         this.extractor=null;
 
-         this.future = null;
-         this.sharedStream = null;
+         this.future=null;
+         this.sharedStream=null;
       }
 
-      public synchronized Future<T> future(Future<T> httpFuture)
-      {
-         if (completed)
-         {  // already failed or fully buffered
+      public synchronized Future<T> future(Future<T> httpFuture){
+         if(completed){  // already failed or fully buffered
             return httpFuture;
          }
-         future = new ResultFuture<T>(httpFuture);
+         future=new ResultFuture<T>(httpFuture);
          future.copyHttpFutureResult();
-         if (!future.isDone() && hasResult)
-         { // response(-headers) is available, but not yet the full response-stream. Return immediately the result
+         if(!future.isDone()&&hasResult){ // response(-headers) is available, but not yet the full response-stream. Return immediately the result
             future.completed(getResult());
          }
          return future;
       }
 
       @Override
-      public synchronized void responseReceived(HttpResponse httpResponse) throws IOException, HttpException
-      {
-         SharedInputStream sharedStream = null;
-         ConnectionResponse clientResponse = null;
-         T result = null;
-         Exception exception = null;
+      public synchronized void responseReceived(HttpResponse httpResponse) throws IOException, HttpException{
+         SharedInputStream sharedStream=null;
+         ConnectionResponse clientResponse=null;
+         T result=null;
+         Exception exception=null;
 
-         boolean success = false;
-         try {
-            clientResponse = new ConnectionResponse(configuration, properties);
-            copyResponse(httpResponse, clientResponse);
-            final HttpEntity entity = httpResponse.getEntity();
-            if (entity != null)
-            {
-               sharedStream = new SharedInputStream(new SharedInputBuffer(16 * 1024));
+         boolean success=false;
+         try{
+            clientResponse=new ConnectionResponse(configuration,properties);
+            copyResponse(httpResponse,clientResponse);
+            final HttpEntity entity=httpResponse.getEntity();
+            if(entity!=null){
+               sharedStream=new SharedInputStream(new SharedInputBuffer(16*1024));
                // one could also set the stream after extracting the response, but this would prevent wrapping the stream
                clientResponse.setConnection(sharedStream);
                sharedStream.setException(unallowedBlockingReadException);
-               result = extractor.extractResult(clientResponse);
+               result=extractor.extractResult(clientResponse);
                sharedStream.setException(null);
+            }else{
+               result=extractor.extractResult(clientResponse);
             }
-            else
-            {
-               result = extractor.extractResult(clientResponse);
-            }
-            success = true;
-         }
-         catch(Exception e)
-         {
-            exception = clientException(e, clientResponse);
-         }
-         finally
-         {
-            if (success)
-            {
-               this.sharedStream = sharedStream;
-               this.result = result;
-               this.hasResult = true;
-               if (future != null) future.completed(result);
-            }
-            else
-            {
-               this.exception = exception;
-               completed = true;
-               if (future != null) future.failed(exception);
+            success=true;
+         }catch(Exception e){
+            exception=clientException(e,clientResponse);
+         }finally{
+            if(success){
+               this.sharedStream=sharedStream;
+               this.result=result;
+               this.hasResult=true;
+               if(future!=null) future.completed(result);
+            }else{
+               this.exception=exception;
+               completed=true;
+               if(future!=null) future.failed(exception);
                releaseResources();
             }
          }
       }
 
       @Override
-      public synchronized void consumeContent(ContentDecoder decoder, IOControl ioctrl) throws IOException
-      {
-         if (sharedStream != null) sharedStream.consumeContent(decoder, ioctrl);
+      public synchronized void consumeContent(ContentDecoder decoder,IOControl ioctrl) throws IOException{
+         if(sharedStream!=null) sharedStream.consumeContent(decoder,ioctrl);
       }
 
       @Override
-      public synchronized void responseCompleted(HttpContext context)
-      {
-         this.completed = true;
-         try
-         {
-            if (sharedStream != null)
-            {  // only needed in case of empty response body (=null ioctrl)
-               sharedStream.consumeContent(EndOfStream.INSTANCE, null);
+      public synchronized void responseCompleted(HttpContext context){
+         this.completed=true;
+         try{
+            if(sharedStream!=null){  // only needed in case of empty response body (=null ioctrl)
+               sharedStream.consumeContent(EndOfStream.INSTANCE,null);
             }
-         }
-         catch (IOException ioe)
-         { // cannot happen
+         }catch(IOException ioe){ // cannot happen
             throw new RuntimeException(ioe);
-         }
-         finally
-         {
+         }finally{
             releaseResources();
          }
       }
 
       @Override
-      public Exception getException()
-      {
+      public Exception getException(){
          return exception;
       }
 
       @Override
-      public T getResult()
-      {
+      public T getResult(){
          return result;
       }
 
       @Override
-      public boolean isDone()
-      {  // cancels in case of closing the SharedInputStream
+      public boolean isDone(){  // cancels in case of closing the SharedInputStream
          return completed;
       }
 
       @Override
-      public synchronized void close()
-      {
-         completed = true;
-         ResultFuture<T> future = this.future;
-         if (future != null)
-         {
+      public synchronized void close(){
+         completed=true;
+         ResultFuture<T> future=this.future;
+         if(future!=null){
             // if connect fails, then the httpclient just calls close() after setting its future, but never our failed().
             // so copy the httpFuture-result into our ResultFuture.
             future.copyHttpFutureResult();
-            if (!future.isDone())
-            { // doesnt happen?
-               future.failed(clientException(new IOException("connect failed"), null));
+            if(!future.isDone()){ // doesnt happen?
+               future.failed(clientException(new IOException("connect failed"),null));
             }
          }
          releaseResources();
       }
 
       @Override
-      public synchronized void failed(Exception ex)
-      {
-         completed = true;
-         if (future != null) future.failed(clientException(ex, null));
-         if (sharedStream != null)
-         {
+      public synchronized void failed(Exception ex){
+         completed=true;
+         if(future!=null) future.failed(clientException(ex,null));
+         if(sharedStream!=null){
             sharedStream.setException(ioException(ex));
             IOUtils.closeQuietly(sharedStream);
          }
@@ -376,12 +410,10 @@ public class ApacheHttpAsyncClient4Engine implements AsyncClientHttpEngine, Clos
       }
 
       @Override
-      public synchronized boolean cancel()
-      {
-         completed = true;
-         if (future != null) future.cancelledResult();
-         if (sharedStream != null)
-         {
+      public synchronized boolean cancel(){
+         completed=true;
+         if(future!=null) future.cancelledResult();
+         if(sharedStream!=null){
             sharedStream.setException(new IOException("cancelled"));
             IOUtils.closeQuietly(sharedStream);
          }
@@ -389,108 +421,94 @@ public class ApacheHttpAsyncClient4Engine implements AsyncClientHttpEngine, Clos
          return true;
       }
 
-      private static class ResultFuture<T> extends BasicFuture<T>
-      {
+      private static class ResultFuture<T> extends BasicFuture<T>{
          private final Future<T> httpFuture;
 
-         ResultFuture(final Future<T> httpFuture)
-         {
+         ResultFuture(final Future<T> httpFuture){
             super(null);
-            this.httpFuture = httpFuture;
+            this.httpFuture=httpFuture;
          }
 
          @Override
-         public boolean cancel(boolean mayInterruptIfRunning)
-         {
-            boolean cancelled = super.cancel(mayInterruptIfRunning);
+         public boolean cancel(boolean mayInterruptIfRunning){
+            boolean cancelled=super.cancel(mayInterruptIfRunning);
             httpFuture.cancel(mayInterruptIfRunning);
             return cancelled;
          }
 
-         public void cancelledResult() {
+         public void cancelledResult(){
             super.cancel(true);
          }
 
-         public void copyHttpFutureResult()
-         {
-            if (!isDone() && httpFuture.isDone())
-            {
-               try
-               {
+         public void copyHttpFutureResult(){
+            if(!isDone()&&httpFuture.isDone()){
+               try{
                   completed(httpFuture.get());
-               }
-               catch(ExecutionException e)
-               {
-                  failed(clientException(e.getCause(), null));
-               }
-               catch (InterruptedException e)
-               { // cant happen because already isDone
+               }catch(ExecutionException e){
+                  failed(clientException(e.getCause(),null));
+               }catch(InterruptedException e){ // cant happen because already isDone
                   failed(e);
                }
             }
          }
       }
 
-      private class SharedInputStream extends ContentInputStream {
+      private class SharedInputStream extends ContentInputStream{
 
          private final SharedInputBuffer sharedBuf;
          private volatile IOException ex;
          private volatile IOControl ioctrl;
 
-         SharedInputStream(SharedInputBuffer sharedBuf)
-         {
+         SharedInputStream(SharedInputBuffer sharedBuf){
             super(sharedBuf);
-            this.sharedBuf = sharedBuf;
+            this.sharedBuf=sharedBuf;
          }
 
-         public void consumeContent(ContentDecoder decoder, IOControl ioctrl) throws IOException {
-            if (ioctrl != null) this.ioctrl = ioctrl;
-            sharedBuf.consumeContent(decoder, ioctrl);
+         public void consumeContent(ContentDecoder decoder,IOControl ioctrl) throws IOException{
+            if(ioctrl!=null) this.ioctrl=ioctrl;
+            sharedBuf.consumeContent(decoder,ioctrl);
          }
 
          @Override
-         public void close() throws IOException
-         {
-            completed = true; // next isDone() cancels.
+         public void close() throws IOException{
+            completed=true; // next isDone() cancels.
 
             // Workaround for deadlock: super.close() reads until no more data, but on cancellation no more data is
             // pushed to consumeContent, thus deadlock. Instead notify the reactor by ioctrl.requestInput
             sharedBuf.close(); // next reads will return EndOfStream. Also wakes up any waiting readers
-            IOControl ioctrl = this.ioctrl;
-            if (ioctrl != null) ioctrl.requestInput(); // notify reactor to check isDone()
+            IOControl ioctrl=this.ioctrl;
+            if(ioctrl!=null) ioctrl.requestInput(); // notify reactor to check isDone()
             super.close(); // does basically nothing due to closed buf
          }
 
          @Override
-         public int read(final byte[] b, final int off, final int len) throws IOException
-         {
+         public int read(final byte[] b,final int off,final int len) throws IOException{
             throwIfError();
-            return super.read(b, off, len);
+            return super.read(b,off,len);
          }
 
          @Override
-         public int read(final byte[] b) throws IOException
-         {
+         public int read(final byte[] b) throws IOException{
             throwIfError();
-            return super.read(b, 0, b.length);
+            return super.read(b,0,b.length);
          }
 
          @Override
-         public int read() throws IOException {
+         public int read() throws IOException{
             throwIfError();
             return super.read();
          }
 
-         private void throwIfError() throws IOException {
-            IOException ex = this.ex;
-            if (ex != null) {
+         private void throwIfError() throws IOException{
+            IOException ex=this.ex;
+            if(ex!=null){
                //create a new exception here to make it easy figuring out where the offending blocking IO comes from
                throw new IOException(ex);
             }
          }
 
-         public void setException(IOException e) {
-            this.ex = e;
+         public void setException(IOException e){
+            this.ex=e;
          }
       }
    }
@@ -500,329 +518,172 @@ public class ApacheHttpAsyncClient4Engine implements AsyncClientHttpEngine, Clos
     *
     * (Buffering is definitely easier to implement than streaming)
     */
-   private static class BufferingResponseConsumer<T> extends AbstractAsyncResponseConsumer<T>
-   {
+   private static class BufferingResponseConsumer<T> extends AbstractAsyncResponseConsumer<T>{
 
       private ClientConfiguration configuration;
-      private Map<String, Object> properties;
+      private Map<String,Object> properties;
       private ResultExtractor<T> responseExtractor;
       private ConnectionResponse clientResponse;
       private SimpleInputBuffer buf;
 
-      BufferingResponseConsumer(ClientInvocation request, ResultExtractor<T> responseExtractor)
-      {
-         this.configuration = request.getClientConfiguration();
-         this.properties = request.getMutableProperties();
-         this.responseExtractor = responseExtractor;
+      BufferingResponseConsumer(ClientInvocation request,ResultExtractor<T> responseExtractor){
+         this.configuration=request.getClientConfiguration();
+         this.properties=request.getMutableProperties();
+         this.responseExtractor=responseExtractor;
       }
 
       @Override
-      protected void onResponseReceived(HttpResponse response) throws HttpException, IOException
-      {
-         ConnectionResponse clientResponse = new ConnectionResponse(configuration, properties);
-         copyResponse(response, clientResponse);
-         final HttpEntity entity = response.getEntity();
-         if (entity != null)
-         {
-            long len = entity.getContentLength();
-            if (len > Integer.MAX_VALUE)
-            {
-               throw new ContentTooLongException("Entity content is too long: " + len);
+      protected void onResponseReceived(HttpResponse response) throws HttpException, IOException{
+         ConnectionResponse clientResponse=new ConnectionResponse(configuration,properties);
+         copyResponse(response,clientResponse);
+         final HttpEntity entity=response.getEntity();
+         if(entity!=null){
+            long len=entity.getContentLength();
+            if(len>Integer.MAX_VALUE){
+               throw new ContentTooLongException("Entity content is too long: "+len);
             }
-            if (len < 0)
-            {
-               len = 4096;
+            if(len<0){
+               len=4096;
             }
-            this.buf = new SimpleInputBuffer((int) len, new HeapByteBufferAllocator());
+            this.buf=new SimpleInputBuffer((int)len,new HeapByteBufferAllocator());
          }
-         this.clientResponse = clientResponse;
+         this.clientResponse=clientResponse;
       }
 
       @Override
-      protected void onEntityEnclosed(HttpEntity entity, ContentType contentType) throws IOException
-      {
+      protected void onEntityEnclosed(HttpEntity entity,ContentType contentType) throws IOException{
       }
 
       @Override
-      protected void onContentReceived(ContentDecoder decoder, IOControl ioctrl) throws IOException
-      {
-         SimpleInputBuffer buf = this.buf;
-         if (buf == null) throw new NullPointerException("Content Buffer");
+      protected void onContentReceived(ContentDecoder decoder,IOControl ioctrl) throws IOException{
+         SimpleInputBuffer buf=this.buf;
+         if(buf==null) throw new NullPointerException("Content Buffer");
          buf.consumeContent(decoder);
       }
 
       @Override
-      protected T buildResult(HttpContext context) throws Exception
-      {
-         if (buf != null) clientResponse.setConnection(new ContentInputStream(buf));
+      protected T buildResult(HttpContext context) throws Exception{
+         if(buf!=null) clientResponse.setConnection(new ContentInputStream(buf));
          return responseExtractor.extractResult(clientResponse);
       }
 
       @Override
-      protected void releaseResources()
-      {
-         this.configuration = null;
-         this.properties = null;
-         this.responseExtractor = null;
-         this.clientResponse = null;
-         this.buf = null;
+      protected void releaseResources(){
+         this.configuration=null;
+         this.properties=null;
+         this.responseExtractor=null;
+         this.clientResponse=null;
+         this.buf=null;
       }
    }
 
    /**
     * Adapter from http-FutureCallback<T> to InvocationCallback<T>
     */
-   private static class CallbackAdapter<T> implements FutureCallback<T>
-   {
+   private static class CallbackAdapter<T> implements FutureCallback<T>{
       private final InvocationCallback<T> invocationCallback;
 
-      CallbackAdapter(InvocationCallback<T> invocationCallback)
-      {
-         this.invocationCallback = invocationCallback;
+      CallbackAdapter(InvocationCallback<T> invocationCallback){
+         this.invocationCallback=invocationCallback;
       }
 
       @Override
-      public void cancelled()
-      {
+      public void cancelled(){
          invocationCallback.failed(new ProcessingException("cancelled"));
       }
 
       @Override
-      public void completed(T response)
-      {
-         try
-         {
+      public void completed(T response){
+         try{
             invocationCallback.completed(response);
-         }
-         catch (Throwable t)
-         {
+         }catch(Throwable t){
             LogMessages.LOGGER.exceptionIgnored(t);
-         }
-         finally
-         {
+         }finally{
             // just to promote proper callback usage, because HttpAsyncClient is responsible
             // for cleaning up the (buffered) connection
-            if (response instanceof Response)
-            {
-               ((Response) response).close();
+            if(response instanceof Response){
+               ((Response)response).close();
             }
          }
       }
 
       @Override
-      public void failed(Exception ex)
-      {
-         invocationCallback.failed(clientException(ex, null));
+      public void failed(Exception ex){
+         invocationCallback.failed(clientException(ex,null));
       }
    }
 
    /**
     * ClientResponse with surefire releaseConnection
     */
-   private static class ConnectionResponse extends ClientResponse
-   {
+   private static class ConnectionResponse extends ClientResponse{
 
       private InputStream connection;
       private InputStream stream;
 
-      ConnectionResponse(ClientConfiguration configuration, Map<String, Object> properties)
-      {
+      ConnectionResponse(ClientConfiguration configuration,Map<String,Object> properties){
          super(configuration);
          setProperties(properties);
       }
 
-      public synchronized void setConnection(InputStream connection)
-      {
-         this.connection = connection;
-         this.stream = connection;
+      public synchronized void setConnection(InputStream connection){
+         this.connection=connection;
+         this.stream=connection;
       }
 
       @Override
-      protected synchronized void setInputStream(InputStream is)
-      {
-         stream = is;
-         resetEntity();
-      }
-
-      @Override
-      public synchronized InputStream getInputStream()
-      {
+      public synchronized InputStream getInputStream(){
          return stream;
       }
 
       @Override
-      public synchronized void releaseConnection() throws IOException
-      {
-        releaseConnection(false);
+      protected synchronized void setInputStream(InputStream is){
+         stream=is;
+         resetEntity();
       }
-      
+
       @Override
-      public synchronized void releaseConnection(boolean consumeInputStream) throws IOException
-      {
-         boolean thrown = true;
-         try
-         {
-            if (stream != null)
-            {
-               if (consumeInputStream)
-               {
-                  while (stream.read() > 0)
-                  {
+      public synchronized void releaseConnection() throws IOException{
+         releaseConnection(false);
+      }
+
+      @Override
+      public synchronized void releaseConnection(boolean consumeInputStream) throws IOException{
+         boolean thrown=true;
+         try{
+            if(stream!=null){
+               if(consumeInputStream){
+                  while(stream.read()>0){
                   }
                }
                stream.close();
             }
-            thrown = false;
-         }
-         finally
-         {
-            if (connection != null)
-            {
-               if (thrown)
-               {
+            thrown=false;
+         }finally{
+            if(connection!=null){
+               if(thrown){
                   IOUtils.closeQuietly(connection);
-               }
-               else
-               {
+               }else{
                   connection.close();
                }
             }
          }
       }
-      
+
    }
 
-   private static class EndOfStream implements ContentDecoder
-   {
-      public static EndOfStream INSTANCE = new EndOfStream();
+   private static class EndOfStream implements ContentDecoder{
+      public static EndOfStream INSTANCE=new EndOfStream();
 
       @Override
-      public int read(ByteBuffer dst) throws IOException
-      {
+      public int read(ByteBuffer dst) throws IOException{
          return -1;
       }
 
       @Override
-      public boolean isCompleted()
-      {
+      public boolean isCompleted(){
          return true;
       }
-   }
-
-   private static HttpUriRequest buildHttpRequest(ClientInvocation request)
-   {
-      // Writers may change headers. Thus buffer the content before committing the headers.
-      // For simplicity's sake the content is buffered in memory. File-buffering (ZeroCopyConsumer...) would be
-      // possible, but resource management is error-prone.
-
-      HttpRequestBase httpRequest = createHttpMethod(request.getUri(), request.getMethod());
-      if (request.getEntity() != null)
-      {
-         byte[] requestContent = requestContent(request);
-         ByteArrayEntity entity = new ByteArrayEntity(requestContent);
-         entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, request.getHeaders().getMediaType().toString()));
-         commitHeaders(request, httpRequest);
-         ((HttpEntityEnclosingRequest) httpRequest).setEntity(entity);
-      }
-      else
-      {
-         commitHeaders(request, httpRequest);
-      }
-
-      return httpRequest;
-   }
-
-   private static byte[] requestContent(ClientInvocation request)
-   {
-      ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      request.getDelegatingOutputStream().setDelegate(baos);
-      try
-      {
-         request.writeRequestBody(request.getEntityStream());
-         baos.close();
-         return baos.toByteArray();
-      }
-      catch (IOException e)
-      {
-         throw new RuntimeException(e);
-      }
-   }
-
-   private static HttpRequestBase createHttpMethod(URI url, String restVerb)
-   {
-      if ("GET".equals(restVerb))
-      {
-         return new HttpGet(url);
-      }
-      else if ("POST".equals(restVerb))
-      {
-         return new HttpPost(url);
-      }
-      else
-      {
-         final String verb = restVerb;
-         return new HttpPost(url)
-         {
-            @Override
-            public String getMethod()
-            {
-               return verb;
-            }
-         };
-      }
-   }
-
-   private static void commitHeaders(ClientInvocation request, HttpRequestBase httpMethod)
-   {
-      MultivaluedMap<String, String> headers = request.getHeaders().asMap();
-      for (Map.Entry<String, List<String>> header : headers.entrySet())
-      {
-         List<String> values = header.getValue();
-         for (String value : values)
-         {
-            httpMethod.addHeader(header.getKey(), value);
-         }
-      }
-   }
-
-   private static void copyResponse(HttpResponse httpResponse, ClientResponse clientResponse)
-   {
-      clientResponse.setStatus(httpResponse.getStatusLine().getStatusCode());
-      CaseInsensitiveMap<String> headers = new CaseInsensitiveMap<String>();
-      for (Header header : httpResponse.getAllHeaders())
-      {
-         headers.add(header.getName(), header.getValue());
-      }
-      clientResponse.setHeaders(headers);
-   }
-
-   private static RuntimeException clientException(Throwable ex, Response clientResponse) {
-      RuntimeException ret;
-      if (ex == null)
-      {
-         ret = new ProcessingException(new NullPointerException());
-      }
-      else if (ex instanceof WebApplicationException)
-      {
-         ret = (WebApplicationException) ex;
-      }
-      else if (ex instanceof ProcessingException)
-      {
-         ret = (ProcessingException) ex;
-      }
-      else if (clientResponse != null)
-      {
-         ret = new ResponseProcessingException(clientResponse, ex);
-      }
-      else
-      {
-         ret = new ProcessingException(ex);
-      }
-      return ret;
-   }
-
-   private static IOException ioException(Exception ex) {
-      return (ex instanceof IOException) ? (IOException) ex : new IOException(ex);
    }
 
 }

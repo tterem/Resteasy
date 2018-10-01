@@ -12,15 +12,15 @@ import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Documented
-@Constraint(validatedBy = ValidationExceptionOtherValidator.class)
-@Target({FIELD, METHOD, PARAMETER})
+@Constraint(validatedBy=ValidationExceptionOtherValidator.class)
+@Target({FIELD,METHOD,PARAMETER})
 @Retention(RUNTIME)
-public @interface ValidationExceptionOtherConstraint {
-    String message() default "Throws OtherValidationException";
+public @interface ValidationExceptionOtherConstraint{
+   String message() default "Throws OtherValidationException";
 
-    Class<?>[] groups() default {};
+   Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+   Class<? extends Payload>[] payload() default {};
 
-    String value() default "";
+   String value() default "";
 }

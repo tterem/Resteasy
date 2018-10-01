@@ -49,143 +49,120 @@ import java.util.List;
  *  feed-level Metadata elements (atom:id, atom:title, and atom:updated)
  *  in the atom:source element.
  * </pre>
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
 @XmlAccessorType(XmlAccessType.PROPERTY)
-@XmlType(propOrder = {"title", "subtitle", "categories", "updated", "id", "links", "authors", "contributors", "rights",
-        "icon", "logo", "generator"})
-public class Source extends CommonAttributes
-{
-   private List<Person> authors = new ArrayList<Person>();
-   private List<Category> categories = new ArrayList<Category>();
-   private List<Person> contributors = new ArrayList<Person>();
+@XmlType(propOrder={"title","subtitle","categories","updated","id","links","authors","contributors","rights",
+   "icon","logo","generator"})
+public class Source extends CommonAttributes{
+   private List<Person> authors=new ArrayList<Person>();
+   private List<Category> categories=new ArrayList<Category>();
+   private List<Person> contributors=new ArrayList<Person>();
    private Generator generator;
    private URI id;
    private String title;
    private Date updated;
-   private List<Link> links = new ArrayList<Link>();
+   private List<Link> links=new ArrayList<Link>();
    private URI icon;
    private URI logo;
    private String rights;
    private String subtitle;
 
-   @XmlElement(name = "author")
-   public List<Person> getAuthors()
-   {
+   @XmlElement(name="author")
+   public List<Person> getAuthors(){
       return authors;
    }
 
-   @XmlElement(name = "contributor")
-   public List<Person> getContributors()
-   {
+   @XmlElement(name="contributor")
+   public List<Person> getContributors(){
       return contributors;
    }
 
    @XmlElement
-   public URI getId()
-   {
+   public URI getId(){
       return id;
    }
 
-   public void setId(URI id)
-   {
-      this.id = id;
+   public void setId(URI id){
+      this.id=id;
    }
 
    @XmlElement
-   public String getTitle()
-   {
+   public String getTitle(){
       return title;
    }
 
-   public void setTitle(String title)
-   {
-      this.title = title;
+   public void setTitle(String title){
+      this.title=title;
    }
 
    @XmlElement
-   public Date getUpdated()
-   {
+   public Date getUpdated(){
       return updated;
    }
 
-   public void setUpdated(Date updated)
-   {
-      this.updated = updated;
+   public void setUpdated(Date updated){
+      this.updated=updated;
    }
 
-   public Link getLinkByRel(String name)
-   {
-      for (Link link : links) if (link.getRel().equals(name)) return link;
+   public Link getLinkByRel(String name){
+      for(Link link : links) if(link.getRel().equals(name)) return link;
       return null;
    }
 
    @XmlElementRef
-   public List<Link> getLinks()
-   {
+   public List<Link> getLinks(){
       return links;
    }
 
    @XmlElementRef
-   public List<Category> getCategories()
-   {
+   public List<Category> getCategories(){
       return categories;
    }
 
    @XmlElementRef
-   public Generator getGenerator()
-   {
+   public Generator getGenerator(){
       return generator;
    }
 
-   public void setGenerator(Generator generator)
-   {
-      this.generator = generator;
+   public void setGenerator(Generator generator){
+      this.generator=generator;
    }
 
    @XmlElement
-   public URI getIcon()
-   {
+   public URI getIcon(){
       return icon;
    }
 
-   public void setIcon(URI icon)
-   {
-      this.icon = icon;
+   public void setIcon(URI icon){
+      this.icon=icon;
    }
 
    @XmlElement
-   public URI getLogo()
-   {
+   public URI getLogo(){
       return logo;
    }
 
-   public void setLogo(URI logo)
-   {
-      this.logo = logo;
+   public void setLogo(URI logo){
+      this.logo=logo;
    }
 
    @XmlElement
-   public String getRights()
-   {
+   public String getRights(){
       return rights;
    }
 
-   public void setRights(String rights)
-   {
-      this.rights = rights;
+   public void setRights(String rights){
+      this.rights=rights;
    }
 
    @XmlElement
-   public String getSubtitle()
-   {
+   public String getSubtitle(){
       return subtitle;
    }
 
-   public void setSubtitle(String subtitle)
-   {
-      this.subtitle = subtitle;
+   public void setSubtitle(String subtitle){
+      this.subtitle=subtitle;
    }
 }

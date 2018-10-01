@@ -5,10 +5,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
 @Path("/")
-public class QueryParamWithMultipleEqualsResource {
-    @Path("test")
-    @GET
-    public String test(@QueryParam("foo") String incoming) {
-        return incoming;
-    }
+public class QueryParamWithMultipleEqualsResource{
+   @Path("test")
+   @GET
+   public String test(@QueryParam("foo") String incoming){
+      return incoming;
+   }
 }

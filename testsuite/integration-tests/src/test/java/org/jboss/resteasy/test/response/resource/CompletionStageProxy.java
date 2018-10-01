@@ -7,7 +7,7 @@ import java.util.concurrent.CompletionStage;
 
 
 @Path("")
-public interface CompletionStageProxy {
+public interface CompletionStageProxy{
    @GET
    @Path("sleep")
    @Produces("text/plain")

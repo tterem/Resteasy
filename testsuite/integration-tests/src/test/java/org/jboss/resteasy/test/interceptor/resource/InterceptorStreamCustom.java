@@ -13,40 +13,40 @@ import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
 @Provider
-public class InterceptorStreamCustom implements ReaderInterceptor, WriterInterceptor {
+public class InterceptorStreamCustom implements ReaderInterceptor, WriterInterceptor{
 
-    @Override
-    public Object aroundReadFrom(ReaderInterceptorContext context)
-            throws IOException, WebApplicationException {
-        InputStream originalInputStream = context.getInputStream();
+   static String convertStreamToString(InputStream is){
+      java.util.Scanner s=new java.util.Scanner(is)
+         .useDelimiter("\\A");
+      return s.hasNext()?s.next():"";
+   }
 
-        String inputString = convertStreamToString(
-                originalInputStream);
-        inputString += inputString;
-        InputStream newStream = new ByteArrayInputStream(
-                inputString.getBytes(StandardCharsets.UTF_8));
+   @Override
+   public Object aroundReadFrom(ReaderInterceptorContext context)
+      throws IOException, WebApplicationException{
+      InputStream originalInputStream=context.getInputStream();
 
-        context.setInputStream(newStream);
+      String inputString=convertStreamToString(
+         originalInputStream);
+      inputString+=inputString;
+      InputStream newStream=new ByteArrayInputStream(
+         inputString.getBytes(StandardCharsets.UTF_8));
 
-        // proceed
-        Object result = context.proceed();
-        return result;
-    }
+      context.setInputStream(newStream);
 
-    @Override
-    public void aroundWriteTo(WriterInterceptorContext context) throws IOException, WebApplicationException {
-        OutputStream outputStream = context.getOutputStream();
-        String responseContent = "writer_interceptor_";
-        outputStream.write(responseContent.getBytes());
-        context.setOutputStream(outputStream);
-        context.proceed();
-    }
+      // proceed
+      Object result=context.proceed();
+      return result;
+   }
 
-    static String convertStreamToString(InputStream is) {
-        java.util.Scanner s = new java.util.Scanner(is)
-                .useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
-    }
+   @Override
+   public void aroundWriteTo(WriterInterceptorContext context) throws IOException, WebApplicationException{
+      OutputStream outputStream=context.getOutputStream();
+      String responseContent="writer_interceptor_";
+      outputStream.write(responseContent.getBytes());
+      context.setOutputStream(outputStream);
+      context.proceed();
+   }
 
 }
 

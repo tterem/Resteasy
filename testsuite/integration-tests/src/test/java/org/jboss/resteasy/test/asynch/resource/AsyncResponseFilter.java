@@ -1,5 +1,15 @@
 package org.jboss.resteasy.test.asynch.resource;
 
+import org.jboss.logging.Logger;
+import org.jboss.resteasy.core.ResteasyContext;
+import org.jboss.resteasy.core.interception.jaxrs.SuspendableContainerResponseContext;
+import org.jboss.resteasy.spi.HttpRequest;
+import org.jboss.resteasy.spi.ResteasyAsynchronousResponse;
+
+import javax.ws.rs.container.CompletionCallback;
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.container.ContainerResponseContext;
+import javax.ws.rs.container.ContainerResponseFilter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map.Entry;
@@ -7,103 +17,85 @@ import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import javax.ws.rs.container.CompletionCallback;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerResponseContext;
-import javax.ws.rs.container.ContainerResponseFilter;
+public abstract class AsyncResponseFilter implements ContainerResponseFilter{
 
-import org.jboss.logging.Logger;
-import org.jboss.resteasy.core.ResteasyContext;
-import org.jboss.resteasy.core.interception.jaxrs.SuspendableContainerResponseContext;
-import org.jboss.resteasy.spi.HttpRequest;
-import org.jboss.resteasy.spi.ResteasyAsynchronousResponse;
-
-public abstract class AsyncResponseFilter implements ContainerResponseFilter {
-
+   private static final Logger LOG=Logger.getLogger(AsyncRequestFilter.class);
    private String name;
    private String callbackException;
-   private static final Logger LOG = Logger.getLogger(AsyncRequestFilter.class);
-   
-   public AsyncResponseFilter(String name)
-   {
-      this.name = name;
+
+   public AsyncResponseFilter(String name){
+      this.name=name;
    }
 
    @Override
-   public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext)
-         throws IOException
-   {
+   public void filter(ContainerRequestContext requestContext,ContainerResponseContext responseContext)
+      throws IOException{
       // copy request filter callback values
-      for (Entry<String, List<String>> entry : requestContext.getHeaders().entrySet())
-      {
+      for(Entry<String,List<String>> entry : requestContext.getHeaders().entrySet()){
          if(entry.getKey().startsWith("RequestFilterCallback"))
             // cast required to disambiguate with Object... method
-            responseContext.getHeaders().addAll(entry.getKey(), (List)entry.getValue());
+            responseContext.getHeaders().addAll(entry.getKey(),(List)entry.getValue());
       }
-      responseContext.getHeaders().add("ResponseFilterCallback"+name, String.valueOf(callbackException));
-      callbackException = null;
+      responseContext.getHeaders().add("ResponseFilterCallback"+name,String.valueOf(callbackException));
+      callbackException=null;
 
-      SuspendableContainerResponseContext ctx = (SuspendableContainerResponseContext) responseContext;
-      String action = requestContext.getHeaderString(name);
+      SuspendableContainerResponseContext ctx=(SuspendableContainerResponseContext)responseContext;
+      String action=requestContext.getHeaderString(name);
       LOG.error("Filter response for "+name+" with action: "+action);
-      if("sync-pass".equals(action)) {
+      if("sync-pass".equals(action)){
          // do nothing
-      }else if("sync-fail".equals(action)) {
+      }else if("sync-fail".equals(action)){
          ctx.setEntity(name);
-      }else if("async-pass".equals(action)) {
+      }else if("async-pass".equals(action)){
          ctx.suspend();
-         ExecutorService executor = Executors.newSingleThreadExecutor();
-         executor.submit(() -> ctx.resume());
-      }else if("async-pass-instant".equals(action)) {
+         ExecutorService executor=Executors.newSingleThreadExecutor();
+         executor.submit(()->ctx.resume());
+      }else if("async-pass-instant".equals(action)){
          ctx.suspend();
          ctx.resume();
-      }else if("async-fail".equals(action)) {
+      }else if("async-fail".equals(action)){
          ctx.suspend();
-         ExecutorService executor = Executors.newSingleThreadExecutor();
-         executor.submit(() -> {
+         ExecutorService executor=Executors.newSingleThreadExecutor();
+         executor.submit(()->{
             ctx.setEntity(name);
             ctx.resume();
          });
-      }else if("async-fail-late".equals(action)) {
+      }else if("async-fail-late".equals(action)){
          ctx.suspend();
-         ExecutorService executor = Executors.newSingleThreadExecutor();
-         executor.submit(() -> {
-            try
-            {
+         ExecutorService executor=Executors.newSingleThreadExecutor();
+         executor.submit(()->{
+            try{
                Thread.sleep(2000);
-            } catch (InterruptedException e)
-            {
+            }catch(InterruptedException e){
                // TODO Auto-generated catch block
-               LOG.error("Error:", e);
+               LOG.error("Error:",e);
             }
             ctx.setEntity(name);
             ctx.resume();
          });
-      }else if("async-fail-instant".equals(action)) {
+      }else if("async-fail-instant".equals(action)){
          ctx.suspend();
          ctx.setEntity(name);
          ctx.resume();
-      }else if("sync-throw".equals(action)) {
+      }else if("sync-throw".equals(action)){
          throw new AsyncFilterException("ouch");
-      }else if("async-throw-late".equals(action)) {
+      }else if("async-throw-late".equals(action)){
          ctx.suspend();
-         HttpRequest req = ResteasyContext.getContextData(HttpRequest.class);
-         ExecutorService executor = Executors.newSingleThreadExecutor();
-         executor.submit(() -> {
-            try
-            {
+         HttpRequest req=ResteasyContext.getContextData(HttpRequest.class);
+         ExecutorService executor=Executors.newSingleThreadExecutor();
+         executor.submit(()->{
+            try{
                Thread.sleep(2000);
-            } catch (InterruptedException e)
-            {
+            }catch(InterruptedException e){
                // TODO Auto-generated catch block
-               LOG.error("Error:", e);
+               LOG.error("Error:",e);
             }
             ctx.setEntity(name);
-            ResteasyAsynchronousResponse resp = req.getAsyncContext().getAsyncResponse();
-            resp.register((CompletionCallback) (t) -> {
-               if(callbackException != null)
+            ResteasyAsynchronousResponse resp=req.getAsyncContext().getAsyncResponse();
+            resp.register((CompletionCallback)(t)->{
+               if(callbackException!=null)
                   throw new RuntimeException("Callback called twice");
-               callbackException = Objects.toString(t);
+               callbackException=Objects.toString(t);
             });
             if("true".equals(req.getHttpHeaders().getHeaderString("UseExceptionMapper")))
                ctx.resume(new AsyncFilterException("ouch"));

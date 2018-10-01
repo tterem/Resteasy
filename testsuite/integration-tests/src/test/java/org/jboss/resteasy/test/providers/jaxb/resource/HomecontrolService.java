@@ -15,18 +15,18 @@ import javax.xml.bind.JAXBElement;
 
 @Provider
 @Path("users")
-@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-public class HomecontrolService {
+@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+public class HomecontrolService{
 
    @POST
-   public JAXBElement<UserType> demo(UserType type) {
-      type.setId(type.getId() + " DemoService_visited");
+   public JAXBElement<UserType> demo(UserType type){
+      type.setId(type.getId()+" DemoService_visited");
       return new ObjectFactory().createUser(type);
    }
 
    @GET
-   public Response get () {
+   public Response get(){
       return Response.ok().build();
    }
 }

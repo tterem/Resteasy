@@ -8,16 +8,13 @@ import org.jboss.resteasy.client.jaxrs.internal.proxy.processors.InvocationProce
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public abstract class AbstractInvocationCollectionProcessor extends AbstractCollectionProcessor<ClientInvocation> implements InvocationProcessor
-{
-   public AbstractInvocationCollectionProcessor(String paramName)
-   {
+public abstract class AbstractInvocationCollectionProcessor extends AbstractCollectionProcessor<ClientInvocation> implements InvocationProcessor{
+   public AbstractInvocationCollectionProcessor(String paramName){
       super(paramName);
    }
 
    @Override
-   public void process(ClientInvocation invocation, Object param)
-   {
-      buildIt(invocation, param);
+   public void process(ClientInvocation invocation,Object param){
+      buildIt(invocation,param);
    }
 }

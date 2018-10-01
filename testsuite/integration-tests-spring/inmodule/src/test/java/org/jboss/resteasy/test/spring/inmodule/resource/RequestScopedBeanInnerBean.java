@@ -6,5 +6,5 @@ package org.jboss.resteasy.test.spring.inmodule.resource;
  * Date: 24/10/14
  * Time: 8:44
  */
-public interface RequestScopedBeanInnerBean {
+public interface RequestScopedBeanInnerBean{
 }

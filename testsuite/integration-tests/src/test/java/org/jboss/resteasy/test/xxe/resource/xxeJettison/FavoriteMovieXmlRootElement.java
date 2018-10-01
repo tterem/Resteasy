@@ -6,15 +6,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @NoJackson
-public class FavoriteMovieXmlRootElement {
+public class FavoriteMovieXmlRootElement{
 
-    private String _title;
+   private String _title;
 
-    public String getTitle() {
-        return _title;
-    }
+   public String getTitle(){
+      return _title;
+   }
 
-    public void setTitle(String title) {
-        _title = title;
-    }
+   public void setTitle(String title){
+      _title=title;
+   }
 }

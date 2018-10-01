@@ -7,9 +7,9 @@ import javax.ws.rs.container.ContainerResponseFilter;
 import java.io.IOException;
 
 @Priority(100)
-public class PriorityContainerResponseFilter1 implements ContainerResponseFilter {
-    @Override
-    public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
+public class PriorityContainerResponseFilter1 implements ContainerResponseFilter{
+   @Override
+   public void filter(ContainerRequestContext requestContext,ContainerResponseContext responseContext) throws IOException{
 
-    }
+   }
 }

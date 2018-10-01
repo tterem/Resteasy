@@ -9,7 +9,7 @@ import javax.ws.rs.Produces;
 import java.util.Collection;
 
 @Path("/bookstore")
-public interface BookStoreClient {
+public interface BookStoreClient{
 
    @GET
    @Path("/books/{isbn}")

@@ -8,13 +8,13 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 @Path("test")
-public class TrailingSlashResource {
-    @Context
-    private UriInfo uriInfo;
+public class TrailingSlashResource{
+   @Context
+   private UriInfo uriInfo;
 
-    @GET
-    @Produces("text/plain")
-    public Response test() {
-        return Response.ok(uriInfo.getPath()).build();
-    }
+   @GET
+   @Produces("text/plain")
+   public Response test(){
+      return Response.ok(uriInfo.getPath()).build();
+   }
 }

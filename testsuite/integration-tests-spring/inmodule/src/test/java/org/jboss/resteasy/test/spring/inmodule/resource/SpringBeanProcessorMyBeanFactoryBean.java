@@ -2,20 +2,20 @@ package org.jboss.resteasy.test.spring.inmodule.resource;
 
 import org.springframework.beans.factory.FactoryBean;
 
-public class SpringBeanProcessorMyBeanFactoryBean implements FactoryBean<SpringBeanProcessorMyBean> {
+public class SpringBeanProcessorMyBeanFactoryBean implements FactoryBean<SpringBeanProcessorMyBean>{
 
-    @Override
-    public SpringBeanProcessorMyBean getObject() throws Exception {
-        return new SpringBeanProcessorMyBean();
-    }
+   @Override
+   public SpringBeanProcessorMyBean getObject() throws Exception{
+      return new SpringBeanProcessorMyBean();
+   }
 
-    @Override
-    public Class<?> getObjectType() {
-        return SpringBeanProcessorMyBean.class;
-    }
+   @Override
+   public Class<?> getObjectType(){
+      return SpringBeanProcessorMyBean.class;
+   }
 
-    @Override
-    public boolean isSingleton() {
-        return true;
-    }
+   @Override
+   public boolean isSingleton(){
+      return true;
+   }
 }

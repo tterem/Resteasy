@@ -6,21 +6,21 @@ import javax.ws.rs.ext.ParamConverter;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class SpringBeanProcessorCustomerParamConverter implements ParamConverter<SpringBeanProcessorCustomer> {
+public class SpringBeanProcessorCustomerParamConverter implements ParamConverter<SpringBeanProcessorCustomer>{
 
-    // this isn't a complex service, but it provides a test to confirm that
-    // RESTEasy doesn't muck up the @Autowired annotation handling in the Spring
-    // life-cycle
-    @Autowired
-    SpringBeanProcessorCustomerService service;
+   // this isn't a complex service, but it provides a test to confirm that
+   // RESTEasy doesn't muck up the @Autowired annotation handling in the Spring
+   // life-cycle
+   @Autowired
+   SpringBeanProcessorCustomerService service;
 
-    @Override
-    public SpringBeanProcessorCustomer fromString(String name) {
-        return service.convert(name);
-    }
+   @Override
+   public SpringBeanProcessorCustomer fromString(String name){
+      return service.convert(name);
+   }
 
-    public String toString(SpringBeanProcessorCustomer springBeanProcessorCustomer) {
-        return service.convert(springBeanProcessorCustomer);
-    }
+   public String toString(SpringBeanProcessorCustomer springBeanProcessorCustomer){
+      return service.convert(springBeanProcessorCustomer);
+   }
 
 }

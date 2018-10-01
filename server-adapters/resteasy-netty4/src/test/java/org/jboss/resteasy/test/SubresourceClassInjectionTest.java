@@ -1,6 +1,10 @@
 package org.jboss.resteasy.test;
 
-import static org.jboss.resteasy.test.TestPortProvider.generateURL;
+import org.jboss.resteasy.plugins.server.netty.NettyContainer;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -9,59 +13,54 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
-import org.jboss.resteasy.plugins.server.netty.NettyContainer;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 
 /**
  * Created by weinanli on 16/06/2017.
  */
-public class SubresourceClassInjectionTest {
-    public static class SubResource {
+public class SubresourceClassInjectionTest{
+   static Client client;
 
-        public SubResource() {
-        }
+   @BeforeClass
+   public static void setup() throws Exception{
+      NettyContainer.start().getRegistry().addPerRequestResource(SubresourceClassInjectionTest.Resource.class);
+      client=ClientBuilder.newClient();
+   }
 
-        @GET
-        public String get(@PathParam("val") String val) {
-            return val;
-        }
-    }
+   @AfterClass
+   public static void end() throws Exception{
+      try{
+         client.close();
+      }catch(Exception e){
 
-    @Path("/")
-    public static class Resource {
+      }
+      NettyContainer.stop();
+   }
 
-        @Path("/sub/{val}")
-        public Class<SubResource> sub2(@PathParam("val") String val) {
-            return SubResource.class;
-        }
-    }
+   @Test
+   public void testQuery() throws Exception{
+      WebTarget target=client.target(generateURL("/sub/val"));
+      String val=target.request().get(String.class);
+      Assert.assertEquals("val",val);
+   }
 
-    static Client client;
+   public static class SubResource{
 
-    @BeforeClass
-    public static void setup() throws Exception {
-        NettyContainer.start().getRegistry().addPerRequestResource(SubresourceClassInjectionTest.Resource.class);
-        client = ClientBuilder.newClient();
-    }
+      public SubResource(){
+      }
 
-    @AfterClass
-    public static void end() throws Exception {
-        try {
-            client.close();
-        } catch (Exception e) {
+      @GET
+      public String get(@PathParam("val") String val){
+         return val;
+      }
+   }
 
-        }
-        NettyContainer.stop();
-    }
+   @Path("/")
+   public static class Resource{
 
-    @Test
-    public void testQuery() throws Exception
-    {
-        WebTarget target = client.target(generateURL("/sub/val"));
-        String val = target.request().get(String.class);
-        Assert.assertEquals("val", val);
-    }
+      @Path("/sub/{val}")
+      public Class<SubResource> sub2(@PathParam("val") String val){
+         return SubResource.class;
+      }
+   }
 }

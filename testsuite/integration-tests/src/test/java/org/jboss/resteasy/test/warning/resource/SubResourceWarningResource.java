@@ -8,17 +8,17 @@ import javax.ws.rs.core.Response;
  * Created by rsearls on 9/11/17.
  */
 @Path("test")
-public class SubResourceWarningResource {
+public class SubResourceWarningResource{
 
    @GET
    @Path("get")
-   public Response getCookie() {
-      TestSubResource sr = new TestSubResource();
+   public Response getCookie(){
+      TestSubResource sr=new TestSubResource();
       return Response.ok().entity(sr).build();
    }
 
    @Path("get")
-   public String testString() {
+   public String testString(){
       return "My test sub-locator.";
    }
 

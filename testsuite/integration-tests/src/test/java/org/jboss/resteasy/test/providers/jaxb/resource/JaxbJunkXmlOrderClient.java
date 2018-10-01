@@ -9,14 +9,14 @@ import javax.ws.rs.Produces;
 
 @Consumes({"application/junk+xml"})
 @Produces({"application/junk+xml"})
-public interface JaxbJunkXmlOrderClient {
+public interface JaxbJunkXmlOrderClient{
 
-    @GET
-    @Path("/{name}")
-    Parent getParent(@PathParam("name")
-                     String name);
+   @GET
+   @Path("/{name}")
+   Parent getParent(@PathParam("name")
+                       String name);
 
-    @POST
-    Parent postParent(Parent parent);
+   @POST
+   Parent postParent(Parent parent);
 
 }

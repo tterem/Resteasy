@@ -4,18 +4,18 @@ import org.jboss.resteasy.plugins.delegates.MediaTypeHeaderDelegate;
 
 import javax.ws.rs.core.MediaType;
 
-public class ClientErrorBadMediaTypeHeaderDelegate extends MediaTypeHeaderDelegate {
-    public Object fromString(String type) throws IllegalArgumentException {
-        if (type == null) {
-            throw new IllegalArgumentException("MediaType value is null");
-        }
-        return parse(type);
-    }
+public class ClientErrorBadMediaTypeHeaderDelegate extends MediaTypeHeaderDelegate{
+   public static MediaType parse(String type){
+      if("text".equals(type)){
+         return new MediaType("text","");
+      }
+      return MediaTypeHeaderDelegate.parse(type);
+   }
 
-    public static MediaType parse(String type) {
-        if ("text".equals(type)) {
-            return new MediaType("text", "");
-        }
-        return MediaTypeHeaderDelegate.parse(type);
-    }
+   public Object fromString(String type) throws IllegalArgumentException{
+      if(type==null){
+         throw new IllegalArgumentException("MediaType value is null");
+      }
+      return parse(type);
+   }
 }

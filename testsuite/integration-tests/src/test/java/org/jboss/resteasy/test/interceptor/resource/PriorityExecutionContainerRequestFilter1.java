@@ -8,10 +8,10 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import java.io.IOException;
 
 @Priority(-100)
-public class PriorityExecutionContainerRequestFilter1 implements ContainerRequestFilter {
-    @Override
-    public void filter(ContainerRequestContext requestContext) throws IOException {
-        PriorityExecutionTest.logger.info(this);
-        PriorityExecutionTest.interceptors.add("PriorityExecutionContainerRequestFilter1");
-    }
+public class PriorityExecutionContainerRequestFilter1 implements ContainerRequestFilter{
+   @Override
+   public void filter(ContainerRequestContext requestContext) throws IOException{
+      PriorityExecutionTest.logger.info(this);
+      PriorityExecutionTest.interceptors.add("PriorityExecutionContainerRequestFilter1");
+   }
 }

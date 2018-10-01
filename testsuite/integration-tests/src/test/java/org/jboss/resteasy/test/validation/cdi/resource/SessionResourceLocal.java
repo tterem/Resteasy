@@ -5,5 +5,5 @@ import javax.ws.rs.Path;
 
 @Local
 @Path("test")
-public interface SessionResourceLocal extends SessionResourceParent {
+public interface SessionResourceLocal extends SessionResourceParent{
 }

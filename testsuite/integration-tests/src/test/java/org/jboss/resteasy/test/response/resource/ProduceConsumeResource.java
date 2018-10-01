@@ -8,26 +8,26 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("resource")
-public class ProduceConsumeResource {
+public class ProduceConsumeResource{
 
-    @POST
-    @Path("plain")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String postPlain() {
-        return MediaType.TEXT_PLAIN;
-    }
+   @POST
+   @Path("plain")
+   @Produces(MediaType.TEXT_PLAIN)
+   public String postPlain(){
+      return MediaType.TEXT_PLAIN;
+   }
 
-    @POST
-    @Path("wild")
-    public ProduceConsumeData data(ProduceConsumeData data) {
-        return data;
-    }
+   @POST
+   @Path("wild")
+   public ProduceConsumeData data(ProduceConsumeData data){
+      return data;
+   }
 
-    @Path("empty")
-    @GET
-    public Response entity() {
-        return Response.ok().build();
-    }
+   @Path("empty")
+   @GET
+   public Response entity(){
+      return Response.ok().build();
+   }
 
 
 }

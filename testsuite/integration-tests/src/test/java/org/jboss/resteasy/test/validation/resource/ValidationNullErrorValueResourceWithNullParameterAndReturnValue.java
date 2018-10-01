@@ -7,16 +7,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
 @Path("")
-public class ValidationNullErrorValueResourceWithNullParameterAndReturnValue {
-    @Path("post")
-    @POST
-    public void doPost(@NotNull @QueryParam("q") String q) {
-    }
+public class ValidationNullErrorValueResourceWithNullParameterAndReturnValue{
+   @Path("post")
+   @POST
+   public void doPost(@NotNull @QueryParam("q") String q){
+   }
 
-    @Path("get")
-    @GET
-    @NotNull
-    public String doGet() {
-        return null;
-    }
+   @Path("get")
+   @GET
+   @NotNull
+   public String doGet(){
+      return null;
+   }
 }

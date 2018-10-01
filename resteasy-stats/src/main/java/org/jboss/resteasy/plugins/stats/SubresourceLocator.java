@@ -9,33 +9,28 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-@XmlRootElement(name = "locator")
+@XmlRootElement(name="locator")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class SubresourceLocator
-{
-   @XmlAttribute(name = "class")
+public class SubresourceLocator{
+   @XmlAttribute(name="class")
    private String clazz;
 
    @XmlAttribute
    private String method;
 
-   public String getClazz()
-   {
+   public String getClazz(){
       return clazz;
    }
 
-   public void setClazz(String clazz)
-   {
-      this.clazz = clazz;
+   public void setClazz(String clazz){
+      this.clazz=clazz;
    }
 
-   public String getMethod()
-   {
+   public String getMethod(){
       return method;
    }
 
-   public void setMethod(String method)
-   {
-      this.method = method;
+   public void setMethod(String method){
+      this.method=method;
    }
 }

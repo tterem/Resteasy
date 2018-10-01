@@ -1,6 +1,8 @@
 package org.jboss.resteasy.test.rx.rxjava2.resource;
 
-import java.util.List;
+import io.reactivex.Flowable;
+import org.jboss.resteasy.test.rx.resource.TRACE;
+import org.jboss.resteasy.test.rx.resource.Thing;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -12,13 +14,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
-import org.jboss.resteasy.test.rx.resource.TRACE;
-import org.jboss.resteasy.test.rx.resource.Thing;
-
-import io.reactivex.Flowable;
-
-public interface Rx2FlowableResourceNoStream {
+public interface Rx2FlowableResourceNoStream{
 
    @GET
    @Path("get/string")

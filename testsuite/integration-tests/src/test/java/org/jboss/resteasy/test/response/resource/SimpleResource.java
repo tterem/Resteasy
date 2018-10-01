@@ -29,11 +29,11 @@ import javax.ws.rs.Produces;
  * @author Ivo Studensky
  */
 @Path("/simpleresource")
-public class SimpleResource {
+public class SimpleResource{
 
-    @GET
-    @Produces("text/plain")
-    public String get() {
-        return "hello";
-    }
+   @GET
+   @Produces("text/plain")
+   public String get(){
+      return "hello";
+   }
 }

@@ -5,5 +5,5 @@ import javax.ws.rs.Path;
 
 @Remote
 @Path("test")
-public interface SessionResourceRemote extends SessionResourceParent {
+public interface SessionResourceRemote extends SessionResourceParent{
 }

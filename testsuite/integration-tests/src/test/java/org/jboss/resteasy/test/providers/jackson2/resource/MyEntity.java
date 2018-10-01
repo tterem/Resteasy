@@ -6,5 +6,5 @@ package org.jboss.resteasy.test.providers.jackson2.resource;
  * User: rsearls
  * Date: 10/13/16
  */
-public class MyEntity {
+public class MyEntity{
 }

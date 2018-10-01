@@ -1,8 +1,5 @@
 package org.jboss.resteasy.plugins.server.resourcefactory;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-
 import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.HttpResponse;
 import org.jboss.resteasy.spi.ResourceFactory;
@@ -10,60 +7,54 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.jboss.resteasy.spi.metadata.ResourceBuilder;
 import org.jboss.resteasy.spi.metadata.ResourceClass;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+
 /**
  * VERY simple implementation that just returns the instance the SingleResource was created with
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class SingletonResource implements ResourceFactory
-{
+public class SingletonResource implements ResourceFactory{
    private final Object obj;
    private final ResourceClass resourceClass;
 
    @Deprecated
-   public SingletonResource(Object obj)
-   {
-      this.obj = obj;
-      this.resourceClass = ResourceBuilder.rootResourceFromAnnotations(obj.getClass());
-   }
-   
-   public SingletonResource(Object obj, ResourceClass resourceClass)
-   {
-      this.obj = obj;
-      this.resourceClass = resourceClass;
+   public SingletonResource(Object obj){
+      this.obj=obj;
+      this.resourceClass=ResourceBuilder.rootResourceFromAnnotations(obj.getClass());
    }
 
-   public void registered(ResteasyProviderFactory factory)
-   {
-      factory.getInjectorFactory().createPropertyInjector(resourceClass, factory).inject(obj, false);
+   public SingletonResource(Object obj,ResourceClass resourceClass){
+      this.obj=obj;
+      this.resourceClass=resourceClass;
    }
 
-   public CompletionStage<Object> createResource(HttpRequest request, HttpResponse response, ResteasyProviderFactory factory)
-   {
+   public void registered(ResteasyProviderFactory factory){
+      factory.getInjectorFactory().createPropertyInjector(resourceClass,factory).inject(obj,false);
+   }
+
+   public CompletionStage<Object> createResource(HttpRequest request,HttpResponse response,ResteasyProviderFactory factory){
       return CompletableFuture.completedFuture(obj);
    }
 
-   public void unregistered()
-   {
+   public void unregistered(){
    }
 
-   public Class<?> getScannableClass()
-   {
+   public Class<?> getScannableClass(){
       return obj.getClass();
    }
 
-   public void requestFinished(HttpRequest request, HttpResponse response, Object resource)
-   {
+   public void requestFinished(HttpRequest request,HttpResponse response,Object resource){
    }
 
-   public String traceInfo() {
-      StringBuilder builder = new StringBuilder();
+   public String traceInfo(){
+      StringBuilder builder=new StringBuilder();
       builder.append("[")
-              .append("SINGLETON").append("|")
-              .append(resourceClass.getClazz()).append("|")
-              .append(obj.toString())
-              .append("]");
+         .append("SINGLETON").append("|")
+         .append(resourceClass.getClazz()).append("|")
+         .append(obj.toString())
+         .append("]");
       return builder.toString();
    }
 }

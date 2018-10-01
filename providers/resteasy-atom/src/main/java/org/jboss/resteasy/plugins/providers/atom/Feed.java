@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>Per RFC4287:</p> 
+ * <p>Per RFC4287:</p>
  * <pre>
  * The "atom:feed" element is the document (i.e., top-level) element of
  * an Atom Feed Document, acting as a container for metadata and data
@@ -77,20 +77,17 @@ import java.util.List;
  * One typical behavior would be to display only the entry with the
  * latest atom:updated timestamp.
  * </pre>
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-@XmlRootElement(name = "feed")
+@XmlRootElement(name="feed")
 @XmlAccessorType(XmlAccessType.PROPERTY)
-public class Feed extends Source
-{
+public class Feed extends Source{
 
-   private List<Entry> entries = new ArrayList<Entry>();
+   private List<Entry> entries=new ArrayList<Entry>();
 
    @XmlElementRef
-   public List<Entry> getEntries()
-   {
+   public List<Entry> getEntries(){
       return entries;
    }
 

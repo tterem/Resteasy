@@ -1,7 +1,6 @@
 package org.jboss.resteasy.test.resource.patch;
 
-public class Student
-{
+public class Student{
    private Long id;
 
    private String firstName;
@@ -12,58 +11,48 @@ public class Student
 
    private String gender;
 
-   public Long getId()
-   {
+   public Long getId(){
       return id;
    }
 
-   public Student setId(Long id)
-   {
-      this.id = id;
+   public Student setId(Long id){
+      this.id=id;
       return this;
    }
 
-   public String getFirstName()
-   {
+   public String getFirstName(){
       return firstName;
    }
 
-   public Student setFirstName(String firstName)
-   {
-      this.firstName = firstName;
+   public Student setFirstName(String firstName){
+      this.firstName=firstName;
       return this;
    }
 
-   public String getLastName()
-   {
+   public String getLastName(){
       return lastName;
    }
 
-   public Student setLastName(String lastName)
-   {
-      this.lastName = lastName;
+   public Student setLastName(String lastName){
+      this.lastName=lastName;
       return this;
    }
 
-   public String getSchool()
-   {
+   public String getSchool(){
       return school;
    }
 
-   public Student setSchool(String school)
-   {
-      this.school = school;
+   public Student setSchool(String school){
+      this.school=school;
       return this;
    }
 
-   public String getGender()
-   {
+   public String getGender(){
       return gender;
    }
 
-   public Student setGender(String gender)
-   {
-      this.gender = gender;
+   public Student setGender(String gender){
+      this.gender=gender;
       return this;
    }
 }

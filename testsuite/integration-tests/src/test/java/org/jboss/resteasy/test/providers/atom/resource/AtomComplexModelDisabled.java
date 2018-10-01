@@ -21,19 +21,19 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "disabled")
+@XmlRootElement(name="disabled")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AtomComplexModelDisabled {
+public class AtomComplexModelDisabled{
 
-    @XmlElement
-    private boolean value;
+   @XmlElement
+   private boolean value;
 
-    public boolean getValue() {
-        return value;
-    }
+   public boolean getValue(){
+      return value;
+   }
 
-    public void setValue(boolean disabled) {
-        value = disabled;
-    }
+   public void setValue(boolean disabled){
+      value=disabled;
+   }
 
 }

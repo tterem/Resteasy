@@ -10,19 +10,19 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 
 @Path("/encodedMethod")
-public class EncodedParamsSimpleResource {
-    @GET
-    @Encoded
-    public String get(@QueryParam("stuff") String stuff) {
-        Assert.assertEquals(EncodedParamsTest.ERROR_MESSAGE, "hello%20world", stuff);
-        return "HELLO";
-    }
+public class EncodedParamsSimpleResource{
+   @GET
+   @Encoded
+   public String get(@QueryParam("stuff") String stuff){
+      Assert.assertEquals(EncodedParamsTest.ERROR_MESSAGE,"hello%20world",stuff);
+      return "HELLO";
+   }
 
-    @GET
-    @Encoded
-    @Path("/{param}")
-    public String goodbye(@PathParam("param") String stuff) {
-        Assert.assertEquals(EncodedParamsTest.ERROR_MESSAGE, "hello%20world", stuff);
-        return "GOODBYE";
-    }
+   @GET
+   @Encoded
+   @Path("/{param}")
+   public String goodbye(@PathParam("param") String stuff){
+      Assert.assertEquals(EncodedParamsTest.ERROR_MESSAGE,"hello%20world",stuff);
+      return "GOODBYE";
+   }
 }

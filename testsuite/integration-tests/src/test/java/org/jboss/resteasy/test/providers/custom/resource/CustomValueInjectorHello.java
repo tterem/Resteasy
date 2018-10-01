@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CustomValueInjectorHello {
-    String value();
+public @interface CustomValueInjectorHello{
+   String value();
 }

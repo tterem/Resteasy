@@ -17,105 +17,100 @@ import java.io.IOException;
 
 @Singleton
 @Path("/broadcast")
-public class SseBroadcastResource {
+public class SseBroadcastResource{
 
-    private final Object sseBroadcasterLock = new Object();
-    private volatile SseBroadcaster sseBroadcaster;
-    private volatile boolean onErrorCalled = false;
-    private volatile boolean onCloseCalled = false;
+   private final static Logger logger=Logger.getLogger(SseBroadcastResource.class);
+   private final Object sseBroadcasterLock=new Object();
+   private volatile SseBroadcaster sseBroadcaster;
+   private volatile boolean onErrorCalled=false;
+   private volatile boolean onCloseCalled=false;
+   private volatile SseEventSink eventSink;
 
-    private final static Logger logger = Logger.getLogger(SseBroadcastResource.class);
+   @GET
+   @Path("/subscribe")
+   @Produces(MediaType.SERVER_SENT_EVENTS)
+   public void subscribe(@Context SseEventSink sink,@Context Sse sse) throws IOException{
 
-    private volatile SseEventSink eventSink;
+      if(sink==null){
+         throw new IllegalStateException("No client connected.");
+      }
+      synchronized(this.sseBroadcasterLock){
+         //subscribe
+         if(sseBroadcaster==null){
+            sseBroadcaster=sse.newBroadcaster();
+            onCloseCalled=false;
+            onErrorCalled=false;
+         }
+      }
+      sseBroadcaster.register(sink);
+      this.eventSink=sink;
+      logger.info("Sink registered");
+   }
 
-    @GET
-    @Path("/subscribe")
-    @Produces(MediaType.SERVER_SENT_EVENTS)
-    public void subscribe(@Context SseEventSink sink, @Context Sse sse) throws IOException {
+   @POST
+   @Path("/start")
+   public void broadcast(String message,@Context Sse sse) throws IOException{
+      if(this.sseBroadcaster==null){
+         throw new IllegalStateException("No Sse broadcaster created.");
+      }
+      this.sseBroadcaster.broadcast(sse.newEvent(message));
+   }
 
-        if (sink == null) {
-            throw new IllegalStateException("No client connected.");
-        }
-        synchronized (this.sseBroadcasterLock) {
-            //subscribe
-            if (sseBroadcaster == null) {
-                sseBroadcaster = sse.newBroadcaster();
-                onCloseCalled = false;
-                onErrorCalled = false;
-            }
-        }
-        sseBroadcaster.register(sink);
-        this.eventSink = sink;
-        logger.info("Sink registered");
-    }
+   @POST
+   @Path("/startAndClose")
+   public void broadcastAndClose(String message,@Context Sse sse) throws IOException, InterruptedException{
+      if(this.sseBroadcaster==null){
+         throw new IllegalStateException("No Sse broadcaster created.");
+      }
+      this.eventSink.close();
+      logger.info("Sink closed: "+eventSink.isClosed());
+      this.sseBroadcaster.broadcast(sse.newEvent(message));
+   }
 
-    @POST
-    @Path("/start")
-    public void broadcast(String message, @Context Sse sse) throws IOException {
-        if (this.sseBroadcaster == null) {
-            throw new IllegalStateException("No Sse broadcaster created.");
-        }
-        this.sseBroadcaster.broadcast(sse.newEvent(message));
-    }
+   @GET
+   @Path("/listeners")
+   public void registerListeners(@Context Sse sse) throws IOException{
 
-    @POST
-    @Path("/startAndClose")
-    public void broadcastAndClose(String message, @Context Sse sse) throws IOException, InterruptedException {
-        if (this.sseBroadcaster == null) {
-            throw new IllegalStateException("No Sse broadcaster created.");
-        }
-        this.eventSink.close();
-        logger.info("Sink closed: " + eventSink.isClosed());
-        this.sseBroadcaster.broadcast(sse.newEvent(message));
-    }
+      synchronized(this.sseBroadcasterLock){
+         if(sseBroadcaster==null){
+            sseBroadcaster=sse.newBroadcaster();
+            onCloseCalled=false;
+            onErrorCalled=false;
+         }
+         sseBroadcaster.onClose(sseEventSink->{
+            onCloseCalled=true;
+            logger.info("onClose called");
+         });
+         sseBroadcaster.onError((sseEventSink,throwable)->{
+            onErrorCalled=true;
+            logger.info("onError called");
+         });
+      }
+   }
 
-    @GET
-    @Path("/listeners")
-    public void registerListeners(@Context Sse sse) throws IOException {
+   @DELETE
+   public void close() throws IOException{
+      synchronized(this.sseBroadcasterLock){
+         if(sseBroadcaster!=null){
+            sseBroadcaster.close();
+            sseBroadcaster=null;
+         }
+      }
+   }
 
-        synchronized (this.sseBroadcasterLock) {
-            if (sseBroadcaster == null) {
-                sseBroadcaster = sse.newBroadcaster();
-                onCloseCalled = false;
-                onErrorCalled = false;
-            }
-            sseBroadcaster.onClose(sseEventSink -> {
-                onCloseCalled = true;
-                logger.info("onClose called");
-            });
-            sseBroadcaster.onError((sseEventSink, throwable) -> {
-                onErrorCalled = true;
-                logger.info("onError called");
-            });
-        }
-    }
+   @GET
+   @Path("/onCloseCalled")
+   public boolean onCloseCalled(){
+      synchronized(this.sseBroadcasterLock){
+         return onCloseCalled;
+      }
+   }
 
-    @DELETE
-    public void close() throws IOException
-    {
-        synchronized (this.sseBroadcasterLock)
-        {
-            if (sseBroadcaster != null)
-            {
-                sseBroadcaster.close();
-                sseBroadcaster = null;
-            }
-        }
-    }
-
-    @GET
-    @Path("/onCloseCalled")
-    public boolean onCloseCalled() {
-        synchronized (this.sseBroadcasterLock) {
-            return onCloseCalled;
-        }
-    }
-
-    @GET
-    @Path("/onErrorCalled")
-    public boolean onErrorCalled() {
-        synchronized (this.sseBroadcasterLock) {
-            return onErrorCalled;
-        }
-    }
+   @GET
+   @Path("/onErrorCalled")
+   public boolean onErrorCalled(){
+      synchronized(this.sseBroadcasterLock){
+         return onErrorCalled;
+      }
+   }
 }

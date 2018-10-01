@@ -11,17 +11,17 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @Path("test")
-public class SecurityContextResource {
-    @Context
-    SecurityContext securityContext;
+public class SecurityContextResource{
+   @Context
+   SecurityContext securityContext;
 
-    @GET
-    @Produces("text/plain")
-    public String get() {
-        if (!securityContext.isUserInRole("admin")) {
-            throw new WebApplicationException(Response.serverError().status(HttpResponseCodes.SC_UNAUTHORIZED)
-                    .entity("User " + securityContext.getUserPrincipal().getName() + " is not authorized").build());
-        }
-        return "Good user " + securityContext.getUserPrincipal().getName();
-    }
+   @GET
+   @Produces("text/plain")
+   public String get(){
+      if(!securityContext.isUserInRole("admin")){
+         throw new WebApplicationException(Response.serverError().status(HttpResponseCodes.SC_UNAUTHORIZED)
+            .entity("User "+securityContext.getUserPrincipal().getName()+" is not authorized").build());
+      }
+      return "Good user "+securityContext.getUserPrincipal().getName();
+   }
 }

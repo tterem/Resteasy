@@ -7,9 +7,9 @@ import javax.ws.rs.ext.ReaderInterceptorContext;
 import java.io.IOException;
 
 @Priority(200)
-public class ClientResponseFilterInterceptorReaderTwo implements ReaderInterceptor {
-    @Override
-    public Object aroundReadFrom(ReaderInterceptorContext context) throws IOException, WebApplicationException {
-        throw new IOException("should be caught");
-    }
+public class ClientResponseFilterInterceptorReaderTwo implements ReaderInterceptor{
+   @Override
+   public Object aroundReadFrom(ReaderInterceptorContext context) throws IOException, WebApplicationException{
+      throw new IOException("should be caught");
+   }
 }

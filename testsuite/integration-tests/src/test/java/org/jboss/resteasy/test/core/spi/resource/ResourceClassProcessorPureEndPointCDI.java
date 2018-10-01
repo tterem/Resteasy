@@ -5,11 +5,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/pure")
-public class ResourceClassProcessorPureEndPointCDI {
-    @GET
-    @Path("pure")
-    @Produces("text/plain")
-    public String getLocating() {
-        return "<a></a>";
-    }
+public class ResourceClassProcessorPureEndPointCDI{
+   @GET
+   @Path("pure")
+   @Produces("text/plain")
+   public String getLocating(){
+      return "<a></a>";
+   }
 }

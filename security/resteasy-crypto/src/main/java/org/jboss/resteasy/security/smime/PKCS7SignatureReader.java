@@ -1,10 +1,10 @@
 package org.jboss.resteasy.security.smime;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import org.bouncycastle.cms.CMSSignedData;
+import org.jboss.resteasy.core.ResteasyContext;
+import org.jboss.resteasy.security.BouncyIntegration;
+import org.jboss.resteasy.spi.ReaderException;
+import org.jboss.resteasy.spi.util.Types;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.WebApplicationException;
@@ -13,12 +13,11 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.Provider;
 import javax.ws.rs.ext.Providers;
-
-import org.bouncycastle.cms.CMSSignedData;
-import org.jboss.resteasy.core.ResteasyContext;
-import org.jboss.resteasy.security.BouncyIntegration;
-import org.jboss.resteasy.spi.ReaderException;
-import org.jboss.resteasy.spi.util.Types;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -26,45 +25,37 @@ import org.jboss.resteasy.spi.util.Types;
  */
 @Provider
 @Consumes("application/pkcs7-signature")
-public class PKCS7SignatureReader implements MessageBodyReader<PKCS7SignatureInput>
-{
-   static
-   {
+public class PKCS7SignatureReader implements MessageBodyReader<PKCS7SignatureInput>{
+   static{
       BouncyIntegration.init();
    }
 
-   public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
-   {
+   public boolean isReadable(Class<?> type,Type genericType,Annotation[] annotations,MediaType mediaType){
       return PKCS7SignatureInput.class.isAssignableFrom(type);
    }
 
-   @SuppressWarnings(value = "unchecked")
-   public PKCS7SignatureInput readFrom(Class<PKCS7SignatureInput> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, String> headers, InputStream entityStream) throws IOException, WebApplicationException
-   {
-      Class<?> baseType = null;
-      Type baseGenericType = null;
+   @SuppressWarnings(value="unchecked")
+   public PKCS7SignatureInput readFrom(Class<PKCS7SignatureInput> type,Type genericType,Annotation[] annotations,MediaType mediaType,MultivaluedMap<String,String> headers,InputStream entityStream) throws IOException, WebApplicationException{
+      Class<?> baseType=null;
+      Type baseGenericType=null;
 
-      if (genericType != null && genericType instanceof ParameterizedType)
-      {
-         ParameterizedType param = (ParameterizedType) genericType;
-         baseGenericType = param.getActualTypeArguments()[0];
-         baseType = Types.getRawType(baseGenericType);
+      if(genericType!=null&&genericType instanceof ParameterizedType){
+         ParameterizedType param=(ParameterizedType)genericType;
+         baseGenericType=param.getActualTypeArguments()[0];
+         baseType=Types.getRawType(baseGenericType);
       }
-      try
-      {
-         CMSSignedData data = new CMSSignedData(entityStream);
-         PKCS7SignatureInput input = new PKCS7SignatureInput();
+      try{
+         CMSSignedData data=new CMSSignedData(entityStream);
+         PKCS7SignatureInput input=new PKCS7SignatureInput();
          input.setType(baseType);
          input.setGenericType(baseGenericType);
          input.setAnnotations(annotations);
          input.setData(data);
 
-         Providers providers = ResteasyContext.getContextData(Providers.class);
+         Providers providers=ResteasyContext.getContextData(Providers.class);
          input.setProviders(providers);
          return input;
-      }
-      catch (Exception e)
-      {
+      }catch(Exception e){
          throw new ReaderException(e);
       }
 

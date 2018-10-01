@@ -5,9 +5,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/myinterface")
-public interface ApplicationConfigInterface {
-    @GET
-    @Produces("text/plain")
-    String hello();
+public interface ApplicationConfigInterface{
+   @GET
+   @Produces("text/plain")
+   String hello();
 
 }

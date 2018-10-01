@@ -8,10 +8,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 @Path("/short/{arg}")
-public class UriParamAsPrimitiveResourceUriShort {
-    @GET
-    public String doGet(@PathParam("arg") short v) {
-        Assert.assertTrue(UriParamAsPrimitiveTest.ERROR_CODE, 32767 == v);
-        return "content";
-    }
+public class UriParamAsPrimitiveResourceUriShort{
+   @GET
+   public String doGet(@PathParam("arg") short v){
+      Assert.assertTrue(UriParamAsPrimitiveTest.ERROR_CODE,32767==v);
+      return "content";
+   }
 }

@@ -23,19 +23,19 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
-@XmlRootElement(name = "created")
+@XmlRootElement(name="created")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AtomComplexModelCreated {
+public class AtomComplexModelCreated{
 
-    @XmlElement
-    private Date value;
+   @XmlElement
+   private Date value;
 
-    public Date getValue() {
-        return value;
-    }
+   public Date getValue(){
+      return value;
+   }
 
-    public void setValue(Date created) {
-        value = created;
-    }
+   public void setValue(Date created){
+      value=created;
+   }
 
 }

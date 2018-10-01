@@ -9,18 +9,18 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 @Provider
-public class DecoratorsBookReaderInterceptor implements ReaderInterceptor {
-    @Inject
-    private Logger log;
+public class DecoratorsBookReaderInterceptor implements ReaderInterceptor{
+   @Inject
+   private Logger log;
 
-    @Override
-    public Object aroundReadFrom(ReaderInterceptorContext context) throws IOException, WebApplicationException {
-        log.info("entering DecoratorsBookReaderInterceptor.aroundReadFrom()");
-        DecoratorsVisitList.add(DecoratorsVisitList.READER_INTERCEPTOR_ENTER);
-        Object result = context.proceed();
-        DecoratorsVisitList.add(DecoratorsVisitList.READER_INTERCEPTOR_LEAVE);
-        log.info("leaving DecoratorsBookReaderInterceptor.aroundReadFrom()");
-        return result;
-    }
+   @Override
+   public Object aroundReadFrom(ReaderInterceptorContext context) throws IOException, WebApplicationException{
+      log.info("entering DecoratorsBookReaderInterceptor.aroundReadFrom()");
+      DecoratorsVisitList.add(DecoratorsVisitList.READER_INTERCEPTOR_ENTER);
+      Object result=context.proceed();
+      DecoratorsVisitList.add(DecoratorsVisitList.READER_INTERCEPTOR_LEAVE);
+      log.info("leaving DecoratorsBookReaderInterceptor.aroundReadFrom()");
+      return result;
+   }
 }
 

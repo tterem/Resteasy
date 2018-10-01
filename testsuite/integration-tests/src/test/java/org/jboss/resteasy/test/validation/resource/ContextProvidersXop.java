@@ -8,22 +8,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ContextProvidersXop {
-    @XmlMimeType(MediaType.APPLICATION_OCTET_STREAM)
-    private byte[] bytes;
+public class ContextProvidersXop{
+   @XmlMimeType(MediaType.APPLICATION_OCTET_STREAM)
+   private byte[] bytes;
 
-    public ContextProvidersXop(final byte[] bytes) {
-        this.bytes = bytes;
-    }
+   public ContextProvidersXop(final byte[] bytes){
+      this.bytes=bytes;
+   }
 
-    public ContextProvidersXop() {
-    }
+   public ContextProvidersXop(){
+   }
 
-    public byte[] getBytes() {
-        return bytes;
-    }
+   public byte[] getBytes(){
+      return bytes;
+   }
 
-    public void setBytes(byte[] bytes) {
-        this.bytes = bytes;
-    }
+   public void setBytes(byte[] bytes){
+      this.bytes=bytes;
+   }
 }

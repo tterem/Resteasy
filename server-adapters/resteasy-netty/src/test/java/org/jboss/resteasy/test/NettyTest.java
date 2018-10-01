@@ -25,83 +25,75 @@ import static org.jboss.resteasy.test.TestPortProvider.generateURL;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class NettyTest
-{
+public class NettyTest{
+   @BeforeClass
+   public static void setup() throws Exception{
+      NettyContainer.start().getRegistry().addPerRequestResource(Resource.class);
+   }
+
+   @AfterClass
+   public static void end() throws Exception{
+      NettyContainer.stop();
+   }
+
+   @Test
+   public void testBasic() throws Exception{
+      Client client=ClientBuilder.newBuilder().build();
+      WebTarget target=client.target(generateURL("/test"));
+      String val=target.request().get(String.class);
+      Assert.assertEquals("hello world",val);
+   }
+
+   @Test
+   public void testHeadContentLength() throws Exception{
+      Client client=ClientBuilder.newBuilder().build();
+      WebTarget target=client.target(generateURL("/test"));
+      Response getResponse=target.request().buildGet().invoke();
+      String val=ClientInvocation.extractResult(new GenericType<String>(String.class),getResponse,null);
+      Assert.assertEquals("hello world",val);
+      Response headResponse=target.request().build(HttpMethod.HEAD).invoke();
+      Assert.assertEquals("HEAD method should return the same Content-Length as the GET method",getResponse.getLength(),headResponse.getLength());
+      Assert.assertTrue(getResponse.getLength()>0);
+   }
+
+   @Test
+   public void testUnhandledException() throws Exception{
+      Client client=ClientBuilder.newBuilder().build();
+      WebTarget target=client.target(generateURL("/exception"));
+      Response resp=target.request().get();
+      Assert.assertEquals(500,resp.getStatus());
+   }
+
+   @Test
+   public void testChannelContext() throws Exception{
+      Client client=ClientBuilder.newBuilder().build();
+      WebTarget target=client.target(generateURL("/context"));
+      String val=target.request().get(String.class);
+      Assert.assertNotNull(val);
+      Assert.assertFalse(val.isEmpty());
+   }
+
    @Path("/")
-   public static class Resource
-   {
+   public static class Resource{
       @GET
       @Path("/test")
       @Produces("text/plain")
-      public String hello()
-      {
+      public String hello(){
          return "hello world";
       }
 
       @GET
       @Path("/exception")
       @Produces("text/plain")
-      public String exception() {
+      public String exception(){
          throw new RuntimeException();
       }
 
       @GET
       @Path("/context")
       @Produces("text/plain")
-      public String context(@Context ChannelHandlerContext context) {
-          return context.getChannel().toString();
+      public String context(@Context ChannelHandlerContext context){
+         return context.getChannel().toString();
       }
    }
-
-   @BeforeClass
-   public static void setup() throws Exception
-   {
-      NettyContainer.start().getRegistry().addPerRequestResource(Resource.class);
-   }
-
-   @AfterClass
-   public static void end() throws Exception
-   {
-      NettyContainer.stop();
-   }
-
-   @Test
-   public void testBasic() throws Exception
-   {
-      Client client = ClientBuilder.newBuilder().build();
-      WebTarget target = client.target(generateURL("/test"));
-      String val = target.request().get(String.class);
-      Assert.assertEquals("hello world", val);
-   }
-
-   @Test
-   public void testHeadContentLength() throws Exception
-   {
-      Client client = ClientBuilder.newBuilder().build();
-      WebTarget target = client.target(generateURL("/test"));
-      Response getResponse = target.request().buildGet().invoke();
-      String val = ClientInvocation.extractResult(new GenericType<String>(String.class), getResponse, null);
-      Assert.assertEquals("hello world", val);
-      Response headResponse = target.request().build(HttpMethod.HEAD).invoke();
-      Assert.assertEquals("HEAD method should return the same Content-Length as the GET method", getResponse.getLength(), headResponse.getLength());
-      Assert.assertTrue(getResponse.getLength() > 0);
-   }
-
-   @Test
-   public void testUnhandledException() throws Exception
-   {
-      Client client = ClientBuilder.newBuilder().build();
-      WebTarget target = client.target(generateURL("/exception"));
-      Response resp = target.request().get();
-      Assert.assertEquals(500, resp.getStatus());
-   }
-
-    @Test
-    public void testChannelContext() throws Exception {
-      Client client = ClientBuilder.newBuilder().build();
-      WebTarget target = client.target(generateURL("/context"));
-      String val = target.request().get(String.class);
-      Assert.assertNotNull(val);
-      Assert.assertFalse(val.isEmpty());
-    }
 }

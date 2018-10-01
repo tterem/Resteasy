@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Path("/inputstream")
-public class SpecialResourceStreamResource {
-    @POST
-    @Path("/test/{type}")
-    public void test(InputStream is, @PathParam("type") final String type) throws IOException {
+public class SpecialResourceStreamResource{
+   @POST
+   @Path("/test/{type}")
+   public void test(InputStream is,@PathParam("type") final String type) throws IOException{
 
-    }
+   }
 }

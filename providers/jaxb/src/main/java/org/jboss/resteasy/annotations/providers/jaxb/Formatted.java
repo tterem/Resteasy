@@ -13,13 +13,11 @@ import java.lang.annotation.Target;
  * Format XML output with indentations and newlines.
  * <p>
  * This is a JAXB Decorator
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-@Target({ElementType.TYPE, ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD})
+@Target({ElementType.TYPE,ElementType.METHOD,ElementType.PARAMETER,ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Decorator(processor = PrettyProcessor.class, target = Marshaller.class)
-public @interface Formatted
-{
+@Decorator(processor=PrettyProcessor.class, target=Marshaller.class)
+public @interface Formatted{
 }

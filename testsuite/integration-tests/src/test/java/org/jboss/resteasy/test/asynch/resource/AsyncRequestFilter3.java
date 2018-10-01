@@ -5,10 +5,9 @@ import javax.ws.rs.ext.Provider;
 
 @Priority(3)
 @Provider
-public class AsyncRequestFilter3 extends AsyncRequestFilter {
+public class AsyncRequestFilter3 extends AsyncRequestFilter{
 
-   public AsyncRequestFilter3()
-   {
+   public AsyncRequestFilter3(){
       super("Filter3");
    }
 }

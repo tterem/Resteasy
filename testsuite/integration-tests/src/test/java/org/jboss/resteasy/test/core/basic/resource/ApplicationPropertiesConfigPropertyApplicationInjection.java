@@ -7,10 +7,10 @@ import java.util.Collections;
 import java.util.Map;
 
 @ApplicationPath("/")
-public class ApplicationPropertiesConfigPropertyApplicationInjection extends Application {
+public class ApplicationPropertiesConfigPropertyApplicationInjection extends Application{
 
-    @Override
-    public Map<String, Object> getProperties() {
-        return Collections.<String, Object>singletonMap("Prop1", "Value1");
-    }
+   @Override
+   public Map<String,Object> getProperties(){
+      return Collections.<String,Object>singletonMap("Prop1","Value1");
+   }
 }

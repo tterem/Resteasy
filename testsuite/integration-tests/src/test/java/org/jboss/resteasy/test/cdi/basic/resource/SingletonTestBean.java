@@ -6,23 +6,23 @@ import javax.ws.rs.GET;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 
-@Stateless(name = "SingletonTestBean")
+@Stateless(name="SingletonTestBean")
 @Local({SingletonLocalIF.class})
-public class SingletonTestBean implements SingletonLocalIF {
+public class SingletonTestBean implements SingletonLocalIF{
 
-    public SingletonTestBean() {
-    }
+   @Context
+   private UriInfo ui;
 
-    public void remove() {
-    }
+   public SingletonTestBean(){
+   }
 
-    @Context
-    private UriInfo ui;
+   public void remove(){
+   }
 
-    @Override
-    @GET
-    public String get() {
-        return "GET: " + ui.getRequestUri().toASCIIString() +
-                " Hello From Singleton Local EJB Sub";
-    }
+   @Override
+   @GET
+   public String get(){
+      return "GET: "+ui.getRequestUri().toASCIIString()+
+         " Hello From Singleton Local EJB Sub";
+   }
 }

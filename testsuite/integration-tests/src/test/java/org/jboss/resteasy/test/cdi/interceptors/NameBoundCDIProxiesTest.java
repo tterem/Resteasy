@@ -1,8 +1,5 @@
 package org.jboss.resteasy.test.cdi.interceptors;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -20,6 +17,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+
 /**
  * @tpSubChapter CDI
  * @tpChapter Integration tests
@@ -28,24 +28,25 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class NameBoundCDIProxiesTest {
+public class NameBoundCDIProxiesTest{
 
    @Deployment
-   public static Archive<?> deploySimpleResource() {
-      WebArchive war = prepareArchive(NameBoundCDIProxiesTest.class.getSimpleName());
+   public static Archive<?> deploySimpleResource(){
+      WebArchive war=prepareArchive(NameBoundCDIProxiesTest.class.getSimpleName());
       war.addClass(NameBoundProxiesAnnotation.class);
-      war.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
-      return TestUtil.finishContainerPrepare(war, null, NameBoundCDIProxiesResource.class, NameBoundCDIProxiesInterceptor.class);
+      war.addAsWebInfResource(EmptyAsset.INSTANCE,"beans.xml");
+      return TestUtil.finishContainerPrepare(war,null,NameBoundCDIProxiesResource.class,NameBoundCDIProxiesInterceptor.class);
    }
 
    // Use specific Application subclass
-   private static WebArchive prepareArchive(String deploymentName) {
-      WebArchive war = ShrinkWrap.create(WebArchive.class, deploymentName + ".war");
+   private static WebArchive prepareArchive(String deploymentName){
+      WebArchive war=ShrinkWrap.create(WebArchive.class,deploymentName+".war");
       war.addClass(NameBoundCDIProxiesApplication.class);
       return war;
    }
-   private String generateURL(String path) {
-      return PortProviderUtil.generateURL(path, NameBoundCDIProxiesTest.class.getSimpleName());
+
+   private String generateURL(String path){
+      return PortProviderUtil.generateURL(path,NameBoundCDIProxiesTest.class.getSimpleName());
    }
 
    /**
@@ -53,10 +54,10 @@ public class NameBoundCDIProxiesTest {
     * @tpSince RESTEasy 4.0.0
     */
    @Test
-   public void testNameBoundInterceptor() throws Exception {
-      Client client = ClientBuilder.newClient();
-      String answer = client.target(generateURL("/test")).request().get(String.class);
-      Assert.assertEquals("in-test-out", answer);
+   public void testNameBoundInterceptor() throws Exception{
+      Client client=ClientBuilder.newClient();
+      String answer=client.target(generateURL("/test")).request().get(String.class);
+      Assert.assertEquals("in-test-out",answer);
       client.close();
    }
 }

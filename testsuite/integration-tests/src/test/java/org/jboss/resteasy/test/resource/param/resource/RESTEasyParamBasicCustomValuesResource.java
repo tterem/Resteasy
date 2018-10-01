@@ -13,10 +13,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 @Path("/custom/values")
-public class RESTEasyParamBasicCustomValuesResource
-{
+public class RESTEasyParamBasicCustomValuesResource{
 
-   protected static final Logger logger = Logger.getLogger(RESTEasyParamBasicCustomValuesResource.class.getName());
+   protected static final Logger logger=Logger.getLogger(RESTEasyParamBasicCustomValuesResource.class.getName());
 
    private String cookieParam0Updated;
    @CookieParam("cookieParam1")
@@ -50,100 +49,86 @@ public class RESTEasyParamBasicCustomValuesResource
 
 
    public RESTEasyParamBasicCustomValuesResource(
-         @CookieParam("cookieParam0") String cookieParam0Updated,
-         @FormParam("formParam0") String formParam0Updated,
-         @HeaderParam("headerParam0") String headerParam0Updated,
-         @MatrixParam("matrixParam0") String matrixParam0Updated,
-         @PathParam("pathParam0") String pathParam0Updated,
-         @QueryParam("queryParam0") String queryParam0Updated
-         )
-   {
-      this.cookieParam0Updated = cookieParam0Updated;
-      this.formParam0Updated = formParam0Updated;
-      this.headerParam0Updated = headerParam0Updated;
-      this.matrixParam0Updated = matrixParam0Updated;
-      this.pathParam0Updated = pathParam0Updated;
-      this.queryParam0Updated = queryParam0Updated;
+      @CookieParam("cookieParam0") String cookieParam0Updated,
+      @FormParam("formParam0") String formParam0Updated,
+      @HeaderParam("headerParam0") String headerParam0Updated,
+      @MatrixParam("matrixParam0") String matrixParam0Updated,
+      @PathParam("pathParam0") String pathParam0Updated,
+      @QueryParam("queryParam0") String queryParam0Updated
+   ){
+      this.cookieParam0Updated=cookieParam0Updated;
+      this.formParam0Updated=formParam0Updated;
+      this.headerParam0Updated=headerParam0Updated;
+      this.matrixParam0Updated=matrixParam0Updated;
+      this.pathParam0Updated=pathParam0Updated;
+      this.queryParam0Updated=queryParam0Updated;
    }
-   
-   public String getCookieParam2Updated()
-   {
+
+   public String getCookieParam2Updated(){
       return cookieParam2Updated;
    }
-   
+
    @CookieParam("cookieParam2")
-   public void setCookieParam2Updated(String cookieParam2Updated)
-   {
-      this.cookieParam2Updated = cookieParam2Updated;
+   public void setCookieParam2Updated(String cookieParam2Updated){
+      this.cookieParam2Updated=cookieParam2Updated;
    }
 
-   public String getFormParam2Updated()
-   {
+   public String getFormParam2Updated(){
       return formParam2Updated;
    }
-   
+
    @FormParam("formParam2")
-   public void setFormParam2Updated(String formParam2Updated)
-   {
-      this.formParam2Updated = formParam2Updated;
-   }
-   
-   public String getPathParam2Updated()
-   {
-      return pathParam2Updated;
-   }
-   
-   public String getHeaderParam2Updated()
-   {
-      return headerParam2Updated;
-   }
-   
-   @HeaderParam("headerParam2")
-   public void setHeaderParam2Updated(String headerParam2Updated)
-   {
-      this.headerParam2Updated = headerParam2Updated;
-   }
-   
-   public String getMatrixParam2Updated()
-   {
-      return matrixParam2Updated;
-   }
-   
-   @MatrixParam("matrixParam2")
-   public void setMatrixParam2Updated(String matrixParam2Updated)
-   {
-      this.matrixParam2Updated = matrixParam2Updated;
-   }
-   
-   @PathParam("pathParam2")
-   public void setPathParam2Updated(String pathParam2Updated)
-   {
-      this.pathParam2Updated = pathParam2Updated;
+   public void setFormParam2Updated(String formParam2Updated){
+      this.formParam2Updated=formParam2Updated;
    }
 
-   public String getQueryParam2Updated()
-   {
+   public String getPathParam2Updated(){
+      return pathParam2Updated;
+   }
+
+   @PathParam("pathParam2")
+   public void setPathParam2Updated(String pathParam2Updated){
+      this.pathParam2Updated=pathParam2Updated;
+   }
+
+   public String getHeaderParam2Updated(){
+      return headerParam2Updated;
+   }
+
+   @HeaderParam("headerParam2")
+   public void setHeaderParam2Updated(String headerParam2Updated){
+      this.headerParam2Updated=headerParam2Updated;
+   }
+
+   public String getMatrixParam2Updated(){
+      return matrixParam2Updated;
+   }
+
+   @MatrixParam("matrixParam2")
+   public void setMatrixParam2Updated(String matrixParam2Updated){
+      this.matrixParam2Updated=matrixParam2Updated;
+   }
+
+   public String getQueryParam2Updated(){
       return queryParam2Updated;
    }
-   
+
    @QueryParam("queryParam2")
-   public void setQueryParam2Updated(String queryParam2Updated)
-   {
-      this.queryParam2Updated = queryParam2Updated;
+   public void setQueryParam2Updated(String queryParam2Updated){
+      this.queryParam2Updated=queryParam2Updated;
    }
 
    @POST
    @Path("a/{pathParam0}/{pathParam1}/{pathParam2}/{pathParam3}")
    public Response post(
-           @CookieParam("cookieParam3") String cookieParam3Updated,
-           @FormParam("formParam3") String formParam3Updated,
-           @HeaderParam("headerParam3") String headerParam3Updated,
-           @MatrixParam("matrixParam3") String matrixParam3Updated,
-           @PathParam("pathParam3") String pathParam3Updated,
-           @QueryParam("queryParam3") String queryParam3Updated)
-   {
+      @CookieParam("cookieParam3") String cookieParam3Updated,
+      @FormParam("formParam3") String formParam3Updated,
+      @HeaderParam("headerParam3") String headerParam3Updated,
+      @MatrixParam("matrixParam3") String matrixParam3Updated,
+      @PathParam("pathParam3") String pathParam3Updated,
+      @QueryParam("queryParam3") String queryParam3Updated){
 
-      StringBuilder details = new StringBuilder();
+      StringBuilder details=new StringBuilder();
       details.append("cookieParam0: "+cookieParam0Updated+"\n");
       details.append("cookieParam1: "+cookieParam1Updated+"\n");
       details.append("cookieParam2: "+cookieParam2Updated+"\n");
@@ -177,49 +162,49 @@ public class RESTEasyParamBasicCustomValuesResource
       logger.info(details);
 
       if(!"cookieParam0".equals(cookieParam0Updated)
-              || !"cookieParam1".equals(cookieParam1Updated)
-              || !"cookieParam2".equals(cookieParam2Updated)
-              || !"cookieParam3".equals(cookieParam3Updated)) {
+         ||!"cookieParam1".equals(cookieParam1Updated)
+         ||!"cookieParam2".equals(cookieParam2Updated)
+         ||!"cookieParam3".equals(cookieParam3Updated)){
          logger.error("cookie error");
          return Response.status(Response.Status.BAD_REQUEST).build();
       }
 
       if(!"formParam0".equals(formParam0Updated)
-              || !"formParam1".equals(formParam1Updated)
-              || !"formParam2".equals(formParam2Updated)
-              || !"formParam3".equals(formParam3Updated)) {
+         ||!"formParam1".equals(formParam1Updated)
+         ||!"formParam2".equals(formParam2Updated)
+         ||!"formParam3".equals(formParam3Updated)){
          logger.error("form error");
          return Response.status(Response.Status.BAD_REQUEST).build();
       }
 
       if(!"headerParam0".equals(headerParam0Updated)
-              || !"headerParam1".equals(headerParam1Updated)
-              || !"headerParam2".equals(headerParam2Updated)
-              || !"headerParam3".equals(headerParam3Updated)) {
+         ||!"headerParam1".equals(headerParam1Updated)
+         ||!"headerParam2".equals(headerParam2Updated)
+         ||!"headerParam3".equals(headerParam3Updated)){
          logger.error("header error");
          return Response.status(Response.Status.BAD_REQUEST).build();
       }
 
       if(!"matrixParam0".equals(matrixParam0Updated)
-              || !"matrixParam1".equals(matrixParam1Updated)
-              || !"matrixParam2".equals(matrixParam2Updated)
-              || !"matrixParam3".equals(matrixParam3Updated)) {
+         ||!"matrixParam1".equals(matrixParam1Updated)
+         ||!"matrixParam2".equals(matrixParam2Updated)
+         ||!"matrixParam3".equals(matrixParam3Updated)){
          logger.error("matrix error");
          return Response.status(Response.Status.BAD_REQUEST).build();
       }
 
       if(!"pathParam0".equals(pathParam0Updated)
-              || !"pathParam1".equals(pathParam1Updated)
-              || !"pathParam2".equals(pathParam2Updated)
-              || !"pathParam3".equals(pathParam3Updated)) {
+         ||!"pathParam1".equals(pathParam1Updated)
+         ||!"pathParam2".equals(pathParam2Updated)
+         ||!"pathParam3".equals(pathParam3Updated)){
          logger.error("path error");
          return Response.status(Response.Status.BAD_REQUEST).build();
       }
 
       if(!"queryParam0".equals(queryParam0Updated)
-              || !"queryParam1".equals(queryParam1Updated)
-              || !"queryParam2".equals(queryParam2Updated)
-              || !"queryParam3".equals(queryParam3Updated)) {
+         ||!"queryParam1".equals(queryParam1Updated)
+         ||!"queryParam2".equals(queryParam2Updated)
+         ||!"queryParam3".equals(queryParam3Updated)){
          logger.error("query error");
          return Response.status(Response.Status.BAD_REQUEST).build();
       }

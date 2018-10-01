@@ -6,8 +6,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/test")
-public interface ProviderInjectionSimpleResource {
-    @GET
-    @Produces("text/plain")
-    String foo();
+public interface ProviderInjectionSimpleResource{
+   @GET
+   @Produces("text/plain")
+   String foo();
 }

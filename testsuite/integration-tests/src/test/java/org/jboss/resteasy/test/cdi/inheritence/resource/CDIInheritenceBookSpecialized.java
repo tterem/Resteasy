@@ -7,5 +7,5 @@ import javax.enterprise.inject.Specializes;
  */
 @Specializes
 @CDIInheritenceStereotypeAlternative
-public class CDIInheritenceBookSpecialized extends CDIInheritenceBook {
+public class CDIInheritenceBookSpecialized extends CDIInheritenceBook{
 }

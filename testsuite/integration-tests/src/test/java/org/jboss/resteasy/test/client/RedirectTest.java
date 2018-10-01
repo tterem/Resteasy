@@ -1,12 +1,5 @@
 package org.jboss.resteasy.test.client;
 
-import java.util.PropertyPermission;
-
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Response;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -24,6 +17,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import java.util.PropertyPermission;
+
 /**
  * @tpSubChapter Resteasy-client
  * @tpChapter Integration tests
@@ -32,20 +31,18 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class RedirectTest extends ClientTestBase
-{
+public class RedirectTest extends ClientTestBase{
    @Deployment
-   public static Archive<?> deploy()
-   {
-      WebArchive war = TestUtil.prepareArchive(RedirectTest.class.getSimpleName());
+   public static Archive<?> deploy(){
+      WebArchive war=TestUtil.prepareArchive(RedirectTest.class.getSimpleName());
       war.addClasses(PortProviderUtil.class);
       war.addAsManifestResource(PermissionUtil.createPermissionsXmlAsset(
-              new PropertyPermission("ipv6", "read"),
-              new RuntimePermission("getenv.RESTEASY_PORT"),
-              new PropertyPermission("org.jboss.resteasy.port", "read"),
-              new PropertyPermission("node", "read")
-      ), "permissions.xml");
-      return TestUtil.finishContainerPrepare(war, null, RedirectResource.class);
+         new PropertyPermission("ipv6","read"),
+         new RuntimePermission("getenv.RESTEASY_PORT"),
+         new PropertyPermission("org.jboss.resteasy.port","read"),
+         new PropertyPermission("node","read")
+      ),"permissions.xml");
+      return TestUtil.finishContainerPrepare(war,null,RedirectResource.class);
    }
 
    /**
@@ -59,21 +56,17 @@ public class RedirectTest extends ClientTestBase
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testRedirect()
-   {
-      ApacheHttpClient43Engine engine = new ApacheHttpClient43Engine();
+   public void testRedirect(){
+      ApacheHttpClient43Engine engine=new ApacheHttpClient43Engine();
       engine.setFollowRedirects(true);
-      Client client = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
-      try
-      {
-         Response response = client.target(generateURL("/redirect/" + RedirectTest.class.getSimpleName())).request()
-               .get();
-         Assert.assertEquals(200, response.getStatus());
-         Assert.assertEquals("OK", response.readEntity(String.class));
+      Client client=((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
+      try{
+         Response response=client.target(generateURL("/redirect/"+RedirectTest.class.getSimpleName())).request()
+            .get();
+         Assert.assertEquals(200,response.getStatus());
+         Assert.assertEquals("OK",response.readEntity(String.class));
          response.close();
-      }
-      finally
-      {
+      }finally{
          client.close();
       }
    }
@@ -89,21 +82,17 @@ public class RedirectTest extends ClientTestBase
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testPostRedirect()
-   {
-      ApacheHttpClient43Engine engine = new ApacheHttpClient43Engine();
+   public void testPostRedirect(){
+      ApacheHttpClient43Engine engine=new ApacheHttpClient43Engine();
       engine.setFollowRedirects(true);
-      Client client = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
-      try
-      {
-         Response response = client.target(generateURL("/post-redirect")).request()
-               .post(Entity.entity(RedirectTest.class.getSimpleName(), "text/plain"));
-         Assert.assertEquals(200, response.getStatus());
-         Assert.assertEquals("OK", response.readEntity(String.class));
+      Client client=((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
+      try{
+         Response response=client.target(generateURL("/post-redirect")).request()
+            .post(Entity.entity(RedirectTest.class.getSimpleName(),"text/plain"));
+         Assert.assertEquals(200,response.getStatus());
+         Assert.assertEquals("OK",response.readEntity(String.class));
          response.close();
-      }
-      finally
-      {
+      }finally{
          client.close();
       }
    }
@@ -119,22 +108,18 @@ public class RedirectTest extends ClientTestBase
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testRedirectProxy()
-   {
-      ApacheHttpClient43Engine engine = new ApacheHttpClient43Engine();
+   public void testRedirectProxy(){
+      ApacheHttpClient43Engine engine=new ApacheHttpClient43Engine();
       engine.setFollowRedirects(true);
-      ResteasyClient client = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
-      try
-      {
-         RedirectProxyResource proxy = client.target(generateURL("/"))
-                 .proxy(RedirectProxyResource.class);
-         Response response = proxy.redirect(RedirectTest.class.getSimpleName());
-         Assert.assertEquals(200, response.getStatus());
-         Assert.assertEquals("OK", response.readEntity(String.class));
+      ResteasyClient client=((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
+      try{
+         RedirectProxyResource proxy=client.target(generateURL("/"))
+            .proxy(RedirectProxyResource.class);
+         Response response=proxy.redirect(RedirectTest.class.getSimpleName());
+         Assert.assertEquals(200,response.getStatus());
+         Assert.assertEquals("OK",response.readEntity(String.class));
          response.close();
-      }
-      finally
-      {
+      }finally{
          client.close();
       }
    }
@@ -150,22 +135,18 @@ public class RedirectTest extends ClientTestBase
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testRedirectDirectResponseProxy()
-   {
-      ApacheHttpClient43Engine engine = new ApacheHttpClient43Engine();
+   public void testRedirectDirectResponseProxy(){
+      ApacheHttpClient43Engine engine=new ApacheHttpClient43Engine();
       engine.setFollowRedirects(true);
-      ResteasyClient client = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
-      try
-      {
-         RedirectProxyResource proxy = client.target(generateURL("/"))
-                 .proxy(RedirectProxyResource.class);
-         Response response = proxy.redirectDirectResponse(RedirectTest.class.getSimpleName());
-         Assert.assertEquals(200, response.getStatus());
-         Assert.assertEquals("ok - direct response", response.readEntity(String.class));
+      ResteasyClient client=((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
+      try{
+         RedirectProxyResource proxy=client.target(generateURL("/"))
+            .proxy(RedirectProxyResource.class);
+         Response response=proxy.redirectDirectResponse(RedirectTest.class.getSimpleName());
+         Assert.assertEquals(200,response.getStatus());
+         Assert.assertEquals("ok - direct response",response.readEntity(String.class));
          response.close();
-      }
-      finally
-      {
+      }finally{
          client.close();
       }
    }
@@ -181,22 +162,18 @@ public class RedirectTest extends ClientTestBase
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testMovedPermanentlyDirectResponseProxy()
-   {
-      ApacheHttpClient43Engine engine = new ApacheHttpClient43Engine();
+   public void testMovedPermanentlyDirectResponseProxy(){
+      ApacheHttpClient43Engine engine=new ApacheHttpClient43Engine();
       engine.setFollowRedirects(true);
-      ResteasyClient client = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
-      try
-      {
-         RedirectProxyResource proxy = client.target(generateURL("/"))
-                 .proxy(RedirectProxyResource.class);
-         Response response = proxy.movedPermanently(RedirectTest.class.getSimpleName());
-         Assert.assertEquals(200, response.getStatus());
-         Assert.assertEquals("ok - direct response", response.readEntity(String.class));
+      ResteasyClient client=((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
+      try{
+         RedirectProxyResource proxy=client.target(generateURL("/"))
+            .proxy(RedirectProxyResource.class);
+         Response response=proxy.movedPermanently(RedirectTest.class.getSimpleName());
+         Assert.assertEquals(200,response.getStatus());
+         Assert.assertEquals("ok - direct response",response.readEntity(String.class));
          response.close();
-      }
-      finally
-      {
+      }finally{
          client.close();
       }
    }
@@ -212,22 +189,18 @@ public class RedirectTest extends ClientTestBase
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testFoundDirectResponseProxy()
-   {
-      ApacheHttpClient43Engine engine = new ApacheHttpClient43Engine();
+   public void testFoundDirectResponseProxy(){
+      ApacheHttpClient43Engine engine=new ApacheHttpClient43Engine();
       engine.setFollowRedirects(true);
-      ResteasyClient client = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
-      try
-      {
-         RedirectProxyResource proxy = client.target(generateURL("/"))
-                 .proxy(RedirectProxyResource.class);
-         Response response = proxy.found(RedirectTest.class.getSimpleName());
-         Assert.assertEquals(200, response.getStatus());
-         Assert.assertEquals("ok - direct response", response.readEntity(String.class));
+      ResteasyClient client=((ResteasyClientBuilder)ClientBuilder.newBuilder()).httpEngine(engine).build();
+      try{
+         RedirectProxyResource proxy=client.target(generateURL("/"))
+            .proxy(RedirectProxyResource.class);
+         Response response=proxy.found(RedirectTest.class.getSimpleName());
+         Assert.assertEquals(200,response.getStatus());
+         Assert.assertEquals("ok - direct response",response.readEntity(String.class));
          response.close();
-      }
-      finally
-      {
+      }finally{
          client.close();
       }
    }
@@ -242,18 +215,14 @@ public class RedirectTest extends ClientTestBase
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testNoRedirect()
-   {
-      Client client = ClientBuilder.newClient();
-      try
-      {
-         Response response = client.target(generateURL("/redirect/" + RedirectTest.class.getSimpleName())).request()
-               .get();
-         Assert.assertEquals(307, response.getStatus());
+   public void testNoRedirect(){
+      Client client=ClientBuilder.newClient();
+      try{
+         Response response=client.target(generateURL("/redirect/"+RedirectTest.class.getSimpleName())).request()
+            .get();
+         Assert.assertEquals(307,response.getStatus());
          response.close();
-      }
-      finally
-      {
+      }finally{
          client.close();
       }
    }
@@ -268,18 +237,14 @@ public class RedirectTest extends ClientTestBase
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testNoPostRedirect()
-   {
-      Client client = ClientBuilder.newClient();
-      try
-      {
-         Response response = client.target(generateURL("/post-redirect")).request()
-               .post(Entity.entity(RedirectTest.class.getSimpleName(), "text/plain"));
-         Assert.assertEquals(303, response.getStatus());
+   public void testNoPostRedirect(){
+      Client client=ClientBuilder.newClient();
+      try{
+         Response response=client.target(generateURL("/post-redirect")).request()
+            .post(Entity.entity(RedirectTest.class.getSimpleName(),"text/plain"));
+         Assert.assertEquals(303,response.getStatus());
          response.close();
-      }
-      finally
-      {
+      }finally{
          client.close();
       }
    }
@@ -293,19 +258,15 @@ public class RedirectTest extends ClientTestBase
     * @tpSince RESTEasy 3.5
     */
    @Test
-   public void testNoRedirectProxy()
-   {
-      ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
-      try
-      {
-         RedirectProxyResource proxy = client.target(generateURL("/"))
-                 .proxy(RedirectProxyResource.class);
-         Response response = proxy.redirect(RedirectTest.class.getSimpleName());
-         Assert.assertEquals(307, response.getStatus());
+   public void testNoRedirectProxy(){
+      ResteasyClient client=(ResteasyClient)ClientBuilder.newClient();
+      try{
+         RedirectProxyResource proxy=client.target(generateURL("/"))
+            .proxy(RedirectProxyResource.class);
+         Response response=proxy.redirect(RedirectTest.class.getSimpleName());
+         Assert.assertEquals(307,response.getStatus());
          response.close();
-      }
-      finally
-      {
+      }finally{
          client.close();
       }
    }

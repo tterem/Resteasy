@@ -1,23 +1,22 @@
 package org.jboss.resteasy.rxjava;
 
+import rx.Single;
+
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.RxInvoker;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
-import rx.Single;
-
 /**
  * @deprecated:
- * 
+ *
  *   "RxJava 1.x is now officially end-of-life (EOL). No further developments,
  *    bugfixes, enhancements, javadoc changes or maintenance will be provided by
  *    this project after version 1.3.8." - From https://github.com/ReactiveX/RxJava/releases
- *    
+ *
  *    Please upgrade to resteasy-rxjava2 and RxJava 2.x.
  */
-public interface SingleRxInvoker extends RxInvoker<Single<?>>
-{
+public interface SingleRxInvoker extends RxInvoker<Single<?>>{
    @Override
    Single<Response> get();
 
@@ -31,19 +30,19 @@ public interface SingleRxInvoker extends RxInvoker<Single<?>>
    Single<Response> put(Entity<?> entity);
 
    @Override
-   <T> Single<T> put(Entity<?> entity, Class<T> clazz);
+   <T> Single<T> put(Entity<?> entity,Class<T> clazz);
 
    @Override
-   <T> Single<T> put(Entity<?> entity, GenericType<T> type);
+   <T> Single<T> put(Entity<?> entity,GenericType<T> type);
 
    @Override
    Single<Response> post(Entity<?> entity);
 
    @Override
-   <T> Single<T> post(Entity<?> entity, Class<T> clazz);
+   <T> Single<T> post(Entity<?> entity,Class<T> clazz);
 
    @Override
-   <T> Single<T> post(Entity<?> entity, GenericType<T> type);
+   <T> Single<T> post(Entity<?> entity,GenericType<T> type);
 
    @Override
    Single<Response> delete();
@@ -79,18 +78,18 @@ public interface SingleRxInvoker extends RxInvoker<Single<?>>
    Single<Response> method(String name);
 
    @Override
-   <T> Single<T> method(String name, Class<T> responseType);
+   <T> Single<T> method(String name,Class<T> responseType);
 
    @Override
-   <T> Single<T> method(String name, GenericType<T> responseType);
+   <T> Single<T> method(String name,GenericType<T> responseType);
 
    @Override
-   Single<Response> method(String name, Entity<?> entity);
+   Single<Response> method(String name,Entity<?> entity);
 
    @Override
-   <T> Single<T> method(String name, Entity<?> entity, Class<T> responseType);
+   <T> Single<T> method(String name,Entity<?> entity,Class<T> responseType);
 
    @Override
-   <T> Single<T> method(String name, Entity<?> entity, GenericType<T> responseType);
+   <T> Single<T> method(String name,Entity<?> entity,GenericType<T> responseType);
 
 }

@@ -1,4 +1,4 @@
 package org.jboss.resteasy.test.providers.resource;
 
-public class ContractsData {
+public class ContractsData{
 }

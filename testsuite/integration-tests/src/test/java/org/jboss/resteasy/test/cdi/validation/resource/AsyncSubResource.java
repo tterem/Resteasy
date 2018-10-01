@@ -5,9 +5,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
 
-public interface AsyncSubResource extends AsyncValidResource
-{
+public interface AsyncSubResource extends AsyncValidResource{
    @GET
    @Override
-   void getAll(@Suspended AsyncResponse asyncResponse, @BeanParam QueryBeanParamImpl beanParam);
+   void getAll(@Suspended AsyncResponse asyncResponse,@BeanParam QueryBeanParamImpl beanParam);
 }

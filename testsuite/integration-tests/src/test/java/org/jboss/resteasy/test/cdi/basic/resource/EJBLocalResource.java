@@ -5,6 +5,6 @@ import javax.ws.rs.Path;
 
 @Local
 @Path("/")
-public interface EJBLocalResource extends EJBResourceParent {
+public interface EJBLocalResource extends EJBResourceParent{
 }
 

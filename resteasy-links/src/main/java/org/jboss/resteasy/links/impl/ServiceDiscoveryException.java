@@ -5,14 +5,14 @@ import org.jboss.resteasy.spi.Failure;
 
 import java.lang.reflect.Method;
 
-public class ServiceDiscoveryException extends Failure {
+public class ServiceDiscoveryException extends Failure{
 
-	public ServiceDiscoveryException(Method m, String s) {
-	   super(Messages.MESSAGES.discoveryFailedForMethod(m.getDeclaringClass().getName(), m.getName(), s));
-	}
+   public ServiceDiscoveryException(Method m,String s){
+      super(Messages.MESSAGES.discoveryFailedForMethod(m.getDeclaringClass().getName(),m.getName(),s));
+   }
 
-	public ServiceDiscoveryException(Method m, String s, Throwable cause) {
-	   super(Messages.MESSAGES.discoveryFailedForMethod(m.getDeclaringClass().getName(), m.getName(), s), cause);
-	}
+   public ServiceDiscoveryException(Method m,String s,Throwable cause){
+      super(Messages.MESSAGES.discoveryFailedForMethod(m.getDeclaringClass().getName(),m.getName(),s),cause);
+   }
 
 }

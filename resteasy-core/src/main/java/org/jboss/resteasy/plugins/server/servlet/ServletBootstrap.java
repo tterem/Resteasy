@@ -12,54 +12,47 @@ import java.util.Set;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class ServletBootstrap extends ListenerBootstrap
-{
+public class ServletBootstrap extends ListenerBootstrap{
    private ServletConfig config;
 
-   public ServletBootstrap(ServletConfig config)
-   {
+   public ServletBootstrap(ServletConfig config){
       super(config.getServletContext());
-      this.config = config;
+      this.config=config;
    }
 
    @Override
-   public ResteasyDeployment createDeployment()
-   {
-      ResteasyDeployment deployment = super.createDeployment();
-      deployment.getDefaultContextObjects().put(ServletConfig.class, config);
-      deployment.getDefaultContextObjects().put(ServletContext.class, config.getServletContext());
+   public ResteasyDeployment createDeployment(){
+      ResteasyDeployment deployment=super.createDeployment();
+      deployment.getDefaultContextObjects().put(ServletConfig.class,config);
+      deployment.getDefaultContextObjects().put(ServletContext.class,config.getServletContext());
       return deployment;
    }
 
 
-   public String getParameter(String name)
-   {
-      String val = config.getInitParameter(name);
-      if (val == null) val = super.getParameter(name);
+   public String getParameter(String name){
+      String val=config.getInitParameter(name);
+      if(val==null) val=super.getParameter(name);
       return val;
    }
 
    @Override
-   public String getInitParameter(String name)
-   {
+   public String getInitParameter(String name){
       return config.getInitParameter(name);
    }
 
    @Override
-   public Set<String> getParameterNames()
-   {
-      Set<String> set = super.getServletContextNames();
-      Enumeration<String> en = config.getInitParameterNames();
-      while (en.hasMoreElements()) set.add(en.nextElement());
+   public Set<String> getParameterNames(){
+      Set<String> set=super.getServletContextNames();
+      Enumeration<String> en=config.getInitParameterNames();
+      while(en.hasMoreElements()) set.add(en.nextElement());
       return set;
    }
 
    @Override
-   public Set<String> getInitParameterNames()
-   {
-      Set<String> set = new HashSet<String>();
-      Enumeration<String> en = config.getInitParameterNames();
-      while (en.hasMoreElements()) set.add(en.nextElement());
+   public Set<String> getInitParameterNames(){
+      Set<String> set=new HashSet<String>();
+      Enumeration<String> en=config.getInitParameterNames();
+      while(en.hasMoreElements()) set.add(en.nextElement());
       return set;
    }
 

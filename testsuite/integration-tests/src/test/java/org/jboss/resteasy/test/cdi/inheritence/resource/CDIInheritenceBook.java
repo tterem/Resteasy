@@ -5,8 +5,8 @@ package org.jboss.resteasy.test.cdi.inheritence.resource;
  * if no alternatives are enabled.
  */
 @CDIInheritenceSelectBook
-public class CDIInheritenceBook {
-    public Class<?> getType() {
-        return this.getClass();
-    }
+public class CDIInheritenceBook{
+   public Class<?> getType(){
+      return this.getClass();
+   }
 }

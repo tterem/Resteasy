@@ -7,10 +7,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 
 @Path("/")
-public interface JsonForm {
+public interface JsonForm{
 
-    @PUT
-    @Path("form/class")
-    @Consumes("multipart/form-data")
-    String putMultipartForm(@MultipartForm JsonFormResource.Form form);
+   @PUT
+   @Path("form/class")
+   @Consumes("multipart/form-data")
+   String putMultipartForm(@MultipartForm JsonFormResource.Form form);
 }

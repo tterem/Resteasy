@@ -7,18 +7,15 @@ import org.jboss.resteasy.spi.touri.URITemplate;
 import java.lang.annotation.Annotation;
 
 public class URITemplateAnnotationResolver extends
-        AbstractURITemplateAnnotationResolver
-{
+   AbstractURITemplateAnnotationResolver{
 
-   protected Class<? extends Annotation> getAnnotationType()
-   {
+   protected Class<? extends Annotation> getAnnotationType(){
       return URITemplate.class;
    }
 
-   protected ResteasyUriBuilder getUriBuilder(Class<? extends Object> clazz)
-   {
-      String uriTemplate = clazz.getAnnotation(URITemplate.class).value();
-      ResteasyUriBuilder uriBuilderImpl = new ResteasyUriBuilderImpl();
+   protected ResteasyUriBuilder getUriBuilder(Class<? extends Object> clazz){
+      String uriTemplate=clazz.getAnnotation(URITemplate.class).value();
+      ResteasyUriBuilder uriBuilderImpl=new ResteasyUriBuilderImpl();
       uriBuilderImpl.replacePath(uriTemplate);
       return uriBuilderImpl;
    }

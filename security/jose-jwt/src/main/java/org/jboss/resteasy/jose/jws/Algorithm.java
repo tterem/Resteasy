@@ -4,8 +4,7 @@ package org.jboss.resteasy.jose.jws;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public enum Algorithm
-{
+public enum Algorithm{
    none,
    HS256,
    HS384,

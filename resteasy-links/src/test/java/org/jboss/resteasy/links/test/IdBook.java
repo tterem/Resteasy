@@ -9,15 +9,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
-public class IdBook {
-	@XmlElement 
-	private RESTServiceDiscovery rest;
+public class IdBook{
+   @XmlElement
+   private RESTServiceDiscovery rest;
 
-	public RESTServiceDiscovery getRest() {
-		return rest;
-	}
+   public RESTServiceDiscovery getRest(){
+      return rest;
+   }
 
-	public void setRest(RESTServiceDiscovery rest) {
-		this.rest = rest;
-	}
+   public void setRest(RESTServiceDiscovery rest){
+      this.rest=rest;
+   }
 }

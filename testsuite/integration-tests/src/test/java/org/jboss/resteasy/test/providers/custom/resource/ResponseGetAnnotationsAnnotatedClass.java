@@ -8,6 +8,6 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 @Consumes
-public abstract class ResponseGetAnnotationsAnnotatedClass {
+public abstract class ResponseGetAnnotationsAnnotatedClass{
 
 }

@@ -17,26 +17,23 @@ import java.util.concurrent.ScheduledExecutorService;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-@WebServlet(asyncSupported = true, value="")
-public class HttpServlet30Dispatcher extends HttpServletDispatcher
-{
-   ScheduledExecutorService asyncCancelScheduler = Executors.newScheduledThreadPool(0);  // this is to get around TCK tests that call setTimeout in a separate thread which is illegal.
+@WebServlet(asyncSupported=true, value="")
+public class HttpServlet30Dispatcher extends HttpServletDispatcher{
+   ScheduledExecutorService asyncCancelScheduler=Executors.newScheduledThreadPool(0);  // this is to get around TCK tests that call setTimeout in a separate thread which is illegal.
+
    @Override
-   protected HttpRequest createHttpRequest(String httpMethod, HttpServletRequest httpServletRequest, ResteasyHttpHeaders httpHeaders, ResteasyUriInfo uriInfo, HttpResponse httpResponse, HttpServletResponse httpServletResponse)
-   {
-      Servlet3AsyncHttpRequest request = new Servlet3AsyncHttpRequest(httpServletRequest, httpServletResponse, getServletContext(), httpResponse, httpHeaders, uriInfo, httpMethod.toUpperCase(), (SynchronousDispatcher) getDispatcher());
-      request.asyncScheduler = asyncCancelScheduler;
+   protected HttpRequest createHttpRequest(String httpMethod,HttpServletRequest httpServletRequest,ResteasyHttpHeaders httpHeaders,ResteasyUriInfo uriInfo,HttpResponse httpResponse,HttpServletResponse httpServletResponse){
+      Servlet3AsyncHttpRequest request=new Servlet3AsyncHttpRequest(httpServletRequest,httpServletResponse,getServletContext(),httpResponse,httpHeaders,uriInfo,httpMethod.toUpperCase(),(SynchronousDispatcher)getDispatcher());
+      request.asyncScheduler=asyncCancelScheduler;
       return request;
    }
 
    @Override
-   protected HttpResponse createServletResponse(HttpServletResponse response)
-   {
-      return new HttpServletResponseWrapper(response, getDispatcher().getProviderFactory()) {
+   protected HttpResponse createServletResponse(HttpServletResponse response){
+      return new HttpServletResponseWrapper(response,getDispatcher().getProviderFactory()){
          @Override
-         public void addNewCookie(NewCookie cookie)
-         {
-            outputHeaders.add(javax.ws.rs.core.HttpHeaders.SET_COOKIE, cookie);
+         public void addNewCookie(NewCookie cookie){
+            outputHeaders.add(javax.ws.rs.core.HttpHeaders.SET_COOKIE,cookie);
          }
       };
    }

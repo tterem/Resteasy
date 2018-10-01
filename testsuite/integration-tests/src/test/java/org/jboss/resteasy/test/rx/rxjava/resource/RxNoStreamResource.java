@@ -1,7 +1,8 @@
 package org.jboss.resteasy.test.rx.rxjava.resource;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import rx.Emitter.BackpressureMode;
+import rx.Observable;
+import rx.Single;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -9,45 +10,37 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
-
-import rx.Emitter.BackpressureMode;
-import rx.Observable;
-import rx.Single;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Path("/")
-public class RxNoStreamResource
-{
+public class RxNoStreamResource{
 
    @Path("single")
    @GET
-   public Single<String> single()
-   {
+   public Single<String> single(){
       return Single.just("got it");
    }
 
    @Produces(MediaType.APPLICATION_JSON)
    @Path("observable")
    @GET
-   public Observable<String> observable()
-   {
+   public Observable<String> observable(){
       return Observable.from(new String[]
-      {"one", "two"});
+         {"one","two"});
    }
 
    @Path("context/single")
    @GET
-   public Single<String> contextSingle(@Context UriInfo uriInfo)
-   {
-      return Single.<String>fromEmitter(foo -> {
-         ExecutorService executor = Executors.newSingleThreadExecutor();
-         executor.submit(new Runnable()
-         {
-            public void run()
-            {
+   public Single<String> contextSingle(@Context UriInfo uriInfo){
+      return Single.<String>fromEmitter(foo->{
+         ExecutorService executor=Executors.newSingleThreadExecutor();
+         executor.submit(new Runnable(){
+            public void run(){
                foo.onSuccess("got it");
             }
          });
-      }).map(str -> {
+      }).map(str->{
          uriInfo.getAbsolutePath();
          return str;
       });
@@ -56,20 +49,17 @@ public class RxNoStreamResource
    @Produces(MediaType.APPLICATION_JSON)
    @Path("context/observable")
    @GET
-   public Observable<String> contextObservable(@Context UriInfo uriInfo)
-   {
-      return Observable.<String>create(foo -> {
-         ExecutorService executor = Executors.newSingleThreadExecutor();
-         executor.submit(new Runnable()
-         {
-            public void run()
-            {
+   public Observable<String> contextObservable(@Context UriInfo uriInfo){
+      return Observable.<String>create(foo->{
+         ExecutorService executor=Executors.newSingleThreadExecutor();
+         executor.submit(new Runnable(){
+            public void run(){
                foo.onNext("one");
                foo.onNext("two");
                foo.onCompleted();
             }
          });
-      }, BackpressureMode.BUFFER).map(str -> {
+      },BackpressureMode.BUFFER).map(str->{
          uriInfo.getAbsolutePath();
          return str;
       });

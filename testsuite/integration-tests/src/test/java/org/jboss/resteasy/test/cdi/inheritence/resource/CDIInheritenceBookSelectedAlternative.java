@@ -5,5 +5,5 @@ package org.jboss.resteasy.test.cdi.inheritence.resource;
  */
 @CDIInheritenceStereotypeAlternative
 @CDIInheritenceSelectBook
-public class CDIInheritenceBookSelectedAlternative extends CDIInheritenceBook {
+public class CDIInheritenceBookSelectedAlternative extends CDIInheritenceBook{
 }

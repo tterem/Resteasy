@@ -5,10 +5,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 @Path("sub")
-public class InheritedContextNewService extends InheritedContextService {
-    @Path("test/{level}")
-    @GET
-    public String test(@PathParam("level") String level) {
-        return Boolean.toString(level.equals("SomeService") && testContexts());
-    }
+public class InheritedContextNewService extends InheritedContextService{
+   @Path("test/{level}")
+   @GET
+   public String test(@PathParam("level") String level){
+      return Boolean.toString(level.equals("SomeService")&&testContexts());
+   }
 }

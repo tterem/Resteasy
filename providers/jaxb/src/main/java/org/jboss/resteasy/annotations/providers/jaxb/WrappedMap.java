@@ -16,17 +16,16 @@ import java.lang.annotation.Target;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-@Target({ElementType.PARAMETER, ElementType.METHOD})
+@Target({ElementType.PARAMETER,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface WrappedMap
-{
+public @interface WrappedMap{
    /**
     * map element name
     */
    String map() default "map";
 
    /**
-    * entry element name 
+    * entry element name
     * @return entry
     */
    String entry() default "entry";

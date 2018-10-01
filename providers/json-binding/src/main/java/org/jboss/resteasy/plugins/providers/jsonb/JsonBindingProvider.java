@@ -1,12 +1,11 @@
 package org.jboss.resteasy.plugins.providers.jsonb;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
-import java.util.Collection;
-import java.util.Map;
+import org.apache.commons.io.input.ProxyInputStream;
+import org.jboss.resteasy.core.ResteasyContext;
+import org.jboss.resteasy.plugins.providers.jsonb.i18n.Messages;
+import org.jboss.resteasy.plugins.server.servlet.ResteasyContextParameters;
+import org.jboss.resteasy.spi.ResteasyConfiguration;
+import org.jboss.resteasy.spi.util.Types;
 
 import javax.annotation.Priority;
 import javax.json.bind.Jsonb;
@@ -25,179 +24,162 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import org.apache.commons.io.input.ProxyInputStream;
-import org.jboss.resteasy.core.ResteasyContext;
-import org.jboss.resteasy.plugins.providers.jsonb.i18n.Messages;
-import org.jboss.resteasy.plugins.server.servlet.ResteasyContextParameters;
-import org.jboss.resteasy.spi.ResteasyConfiguration;
-import org.jboss.resteasy.spi.util.Types;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * Created by rsearls on 6/26/17.
  */
 @Provider
-@Produces({"application/json", "application/*+json", "text/json", "*/*"})
-@Consumes({"application/json", "application/*+json", "text/json", "*/*"})
+@Produces({"application/json","application/*+json","text/json","*/*"})
+@Consumes({"application/json","application/*+json","text/json","*/*"})
 @Priority(Priorities.USER-100)
 public class JsonBindingProvider extends AbstractJsonBindingProvider
-        implements MessageBodyReader<Object>, MessageBodyWriter<Object> {
+   implements MessageBodyReader<Object>, MessageBodyWriter<Object>{
 
    private final boolean disabled;
-   
-   public JsonBindingProvider() {
+
+   public JsonBindingProvider(){
       super();
-      ResteasyConfiguration context = ResteasyContext.getContextData(ResteasyConfiguration.class);
-      disabled = (context != null && (Boolean.parseBoolean(context.getParameter(ResteasyContextParameters.RESTEASY_PREFER_JACKSON_OVER_JSONB))
-                || Boolean.parseBoolean(context.getParameter("resteasy.jsonp.enable"))));
+      ResteasyConfiguration context=ResteasyContext.getContextData(ResteasyConfiguration.class);
+      disabled=(context!=null&&(Boolean.parseBoolean(context.getParameter(ResteasyContextParameters.RESTEASY_PREFER_JACKSON_OVER_JSONB))
+         ||Boolean.parseBoolean(context.getParameter("resteasy.jsonp.enable"))));
    }
-   
+
+   private static boolean hasJsonBindingAnnotations(Annotation[] searchList){
+      if(searchList!=null){
+         for(Annotation ann : searchList){
+            if(ann.annotationType().isAnnotationPresent(JsonbAnnotation.class)){
+               return true;
+            }
+         }
+      }
+      return false;
+   }
+
    @Override
-   public boolean isReadable(Class<?> type, Type genericType,
-                             Annotation[] annotations, MediaType mediaType) {
-      if (disabled)
-      {
+   public boolean isReadable(Class<?> type,Type genericType,
+                             Annotation[] annotations,MediaType mediaType){
+      if(disabled){
          return false;
       }
-      if (isGenericJaxb(type, genericType))
-      {
+      if(isGenericJaxb(type,genericType)){
          return false;
       }
       return (isSupportedMediaType(mediaType))
-    		  && ((hasJsonBindingAnnotations(annotations)) || (!isJaxbClass(type)));
+         &&((hasJsonBindingAnnotations(annotations))||(!isJaxbClass(type)));
    }
 
    @Override
-   public Object readFrom(Class<Object> type, Type genericType,
-                                 Annotation[] annotations, MediaType mediaType,
-                                 MultivaluedMap<String, String> httpHeaders,
-                                 InputStream entityStream) throws java.io.IOException, javax.ws.rs.WebApplicationException {
-      Jsonb jsonb = getJsonb(type);
-      final EmptyCheckInputStream is = new EmptyCheckInputStream(entityStream);
-      
-      try {
-         return jsonb.fromJson(is, genericType);
+   public Object readFrom(Class<Object> type,Type genericType,
+                          Annotation[] annotations,MediaType mediaType,
+                          MultivaluedMap<String,String> httpHeaders,
+                          InputStream entityStream) throws java.io.IOException, javax.ws.rs.WebApplicationException{
+      Jsonb jsonb=getJsonb(type);
+      final EmptyCheckInputStream is=new EmptyCheckInputStream(entityStream);
+
+      try{
+         return jsonb.fromJson(is,genericType);
          // If null is returned, considered to be empty stream
-      } catch (Throwable e)
-      {
-         if (is.isEmpty()) {
+      }catch(Throwable e){
+         if(is.isEmpty()){
             return null;
          }
          // detail text provided in logger message
          throw new ProcessingException(Messages.MESSAGES.jsonBDeserializationError(e));
       }
    }
-   
-   private class EmptyCheckInputStream extends ProxyInputStream
-   {
-      boolean read = false;
-      boolean empty = false;
-      
-      EmptyCheckInputStream(InputStream proxy)
-      {
-         super(proxy);
-      }
 
-      @Override
-      protected synchronized void afterRead(final int n) throws IOException {
-         if (!read && n <= 0) {
-            empty = true;
-         }
-         read = true;
-      }
-      
-      public boolean isEmpty() {
-         return empty;
-      }
-   };
+   ;
 
    @Override
-   public boolean isWriteable(Class<?> type, Type genericType,
-                              Annotation[] annotations, MediaType mediaType) {
-      if (disabled)
-      {
+   public boolean isWriteable(Class<?> type,Type genericType,
+                              Annotation[] annotations,MediaType mediaType){
+      if(disabled){
          return false;
       }
-      if (isGenericJaxb(type, genericType))
-      {
+      if(isGenericJaxb(type,genericType)){
          return false;
       }
       return (isSupportedMediaType(mediaType))
-            && ((hasJsonBindingAnnotations(annotations)) || (!isJaxbClass(type)));
+         &&((hasJsonBindingAnnotations(annotations))||(!isJaxbClass(type)));
    }
 
    @Override
-   public long getSize(Object t, Class<?> type, Type genericType, Annotation[] annotations,
-                       MediaType mediaType) {
+   public long getSize(Object t,Class<?> type,Type genericType,Annotation[] annotations,
+                       MediaType mediaType){
       return -1L;
    }
 
    @Override
-   public void writeTo(Object t, Class<?> type, Type genericType, Annotation[] annotations,
+   public void writeTo(Object t,Class<?> type,Type genericType,Annotation[] annotations,
                        MediaType mediaType,
-                       MultivaluedMap<String, Object> httpHeaders,
+                       MultivaluedMap<String,Object> httpHeaders,
                        OutputStream entityStream)
-           throws java.io.IOException, javax.ws.rs.WebApplicationException {
-      Jsonb jsonb = getJsonb(type);
-      try
-      {
+      throws java.io.IOException, javax.ws.rs.WebApplicationException{
+      Jsonb jsonb=getJsonb(type);
+      try{
          entityStream.write(jsonb.toJson(t).getBytes(getCharset(mediaType)));
          entityStream.flush();
-      } catch (Throwable e)
-      {
+      }catch(Throwable e){
          throw new ProcessingException(Messages.MESSAGES.jsonBSerializationError(e.toString()));
       }
    }
-   
-   private boolean isGenericJaxb(Class<?> type, Type genericType)
-   {
-      if (Map.class.isAssignableFrom(type) && genericType != null)
-      {
-         Class<?> valueType = Types.getMapValueType(genericType);
-         if (valueType != null && isJaxbClass(valueType))
-         {
+
+   private boolean isGenericJaxb(Class<?> type,Type genericType){
+      if(Map.class.isAssignableFrom(type)&&genericType!=null){
+         Class<?> valueType=Types.getMapValueType(genericType);
+         if(valueType!=null&&isJaxbClass(valueType)){
             return true;
          }
       }
 
-      if ((Collection.class.isAssignableFrom(type) || type.isArray()) && genericType != null)
-      {
-         Class<?> baseType = Types.getCollectionBaseType(type, genericType);
-         if (baseType != null && isJaxbClass(baseType))
-         {
+      if((Collection.class.isAssignableFrom(type)||type.isArray())&&genericType!=null){
+         Class<?> baseType=Types.getCollectionBaseType(type,genericType);
+         if(baseType!=null&&isJaxbClass(baseType)){
             return true;
          }
       }
       return false;
    }
 
-   private boolean isJaxbClass(Class<?> classType)
-   {
-      if (JAXBElement.class.equals(classType))
-      {
+   private boolean isJaxbClass(Class<?> classType){
+      if(JAXBElement.class.equals(classType)){
          return true;
       }
-      for (Annotation a : classType.getAnnotations()) {
-         Class<? extends Annotation> c = a.annotationType();
-         if (c.equals(XmlRootElement.class) || c.equals(XmlType.class) ||c.equals(XmlJavaTypeAdapter.class) ||c.equals(XmlSeeAlso.class))
-         {
+      for(Annotation a : classType.getAnnotations()){
+         Class<? extends Annotation> c=a.annotationType();
+         if(c.equals(XmlRootElement.class)||c.equals(XmlType.class)||c.equals(XmlJavaTypeAdapter.class)||c.equals(XmlSeeAlso.class)){
             return true;
          }
       }
       return false;
 
    }
-   
-   private static boolean hasJsonBindingAnnotations(Annotation[] searchList)
-   {
-      if (searchList != null) {
-         for (Annotation ann : searchList) {
-            if (ann.annotationType().isAnnotationPresent(JsonbAnnotation.class))
-            {
-               return true;
-            }
-         }
+
+   private class EmptyCheckInputStream extends ProxyInputStream{
+      boolean read=false;
+      boolean empty=false;
+
+      EmptyCheckInputStream(InputStream proxy){
+         super(proxy);
       }
-      return false;
+
+      @Override
+      protected synchronized void afterRead(final int n) throws IOException{
+         if(!read&&n<=0){
+            empty=true;
+         }
+         read=true;
+      }
+
+      public boolean isEmpty(){
+         return empty;
+      }
    }
 }

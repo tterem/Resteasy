@@ -12,51 +12,54 @@ import java.util.Map;
 /**
  * Resolves Seam Security EL functions, s:hasRole() and s:hasPermission()
  * by decorating a delegate Unified EL FunctionMapper
- *  
  * @author Shane Bryzak
  */
-public class SeamFunctionMapper extends FunctionMapper
-{
-   private static Map<String,List<Method>> methodCache = new HashMap<String,List<Method>>();
-   
+public class SeamFunctionMapper extends FunctionMapper{
+   private static final Logger LOG=Logger.getLogger(SeamFunctionMapper.class);
+   private static Map<String,List<Method>> methodCache=new HashMap<String,List<Method>>();
+
+   static{
+      cacheMethod("hasPermission",SecurityFunctions.class,"hasPermission",
+         new Class[]{Object.class,String.class});
+      cacheMethod("hasRole",SecurityFunctions.class,"hasRole",
+         new Class[]{String.class});
+   }
+
    private FunctionMapper functionMapper;
-   private static final Logger LOG = Logger.getLogger(SeamFunctionMapper.class);
 
-   public SeamFunctionMapper(FunctionMapper functionMapper)
-   {
-      this.functionMapper = functionMapper;
-   }
-   
-   static 
-   {
-      cacheMethod("hasPermission", SecurityFunctions.class, "hasPermission",
-               new Class[] {Object.class, String.class});
-      cacheMethod("hasRole", SecurityFunctions.class, "hasRole",
-               new Class[] { String.class });      
+   public SeamFunctionMapper(FunctionMapper functionMapper){
+      this.functionMapper=functionMapper;
    }
 
-   @Override 
-   public Method resolveFunction(String prefix, String localName) 
-   {
-      if ( "s".equals(prefix) )
-      {
-         List<Method> methods = methodCache.get(localName);
-         return methods != null ? methods.get(0) : null;
+   private static void cacheMethod(String localName,Class<?> cls,String name,Class<?>[] params){
+      try{
+         Method m=cls.getMethod(name,params);
+
+         List<Method> methods;
+         if(methodCache.containsKey(localName)){
+            methods=methodCache.get(localName);
+         }else{
+            methods=new ArrayList<Method>();
+            methodCache.put(localName,methods);
+         }
+
+         methods.add(m);
+      }catch(NoSuchMethodException ex){
+         LOG.error(String.format("Method %s.%s could not be cached",cls.getName(),name));
       }
-      else if (functionMapper != null)
-      {
-         return functionMapper.resolveFunction(prefix, localName);
-      }
-      else
-      {
+   }
+
+   @Override
+   public Method resolveFunction(String prefix,String localName){
+      if("s".equals(prefix)){
+         List<Method> methods=methodCache.get(localName);
+         return methods!=null?methods.get(0):null;
+      }else if(functionMapper!=null){
+         return functionMapper.resolveFunction(prefix,localName);
+      }else{
          return null;
       }
    }
-
-    @Override
-    public void mapFunction(String prefix, String localName, Method meth) {
-        super.mapFunction(prefix, localName, meth);
-    }
 
    /* @Override
    public Method resolveFunction(String prefix, String localName, int paramCount) 
@@ -83,30 +86,10 @@ public class SeamFunctionMapper extends FunctionMapper
          return null;
       }
    }    */
-   
-   private static void cacheMethod(String localName, Class<?> cls, String name, Class<?>[] params)
-   {
-      try
-      {
-         Method m = cls.getMethod(name, params);
 
-         List<Method> methods;
-         if (methodCache.containsKey(localName))
-         {
-            methods = methodCache.get(localName);
-         }
-         else
-         {
-            methods = new ArrayList<Method>();
-            methodCache.put(localName, methods);
-         }
-         
-         methods.add(m);         
-      }
-      catch (NoSuchMethodException ex)
-      {
-         LOG.error(String.format("Method %s.%s could not be cached", cls.getName(), name));
-      }
+   @Override
+   public void mapFunction(String prefix,String localName,Method meth){
+      super.mapFunction(prefix,localName,meth);
    }
-   
+
 }

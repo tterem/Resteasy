@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
  * Date: 2/20/17
  */
 @RestController
-public class GreetingController {
+public class GreetingController{
 
-    @RequestMapping("/greeting")
-    public String greeting() {
-        return "World";
-    }
+   @RequestMapping("/greeting")
+   public String greeting(){
+      return "World";
+   }
 }
 

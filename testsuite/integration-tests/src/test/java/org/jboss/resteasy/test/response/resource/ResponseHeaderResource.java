@@ -6,10 +6,10 @@ import javax.ws.rs.Produces;
 
 
 @Path("/test")
-public class ResponseHeaderResource {
+public class ResponseHeaderResource{
    @GET
    @Produces("text/plain")
-   public String get() {
+   public String get(){
       throw new ResponseHeaderExceptionMapperRuntimeException();
    }
 }

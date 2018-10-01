@@ -8,13 +8,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 @Path("proxy")
-public interface ValidationComplexProxyInterface {
-    @GET
-    @Produces("text/plain")
-    @Size(min = 2, max = 4)
-    String g();
+public interface ValidationComplexProxyInterface{
+   @GET
+   @Produces("text/plain")
+   @Size(min=2, max=4)
+   String g();
 
-    @POST
-    @Path("{s}")
-    void s(@PathParam("s") String s);
+   @POST
+   @Path("{s}")
+   void s(@PathParam("s") String s);
 }

@@ -19,36 +19,31 @@ import java.lang.annotation.Target;
  * If you want more fine-grain control over the signature header
  * then you must create your own DosetaSignature instances and pass it with the request or response
  * you want to sign.
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  * @see org.jboss.resteasy.security.doseta.KeyRepository
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Signed
-{
+public @interface Signed{
    String algorithm() default "";
 
    /**
     * If there is no domain, then abort.
     * <p>
     * If not set, the runtime may set a default domain.  See documentation for details.
-    *
     * @return domain
     */
    String domain() default "";
 
    /**
     * A default may be used if not set.  See documentation for more details.
-    *
     * @return selector
     */
    String selector() default "";
 
    /**
     * Will calculate and add a timestamp
-    *
     * @return calculate and add a timestamp
     */
    boolean timestamped() default false;

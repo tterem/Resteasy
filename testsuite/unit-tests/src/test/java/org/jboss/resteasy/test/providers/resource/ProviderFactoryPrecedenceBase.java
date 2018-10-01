@@ -9,15 +9,15 @@ import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
-public class ProviderFactoryPrecedenceBase<T> implements MessageBodyWriter<T> {
-    public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return true;
-    }
+public class ProviderFactoryPrecedenceBase<T> implements MessageBodyWriter<T>{
+   public boolean isWriteable(Class<?> type,Type genericType,Annotation[] annotations,MediaType mediaType){
+      return true;
+   }
 
-    public long getSize(T integer, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return 0;
-    }
+   public long getSize(T integer,Class<?> type,Type genericType,Annotation[] annotations,MediaType mediaType){
+      return 0;
+   }
 
-    public void writeTo(T integer, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
-    }
+   public void writeTo(T integer,Class<?> type,Type genericType,Annotation[] annotations,MediaType mediaType,MultivaluedMap<String,Object> httpHeaders,OutputStream entityStream) throws IOException, WebApplicationException{
+   }
 }

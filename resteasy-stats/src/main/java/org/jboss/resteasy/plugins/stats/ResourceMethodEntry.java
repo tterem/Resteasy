@@ -10,16 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-@XmlRootElement(name = "error")
+@XmlRootElement(name="error")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlSeeAlso({GetResourceMethod.class, DeleteResourceMethod.class, HeadResourceMethod.class, OptionsResourceMethod.class, PostResourceMethod.class, PutResourceMethod.class, TraceResourceMethod.class})
-public class ResourceMethodEntry
-{
-   @XmlAttribute(name = "class")
+@XmlSeeAlso({GetResourceMethod.class,DeleteResourceMethod.class,HeadResourceMethod.class,OptionsResourceMethod.class,PostResourceMethod.class,PutResourceMethod.class,TraceResourceMethod.class})
+public class ResourceMethodEntry{
+   @XmlAttribute(name="class")
    private String clazz;
 
    @XmlAttribute
@@ -29,50 +27,41 @@ public class ResourceMethodEntry
    private long invocations;
 
    @XmlElement
-   private List<String> produces = new ArrayList<String>();
+   private List<String> produces=new ArrayList<String>();
 
    @XmlElement
-   private List<String> consumes = new ArrayList<String>();
+   private List<String> consumes=new ArrayList<String>();
 
 
-   public String getClazz()
-   {
+   public String getClazz(){
       return clazz;
    }
 
-   public String getMethod()
-   {
+   public void setClazz(String clazz){
+      this.clazz=clazz;
+   }
+
+   public String getMethod(){
       return method;
    }
 
+   public void setMethod(String method){
+      this.method=method;
+   }
 
-   public long getInvocations()
-   {
+   public long getInvocations(){
       return invocations;
    }
 
-   public void setClazz(String clazz)
-   {
-      this.clazz = clazz;
+   public void setInvocations(long invocations){
+      this.invocations=invocations;
    }
 
-   public void setMethod(String method)
-   {
-      this.method = method;
-   }
-
-   public void setInvocations(long invocations)
-   {
-      this.invocations = invocations;
-   }
-
-   public List<String> getProduces()
-   {
+   public List<String> getProduces(){
       return produces;
    }
 
-   public List<String> getConsumes()
-   {
+   public List<String> getConsumes(){
       return consumes;
    }
 }

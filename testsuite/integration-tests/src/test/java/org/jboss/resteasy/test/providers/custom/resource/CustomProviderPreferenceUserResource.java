@@ -6,12 +6,12 @@ import javax.ws.rs.Produces;
 
 @Path("/user")
 @Produces("text/plain")
-public class CustomProviderPreferenceUserResource {
+public class CustomProviderPreferenceUserResource{
 
-    private static final CustomProviderPreferenceUser user = new CustomProviderPreferenceUser("jharting", "email@example.com");
+   private static final CustomProviderPreferenceUser user=new CustomProviderPreferenceUser("jharting","email@example.com");
 
-    @GET
-    public CustomProviderPreferenceUser getUser() {
-        return user;
-    }
+   @GET
+   public CustomProviderPreferenceUser getUser(){
+      return user;
+   }
 }

@@ -8,16 +8,16 @@ import javax.ws.rs.core.Response;
 
 @Path("/")
 @Produces("text/plain")
-public class ResponseFilterChangeStatusResource {
+public class ResponseFilterChangeStatusResource{
 
-    @POST
-    @Path("empty")
-    public void empty() {
-    }
+   @POST
+   @Path("empty")
+   public void empty(){
+   }
 
-    @GET
-    @Path("default_head")
-    public Response defaultHead() {
-        return Response.ok(" ").build();
-    }
+   @GET
+   @Path("default_head")
+   public Response defaultHead(){
+      return Response.ok(" ").build();
+   }
 }

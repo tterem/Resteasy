@@ -1,9 +1,9 @@
 package org.jboss.resteasy.security.doseta;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+import org.jboss.resteasy.core.ResteasyContext;
+import org.jboss.resteasy.security.doseta.i18n.LogMessages;
+import org.jboss.resteasy.security.doseta.i18n.Messages;
+import org.jboss.resteasy.util.InputStreamToByteArray;
 
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
@@ -12,11 +12,10 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 import javax.ws.rs.ext.ReaderInterceptor;
 import javax.ws.rs.ext.ReaderInterceptorContext;
-
-import org.jboss.resteasy.core.ResteasyContext;
-import org.jboss.resteasy.security.doseta.i18n.LogMessages;
-import org.jboss.resteasy.security.doseta.i18n.Messages;
-import org.jboss.resteasy.util.InputStreamToByteArray;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -24,66 +23,52 @@ import org.jboss.resteasy.util.InputStreamToByteArray;
  */
 @Provider
 @Priority(Priorities.ENTITY_CODER)
-public class DigitalVerificationInterceptor implements ReaderInterceptor
-{
+public class DigitalVerificationInterceptor implements ReaderInterceptor{
    @Override
-   public Object aroundReadFrom(ReaderInterceptorContext context) throws IOException, WebApplicationException
-   {
-      LogMessages.LOGGER.debugf("Interceptor : %s,  Method : aroundReadFrom", getClass().getName());
-      Verifier verifier = (Verifier) context.getProperty(Verifier.class.getName());
-      if (verifier == null)
-      {
+   public Object aroundReadFrom(ReaderInterceptorContext context) throws IOException, WebApplicationException{
+      LogMessages.LOGGER.debugf("Interceptor : %s,  Method : aroundReadFrom",getClass().getName());
+      Verifier verifier=(Verifier)context.getProperty(Verifier.class.getName());
+      if(verifier==null){
          return context.proceed();
       }
 
       //System.out.println("TRACE: found verifier");
 
-      MultivaluedMap<String, String> headers = context.getHeaders();
-      List<String> strings = headers.get(DKIMSignature.DKIM_SIGNATURE);
-      if (strings == null)
-      {
+      MultivaluedMap<String,String> headers=context.getHeaders();
+      List<String> strings=headers.get(DKIMSignature.DKIM_SIGNATURE);
+      if(strings==null){
          throw new UnauthorizedSignatureException(Messages.MESSAGES.thereWasNoSignatureHeader(DKIMSignature.DKIM_SIGNATURE));
       }
-      List<DKIMSignature> signatures = new ArrayList<DKIMSignature>();
-      for (String headerVal : strings)
-      {
-         try
-         {
+      List<DKIMSignature> signatures=new ArrayList<DKIMSignature>();
+      for(String headerVal : strings){
+         try{
             signatures.add(new DKIMSignature(headerVal));
-         }
-         catch (Exception e)
-         {
+         }catch(Exception e){
             throw new UnauthorizedSignatureException(Messages.MESSAGES.malformedSignatureHeader(DKIMSignature.DKIM_SIGNATURE));
          }
       }
 
-      InputStream old = context.getInputStream();
-      try
-      {
-         InputStreamToByteArray stream = new InputStreamToByteArray(old);
+      InputStream old=context.getInputStream();
+      try{
+         InputStreamToByteArray stream=new InputStreamToByteArray(old);
          context.setInputStream(stream);
-         Object rtn = context.proceed();
-         byte[] body = stream.toByteArray();
+         Object rtn=context.proceed();
+         byte[] body=stream.toByteArray();
 
-         if (verifier.getRepository() == null)
-         {
-            KeyRepository repository = (KeyRepository) context.getProperty(KeyRepository.class.getName());
-            if (repository == null)
-            {
-               repository = ResteasyContext.getContextData(KeyRepository.class);
+         if(verifier.getRepository()==null){
+            KeyRepository repository=(KeyRepository)context.getProperty(KeyRepository.class.getName());
+            if(repository==null){
+               repository=ResteasyContext.getContextData(KeyRepository.class);
             }
             verifier.setRepository(repository);
          }
 
-         VerificationResults results = verifier.verify(signatures, headers, body);
-         if (results.isVerified() == false)
-         {
+         VerificationResults results=verifier.verify(signatures,headers,body);
+         if(results.isVerified()==false){
             throw new UnauthorizedSignatureException(results);
          }
          return rtn;
-      }
-      finally
-      {
+      }finally{
          context.setInputStream(old);
       }
    }

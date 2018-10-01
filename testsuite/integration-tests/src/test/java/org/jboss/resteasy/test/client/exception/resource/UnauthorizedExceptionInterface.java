@@ -5,8 +5,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 @Path("/test")
-public interface UnauthorizedExceptionInterface {
-    @POST
-    @Consumes("text/plain")
-    void postIt(String msg);
+public interface UnauthorizedExceptionInterface{
+   @POST
+   @Consumes("text/plain")
+   void postIt(String msg);
 }

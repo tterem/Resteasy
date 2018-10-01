@@ -9,8 +9,7 @@ import javax.ws.rs.core.Response;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public interface ClientHttpEngine
-{
+public interface ClientHttpEngine{
    /**
     * Needed for Client.getSslContext();
     * @return {@link SSLContext}
@@ -19,11 +18,12 @@ public interface ClientHttpEngine
 
    /**
     * Needed for Client.getHostnameVerifier()
-    *
     * @return {@link HostnameVerifier}
     */
    HostnameVerifier getHostnameVerifier();
+
    Response invoke(Invocation request);
+
    void close();
 
 }

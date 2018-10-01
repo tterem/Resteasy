@@ -9,10 +9,11 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 @Path("/basic")
-public interface BasicResource
-{
+public interface BasicResource{
 
-   /** test basic setup -- implemented in BasicResourceImpl **/
+   /**
+    * test basic setup -- implemented in BasicResourceImpl
+    **/
    @GET
    @Produces("text/plain")
    String getBasicString();
@@ -27,7 +28,9 @@ public interface BasicResource
    @Path("object")
    Response getWrongContentTypeBasicObject();
 
-   /** test Spring MVC ModelAndView **/
+   /**
+    * test Spring MVC ModelAndView
+    **/
    @GET
    @Produces("application/custom")
    @Path("/custom-rep")
@@ -81,7 +84,7 @@ public interface BasicResource
    @Produces("text/plain")
    @Path("bogus-rul-test")
    Response testBogusUrl();
-   
+
    @GET
    @Produces("application/xml")
    @Path("spring/object/xml")

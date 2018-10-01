@@ -1,33 +1,33 @@
 package org.jboss.resteasy.test.rx.resource;
 
-public class Thing {
+public class Thing{
 
    private String name;
 
-   public Thing() {
+   public Thing(){
    }
 
-   public Thing(String name) {
-      this.name = name;
+   public Thing(String name){
+      this.name=name;
    }
 
-   public String getName() {
+   public String getName(){
       return name;
    }
 
-   public void setName(String name) {
-      this.name = name;
+   public void setName(String name){
+      this.name=name;
    }
 
-   public String toString() {
-      return "Thing[" + name + "]";
+   public String toString(){
+      return "Thing["+name+"]";
    }
 
    @Override
-   public boolean equals(Object o) {
-      if (!(o instanceof Thing)) {
+   public boolean equals(Object o){
+      if(!(o instanceof Thing)){
          return false;
       }
-      return name.equals(((Thing) o).name);
+      return name.equals(((Thing)o).name);
    }
 }

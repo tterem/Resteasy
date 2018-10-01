@@ -39,87 +39,74 @@ import static org.jboss.resteasy.spi.util.FindAnnotation.findAnnotation;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-@SuppressWarnings({"unchecked", "rawtypes"})
-public class InjectorFactoryImpl implements InjectorFactory
-{
+@SuppressWarnings({"unchecked","rawtypes"})
+public class InjectorFactoryImpl implements InjectorFactory{
    @Override
-   public ConstructorInjector createConstructor(Constructor constructor, ResteasyProviderFactory providerFactory)
-   {
-      return new ConstructorInjectorImpl(constructor, providerFactory);
+   public ConstructorInjector createConstructor(Constructor constructor,ResteasyProviderFactory providerFactory){
+      return new ConstructorInjectorImpl(constructor,providerFactory);
    }
 
    @Override
-   public ConstructorInjector createConstructor(ResourceConstructor constructor, ResteasyProviderFactory providerFactory)
-   {
-      return new ConstructorInjectorImpl(constructor, providerFactory);
+   public ConstructorInjector createConstructor(ResourceConstructor constructor,ResteasyProviderFactory providerFactory){
+      return new ConstructorInjectorImpl(constructor,providerFactory);
    }
 
    @Override
-   public PropertyInjector createPropertyInjector(Class resourceClass, ResteasyProviderFactory providerFactory)
-   {
-      return new PropertyInjectorImpl(resourceClass, providerFactory);
+   public PropertyInjector createPropertyInjector(Class resourceClass,ResteasyProviderFactory providerFactory){
+      return new PropertyInjectorImpl(resourceClass,providerFactory);
    }
 
    @Override
-   public PropertyInjector createPropertyInjector(ResourceClass resourceClass, ResteasyProviderFactory providerFactory)
-   {
-      return new ResourcePropertyInjector(resourceClass, providerFactory);
+   public PropertyInjector createPropertyInjector(ResourceClass resourceClass,ResteasyProviderFactory providerFactory){
+      return new ResourcePropertyInjector(resourceClass,providerFactory);
    }
 
    @Override
-   public MethodInjector createMethodInjector(ResourceLocator method, ResteasyProviderFactory factory)
-   {
-      return new MethodInjectorImpl(method, factory);
+   public MethodInjector createMethodInjector(ResourceLocator method,ResteasyProviderFactory factory){
+      return new MethodInjectorImpl(method,factory);
    }
 
    @Override
-   public ValueInjector createParameterExtractor(Parameter parameter, ResteasyProviderFactory providerFactory)
-   {
-      switch (parameter.getParamType())
-      {
+   public ValueInjector createParameterExtractor(Parameter parameter,ResteasyProviderFactory providerFactory){
+      switch(parameter.getParamType()){
          case QUERY_PARAM:
-            return new QueryParamInjector(parameter.getType(), parameter.getGenericType(), parameter.getAccessibleObject(), parameter.getParamName(), parameter.getDefaultValue(), parameter.isEncoded(), parameter.getAnnotations(), providerFactory);
+            return new QueryParamInjector(parameter.getType(),parameter.getGenericType(),parameter.getAccessibleObject(),parameter.getParamName(),parameter.getDefaultValue(),parameter.isEncoded(),parameter.getAnnotations(),providerFactory);
          case QUERY:
-            return new QueryInjector(parameter.getType(), providerFactory);
+            return new QueryInjector(parameter.getType(),providerFactory);
          case HEADER_PARAM:
-            return new HeaderParamInjector(parameter.getType(), parameter.getGenericType(), parameter.getAccessibleObject(), parameter.getParamName(), parameter.getDefaultValue(), parameter.getAnnotations(), providerFactory);
+            return new HeaderParamInjector(parameter.getType(),parameter.getGenericType(),parameter.getAccessibleObject(),parameter.getParamName(),parameter.getDefaultValue(),parameter.getAnnotations(),providerFactory);
          case FORM_PARAM:
-            return new FormParamInjector(parameter.getType(), parameter.getGenericType(), parameter.getAccessibleObject(), parameter.getParamName(), parameter.getDefaultValue(), parameter.isEncoded(), parameter.getAnnotations(), providerFactory);
+            return new FormParamInjector(parameter.getType(),parameter.getGenericType(),parameter.getAccessibleObject(),parameter.getParamName(),parameter.getDefaultValue(),parameter.isEncoded(),parameter.getAnnotations(),providerFactory);
          case COOKIE_PARAM:
-            return new CookieParamInjector(parameter.getType(), parameter.getGenericType(), parameter.getAccessibleObject(), parameter.getParamName(), parameter.getDefaultValue(), parameter.getAnnotations(), providerFactory);
+            return new CookieParamInjector(parameter.getType(),parameter.getGenericType(),parameter.getAccessibleObject(),parameter.getParamName(),parameter.getDefaultValue(),parameter.getAnnotations(),providerFactory);
          case PATH_PARAM:
-            return new PathParamInjector(parameter.getType(), parameter.getGenericType(), parameter.getAccessibleObject(), parameter.getParamName(), parameter.getDefaultValue(), parameter.isEncoded(), parameter.getAnnotations(), providerFactory);
-         case FORM:
-         {
-            String prefix = parameter.getParamName();
-            if (prefix.length() > 0)
-            {
-               if (parameter.getGenericType() instanceof ParameterizedType)
-               {
-                  ParameterizedType pType = (ParameterizedType) parameter.getGenericType();
-                  if (Types.isA(List.class, pType))
-                  {
-                     return new ListFormInjector(parameter.getType(), Types.getArgumentType(pType, 0), prefix, providerFactory);
+            return new PathParamInjector(parameter.getType(),parameter.getGenericType(),parameter.getAccessibleObject(),parameter.getParamName(),parameter.getDefaultValue(),parameter.isEncoded(),parameter.getAnnotations(),providerFactory);
+         case FORM:{
+            String prefix=parameter.getParamName();
+            if(prefix.length()>0){
+               if(parameter.getGenericType() instanceof ParameterizedType){
+                  ParameterizedType pType=(ParameterizedType)parameter.getGenericType();
+                  if(Types.isA(List.class,pType)){
+                     return new ListFormInjector(parameter.getType(),Types.getArgumentType(pType,0),prefix,providerFactory);
                   }
-                  if (Types.isA(Map.class, pType))
-                  {
-                     return new MapFormInjector(parameter.getType(), Types.getArgumentType(pType, 0), Types.getArgumentType(pType, 1), prefix, providerFactory);
+                  if(Types.isA(Map.class,pType)){
+                     return new MapFormInjector(parameter.getType(),Types.getArgumentType(pType,0),Types.getArgumentType(pType,1),prefix,providerFactory);
                   }
                }
-               return new PrefixedFormInjector(parameter.getType(), prefix, providerFactory);
+               return new PrefixedFormInjector(parameter.getType(),prefix,providerFactory);
             }
-            return new FormInjector(parameter.getType(), providerFactory);
+            return new FormInjector(parameter.getType(),providerFactory);
          }
          case BEAN_PARAM:
-            return new FormInjector(parameter.getType(), providerFactory);
+            return new FormInjector(parameter.getType(),providerFactory);
          case MATRIX_PARAM:
-            return new MatrixParamInjector(parameter.getType(), parameter.getGenericType(), parameter.getAccessibleObject(), parameter.getParamName(), parameter.getDefaultValue(), parameter.isEncoded(), parameter.getAnnotations(), providerFactory);
+            return new MatrixParamInjector(parameter.getType(),parameter.getGenericType(),parameter.getAccessibleObject(),parameter.getParamName(),parameter.getDefaultValue(),parameter.isEncoded(),parameter.getAnnotations(),providerFactory);
          case CONTEXT:
-            return new ContextParameterInjector(null, parameter.getType(), parameter.getGenericType(), parameter.getAnnotations(), providerFactory);
+            return new ContextParameterInjector(null,parameter.getType(),parameter.getGenericType(),parameter.getAnnotations(),providerFactory);
          case SUSPENDED:
             return new AsynchronousResponseInjector();
          case MESSAGE_BODY:
-            return new MessageBodyParameterInjector(parameter.getResourceClass().getClazz(), parameter.getAccessibleObject(), parameter.getType(), parameter.getGenericType(), parameter.getAnnotations(), providerFactory);
+            return new MessageBodyParameterInjector(parameter.getResourceClass().getClazz(),parameter.getAccessibleObject(),parameter.getType(),parameter.getGenericType(),parameter.getAnnotations(),providerFactory);
          default:
             return null;
       }
@@ -127,19 +114,17 @@ public class InjectorFactoryImpl implements InjectorFactory
 
 
    @Override
-   public ValueInjector createParameterExtractor(Class injectTargetClass, AccessibleObject injectTarget, String defaultName, Class type,
-                                                 Type genericType, Annotation[] annotations, ResteasyProviderFactory providerFactory)
-   {
-      return createParameterExtractor(injectTargetClass, injectTarget, defaultName, type, genericType, annotations, true, providerFactory);
+   public ValueInjector createParameterExtractor(Class injectTargetClass,AccessibleObject injectTarget,String defaultName,Class type,
+                                                 Type genericType,Annotation[] annotations,ResteasyProviderFactory providerFactory){
+      return createParameterExtractor(injectTargetClass,injectTarget,defaultName,type,genericType,annotations,true,providerFactory);
    }
 
    @Override
-   public ValueInjector createParameterExtractor(Class injectTargetClass, AccessibleObject injectTarget, String defaultName, Class type, Type genericType, Annotation[] annotations, boolean useDefault, ResteasyProviderFactory providerFactory)
-   {
-      DefaultValue defaultValue = findAnnotation(annotations, DefaultValue.class);
-      boolean encode = findAnnotation(annotations, Encoded.class) != null || injectTarget.isAnnotationPresent(Encoded.class) || type.isAnnotationPresent(Encoded.class);
-      String defaultVal = null;
-      if (defaultValue != null) defaultVal = defaultValue.value();
+   public ValueInjector createParameterExtractor(Class injectTargetClass,AccessibleObject injectTarget,String defaultName,Class type,Type genericType,Annotation[] annotations,boolean useDefault,ResteasyProviderFactory providerFactory){
+      DefaultValue defaultValue=findAnnotation(annotations,DefaultValue.class);
+      boolean encode=findAnnotation(annotations,Encoded.class)!=null||injectTarget.isAnnotationPresent(Encoded.class)||type.isAnnotationPresent(Encoded.class);
+      String defaultVal=null;
+      if(defaultValue!=null) defaultVal=defaultValue.value();
 
       QueryParam queryParam;
       HeaderParam header;
@@ -149,100 +134,58 @@ public class InjectorFactoryImpl implements InjectorFactory
       FormParam formParam;
       Form form;
 
-      if ((queryParam = findAnnotation(annotations, QueryParam.class)) != null)
-      {
-         return new QueryParamInjector(type, genericType, injectTarget, queryParam.value(), defaultVal, encode, annotations, providerFactory);
-      }
-      else if (findAnnotation(annotations, org.jboss.resteasy.annotations.jaxrs.QueryParam.class) != null)
-      {
-         return new QueryParamInjector(type, genericType, injectTarget, defaultName, defaultVal, encode, annotations, providerFactory);
-      }
-      else if (findAnnotation(annotations, Query.class) != null) {
-         return new QueryInjector(type, providerFactory);
-      }
-      else if ((header = findAnnotation(annotations, HeaderParam.class)) != null)
-      {
-         return new HeaderParamInjector(type, genericType, injectTarget, header.value(), defaultVal, annotations, providerFactory);
-      }
-      else if (findAnnotation(annotations, org.jboss.resteasy.annotations.jaxrs.HeaderParam.class) != null)
-      {
-         return new HeaderParamInjector(type, genericType, injectTarget, defaultName, defaultVal, annotations, providerFactory);
-      }
-      else if ((formParam = findAnnotation(annotations, FormParam.class)) != null)
-      {
-         return new FormParamInjector(type, genericType, injectTarget, formParam.value(), defaultVal, encode, annotations, providerFactory);
-      }
-      else if (findAnnotation(annotations, org.jboss.resteasy.annotations.jaxrs.FormParam.class) != null)
-      {
-         return new FormParamInjector(type, genericType, injectTarget, defaultName, defaultVal, encode, annotations, providerFactory);
-      }
-      else if ((cookie = findAnnotation(annotations, CookieParam.class)) != null)
-      {
-         return new CookieParamInjector(type, genericType, injectTarget, cookie.value(), defaultVal, annotations, providerFactory);
-      }
-      else if (findAnnotation(annotations, org.jboss.resteasy.annotations.jaxrs.CookieParam.class) != null)
-      {
-         return new CookieParamInjector(type, genericType, injectTarget, defaultName, defaultVal, annotations, providerFactory);
-      }
-      else if ((uriParam = findAnnotation(annotations, PathParam.class)) != null)
-      {
-         return new PathParamInjector(type, genericType, injectTarget, uriParam.value(), defaultVal, encode, annotations, providerFactory);
-      }
-      else if (findAnnotation(annotations, org.jboss.resteasy.annotations.jaxrs.PathParam.class) != null)
-      {
-         return new PathParamInjector(type, genericType, injectTarget, defaultName, defaultVal, encode, annotations, providerFactory);
-      }
-      else if ((form = findAnnotation(annotations, Form.class)) != null)
-      {
-         String prefix = form.prefix();
-         if (prefix.length() > 0)
-         {
-            if (genericType instanceof ParameterizedType)
-            {
-               ParameterizedType pType = (ParameterizedType) genericType;
-               if (Types.isA(List.class, pType))
-               {
-                  return new ListFormInjector(type, Types.getArgumentType(pType, 0), prefix, providerFactory);
+      if((queryParam=findAnnotation(annotations,QueryParam.class))!=null){
+         return new QueryParamInjector(type,genericType,injectTarget,queryParam.value(),defaultVal,encode,annotations,providerFactory);
+      }else if(findAnnotation(annotations,org.jboss.resteasy.annotations.jaxrs.QueryParam.class)!=null){
+         return new QueryParamInjector(type,genericType,injectTarget,defaultName,defaultVal,encode,annotations,providerFactory);
+      }else if(findAnnotation(annotations,Query.class)!=null){
+         return new QueryInjector(type,providerFactory);
+      }else if((header=findAnnotation(annotations,HeaderParam.class))!=null){
+         return new HeaderParamInjector(type,genericType,injectTarget,header.value(),defaultVal,annotations,providerFactory);
+      }else if(findAnnotation(annotations,org.jboss.resteasy.annotations.jaxrs.HeaderParam.class)!=null){
+         return new HeaderParamInjector(type,genericType,injectTarget,defaultName,defaultVal,annotations,providerFactory);
+      }else if((formParam=findAnnotation(annotations,FormParam.class))!=null){
+         return new FormParamInjector(type,genericType,injectTarget,formParam.value(),defaultVal,encode,annotations,providerFactory);
+      }else if(findAnnotation(annotations,org.jboss.resteasy.annotations.jaxrs.FormParam.class)!=null){
+         return new FormParamInjector(type,genericType,injectTarget,defaultName,defaultVal,encode,annotations,providerFactory);
+      }else if((cookie=findAnnotation(annotations,CookieParam.class))!=null){
+         return new CookieParamInjector(type,genericType,injectTarget,cookie.value(),defaultVal,annotations,providerFactory);
+      }else if(findAnnotation(annotations,org.jboss.resteasy.annotations.jaxrs.CookieParam.class)!=null){
+         return new CookieParamInjector(type,genericType,injectTarget,defaultName,defaultVal,annotations,providerFactory);
+      }else if((uriParam=findAnnotation(annotations,PathParam.class))!=null){
+         return new PathParamInjector(type,genericType,injectTarget,uriParam.value(),defaultVal,encode,annotations,providerFactory);
+      }else if(findAnnotation(annotations,org.jboss.resteasy.annotations.jaxrs.PathParam.class)!=null){
+         return new PathParamInjector(type,genericType,injectTarget,defaultName,defaultVal,encode,annotations,providerFactory);
+      }else if((form=findAnnotation(annotations,Form.class))!=null){
+         String prefix=form.prefix();
+         if(prefix.length()>0){
+            if(genericType instanceof ParameterizedType){
+               ParameterizedType pType=(ParameterizedType)genericType;
+               if(Types.isA(List.class,pType)){
+                  return new ListFormInjector(type,Types.getArgumentType(pType,0),prefix,providerFactory);
                }
-               if (Types.isA(Map.class, pType))
-               {
-                  return new MapFormInjector(type, Types.getArgumentType(pType, 0), Types.getArgumentType(pType, 1), prefix, providerFactory);
+               if(Types.isA(Map.class,pType)){
+                  return new MapFormInjector(type,Types.getArgumentType(pType,0),Types.getArgumentType(pType,1),prefix,providerFactory);
                }
             }
-            return new PrefixedFormInjector(type, prefix, providerFactory);
+            return new PrefixedFormInjector(type,prefix,providerFactory);
          }
-         return new FormInjector(type, providerFactory);
-      }
-      else if (findAnnotation(annotations, BeanParam.class) != null)
-      {
-         return new FormInjector(type, providerFactory);
-      }
-      else if ((matrix = findAnnotation(annotations, MatrixParam.class)) != null)
-      {
-         return new MatrixParamInjector(type, genericType, injectTarget, matrix.value(), defaultVal, encode, annotations, providerFactory);
-      }
-      else if (findAnnotation(annotations, org.jboss.resteasy.annotations.jaxrs.MatrixParam.class) != null)
-      {
-         return new MatrixParamInjector(type, genericType, injectTarget, defaultName, defaultVal, encode, annotations, providerFactory);
-      }
-      else if (findAnnotation(annotations, Context.class) != null)
-      {
-         return new ContextParameterInjector(null, type, genericType, annotations, providerFactory);
-      }
-      else if (findAnnotation(annotations, Suspended.class) != null)
-      {
+         return new FormInjector(type,providerFactory);
+      }else if(findAnnotation(annotations,BeanParam.class)!=null){
+         return new FormInjector(type,providerFactory);
+      }else if((matrix=findAnnotation(annotations,MatrixParam.class))!=null){
+         return new MatrixParamInjector(type,genericType,injectTarget,matrix.value(),defaultVal,encode,annotations,providerFactory);
+      }else if(findAnnotation(annotations,org.jboss.resteasy.annotations.jaxrs.MatrixParam.class)!=null){
+         return new MatrixParamInjector(type,genericType,injectTarget,defaultName,defaultVal,encode,annotations,providerFactory);
+      }else if(findAnnotation(annotations,Context.class)!=null){
+         return new ContextParameterInjector(null,type,genericType,annotations,providerFactory);
+      }else if(findAnnotation(annotations,Suspended.class)!=null){
          return new AsynchronousResponseInjector();
-      }
-      else if (javax.ws.rs.container.AsyncResponse.class.isAssignableFrom(type))
-      {
+      }else if(javax.ws.rs.container.AsyncResponse.class.isAssignableFrom(type)){
          return new AsynchronousResponseInjector();
-      }
-      else if (useDefault)
-      {
-         return new MessageBodyParameterInjector(injectTargetClass, injectTarget, type, genericType, annotations, providerFactory);
-      }
-      else
-      {
+      }else if(useDefault){
+         return new MessageBodyParameterInjector(injectTargetClass,injectTarget,type,genericType,annotations,providerFactory);
+      }else{
          return null;
       }
    }

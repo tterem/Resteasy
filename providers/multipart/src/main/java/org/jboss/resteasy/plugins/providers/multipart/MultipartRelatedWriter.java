@@ -14,37 +14,32 @@ import java.lang.reflect.Type;
 /**
  * The {@link MessageBodyWriter} implementation to serialize
  * {@link MultipartRelatedOutput} objects.
- *
  * @author Attila Kiraly
  * @version $Revision: 1 $
  */
 @Provider
 @Produces("multipart/related")
 public class MultipartRelatedWriter extends AbstractMultipartRelatedWriter
-        implements MessageBodyWriter<MultipartRelatedOutput>
-{
+   implements MessageBodyWriter<MultipartRelatedOutput>{
 
-   public boolean isWriteable(Class<?> type, Type genericType,
-                              Annotation[] annotations, MediaType mediaType)
-   {
+   public boolean isWriteable(Class<?> type,Type genericType,
+                              Annotation[] annotations,MediaType mediaType){
       return MultipartRelatedOutput.class.isAssignableFrom(type);
    }
 
    public long getSize(MultipartRelatedOutput multipartRelatedOutput,
-                       Class<?> type, Type genericType, Annotation[] annotations,
-                       MediaType mediaType)
-   {
+                       Class<?> type,Type genericType,Annotation[] annotations,
+                       MediaType mediaType){
       return -1;
    }
 
    public void writeTo(MultipartRelatedOutput multipartRelatedOutput,
-                       Class<?> type, Type genericType, Annotation[] annotations,
-                       MediaType mediaType, MultivaluedMap<String, Object> httpHeaders,
+                       Class<?> type,Type genericType,Annotation[] annotations,
+                       MediaType mediaType,MultivaluedMap<String,Object> httpHeaders,
                        OutputStream entityStream) throws IOException,
-           WebApplicationException
-   {
-      writeRelated(multipartRelatedOutput, mediaType, httpHeaders,
-              entityStream);
+      WebApplicationException{
+      writeRelated(multipartRelatedOutput,mediaType,httpHeaders,
+         entityStream);
    }
 
 }

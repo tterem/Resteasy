@@ -4,5 +4,5 @@ import javax.ejb.Stateless;
 
 @Stateless
 @CDIModulesInjectableBinder
-public class CDIModulesInjectable implements CDIModulesInjectableIntf {
+public class CDIModulesInjectable implements CDIModulesInjectableIntf{
 }

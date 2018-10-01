@@ -4,9 +4,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 @Path("main/{key}")
-public class WildcardMatchingSubResource {
-    @GET
-    public String subresource() {
-        return this.getClass().getSimpleName();
-    }
+public class WildcardMatchingSubResource{
+   @GET
+   public String subresource(){
+      return this.getClass().getSimpleName();
+   }
 }

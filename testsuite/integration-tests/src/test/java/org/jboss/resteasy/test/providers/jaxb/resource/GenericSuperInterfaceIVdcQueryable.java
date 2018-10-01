@@ -1,5 +1,5 @@
 package org.jboss.resteasy.test.providers.jaxb.resource;
 
-public class GenericSuperInterfaceIVdcQueryable {
+public class GenericSuperInterfaceIVdcQueryable{
 
 }

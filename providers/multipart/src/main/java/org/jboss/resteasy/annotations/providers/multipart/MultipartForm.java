@@ -16,13 +16,11 @@ import java.lang.annotation.Target;
  * <p>
  * When using this form class as output, you must put @FormParam
  * annotations on either fields or getter methods.
- *
  * @author <a href="bill@burkecentral.com">Bill Burke</a>
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-@Target({ElementType.PARAMETER, ElementType.METHOD, ElementType.FIELD})
+@Target({ElementType.PARAMETER,ElementType.METHOD,ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MultipartForm
-{
+public @interface MultipartForm{
 }

@@ -8,11 +8,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 
 @Path("/testapp")
-public interface ApplicationScopeIRestServiceAppScoped {
-   
-    @POST
-    @Path("/send")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @NotNull
-    String sendDto(@NotNull @Valid ApplicationScopeMyDto myDto);
+public interface ApplicationScopeIRestServiceAppScoped{
+
+   @POST
+   @Path("/send")
+   @Consumes(MediaType.APPLICATION_JSON)
+   @NotNull
+   String sendDto(@NotNull @Valid ApplicationScopeMyDto myDto);
 }

@@ -7,42 +7,35 @@ import org.springframework.beans.factory.annotation.Required;
  * @version $Revision: 1 $
  */
 
-public class ResteasyRegistration
-{
+public class ResteasyRegistration{
 
-   private String context = "";
+   private String context="";
    private String beanName;
 
-   public ResteasyRegistration()
-   {
+   public ResteasyRegistration(){
    }
 
-   public ResteasyRegistration(String context, String beanName)
-   {
-      this.context = context;
-      this.beanName = beanName;
+   public ResteasyRegistration(String context,String beanName){
+      this.context=context;
+      this.beanName=beanName;
    }
 
    @Required
-   public String getContext()
-   {
+   public String getContext(){
       return context;
    }
 
-   public void setContext(String context)
-   {
-      this.context = context;
+   public void setContext(String context){
+      this.context=context;
    }
 
    @Required
-   public String getBeanName()
-   {
+   public String getBeanName(){
       return this.beanName;
    }
 
-   public void setBeanName(String beanName)
-   {
-      this.beanName = beanName;
+   public void setBeanName(String beanName){
+      this.beanName=beanName;
    }
 
 }

@@ -7,13 +7,13 @@ import java.lang.annotation.Annotation;
 import java.util.Date;
 
 @Path("/")
-public class ResponseGetAnnotationsResource {
-    @POST
-    @Path("entity")
-    public Response entity(Date date) {
-        Annotation[] annotations = ResponseGetAnnotationsAnnotatedClass.class.getAnnotations();
-        Response response = Response.ok().entity(date, annotations).build();
-        return response;
-    }
+public class ResponseGetAnnotationsResource{
+   @POST
+   @Path("entity")
+   public Response entity(Date date){
+      Annotation[] annotations=ResponseGetAnnotationsAnnotatedClass.class.getAnnotations();
+      Response response=Response.ok().entity(date,annotations).build();
+      return response;
+   }
 
 }

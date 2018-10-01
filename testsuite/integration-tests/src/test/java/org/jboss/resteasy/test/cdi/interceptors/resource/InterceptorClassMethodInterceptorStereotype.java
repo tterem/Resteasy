@@ -12,5 +12,5 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Stereotype
 @Target(TYPE)
 @Retention(RUNTIME)
-public @interface InterceptorClassMethodInterceptorStereotype {
+public @interface InterceptorClassMethodInterceptorStereotype{
 }

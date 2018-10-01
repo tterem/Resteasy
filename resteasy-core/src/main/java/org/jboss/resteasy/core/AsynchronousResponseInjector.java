@@ -14,34 +14,27 @@ import java.util.concurrent.TimeUnit;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class AsynchronousResponseInjector implements ValueInjector
-{
-   long timeout = -1;
-   TimeUnit unit = null;
+public class AsynchronousResponseInjector implements ValueInjector{
+   long timeout=-1;
+   TimeUnit unit=null;
 
-   public AsynchronousResponseInjector()
-   {
+   public AsynchronousResponseInjector(){
    }
 
    @Override
-   public CompletionStage<Object> inject(boolean unwrapAsync)
-   {
+   public CompletionStage<Object> inject(boolean unwrapAsync){
       throw new IllegalStateException(Messages.MESSAGES.cannotInjectAsynchronousResponse());
    }
 
    @Override
-   public CompletionStage<Object> inject(HttpRequest request, HttpResponse response, boolean unwrapAsync)
-   {
-      ResteasyAsynchronousResponse asynchronousResponse = null;
-      if (timeout == -1)
-      {
-         asynchronousResponse = request.getAsyncContext().suspend();
+   public CompletionStage<Object> inject(HttpRequest request,HttpResponse response,boolean unwrapAsync){
+      ResteasyAsynchronousResponse asynchronousResponse=null;
+      if(timeout==-1){
+         asynchronousResponse=request.getAsyncContext().suspend();
+      }else{
+         asynchronousResponse=request.getAsyncContext().suspend(timeout,unit);
       }
-      else
-      {
-         asynchronousResponse = request.getAsyncContext().suspend(timeout, unit);
-      }
-      ResourceMethodInvoker invoker =  (ResourceMethodInvoker)request.getAttribute(ResourceMethodInvoker.class.getName());
+      ResourceMethodInvoker invoker=(ResourceMethodInvoker)request.getAttribute(ResourceMethodInvoker.class.getName());
       invoker.initializeAsync(asynchronousResponse);
 
       return CompletableFuture.completedFuture(asynchronousResponse);

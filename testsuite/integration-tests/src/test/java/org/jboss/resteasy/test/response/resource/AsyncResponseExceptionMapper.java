@@ -5,12 +5,10 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class AsyncResponseExceptionMapper implements ExceptionMapper<AsyncResponseException>
-{
+public class AsyncResponseExceptionMapper implements ExceptionMapper<AsyncResponseException>{
 
    @Override
-   public Response toResponse(AsyncResponseException exception)
-   {
+   public Response toResponse(AsyncResponseException exception){
       return Response.ok("Got it").status(444).build();
    }
 

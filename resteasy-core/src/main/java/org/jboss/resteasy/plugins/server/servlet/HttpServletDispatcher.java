@@ -18,64 +18,54 @@ import java.io.IOException;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class HttpServletDispatcher extends HttpServlet implements HttpRequestFactory, HttpResponseFactory
-{
+public class HttpServletDispatcher extends HttpServlet implements HttpRequestFactory, HttpResponseFactory{
    protected ServletContainerDispatcher servletContainerDispatcher;
 
-   public Dispatcher getDispatcher()
-   {
+   public Dispatcher getDispatcher(){
       return servletContainerDispatcher.getDispatcher();
    }
 
 
-   public void init(ServletConfig servletConfig) throws ServletException
-   {
+   public void init(ServletConfig servletConfig) throws ServletException{
       super.init(servletConfig);
-      servletContainerDispatcher = new ServletContainerDispatcher();
-      ServletBootstrap bootstrap = new ServletBootstrap(servletConfig);
-      servletContainerDispatcher.init(servletConfig.getServletContext(), bootstrap, this, this);
-      servletContainerDispatcher.getDispatcher().getDefaultContextObjects().put(ServletConfig.class, servletConfig);
+      servletContainerDispatcher=new ServletContainerDispatcher();
+      ServletBootstrap bootstrap=new ServletBootstrap(servletConfig);
+      servletContainerDispatcher.init(servletConfig.getServletContext(),bootstrap,this,this);
+      servletContainerDispatcher.getDispatcher().getDefaultContextObjects().put(ServletConfig.class,servletConfig);
 
    }
 
    @Override
-   public void destroy()
-   {
+   public void destroy(){
       super.destroy();
       servletContainerDispatcher.destroy();
    }
 
    @Override
-   protected void service(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException
-   {
-      service(httpServletRequest.getMethod(), httpServletRequest, httpServletResponse);
+   protected void service(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws ServletException, IOException{
+      service(httpServletRequest.getMethod(),httpServletRequest,httpServletResponse);
    }
 
-   public void service(String httpMethod, HttpServletRequest request, HttpServletResponse response) throws IOException
-   {
-      servletContainerDispatcher.service(httpMethod, request, response, true);
+   public void service(String httpMethod,HttpServletRequest request,HttpServletResponse response) throws IOException{
+      servletContainerDispatcher.service(httpMethod,request,response,true);
    }
 
-   public HttpRequest createResteasyHttpRequest(String httpMethod, HttpServletRequest request, ResteasyHttpHeaders headers, ResteasyUriInfo uriInfo, HttpResponse theResponse, HttpServletResponse response)
-   {
-      return createHttpRequest(httpMethod, request, headers, uriInfo, theResponse, response);
+   public HttpRequest createResteasyHttpRequest(String httpMethod,HttpServletRequest request,ResteasyHttpHeaders headers,ResteasyUriInfo uriInfo,HttpResponse theResponse,HttpServletResponse response){
+      return createHttpRequest(httpMethod,request,headers,uriInfo,theResponse,response);
    }
 
 
-   public HttpResponse createResteasyHttpResponse(HttpServletResponse response)
-   {
+   public HttpResponse createResteasyHttpResponse(HttpServletResponse response){
       return createServletResponse(response);
    }
 
-   protected HttpRequest createHttpRequest(String httpMethod, HttpServletRequest request, ResteasyHttpHeaders headers, ResteasyUriInfo uriInfo, HttpResponse theResponse, HttpServletResponse response)
-   {
-      return new HttpServletInputMessage(request, response, getServletContext(), theResponse, headers, uriInfo, httpMethod.toUpperCase(), (SynchronousDispatcher) getDispatcher());
+   protected HttpRequest createHttpRequest(String httpMethod,HttpServletRequest request,ResteasyHttpHeaders headers,ResteasyUriInfo uriInfo,HttpResponse theResponse,HttpServletResponse response){
+      return new HttpServletInputMessage(request,response,getServletContext(),theResponse,headers,uriInfo,httpMethod.toUpperCase(),(SynchronousDispatcher)getDispatcher());
    }
 
 
-   protected HttpResponse createServletResponse(HttpServletResponse response)
-   {
-      return new HttpServletResponseWrapper(response, getDispatcher().getProviderFactory());
+   protected HttpResponse createServletResponse(HttpServletResponse response){
+      return new HttpServletResponseWrapper(response,getDispatcher().getProviderFactory());
    }
 
 }

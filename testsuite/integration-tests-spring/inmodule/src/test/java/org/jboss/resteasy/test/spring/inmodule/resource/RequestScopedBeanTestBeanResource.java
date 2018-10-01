@@ -6,9 +6,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 @Path("/")
-public class RequestScopedBeanTestBeanResource {
-    @GET
-    public String test(@Qualifier("testBean") RequestScopedBeanTestBean bean) {
-        return bean.configured;
-    }
+public class RequestScopedBeanTestBeanResource{
+   @GET
+   public String test(@Qualifier("testBean") RequestScopedBeanTestBean bean){
+      return bean.configured;
+   }
 }

@@ -19,58 +19,48 @@ import java.net.URI;
  *      &amp; extensionElement*)
  *
  * </pre>
- *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
 @XmlAccessorType(XmlAccessType.PROPERTY)
-public class Person extends CommonAttributes
-{
+public class Person extends CommonAttributes{
    private String name;
 
    private URI uri;
 
    private String email;
 
-   public Person()
-   {
+   public Person(){
    }
 
-   public Person(String name)
-   {
-      this.name = name;
+   public Person(String name){
+      this.name=name;
    }
 
    @XmlElement
-   public String getName()
-   {
+   public String getName(){
       return name;
    }
 
-   public void setName(String name)
-   {
-      this.name = name;
+   public void setName(String name){
+      this.name=name;
    }
 
    @XmlElement
-   public URI getUri()
-   {
+   public URI getUri(){
       return uri;
    }
 
-   public void setUri(URI uri)
-   {
-      this.uri = uri;
+   public void setUri(URI uri){
+      this.uri=uri;
    }
 
    @XmlElement
-   public String getEmail()
-   {
+   public String getEmail(){
       return email;
    }
 
-   public void setEmail(String email)
-   {
-      this.email = email;
+   public void setEmail(String email){
+      this.email=email;
    }
 }

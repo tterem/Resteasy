@@ -8,19 +8,19 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 @Path("proxy")
-public class ValidationComplexProxyResource implements ValidationComplexProxyInterface {
-    private static String s;
+public class ValidationComplexProxyResource implements ValidationComplexProxyInterface{
+   private static String s;
 
-    @GET
-    @Produces("text/plain")
-    @Size(min = 2, max = 4)
-    public String g() {
-        return s;
-    }
+   @GET
+   @Produces("text/plain")
+   @Size(min=2, max=4)
+   public String g(){
+      return s;
+   }
 
-    @POST
-    @Path("{s}")
-    public void s(@PathParam("s") String s) {
-        ValidationComplexProxyResource.s = s;
-    }
+   @POST
+   @Path("{s}")
+   public void s(@PathParam("s") String s){
+      ValidationComplexProxyResource.s=s;
+   }
 }

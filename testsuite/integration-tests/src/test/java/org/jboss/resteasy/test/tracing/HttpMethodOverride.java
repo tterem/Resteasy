@@ -8,9 +8,9 @@ import java.io.IOException;
 
 @Provider
 @PreMatching
-public class HttpMethodOverride implements ContainerRequestFilter {
-    public void filter(ContainerRequestContext ctx) throws IOException {
-        String methodOverride = ctx.getHeaderString("X-Http-Method-Override");
-        if (methodOverride != null) ctx.setMethod(methodOverride);
-    }
+public class HttpMethodOverride implements ContainerRequestFilter{
+   public void filter(ContainerRequestContext ctx) throws IOException{
+      String methodOverride=ctx.getHeaderString("X-Http-Method-Override");
+      if(methodOverride!=null) ctx.setMethod(methodOverride);
+   }
 }

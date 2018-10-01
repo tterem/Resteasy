@@ -10,17 +10,12 @@
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
 package org.jboss.resteasy.extension.systemproperties.client;
-
-import java.io.ByteArrayOutputStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
 
 import org.jboss.arquillian.config.descriptor.api.ArquillianDescriptor;
 import org.jboss.arquillian.config.descriptor.api.ExtensionDef;
@@ -33,62 +28,66 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.container.ResourceContainer;
 
+import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
 /**
  * ArchiveProcessor
- * 
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @author <a href="mailto:alessio.soldano@jboss.com">Alessio Soldano</a>
  * @version $Revision: $
  */
-public class ArchiveProcessor implements ApplicationArchiveProcessor {
-	@Inject
-	private Instance<ArquillianDescriptor> descriptor;
+public class ArchiveProcessor implements ApplicationArchiveProcessor{
+   @Inject
+   private Instance<ArquillianDescriptor> descriptor;
 
-	@Override
-	public void process(Archive<?> applicationArchive, TestClass testClass) {
-		String prefix = getPrefix();
-		if (prefix != null) {
-			if (applicationArchive instanceof ResourceContainer) {
-				ResourceContainer<?> container = (ResourceContainer<?>) applicationArchive;
-				container.addAsResource(new StringAsset(
-						toString(filterSystemProperties(prefix))),
-						SystemProperties.FILE_NAME);
-			}
-		}
-	}
+   @Override
+   public void process(Archive<?> applicationArchive,TestClass testClass){
+      String prefix=getPrefix();
+      if(prefix!=null){
+         if(applicationArchive instanceof ResourceContainer){
+            ResourceContainer<?> container=(ResourceContainer<?>)applicationArchive;
+            container.addAsResource(new StringAsset(
+                  toString(filterSystemProperties(prefix))),
+               SystemProperties.FILE_NAME);
+         }
+      }
+   }
 
-	private String getPrefix() {
-		return getConfiguration().get(SystemProperties.CONFIG_PREFIX);
-	}
+   private String getPrefix(){
+      return getConfiguration().get(SystemProperties.CONFIG_PREFIX);
+   }
 
-	private Map<String, String> getConfiguration() {
-		for (ExtensionDef def : descriptor.get().getExtensions()) {
-			if (SystemProperties.EXTENSION_NAME.equalsIgnoreCase(def
-					.getExtensionName())) {
-				return def.getExtensionProperties();
-			}
-		}
-		return new HashMap<String, String>();
-	}
+   private Map<String,String> getConfiguration(){
+      for(ExtensionDef def : descriptor.get().getExtensions()){
+         if(SystemProperties.EXTENSION_NAME.equalsIgnoreCase(def
+            .getExtensionName())){
+            return def.getExtensionProperties();
+         }
+      }
+      return new HashMap<String,String>();
+   }
 
-	private Properties filterSystemProperties(String prefix) {
-		Properties filteredProps = new Properties();
-		Properties sysProps = System.getProperties();
-		for (Map.Entry<Object, Object> entry : sysProps.entrySet()) {
-			if (entry.getKey().toString().startsWith(prefix)) {
-				filteredProps.put(entry.getKey(), entry.getValue());
-			}
-		}
-		return filteredProps;
-	}
+   private Properties filterSystemProperties(String prefix){
+      Properties filteredProps=new Properties();
+      Properties sysProps=System.getProperties();
+      for(Map.Entry<Object,Object> entry : sysProps.entrySet()){
+         if(entry.getKey().toString().startsWith(prefix)){
+            filteredProps.put(entry.getKey(),entry.getValue());
+         }
+      }
+      return filteredProps;
+   }
 
-	private String toString(Properties props) {
-		try {
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			props.store(out, "Arquillian SystemProperties Extension");
-			return out.toString();
-		} catch (Exception e) {
-			throw new RuntimeException("Could not store properties", e);
-		}
-	}
+   private String toString(Properties props){
+      try{
+         ByteArrayOutputStream out=new ByteArrayOutputStream();
+         props.store(out,"Arquillian SystemProperties Extension");
+         return out.toString();
+      }catch(Exception e){
+         throw new RuntimeException("Could not store properties",e);
+      }
+   }
 }

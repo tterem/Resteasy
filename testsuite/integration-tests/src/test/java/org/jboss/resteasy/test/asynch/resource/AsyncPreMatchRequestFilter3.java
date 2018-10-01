@@ -7,10 +7,9 @@ import javax.ws.rs.ext.Provider;
 @PreMatching
 @Priority(3)
 @Provider
-public class AsyncPreMatchRequestFilter3 extends AsyncRequestFilter {
+public class AsyncPreMatchRequestFilter3 extends AsyncRequestFilter{
 
-   public AsyncPreMatchRequestFilter3()
-   {
+   public AsyncPreMatchRequestFilter3(){
       super("PreMatchFilter3");
    }
 }

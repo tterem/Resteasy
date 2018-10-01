@@ -5,10 +5,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/test")
-public class StreamResetResource {
-    @GET
-    @Produces("application/xml")
-    public String get() {
-        return "<person name=\"bill\"/>";
-    }
+public class StreamResetResource{
+   @GET
+   @Produces("application/xml")
+   public String get(){
+      return "<person name=\"bill\"/>";
+   }
 }

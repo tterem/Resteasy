@@ -7,10 +7,10 @@ import javax.ws.rs.Path;
  * Created by rsearls on 8/21/17.
  */
 @Path("/")
-public class PreMatchingClientResource {
+public class PreMatchingClientResource{
    @GET
    @Path("testIt")
-   public String get() {
+   public String get(){
       return "OK";
    }
 

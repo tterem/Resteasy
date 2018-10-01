@@ -9,6 +9,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @InterceptorBinding
 @Target(TYPE)
-@Retention(value = RUNTIME)
-public @interface InterceptorLifecycleBinding {
+@Retention(value=RUNTIME)
+public @interface InterceptorLifecycleBinding{
 }

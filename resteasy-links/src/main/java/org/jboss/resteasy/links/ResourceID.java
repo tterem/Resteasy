@@ -17,9 +17,9 @@ import java.lang.annotation.Target;
  * </p>
  * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
  */
-@Target({ElementType.METHOD, ElementType.FIELD})
+@Target({ElementType.METHOD,ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface ResourceID {
+public @interface ResourceID{
 
 }

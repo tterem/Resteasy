@@ -6,20 +6,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 @ApplicationPath("/service")
-public class HomecontrolApplication extends Application {
+public class HomecontrolApplication extends Application{
 
 
    @Override
-   public Set<Class<?>> getClasses() {
+   public Set<Class<?>> getClasses(){
 
-      Set<Class<?>> result = new HashSet<Class<?>>();
+      Set<Class<?>> result=new HashSet<Class<?>>();
       result.add(HomecontrolService.class);
       return result;
    }
 
    @Override
-   public Set<Object> getSingletons() {
-      Set<Object> result = new HashSet<>();
+   public Set<Object> getSingletons(){
+      Set<Object> result=new HashSet<>();
       result.add(new HomecontrolJaxbProvider());
       return result;
    }
