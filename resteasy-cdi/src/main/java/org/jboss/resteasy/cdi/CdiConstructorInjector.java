@@ -21,12 +21,12 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 /**
-   * This ConstructorInjector implementation uses CDI's BeanManager to obtain
-   * a contextual instance of a bean.
-   * 
-   * @author Jozef Hartinger
-   *
-   */
+ * This ConstructorInjector implementation uses CDI's BeanManager to obtain
+ * a contextual instance of a bean.
+ * 
+ * @author Jozef Hartinger
+ *
+ */
 public class CdiConstructorInjector implements ConstructorInjector
 {
    private BeanManager manager;

@@ -25,11 +25,11 @@ import static org.hamcrest.CoreMatchers.is;
 
 
 /**
-   * @tpSubChapter Resources
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression tests for RESTEASY-549 and RESTEASY-537
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resources
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression tests for RESTEASY-549 and RESTEASY-537
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MatchedResourceTest {
@@ -57,9 +57,9 @@ public class MatchedResourceTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-549
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-549
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmpty() throws Exception {
       WebTarget base = client.target(generateURL("/start"));
@@ -78,9 +78,9 @@ public class MatchedResourceTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-537
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-537
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatch() throws Exception {
       WebTarget base = client.target(generateURL("/match"));
@@ -100,9 +100,9 @@ public class MatchedResourceTest {
    }
 
    /**
-     * @tpTestDetails Check post request on resource with @GET annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check post request on resource with @GET annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPost() {
       generalPostTest(generateURL("/test1/foo.xml.en"), "complex");

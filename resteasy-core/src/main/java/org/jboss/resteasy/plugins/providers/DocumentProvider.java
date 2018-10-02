@@ -28,11 +28,11 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
-   * Provider that reads and writes org.w3c.dom.Document.
-   *
-   * @author <a href="sduskis@gmail.com">Solomon Duskis</a>
-   * @version $Revision: $
-   */
+ * Provider that reads and writes org.w3c.dom.Document.
+ *
+ * @author <a href="sduskis@gmail.com">Solomon Duskis</a>
+ * @version $Revision: $
+ */
 @Provider
 @Produces({"text/xml", "text/*+xml", "application/xml", "application/*+xml"})
 @Consumes({"text/xml", "text/*+xml", "application/xml", "application/*+xml"})

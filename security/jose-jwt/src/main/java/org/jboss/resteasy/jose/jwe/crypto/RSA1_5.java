@@ -12,27 +12,27 @@ import java.security.interfaces.RSAPublicKey;
 
 
 /**
-   * RSAES-PKCS1-V1_5 methods for Content Encryption Key (CEK) encryption and
-   * decryption.
-   *
-   * @author Vladimir Dzhuvinov
-   * @version $version$ (2013-05-06)
-   */
+ * RSAES-PKCS1-V1_5 methods for Content Encryption Key (CEK) encryption and
+ * decryption.
+ *
+ * @author Vladimir Dzhuvinov
+ * @version $version$ (2013-05-06)
+ */
 class RSA1_5
 {
 
 
    /**
-   * Encrypts the specified Content Encryption Key (CEK).
-   *
-   * @param pub The public RSA key. Must not be {@code null}.
-   * @param cek The Content Encryption Key (CEK) to encrypt. Must not be
-   *            {@code null}.
-   *
-   * @return The encrypted Content Encryption Key (CEK).
-   *
-   * @throws RuntimeException If encryption failed.
-   */
+    * Encrypts the specified Content Encryption Key (CEK).
+    *
+    * @param pub The public RSA key. Must not be {@code null}.
+    * @param cek The Content Encryption Key (CEK) to encrypt. Must not be
+    *            {@code null}.
+    *
+    * @return The encrypted Content Encryption Key (CEK).
+    *
+    * @throws RuntimeException If encryption failed.
+    */
    public static byte[] encryptCEK(final RSAPublicKey pub, final SecretKey cek)
       throws RuntimeException {
 
@@ -52,16 +52,16 @@ class RSA1_5
 
 
    /**
-   * Decrypts the specified encrypted Content Encryption Key (CEK).
-   *
-   * @param priv         The private RSA key. Must not be {@code null}.
-   * @param encryptedCEK The encrypted Content Encryption Key (CEK) to
-   *                     decrypt. Must not be {@code null}.
-   *
-   * @return The decrypted Content Encryption Key (CEK).
-   *
-   * @throws RuntimeException If decryption failed.
-   */
+    * Decrypts the specified encrypted Content Encryption Key (CEK).
+    *
+    * @param priv         The private RSA key. Must not be {@code null}.
+    * @param encryptedCEK The encrypted Content Encryption Key (CEK) to
+    *                     decrypt. Must not be {@code null}.
+    *
+    * @return The decrypted Content Encryption Key (CEK).
+    *
+    * @throws RuntimeException If decryption failed.
+    */
    public static SecretKey decryptCEK(final RSAPrivateKey priv,
                                  final byte[] encryptedCEK,
                                  final int keyLength)
@@ -90,7 +90,7 @@ class RSA1_5
 
 
    /**
-   * Prevents public instantiation.
-   */
+    * Prevents public instantiation.
+    */
    private RSA1_5() { }
 }

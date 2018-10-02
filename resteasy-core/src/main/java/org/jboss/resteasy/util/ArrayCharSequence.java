@@ -1,9 +1,9 @@
 package org.jboss.resteasy.util;
 
 /**
-   * A CharSequence backed by a char[] (no copy on creation)
-   *
-   */
+ * A CharSequence backed by a char[] (no copy on creation)
+ *
+ */
 public class ArrayCharSequence implements CharSequence
 {
    private final char[] buf;

@@ -43,11 +43,11 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 
 /**
-   * @tpSubChapter ResourceClassProcessor SPI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails ResourceClassProcessor SPI basic test, see RESTEASY-1805
-   * @tpSince RESTEasy 3.6
-   */
+ * @tpSubChapter ResourceClassProcessor SPI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails ResourceClassProcessor SPI basic test, see RESTEASY-1805
+ * @tpSince RESTEasy 3.6
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResourceClassProcessorBasicTest {
@@ -62,24 +62,24 @@ public class ResourceClassProcessorBasicTest {
    private static final String WAR_NORMAL = "war_normal";
 
    /**
-     * Deployment with EJB end-points
-     */
+    * Deployment with EJB end-points
+    */
    @Deployment(name = WAR_EJB)
    public static Archive<?> deployEJB() {
       return deploy(WAR_EJB, ResourceClassProcessorEndPointEJB.class, ResourceClassProcessorPureEndPointEJB.class);
    }
 
    /**
-     * Deployment with CDI end-points
-     */
+    * Deployment with CDI end-points
+    */
    @Deployment(name = WAR_CDI)
    public static Archive<?> deployCDI() {
       return deploy(WAR_CDI, ResourceClassProcessorEndPointCDI.class, ResourceClassProcessorPureEndPointCDI.class);
    }
 
    /**
-     * Deployment with non-CDI && non-EJB end-points
-     */
+    * Deployment with non-CDI && non-EJB end-points
+    */
    @Deployment(name = WAR_NORMAL)
    public static Archive<?> deployNormla() {
       return deploy(WAR_NORMAL, ResourceClassProcessorEndPoint.class, ResourceClassProcessorPureEndPoint.class);
@@ -109,30 +109,30 @@ public class ResourceClassProcessorBasicTest {
    }
 
    /**
-     * @tpTestDetails Test uses custom implementations of ResourceClassProcessor, ResourceClass and ResourceMethod
-     *                Custom ResourceClassProcessor and ResourceClass should be used for end-point class
-     *                Custom ResourceMethod should not affect tested end-point method, so end-point response should not be affected
-     *                Deployment with non-CDI && non-EJB end-points is used
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Test uses custom implementations of ResourceClassProcessor, ResourceClass and ResourceMethod
+    *                Custom ResourceClassProcessor and ResourceClass should be used for end-point class
+    *                Custom ResourceMethod should not affect tested end-point method, so end-point response should not be affected
+    *                Deployment with non-CDI && non-EJB end-points is used
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void customClassDefaultMethodTest() {
       customClassDefaultMethodTestHelper(WAR_NORMAL);
    }
 
    /**
-     * @tpTestDetails Same as customClassDefaultMethodTest(), but CDI end-point is used
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Same as customClassDefaultMethodTest(), but CDI end-point is used
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void customClassDefaultMethodCdiTest() {
       customClassDefaultMethodTestHelper(WAR_CDI);
    }
 
    /**
-     * @tpTestDetails Same as customClassDefaultMethodTest(), but EJB end-point is used
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Same as customClassDefaultMethodTest(), but EJB end-point is used
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void customClassDefaultMethodEjbTest() {
       customClassDefaultMethodTestHelper(WAR_EJB);
@@ -146,29 +146,29 @@ public class ResourceClassProcessorBasicTest {
 
 
    /**
-     * @tpTestDetails Test uses custom implementations of ResourceClassProcessor, ResourceClass and ResourceMethod
-     *                These custom implementations should rewrite produce media type of tested end-point
-     *                Deployment with non-CDI && non-EJB end-points is used
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Test uses custom implementations of ResourceClassProcessor, ResourceClass and ResourceMethod
+    *                These custom implementations should rewrite produce media type of tested end-point
+    *                Deployment with non-CDI && non-EJB end-points is used
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void customClassCustomMethodTest() {
       customClassCustomMethodTestHelper(WAR_NORMAL);
    }
 
    /**
-     * @tpTestDetails Same as customClassCustomMethodTest(), but CDI end-point is used
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Same as customClassCustomMethodTest(), but CDI end-point is used
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void customClassCustomMethodCdiTest() {
       customClassCustomMethodTestHelper(WAR_CDI);
    }
 
    /**
-     * @tpTestDetails Same as customClassCustomMethodTest(), but EJB end-point is used
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Same as customClassCustomMethodTest(), but EJB end-point is used
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void customClassCustomMethodEjbTest() {
       customClassCustomMethodTestHelper(WAR_EJB);
@@ -182,30 +182,30 @@ public class ResourceClassProcessorBasicTest {
 
 
    /**
-     * @tpTestDetails Test uses custom implementations of ResourceClassProcessor, ResourceClass and ResourceMethod
-     *                These implementations should not affect tested end-point class and end-point method
-     *                End-point response should not be affected
-     *                Deployment with non-CDI && non-EJB end-points is used
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Test uses custom implementations of ResourceClassProcessor, ResourceClass and ResourceMethod
+    *                These implementations should not affect tested end-point class and end-point method
+    *                End-point response should not be affected
+    *                Deployment with non-CDI && non-EJB end-points is used
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void defaultClassDefaultMethodTest() {
       defaultClassDefaultMethodTestHelper(WAR_NORMAL);
    }
 
    /**
-     * @tpTestDetails Same as defaultClassDefaultMethodTest(), but CDI end-point is used
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Same as defaultClassDefaultMethodTest(), but CDI end-point is used
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void defaultClassDefaultMethodCdiTest() {
       defaultClassDefaultMethodTestHelper(WAR_CDI);
    }
 
    /**
-     * @tpTestDetails Same as defaultClassDefaultMethodTest(), but EJB end-point is used
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Same as defaultClassDefaultMethodTest(), but EJB end-point is used
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void defaultClassDefaultMethodEjbTest() {
       defaultClassDefaultMethodTestHelper(WAR_EJB);
@@ -218,10 +218,10 @@ public class ResourceClassProcessorBasicTest {
    }
 
    /**
-     * @tpTestDetails Client doesn't use proxy, but end-point class doesn't contain jax-rs annotations
-     *                Annotations are in interface, end-point implements this interface with jax-rs annotations
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Client doesn't use proxy, but end-point class doesn't contain jax-rs annotations
+    *                Annotations are in interface, end-point implements this interface with jax-rs annotations
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void interfaceTest() {
       Response response = client.target(PortProviderUtil.generateURL("/proxy", WAR_NORMAL)).request().get();
@@ -230,9 +230,9 @@ public class ResourceClassProcessorBasicTest {
    }
 
    /**
-     * @tpTestDetails Check ResourceClassProcessor support in client proxy
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Check ResourceClassProcessor support in client proxy
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    @Category(ExpectedFailing.class)
    public void proxyTest() {

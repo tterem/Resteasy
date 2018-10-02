@@ -26,10 +26,10 @@ import java.io.ByteArrayInputStream;
 import java.util.Locale;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ */
 public class RequestFilterTest {
 
    protected static final Logger logger = LogManager.getLogger(RequestFilterTest.class.getName());
@@ -49,12 +49,12 @@ public class RequestFilterTest {
    }
 
    /**
-     * @tpTestDetails Client registers implementation of ClientRequestFilter and sends GET request. The request is
-     * processed by registered filter before sending it to the server. Filter aborts processing and sends its own
-     * response
-     * @tpPassCrit Expected String is returned from the ClientRequestFilter
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client registers implementation of ClientRequestFilter and sends GET request. The request is
+    * processed by registered filter before sending it to the server. Filter aborts processing and sends its own
+    * response
+    * @tpPassCrit Expected String is returned from the ClientRequestFilter
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void AbortWithTest() {
       Response response = client.target(dummyUrl).register(RequestFilterAbortWith.class).request().get();
@@ -63,13 +63,13 @@ public class RequestFilterTest {
    }
 
    /**
-     * @tpTestDetails Client registers implementation of ClientRequestFilter and sends GET request.
-     * The request has preset accepted language types. The request is processed by registered filter before
-     * it is send to the server. Filter aborts processing and sends its own response with list of acceptable languages
-     * from the request.
-     * @tpPassCrit Expected String is returned from the ClientRequestFilter
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client registers implementation of ClientRequestFilter and sends GET request.
+    * The request has preset accepted language types. The request is processed by registered filter before
+    * it is send to the server. Filter aborts processing and sends its own response with list of acceptable languages
+    * from the request.
+    * @tpPassCrit Expected String is returned from the ClientRequestFilter
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void AcceptLanguagesTest() {
       Response response = client.target(dummyUrl).register(RequestFilterAcceptLanguage.class).request()
@@ -84,13 +84,13 @@ public class RequestFilterTest {
    }
 
    /**
-     * @tpTestDetails Client registers implementations of ClientRequestFilters and sends POST request.
-     * The request is processed by both filters one setting request entity and the other checking the entity is the same
-     * entity set up in the first filter. Second Filter aborts processing and sends its own response.
-     * from the request.
-     * @tpPassCrit The request is processed by both filters.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client registers implementations of ClientRequestFilters and sends POST request.
+    * The request is processed by both filters one setting request entity and the other checking the entity is the same
+    * entity set up in the first filter. Second Filter aborts processing and sends its own response.
+    * from the request.
+    * @tpPassCrit The request is processed by both filters.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void MultipleFiltersTest() {
       Entity<ByteArrayInputStream> entity = Entity.entity(new ByteArrayInputStream(
@@ -101,12 +101,12 @@ public class RequestFilterTest {
    }
 
    /**
-     * @tpTestDetails Client registers implementation of ClientRequestFilter and sends POST request.
-     * The request is processed by registered filter before it is send to the server. Filter aborts processing
-     * and sends its own response with request entity annotation.
-     * @tpPassCrit Expected Annotation is returned from the ClientRequestFilter
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client registers implementation of ClientRequestFilter and sends POST request.
+    * The request is processed by registered filter before it is send to the server. Filter aborts processing
+    * and sends its own response with request entity annotation.
+    * @tpPassCrit Expected Annotation is returned from the ClientRequestFilter
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void AnnotationFilterTest() {
       Entity<String> post = Entity.entity("test", MediaType.WILDCARD_TYPE,
@@ -117,12 +117,12 @@ public class RequestFilterTest {
    }
 
    /**
-     * @tpTestDetails Client registers implementation of ClientRequestFilter and sends GET request.
-     * The request is processed by registered filter before it is send to the server. Filter aborts processing
-     * by throwing a custom exception, which should not be wrapped in a ProcessingException. [RESTEASY-1591]
-     * @tpPassCrit Expected Exception is thrown from the Client
-     * @tpSince RESTEasy 3.0.21
-     */
+    * @tpTestDetails Client registers implementation of ClientRequestFilter and sends GET request.
+    * The request is processed by registered filter before it is send to the server. Filter aborts processing
+    * by throwing a custom exception, which should not be wrapped in a ProcessingException. [RESTEASY-1591]
+    * @tpPassCrit Expected Exception is thrown from the Client
+    * @tpSince RESTEasy 3.0.21
+    */
    @Test
    public void ThrowCustomExceptionFilterTest() {
       try {

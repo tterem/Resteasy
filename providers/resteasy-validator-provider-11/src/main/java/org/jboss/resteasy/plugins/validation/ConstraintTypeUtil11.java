@@ -16,11 +16,11 @@ import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
 
 /**
-   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
-   * @version $Revision: 1.1 $
-   *
-   * Copyright Mar 6, 2012
-   */
+ * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+ * @version $Revision: 1.1 $
+ *
+ * Copyright Mar 6, 2012
+ */
 public class ConstraintTypeUtil11 implements ConstraintTypeUtil
 {
    public ConstraintType.Type getConstraintType(Object o)

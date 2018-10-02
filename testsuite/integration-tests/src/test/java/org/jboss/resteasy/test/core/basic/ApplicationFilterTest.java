@@ -30,11 +30,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-541
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-541
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ApplicationFilterTest {
@@ -67,9 +67,9 @@ public class ApplicationFilterTest {
    }
 
    /**
-     * @tpTestDetails Test for not founded method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for not founded method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMethodNotFound() throws Exception {
       String newCustomer = "<customer>"
@@ -86,9 +86,9 @@ public class ApplicationFilterTest {
    }
 
    /**
-     * @tpTestDetails Test for getting html file that is not processed by resteasy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for getting html file that is not processed by resteasy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testStaticResource() throws Exception {
       String response = client.target(generateURL("/foo.html")).request().get(String.class);
@@ -97,9 +97,9 @@ public class ApplicationFilterTest {
    }
 
    /**
-     * @tpTestDetails Test common application usage
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test common application usage
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCustomerResource() throws Exception {
       // Create a new customer

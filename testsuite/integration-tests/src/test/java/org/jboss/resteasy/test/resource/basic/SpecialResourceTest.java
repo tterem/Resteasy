@@ -34,11 +34,11 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 
 /**
-   * @tpSubChapter Resources
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEasy issues about special resources
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resources
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEasy issues about special resources
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SpecialResourceTest {
@@ -68,9 +68,9 @@ public class SpecialResourceTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-631
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-631
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test631() throws Exception {
       WebTarget base = client.target(generateURL("/delete"));
@@ -80,9 +80,9 @@ public class SpecialResourceTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-534
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-534
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test534() throws Exception {
       WebTarget base = client.target(generateURL("/inputstream/test/json"));
@@ -92,9 +92,9 @@ public class SpecialResourceTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-624
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-624
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test624() throws Exception {
       WebTarget base = client.target(generateURL("/ApI/FuNc"));
@@ -105,9 +105,9 @@ public class SpecialResourceTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-583
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-583
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test583() throws Exception {
       HttpClient client = HttpClientBuilder.create().build();

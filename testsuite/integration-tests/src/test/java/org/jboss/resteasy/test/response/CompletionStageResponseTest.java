@@ -28,10 +28,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter CompletionStage response type
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.5
-   */
+ * @tpSubChapter CompletionStage response type
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.5
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CompletionStageResponseTest {
@@ -76,9 +76,9 @@ public class CompletionStageResponseTest {
 
 
    /**
-   * @tpTestDetails Resource method returns CompletionStage<String>.
-   * @tpSince RESTEasy 3.5
-   */
+    * @tpTestDetails Resource method returns CompletionStage<String>.
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void testText() throws Exception
    {
@@ -96,10 +96,10 @@ public class CompletionStageResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method returns CompletionStage<Response>.
-   * Response has MediaType "text/plain" overriding @Produces("text/xxx").
-   * @tpSince RESTEasy 3.5
-   */
+    * @tpTestDetails Resource method returns CompletionStage<Response>.
+    * Response has MediaType "text/plain" overriding @Produces("text/xxx").
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void testResponse() throws Exception
    {
@@ -113,11 +113,11 @@ public class CompletionStageResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method returns CompletionStage<CompletionStageResponseTestClass>,
-   * where CompletionStageResponseTestClass is handled by CompletionStageResponseMessageBodyWriter,
-   * which has annotation @Produces("abc/xyz").
-   * @tpSince RESTEasy 3.5
-   */
+    * @tpTestDetails Resource method returns CompletionStage<CompletionStageResponseTestClass>,
+    * where CompletionStageResponseTestClass is handled by CompletionStageResponseMessageBodyWriter,
+    * which has annotation @Produces("abc/xyz").
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void testTestClass() throws Exception
    {
@@ -130,12 +130,12 @@ public class CompletionStageResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method returns CompletionStage<Response>, where the Response 
-   * emtity is a CompletionStageResponseTestClass, and where
-   * CompletionStageResponseTestClass is handled by CompletionStageResponseMessageBodyWriter,
-   * which has annotation @Produces("abc/xyz").
-   * @tpSince RESTEasy 3.5
-   */
+    * @tpTestDetails Resource method returns CompletionStage<Response>, where the Response 
+    * emtity is a CompletionStageResponseTestClass, and where
+    * CompletionStageResponseTestClass is handled by CompletionStageResponseMessageBodyWriter,
+    * which has annotation @Produces("abc/xyz").
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void testResponseTestClass() throws Exception
    {
@@ -148,10 +148,10 @@ public class CompletionStageResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method return type is CompletionStage<String>, and it passes
-   * null to CompleteableFuture.complete().
-   * @tpSince RESTEasy 3.5
-   */
+    * @tpTestDetails Resource method return type is CompletionStage<String>, and it passes
+    * null to CompleteableFuture.complete().
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void testNull() throws Exception
    {
@@ -163,10 +163,10 @@ public class CompletionStageResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method passes a WebApplicationException to
-   * to CompleteableFuture.completeExceptionally().
-   * @tpSince RESTEasy 3.5
-   */
+    * @tpTestDetails Resource method passes a WebApplicationException to
+    * to CompleteableFuture.completeExceptionally().
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void testExceptionDelay() throws Exception
    {
@@ -184,10 +184,10 @@ public class CompletionStageResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method return type is CompletionStage<String>, but it
-   * throws a RuntimeException without creating a CompletionStage.
-   * @tpSince RESTEasy 3.5
-   */
+    * @tpTestDetails Resource method return type is CompletionStage<String>, but it
+    * throws a RuntimeException without creating a CompletionStage.
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void testExceptionImmediateRuntime() throws Exception
    {
@@ -205,10 +205,10 @@ public class CompletionStageResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method return type is CompletionStage<String>, but it
-   * throws an Exception without creating a CompletionStage.
-   * @tpSince RESTEasy 3.5
-   */
+    * @tpTestDetails Resource method return type is CompletionStage<String>, but it
+    * throws an Exception without creating a CompletionStage.
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void testExceptionImmediateNotRuntime() throws Exception
    {
@@ -226,9 +226,9 @@ public class CompletionStageResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method returns CompletionStage<String>.
-   * @tpSince RESTEasy 3.5
-   */
+    * @tpTestDetails Resource method returns CompletionStage<String>.
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void testTextSingle() throws Exception
    {
@@ -240,9 +240,9 @@ public class CompletionStageResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method returns CompletionStage<String>, data are computed after end-point method ends
-   * @tpSince RESTEasy 3.5
-   */
+    * @tpTestDetails Resource method returns CompletionStage<String>, data are computed after end-point method ends
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void getDataWithDelayTest() throws Exception
    {
@@ -257,11 +257,11 @@ public class CompletionStageResponseTest {
 
 
    /**
-   * @tpTestDetails Resource method returns CompletionStage<String>, client try to use proxy
-   *                Regression check for https://issues.jboss.org/browse/RESTEASY-1798
-   *                                       - RESTEasy proxy client can't use RxClient and CompletionStage
-   * @tpSince RESTEasy 3.5
-   */
+    * @tpTestDetails Resource method returns CompletionStage<String>, client try to use proxy
+    *                Regression check for https://issues.jboss.org/browse/RESTEASY-1798
+    *                                       - RESTEasy proxy client can't use RxClient and CompletionStage
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void proxyTest() throws Exception
    {

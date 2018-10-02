@@ -43,11 +43,11 @@ import org.jboss.resteasy.spi.interception.JaxrsInterceptorRegistry;
 import org.jboss.resteasy.util.ThreadLocalStack;
 
 /**
-   * Allow applications to push/pop provider factories onto the stack.
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Allow applications to push/pop provider factories onto the stack.
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @SuppressWarnings("rawtypes")
 public final class ThreadLocalResteasyProviderFactory extends ResteasyProviderFactoryImpl implements ProviderFactoryDelegate
 {

@@ -6,19 +6,19 @@ import java.util.List;
 import org.jboss.resteasy.spi.touri.URIResolver;
 
 /**
-   * <p>
-   * This class encapsulates how an object can be converted to a URI string. There
-   * are three basic ways to perform the transformation:
-   * </p>
-   * <ol>
-   * <li>adding a @URITemplate("your-uri-template") to an object
-   * <li>having an object extend URIable and have the object perform custom logic
-   * <li>registering a custom URIResolver
-   * </ol>
-   *
-   * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
-   * @version $Revision: 1 $
-   */
+ * <p>
+ * This class encapsulates how an object can be converted to a URI string. There
+ * are three basic ways to perform the transformation:
+ * </p>
+ * <ol>
+ * <li>adding a @URITemplate("your-uri-template") to an object
+ * <li>having an object extend URIable and have the object perform custom logic
+ * <li>registering a custom URIResolver
+ * </ol>
+ *
+ * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
+ * @version $Revision: 1 $
+ */
 
 public class ObjectToURI
 {

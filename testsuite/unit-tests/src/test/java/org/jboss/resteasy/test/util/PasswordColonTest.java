@@ -5,16 +5,16 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
-   * @tpSubChapter Util tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1176
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Util tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1176
+ * @tpSince RESTEasy 3.0.16
+ */
 public class PasswordColonTest {
    /**
-     * @tpTestDetails Test for BasicAuthHelper
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for BasicAuthHelper
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPasswordWithColon() {
       String header = BasicAuthHelper.createHeader("user", "pass:word");

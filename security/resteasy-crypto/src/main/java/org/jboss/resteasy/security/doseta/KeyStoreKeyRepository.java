@@ -14,9 +14,9 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class KeyStoreKeyRepository
 {
    private KeyStore keyStore;

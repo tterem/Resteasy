@@ -47,9 +47,9 @@ import org.w3c.dom.NamedNodeMap;
 import org.xml.sax.InputSource;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @Produces({"application/xml", "application/*+xml", "text/xml", "text/*+xml"})
 @Consumes({"application/xml", "application/*+xml", "text/xml", "text/*+xml"})

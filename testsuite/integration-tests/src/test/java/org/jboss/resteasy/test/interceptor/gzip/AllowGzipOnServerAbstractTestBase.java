@@ -14,14 +14,14 @@ import static org.jboss.resteasy.test.ContainerConstants.GZIP_CONTAINER_PORT_OFF
 import static org.jboss.resteasy.test.ContainerConstants.GZIP_CONTAINER_QUALIFIER;
 
 /**
-   * Abstract base class for tests with gzip enabled on server side.
-   *
-   * This abstract class provides deployments and starts and stops custom server.
-   *
-   * This abstract class is extended by:
-   *      AllowGzipOnServerAllowGzipOnClientTest
-   *      AllowGzipOnServerNotAllowGzipOnClientTest
-   */
+ * Abstract base class for tests with gzip enabled on server side.
+ *
+ * This abstract class provides deployments and starts and stops custom server.
+ *
+ * This abstract class is extended by:
+ *      AllowGzipOnServerAllowGzipOnClientTest
+ *      AllowGzipOnServerNotAllowGzipOnClientTest
+ */
 public class AllowGzipOnServerAbstractTestBase extends GzipAbstractTestBase {
 
    //keep in sync with offset in arquillian.xml
@@ -53,8 +53,8 @@ public class AllowGzipOnServerAbstractTestBase extends GzipAbstractTestBase {
    }
 
    /**
-   * Deployment with javax.ws.rs.ext.Providers file, that contains gzip interceptor definition
-   */
+    * Deployment with javax.ws.rs.ext.Providers file, that contains gzip interceptor definition
+    */
    @Deployment(name = WAR_WITH_PROVIDERS_FILE, managed = false, testable = false)
    @TargetsContainer(GZIP_CONTAINER_QUALIFIER)
    public static Archive<?> createWebDeploymentWithGzipProvidersFile() {
@@ -62,8 +62,8 @@ public class AllowGzipOnServerAbstractTestBase extends GzipAbstractTestBase {
    }
 
    /**
-   * Deployment without any javax.ws.rs.ext.Providers file
-   */
+    * Deployment without any javax.ws.rs.ext.Providers file
+    */
    @Deployment(name = WAR_WITHOUT_PROVIDERS_FILE, managed = false, testable = false)
    @TargetsContainer(GZIP_CONTAINER_QUALIFIER)
    public static Archive<?> createWebDeploymentWithoutGzipProvidersFile() {

@@ -31,11 +31,11 @@ import java.io.IOException;
 import java.util.concurrent.Future;
 
 /**
-   * @tpSubChapter Asynchronous RESTEasy
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for async exception handling
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Asynchronous RESTEasy
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for async exception handling
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CallbackTest {
@@ -92,9 +92,9 @@ public class CallbackTest {
    }
 
    /**
-     * @tpTestDetails Argument contains exception in two callback classes
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Argument contains exception in two callback classes
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void argumentContainsExceptionInTwoCallbackClassesTest() throws Exception {
       invokeClear();
@@ -119,9 +119,9 @@ public class CallbackTest {
    }
 
    /**
-     * @tpTestDetails Argument contains exception in two callback instances
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Argument contains exception in two callback instances
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void argumentContainsExceptionInTwoCallbackInstancesTest() throws Exception {
       invokeClear();
@@ -146,9 +146,9 @@ public class CallbackTest {
    }
 
    /**
-     * @tpTestDetails Argument contains exception when sending IO exception
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Argument contains exception when sending IO exception
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void argumentContainsExceptionWhenSendingIoExceptionTest() throws Exception {
       invokeClear();

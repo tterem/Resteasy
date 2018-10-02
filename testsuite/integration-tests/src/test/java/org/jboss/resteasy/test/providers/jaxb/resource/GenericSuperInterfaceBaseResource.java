@@ -7,19 +7,19 @@ public class GenericSuperInterfaceBaseResource {
    protected String id;
 
    /**
-     * Gets the value of the name property.
-     *
-     * @return possible object is {@link String }
-     */
+    * Gets the value of the name property.
+    *
+    * @return possible object is {@link String }
+    */
    public String getName() {
       return name;
    }
 
    /**
-     * Sets the value of the name property.
-     *
-     * @param value allowed object is {@link String }
-     */
+    * Sets the value of the name property.
+    *
+    * @param value allowed object is {@link String }
+    */
    public void setName(String value) {
       this.name = value;
    }
@@ -29,19 +29,19 @@ public class GenericSuperInterfaceBaseResource {
    }
 
    /**
-     * Gets the value of the description property.
-     *
-     * @return possible object is {@link String }
-     */
+    * Gets the value of the description property.
+    *
+    * @return possible object is {@link String }
+    */
    public String getDescription() {
       return description;
    }
 
    /**
-     * Sets the value of the description property.
-     *
-     * @param value allowed object is {@link String }
-     */
+    * Sets the value of the description property.
+    *
+    * @param value allowed object is {@link String }
+    */
    public void setDescription(String value) {
       this.description = value;
    }

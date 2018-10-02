@@ -26,10 +26,10 @@ import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ClientFormParamTest extends ClientTestBase{
@@ -67,10 +67,10 @@ public class ClientFormParamTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends POST request with Form entity with one parameter.
-     * @tpPassCrit The resulting Form entity contains the original parameter
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with Form entity with one parameter.
+    * @tpPassCrit The resulting Form entity contains the original parameter
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testClientFormOneParameter() throws Exception {
 
@@ -84,10 +84,10 @@ public class ClientFormParamTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends POST request with Form entity with two parameters.
-     * @tpPassCrit The resulting Form entity contains both original parameters
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with Form entity with two parameters.
+    * @tpPassCrit The resulting Form entity contains both original parameters
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testClientFormTwoParameters() throws Exception {
       final ClientFormResourceInterface proxy = ProxyBuilder.builder(ClientFormResourceInterface.class,

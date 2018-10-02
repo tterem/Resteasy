@@ -17,9 +17,9 @@ import java.util.Set;
 import java.util.HashSet;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public abstract class AbstractJAXBContextFinder implements JAXBContextFinder
 {
    protected static final String OBJECT_FACTORY_NAME = ".ObjectFactory";

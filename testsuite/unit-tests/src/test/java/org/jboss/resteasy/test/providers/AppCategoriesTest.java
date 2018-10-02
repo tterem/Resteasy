@@ -15,16 +15,16 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for atom categories
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for atom categories
+ * @tpSince RESTEasy 3.0.16
+ */
 public class AppCategoriesTest {
    /**
-     * Taken from the RFC 5023 section-8.2.
-     * http://tools.ietf.org/html/rfc5023#section-7.1
-     */
+    * Taken from the RFC 5023 section-8.2.
+    * http://tools.ietf.org/html/rfc5023#section-7.1
+    */
    private static final String XML = "<?xml version=\"1.0\" ?>\n" +
          "<app:categories xmlns:app=\"http://www.w3.org/2007/app\"\n" +
          "    xmlns:atom=\"http://www.w3.org/2005/Atom\" fixed=\"yes\"\n" +
@@ -35,9 +35,9 @@ public class AppCategoriesTest {
          "</app:categories>";
 
    /**
-     * @tpTestDetails Marshall categories
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Marshall categories
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void marshallAppCategories() throws Exception {
       JAXBContext jaxbContext = JAXBContext.newInstance("org.jboss.resteasy.test.providers.resource");
@@ -68,9 +68,9 @@ public class AppCategoriesTest {
    }
 
    /**
-     * @tpTestDetails Unmarshall categories
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Unmarshall categories
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void unmarshallAppCategories() throws Exception {
       JAXBContext ctx = JAXBContext.newInstance(AppCategories.class);

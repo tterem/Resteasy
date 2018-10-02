@@ -21,11 +21,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class WebTargetTest extends ClientTestBase{
@@ -49,17 +49,17 @@ public class WebTargetTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance
-     * @tpPassCrit Original web target instance stayed untouched.
-     * @tpProcedure  <ul>
-     *              <li>Create WebTarget Instance from another base WebTarget instance</li>
-     *              <li>Resolve templates in the uri</li>
-     *              <li>Resolve "id" template, resolve "username" template, resolve again "id" template which should be ignored</li>
-     *              <li>Resolve "username" template, create separate WebTarget instance, again resolve "username" template, resolve "id" twice</li>
-     *              <li>Check original web target instance stayed untouched</li>
-     *              </ul>
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance
+    * @tpPassCrit Original web target instance stayed untouched.
+    * @tpProcedure  <ul>
+    *              <li>Create WebTarget Instance from another base WebTarget instance</li>
+    *              <li>Resolve templates in the uri</li>
+    *              <li>Resolve "id" template, resolve "username" template, resolve again "id" template which should be ignored</li>
+    *              <li>Resolve "username" template, create separate WebTarget instance, again resolve "username" template, resolve "id" twice</li>
+    *              <li>Check original web target instance stayed untouched</li>
+    *              </ul>
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResolveTemplate() {
       WebTarget base = client.target(generateURL("/") + "users/{username}");
@@ -80,10 +80,10 @@ public class WebTargetTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget instance and call resolveTemplate with 'null' parameter
-     * @tpPassCrit NullPointerException is raised
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget instance and call resolveTemplate with 'null' parameter
+    * @tpPassCrit NullPointerException is raised
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test(expected = NullPointerException.class)
    public void testResolveTemplateNull() {
       WebTarget base = client.target(generateURL("/") + "users/{username}");
@@ -93,10 +93,10 @@ public class WebTargetTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, slash in the path.
-     * @tpPassCrit Response from the server matches the pattern
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, slash in the path.
+    * @tpPassCrit Response from the server matches the pattern
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResolveTemplateSlash() {
       WebTarget base = client.target(generateURL("/") + "users/{username}");
@@ -106,11 +106,11 @@ public class WebTargetTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve template
-     * from decoded characters
-     * @tpPassCrit Response from the server matches the pattern
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve template
+    * from decoded characters
+    * @tpPassCrit Response from the server matches the pattern
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResolveTemplateDecoded() {
       final String a = "a%20%3F/*/";
@@ -127,11 +127,11 @@ public class WebTargetTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve template
-     * from encoded characters
-     * @tpPassCrit Response from the server matches the pattern
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve template
+    * from encoded characters
+    * @tpPassCrit Response from the server matches the pattern
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResolveTemplateEncoded() {
       final String a = "a%20%3F/*/";
@@ -145,10 +145,10 @@ public class WebTargetTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve multiple templates at once.
-     * @tpPassCrit Response from the server matches the pattern
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve multiple templates at once.
+    * @tpPassCrit Response from the server matches the pattern
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResolveTemplates() {
       WebTarget base = client.target(generateURL("/") + "users/{username}");
@@ -166,10 +166,10 @@ public class WebTargetTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve templates with empty map
-     * @tpPassCrit Response from the server matches the pattern
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve templates with empty map
+    * @tpPassCrit Response from the server matches the pattern
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResolveTemplatesEmptyMap() {
       WebTarget base = client.target(generateURL("/") + "users/{username}");
@@ -183,11 +183,11 @@ public class WebTargetTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve multiple templates
-     * at once, path includes slash
-     * @tpPassCrit Response from the server matches the pattern
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve multiple templates
+    * at once, path includes slash
+    * @tpPassCrit Response from the server matches the pattern
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResolveTemplatesSlash() {
       WebTarget base = client.target(generateURL("/") + "users/{username}");
@@ -205,11 +205,11 @@ public class WebTargetTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve multiple
-     * templates at once, encode values
-     * @tpPassCrit Response from the server matches the pattern
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve multiple
+    * templates at once, encode values
+    * @tpPassCrit Response from the server matches the pattern
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResolveTemplatesEncoded() {
       WebTarget base = client.target(generateURL("/") + "users/{username}");
@@ -227,10 +227,10 @@ public class WebTargetTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, add and remove query params
-     * @tpPassCrit Response from the server matches the pattern
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, add and remove query params
+    * @tpPassCrit Response from the server matches the pattern
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testQueryParamAddAndRemove() {
       WebTarget base = client.target(generateURL("/") + "users/{username}");
@@ -254,10 +254,10 @@ public class WebTargetTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, test NullPointerException
-     * @tpPassCrit NullPointerException is raised
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, test NullPointerException
+    * @tpPassCrit NullPointerException is raised
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test(expected = NullPointerException.class)
    public void testQueryParamNullPointer() {
       WebTarget base = client.target(generateURL("/") + "users/{username}");
@@ -267,17 +267,17 @@ public class WebTargetTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, change the URI by calling matrixParam()
-     * @tpPassCrit Response from the server matches the pattern
-     * @tpProcedure  <ul>
-     *              <li>Create WebTarget Instance from another base WebTarget instance, change the URI by calling matrixParam()</li>
-     *              <li>Add two different matrix params, add path, add matrix param with already existing name
-     *              and remove it, send the resulting request to the server</li>
-     *              <li>Add matrix param already in the path and send the resulting request to the server,
-     *              verify tha  both values from matrix param are present</li>
-     *              </ul>
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, change the URI by calling matrixParam()
+    * @tpPassCrit Response from the server matches the pattern
+    * @tpProcedure  <ul>
+    *              <li>Create WebTarget Instance from another base WebTarget instance, change the URI by calling matrixParam()</li>
+    *              <li>Add two different matrix params, add path, add matrix param with already existing name
+    *              and remove it, send the resulting request to the server</li>
+    *              <li>Add matrix param already in the path and send the resulting request to the server,
+    *              verify tha  both values from matrix param are present</li>
+    *              </ul>
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatrixParamModification() {
       WebTarget base = client.target(generateURL("/") + "users/{username}");
@@ -298,10 +298,10 @@ public class WebTargetTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, call MatrixParam with null argument
-     * @tpPassCrit NullPointerException is raised
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, call MatrixParam with null argument
+    * @tpPassCrit NullPointerException is raised
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test(expected = NullPointerException.class)
    public void testMatrixParamNullPointer() {
       WebTarget base = client.target(generateURL("/") + "users/{username}");

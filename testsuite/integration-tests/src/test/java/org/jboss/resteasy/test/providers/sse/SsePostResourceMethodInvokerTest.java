@@ -26,10 +26,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * 
-   * @author Nicolas NESMON
-   *
-   */
+ * 
+ * @author Nicolas NESMON
+ *
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SsePostResourceMethodInvokerTest {

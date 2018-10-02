@@ -24,11 +24,11 @@ import javax.ws.rs.core.Response;
 import static junit.framework.TestCase.assertEquals;
 
 /**
-   * @tpSubChapter Encoding
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-737
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Encoding
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-737
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ParameterEncodingTest {
@@ -57,9 +57,9 @@ public class ParameterEncodingTest {
    }
 
    /**
-     * @tpTestDetails Check space encoding in URL
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check space encoding in URL
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResteasy734() throws Exception {
       ResteasyWebTarget target = null;

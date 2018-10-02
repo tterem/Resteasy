@@ -27,11 +27,11 @@ import java.util.PropertyPermission;
 import java.util.logging.LoggingPermission;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class WriterNotBuiltinTest {
 
@@ -65,13 +65,13 @@ public class WriterNotBuiltinTest {
    }
 
    /**
-     * @tpTestDetails A more complete test for RESTEASY-1.
-     * TestReaderWriter has no type parameter,
-     * so it comes after DefaultPlainText in the built-in ordering.
-     * The fact that TestReaderWriter gets called verifies that
-     * DefaultPlainText gets passed over.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails A more complete test for RESTEASY-1.
+    * TestReaderWriter has no type parameter,
+    * so it comes after DefaultPlainText in the built-in ordering.
+    * The fact that TestReaderWriter gets called verifies that
+    * DefaultPlainText gets passed over.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test1New() throws Exception {
       client = (ResteasyClient)ClientBuilder.newClient();

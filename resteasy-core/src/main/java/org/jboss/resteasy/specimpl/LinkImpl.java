@@ -11,16 +11,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class LinkImpl extends Link
 {
    protected final URI uri;
 
    /**
-   * A map for all the link parameters such as "rel", "type", etc.
-   */
+    * A map for all the link parameters such as "rel", "type", etc.
+    */
    protected final Map<String, String> map;
 
    protected static final RuntimeDelegate.HeaderDelegate<Link> delegate =

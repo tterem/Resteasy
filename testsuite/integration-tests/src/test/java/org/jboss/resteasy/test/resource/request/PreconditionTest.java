@@ -24,11 +24,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Tests for preconditions specified in the header of the request
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Tests for preconditions specified in the header of the request
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PreconditionTest {
@@ -59,9 +59,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_UNMODIFIED_SINCE date before last modified
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_UNMODIFIED_SINCE date before last modified
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfUnmodifiedSinceBeforeLastModified() {
       WebTarget base = client.target(generateURL("/"));
@@ -75,9 +75,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_UNMODIFIED_SINCE date after last modified
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_UNMODIFIED_SINCE date after last modified
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfUnmodifiedSinceAfterLastModified() {
       WebTarget base = client.target(generateURL("/"));
@@ -91,9 +91,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_MODIFIED_SINCE date before last modified
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_MODIFIED_SINCE date before last modified
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfModifiedSinceBeforeLastModified() {
       WebTarget base = client.target(generateURL("/"));
@@ -107,9 +107,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_MODIFIED_SINCE date after last modified
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_MODIFIED_SINCE date after last modified
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfModifiedSinceAfterLastModified() {
       WebTarget base = client.target(generateURL("/"));
@@ -123,9 +123,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets headers IF_MODIFIED_SINCE and IF_UNMODIFIED_SINCE date before last modified
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets headers IF_MODIFIED_SINCE and IF_UNMODIFIED_SINCE date before last modified
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfUnmodifiedSinceBeforeLastModified_IfModifiedSinceBeforeLastModified() {
       WebTarget base = client.target(generateURL("/"));
@@ -140,9 +140,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets headers IF_MODIFIED_SINCE date after last modified and IF_UNMODIFIED_SINCE date before last modified
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets headers IF_MODIFIED_SINCE date after last modified and IF_UNMODIFIED_SINCE date before last modified
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfUnmodifiedSinceBeforeLastModified_IfModifiedSinceAfterLastModified() {
       WebTarget base = client.target(generateURL("/"));
@@ -157,9 +157,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets headers IF_MODIFIED_SINCE and IF_UNMODIFIED_SINCE date after last modified
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets headers IF_MODIFIED_SINCE and IF_UNMODIFIED_SINCE date after last modified
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfUnmodifiedSinceAfterLastModified_IfModifiedSinceAfterLastModified() {
       WebTarget base = client.target(generateURL("/"));
@@ -174,9 +174,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets headers IF_MODIFIED_SINCE date before last modified and IF_UNMODIFIED_SINCE date after last modified
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets headers IF_MODIFIED_SINCE date before last modified and IF_UNMODIFIED_SINCE date after last modified
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfUnmodifiedSinceAfterLastModified_IfModifiedSinceBeforeLastModified() {
       WebTarget base = client.target(generateURL("/"));
@@ -191,9 +191,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_MATCH to an entity value which matches to eTag in the resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_MATCH to an entity value which matches to eTag in the resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfMatchWithMatchingETag() {
       testIfMatchWithMatchingETag("");
@@ -201,9 +201,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_MATCH to an entity value which doesn't match to eTag in the resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_MATCH to an entity value which doesn't match to eTag in the resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfMatchWithoutMatchingETag() {
       testIfMatchWithoutMatchingETag("");
@@ -211,9 +211,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_MATCH to a wildcard
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_MATCH to a wildcard
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfMatchWildCard() {
       testIfMatchWildCard("");
@@ -221,9 +221,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_NONE_MATCH to an entity value which matches to eTag in the resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_NONE_MATCH to an entity value which matches to eTag in the resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfNonMatchWithMatchingETag() {
       testIfNonMatchWithMatchingETag("");
@@ -231,9 +231,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_NONE_MATCH to an entity value which doesn't match to eTag in the resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_NONE_MATCH to an entity value which doesn't match to eTag in the resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfNonMatchWithoutMatchingETag() {
       testIfNonMatchWithoutMatchingETag("");
@@ -241,9 +241,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_NONE_MATCH to a wildcard
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_NONE_MATCH to a wildcard
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfNonMatchWildCard() {
       testIfNonMatchWildCard("");
@@ -251,9 +251,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_NONE_MATCH and IF_MATCH to an entity value which matches to eTag in the resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_NONE_MATCH and IF_MATCH to an entity value which matches to eTag in the resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfMatchWithMatchingETag_IfNonMatchWithMatchingETag() {
       testIfMatchWithMatchingETag_IfNonMatchWithMatchingETag("");
@@ -262,10 +262,10 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_NONE_MATCH to an entity value which doesn't match to eTag in the resource
-     * and IF_MATCH to an entity value which matches to eTag in the resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_NONE_MATCH to an entity value which doesn't match to eTag in the resource
+    * and IF_MATCH to an entity value which matches to eTag in the resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfMatchWithMatchingETag_IfNonMatchWithoutMatchingETag() {
       testIfMatchWithMatchingETag_IfNonMatchWithoutMatchingETag("");
@@ -273,10 +273,10 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_NONE_MATCH to an entity value which matches to eTag in the resource
-     * and IF_MATCH to an entity value which doesn't match to eTag in the resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_NONE_MATCH to an entity value which matches to eTag in the resource
+    * and IF_MATCH to an entity value which doesn't match to eTag in the resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfMatchWithoutMatchingETag_IfNonMatchWithMatchingETag() {
       testIfMatchWithoutMatchingETag_IfNonMatchWithMatchingETag("");
@@ -284,10 +284,10 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_NONE_MATCH to an entity value which doesn't match to eTag in the resource
-     * and IF_MATCH to an entity value which doesn't match to eTag in the resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_NONE_MATCH to an entity value which doesn't match to eTag in the resource
+    * and IF_MATCH to an entity value which doesn't match to eTag in the resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfMatchWithoutMatchingETag_IfNonMatchWithoutMatchingETag() {
       testIfMatchWithoutMatchingETag_IfNonMatchWithoutMatchingETag("");
@@ -295,9 +295,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_MATCH to an weak eTag value which matches to eTag in the resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_MATCH to an weak eTag value which matches to eTag in the resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfMatchWithMatchingWeakETag() {
       WebTarget base = client.target(generateURL("/etag/weak"));
@@ -311,9 +311,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Sets header IF_MATCH to an weak eTag value which matches to eTag in the resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Sets header IF_MATCH to an weak eTag value which matches to eTag in the resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIfMatchWithNonMatchingWeakEtag() {
       WebTarget base = client.target(generateURL("/etag/weak"));
@@ -450,9 +450,9 @@ public class PreconditionTest {
 
 
    /**
-     * @tpTestDetails Response if all match
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if all match
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testPrecedence_AllMatch() {
       Response response = precedenceWebTarget.request()
@@ -466,9 +466,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Response if all match without IF_MATCH
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if all match without IF_MATCH
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testPrecedence_IfMatchWithNonMatchingEtag() {
       Response response = precedenceWebTarget.request()
@@ -482,9 +482,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Response if all match without IF_MATCH
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if all match without IF_MATCH
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testPrecedence_IfMatchNotPresentUnmodifiedSinceBeforeLastModified() {
       Response response = precedenceWebTarget.request()
@@ -498,9 +498,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Response if IF_MATH is missing
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if IF_MATH is missing
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testPrecedence_IfNoneMatchWithMatchingEtag() {
       Response response = precedenceWebTarget.request()
@@ -512,9 +512,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Response if IF_MATH is missing and IF_NONE_MATCH don't match
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if IF_MATH is missing and IF_NONE_MATCH don't match
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testPrecedence_IfNoneMatchWithNonMatchingEtag() {
       Response response = precedenceWebTarget.request()
@@ -526,9 +526,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Response if IF_MODIFIED_SINCE don't match
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if IF_MODIFIED_SINCE don't match
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testPrecedence_IfNoneMatchNotPresent_IfModifiedSinceBeforeLastModified() {
       Response response = precedenceWebTarget.request()
@@ -540,9 +540,9 @@ public class PreconditionTest {
    }
 
    /**
-     * @tpTestDetails Response if IF_MODIFIED_SINCE match
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if IF_MODIFIED_SINCE match
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testPrecedence_IfNoneMatchNotPresent_IfModifiedSinceAfterLastModified() {
       Response response = precedenceWebTarget.request()

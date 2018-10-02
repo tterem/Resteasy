@@ -22,8 +22,8 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 
 /**
-   * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
-   */
+ * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
+ */
 public class JSAPIServlet extends HttpServlet
 {
 

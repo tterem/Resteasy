@@ -29,10 +29,10 @@ import java.net.URL;
 import java.util.PropertyPermission;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ClientResponseRedirectTest extends ClientTestBase{
@@ -66,30 +66,30 @@ public class ClientResponseRedirectTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Tests redirection of the request using ProxyBuilder client
-     * @tpPassCrit The header 'location' contains the redirected target
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests redirection of the request using ProxyBuilder client
+    * @tpPassCrit The header 'location' contains the redirected target
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRedirectProxyBuilder() throws Exception {
       testRedirect(ProxyBuilder.builder(ClientResponseRedirectIntf.class, client.target(generateURL(""))).build().get());
    }
 
    /**
-     * @tpTestDetails Tests redirection of the request using Client Webtarget request
-     * @tpPassCrit The header 'location' contains the redirected target
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests redirection of the request using Client Webtarget request
+    * @tpPassCrit The header 'location' contains the redirected target
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRedirectClientTargetRequest() throws Exception {
       testRedirect(client.target(generateURL("/redirect")).request().get());
    }
 
    /**
-     * @tpTestDetails Tests redirection of the request using HttpUrlConnection
-     * @tpPassCrit The header 'location' contains the redirected target
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests redirection of the request using HttpUrlConnection
+    * @tpPassCrit The header 'location' contains the redirected target
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRedirectHttpUrlConnection() throws Exception {
       URL url = PortProviderUtil.createURL("/redirect", ClientResponseRedirectTest.class.getSimpleName());

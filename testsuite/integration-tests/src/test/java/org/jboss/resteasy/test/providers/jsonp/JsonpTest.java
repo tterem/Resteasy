@@ -28,10 +28,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 /**
-   * @tpSubChapter Json-p provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Json-p provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JsonpTest {
@@ -63,12 +63,12 @@ public class JsonpTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with JsonObject entity. The JsonObject should be returned back by the
-     * response and should contain the same field values as original request.
-     * in the second case multiple json entities as String.
-     * @tpPassCrit The resource returns JsonObject with correct values
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with JsonObject entity. The JsonObject should be returned back by the
+    * response and should contain the same field values as original request.
+    * in the second case multiple json entities as String.
+    * @tpPassCrit The resource returns JsonObject with correct values
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testObject() throws Exception {
       doTestObject("UTF-8");
@@ -96,12 +96,12 @@ public class JsonpTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with JsonArray entity. The JsonArray should be returned back by the
-     * response and should contain the same field values as original request.
-     * in the second case multiple json entities as String.
-     * @tpPassCrit The resource returns JsonArray with correct values
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with JsonArray entity. The JsonArray should be returned back by the
+    * response and should contain the same field values as original request.
+    * in the second case multiple json entities as String.
+    * @tpPassCrit The resource returns JsonArray with correct values
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testArray() throws Exception {
       doTestArray("UTF-8");
@@ -133,12 +133,12 @@ public class JsonpTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with JsonStructure entity. The JsonStructure should be returned back by the
-     * response and should contain the same field values as original request.
-     * in the second case multiple json entities as String.
-     * @tpPassCrit The resource returns JsonStructure with correct values
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with JsonStructure entity. The JsonStructure should be returned back by the
+    * response and should contain the same field values as original request.
+    * in the second case multiple json entities as String.
+    * @tpPassCrit The resource returns JsonStructure with correct values
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testStructure() throws Exception {
       doTestStructure("UTF-8");

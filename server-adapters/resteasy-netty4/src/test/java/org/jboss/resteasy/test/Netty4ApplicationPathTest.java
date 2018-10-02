@@ -23,9 +23,9 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
 /**
-   * Fetching root path from ApplicationPath annotation related tests.
-   *  @see https://issues.jboss.org/browse/RESTEASY-1657
-   */
+ * Fetching root path from ApplicationPath annotation related tests.
+ *  @see https://issues.jboss.org/browse/RESTEASY-1657
+ */
 public class Netty4ApplicationPathTest
 {
    private static final String ECHO = "hello";

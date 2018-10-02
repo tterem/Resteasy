@@ -9,16 +9,16 @@ import org.junit.Test;
 import javax.enterprise.inject.spi.BeanManager;
 
 /**
-   * @tpSubChapter Injection tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for weld initialize method
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Injection tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for weld initialize method
+ * @tpSince RESTEasy 3.0.16
+ */
 public class WeldInitCDITest {
    /**
-     * @tpTestDetails Initialized weld should enable lookupBeanManagerCDIUtil method to work correctly.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Initialized weld should enable lookupBeanManagerCDIUtil method to work correctly.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInitWeld() {
       Weld weld = new Weld();

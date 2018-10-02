@@ -13,12 +13,12 @@ import java.io.IOException;
 import java.net.URI;
 
 /**
-   * Helper for creating HttpRequest implementations.  The async code is a fake implementation to work with
-   * http engines that don't support async HTTP.
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Helper for creating HttpRequest implementations.  The async code is a fake implementation to work with
+ * http engines that don't support async HTTP.
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public abstract class BaseHttpRequest implements HttpRequest
 {
    protected MultivaluedMap<String, String> formParameters;

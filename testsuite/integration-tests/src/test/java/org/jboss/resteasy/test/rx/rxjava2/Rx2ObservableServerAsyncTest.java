@@ -41,15 +41,15 @@ import org.junit.runners.MethodSorters;
 
 
 /**
-   * @tpSubChapter Reactive classes
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 4.0
-   * 
-   * In these tests, the server uses Observables to build objects asynchronously, then collects the
-   * results and returns then in one transmission.
-   * 
-   * The client makes synchronous calls.
-   */
+ * @tpSubChapter Reactive classes
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 4.0
+ * 
+ * In these tests, the server uses Observables to build objects asynchronously, then collects the
+ * results and returns then in one transmission.
+ * 
+ * The client makes synchronous calls.
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)

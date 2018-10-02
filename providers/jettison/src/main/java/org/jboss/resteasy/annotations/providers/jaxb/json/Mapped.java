@@ -7,11 +7,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
-   * A JSONConfig.
-   *
-   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
-   * @version $Revision:$
-   */
+ * A JSONConfig.
+ *
+ * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+ * @version $Revision:$
+ */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(
@@ -19,17 +19,17 @@ import java.lang.annotation.Target;
 public @interface Mapped
 {
    /**
-   * List of JSON attributes that should be regarded as Elements
-   *
-   * @return
-   */
+    * List of JSON attributes that should be regarded as Elements
+    *
+    * @return
+    */
    String[] attributesAsElements() default {};
 
    /**
-   * Map the XML namespace to a JSON namespace
-   *
-   * @return
-   */
+    * Map the XML namespace to a JSON namespace
+    *
+    * @return
+    */
    XmlNsMap[] namespaceMap() default {};
 
 

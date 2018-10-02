@@ -26,11 +26,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for Singleton beans
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for Singleton beans
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SingletonTest {
@@ -60,9 +60,9 @@ public class SingletonTest {
    }
 
    /**
-     * @tpTestDetails Three requests for singleton bean
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Three requests for singleton bean
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSingleton() throws Exception {
       WebTarget base = client.target(generateURL("/root"));

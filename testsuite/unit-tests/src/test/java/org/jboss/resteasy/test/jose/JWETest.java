@@ -17,11 +17,11 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
 /**
-   * @tpSubChapter Jose tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for JWE
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jose tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for JWE
+ * @tpSince RESTEasy 3.0.16
+ */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JWETest {
    private static final String ERROR_MSG = "Wrong conversion";
@@ -29,9 +29,9 @@ public class JWETest {
    protected final Logger logger = LogManager.getLogger(JWETest.class.getName());
 
    /**
-     * @tpTestDetails RSA test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails RSA test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRSA() throws Exception {
       Assume.assumeTrue(TestUtil.getErrorMessageForKnownIssue("JBEAP-3550", BOUNCY_CASTLE_ERROR), TestUtil.isOpenJDK());
@@ -70,9 +70,9 @@ public class JWETest {
    }
 
    /**
-     * @tpTestDetails Direct test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Direct test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDirect() throws Exception {
       Assume.assumeTrue(TestUtil.getErrorMessageForKnownIssue("JBEAP-3550", BOUNCY_CASTLE_ERROR), TestUtil.isOpenJDK());

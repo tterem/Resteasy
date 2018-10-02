@@ -23,10 +23,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExceptionHandlingTest {
@@ -63,11 +63,11 @@ public class ExceptionHandlingTest {
    }
 
    /**
-     * @tpTestDetails POST request is sent by client via client proxy. The resource on the server throws exception,
-     * which is handled by ExceptionMapper.
-     * @tpPassCrit The response with expected Exception text is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails POST request is sent by client via client proxy. The resource on the server throws exception,
+    * which is handled by ExceptionMapper.
+    * @tpPassCrit The response with expected Exception text is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testThrowsException() throws Exception {
 

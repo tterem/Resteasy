@@ -21,29 +21,29 @@ import org.jboss.resteasy.plugins.providers.jaxb.JAXBXmlTypeProvider;
 import org.w3c.dom.Element;
 
 /**
-   * <p>Represents an atomTextConstruct element.</p>
-   * <p>Per RFC4287:</p>
-   * <pre>
-   *  A Text construct contains human-readable text, usually in small
-   *  quantities. The content of Text constructs is Language-Sensitive.
-   *
-   *  atomPlainTextConstruct =
-   *     atomCommonAttributes,
-   *     attribute type { "text" | "html" }?,
-   *     text
-   *
-   *  atomXHTMLTextConstruct =
-   *    atomCommonAttributes,
-   *    attribute type { "xhtml" },
-   *    xhtmlDiv 
-   *
-   *  atomTextConstruct = atomPlainTextConstruct | atomXHTMLTextConstruct
-   *
-   * </pre>
-   *
-   * @author <a href="mailto:mail@johannes-beck.name">Johannes Beck</a>
-   * @version $Revision: 1 $
-   */
+ * <p>Represents an atomTextConstruct element.</p>
+ * <p>Per RFC4287:</p>
+ * <pre>
+ *  A Text construct contains human-readable text, usually in small
+ *  quantities. The content of Text constructs is Language-Sensitive.
+ *
+ *  atomPlainTextConstruct =
+ *     atomCommonAttributes,
+ *     attribute type { "text" | "html" }?,
+ *     text
+ *
+ *  atomXHTMLTextConstruct =
+ *    atomCommonAttributes,
+ *    attribute type { "xhtml" },
+ *    xhtmlDiv 
+ *
+ *  atomTextConstruct = atomPlainTextConstruct | atomXHTMLTextConstruct
+ *
+ * </pre>
+ *
+ * @author <a href="mailto:mail@johannes-beck.name">Johannes Beck</a>
+ * @version $Revision: 1 $
+ */
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class Text extends CommonAttributes 
 {
@@ -95,10 +95,10 @@ public class Text extends CommonAttributes
    }
     
    /**
-   * Mime type.
-   *
-   * @return media type
-   */
+    * Mime type.
+    *
+    * @return media type
+    */
    @XmlTransient
    public MediaType getType()
    {
@@ -133,10 +133,10 @@ public class Text extends CommonAttributes
    }
   
    /**
-   * If content is text, return it as a String.  Otherwise, if content is not text this will return null.
-   *
-   * @return text
-   */
+    * If content is text, return it as a String.  Otherwise, if content is not text this will return null.
+    *
+    * @return text
+    */
    @XmlTransient
    public String getText()
    {
@@ -153,10 +153,10 @@ public class Text extends CommonAttributes
    }
   
    /**
-   * Set content as text.
-   *
-   * @param text text
-   */
+    * Set content as text.
+    *
+    * @param text text
+    */
    public void setText(String text)
    {
       if (value == null) value = new ArrayList<Object>();
@@ -166,10 +166,10 @@ public class Text extends CommonAttributes
    }
 
    /**
-   * Get content as an XML Element if the content is XML.  Otherwise, this will just return null.
-   *
-   * @return {@link Element}
-   */
+    * Get content as an XML Element if the content is XML.  Otherwise, this will just return null.
+    *
+    * @return {@link Element}
+    */
    @XmlTransient
    public Element getElement()
    {
@@ -187,10 +187,10 @@ public class Text extends CommonAttributes
    }
 
    /**
-   * Set the content to an XML Element.
-   *
-   * @param element {@link Element}
-   */
+    * Set the content to an XML Element.
+    *
+    * @param element {@link Element}
+    */
    public void setElement(Element element)
    {
       if (value == null) value = new ArrayList<Object>();
@@ -201,17 +201,17 @@ public class Text extends CommonAttributes
    }
     
    /**
-   * Extract the content as the provided JAXB annotated type.
-   * <p>
-   * This method will use a cached JAXBContext used by the Resteasy JAXB providers
-   * or, if those are not existent, it will create a new JAXBContext from scratch
-   * using the class.
-   *
-   * @param clazz                class type you are expecting
-   * @param otherPossibleClasses Other classe you want to create the JAXBContext with
-   * @return null if there is no XML content
-   * @throws JAXBException jaxb exception
-   */
+    * Extract the content as the provided JAXB annotated type.
+    * <p>
+    * This method will use a cached JAXBContext used by the Resteasy JAXB providers
+    * or, if those are not existent, it will create a new JAXBContext from scratch
+    * using the class.
+    *
+    * @param clazz                class type you are expecting
+    * @param otherPossibleClasses Other classe you want to create the JAXBContext with
+    * @return null if there is no XML content
+    * @throws JAXBException jaxb exception
+    */
    @SuppressWarnings(value = "unchecked")
    public <T> T getJAXBObject(Class<T> clazz, Class... otherPossibleClasses) throws JAXBException
    {
@@ -246,11 +246,11 @@ public class Text extends CommonAttributes
    }
 
    /**
-   * Returns previous extracted jaxbobject from a call to getJAXBObject(Class{@literal <}T{@literal >} clazz)
-   * or value passed in through a previous setJAXBObject().
-   *
-   * @return jaxb object
-   */
+    * Returns previous extracted jaxbobject from a call to getJAXBObject(Class{@literal <}T{@literal >} clazz)
+    * or value passed in through a previous setJAXBObject().
+    *
+    * @return jaxb object
+    */
    @XmlTransient
    public Object getJAXBObject()
    {

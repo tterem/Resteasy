@@ -5,8 +5,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 /**
-   * Created by rsearls on 9/11/17.
-   */
+ * Created by rsearls on 9/11/17.
+ */
 @Path("test")
 public class SubResourceWarningResource {
 

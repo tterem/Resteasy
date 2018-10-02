@@ -26,10 +26,10 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.ProcessingException;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResponseObjectTest {
@@ -60,10 +60,10 @@ public class ResponseObjectTest {
    }
 
    /**
-     * @tpTestDetails Tests ResponseObject annotation on a client interface, invoking the request with ProxyBuilder instance
-     * @tpPassCrit The response contains the expected header
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests ResponseObject annotation on a client interface, invoking the request with ProxyBuilder instance
+    * @tpPassCrit The response contains the expected header
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSimpleProxyBuilder() {
       ResponseObjectBasicObjectIntf obj = responseObjectClientIntf.get();
@@ -79,11 +79,11 @@ public class ResponseObjectTest {
    }
 
    /**
-     * @tpTestDetails Tests ResponseObject annotation on a client interface, and resource containg a Link object,
-     * forwarding to another resource and invoking the request with ProxyBuilder instance
-     * @tpPassCrit The request was forwarded to another resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests ResponseObject annotation on a client interface, and resource containg a Link object,
+    * forwarding to another resource and invoking the request with ProxyBuilder instance
+    * @tpPassCrit The request was forwarded to another resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLinkFollowProxyBuilder() {
       ResponseObjectHateoasObject obj = responseObjectClientIntf.performGetBasedOnHeader();

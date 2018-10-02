@@ -12,9 +12,9 @@ import javax.servlet.ServletResponse;
 import org.jboss.resteasy.plugins.providers.jackson.ResteasyObjectWriterInjector;
 
 /**
-   * @author <a href="mailto:ema@redhat.com">Jim Ma</a>
-   *
-   */
+ * @author <a href="mailto:ema@redhat.com">Jim Ma</a>
+ *
+ */
 public class ObjectWriterModifierFilter implements Filter {
    private static ObjectFilterModifier modifier = new ObjectFilterModifier();
 

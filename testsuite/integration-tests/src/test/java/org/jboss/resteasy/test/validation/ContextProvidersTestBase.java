@@ -30,12 +30,12 @@ import java.util.Map;
 import java.util.Set;
 
 /**
-   * @tpSubChapter Multipart provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1119.
-   *                    This is abstract class, ContextProvidersOldClientTest and ContextProvidersOldClientTest use this abstract class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Multipart provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1119.
+ *                    This is abstract class, ContextProvidersOldClientTest and ContextProvidersOldClientTest use this abstract class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public abstract class ContextProvidersTestBase {
    static final String RESPONSE_ERROR_MSG = "Response has wrong content";
    static final MediaType MULTIPART_MIXED = new MediaType("multipart", "mixed");
@@ -75,9 +75,9 @@ public abstract class ContextProvidersTestBase {
    };
 
    /**
-     * @tpTestDetails Test get request and form data in response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test get request and form data in response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetFormData() throws Exception {
       MultipartFormDataInput entity = get("/get/form", MultipartFormDataInput.class);
@@ -109,9 +109,9 @@ public abstract class ContextProvidersTestBase {
    }
 
    /**
-     * @tpTestDetails Test get request. Response should contain xml and text-plain data.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test get request. Response should contain xml and text-plain data.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetMixed() throws Exception {
       MultipartInput entity = get("/get/mixed", MultipartInput.class);
@@ -131,9 +131,9 @@ public abstract class ContextProvidersTestBase {
    }
 
    /**
-     * @tpTestDetails Test get request. Response should contain list.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test get request. Response should contain list.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetList() throws Exception {
       MultipartInput entity = get("/get/list", MultipartInput.class);
@@ -151,9 +151,9 @@ public abstract class ContextProvidersTestBase {
    }
 
    /**
-     * @tpTestDetails Test get request. Response should contain map.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test get request. Response should contain map.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetMap() throws Exception {
       MultipartFormDataInput entity = get("/get/map", MultipartFormDataInput.class);
@@ -181,9 +181,9 @@ public abstract class ContextProvidersTestBase {
    }
 
    /**
-     * @tpTestDetails Test get request. Response should contain multipart/related.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test get request. Response should contain multipart/related.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetRelated() throws Exception {
       MultipartRelatedInput entity = get("/get/related", MultipartRelatedInput.class);
@@ -203,9 +203,9 @@ public abstract class ContextProvidersTestBase {
    }
 
    /**
-     * @tpTestDetails Test get request. Response should contain multipart/form.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test get request. Response should contain multipart/form.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetMultipartForm() throws Exception {
       Annotation[] annotations = new Annotation[1];
@@ -216,9 +216,9 @@ public abstract class ContextProvidersTestBase {
    }
 
    /**
-     * @tpTestDetails Test get request. Response should contain xop (XML-binary Optimized Packaging).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test get request. Response should contain xop (XML-binary Optimized Packaging).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetXop() throws Exception {
       Annotation[] annotations = new Annotation[1];
@@ -228,9 +228,9 @@ public abstract class ContextProvidersTestBase {
    }
 
    /**
-     * @tpTestDetails Test post request with mixed params.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test post request with mixed params.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @SuppressWarnings("unchecked")
    public void testPostMixed() throws Exception {
@@ -247,9 +247,9 @@ public abstract class ContextProvidersTestBase {
    }
 
    /**
-     * @tpTestDetails Test post request with form params.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test post request with form params.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @SuppressWarnings("unchecked")
    public void testPostFormData() throws Exception {
@@ -266,9 +266,9 @@ public abstract class ContextProvidersTestBase {
    }
 
    /**
-     * @tpTestDetails Test post request with list param.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test post request with list param.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @SuppressWarnings("unchecked")
    public void testPostList() throws Exception {
@@ -285,9 +285,9 @@ public abstract class ContextProvidersTestBase {
    }
 
    /**
-     * @tpTestDetails Test post request with map param.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test post request with map param.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @SuppressWarnings("unchecked")
    public void testPostMap() throws Exception {
@@ -304,9 +304,9 @@ public abstract class ContextProvidersTestBase {
    }
 
    /**
-     * @tpTestDetails Test post request with multipart/related param.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test post request with multipart/related param.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @SuppressWarnings("unchecked")
    public void testPostRelated() throws Exception {
@@ -324,9 +324,9 @@ public abstract class ContextProvidersTestBase {
    }
 
    /**
-     * @tpTestDetails Test post request with multipart/form param.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test post request with multipart/form param.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPostMultipartForm() throws Exception {
       ContextProvidersCustomerForm form = new ContextProvidersCustomerForm();
@@ -338,9 +338,9 @@ public abstract class ContextProvidersTestBase {
    }
 
    /**
-     * @tpTestDetails Test post request with xop param (XML-binary Optimized Packaging).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test post request with xop param (XML-binary Optimized Packaging).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPostXop() throws Exception {
       ContextProvidersXop xop = new ContextProvidersXop("hello world".getBytes());

@@ -21,10 +21,10 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class LocatorTest {
@@ -52,11 +52,11 @@ public class LocatorTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request for the resource which is not annotated with any HTTP method anotation.
-     * This resource created new object resource and passes the request to this new created object.
-     * @tpPassCrit Correct response is returned from the server
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request for the resource which is not annotated with any HTTP method anotation.
+    * This resource created new object resource and passes the request to this new created object.
+    * @tpPassCrit Correct response is returned from the server
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLocatorWithSubWithPathAnnotation() {
       Response response = client.target(generateURL("/locator/responseok/responseok")).request().get();
@@ -65,10 +65,10 @@ public class LocatorTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request with the path which matches multiple resources.
-     * @tpPassCrit Correct resource is used and successful response is returned.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request with the path which matches multiple resources.
+    * @tpPassCrit Correct resource is used and successful response is returned.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMultiplePathOptions() {
       Response response = client.target(generateURL("/resource/responseok")).request().options();

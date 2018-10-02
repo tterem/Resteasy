@@ -31,11 +31,11 @@ import java.util.Arrays;
 
 
 /**
-   * @tpSubChapter IIOImage provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Basic test for IIOImage provider. Old issue: https://issues.jboss.org/browse/RESTEASY-862
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter IIOImage provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Basic test for IIOImage provider. Old issue: https://issues.jboss.org/browse/RESTEASY-862
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class IIOImageProviderTest {
@@ -65,10 +65,10 @@ public class IIOImageProviderTest {
    }
 
    /**
-     * @tpTestDetails Test a post of a PNG image whose response should be a PNG version of the
-     *                same photo.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test a post of a PNG image whose response should be a PNG version of the
+    *                same photo.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @Ignore("[RESTEASY-1724] java.lang.IllegalStateException: Compression mode not MODE_EXPLICIT!")
    public void testPostJPEGIMage() throws Exception {
@@ -92,12 +92,12 @@ public class IIOImageProviderTest {
    }
 
    /**
-     * @tpTestDetails Tests a image format that is not directly supported by Image IO. In this
-     *                case, an HD Photo image is posted to the Resource which should return a
-     *                406 - Not Acceptable response. The response body should include a list of
-     *                variants that are supported by the application.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests a image format that is not directly supported by Image IO. In this
+    *                case, an HD Photo image is posted to the Resource which should return a
+    *                406 - Not Acceptable response. The response body should include a list of
+    *                variants that are supported by the application.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPostUnsupportedImage() throws Exception {
       File file = new File(TestUtil.getResourcePath(IIOImageProviderTest.class, testWdpResource));

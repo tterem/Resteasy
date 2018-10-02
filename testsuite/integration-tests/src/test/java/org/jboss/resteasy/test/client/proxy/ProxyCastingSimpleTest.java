@@ -27,12 +27,12 @@ import javax.ws.rs.client.ClientBuilder;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Any interface could be cast to ResteasyClientProxy.
-   *                JBEAP-3197, JBEAP-4700
-   * @tpSince RESTEasy 3.0.17
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Any interface could be cast to ResteasyClientProxy.
+ *                JBEAP-3197, JBEAP-4700
+ * @tpSince RESTEasy 3.0.17
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ProxyCastingSimpleTest {
@@ -65,9 +65,9 @@ public class ProxyCastingSimpleTest {
    }
 
    /**
-     * @tpTestDetails Cast one proxy to other proxy. Old client.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Cast one proxy to other proxy. Old client.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testSubresourceProxy() throws Exception {
       ProxyCastingSimpleFooBar foobar = ProxyBuilder.builder(ProxyCastingSimpleFooBar.class, target).build();

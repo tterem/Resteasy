@@ -14,12 +14,12 @@ import javax.ws.rs.ext.Provider;
 import org.jboss.resteasy.spi.HttpResponseCodes;
 
 /**
-   * (RESTEASY-1485) Thwart select XSS attack by escaping special chars in
-   * Exception message.
-   *
-   * User: rsearls
-   * Date: 9/16/16
-   */
+ * (RESTEASY-1485) Thwart select XSS attack by escaping special chars in
+ * Exception message.
+ *
+ * User: rsearls
+ * Date: 9/16/16
+ */
 @Provider
 @Priority(Priorities.ENTITY_CODER)
 public class MessageSanitizerContainerResponseFilter implements ContainerResponseFilter {
@@ -53,10 +53,10 @@ public class MessageSanitizerContainerResponseFilter implements ContainerRespons
    }
 
    /**
-     * Replace char with the hex encoding
-     * @param str
-     * @return
-     */
+    * Replace char with the hex encoding
+    * @param str
+    * @return
+    */
    private String escapeXml(String str) {
       StringBuilder sb = new StringBuilder();
       if (!str.isEmpty()) {

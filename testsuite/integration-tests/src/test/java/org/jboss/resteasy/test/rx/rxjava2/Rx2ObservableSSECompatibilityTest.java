@@ -38,12 +38,12 @@ import io.reactivex.Observable;
 
 
 /**
-   * @tpSubChapter Reactive classes
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 4.0
-   * 
-   * These tests demonstrate compatibility between Rx and SSE clients and servers.
-   */
+ * @tpSubChapter Reactive classes
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 4.0
+ * 
+ * These tests demonstrate compatibility between Rx and SSE clients and servers.
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)

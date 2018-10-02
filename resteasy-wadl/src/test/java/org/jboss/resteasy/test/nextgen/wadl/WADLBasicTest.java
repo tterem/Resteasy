@@ -26,8 +26,8 @@ import org.junit.Test;
 import com.sun.net.httpserver.HttpServer;
 
 /**
-   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
-   */
+ * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+ */
 public class WADLBasicTest extends WADLTestSetup {
 
    private static HttpServer httpServer;

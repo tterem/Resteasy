@@ -35,11 +35,11 @@ import javax.ws.rs.core.Response;
 import java.util.Iterator;
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-923
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-923
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationCoreTest {
@@ -72,9 +72,9 @@ public class ValidationCoreTest {
    }
 
    /**
-     * @tpTestDetails Test native, imposed and both validation of return values. Also test negative scenarios.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test native, imposed and both validation of return values. Also test negative scenarios.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testReturnValues() throws Exception {
       ValidationCoreFoo foo = new ValidationCoreFoo("a");
@@ -156,9 +156,9 @@ public class ValidationCoreTest {
    }
 
    /**
-     * @tpTestDetails Test violations before returning some value.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test violations before returning some value.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testViolationsBeforeReturnValue() throws Exception {
       // Valid

@@ -3,17 +3,17 @@ package org.jboss.resteasy.spi;
 import javax.ws.rs.core.Response;
 
 /**
-   * Any exception thrown by a MessageBodyReader chain that is not an instance of a ReaderException is caught internally
-   * by the Resteasy runtime and wrapped with an instance of ReaderException.
-   *
-   * If you want to have special exception handling for exceptions thrown by MessageBodyReaders, then write an exception
-   * mapper for ReaderException.
-   *
-   * Also, you may extend this class and throw instances of it from your MessageBodyReaders (and interceptors)
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Any exception thrown by a MessageBodyReader chain that is not an instance of a ReaderException is caught internally
+ * by the Resteasy runtime and wrapped with an instance of ReaderException.
+ *
+ * If you want to have special exception handling for exceptions thrown by MessageBodyReaders, then write an exception
+ * mapper for ReaderException.
+ *
+ * Also, you may extend this class and throw instances of it from your MessageBodyReaders (and interceptors)
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class ReaderException extends Failure
 {
    public ReaderException(final String s, final Response response)

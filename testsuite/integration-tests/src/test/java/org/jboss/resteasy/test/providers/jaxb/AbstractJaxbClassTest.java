@@ -26,10 +26,10 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AbstractJaxbClassTest {
@@ -66,10 +66,10 @@ public class AbstractJaxbClassTest {
             + "</abstractJaxbClassPrivatCustomer>";
 
    /**
-     * @tpTestDetails Test for Abstract jaxb class with @XmlSeeAlso annotation
-     * @tpInfo RESTEASY-126
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for Abstract jaxb class with @XmlSeeAlso annotation
+    * @tpInfo RESTEASY-126
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPost() throws Exception {
       ResteasyWebTarget target = client.target(generateURL(""));

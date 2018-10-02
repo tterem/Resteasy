@@ -12,9 +12,9 @@ import java.net.URL;
 import java.util.Hashtable;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class EagleDnsTest
 {
    private static Logger log = Logger.getLogger(EagleDnsTest.class);

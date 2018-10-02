@@ -19,11 +19,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for custom value injector.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for custom value injector.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CustomValueInjectorTest {
@@ -53,9 +53,9 @@ public class CustomValueInjectorTest {
    }
 
    /**
-     * @tpTestDetails Client test.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client test.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCustomInjectorFactory() throws Exception {
       String result = client.target(generateURL("/")).request().get(String.class);

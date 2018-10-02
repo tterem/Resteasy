@@ -21,11 +21,11 @@ import javax.ws.rs.core.Response;
 
 
 /**
-   * @tpSubChapter Asynchronous RESTEasy
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for asyncHttpServlet module
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Asynchronous RESTEasy
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for asyncHttpServlet module
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AsyncServletTest {
@@ -53,9 +53,9 @@ public class AsyncServletTest {
    }
 
    /**
-     * @tpTestDetails Test for correct response
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for correct response
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAsync() throws Exception {
       Response response = client.target(generateURL("/async")).request().get();
@@ -64,9 +64,9 @@ public class AsyncServletTest {
    }
 
    /**
-     * @tpTestDetails Service unavailable test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Service unavailable test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testTimeout() throws Exception {
       Response response = client.target(generateURL("/async/timeout")).request().get();

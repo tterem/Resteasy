@@ -19,11 +19,11 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.client.Client;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.17
-   * @tpTestCaseDetails Regression for JBEAP-4699
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.17
+ * @tpTestCaseDetails Regression for JBEAP-4699
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GenericReturnTypeTest extends ClientTestBase{
@@ -36,9 +36,9 @@ public class GenericReturnTypeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Test generic type of proxy
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Test generic type of proxy
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testGenericReturnType() {
       Client client = ResteasyClientBuilder.newClient();

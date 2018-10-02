@@ -32,12 +32,12 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for JBEAP-4084, WFLY-6485
-   *                    Test that JPA dependencies are set for sub-deployments
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for JBEAP-4084, WFLY-6485
+ *                    Test that JPA dependencies are set for sub-deployments
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class WeldSubdeploymentTest {
@@ -86,36 +86,36 @@ public class WeldSubdeploymentTest {
    }
 
    /**
-     * @tpTestDetails Test for bean with application scope
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for bean with application scope
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAppcliationScope() throws Exception {
       testEndPoint("application");
    }
 
    /**
-     * @tpTestDetails Test for bean with request scope
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for bean with request scope
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRequestScope() throws Exception {
       testEndPoint("request");
    }
 
    /**
-     * @tpTestDetails Test for stateful bean
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for stateful bean
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testStateful() throws Exception {
       testEndPoint("stateful");
    }
 
    /**
-     * @tpTestDetails Test for stateless bean
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for stateless bean
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testStateLess() throws Exception {
       testEndPoint("stateless");

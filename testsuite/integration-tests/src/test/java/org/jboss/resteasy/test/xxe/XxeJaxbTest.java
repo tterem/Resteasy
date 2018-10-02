@@ -30,12 +30,12 @@ import java.io.File;
 import java.util.Hashtable;
 
 /**
-   * @tpSubChapter XXE
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1103, RESTEASY-647.
-   * RestEasy is vulnerable to XML Entity Denial of Service XXE is disabled.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter XXE
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1103, RESTEASY-647.
+ * RestEasy is vulnerable to XML Entity Denial of Service XXE is disabled.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class XxeJaxbTest {
@@ -148,11 +148,11 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("f")
    public void testXmlRootElementDefaultFalse() throws Exception {
@@ -160,11 +160,11 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("t")
    public void testXmlRootElementDefaultTrue() throws Exception {
@@ -172,12 +172,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ff")
    public void testXmlRootElementWithoutExpansionFalse() throws Exception {
@@ -185,12 +185,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ft")
    public void testXmlRootElementWithoutExpansionTrue() throws Exception {
@@ -198,12 +198,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tf")
    public void testXmlRootElementWithExpansionFalse() throws Exception {
@@ -211,12 +211,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tt")
    public void testXmlRootElementWithExpansionTrue() throws Exception {
@@ -224,11 +224,11 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlType
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlType
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("f")
    public void testXmlTypeDefaultFalse() throws Exception {
@@ -236,11 +236,11 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlType
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlType
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("t")
    public void testXmlTypeDefaultTrue() throws Exception {
@@ -248,12 +248,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlType
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlType
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ff")
    public void testXmlTypeWithoutExpansionFalse() throws Exception {
@@ -261,12 +261,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlType
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlType
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ft")
    public void testXmlTypeWithoutExpansionTrue() throws Exception {
@@ -274,12 +274,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlType
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlType
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tf")
    public void testXmlTypeWithExpansionFalse() throws Exception {
@@ -287,12 +287,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlType
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlType
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tt")
    public void testXmlTypeWithExpansionTrue() throws Exception {
@@ -300,11 +300,11 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlType and resource binding xml element to JaxbElement
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlType and resource binding xml element to JaxbElement
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("f")
    public void testJAXBElementDefaultFalse() throws Exception {
@@ -312,11 +312,11 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlType and resource binding xml element to JaxbElement
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlType and resource binding xml element to JaxbElement
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("t")
    public void testJAXBElementDefaultTrue() throws Exception {
@@ -324,12 +324,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlType and resource binding xml element to JaxbElement
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlType and resource binding xml element to JaxbElement
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ff")
    public void testJAXBElementWithoutExpansionFalse() throws Exception {
@@ -337,12 +337,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlType and resource binding xml element to JaxbElement
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlType and resource binding xml element to JaxbElement
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ft")
    public void testJAXBElementWithoutExpansionTrue() throws Exception {
@@ -350,12 +350,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlType and resource binding xml element to JaxbElement
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlType and resource binding xml element to JaxbElement
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tf")
    public void testJAXBElementWithExpansionFalse() throws Exception {
@@ -363,12 +363,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlType and resource binding xml element to JaxbElement
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlType and resource binding xml element to JaxbElement
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tt")
    public void testJAXBElementWithExpansionTrue() throws Exception {
@@ -376,12 +376,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into a list object
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into a list object
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("f")
    public void testListDefaultFalse() throws Exception {
@@ -389,12 +389,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into a list object
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into a list object
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("t")
    public void testListDefaultTrue() throws Exception {
@@ -402,13 +402,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into a list object
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into a list object
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ff")
    public void testListWithoutExpansionFalse() throws Exception {
@@ -416,13 +416,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into a list object
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into a list object
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ft")
    public void testListWithoutExpansionTrue() throws Exception {
@@ -430,13 +430,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into a list object
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into a list object
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tf")
    public void testListWithExpansionFalse() throws Exception {
@@ -444,13 +444,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into a list object
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into a list object
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tt")
    public void testListWithExpansionTrue() throws Exception {
@@ -458,12 +458,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into a Set object
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into a Set object
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("f")
    public void testSetDefaultFalse() throws Exception {
@@ -471,12 +471,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into a Set object
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into a Set object
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("t")
    public void testSetDefaultTrue() throws Exception {
@@ -484,13 +484,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into a Set object
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into a Set object
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ff")
    public void testSetWithoutExpansionFalse() throws Exception {
@@ -498,13 +498,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into a Set object
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into a Set object
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ft")
    public void testSetWithoutExpansionTrue() throws Exception {
@@ -512,13 +512,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into a Set object
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into a Set object
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tf")
    public void testSetWithExpansionFalse() throws Exception {
@@ -526,13 +526,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into a Set object
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into a Set object
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tt")
    public void testSetWithExpansionTrue() throws Exception {
@@ -540,12 +540,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into an array
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into an array
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("f")
    public void testArrayDefaultFalse() throws Exception {
@@ -553,12 +553,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into an array
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into an array
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("t")
    public void testArrayDefaultTrue() throws Exception {
@@ -566,13 +566,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into an array
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into an array
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ff")
    public void testArrayWithoutExpansionFalse() throws Exception {
@@ -580,13 +580,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into an array
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into an array
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ft")
    public void testArrayWithoutExpansionTrue() throws Exception {
@@ -594,13 +594,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into an array
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into an array
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tf")
    public void testArrayWithExpansionFalse() throws Exception {
@@ -608,13 +608,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
-     * tags. Resource binds such xml correctly into an array
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <collection></collection>
+    * tags. Resource binds such xml correctly into an array
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tt")
    public void testArrayWithExpansionTrue() throws Exception {
@@ -622,12 +622,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <map></map>
-     * tags. Resource binds such xml correctly into a map
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <map></map>
+    * tags. Resource binds such xml correctly into a map
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("f")
    public void testMapDefaultFalse() throws Exception {
@@ -635,12 +635,12 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <map></map>
-     * tags. Resource binds such xml correctly into a map
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <map></map>
+    * tags. Resource binds such xml correctly into a map
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("t")
    public void testMapDefaultTrue() throws Exception {
@@ -648,13 +648,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <map></map>
-     * tags. Resource binds such xml correctly into a map
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <map></map>
+    * tags. Resource binds such xml correctly into a map
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ff")
    public void testMapWithoutExpansionFalse() throws Exception {
@@ -662,13 +662,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <map></map>
-     * tags. Resource binds such xml correctly into a map
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "false"
-     * @tpPassCrit Passwd file should not be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <map></map>
+    * tags. Resource binds such xml correctly into a map
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "false"
+    * @tpPassCrit Passwd file should not be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ft")
    public void testMapWithoutExpansionTrue() throws Exception {
@@ -676,13 +676,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <map></map>
-     * tags. Resource binds such xml correctly into a map
-     * "resteasy.document.secure.processing.feature" is set to "false"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <map></map>
+    * tags. Resource binds such xml correctly into a map
+    * "resteasy.document.secure.processing.feature" is set to "false"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tf")
    public void testMapWithExpansionFalse() throws Exception {
@@ -690,13 +690,13 @@ public class XxeJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <map></map>
-     * tags. Resource binds such xml correctly into a map
-     * "resteasy.document.secure.processing.feature" is set to "true"
-     * "resteasy.document.expand.entity.references" is set to "true"
-     * @tpPassCrit Passwd file should be returned by the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on jaxb object annotated with @XmlRootElement which placed in xml string within <map></map>
+    * tags. Resource binds such xml correctly into a map
+    * "resteasy.document.secure.processing.feature" is set to "true"
+    * "resteasy.document.expand.entity.references" is set to "true"
+    * @tpPassCrit Passwd file should be returned by the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("tt")
    public void testMapWithExpansionTrue() throws Exception {

@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Map.Entry;
 
 /**
-   * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
-   */
+ * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
+ */
 public class ServiceRegistry
 {
    private static final long serialVersionUID = -1985015444704126795L;

@@ -37,15 +37,15 @@ import static org.jboss.resteasy.plugins.server.netty.RestEasyHttpRequestDecoder
 import static org.jboss.resteasy.plugins.server.netty.RestEasyHttpRequestDecoder.Protocol.HTTPS;
 
 /**
-   * An HTTP server that sends back the content of the received HTTP request
-   * in a pretty plaintext form.
-   *
-   * @author <a href="http://www.jboss.org/netty/">The Netty Project</a>
-   * @author Andy Taylor (andy.taylor@jboss.org)
-   * @author <a href="http://gleamynode.net/">Trustin Lee</a>
-   * @author Norman Maurer
-   * @version $Rev: 2080 $, $Date: 2010-01-26 18:04:19 +0900 (Tue, 26 Jan 2010) $
-   */
+ * An HTTP server that sends back the content of the received HTTP request
+ * in a pretty plaintext form.
+ *
+ * @author <a href="http://www.jboss.org/netty/">The Netty Project</a>
+ * @author Andy Taylor (andy.taylor@jboss.org)
+ * @author <a href="http://gleamynode.net/">Trustin Lee</a>
+ * @author Norman Maurer
+ * @version $Rev: 2080 $, $Date: 2010-01-26 18:04:19 +0900 (Tue, 26 Jan 2010) $
+ */
 public class NettyJaxrsServer implements EmbeddedJaxrsServer
 {
    protected ServerBootstrap bootstrap = new ServerBootstrap();
@@ -89,32 +89,32 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
    }
 
    /**
-   * Specify the worker count to use. For more information about this please see the javadocs of {@link EventLoopGroup}
-   *
-   * @param ioWorkerCount worker count
-   */
+    * Specify the worker count to use. For more information about this please see the javadocs of {@link EventLoopGroup}
+    *
+    * @param ioWorkerCount worker count
+    */
    public void setIoWorkerCount(int ioWorkerCount)
    {
       this.ioWorkerCount = ioWorkerCount;
    }
 
    /**
-   * Set the number of threads to use for the EventExecutor. For more information please see the javadocs of {@link EventExecutor}.
-   * If you want to disable the use of the {@link EventExecutor} specify a value {@literal <=} 0.  This should only be done if you are 100% sure that you don't have any blocking
-   * code in there.
-   *
-   * @param executorThreadCount thread count
-   */
+    * Set the number of threads to use for the EventExecutor. For more information please see the javadocs of {@link EventExecutor}.
+    * If you want to disable the use of the {@link EventExecutor} specify a value {@literal <=} 0.  This should only be done if you are 100% sure that you don't have any blocking
+    * code in there.
+    *
+    * @param executorThreadCount thread count
+    */
    public void setExecutorThreadCount(int executorThreadCount)
    {
       this.executorThreadCount = executorThreadCount;
    }
 
    /**
-     * Set the max. request size in bytes. If this size is exceed we will send a "413 Request Entity Too Large" to the client.
-     *
-     * @param maxRequestSize the max request size. This is 10mb by default.
-     */
+    * Set the max. request size in bytes. If this size is exceed we will send a "413 Request Entity Too Large" to the client.
+    *
+    * @param maxRequestSize the max request size. This is 10mb by default.
+    */
    public void setMaxRequestSize(int maxRequestSize) {
       this.maxRequestSize = maxRequestSize;
    }
@@ -157,51 +157,51 @@ public class NettyJaxrsServer implements EmbeddedJaxrsServer
    }
 
    /**
-     * Set the idle timeout.
-     * Set this value to turn on idle connection cleanup.
-     * If there is no traffic within idleTimeoutSeconds, it'll close connection.
-     * @param idleTimeoutSeconds - How many seconds to cleanup client connection. default value -1 meaning no idle timeout.
-     */
+    * Set the idle timeout.
+    * Set this value to turn on idle connection cleanup.
+    * If there is no traffic within idleTimeoutSeconds, it'll close connection.
+    * @param idleTimeoutSeconds - How many seconds to cleanup client connection. default value -1 meaning no idle timeout.
+    */
    public void setIdleTimeout(int idleTimeoutSeconds) {
       this.idleTimeout = idleTimeoutSeconds;
    }
 
    /**
-     * Add additional {@link io.netty.channel.ChannelHandler}s to the {@link io.netty.bootstrap.ServerBootstrap}.
-     * <p>The additional channel handlers are being added <em>before</em> the HTTP handling.</p>
-     *
-     * @param channelHandlers the additional {@link io.netty.channel.ChannelHandler}s.
-     */
+    * Add additional {@link io.netty.channel.ChannelHandler}s to the {@link io.netty.bootstrap.ServerBootstrap}.
+    * <p>The additional channel handlers are being added <em>before</em> the HTTP handling.</p>
+    *
+    * @param channelHandlers the additional {@link io.netty.channel.ChannelHandler}s.
+    */
    public void setChannelHandlers(final List<ChannelHandler> channelHandlers) {
       this.channelHandlers = channelHandlers == null ? Collections.<ChannelHandler>emptyList() : channelHandlers;
    }
 
    /**
-     * Add additional {@link io.netty.channel.ChannelHandler}s to the {@link io.netty.bootstrap.ServerBootstrap}.
-     * <p>The additional channel handlers are being added <em>after</em> the HTTP handling.</p>
-     *
-     * @param httpChannelHandlers the additional {@link io.netty.channel.ChannelHandler}s.
-     */
+    * Add additional {@link io.netty.channel.ChannelHandler}s to the {@link io.netty.bootstrap.ServerBootstrap}.
+    * <p>The additional channel handlers are being added <em>after</em> the HTTP handling.</p>
+    *
+    * @param httpChannelHandlers the additional {@link io.netty.channel.ChannelHandler}s.
+    */
    public void setHttpChannelHandlers(final List<ChannelHandler> httpChannelHandlers) {
       this.httpChannelHandlers = httpChannelHandlers == null ? Collections.<ChannelHandler>emptyList() : httpChannelHandlers;
    }
 
    /**
-     * Add Netty {@link io.netty.channel.ChannelOption}s to the {@link io.netty.bootstrap.ServerBootstrap}.
-     *
-     * @param channelOptions the additional {@link io.netty.channel.ChannelOption}s.
-     * @see io.netty.bootstrap.ServerBootstrap#option(io.netty.channel.ChannelOption, Object)
-     */
+    * Add Netty {@link io.netty.channel.ChannelOption}s to the {@link io.netty.bootstrap.ServerBootstrap}.
+    *
+    * @param channelOptions the additional {@link io.netty.channel.ChannelOption}s.
+    * @see io.netty.bootstrap.ServerBootstrap#option(io.netty.channel.ChannelOption, Object)
+    */
    public void setChannelOptions(final Map<ChannelOption, Object> channelOptions) {
       this.channelOptions = channelOptions == null ? Collections.<ChannelOption, Object>emptyMap() : channelOptions;
    }
 
    /**
-     * Add child options to the {@link io.netty.bootstrap.ServerBootstrap}.
-     *
-     * @param channelOptions the additional child {@link io.netty.channel.ChannelOption}s.
-     * @see io.netty.bootstrap.ServerBootstrap#childOption(io.netty.channel.ChannelOption, Object)
-     */
+    * Add child options to the {@link io.netty.bootstrap.ServerBootstrap}.
+    *
+    * @param channelOptions the additional child {@link io.netty.channel.ChannelOption}s.
+    * @see io.netty.bootstrap.ServerBootstrap#childOption(io.netty.channel.ChannelOption, Object)
+    */
    public void setChildChannelOptions(final Map<ChannelOption, Object> channelOptions) {
       this.childChannelOptions = channelOptions == null ? Collections.<ChannelOption, Object>emptyMap() : channelOptions;
    }

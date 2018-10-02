@@ -88,11 +88,11 @@ import java.util.PropertyPermission;
 import java.util.logging.LoggingPermission;
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Complex basic test for Resteasy Validator Provider
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Complex basic test for Resteasy Validator Provider
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class ValidationComplexTest {
 
@@ -279,9 +279,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Valid field test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Valid field test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFieldValid() throws Exception {
       Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/", ValidationComplexResourceWithValidField.class.getSimpleName()))
@@ -291,9 +291,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Invalid field test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Invalid field test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFieldInvalid() throws Exception {
       Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/", ValidationComplexResourceWithInvalidField.class.getSimpleName()))
@@ -310,9 +310,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Valid property test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Valid property test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPropertyValid() throws Exception {
       Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/abc/unused", ValidationComplexResourceWithProperty.class.getSimpleName()))
@@ -322,9 +322,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Invalid property test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Invalid property test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPropertyInvalid() throws Exception {
       Response response = client.target(generateURL(BASIC_DEPLOYMENT, "/abcdef/unused", ValidationComplexResourceWithProperty.class.getSimpleName()))
@@ -340,9 +340,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Field and property validation test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Field and property validation test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFieldAndProperty() throws Exception {
       // Valid
@@ -368,9 +368,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Check class constraints
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check class constraints
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testClassConstraint() throws Exception {
       // Valid
@@ -394,9 +394,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Graph test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Graph test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGraph() throws Exception {
       // Valid
@@ -429,9 +429,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Validation of array
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Validation of array
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testArray() throws Exception {
       // Valid
@@ -454,9 +454,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Validation of list
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Validation of list
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testList() throws Exception {
       // Valid
@@ -479,9 +479,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Validation of map
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Validation of map
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMap() throws Exception {
       // Valid
@@ -504,9 +504,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Validation of map of list of array of string
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Validation of map of list of array of string
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMapOfListOfArrayOfStrings() throws Exception {
       // Valid
@@ -530,9 +530,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Test parameters validation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test parameters validation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testParameters() throws Exception {
       // Valid native constraint
@@ -629,9 +629,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Test return value validation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test return value validation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testReturnValues() throws Exception {
       // Valid native constraint
@@ -705,9 +705,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Check validations before checking return value
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check validations before checking return value
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testViolationsBeforeReturnValue() throws Exception {
       // Valid
@@ -743,9 +743,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Validation in inheritence classes
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Validation in inheritence classes
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("basicDeploymentInterfaceTestSub")
    public void testInheritence() throws Exception {
@@ -829,9 +829,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Locators validation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Locators validation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLocators() throws Exception {
       // Sub-resource locator returns resource with valid field.
@@ -920,9 +920,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Validation with asynchronous requests
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Validation with asynchronous requests
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAsynch() throws Exception {
       // Submit asynchronous job with violations prior to execution of resource method.
@@ -1004,9 +1004,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Validation by cross-parameter constraints
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Validation by cross-parameter constraints
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCrossParameterConstraint() throws Exception {
       // Valid
@@ -1035,9 +1035,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Validation with client proxies
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Validation with client proxies
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProxy() throws Exception {
       // Valid
@@ -1072,9 +1072,9 @@ public class ValidationComplexTest {
    }
 
    /**
-     * @tpTestDetails Check other groups validation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check other groups validation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testOtherGroups() throws Exception {
       // Test invalid field, property, parameter, and class.

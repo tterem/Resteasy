@@ -15,18 +15,18 @@ import java.util.List;
 
 
 /**
-   * @tpSubChapter Resource tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Tests for content negotiation through a query parameter, instead of the Accept Header.
-   * This is used when context-param resteasy.media.type.param.mapping is enabled in web.xml.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Tests for content negotiation through a query parameter, instead of the Accept Header.
+ * This is used when context-param resteasy.media.type.param.mapping is enabled in web.xml.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class AcceptParameterHttpPreprocessorTest {
 
    /**
-     * @tpTestDetails Basic query parameter with xml type
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic query parameter with xml type
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void simple() throws Exception {
 
@@ -48,9 +48,9 @@ public class AcceptParameterHttpPreprocessorTest {
    }
 
    /**
-     * @tpTestDetails Query parameter with multiple types
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Query parameter with multiple types
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void aLittleMoreComplicated() throws Exception {
 
@@ -76,9 +76,9 @@ public class AcceptParameterHttpPreprocessorTest {
    }
 
    /**
-     * @tpTestDetails Request without query parameter
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Request without query parameter
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void withoutParam() throws Exception {
 
@@ -102,9 +102,9 @@ public class AcceptParameterHttpPreprocessorTest {
    }
 
    /**
-     * @tpTestDetails Request with complex query parameter
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Request with complex query parameter
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void complex() throws Exception {
 

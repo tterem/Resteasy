@@ -34,14 +34,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
-   * RESTEASY-1105
-   * 
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
-   * @version $Revision: 1 $
-   * 
-   *  * Copyright Mar 25, 2015
-   */
+ * RESTEASY-1105
+ * 
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+ * @version $Revision: 1 $
+ * 
+ *  * Copyright Mar 25, 2015
+ */
 public class PersistentServerCacheTest
 {
    private static int count = 0;

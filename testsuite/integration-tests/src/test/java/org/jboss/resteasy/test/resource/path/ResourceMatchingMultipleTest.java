@@ -20,10 +20,10 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResourceMatchingMultipleTest {
@@ -51,11 +51,11 @@ public class ResourceMatchingMultipleTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request for Users resource, with custom id. With 3 Resources available in the
-     * application, the correct path will be selected.
-     * @tpPassCrit The correct Resource path is chosen
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request for Users resource, with custom id. With 3 Resources available in the
+    * application, the correct path will be selected.
+    * @tpPassCrit The correct Resource path is chosen
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatchingUsers() throws Exception {
       String answer = client.target(generateURL("/users/1")).request().get(String.class);
@@ -63,11 +63,11 @@ public class ResourceMatchingMultipleTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request for Memberships resource, with custom id. With 3 Resources available in the
-     * application, the correct path will be selected.
-     * @tpPassCrit The correct Resource path is chosen
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request for Memberships resource, with custom id. With 3 Resources available in the
+    * application, the correct path will be selected.
+    * @tpPassCrit The correct Resource path is chosen
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatchingMemberShips() throws Exception {
       String answer = client.target(generateURL("/users/1/memberships")).request().get(String.class);
@@ -75,11 +75,11 @@ public class ResourceMatchingMultipleTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request for Certs resource, with custom id. With 3 Resources available in the
-     * application, the correct path will be selected.
-     * @tpPassCrit The correct Resource path is chosen
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request for Certs resource, with custom id. With 3 Resources available in the
+    * application, the correct path will be selected.
+    * @tpPassCrit The correct Resource path is chosen
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatchingCerts() throws Exception {
       String answer = client.target(generateURL("/users/1/certs")).request().get(String.class);

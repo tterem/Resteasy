@@ -29,11 +29,11 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.jboss.resteasy.util.GetRestful;
 
 /**
-   * Helper/delegate class to unify Servlet and Filter dispatcher implementations
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Helper/delegate class to unify Servlet and Filter dispatcher implementations
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @SuppressWarnings("rawtypes")
 public class ServletContainerDispatcher
 {

@@ -20,11 +20,11 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test that empty QueryParam list is empty
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test that empty QueryParam list is empty
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CollectionDefaultValueTest {
@@ -51,9 +51,9 @@ public class CollectionDefaultValueTest {
    }
 
    /**
-     * @tpTestDetails Test that empty QueryParam list is empty
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that empty QueryParam list is empty
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmpty() throws Exception {
       Response response = client.target(generateURL("/collection")).request().get();

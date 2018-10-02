@@ -13,12 +13,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
-   *
-   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
-   * @version $Revision: 1.1 $
-   *
-   * Copyright Aug 15, 2012
-   */
+ *
+ * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+ * @version $Revision: 1.1 $
+ *
+ * Copyright Aug 15, 2012
+ */
 @Path("/")
 @Produces("text/plain")
 public class TestResource

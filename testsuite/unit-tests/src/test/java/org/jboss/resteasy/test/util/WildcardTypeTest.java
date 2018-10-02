@@ -13,18 +13,18 @@ import java.lang.reflect.WildcardType;
 import java.util.List;
 
 /**
-   * @tpSubChapter Util tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1295, JBEAP-4713
-   * @tpSince RESTEasy 3.0.17
-   */
+ * @tpSubChapter Util tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1295, JBEAP-4713
+ * @tpSince RESTEasy 3.0.17
+ */
 public class WildcardTypeTest {
    protected final Logger logger = LogManager.getLogger(WildcardTypeTest.class.getName());
 
    /**
-     * @tpTestDetails Tests upper bound.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Tests upper bound.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testWildcardTypeUpperBound() {
       GenericType<List<? extends String>> genericType = new GenericType<List<? extends String>>() {
@@ -37,9 +37,9 @@ public class WildcardTypeTest {
    }
 
    /**
-     * @tpTestDetails Tests lower bound.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Tests lower bound.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testWildcardTypeLowerBound() {
       GenericType<List<? super String>> genericType = new GenericType<List<? super String>>() {
@@ -52,9 +52,9 @@ public class WildcardTypeTest {
    }
 
    /**
-     * @tpTestDetails Tests upper bound object.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Tests upper bound object.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testWildcardTypeUpperBoundObject() {
       GenericType<List<? extends Object>> genericType = new GenericType<List<? extends Object>>() {
@@ -67,9 +67,9 @@ public class WildcardTypeTest {
    }
 
    /**
-     * @tpTestDetails Tests lower bound object.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Tests lower bound object.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testWildcardTypeLowerBoundObject() {
       GenericType<List<? super Object>> genericType = new GenericType<List<? super Object>>() {

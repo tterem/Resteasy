@@ -23,11 +23,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * @tpSubChapter Resources
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test negative scenario for "resteasy.wider.request.matching" property
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resources
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test negative scenario for "resteasy.wider.request.matching" property
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class WiderMappingNegativeTest {
@@ -60,9 +60,9 @@ public class WiderMappingNegativeTest {
    }
 
    /**
-     * @tpTestDetails Two resources used, more general resource should not be used
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Two resources used, more general resource should not be used
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testOptions() {
       Response response = client.target(generateURL("/hello/int")).request().options();

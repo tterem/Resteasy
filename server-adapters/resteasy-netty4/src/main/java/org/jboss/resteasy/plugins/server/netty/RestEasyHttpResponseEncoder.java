@@ -17,14 +17,14 @@ import io.netty.handler.codec.http.LastHttpContent;
 
 
 /**
-   * {@link MessageToMessageEncoder} implementation which encodes {@link org.jboss.resteasy.spi.HttpResponse}'s to
-   * {@link HttpResponse}'s
-   *
-   * This implementation is {@link Sharable}
-   *
-   * @author Norman Maurer
-   *
-   */
+ * {@link MessageToMessageEncoder} implementation which encodes {@link org.jboss.resteasy.spi.HttpResponse}'s to
+ * {@link HttpResponse}'s
+ *
+ * This implementation is {@link Sharable}
+ *
+ * @author Norman Maurer
+ *
+ */
 @Sharable
 public class RestEasyHttpResponseEncoder extends MessageToMessageEncoder<NettyHttpResponse>
 {

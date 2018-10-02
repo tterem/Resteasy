@@ -28,11 +28,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * @tpSubChapter XXE
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-996
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter XXE
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-996
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class NamespaceJaxbTest {
@@ -62,9 +62,9 @@ public class NamespaceJaxbTest {
    }
 
    /**
-     * @tpTestDetails Check XML root element
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check XML root element
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlRootElement() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/xmlRootElement"));
@@ -77,9 +77,9 @@ public class NamespaceJaxbTest {
    }
 
    /**
-     * @tpTestDetails Check XML type
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check XML type
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlType() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/xmlType"));
@@ -92,9 +92,9 @@ public class NamespaceJaxbTest {
    }
 
    /**
-     * @tpTestDetails Check JAXB element
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check JAXB element
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testJAXBElement() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/JAXBElement"));
@@ -107,36 +107,36 @@ public class NamespaceJaxbTest {
    }
 
    /**
-     * @tpTestDetails Check list
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check list
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testList() throws Exception {
       doCollectionTest("list");
    }
 
    /**
-     * @tpTestDetails Check set
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check set
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSet() throws Exception {
       doCollectionTest("set");
    }
 
    /**
-     * @tpTestDetails Check array
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check array
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testArray() throws Exception {
       doCollectionTest("array");
    }
 
    /**
-     * @tpTestDetails Check map
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check map
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMap() throws Exception {
       doMapTest();

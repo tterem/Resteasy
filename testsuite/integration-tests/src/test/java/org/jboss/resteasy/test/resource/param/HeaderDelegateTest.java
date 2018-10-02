@@ -38,11 +38,11 @@ import java.util.Date;
 import java.util.PropertyPermission;
 
 /**
-   * @tpSubChapter Parameters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-915
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Parameters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-915
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class HeaderDelegateTest {
    private static Logger logger = Logger.getLogger(HeaderDelegateTest.class);
@@ -98,9 +98,9 @@ public class HeaderDelegateTest {
    }
 
    /**
-     * @tpTestDetails Test delegation by client
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test delegation by client
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void lastModifiedTest() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -115,9 +115,9 @@ public class HeaderDelegateTest {
    }
 
    /**
-     * @tpTestDetails Check delegation rules from ResteasyProviderFactory
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check delegation rules from ResteasyProviderFactory
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void localTest() throws Exception {
 

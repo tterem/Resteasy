@@ -19,11 +19,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
-   * @tpSubChapter Request
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.17
-   * @tpTestCaseDetails Regression test for JBEAP-4707
-   */
+ * @tpSubChapter Request
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.17
+ * @tpTestCaseDetails Regression test for JBEAP-4707
+ */
 public class ContainerRequestContextTest {
 
    private HttpRequest request;
@@ -35,9 +35,9 @@ public class ContainerRequestContextTest {
    }
 
    /**
-     * @tpTestDetails Test that ContainerRequestContext setRequestUri clear previous query parameters
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Test that ContainerRequestContext setRequestUri clear previous query parameters
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testQueryParamatersClear() throws URISyntaxException {
       ContainerRequestContext containerRequestContext = new PreMatchContainerRequestContext(request, null, null);

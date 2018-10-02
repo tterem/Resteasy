@@ -19,12 +19,12 @@ import javax.ws.rs.core.Response;
 
 
 /**
-   * @tpSubChapter Asynchronous RESTEasy
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Basic asynchronous test for suspended response.
-   *                Test for org.jboss.resteasy.annotations.Suspend annotation
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Asynchronous RESTEasy
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Basic asynchronous test for suspended response.
+ *                Test for org.jboss.resteasy.annotations.Suspend annotation
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SuspendAnnotationTest {
@@ -40,9 +40,9 @@ public class SuspendAnnotationTest {
    }
 
    /**
-     * @tpTestDetails Server is able to answer in requested time.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Server is able to answer in requested time.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPositive() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -56,9 +56,9 @@ public class SuspendAnnotationTest {
    }
 
    /**
-     * @tpTestDetails Server is not able to answer in requested time.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Server is not able to answer in requested time.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testTimeout() throws Exception {
       Client client = ClientBuilder.newClient();

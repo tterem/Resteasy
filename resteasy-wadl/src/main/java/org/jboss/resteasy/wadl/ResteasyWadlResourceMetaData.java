@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
-   */
+ * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+ */
 public class ResteasyWadlResourceMetaData {
    private String uri;
    private List<ResteasyWadlMethodMetaData> methodsMetaData = new ArrayList<ResteasyWadlMethodMetaData>();

@@ -20,11 +20,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test that a locator and resource with same path params work
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test that a locator and resource with same path params work
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MultipleMatrixSegmentsTest {
@@ -52,9 +52,9 @@ public class MultipleMatrixSegmentsTest {
    }
 
    /**
-     * @tpTestDetails Test segments on start and on end of path
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test segments on start and on end of path
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMultipleStartAndEnd() throws Exception {
       Response response = client.target(generateURL("/;name=bill;ssn=111/children/;name=skippy;ssn=3344")).request().get();
@@ -63,9 +63,9 @@ public class MultipleMatrixSegmentsTest {
    }
 
    /**
-     * @tpTestDetails Test segments in the middle of path
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test segments in the middle of path
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMultipleMiddle() throws Exception {
       Response response = client.target(generateURL("/stuff/;name=first;ssn=111/;name=second;ssn=3344/first")).request().get();

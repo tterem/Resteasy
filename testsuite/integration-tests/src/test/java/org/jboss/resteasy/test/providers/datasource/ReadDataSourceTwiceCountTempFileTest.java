@@ -35,10 +35,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter DataSource provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter DataSource provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ReadDataSourceTwiceCountTempFileTest {
@@ -72,11 +72,11 @@ public class ReadDataSourceTwiceCountTempFileTest {
    }
 
    /**
-     * @tpTestDetails Tests DataSourceProviders ability to read the same stream twice, consuming content of whole stream
-     * before reading the second and verifies that no temporary file left after stream is closed
-     * @tpInfo RESTEASY-1182
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests DataSourceProviders ability to read the same stream twice, consuming content of whole stream
+    * before reading the second and verifies that no temporary file left after stream is closed
+    * @tpInfo RESTEASY-1182
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFileNotFound() throws Exception {
       WebTarget target = client.target(generateURL("/post"));
@@ -101,12 +101,12 @@ public class ReadDataSourceTwiceCountTempFileTest {
    }
 
    /**
-     * @tpTestDetails Tests DataSourceProviders ability to read the same stream twice, consuming content of whole stream
-     * before reading the second and verifies that no temporary file left after stream is closed. The request is send multiple
-     * times and then number of files is verified
-     * @tpInfo RESTEASY-1182
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests DataSourceProviders ability to read the same stream twice, consuming content of whole stream
+    * before reading the second and verifies that no temporary file left after stream is closed. The request is send multiple
+    * times and then number of files is verified
+    * @tpInfo RESTEASY-1182
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFileNotFoundMultipleRequests() throws Exception {
       WebTarget target = client.target(generateURL("/post"));

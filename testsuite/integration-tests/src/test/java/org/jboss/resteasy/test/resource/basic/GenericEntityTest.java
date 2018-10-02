@@ -23,10 +23,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GenericEntityTest {
@@ -56,9 +56,9 @@ public class GenericEntityTest {
    }
 
    /**
-     * @tpTestDetails Resource returning GenericEntity with custom MessageBodyWriter returning double values
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Resource returning GenericEntity with custom MessageBodyWriter returning double values
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDoubles() {
       WebTarget base = client.target(generateURL("/doubles"));
@@ -73,9 +73,9 @@ public class GenericEntityTest {
    }
 
    /**
-     * @tpTestDetails Resource returning GenericEntity with custom MessageBodyWriter returning float values
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Resource returning GenericEntity with custom MessageBodyWriter returning float values
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFloats() {
       WebTarget base = client.target(generateURL("/floats"));

@@ -34,10 +34,10 @@ import java.lang.reflect.ReflectPermission;
 import java.util.logging.LoggingPermission;
 
 /**
-   * @tpSubChapter Spring
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Spring
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ContactsTest {
@@ -89,10 +89,10 @@ public class ContactsTest {
    }
 
    /**
-     * @tpTestDetails Test is using component-scan and annotation-config spring features. This features are unusable if
-     * running with spring dependency 3.2.8.RELEASE and earlier. Only 3.2.9.RELEASE and spring 4 are supported.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test is using component-scan and annotation-config spring features. This features are unusable if
+    * running with spring dependency 3.2.8.RELEASE and earlier. Only 3.2.9.RELEASE and spring 4 are supported.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testData() {
       client = (ResteasyClient)ClientBuilder.newClient();

@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
-   * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
+ * @version $Revision: 1 $
+ */
 
 public class RequestUtil
 {

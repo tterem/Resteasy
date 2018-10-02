@@ -24,14 +24,14 @@ import java.util.Map.Entry;
 
 
 /**
-   * Wrapper around Undertow to make resteasy deployments easier
-   * Each ResteasyDeployment or jaxrs Application is deployed under its own web deployment (WAR)
-   *
-   * You may also deploy after the server has started.
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Wrapper around Undertow to make resteasy deployments easier
+ * Each ResteasyDeployment or jaxrs Application is deployed under its own web deployment (WAR)
+ *
+ * You may also deploy after the server has started.
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class UndertowJaxrsServer
 {
    final PathHandler root = new PathHandler();
@@ -39,23 +39,23 @@ public class UndertowJaxrsServer
    protected Undertow server;
 
    /**
-   * Creates a web deployment for your ResteasyDeployent so you can set up things like security constraints
-   * You'd call this method, add your servlet security constraints, then call deploy(DeploymentInfo)
-   *
-   * Note, only one ResteasyDeployment can be applied per DeploymentInfo
-   * ResteasyServlet is mapped to mapping + "/*"
-   *
-   * Example:
-   *
-   * DeploymentInfo di = server.undertowDeployment(resteasyDeployment, "rest");
-   * di.setDeploymentName("MyDeployment")
-   * di.setContextRoot("root");
-   * server.deploy(di);
-   *
-   * @param deployment
-   * @param mapping resteasy.servlet.mapping.prefix
-   * @return must be deployed by calling deploy(DeploymentInfo), also does not set context path or deployment name
-   */
+    * Creates a web deployment for your ResteasyDeployent so you can set up things like security constraints
+    * You'd call this method, add your servlet security constraints, then call deploy(DeploymentInfo)
+    *
+    * Note, only one ResteasyDeployment can be applied per DeploymentInfo
+    * ResteasyServlet is mapped to mapping + "/*"
+    *
+    * Example:
+    *
+    * DeploymentInfo di = server.undertowDeployment(resteasyDeployment, "rest");
+    * di.setDeploymentName("MyDeployment")
+    * di.setContextRoot("root");
+    * server.deploy(di);
+    *
+    * @param deployment
+    * @param mapping resteasy.servlet.mapping.prefix
+    * @return must be deployed by calling deploy(DeploymentInfo), also does not set context path or deployment name
+    */
    public DeploymentInfo undertowDeployment(ResteasyDeployment deployment, String mapping)
    {
       if (mapping == null) mapping = "/";
@@ -78,26 +78,26 @@ public class UndertowJaxrsServer
    }
 
    /**
-   * Creates a web deployment for your ResteasyDeployent so you can set up things like security constraints
-   * You'd call this method, add your servlet security constraints, then call deploy(DeploymentInfo)
-   *
-   * Note, only one ResteasyDeployment can be applied per DeploymentInfo.  Resteasy servlet is mapped to "/*"
-   *
-   * @param deployment
-   * @return
-   */
+    * Creates a web deployment for your ResteasyDeployent so you can set up things like security constraints
+    * You'd call this method, add your servlet security constraints, then call deploy(DeploymentInfo)
+    *
+    * Note, only one ResteasyDeployment can be applied per DeploymentInfo.  Resteasy servlet is mapped to "/*"
+    *
+    * @param deployment
+    * @return
+    */
    public DeploymentInfo undertowDeployment(ResteasyDeployment deployment)
    {
       return undertowDeployment(deployment, "/");
    }
 
    /**
-   * Creates a web deployment for the jaxrs Application.  Will ignore any @ApplicationPath annotation.
-   *
-   * @param application
-   * @param mapping resteasy.servlet.mapping.prefix
-   * @return
-   */
+    * Creates a web deployment for the jaxrs Application.  Will ignore any @ApplicationPath annotation.
+    *
+    * @param application
+    * @param mapping resteasy.servlet.mapping.prefix
+    * @return
+    */
    public DeploymentInfo undertowDeployment(Class<? extends Application> application, String mapping)
    {
       ResteasyDeployment deployment = new ResteasyDeploymentImpl();
@@ -108,12 +108,12 @@ public class UndertowJaxrsServer
    }
 
    /**
-   * Creates a web deployment for the jaxrs Application.  Will bind the resteasy.servlet.mapping.prefix
-   * to @ApplicationPath if it exists, otherwise "/".
-   *
-   * @param application
-   * @return
-   */
+    * Creates a web deployment for the jaxrs Application.  Will bind the resteasy.servlet.mapping.prefix
+    * to @ApplicationPath if it exists, otherwise "/".
+    *
+    * @param application
+    * @return
+    */
    public DeploymentInfo undertowDeployment(Class<? extends Application> application)
    {
       ApplicationPath appPath = application.getAnnotation(ApplicationPath.class);
@@ -123,36 +123,36 @@ public class UndertowJaxrsServer
    }
    
    /**
-   * Maps a path prefix to a resource handler to allow serving resources other than the JAX-RS endpoints.
-   * For example, this can be used for serving static resources like web pages or API documentation that might 
-   * be deployed with the REST application server. 
-   * 
-   * @param path 
-   * @param handler
-   */
+    * Maps a path prefix to a resource handler to allow serving resources other than the JAX-RS endpoints.
+    * For example, this can be used for serving static resources like web pages or API documentation that might 
+    * be deployed with the REST application server. 
+    * 
+    * @param path 
+    * @param handler
+    */
    public void addResourcePrefixPath(String path, ResourceHandler handler) 
    {
       root.addPrefixPath(path, handler);
    }
 
    /**
-   * Creates a web deployment under "/"
-   *
-   * @param deployment
-   * @return
-   */
+    * Creates a web deployment under "/"
+    *
+    * @param deployment
+    * @return
+    */
    public UndertowJaxrsServer deploy(ResteasyDeployment deployment)
    {
       return deploy(deployment, "/");
    }
 
    /**
-   * Creates a web deployment under contextPath
-   *
-   * @param deployment
-   * @param contextPath
-   * @return
-   */
+    * Creates a web deployment under contextPath
+    *
+    * @param deployment
+    * @param contextPath
+    * @return
+    */
    public UndertowJaxrsServer deploy(ResteasyDeployment deployment, String contextPath)
    {
       return deploy(deployment, contextPath, null, null);
@@ -185,12 +185,12 @@ public class UndertowJaxrsServer
    }
 
    /**
-   * Creates a web deployment for the jaxrs Application.  Will bind the contextPath
-   * to @ApplicationPath if it exists, otherwise "/".
-   *
-   * @param application
-   * @return
-   */
+    * Creates a web deployment for the jaxrs Application.  Will bind the contextPath
+    * to @ApplicationPath if it exists, otherwise "/".
+    *
+    * @param application
+    * @return
+    */
    public UndertowJaxrsServer deploy(Class<? extends Application> application)
    {
       ApplicationPath appPath = application.getAnnotation(ApplicationPath.class);
@@ -200,12 +200,12 @@ public class UndertowJaxrsServer
    }
 
    /**
-   * Creates a web deployment for the jaxrs Application.  Will ignore any @ApplicationPath annotation.
-   *
-   * @param application
-   * @param contextPath
-   * @return
-   */
+    * Creates a web deployment for the jaxrs Application.  Will ignore any @ApplicationPath annotation.
+    *
+    * @param application
+    * @param contextPath
+    * @return
+    */
    public UndertowJaxrsServer deploy(Class<? extends Application> application, String contextPath)
    {
       if (contextPath == null) contextPath = "/";
@@ -220,12 +220,12 @@ public class UndertowJaxrsServer
    }
 
    /**
-   * Creates a web deployment for the jaxrs Application.  Will bind the contextPath
-   * to @ApplicationPath if it exists, otherwise "/".
-   *
-   * @param application
-   * @return
-   */
+    * Creates a web deployment for the jaxrs Application.  Will bind the contextPath
+    * to @ApplicationPath if it exists, otherwise "/".
+    *
+    * @param application
+    * @return
+    */
    public UndertowJaxrsServer deploy(Application application)
    {
       ApplicationPath appPath = application.getClass().getAnnotation(ApplicationPath.class);
@@ -235,12 +235,12 @@ public class UndertowJaxrsServer
    }
 
    /**
-   * Creates a web deployment for the jaxrs Application.  Will ignore any @ApplicationPath annotation.
-   *
-   * @param application
-   * @param contextPath
-   * @return
-   */
+    * Creates a web deployment for the jaxrs Application.  Will ignore any @ApplicationPath annotation.
+    *
+    * @param application
+    * @param contextPath
+    * @return
+    */
    public UndertowJaxrsServer deploy(Application application, String contextPath)
    {
       if (contextPath == null) contextPath = "/";
@@ -256,11 +256,11 @@ public class UndertowJaxrsServer
 
 
    /**
-   * Adds an arbitrary web deployment to underlying Undertow server.  This is for your own deployments
-   *
-   * @param builder
-   * @return
-   */
+    * Adds an arbitrary web deployment to underlying Undertow server.  This is for your own deployments
+    *
+    * @param builder
+    * @return
+    */
    public UndertowJaxrsServer deploy(DeploymentInfo builder)
    {
       DeploymentManager manager = container.addDeployment(builder);

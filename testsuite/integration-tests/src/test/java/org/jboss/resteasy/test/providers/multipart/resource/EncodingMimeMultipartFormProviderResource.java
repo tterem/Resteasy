@@ -21,8 +21,8 @@ public class EncodingMimeMultipartFormProviderResource {
 
    private static Logger logger = Logger.getLogger(EncodingMimeMultipartFormProviderResource.class);
    /**
-     * Non-ASCII file name
-     */
+    * Non-ASCII file name
+    */
    public static final String FILENAME_NON_ASCII = "Döner.png";
 
    @POST

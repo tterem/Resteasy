@@ -21,8 +21,8 @@ import javax.ws.rs.ext.MessageBodyWriter;
 
 import org.jboss.resteasy.resteasy_jaxrs.i18n.LogMessages;
 /**
-   * @author <a href="mailto:ema@redhat.com">Jim Ma</a>
-   */
+ * @author <a href="mailto:ema@redhat.com">Jim Ma</a>
+ */
 @Consumes({"application/json", "application/*+json", "text/json"})
 @Produces({"application/json", "application/*+json", "text/json"})
 public class JsonValueProvider extends AbstractJsonpProvider implements MessageBodyReader<JsonValue>, MessageBodyWriter<JsonValue>

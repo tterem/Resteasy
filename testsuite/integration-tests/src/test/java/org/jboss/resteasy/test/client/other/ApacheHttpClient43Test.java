@@ -34,11 +34,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test connection cleanup for ApacheHttpClient4Engine and URLConnectionEngine
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test connection cleanup for ApacheHttpClient4Engine and URLConnectionEngine
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ApacheHttpClient43Test {
@@ -59,9 +59,9 @@ public class ApacheHttpClient43Test {
    }
 
    /**
-     * @tpTestDetails Create 3 threads and test GC with correct request. System.gc is called directly. Proxy is not used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create 3 threads and test GC with correct request. System.gc is called directly. Proxy is not used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testConnectionCleanupGCBase() throws Exception {
       testConnectionCleanupGC(engine1);
@@ -98,9 +98,9 @@ public class ApacheHttpClient43Test {
    }
 
    /**
-     * @tpTestDetails Create 3 threads and test GC with correct request. System.gc is not called directly. Proxy is not used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create 3 threads and test GC with correct request. System.gc is not called directly. Proxy is not used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testConnectionCleanupAuto() throws Exception {
       testConnectionCleanupAuto(engine1);
@@ -136,9 +136,9 @@ public class ApacheHttpClient43Test {
    }
 
    /**
-     * @tpTestDetails Create 3 threads and test GC with correct request. System.gc is not called directly. Proxy is used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create 3 threads and test GC with correct request. System.gc is not called directly. Proxy is used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testConnectionCleanupProxy() throws Exception {
       testConnectionCleanupProxy(engine1);
@@ -178,9 +178,9 @@ public class ApacheHttpClient43Test {
    }
 
    /**
-     * @tpTestDetails Create 3 threads and test GC with incorrect request. System.gc is called directly. Proxy is not used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create 3 threads and test GC with incorrect request. System.gc is called directly. Proxy is not used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testConnectionCleanupErrorGC() throws Exception {
       testConnectionCleanupErrorGC(engine1);
@@ -189,8 +189,8 @@ public class ApacheHttpClient43Test {
    }
 
    /**
-     * This is regression test for RESTEASY-1273
-     */
+    * This is regression test for RESTEASY-1273
+    */
    protected void testConnectionCleanupErrorGC(Class<?> engine) throws Exception {
       final ResteasyClient client = createEngine(engine);
       final ApacheHttpClient4Resource proxy = client.target(PortProviderUtil.generateBaseUrl(ApacheHttpClient43Test.class.getSimpleName())).proxy(ApacheHttpClient4Resource.class);
@@ -222,9 +222,9 @@ public class ApacheHttpClient43Test {
    }
 
    /**
-     * @tpTestDetails Create 3 threads and test GC with incorrect request. System.gc is not called directly. Proxy is not used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create 3 threads and test GC with incorrect request. System.gc is not called directly. Proxy is not used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testConnectionCleanupErrorNoGC() throws Exception {
       testConnectionCleanupErrorNoGC(engine1);
@@ -233,8 +233,8 @@ public class ApacheHttpClient43Test {
    }
 
    /**
-     * This is regression test for RESTEASY-1273
-     */
+    * This is regression test for RESTEASY-1273
+    */
    protected void testConnectionCleanupErrorNoGC(Class<?> engine) throws Exception {
       final ResteasyClient client = createEngine(engine);
       final ApacheHttpClient4Resource proxy = client.target(PortProviderUtil.generateBaseUrl(ApacheHttpClient43Test.class.getSimpleName())).proxy(ApacheHttpClient4Resource.class);
@@ -270,10 +270,10 @@ public class ApacheHttpClient43Test {
    }
 
    /**
-     * @tpTestDetails Create 3 threads and test GC with incorrect request. System.gc is not called directly.
-     *                Proxy is used. Data is sent during request.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create 3 threads and test GC with incorrect request. System.gc is not called directly.
+    *                Proxy is used. Data is sent during request.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testConnectionWithRequestBody() throws InterruptedException {
       testConnectionWithRequestBody(engine1);

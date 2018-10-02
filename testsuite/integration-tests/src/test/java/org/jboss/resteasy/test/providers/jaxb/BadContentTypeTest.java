@@ -27,10 +27,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class BadContentTypeTest {
@@ -59,10 +59,10 @@ public class BadContentTypeTest {
    }
 
    /**
-     * @tpTestDetails Tests if correct Response code is returned when sending syntactically incorrect xml
-     * @tpInfo RESTEASY-519
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests if correct Response code is returned when sending syntactically incorrect xml
+    * @tpInfo RESTEASY-519
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadRequest() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/test"));
@@ -72,11 +72,11 @@ public class BadContentTypeTest {
    }
 
    /**
-     * @tpTestDetails Tests if correct exception and MessageBodyWriter error is thrown when sending request for which no
-     * MessageBodyWriterExists
-     * @tpInfo RESTEASY-169
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests if correct exception and MessageBodyWriter error is thrown when sending request for which no
+    * MessageBodyWriterExists
+    * @tpInfo RESTEASY-169
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testHtmlError() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/test"));
@@ -89,9 +89,9 @@ public class BadContentTypeTest {
    }
 
    /**
-     * @tpTestDetails Tests if correct HTTP 406 status code is returned when the specified accept media type
-     * is not supported by the server
-     */
+    * @tpTestDetails Tests if correct HTTP 406 status code is returned when the specified accept media type
+    * is not supported by the server
+    */
    @Test
    public void testNotAcceptable() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/test/foo"));
@@ -101,9 +101,9 @@ public class BadContentTypeTest {
    }
 
    /**
-     * @tpTestDetails Tests of receiving Bad Request response code after html error
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests of receiving Bad Request response code after html error
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadRequestAfterHtmlError() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/test"));

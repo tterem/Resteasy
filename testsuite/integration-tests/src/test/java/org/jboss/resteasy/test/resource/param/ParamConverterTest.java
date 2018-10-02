@@ -20,11 +20,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Parameters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for ParamConverter
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Parameters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for ParamConverter
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ParamConverterTest {
@@ -45,9 +45,9 @@ public class ParamConverterTest {
    }
 
    /**
-     * @tpTestDetails Set specific values
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Set specific values
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIt() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -57,9 +57,9 @@ public class ParamConverterTest {
    }
 
    /**
-     * @tpTestDetails Check default values
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check default values
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDefault() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

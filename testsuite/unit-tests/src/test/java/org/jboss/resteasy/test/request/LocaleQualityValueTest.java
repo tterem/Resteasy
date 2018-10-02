@@ -15,11 +15,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
-   * @tpSubChapter Requests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for AcceptHeaders and QualityValue classes, local value.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Requests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for AcceptHeaders and QualityValue classes, local value.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class LocaleQualityValueTest {
 
    private static void assertList(String header, Locale[] fields, QualityValue[] qualities) {
@@ -31,9 +31,9 @@ public class LocaleQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Test for simple values.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for simple values.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void simple() {
       String header = "da, en-gb;q=0.8, en;q=0.7";
@@ -51,9 +51,9 @@ public class LocaleQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Test for chinese localization.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for chinese localization.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void chineseLocalization() {
       String header = "zh, *";
@@ -66,9 +66,9 @@ public class LocaleQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Test for english localization and default value.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for english localization and default value.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void undefined() {
       String header = "en, en-US, en-cockney, i-cherokee, x-pig-latin";
@@ -81,9 +81,9 @@ public class LocaleQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Test empty quality values.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test empty quality values.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void empty() {
       final String ERROR_MSG = "Local quality values should not be null";

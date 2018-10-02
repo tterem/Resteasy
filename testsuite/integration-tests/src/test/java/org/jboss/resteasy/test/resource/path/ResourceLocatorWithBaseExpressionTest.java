@@ -24,11 +24,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Check resources with locator with base expression
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Check resources with locator with base expression
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResourceLocatorWithBaseExpressionTest {
@@ -65,9 +65,9 @@ public class ResourceLocatorWithBaseExpressionTest {
    }
 
    /**
-     * @tpTestDetails Test for root resource and for subresource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for root resource and for subresource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSubresource() throws Exception {
       {

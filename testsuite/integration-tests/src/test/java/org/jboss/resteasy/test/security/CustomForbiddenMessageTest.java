@@ -36,11 +36,11 @@ import java.nio.file.Paths;
 import java.util.Hashtable;
 
 /**
-   * @tpSubChapter Security
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Custom ExceptionMapper is used when Forbidden is thrown from RoleBasedSecurityFilter
-   * @tpSince RESTEasy 3.1.0
-   */
+ * @tpSubChapter Security
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Custom ExceptionMapper is used when Forbidden is thrown from RoleBasedSecurityFilter
+ * @tpSince RESTEasy 3.1.0
+ */
 @ServerSetup({CustomForbiddenMessageTest.SecurityDomainSetup.class})
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -86,9 +86,9 @@ public class CustomForbiddenMessageTest {
    }
 
    /**
-     * @tpTestDetails Tests custom message from custom ExceptionMapper
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Tests custom message from custom ExceptionMapper
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    public void testCustomExceptionMapper() throws Exception {
       Response response = authorizedClient.target(generateURL("/secured/deny")).request().get();

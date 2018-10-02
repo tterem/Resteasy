@@ -21,11 +21,11 @@ import javax.ws.rs.core.Response;
 
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for custom reader-writer for bean.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for custom reader-writer for bean.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class BeanReaderWriterTest {
@@ -41,9 +41,9 @@ public class BeanReaderWriterTest {
    }
 
    /**
-     * @tpTestDetails Bean set constant used in custom reader-writer.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Bean set constant used in custom reader-writer.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIt2() throws Exception {
       Client client = ClientBuilder.newClient();

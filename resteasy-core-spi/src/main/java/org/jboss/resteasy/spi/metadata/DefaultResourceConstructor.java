@@ -4,9 +4,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Parameter;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class DefaultResourceConstructor implements ResourceConstructor
 {
    protected ResourceClass resourceClass;

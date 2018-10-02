@@ -28,9 +28,9 @@ import org.jboss.resteasy.resteasy_jaxrs.i18n.LogMessages;
 import org.jboss.resteasy.util.NoContent;
 
 /**
-   * @author <a href="mailto:mlittle@redhat.com">Mark Little</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:mlittle@redhat.com">Mark Little</a>
+ * @version $Revision: 1 $
+ */
 
 @Provider
 @Produces("*/*")

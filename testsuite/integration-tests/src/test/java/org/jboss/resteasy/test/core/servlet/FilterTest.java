@@ -21,11 +21,11 @@ import javax.ws.rs.core.Response;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1049
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1049
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FilterTest {
@@ -42,9 +42,9 @@ public class FilterTest {
    }
 
    /**
-     * @tpTestDetails Test for dynamic dispatching in servlet.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for dynamic dispatching in servlet.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDispatchDynamic() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

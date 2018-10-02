@@ -14,9 +14,9 @@ import org.jboss.resteasy.spi.metadata.ResourceMethod;
 import java.lang.reflect.Proxy;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class LocatorRegistry
 {
    protected RootNode root = new RootNode();

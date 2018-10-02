@@ -8,8 +8,8 @@ import java.net.URI;
 import java.net.URL;
 
 /**
-   * Utility class that provides a port number for the Resteasy embedded container.
-   */
+ * Utility class that provides a port number for the Resteasy embedded container.
+ */
 public class PortProviderUtil {
    private static final int DEFAULT_PORT = 8080;
 
@@ -29,8 +29,8 @@ public class PortProviderUtil {
    private static boolean ipv6 = Boolean.parseBoolean(System.getProperty("ipv6"));
 
    /**
-     * Initialize port.
-     */
+    * Initialize port.
+    */
    static {
       // Look up the configured port number, first checking an environment variable (RESTEASY_PORT),
       // then a system property (org.jboss.resteasy.port), and finally the default port (8080).
@@ -72,72 +72,72 @@ public class PortProviderUtil {
 //    }
 
    /**
-     * Create a Resteasy client proxy with an empty base request path.
-     *
-     * @param clazz the client interface class
-     * @return the proxy object
-     */
+    * Create a Resteasy client proxy with an empty base request path.
+    *
+    * @param clazz the client interface class
+    * @return the proxy object
+    */
    public static <T> T createProxy(Class<T> clazz, String testName) {
       return createProxy(clazz, "");
    }
 
    /**
-     * Create a Resteasy client proxy.
-     *
-     * @param clazz the client interface class
-     * @return the proxy object
-     * @param path the base request path
-     */
+    * Create a Resteasy client proxy.
+    *
+    * @param clazz the client interface class
+    * @return the proxy object
+    * @param path the base request path
+    */
    public static <T> T createProxy(Class<T> clazz, String path, String testName) {
       ResteasyWebTarget target = (ResteasyWebTarget) ResteasyClientBuilder.newClient().target(generateURL(path, testName));
       return target.proxy(clazz);
    }
 
    /**
-     * Create a URI for the provided path, using the configured port
-     *
-     * @param path the request path
-     * @return a full URI
-     */
+    * Create a URI for the provided path, using the configured port
+    *
+    * @param path the request path
+    * @return a full URI
+    */
    public static URI createURI(String path, String testName) {
       return URI.create(generateURL(path, testName));
    }
 
    /**
-     * Create a URL for the provided path, using the configured port
-     *
-     * @param path the request path
-     * @return a full URL
-     */
+    * Create a URL for the provided path, using the configured port
+    *
+    * @param path the request path
+    * @return a full URL
+    */
    public static URL createURL(String path, String testName) throws MalformedURLException {
       return new URL(generateURL(path, testName));
    }
 
    /**
-     * Generate a base URL incorporating the configured port.
-     *
-     * @return a full URL
-     */
+    * Generate a base URL incorporating the configured port.
+    *
+    * @return a full URL
+    */
    public static String generateBaseUrl(String testName) {
       return generateURL("", testName);
    }
 
    /**
-     * Generate a URL incorporating the configured port.
-     *
-     * @param path the path
-     * @param testName the test name 
-     * @return a full URL
-     */
+    * Generate a URL incorporating the configured port.
+    *
+    * @param path the path
+    * @param testName the test name 
+    * @return a full URL
+    */
    public static String generateURL(String path, String testName) {
       return generateURL(path, testName,  getHost(), getPort());
    }
    /**
-     * Generate a URL with port, hostname
-     *
-     * @param path the path
-     * @return a full URL
-     */
+    * Generate a URL with port, hostname
+    *
+    * @param path the path
+    * @return a full URL
+    */
    public static String generateURL(String path, String testName, String hostName, int port) {
       // ipv4
       if (!ipv6) {
@@ -148,28 +148,28 @@ public class PortProviderUtil {
    }
 
    /**
-     * Get port.
-     *
-     * @return The port number
-     */
+    * Get port.
+    *
+    * @return The port number
+    */
    public static int getPort() {
       return port;
    }
 
    /**
-     * Get host IP.
-     *
-     * @return The host IP
-     */
+    * Get host IP.
+    *
+    * @return The host IP
+    */
    public static String getHost() {
       return host;
    }
 
    /**
-     * Get information about IPv6 connectivity.
-     *
-     * @return IPv6 connectivity.
-     */
+    * Get information about IPv6 connectivity.
+    *
+    * @return IPv6 connectivity.
+    */
    public static boolean isIpv6() {
       return ipv6;
    }

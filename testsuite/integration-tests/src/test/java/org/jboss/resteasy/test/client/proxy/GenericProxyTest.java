@@ -24,11 +24,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1047.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1047.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GenericProxyTest {
@@ -56,9 +56,9 @@ public class GenericProxyTest {
    }
 
    /**
-     * @tpTestDetails Test generic proxy in client.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test generic proxy in client.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEcho() {
       ResteasyWebTarget target = client.target(generateBaseUrl());
@@ -70,9 +70,9 @@ public class GenericProxyTest {
    }
 
    /**
-     * @tpTestDetails Test generic proxy in client.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test generic proxy in client.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEchoNoProxy() {
       ResteasyWebTarget target = client.target(generateBaseUrl() + "/say/hello");

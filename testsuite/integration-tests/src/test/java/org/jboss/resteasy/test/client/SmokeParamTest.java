@@ -19,11 +19,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Smoke parameter test.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Smoke parameter test.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SmokeParamTest extends ClientTestBase{
@@ -47,9 +47,9 @@ public class SmokeParamTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Test one request with header and query parameter.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test one request with header and query parameter.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSimple() throws Exception {
       Response response = client.target(generateURL("/foo")).request()

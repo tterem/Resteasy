@@ -14,19 +14,19 @@ import java.net.URI;
 
 
 /**
-   * @tpSubChapter Util tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for javax.ws.rs.core.Link class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Util tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for javax.ws.rs.core.Link class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class LinkTest {
 
    protected static final Logger logger = LogManager.getLogger(LinkTest.class.getName());
 
    /**
-     * @tpTestDetails Check relative path option
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check relative path option
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRelativized() throws Exception {
       URI uri = new URI("a").relativize(new URI("a/d/e"));
@@ -46,9 +46,9 @@ public class LinkTest {
    }
 
    /**
-     * @tpTestDetails Check fromMethod method.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check fromMethod method.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFromMethod() {
       for (Method m : LinkResource.class.getDeclaredMethods()) {
@@ -65,9 +65,9 @@ public class LinkTest {
    }
 
    /**
-     * @tpTestDetails Check wrong URI
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check wrong URI
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIllegalUri() {
       Link.Builder builder = Link.fromUri("http://:@");

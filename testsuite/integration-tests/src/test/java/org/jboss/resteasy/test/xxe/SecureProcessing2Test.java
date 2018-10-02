@@ -34,12 +34,12 @@ import static org.hamcrest.core.StringContains.containsString;
 import static org.jboss.resteasy.utils.PortProviderUtil.generateURL;
 
 /**
-   * @tpSubChapter XXE
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1103
-   *      RestEasy is vulnerable to XML Entity Denial of Service XXE is disabled.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter XXE
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1103
+ *      RestEasy is vulnerable to XML Entity Denial of Service XXE is disabled.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SecureProcessing2Test {
@@ -224,154 +224,154 @@ public class SecureProcessing2Test {
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
-     *                "resteasy.document.secure.disableDTDs" is set to default value
-     *                "resteasy.document.expand.entity.references" is set to default value
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
+    *                "resteasy.document.secure.disableDTDs" is set to default value
+    *                "resteasy.document.expand.entity.references" is set to default value
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityDefaultDTDsDefaultExpansionDefault() throws Exception {
       doTestSkipFailsFailsSkip("ddd");
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
-     *                "resteasy.document.secure.disableDTDs" is set to default value
-     *                "resteasy.document.expand.entity.references" is set to false
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
+    *                "resteasy.document.secure.disableDTDs" is set to default value
+    *                "resteasy.document.expand.entity.references" is set to false
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityDefaultDTDsDefaultExpansionFalse() throws Exception {
       doTestSkipFailsFailsSkip("ddf");
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
-     *                "resteasy.document.secure.disableDTDs" is set to default value
-     *                "resteasy.document.expand.entity.references" is set to true
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
+    *                "resteasy.document.secure.disableDTDs" is set to default value
+    *                "resteasy.document.expand.entity.references" is set to true
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityDefaultDTDsDefaultExpansionTrue() throws Exception {
       doTestSkipFailsFailsSkip("ddt");
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
-     *                "resteasy.document.secure.disableDTDs" is set to false
-     *                "resteasy.document.expand.entity.references" is set to default value
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
+    *                "resteasy.document.secure.disableDTDs" is set to false
+    *                "resteasy.document.expand.entity.references" is set to default value
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityDefaultDTDsFalseExpansionDefault() throws Exception {
       doTestFailsFailsPassesFails("dfd");
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
-     *                "resteasy.document.secure.disableDTDs" is set to false
-     *                "resteasy.document.expand.entity.references" is set to false
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
+    *                "resteasy.document.secure.disableDTDs" is set to false
+    *                "resteasy.document.expand.entity.references" is set to false
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityDefaultDTDsFalseExpansionFalse() throws Exception {
       doTestFailsFailsPassesFails("dff");
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
-     *                "resteasy.document.secure.disableDTDs" is set to false
-     *                "resteasy.document.expand.entity.references" is set to true
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
+    *                "resteasy.document.secure.disableDTDs" is set to false
+    *                "resteasy.document.expand.entity.references" is set to true
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityDefaultDTDsFalseExpansionTrue() throws Exception {
       doTestFailsFailsPassesPasses("dft");
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
-     *                "resteasy.document.secure.disableDTDs" is set to true
-     *                "resteasy.document.expand.entity.references" is set to default value
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
+    *                "resteasy.document.secure.disableDTDs" is set to true
+    *                "resteasy.document.expand.entity.references" is set to default value
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityDefaultDTDsTrueExpansionDefault() throws Exception {
       doTestSkipFailsFailsSkip("dtd");
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
-     *                "resteasy.document.secure.disableDTDs" is set to true
-     *                "resteasy.document.expand.entity.references" is set to false
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
+    *                "resteasy.document.secure.disableDTDs" is set to true
+    *                "resteasy.document.expand.entity.references" is set to false
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityDefaultDTDsTrueExpansionFalse() throws Exception {
       doTestSkipFailsFailsSkip("dtf");
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
-     *                "resteasy.document.secure.disableDTDs" is set to true
-     *                "resteasy.document.expand.entity.references" is set to true
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
+    *                "resteasy.document.secure.disableDTDs" is set to true
+    *                "resteasy.document.expand.entity.references" is set to true
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityDefaultDTDsTrueExpansionTrue() throws Exception {
       doTestSkipFailsFailsSkip("dtt");
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to false
-     *                "resteasy.document.secure.disableDTDs" is set to default value
-     *                "resteasy.document.expand.entity.references" is set to default value
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to false
+    *                "resteasy.document.secure.disableDTDs" is set to default value
+    *                "resteasy.document.expand.entity.references" is set to default value
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityFalseDTDsDefaultExpansionDefault() throws Exception {
       doTestSkipPassesFailsSkip("fdd");
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to false
-     *                "resteasy.document.secure.disableDTDs" is set to default value
-     *                "resteasy.document.expand.entity.references" is set to false
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to false
+    *                "resteasy.document.secure.disableDTDs" is set to default value
+    *                "resteasy.document.expand.entity.references" is set to false
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityFalseDTDsDefaultExpansionFalse() throws Exception {
       doTestSkipPassesFailsSkip("fdf");
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to false
-     *                "resteasy.document.secure.disableDTDs" is set to default value
-     *                "resteasy.document.expand.entity.references" is set to true
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to false
+    *                "resteasy.document.secure.disableDTDs" is set to default value
+    *                "resteasy.document.expand.entity.references" is set to true
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityFalseDTDsDefaultExpansionTrue() throws Exception {
       doTestSkipPassesFailsSkip("fdt");
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to false
-     *                "resteasy.document.secure.disableDTDs" is set to false
-     *                "resteasy.document.expand.entity.references" is set to default value
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to false
+    *                "resteasy.document.secure.disableDTDs" is set to false
+    *                "resteasy.document.expand.entity.references" is set to default value
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityFalseDTDsFalseExpansionDefault() throws Exception {
       doTestPassesPassesPassesFails("ffd");
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
-     *                "resteasy.document.secure.disableDTDs" is set to true
-     *                "resteasy.document.expand.entity.references" is set to true
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails "resteasy.document.secure.processing.feature" is set to default value
+    *                "resteasy.document.secure.disableDTDs" is set to true
+    *                "resteasy.document.expand.entity.references" is set to true
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testSecurityDefaultDTDsTrueExpansionTrueWithApacheLinkMessage() throws Exception {
@@ -671,8 +671,8 @@ public class SecureProcessing2Test {
    }
 
    /**
-     * Get count of "foo" substring in input string
-     */
+    * Get count of "foo" substring in input string
+    */
    private int countFoos(String s) {
       int count = 0;
       int pos = 0;

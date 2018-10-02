@@ -23,11 +23,11 @@ import java.net.URL;
 import java.util.PropertyPermission;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-903
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-903
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class UndertowTest {
    @Deployment
@@ -52,9 +52,9 @@ public class UndertowTest {
    }
 
    /**
-     * @tpTestDetails Redirection in one servlet to other servlet.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Redirection in one servlet to other servlet.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUndertow() throws Exception {
       URL url = new URL(generateURL("/test"));

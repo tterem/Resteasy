@@ -29,10 +29,10 @@ import java.util.PropertyPermission;
 import java.util.logging.LoggingPermission;
 
 /**
-   * @tpSubChapter Spring
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Spring
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SpringLocatingResourceTest {
@@ -78,9 +78,9 @@ public class SpringLocatingResourceTest {
    }
 
    /**
-     * @tpTestDetails Test resource bean defined in xml spring settings
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test resource bean defined in xml spring settings
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNoDefaultsResource() throws Exception {
 
@@ -112,10 +112,10 @@ public class SpringLocatingResourceTest {
    }
 
    /**
-     * @tpTestDetails Test resource bean defined in xml spring settings, resource calls another resource also
-     * defined as resource bean
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test resource bean defined in xml spring settings, resource calls another resource also
+    * defined as resource bean
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLocatingResource() throws Exception {
 

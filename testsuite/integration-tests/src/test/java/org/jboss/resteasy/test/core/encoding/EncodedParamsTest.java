@@ -19,11 +19,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Encoding
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for special characters in get request
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Encoding
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for special characters in get request
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EncodedParamsTest {
@@ -51,9 +51,9 @@ public class EncodedParamsTest {
    }
 
    /**
-     * @tpTestDetails Check various location of "?", "%20" characters
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check various location of "?", "%20" characters
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncoded() throws Exception {
       basicTest("/encodedParam?hello%20world=5&stuff=hello%20world");

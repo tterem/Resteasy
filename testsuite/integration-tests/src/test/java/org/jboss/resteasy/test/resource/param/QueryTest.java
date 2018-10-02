@@ -22,11 +22,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Parameters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for @Query param of the resource, RESTEASY-715
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Parameters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for @Query param of the resource, RESTEASY-715
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class QueryTest {
@@ -54,10 +54,10 @@ public class QueryTest {
    }
 
    /**
-     * @tpTestDetails Use resource with @Query annotation with the parameter of custom type which consist of @QueryParam fields.
-     * Resteasy correctly parses the uri to get all specified parameters
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Use resource with @Query annotation with the parameter of custom type which consist of @QueryParam fields.
+    * Resteasy correctly parses the uri to get all specified parameters
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testQueryParamPrefix() throws Exception {
       WebTarget target = client.target(generateURL("/search?term=t1&order=ASC"));

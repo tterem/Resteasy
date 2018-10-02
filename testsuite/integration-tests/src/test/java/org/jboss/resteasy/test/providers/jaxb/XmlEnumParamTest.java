@@ -19,10 +19,10 @@ import org.jboss.resteasy.utils.TestUtil;
 import org.jboss.resteasy.utils.PortProviderUtil;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class XmlEnumParamTest {
@@ -51,11 +51,11 @@ public class XmlEnumParamTest {
    }
 
    /**
-     * @tpTestDetails Tests xml enum param in the resource
-     * @tpPassCrit The expected enum type is returned
-     * @tpInfo RESTEASY-428
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests xml enum param in the resource
+    * @tpPassCrit The expected enum type is returned
+    * @tpInfo RESTEASY-428
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlEnumParam() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/enum"));

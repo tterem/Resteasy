@@ -38,10 +38,10 @@ import javax.ws.rs.core.Response;
 import static org.jboss.resteasy.utils.PortProviderUtil.generateURL;
 
 /**
-   * @tpSubChapter Validator provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Validator provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResteasyViolationExceptionRepresentationTest {
@@ -85,10 +85,10 @@ public class ResteasyViolationExceptionRepresentationTest {
    }
 
    /**
-     * @tpTestDetails Check correct number of return value violations.
-     * @tpPassCrit Violation count should be correct according to resource definition.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check correct number of return value violations.
+    * @tpPassCrit Violation count should be correct according to resource definition.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment(TEST_RETURN_VALUES)
    public void testReturnValues() throws Exception {
@@ -170,10 +170,10 @@ public class ResteasyViolationExceptionRepresentationTest {
    }
 
    /**
-     * @tpTestDetails Check correct number of violations before return in resource.
-     * @tpPassCrit Violation count should be correct according to resource definition.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check correct number of violations before return in resource.
+    * @tpPassCrit Violation count should be correct according to resource definition.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment(TEST_VIOLATIONS_BEFORE_RETURN_VALUE)
    public void testViolationsBeforeReturnValue() throws Exception {

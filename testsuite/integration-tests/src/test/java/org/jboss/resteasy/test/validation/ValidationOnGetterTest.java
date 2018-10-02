@@ -24,11 +24,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test getter validation
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test getter validation
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationOnGetterTest {
@@ -56,9 +56,9 @@ public class ValidationOnGetterTest {
    }
 
    /**
-     * @tpTestDetails Test xml media type.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test xml media type.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetter() throws Exception {
       Response response = client.target(generateURL("/resource/executable/getter")).request().accept(MediaType.APPLICATION_XML).get();

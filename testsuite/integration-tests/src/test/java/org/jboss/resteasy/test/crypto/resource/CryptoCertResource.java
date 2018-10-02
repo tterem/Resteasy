@@ -60,8 +60,8 @@ public class CryptoCertResource {
       return readString(stream);
    }
    /**
-     * Read the object from Base64 string.
-     */
+    * Read the object from Base64 string.
+    */
    private static Object fromString(String s) throws IOException,
          ClassNotFoundException {
       byte[] data = Base64.getDecoder().decode(s);

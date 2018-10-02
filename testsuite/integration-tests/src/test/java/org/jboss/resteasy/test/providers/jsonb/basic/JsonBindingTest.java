@@ -33,15 +33,15 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 
 /**
-   * @tpSubChapter Json-binding provider.JAX-RS 2.1 spec (JSR-370), section 11.2.7 states,
-   * "Note that if JSON-B and JSON-P are both supported in the same environment, entity providers for
-   * JSON-B take precedence over those for JSON-P for all types except JsonValue and its sub-types."
-   * The sub-types of JsonValue are JsonArray, JsonNumber, JsonObject, JsonString, JsonStructure.
-   * Resteasy's JSON-P providers currently supports this.  A general object such as Cat will be processed by
-   * the JSON-B provider.
-   * @tpChapter Integration test
-   * @tpSince RESTEasy 4.0.0
-   */
+ * @tpSubChapter Json-binding provider.JAX-RS 2.1 spec (JSR-370), section 11.2.7 states,
+ * "Note that if JSON-B and JSON-P are both supported in the same environment, entity providers for
+ * JSON-B take precedence over those for JSON-P for all types except JsonValue and its sub-types."
+ * The sub-types of JsonValue are JsonArray, JsonNumber, JsonObject, JsonString, JsonStructure.
+ * Resteasy's JSON-P providers currently supports this.  A general object such as Cat will be processed by
+ * the JSON-B provider.
+ * @tpChapter Integration test
+ * @tpSince RESTEasy 4.0.0
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JsonBindingTest {
@@ -86,16 +86,16 @@ public class JsonBindingTest {
    }
 
    /**
-   * @tpTestDetails Client sends POST request with a JSON annotated entity. The object should be returned back by the
-   * response and should contain the same field values as original request.
-   *
-   * JSON-B is activated on both server and client side
-   * Client should not ignore @JsonbTransient annotation and should not send a value in this variable
-   * Check that server returns object without a value in variable with @JsonbTransient annotation
-   *
-   * @tpPassCrit The resource returns object with correct values
-   * @tpSince RESTEasy 4.0.0
-   */
+    * @tpTestDetails Client sends POST request with a JSON annotated entity. The object should be returned back by the
+    * response and should contain the same field values as original request.
+    *
+    * JSON-B is activated on both server and client side
+    * Client should not ignore @JsonbTransient annotation and should not send a value in this variable
+    * Check that server returns object without a value in variable with @JsonbTransient annotation
+    *
+    * @tpPassCrit The resource returns object with correct values
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void jsonbOnServerAndClientTest() throws Exception {
       String charset = "UTF-8";
@@ -114,15 +114,15 @@ public class JsonBindingTest {
    }
 
    /**
-     * @tpTestDetails JSON-B is used on client, JSON-B is not used on server, server uses test's custom json provider
-     *                client should not ignore @JsonbTransient annotation and should not send a value in this variable
-     *                server verify that client doesn't sent a value in a variable with @JsonbTransient annotation
-     *                server returns json data with a value in a variable with @JsonbTransient annotation
-     *                client should not ignore @JsonbTransient annotation and should not receive a value in this variable
-     *
-     * @tpPassCrit The resource returns object with correct values
-     * @tpSince RESTEasy 3.5
-     */
+    * @tpTestDetails JSON-B is used on client, JSON-B is not used on server, server uses test's custom json provider
+    *                client should not ignore @JsonbTransient annotation and should not send a value in this variable
+    *                server verify that client doesn't sent a value in a variable with @JsonbTransient annotation
+    *                server returns json data with a value in a variable with @JsonbTransient annotation
+    *                client should not ignore @JsonbTransient annotation and should not receive a value in this variable
+    *
+    * @tpPassCrit The resource returns object with correct values
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void jsonbOnClientTest() throws Exception {
       String charset = "UTF-8";
@@ -139,13 +139,13 @@ public class JsonBindingTest {
 
 
    /**
-   * @tpTestDetails JSON-B is used on client, JSON-B is not used on server, server uses test's custom json provider
-   *                Client send GET request to server
-   *                Server returns Cat object, custom provider uses toString method, that doesn't doesn't create correct JSON data
-   *                Client receive data with "json" media type, but data was created by toString method
-   *                JSON-B on client should throw user-friendly exception, because toString method doesn't create correct JSON data
-   * @tpSince RESTEasy 3.5
-   */
+    * @tpTestDetails JSON-B is used on client, JSON-B is not used on server, server uses test's custom json provider
+    *                Client send GET request to server
+    *                Server returns Cat object, custom provider uses toString method, that doesn't doesn't create correct JSON data
+    *                Client receive data with "json" media type, but data was created by toString method
+    *                JSON-B on client should throw user-friendly exception, because toString method doesn't create correct JSON data
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void negativeScenarioOnClient() throws Exception {
       // call and log get request

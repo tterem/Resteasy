@@ -21,11 +21,11 @@ import javax.ws.rs.core.Response;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter Form tests
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for JBEAP-982
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Form tests
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for JBEAP-982
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FormParamPutTest {
@@ -40,9 +40,9 @@ public class FormParamPutTest {
    }
 
    /**
-     * @tpTestDetails Test with query param and without query param
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test with query param and without query param
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test1() throws Exception {
       Client client = ClientBuilder.newClient();

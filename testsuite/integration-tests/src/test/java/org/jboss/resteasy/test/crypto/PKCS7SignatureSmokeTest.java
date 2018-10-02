@@ -25,11 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-   * @tpSubChapter Crypto
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for response secured by PKCS7SignatureInput
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Crypto
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for response secured by PKCS7SignatureInput
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PKCS7SignatureSmokeTest {
@@ -59,9 +59,9 @@ public class PKCS7SignatureSmokeTest {
    }
 
    /**
-     * @tpTestDetails Get encoded data
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Get encoded data
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void encodedData() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -72,9 +72,9 @@ public class PKCS7SignatureSmokeTest {
    }
 
    /**
-     * @tpTestDetails Get decoded data
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Get decoded data
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void decodedData() throws Exception {
       Client client = ClientBuilder.newClient();

@@ -20,11 +20,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Tests date encoding as query parameter
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Tests date encoding as query parameter
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class DateFormatPathTest {
@@ -51,9 +51,9 @@ public class DateFormatPathTest {
    }
 
    /**
-     * @tpTestDetails Test date 08/26/2009
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test date 08/26/2009
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDate() throws Exception {
       Response response = client.target(generateURL("/widget/08%2F26%2F2009")).request().get();

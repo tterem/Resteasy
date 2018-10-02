@@ -30,11 +30,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
-   * @tpSubChapter Security
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Basic test for RESTEasy authentication using programmatic security with javax.ws.rs.core.SecurityContext
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Security
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Basic test for RESTEasy authentication using programmatic security with javax.ws.rs.core.SecurityContext
+ * @tpSince RESTEasy 3.0.16
+ */
 @ServerSetup({SecurityContextTest.SecurityDomainSetup.class})
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -87,9 +87,9 @@ public class SecurityContextTest {
    }
 
    /**
-     * @tpTestDetails Correct credentials are used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Correct credentials are used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityContextAuthorized() {
       Response response = authorizedClient
@@ -99,9 +99,9 @@ public class SecurityContextTest {
    }
 
    /**
-     * @tpTestDetails Incorrect credentials are used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Incorrect credentials are used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityContextNonAuthorized() {
       Response response = nonauthorizedClient
@@ -111,9 +111,9 @@ public class SecurityContextTest {
    }
 
    /**
-     * @tpTestDetails ContainerRequestFilter and correct credentials are used
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails ContainerRequestFilter and correct credentials are used
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("containerRequestFilter")
    public void testSecurityContextAuthorizedUsingFilter() {
@@ -124,9 +124,9 @@ public class SecurityContextTest {
    }
 
    /**
-     * @tpTestDetails ContainerRequestFilter and incorrect credentials are used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails ContainerRequestFilter and incorrect credentials are used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("containerRequestFilter")
    public void testSecurityContextNonAuthorizedUsingFilter() {

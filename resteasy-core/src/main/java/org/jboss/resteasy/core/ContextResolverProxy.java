@@ -4,9 +4,9 @@ import javax.ws.rs.ext.ContextResolver;
 import java.util.List;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class ContextResolverProxy implements ContextResolver
 {
    private List<ContextResolver> resolvers;

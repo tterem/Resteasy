@@ -20,9 +20,9 @@ import javax.ws.rs.NotFoundException;
 import java.io.IOException;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class FilterDispatcher implements Filter, HttpRequestFactory, HttpResponseFactory
 {
    protected ServletContainerDispatcher servletContainerDispatcher;

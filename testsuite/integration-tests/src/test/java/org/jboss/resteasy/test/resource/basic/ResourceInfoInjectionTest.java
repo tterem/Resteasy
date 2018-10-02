@@ -25,11 +25,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resources
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for JBEAP-4701
-   * @tpSince RESTEasy 3.0.17
-   */
+ * @tpSubChapter Resources
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for JBEAP-4701
+ * @tpSince RESTEasy 3.0.17
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResourceInfoInjectionTest {
@@ -57,9 +57,9 @@ public class ResourceInfoInjectionTest {
    }
 
    /**
-     * @tpTestDetails Check for injecting ResourceInfo object in ContainerResponseFilter
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Check for injecting ResourceInfo object in ContainerResponseFilter
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testNotFound() throws Exception {
@@ -71,9 +71,9 @@ public class ResourceInfoInjectionTest {
    }
 
    /**
-     * @tpTestDetails Check for injecting ResourceInfo object in end-point
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Check for injecting ResourceInfo object in end-point
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testAsync() throws Exception {

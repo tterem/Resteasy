@@ -7,8 +7,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 /**
-   * Created by John.Ament on 2/23/14.
-   */
+ * Created by John.Ament on 2/23/14.
+ */
 @RequestScoped
 @Path("/echo")
 public class EchoResource {

@@ -14,8 +14,8 @@ import java.io.InputStream;
 public final class XmlJaxbProvidersHelper {
 
    /**
-     * An HTTP Header than can be passed in order to have the XML response formatted.
-     */
+    * An HTTP Header than can be passed in order to have the XML response formatted.
+    */
    public static final String FORMAT_XML_HEADER = "X-Xml-Formatted";
 
    private XmlJaxbProvidersHelper() {

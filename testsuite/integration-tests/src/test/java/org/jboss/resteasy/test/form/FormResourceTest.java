@@ -36,11 +36,11 @@ import java.util.Map;
 
 
 /**
-   * @tpSubChapter Form tests
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Form test with resource
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Form tests
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Form test with resource
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FormResourceTest {
@@ -72,9 +72,9 @@ public class FormResourceTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-261
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-261
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMultiValueParam() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -100,9 +100,9 @@ public class FormResourceTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-691
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-691
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProxy691() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -113,9 +113,9 @@ public class FormResourceTest {
    }
 
    /**
-     * @tpTestDetails Test for different value type of form by proxy.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for different value type of form by proxy.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProxy() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -157,9 +157,9 @@ public class FormResourceTest {
    }
 
    /**
-     * @tpTestDetails Test for different value type of form directly
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for different value type of form directly
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFormResource() throws Exception {
       InputStream in = null;

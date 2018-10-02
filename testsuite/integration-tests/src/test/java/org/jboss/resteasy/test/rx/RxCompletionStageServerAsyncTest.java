@@ -37,13 +37,13 @@ import org.junit.runner.RunWith;
 
 
 /**
-   * @tpSubChapter Reactive classes
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 4.0
-   * 
-   * These tests run synchronously on client, making synchronous invocations.
-   * The server creates and returns CompletionStages which run asynchronously.
-   */
+ * @tpSubChapter Reactive classes
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 4.0
+ * 
+ * These tests run synchronously on client, making synchronous invocations.
+ * The server creates and returns CompletionStages which run asynchronously.
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RxCompletionStageServerAsyncTest {

@@ -55,9 +55,9 @@ public class ServletInitializerTest {
    URI baseUri;
 
    /**
-     * App declares files via the web.xml
-     * @throws Exception
-     */
+    * App declares files via the web.xml
+    * @throws Exception
+    */
    @Test
    public void testEndpoint() throws Exception {
       Response response = ResteasyClientBuilder.newClient()

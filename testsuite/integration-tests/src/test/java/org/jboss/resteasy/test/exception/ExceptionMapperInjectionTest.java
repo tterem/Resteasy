@@ -26,11 +26,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails ExceptionMapper testing. Regression test for RESTEASY-300 and RESTEASY-396
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails ExceptionMapper testing. Regression test for RESTEASY-300 and RESTEASY-396
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExceptionMapperInjectionTest {
@@ -62,9 +62,9 @@ public class ExceptionMapperInjectionTest {
    }
 
    /**
-     * @tpTestDetails Check non-existent path
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check non-existent path
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNotFound() throws Exception {
       WebTarget base = client.target(generateUrl("/test/nonexistent"));
@@ -76,9 +76,9 @@ public class ExceptionMapperInjectionTest {
    }
 
    /**
-     * @tpTestDetails Check correct path
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check correct path
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMapper() throws Exception {
       WebTarget base = client.target(generateUrl("/test"));
@@ -90,9 +90,9 @@ public class ExceptionMapperInjectionTest {
    }
 
    /**
-     * @tpTestDetails Check correct path, no content is excepted
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check correct path, no content is excepted
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMapper2() throws Exception {
       WebTarget base = client.target(generateUrl("/test/null"));

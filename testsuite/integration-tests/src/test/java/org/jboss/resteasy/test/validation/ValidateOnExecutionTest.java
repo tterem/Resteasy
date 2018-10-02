@@ -44,10 +44,10 @@ import org.junit.runner.RunWith;
 import static org.jboss.resteasy.utils.PortProviderUtil.generateURL;
 
 /**
-   * @tpSubChapter Validator provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Validator provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidateOnExecutionTest {
@@ -125,10 +125,10 @@ public class ValidateOnExecutionTest {
    }
 
    /**
-     * @tpTestDetails Client sends various requests. Validation exceptions is expected.
-     * @tpPassCrit Violation count should be correct according to resource definition.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends various requests. Validation exceptions is expected.
+    * @tpPassCrit Violation count should be correct according to resource definition.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment(MAIN)
    public void testValidateOnExecution() throws Exception {
@@ -219,68 +219,68 @@ public class ValidateOnExecutionTest {
    }
 
    /**
-     * @tpTestDetails Try to deploy invalid one level class.
-     * @tpPassCrit ResteasyViolationException should be throws during deploying.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Try to deploy invalid one level class.
+    * @tpPassCrit ResteasyViolationException should be throws during deploying.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testValidateOnExecutionInvalidOneLevel_Class() throws Exception {
       testErrorExpected(INVALID_ONE_LEVEL_CLASS);
    }
 
    /**
-     * @tpTestDetails Try to deploy invalid two level class.
-     * @tpPassCrit ResteasyViolationException should be throws during deploying.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Try to deploy invalid two level class.
+    * @tpPassCrit ResteasyViolationException should be throws during deploying.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testValidateOnExecutionInvalidTwoLevels_Class() throws Exception {
       testErrorExpected(INVALID_TWO_LEVEL_CLASS);
    }
 
    /**
-     * @tpTestDetails Try to deploy invalid one level interface.
-     * @tpPassCrit ResteasyViolationException should be throws during deploying.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Try to deploy invalid one level interface.
+    * @tpPassCrit ResteasyViolationException should be throws during deploying.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testValidateOnExecutionInvalidOneLevel_Interface() throws Exception {
       testErrorExpected(INVALID_ONE_LEVEL_INTERFACE);
    }
 
    /**
-     * @tpTestDetails Try to deploy invalid two level interface.
-     * @tpPassCrit ResteasyViolationException should be throws during deploying.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Try to deploy invalid two level interface.
+    * @tpPassCrit ResteasyViolationException should be throws during deploying.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testValidateOnExecutionInvalidTwoLevels_Interface() throws Exception {
       testErrorExpected(INVALID_TWO_LEVEL_INTERFACE);
    }
 
    /**
-     * @tpTestDetails Try to deploy invalid class (error is in overriding).
-     * @tpPassCrit ResteasyViolationException should be throws during deploying.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Try to deploy invalid class (error is in overriding).
+    * @tpPassCrit ResteasyViolationException should be throws during deploying.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testValidateOnExecutionInvalidGenericOverride_Class() throws Exception {
       testErrorExpected(INVALID_GENERIC_OVERRIDE_CLASS);
    }
 
    /**
-     * @tpTestDetails Try to deploy invalid interface (error is in overriding).
-     * @tpPassCrit ResteasyViolationException should be throws during deploying.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Try to deploy invalid interface (error is in overriding).
+    * @tpPassCrit ResteasyViolationException should be throws during deploying.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testValidateOnExecutionInvalidGenericOverride_Interface() throws Exception {
       testErrorExpected(INVALID_GENERIC_OVERRIDE_INTERFACE);
    }
 
    /**
-     * Try to deploy deployment. ValidationException is expected.
-     */
+    * Try to deploy deployment. ValidationException is expected.
+    */
    private void testErrorExpected(String deploymentName) {
       try {
          deployer.deploy(deploymentName);

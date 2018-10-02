@@ -13,12 +13,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
-   *
-   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
-   * @version $Revision: 1.1 $
-   *
-   * Copyright Aug 20, 2015
-   */
+ *
+ * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+ * @version $Revision: 1.1 $
+ *
+ * Copyright Aug 20, 2015
+ */
 public abstract class TestLogMessages_Abstract extends TestMessagesParent
 {
    private static final Logger LOG = Logger.getLogger(TestLogMessages_Abstract.class);

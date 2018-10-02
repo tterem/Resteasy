@@ -23,11 +23,11 @@ import javax.ws.rs.core.Response;
 import static org.jboss.resteasy.utils.PortProviderUtil.generateURL;
 
 /**
-   * @tpSubChapter Interceptors
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-433
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Interceptors
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-433
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PreProcessorExceptionMapperTest {
@@ -43,10 +43,10 @@ public class PreProcessorExceptionMapperTest {
    }
 
    /**
-     * @tpTestDetails Generate PreProcessorExceptionMapperCandlepinUnauthorizedException
-     * @tpPassCrit SC_PRECONDITION_FAILED (412) HTTP code is excepted
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Generate PreProcessorExceptionMapperCandlepinUnauthorizedException
+    * @tpPassCrit SC_PRECONDITION_FAILED (412) HTTP code is excepted
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMapper() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

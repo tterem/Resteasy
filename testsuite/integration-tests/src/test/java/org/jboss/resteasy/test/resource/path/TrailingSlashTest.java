@@ -23,11 +23,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.17
-   * @tpTestCaseDetails Regression test for JBEAP-4698
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.17
+ * @tpTestCaseDetails Regression test for JBEAP-4698
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class TrailingSlashTest {
@@ -44,9 +44,9 @@ public class TrailingSlashTest {
    }
 
    /**
-     * @tpTestDetails Simple construction of ResteasyUriInfo.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Simple construction of ResteasyUriInfo.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void oneArgConstructorTest() throws Exception {
       doOneArgConstructorTest(new URI("http://localhost/abc"), "/abc");
@@ -63,9 +63,9 @@ public class TrailingSlashTest {
    }
 
    /**
-     * @tpTestDetails ResteasyUriInfo is based of two URIs.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails ResteasyUriInfo is based of two URIs.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void twoArgConstructorTest() throws Exception {
       doTwoArgConstructorTest(new URI("http://localhost/abc"), new URI("xyz"), "/xyz");
@@ -87,9 +87,9 @@ public class TrailingSlashTest {
    }
 
    /**
-     * @tpTestDetails ResteasyUriInfo is based on queryString and contextPath.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails ResteasyUriInfo is based on queryString and contextPath.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void threeArgConstructorTest() throws Exception {
       doThreeArgConstructorTest("http://localhost/abc", "/abc");
@@ -107,9 +107,9 @@ public class TrailingSlashTest {
    }
 
    /**
-     * @tpTestDetails No slash at the end of URI
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails No slash at the end of URI
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testNoSlash() {
       Client client = ClientBuilder.newClient();
@@ -120,9 +120,9 @@ public class TrailingSlashTest {
    }
 
    /**
-     * @tpTestDetails Slash at the end of URI
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Slash at the end of URI
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testSlash() {

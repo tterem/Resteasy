@@ -28,11 +28,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test facility for sending requests in chunked format
-   * @tpSince RESTEasy 3.0.24
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test facility for sending requests in chunked format
+ * @tpSince RESTEasy 3.0.24
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ChunkedTransferEncodingTest {
@@ -72,11 +72,11 @@ public class ChunkedTransferEncodingTest {
    }
 
    /**
-     * @tpTestDetails Tests that chunked Transfer-encoding header is set on ResteasyWebTarget. Tests that Content-Length
-     * header is set only in case when chunked transfer encoding is set to false. Headers are tested with the default client,
-     * client with te underlying http engines ApacheHttpClient4Engine and ApacheHttpClient43Engine.
-     * @tpSince RESTEasy 3.0.24
-     */    
+    * @tpTestDetails Tests that chunked Transfer-encoding header is set on ResteasyWebTarget. Tests that Content-Length
+    * header is set only in case when chunked transfer encoding is set to false. Headers are tested with the default client,
+    * client with te underlying http engines ApacheHttpClient4Engine and ApacheHttpClient43Engine.
+    * @tpSince RESTEasy 3.0.24
+    */    
    @Test
    public void testTarget() throws Exception {
       doTestTarget(clientDefault, Boolean.TRUE, "chunked null");
@@ -101,11 +101,11 @@ public class ChunkedTransferEncodingTest {
    }
 
    /**
-     * @tpTestDetails Tests that chunked Transfer-encoding header is set on ClientInvocationBuilder. Tests that Content-Length
-     * header is set only in case when chunked transfer encoding is set to false. Headers are tested with the default client,
-     * client with te underlying http engines ApacheHttpClient4Engine and ApacheHttpClient43Engine.
-     * @tpSince RESTEasy 3.0.24
-     */ 
+    * @tpTestDetails Tests that chunked Transfer-encoding header is set on ClientInvocationBuilder. Tests that Content-Length
+    * header is set only in case when chunked transfer encoding is set to false. Headers are tested with the default client,
+    * client with te underlying http engines ApacheHttpClient4Engine and ApacheHttpClient43Engine.
+    * @tpSince RESTEasy 3.0.24
+    */ 
    @Test
    public void testRequest() throws Exception {
       doTestRequest(clientDefault, Boolean.TRUE, "chunked null");

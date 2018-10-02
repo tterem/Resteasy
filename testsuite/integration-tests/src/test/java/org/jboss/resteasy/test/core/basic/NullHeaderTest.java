@@ -19,10 +19,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter RESTEASY-1565
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.1.1.Final
-   */
+ * @tpSubChapter RESTEASY-1565
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.1.1.Final
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class NullHeaderTest {

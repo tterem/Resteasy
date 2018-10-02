@@ -25,10 +25,10 @@ import java.util.logging.LoggingPermission;
 import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALIFIER;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Unit tests
-   * @tpSince RESTEasy 3.0.17
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Unit tests
+ * @tpSince RESTEasy 3.0.17
+ */
 @RunWith(Arquillian.class)
 public class ClientBuilderTest {
 
@@ -64,10 +64,10 @@ public class ClientBuilderTest {
    }
 
    /**
-     * @tpTestDetails Register class twice to the client
-     * @tpPassCrit Warning will be raised that second class registration is ignored
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Register class twice to the client
+    * @tpPassCrit Warning will be raised that second class registration is ignored
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testDoubleClassRegistration() {
       int initCount = getWarningCount();
@@ -81,10 +81,10 @@ public class ClientBuilderTest {
    }
 
    /**
-     * @tpTestDetails Register provider instance twice to the client
-     * @tpPassCrit Warning will be raised that second provider instance registration is ignored
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Register provider instance twice to the client
+    * @tpPassCrit Warning will be raised that second provider instance registration is ignored
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testDoubleRegistration() {

@@ -20,16 +20,16 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for atom app service
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for atom app service
+ * @tpSince RESTEasy 3.0.16
+ */
 public class AtomProviderAppServiceTest {
    /**
-     * Taken from the RFC 5023 section-8.2.
-     * http://tools.ietf.org/html/rfc5023#section-8.2
-     */
+    * Taken from the RFC 5023 section-8.2.
+    * http://tools.ietf.org/html/rfc5023#section-8.2
+    */
    private static final String XML = "<?xml version=\"1.0\" encoding='utf-8'?>\n"
          + "   <service xmlns=\"http://www.w3.org/2007/app\"\n"
          + "            xmlns:atom=\"http://www.w3.org/2005/Atom\">\n"
@@ -68,9 +68,9 @@ public class AtomProviderAppServiceTest {
          + "   </service>";
 
    /**
-     * @tpTestDetails Check custom ObjectFactory with Atom provider
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check custom ObjectFactory with Atom provider
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void marshallAppService() throws Exception {
       JAXBContext jaxbContext = JAXBContext
@@ -142,9 +142,9 @@ public class AtomProviderAppServiceTest {
    }
 
    /**
-     * @tpTestDetails Check unmarshalling
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check unmarshalling
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void unmarshallAppService() throws Exception {
       JAXBContext ctx = JAXBContext.newInstance(AppService.class);

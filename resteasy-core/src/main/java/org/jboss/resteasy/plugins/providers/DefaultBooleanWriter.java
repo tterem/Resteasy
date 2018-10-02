@@ -15,8 +15,8 @@ import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
 
 /**
-   * @author <a href="mailto:ema@redhat.com">Jim Ma</a>
-   */
+ * @author <a href="mailto:ema@redhat.com">Jim Ma</a>
+ */
 @SuppressWarnings("rawtypes")
 @Provider
 @Produces("text/plain")

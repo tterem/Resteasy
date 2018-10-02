@@ -8,9 +8,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public abstract class Expression implements Comparable<Expression>
 {
    // [^?] is in expression to ignore non-capturing group
@@ -78,12 +78,12 @@ public abstract class Expression implements Comparable<Expression>
    }
 
    /**
-   * Find the number of groups in the regular expression
-   * don't count escaped '('.
-   *
-   * @param regex regular expression
-   * @return number of groups
-   */
+    * Find the number of groups in the regular expression
+    * don't count escaped '('.
+    *
+    * @param regex regular expression
+    * @return number of groups
+    */
    protected static int groupCount(String regex)
    {
       regex = " " + regex; // add a space because GROUP regex trans to match a non-preceding slash.

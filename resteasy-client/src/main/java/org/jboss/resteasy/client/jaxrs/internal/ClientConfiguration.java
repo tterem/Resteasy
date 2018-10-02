@@ -30,9 +30,9 @@ import java.util.Map;
 import java.util.Set;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class ClientConfiguration implements Configuration, Configurable<ClientConfiguration>, Providers, HeaderValueProcessor
 {
    protected ResteasyProviderFactory providerFactory;
@@ -68,11 +68,11 @@ public class ClientConfiguration implements Configuration, Configurable<ClientCo
    }
 
    /**
-   * Convert an object to a header string.  First try StringConverter, then HeaderDelegate, then object.toString()
-   *
-   * @param object header object
-   * @return header string
-   */
+    * Convert an object to a header string.  First try StringConverter, then HeaderDelegate, then object.toString()
+    *
+    * @param object header object
+    * @return header string
+    */
    public String toHeaderString(Object object)
    {
       if (object instanceof String) return (String)object;

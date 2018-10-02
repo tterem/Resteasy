@@ -30,11 +30,11 @@ import java.util.logging.LoggingPermission;
 import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALIFIER;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for JBEAP-4703
-   * @tpSince RESTEasy 3.0.17
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for JBEAP-4703
+ * @tpSince RESTEasy 3.0.17
+ */
 @RunWith(Arquillian.class)
 public class DuplicateProviderRegistrationTest {
 
@@ -70,9 +70,9 @@ public class DuplicateProviderRegistrationTest {
    }
 
    /**
-     * @tpTestDetails Basic test
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Basic test
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testDuplicateProvider() {
@@ -90,9 +90,9 @@ public class DuplicateProviderRegistrationTest {
    }
 
    /**
-     * @tpTestDetails This test is taken from javax.ws.rs.core.Configurable javadoc
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails This test is taken from javax.ws.rs.core.Configurable javadoc
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testFromJavadoc() {

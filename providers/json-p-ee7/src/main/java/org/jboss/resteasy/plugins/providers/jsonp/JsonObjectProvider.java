@@ -20,9 +20,9 @@ import javax.ws.rs.ext.MessageBodyWriter;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.LogMessages;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Consumes({"application/json", "application/*+json", "text/json"})
 @Produces({"application/json", "application/*+json", "text/json"})
 public class JsonObjectProvider extends AbstractJsonpProvider implements MessageBodyReader<JsonObject>, MessageBodyWriter<JsonObject>

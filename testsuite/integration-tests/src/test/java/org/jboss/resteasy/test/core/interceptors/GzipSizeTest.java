@@ -39,11 +39,11 @@ import org.junit.runner.RunWith;
 import com.google.common.net.HttpHeaders;
 
 /**
-   * @tpSubChapter GZIP interceptors
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Gzip compression tests
-   * @tpSince RESTEasy 3.1.0.Final
-   */
+ * @tpSubChapter GZIP interceptors
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Gzip compression tests
+ * @tpSince RESTEasy 3.1.0.Final
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GzipSizeTest {
@@ -81,10 +81,10 @@ public class GzipSizeTest {
    }
 
    /**
-     * @tpTestDetails Test exceeding configured maximum size on server
-     * @tpInfo RESTEASY-1484
-     * @tpSince RESTEasy 3.1.0.Final
-     */
+    * @tpTestDetails Test exceeding configured maximum size on server
+    * @tpInfo RESTEASY-1484
+    * @tpSince RESTEasy 3.1.0.Final
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testMaxConfiguredSizeSending() throws Exception {
@@ -98,9 +98,9 @@ public class GzipSizeTest {
    }
    
    /**
-     * @tpTestDetails Test exceeding configured maximum size on client
-     * @tpSince RESTEasy 3.1.0.Final
-     */
+    * @tpTestDetails Test exceeding configured maximum size on client
+    * @tpSince RESTEasy 3.1.0.Final
+    */
    @Test
    public void testMaxConfiguredSizeReceiving() throws Exception {
       Response response = client.target(generateURL("/big/receive")).request().header(HttpHeaders.ACCEPT_ENCODING, "gzip").post(Entity.entity(17, "text/plain"));

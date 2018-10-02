@@ -9,20 +9,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
 /**
-   * @tpSubChapter Util tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for ResteasyUriBuilderImpl class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Util tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for ResteasyUriBuilderImpl class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class ResteasyUriBuilderTest {
 
    private static final String URI_ERROR = "Uri function of ResteasyUriBuilderImpl should return builder itself.";
    private static final String URI_FRAGMENT_ERROR = "ResteasyUriBuilderImpl object encodes valid characters in the fragment uri";
 
    /**
-     * @tpTestDetails Uri method of ResteasyUriBuilderImpl object should return same object.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Uri method of ResteasyUriBuilderImpl object should return same object.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testParseHierarchicalUri() {
       ResteasyUriBuilderImpl builder = new ResteasyUriBuilderImpl();
@@ -38,10 +38,10 @@ public class ResteasyUriBuilderTest {
    }
 
    /**
-     * @tpTestDetails ResteasyUriBuilderImpl object should not encode valid characters in the fragment uri
-     * @tpTestDetails RESTEASY-1261
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails ResteasyUriBuilderImpl object should not encode valid characters in the fragment uri
+    * @tpTestDetails RESTEASY-1261
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUriWithFragment() {
       UriBuilder builder = ResteasyUriBuilderImpl.fromTemplate("http://domain.com/path#fragment=with/allowed/special-chars");

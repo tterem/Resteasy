@@ -10,11 +10,11 @@ import java.io.OutputStream;
 
 import org.jboss.resteasy.plugins.server.netty.i18n.Messages;
 /**
-   * Class to help application that are built to write to an
-   * OutputStream to chunk the content
-   *
-   * <pre>
-   * {@code
+ * Class to help application that are built to write to an
+ * OutputStream to chunk the content
+ *
+ * <pre>
+ * {@code
 DefaultHttpResponse response = new DefaultHttpResponse(HTTP_1_1, OK);
 HttpHeaders.setTransferEncodingChunked(response);
 response.headers().set(CONTENT_TYPE, "application/octet-stream");

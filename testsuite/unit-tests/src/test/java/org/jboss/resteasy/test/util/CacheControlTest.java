@@ -13,17 +13,17 @@ import javax.ws.rs.ext.RuntimeDelegate;
 import static org.junit.Assert.assertTrue;
 
 /**
-   * @tpSubChapter Util tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for javax.ws.rs.core.CacheControl; class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Util tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for javax.ws.rs.core.CacheControl; class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class CacheControlTest {
 
    /**
-     * @tpTestDetails Check serialization
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check serialization
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void cacheControlSerialization() {
       ResteasyProviderFactory factory = ResteasyProviderFactory.newInstance();
@@ -72,9 +72,9 @@ public class CacheControlTest {
    }
 
    /**
-     * @tpTestDetails Conversion from and to String
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Conversion from and to String
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCacheControl() {
       CacheControlDelegate delegate = new CacheControlDelegate();
@@ -107,9 +107,9 @@ public class CacheControlTest {
    }
 
    /**
-     * @tpTestDetails Check properties are correct in converted String
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check properties are correct in converted String
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEveryDirectiveAppearsInStringifiedVersion() { // TCK requires this
       CacheControl cc = new CacheControl();
@@ -126,9 +126,9 @@ public class CacheControlTest {
    }
 
    /**
-     * @tpTestDetails Check properties are correct in converted String for ExtendedCacheControl class
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check properties are correct in converted String for ExtendedCacheControl class
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testExtendedCacheControl() {
       ExtendedCacheControl cc = new ExtendedCacheControl();

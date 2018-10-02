@@ -36,10 +36,10 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
-   * @tpSubChapter Publisher response type
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 4.0
-   */
+ * @tpSubChapter Publisher response type
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 4.0
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PublisherResponseTest {
@@ -81,9 +81,9 @@ public class PublisherResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method returns Publisher<String>.
-   * @tpSince RESTEasy 4.0
-   */
+    * @tpTestDetails Resource method returns Publisher<String>.
+    * @tpSince RESTEasy 4.0
+    */
    @SuppressWarnings("unchecked")
    @Test
    public void testText() throws Exception
@@ -106,9 +106,9 @@ public class PublisherResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method returns Publisher<String>, throws exception immediately.
-   * @tpSince RESTEasy 4.0
-   */
+    * @tpTestDetails Resource method returns Publisher<String>, throws exception immediately.
+    * @tpSince RESTEasy 4.0
+    */
    @SuppressWarnings("unchecked")
    @Test
    public void testTextErrorImmediate() throws Exception
@@ -131,9 +131,9 @@ public class PublisherResponseTest {
       response.close();
    }
    /**
-   * @tpTestDetails Resource method returns Publisher<String>, throws exception in stream.
-   * @tpSince RESTEasy 4.0
-   */
+    * @tpTestDetails Resource method returns Publisher<String>, throws exception in stream.
+    * @tpSince RESTEasy 4.0
+    */
    @Test
    @Ignore// Doesn't currently work. The original version, now in PublisherResponseNoStreamTest, still works.
          // See RESTEASY-1906 "Allow representation of Exception in SSE stream"
@@ -153,9 +153,9 @@ public class PublisherResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method returns Publisher<String>.
-   * @tpSince RESTEasy 4.0
-   */
+    * @tpTestDetails Resource method returns Publisher<String>.
+    * @tpSince RESTEasy 4.0
+    */
    @SuppressWarnings("unchecked")
    @Test
    public void testChunked() throws Exception
@@ -172,9 +172,9 @@ public class PublisherResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method returns Publisher<String>.
-   * @tpSince RESTEasy 4.0
-   */
+    * @tpTestDetails Resource method returns Publisher<String>.
+    * @tpSince RESTEasy 4.0
+    */
    @Test
    public void testSse() throws Exception
    {
@@ -206,9 +206,9 @@ public class PublisherResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method unsubscribes on close for infinite streams.
-   * @tpSince RESTEasy 4.0
-   */
+    * @tpTestDetails Resource method unsubscribes on close for infinite streams.
+    * @tpSince RESTEasy 4.0
+    */
    @Test
    public void testInfiniteStreamsSse() throws Exception
    {
@@ -249,9 +249,9 @@ public class PublisherResponseTest {
    }
 
    /**
-   * @tpTestDetails Resource method unsubscribes on close for infinite streams.
-   * @tpSince RESTEasy 4.0
-   */
+    * @tpTestDetails Resource method unsubscribes on close for infinite streams.
+    * @tpSince RESTEasy 4.0
+    */
    @SuppressWarnings("unchecked")
    @Test
    public void testInfiniteStreamsChunked() throws Exception

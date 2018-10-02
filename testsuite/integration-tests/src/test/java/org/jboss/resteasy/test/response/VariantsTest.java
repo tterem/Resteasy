@@ -29,11 +29,11 @@ import java.util.List;
 import org.jboss.resteasy.utils.PortProviderUtil;
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Tests that correct variant headers are returned in the response
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Tests that correct variant headers are returned in the response
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class VariantsTest {
@@ -64,9 +64,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Simple http GET conditional request
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Simple http GET conditional request
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void evaluatePreconditionsTagNullAndSimpleGetTest() {
       client = ClientBuilder.newClient();
@@ -79,10 +79,10 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails PUT request is send, request selects best variant from the list od empty variants,
-     * IllegalArgumentException is thrown
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails PUT request is send, request selects best variant from the list od empty variants,
+    * IllegalArgumentException is thrown
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void selectVariantPutRequestTest() {
       Response response = client.target(generateURL("/SelectVariantTestPut")).request()
@@ -93,9 +93,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails GET request is send, test that variant is selected and response contains proper headers
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails GET request is send, test that variant is selected and response contains proper headers
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void selectVariantResponseVaryTest() {
       Response response = client.target(generateURL("/SelectVariantTestResponse")).request()
@@ -113,9 +113,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Tests that variant preferred by client request by Accept-Language is selected
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that variant preferred by client request by Accept-Language is selected
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLanguageEn() throws Exception {
       Response response = client.target(generateURL("/")).request().acceptLanguage("en").get();
@@ -126,10 +126,10 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Tests that given wildcard client request by Accept-Language header returns some concrete language
-     * header in the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that given wildcard client request by Accept-Language header returns some concrete language
+    * header in the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLanguageWildcard() throws Exception {
       Response response = client.target(generateURL("/")).request().acceptLanguage("*").get();
@@ -139,10 +139,10 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Tests that variant preferred by client request by Accept-Language is selected. Variant defined with
-     * Locale("pt", "BR")
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that variant preferred by client request by Accept-Language is selected. Variant defined with
+    * Locale("pt", "BR")
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLanguageSubLocal() throws Exception {
       Response response = client.target(generateURL("/brazil")).request()
@@ -153,9 +153,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Test that language variant which has 0 preference is not returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that language variant which has 0 preference is not returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLanguageZero() throws Exception {
       Response response = client.target(generateURL("/")).request()
@@ -165,9 +165,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Simple Get for with Accept-Language "zh". Lanfuage "zh" in the response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Simple Get for with Accept-Language "zh". Lanfuage "zh" in the response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLanguageZh() throws Exception {
       Response response = client.target(generateURL("/")).request().acceptLanguage("zh").get();
@@ -178,10 +178,10 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Tests client request with multiple Accept-language preferences, check the most preferred language
-     * is returned in the response
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests client request with multiple Accept-language preferences, check the most preferred language
+    * is returned in the response
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLanguageMultiple() throws Exception {
       Response response = client.target(generateURL("/")).request()
@@ -193,9 +193,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Verifies that a more specific media type is preferred.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verifies that a more specific media type is preferred.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetComplexAcceptLanguageEn() throws Exception {
       Response response = client.target(generateURL("/complex")).request()
@@ -209,9 +209,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Verifies that a more specific media type is preferred.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verifies that a more specific media type is preferred.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetComplexAcceptLanguageEnUs() throws Exception {
       Response response = client.target(generateURL("/complex")).request()
@@ -225,9 +225,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Test that expected variants are selected from list of multiple weighted content and language type.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that expected variants are selected from list of multiple weighted content and language type.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetComplexShuffleAcceptMedia() throws Exception {
       Response response = client.target(generateURL("/complex")).request()
@@ -241,10 +241,10 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails  Test that expected variants are selected from list of multiple weighted content and language type.
-     * en-us with preference
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails  Test that expected variants are selected from list of multiple weighted content and language type.
+    * en-us with preference
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetComplexAcceptLanguageEnUsWithPreference() throws Exception {
       Response response = client.target(generateURL("/complex")).request()
@@ -258,9 +258,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Tests client request which has accept header which cannot be served by server.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests client request which has accept header which cannot be served by server.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetComplexNotAcceptable() throws Exception {
       {
@@ -293,9 +293,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Tests client request with custom Accept-encoding
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests client request with custom Accept-encoding
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetEncodingCustomEnc1() throws Exception {
       Response response = client.target(generateURL("/encoding")).request()
@@ -308,9 +308,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Tests client request with custom Accept-encoding
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests client request with custom Accept-encoding
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetEncodingCustomEnc2() throws Exception {
       Response response = client.target(generateURL("/encoding")).request()
@@ -323,9 +323,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Tests client request with custom Accept-encoding
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests client request with custom Accept-encoding
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetEncodingCustomEnc3() throws Exception {
       Response response = client.target(generateURL("/encoding")).request()
@@ -338,9 +338,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Tests client request with custom Accept-encoding with preference specified
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests client request with custom Accept-encoding with preference specified
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetEncodingCustomPreference() throws Exception {
       Response response = client.target(generateURL("/encoding")).request()
@@ -353,9 +353,9 @@ public class VariantsTest {
    }
 
    /**
-     * @tpTestDetails Tests client request with custom Accept-encoding with preference specified
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests client request with custom Accept-encoding with preference specified
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetEncodingCustomPreferenceZero() throws Exception {
       Response response = client.target(generateURL("/encoding")).request()

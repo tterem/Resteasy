@@ -26,11 +26,11 @@ import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails EJB, Events and RESTEasy integration test.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails EJB, Events and RESTEasy integration test.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class EJBEventsTest {
    @Inject
@@ -56,9 +56,9 @@ public class EJBEventsTest {
    }
 
    /**
-     * @tpTestDetails Invokes additional methods of JAX-RS resource as local EJB.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Invokes additional methods of JAX-RS resource as local EJB.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAsLocalEJB() throws Exception {
       log.info("entering testAsLocalEJB()");

@@ -19,11 +19,11 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
-   * A JAXBXmlRootElementProvider.
-   *
-   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
-   * @version $Revision:$
-   */
+ * A JAXBXmlRootElementProvider.
+ *
+ * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+ * @version $Revision:$
+ */
 @Provider
 @Produces({"application/xml", "application/*+xml", "text/xml", "text/*+xml"})
 @Consumes({"application/xml", "application/*+xml", "text/xml", "text/*+xml"})

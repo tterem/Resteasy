@@ -27,11 +27,11 @@ import static org.junit.Assert.assertEquals;
 
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1008
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1008
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CDIValidationSessionBeanTest {
@@ -48,9 +48,9 @@ public class CDIValidationSessionBeanTest {
    }
 
    /**
-     * @tpTestDetails Check for invalid parameter
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check for invalid parameter
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInvalidParam() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

@@ -21,11 +21,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for custom ContextProvider preference.
-   * @tpSince RESTEasy 3.1.2.Final
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for custom ContextProvider preference.
+ * @tpSince RESTEasy 3.1.2.Final
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CustomContextProviderPreferenceTest {
@@ -54,9 +54,9 @@ public class CustomContextProviderPreferenceTest {
    }
 
    /**
-     * @tpTestDetails Client test: RESTEASY-1609
-     * @tpSince RESTEasy 3.1.2.Final
-     */
+    * @tpTestDetails Client test: RESTEASY-1609
+    * @tpSince RESTEasy 3.1.2.Final
+    */
    @Test
    public void testCustomContextProviderPreference() throws Exception {
       Response response = client.target(generateURL("/test")).request().get();

@@ -15,11 +15,11 @@ import java.lang.reflect.ReflectPermission;
 import java.util.PropertyPermission;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for injecting of Application
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for injecting of Application
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class ApplicationInjectionTest {
 
@@ -35,9 +35,9 @@ public class ApplicationInjectionTest {
    }
 
    /**
-     * @tpTestDetails Injected application instance should not be null.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Injected application instance should not be null.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAppInjection() throws Exception {
       Assert.assertEquals("Wrong count of initialized applications", 1, ApplicationInjection.instances.size());

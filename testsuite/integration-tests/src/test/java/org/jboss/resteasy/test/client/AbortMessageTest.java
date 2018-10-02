@@ -27,11 +27,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpTestCaseDetails RESTEASY-1540
-   * @tpSince RESTEasy 3.1.0.Final
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpTestCaseDetails RESTEASY-1540
+ * @tpSince RESTEasy 3.1.0.Final
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 @Category({NotForForwardCompatibility.class})
@@ -63,9 +63,9 @@ public class AbortMessageTest {
    }
 
    /**
-     * @tpTestDetails Send response with "Aborted"
-     * @tpSince RESTEasy 3.1.0.Final
-     */
+    * @tpTestDetails Send response with "Aborted"
+    * @tpSince RESTEasy 3.1.0.Final
+    */
    @Test
    public void testAbort() throws UnsupportedEncodingException {
       WebTarget target = client.target(generateURL("/showproblem"));

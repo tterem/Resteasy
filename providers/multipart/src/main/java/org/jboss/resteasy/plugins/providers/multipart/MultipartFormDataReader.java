@@ -17,9 +17,9 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @Consumes("multipart/form-data")
 public class MultipartFormDataReader implements MessageBodyReader<MultipartFormDataInput>

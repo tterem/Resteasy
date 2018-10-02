@@ -5,12 +5,12 @@ import org.jboss.logging.Logger;
 import org.jboss.logging.annotations.MessageLogger;
 
 /**
-   * 
-   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
-   * @version $Revision: 1.1 $
-   *
-   * Copyright January 6, 2016
-   */
+ * 
+ * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+ * @version $Revision: 1.1 $
+ *
+ * Copyright January 6, 2016
+ */
 @MessageLogger(projectCode = "RESTEASY")
 public interface LogMessages extends BasicLogger
 {

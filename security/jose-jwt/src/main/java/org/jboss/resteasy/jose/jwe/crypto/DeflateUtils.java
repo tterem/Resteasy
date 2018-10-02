@@ -11,33 +11,33 @@ import java.util.zip.InflaterInputStream;
 
 
 /**
-   * Deflate (RFC 1951) utilities.
-   *
-   * @author Vladimir Dzhuvinov
-   * @version $version$ (2013-04-16)
-   */
+ * Deflate (RFC 1951) utilities.
+ *
+ * @author Vladimir Dzhuvinov
+ * @version $version$ (2013-04-16)
+ */
 public class DeflateUtils
 {
 
 
    /**
-   * Omit headers and CRC fields from output, as specified by RFC 1950.
-   * Note that the Deflater JavaDocs are incorrect, see
-   * http://stackoverflow.com/questions/11076060/decompressing-gzipped-data-with-inflater-in-java
-   */
+    * Omit headers and CRC fields from output, as specified by RFC 1950.
+    * Note that the Deflater JavaDocs are incorrect, see
+    * http://stackoverflow.com/questions/11076060/decompressing-gzipped-data-with-inflater-in-java
+    */
    private static final boolean NOWRAP = true;
 
 
    /**
-   * Compresses the specified byte array according to the DEFLATE
-   * specification (RFC 1951).
-   *
-   * @param bytes The byte array to compress. Must not be {@code null}.
-   *
-   * @return The compressed bytes.
-   *
-   * @throws java.io.IOException If compression failed.
-   */
+    * Compresses the specified byte array according to the DEFLATE
+    * specification (RFC 1951).
+    *
+    * @param bytes The byte array to compress. Must not be {@code null}.
+    *
+    * @return The compressed bytes.
+    *
+    * @throws java.io.IOException If compression failed.
+    */
    public static byte[] compress(final byte[] bytes)
       throws IOException {
 
@@ -52,15 +52,15 @@ public class DeflateUtils
 
 
    /**
-   * Decompresses the specified byte array according to the DEFLATE
-   * specification (RFC 1951).
-   *
-   * @param bytes The byte array to decompress. Must not be {@code null}.
-   *
-   * @return The decompressed bytes.
-   *
-   * @throws java.io.IOException If decompression failed.
-   */
+    * Decompresses the specified byte array according to the DEFLATE
+    * specification (RFC 1951).
+    *
+    * @param bytes The byte array to decompress. Must not be {@code null}.
+    *
+    * @return The decompressed bytes.
+    *
+    * @throws java.io.IOException If decompression failed.
+    */
    public static byte[] decompress(final byte[] bytes)
       throws IOException {
 
@@ -85,8 +85,8 @@ public class DeflateUtils
 
 
    /**
-   * Prevents public instantiation.
-   */
+    * Prevents public instantiation.
+    */
    private DeflateUtils() {
 
    }

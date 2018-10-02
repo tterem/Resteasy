@@ -35,12 +35,12 @@ public interface GenericSuperInterfaceDataCentersResource {
    Response remove(@PathParam("id") String id, GenericSuperInterfaceAction action);
 
    /**
-     * Sub-resource locator method, returns individual GenericSuperInterfaceDataCenterResource on which the
-     * remainder of the URI is dispatched.
-     *
-     * @param id the GenericSuperInterfaceDataCenter ID
-     * @return matching subresource if found
-     */
+    * Sub-resource locator method, returns individual GenericSuperInterfaceDataCenterResource on which the
+    * remainder of the URI is dispatched.
+    *
+    * @param id the GenericSuperInterfaceDataCenter ID
+    * @return matching subresource if found
+    */
    @Path("{id}")
    GenericSuperInterfaceDataCenterResource getDataCenterSubResource(@PathParam("id") String id);
 }

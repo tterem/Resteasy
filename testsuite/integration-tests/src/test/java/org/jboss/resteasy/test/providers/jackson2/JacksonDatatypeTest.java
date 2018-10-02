@@ -35,11 +35,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * @tpSubChapter Jackson2 provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for WFLY-5916. Integration tests for jackson-datatype-jsr310 and jackson-datatype-jdk8 modules
-   * @tpSince RESTEasy 3.1.0.CR3
-   */
+ * @tpSubChapter Jackson2 provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for WFLY-5916. Integration tests for jackson-datatype-jsr310 and jackson-datatype-jdk8 modules
+ * @tpSince RESTEasy 3.1.0.CR3
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JacksonDatatypeTest {
@@ -91,9 +91,9 @@ public class JacksonDatatypeTest {
    }
 
    /**
-     * @tpTestDetails Check string type without datatype supported
-     * @tpSince RESTEasy 3.1.0.CR3
-     */
+    * @tpTestDetails Check string type without datatype supported
+    * @tpSince RESTEasy 3.1.0.CR3
+    */
    @Test
    public void testDatatypeNotSupportedString() throws Exception {
       String strResponse = requestHelper("string", DEFAULT_DEPLOYMENT);
@@ -101,9 +101,9 @@ public class JacksonDatatypeTest {
    }
 
    /**
-     * @tpTestDetails Check date type without datatype supported
-     * @tpSince RESTEasy 3.1.0.CR3
-     */
+    * @tpTestDetails Check date type without datatype supported
+    * @tpSince RESTEasy 3.1.0.CR3
+    */
    @Test
    public void testDatatypeNotSupportedDate() throws Exception {
       String strResponse = requestHelper("date", DEFAULT_DEPLOYMENT);
@@ -111,9 +111,9 @@ public class JacksonDatatypeTest {
    }
 
    /**
-     * @tpTestDetails Check duration type without datatype supported
-     * @tpSince RESTEasy 3.1.0.CR3
-     */
+    * @tpTestDetails Check duration type without datatype supported
+    * @tpSince RESTEasy 3.1.0.CR3
+    */
    @Test
    public void testDatatypeNotSupportedDuration() throws Exception {
       String strResponse = requestHelper("duration", DEFAULT_DEPLOYMENT);
@@ -121,9 +121,9 @@ public class JacksonDatatypeTest {
    }
 
    /**
-     * @tpTestDetails Check null optional type without datatype supported
-     * @tpSince RESTEasy 3.1.0.CR3
-     */
+    * @tpTestDetails Check null optional type without datatype supported
+    * @tpSince RESTEasy 3.1.0.CR3
+    */
    @Test
    @Category({ExpectedFailingOnWildFly13.class})
    public void testDatatypeNotSupportedOptionalNull() throws Exception {
@@ -132,9 +132,9 @@ public class JacksonDatatypeTest {
    }
 
    /**
-     * @tpTestDetails Check not null optional type without datatype supported
-     * @tpSince RESTEasy 3.1.0.CR3
-     */
+    * @tpTestDetails Check not null optional type without datatype supported
+    * @tpSince RESTEasy 3.1.0.CR3
+    */
    @Test
    public void testDatatypeNotSupportedOptionalNotNull() throws Exception {
       String strResponse = requestHelper("optional/false", DEFAULT_DEPLOYMENT);
@@ -142,9 +142,9 @@ public class JacksonDatatypeTest {
    }
 
    /**
-     * @tpTestDetails Check string type with datatype supported
-     * @tpSince RESTEasy 3.1.0.CR3
-     */
+    * @tpTestDetails Check string type with datatype supported
+    * @tpSince RESTEasy 3.1.0.CR3
+    */
    @Test
    public void testDatatypeSupportedString() throws Exception {
       String strResponse = requestHelper("string", DEPLOYMENT_WITH_DATATYPE);
@@ -152,9 +152,9 @@ public class JacksonDatatypeTest {
    }
 
    /**
-     * @tpTestDetails Check date type with datatype supported
-     * @tpSince RESTEasy 3.1.0.CR3
-     */
+    * @tpTestDetails Check date type with datatype supported
+    * @tpSince RESTEasy 3.1.0.CR3
+    */
    @Test
    public void testDatatypeSupportedDate() throws Exception {
       String strResponse = requestHelper("date", DEPLOYMENT_WITH_DATATYPE);
@@ -162,9 +162,9 @@ public class JacksonDatatypeTest {
    }
 
    /**
-     * @tpTestDetails Check duration type with datatype supported
-     * @tpSince RESTEasy 3.1.0.CR3
-     */
+    * @tpTestDetails Check duration type with datatype supported
+    * @tpSince RESTEasy 3.1.0.CR3
+    */
    @Test
    public void testDatatypeSupportedDuration() throws Exception {
       String strResponse = requestHelper("duration", DEPLOYMENT_WITH_DATATYPE);
@@ -172,9 +172,9 @@ public class JacksonDatatypeTest {
    }
 
    /**
-     * @tpTestDetails Check null optional type with datatype supported
-     * @tpSince RESTEasy 3.1.0.CR3
-     */
+    * @tpTestDetails Check null optional type with datatype supported
+    * @tpSince RESTEasy 3.1.0.CR3
+    */
    @Test
    public void testDatatypeSupportedOptionalNull() throws Exception {
       String strResponse = requestHelper("optional/true", DEPLOYMENT_WITH_DATATYPE);
@@ -182,9 +182,9 @@ public class JacksonDatatypeTest {
    }
 
    /**
-     * @tpTestDetails Check not null optional type with datatype supported
-     * @tpSince RESTEasy 3.1.0.CR3
-     */
+    * @tpTestDetails Check not null optional type with datatype supported
+    * @tpSince RESTEasy 3.1.0.CR3
+    */
    @Test
    public void testDatatypeSupportedOptionalNotNull() throws Exception {
       String strResponse = requestHelper("optional/false", DEPLOYMENT_WITH_DATATYPE);

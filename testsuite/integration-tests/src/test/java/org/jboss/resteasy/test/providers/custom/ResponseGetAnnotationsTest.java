@@ -26,10 +26,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResponseGetAnnotationsTest {
@@ -59,12 +59,12 @@ public class ResponseGetAnnotationsTest {
    }
 
    /**
-     * @tpTestDetails Client registers it's own instance of Date MessageBodyReader and MessageBodyWriter. Server gets
-     * registered provider to Read and Write responses with Date and Annotations objects. Client sends POST request with
-     * Date entity and expects response with Date and Annotations from a test class.
-     * @tpPassCrit The date and annotations are present in the response
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client registers it's own instance of Date MessageBodyReader and MessageBodyWriter. Server gets
+    * registered provider to Read and Write responses with Date and Annotations objects. Client sends POST request with
+    * Date entity and expects response with Date and Annotations from a test class.
+    * @tpPassCrit The date and annotations are present in the response
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetAnnotations() {
       Date date = Calendar.getInstance().getTime();

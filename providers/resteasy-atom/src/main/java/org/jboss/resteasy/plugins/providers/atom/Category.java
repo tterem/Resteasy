@@ -7,25 +7,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.net.URI;
 
 /**
-   * <p>Per RFC4287:</p>
-   * <pre>
-   *  The "atom:category" element conveys information about a category
-   *  associated with an entry or feed.  This specification assigns no
-   *  meaning to the content (if any) of this element.
-   *
-   *  atomCategory =
-   *     element atom:category {
-   *        atomCommonAttributes,
-   *        attribute term { text },
-   *        attribute scheme { atomUri }?,
-   *        attribute label { text }?,
-   *        undefinedContent
-   *     }
-   * </pre>
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * <p>Per RFC4287:</p>
+ * <pre>
+ *  The "atom:category" element conveys information about a category
+ *  associated with an entry or feed.  This specification assigns no
+ *  meaning to the content (if any) of this element.
+ *
+ *  atomCategory =
+ *     element atom:category {
+ *        atomCommonAttributes,
+ *        attribute term { text },
+ *        attribute scheme { atomUri }?,
+ *        attribute label { text }?,
+ *        undefinedContent
+ *     }
+ * </pre>
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @XmlRootElement(name = "category")
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class Category extends CommonAttributes

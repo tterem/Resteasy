@@ -50,11 +50,11 @@ import java.security.cert.X509Certificate;
 import java.util.Base64;
 
 /**
-   * @tpSubChapter Crypto
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for response secured by BouncyCastleProvider
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Crypto
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for response secured by BouncyCastleProvider
+ * @tpSince RESTEasy 3.0.16
+ */
 @SuppressWarnings(value = "unchecked")
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -102,9 +102,9 @@ public class CryptoTest {
    }
 
    /**
-     * @tpTestDetails Check signed output
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check signed output
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSignedOutput() throws Exception {
       Response res = client.target(generateURL("/smime/signed")).request().get();
@@ -120,9 +120,9 @@ public class CryptoTest {
    }
 
    /**
-     * @tpTestDetails Check PKCS7 signed output
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check PKCS7 signed output
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPKCS7SignedOutput() throws Exception {
       Response res = client.target(generateURL("/smime/pkcs7-signature")).request().get();
@@ -134,9 +134,9 @@ public class CryptoTest {
    }
 
    /**
-     * @tpTestDetails Check PKCS7 signed text output
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check PKCS7 signed text output
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPKCS7SignedTextOutput() throws Exception {
       Response res = client.target(generateURL("/smime/pkcs7-signature/text")).request().get();
@@ -156,9 +156,9 @@ public class CryptoTest {
    }
 
    /**
-     * @tpTestDetails Check encrypted output
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check encrypted output
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncryptedOutput() throws Exception {
       Response res = client.target(generateURL("/smime/encrypted")).request().get();
@@ -173,9 +173,9 @@ public class CryptoTest {
    }
 
    /**
-     * @tpTestDetails Check write encrypted signed output to file
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check write encrypted signed output to file
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncryptedSignedOutputToFile() throws Exception {
       Response res = client.target(generateURL("/smime/encrypted/signed")).request().get();
@@ -193,9 +193,9 @@ public class CryptoTest {
    }
 
    /**
-     * @tpTestDetails Check encrypted signed output
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check encrypted signed output
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncryptedSignedOutput() throws Exception {
       try {
@@ -214,9 +214,9 @@ public class CryptoTest {
    }
 
    /**
-     * @tpTestDetails Check encrypted input
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check encrypted input
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncryptedInput() throws Exception {
       EnvelopedOutput output = new EnvelopedOutput("input", "text/plain");
@@ -227,9 +227,9 @@ public class CryptoTest {
    }
 
    /**
-     * @tpTestDetails Check encrypted signed input
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check encrypted signed input
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncryptedSignedInput() throws Exception {
       SignedOutput signed = new SignedOutput("input", "text/plain");
@@ -243,9 +243,9 @@ public class CryptoTest {
    }
 
    /**
-     * @tpTestDetails Check signed input
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check signed input
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSignedInput() throws Exception {
       SignedOutput output = new SignedOutput("input", "text/plain");
@@ -271,8 +271,8 @@ public class CryptoTest {
    }
 
    /**
-     * Read the object from Base64 string.
-     */
+    * Read the object from Base64 string.
+    */
    private static Object fromString(String s) throws IOException,
             ClassNotFoundException {
       byte[] data = Base64.getDecoder().decode(s);
@@ -284,8 +284,8 @@ public class CryptoTest {
    }
 
    /**
-     * Write the object to a Base64 string.
-     */
+    * Write the object to a Base64 string.
+    */
    private static String toString(Serializable o) throws IOException {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       ObjectOutputStream oos = new ObjectOutputStream(baos);

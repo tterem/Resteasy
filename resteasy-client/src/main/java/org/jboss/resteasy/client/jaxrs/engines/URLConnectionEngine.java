@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
-   * @author <a href="mailto:alexey.ogarkov@gmail.com">Alexey Ogarkov</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:alexey.ogarkov@gmail.com">Alexey Ogarkov</a>
+ * @version $Revision: 1 $
+ */
 public class URLConnectionEngine implements ClientHttpEngine
 {
 
@@ -32,8 +32,8 @@ public class URLConnectionEngine implements ClientHttpEngine
    protected HostnameVerifier hostnameVerifier;
 
    /**
-     * {@inheritDoc}
-     */
+    * {@inheritDoc}
+    */
    @Override
    public Response invoke(Invocation inv)
    {
@@ -118,11 +118,11 @@ public class URLConnectionEngine implements ClientHttpEngine
    }
 
    /**
-     * Create map with response headers.
-     *
-     * @param connection - HttpURLConnection
-     * @return map key - list of values
-     */
+    * Create map with response headers.
+    *
+    * @param connection - HttpURLConnection
+    * @return map key - list of values
+    */
    protected MultivaluedMap<String, String> getHeaders(
          final HttpURLConnection connection)
    {
@@ -149,11 +149,11 @@ public class URLConnectionEngine implements ClientHttpEngine
    }
 
    /**
-     * Create HttpUrlConnection from ClientInvorcation and set request method.
-     * @param request ClientInvocation
-     * @return HttpURLConnection with method {@literal &} url already set
-     * @throws IOException if url or io exceptions
-     */
+    * Create HttpUrlConnection from ClientInvorcation and set request method.
+    * @param request ClientInvocation
+    * @return HttpURLConnection with method {@literal &} url already set
+    * @throws IOException if url or io exceptions
+    */
    protected HttpURLConnection createConnection(final ClientInvocation request) throws IOException
    {
       HttpURLConnection connection = (HttpURLConnection) request.getUri().toURL().openConnection();
@@ -163,11 +163,11 @@ public class URLConnectionEngine implements ClientHttpEngine
    }
 
    /**
-     * Execute request using HttpURLConnection with body from invocation if needed.
-     *
-     * @param request ClientInvocation
-     * @param connection HttpURLConnection
-     */
+    * Execute request using HttpURLConnection with body from invocation if needed.
+    *
+    * @param request ClientInvocation
+    * @param connection HttpURLConnection
+    */
    protected void executeRequest(final ClientInvocation request, HttpURLConnection connection)
    {
       connection.setInstanceFollowRedirects(request.getMethod().equals("GET"));
@@ -202,10 +202,10 @@ public class URLConnectionEngine implements ClientHttpEngine
    }
 
    /**
-     * Add headers to HttpURLConnection from ClientInvocation. Should be executed before writing body.
-     * @param request ClientInvocation
-     * @param connection HttpURLConnection
-     */
+    * Add headers to HttpURLConnection from ClientInvocation. Should be executed before writing body.
+    * @param request ClientInvocation
+    * @param connection HttpURLConnection
+    */
    protected void commitHeaders(ClientInvocation request, HttpURLConnection connection)
    {
       MultivaluedMap<String, String> headers = request.getHeaders().asMap();
@@ -220,8 +220,8 @@ public class URLConnectionEngine implements ClientHttpEngine
    }
 
    /**
-     * {inheritDoc}
-     */
+    * {inheritDoc}
+    */
    @Override
    public SSLContext getSslContext()
    {
@@ -229,8 +229,8 @@ public class URLConnectionEngine implements ClientHttpEngine
    }
 
    /**
-     * {inheritDoc}
-     */
+    * {inheritDoc}
+    */
    @Override
    public HostnameVerifier getHostnameVerifier()
    {

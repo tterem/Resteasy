@@ -6,8 +6,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
-   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
-   */
+ * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+ */
 public interface Book {
    @GET
    @Path("/title")

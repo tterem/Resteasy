@@ -42,13 +42,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Parameters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for RESTEasy extended support for multivalue @*Param (RESTEASY-1566 + RESTEASY-1746)
-   *                    java.util.Date class is used
-   *                    Client Proxy is used
-   * @tpSince RESTEasy 4.0.0
-   */
+ * @tpSubChapter Parameters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for RESTEasy extended support for multivalue @*Param (RESTEASY-1566 + RESTEASY-1746)
+ *                    java.util.Date class is used
+ *                    Client Proxy is used
+ * @tpSince RESTEasy 4.0.0
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MultiValuedParamDateProxyTest {
@@ -87,9 +87,9 @@ public class MultiValuedParamDateProxyTest {
    String expectedResponse = date1 + "," + date2 + "," + date3;
 
    /**
-     * @tpTestDetails QueryParam test
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails QueryParam test
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testQueryParam() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -116,9 +116,9 @@ public class MultiValuedParamDateProxyTest {
     
 
    /**
-     * @tpTestDetails HeaderParam test
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails HeaderParam test
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testHeaderParam() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -144,9 +144,9 @@ public class MultiValuedParamDateProxyTest {
    }
     
    /**
-     * @tpTestDetails MatrixParam test
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails MatrixParam test
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testMatrixParam() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -172,9 +172,9 @@ public class MultiValuedParamDateProxyTest {
    }
 
    /**
-     * @tpTestDetails CoookieParam test
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails CoookieParam test
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testCookieParam() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -200,9 +200,9 @@ public class MultiValuedParamDateProxyTest {
    }
     
    /**
-     * @tpTestDetails FormParam test
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails FormParam test
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testFormParam() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -229,9 +229,9 @@ public class MultiValuedParamDateProxyTest {
    }
     
    /**
-     * @tpTestDetails PathParam test
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails PathParam test
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testPathParam() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

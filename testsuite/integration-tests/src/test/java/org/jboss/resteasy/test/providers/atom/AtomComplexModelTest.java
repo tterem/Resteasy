@@ -57,11 +57,11 @@ import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
-   * @tpSubChapter Atom provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Check complex model with Atom Provider
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Atom provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Check complex model with Atom Provider
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AtomComplexModelTest {
@@ -110,9 +110,9 @@ public class AtomComplexModelTest {
    }
 
    /**
-     * @tpTestDetails Check complex type
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check complex type
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testComplexType() throws Exception {
       URI baseUri = new URI("resteasy-test");
@@ -158,10 +158,10 @@ public class AtomComplexModelTest {
    }
 
    /**
-     * @tpTestDetails Check new client
-     * @tpInfo Not for forward compatibility due to 3.1.0.Final, see the migration notes
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check new client
+    * @tpInfo Not for forward compatibility due to 3.1.0.Final, see the migration notes
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testNewClient() throws Exception {

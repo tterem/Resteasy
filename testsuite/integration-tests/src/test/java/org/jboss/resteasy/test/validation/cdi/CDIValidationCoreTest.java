@@ -30,11 +30,11 @@ import javax.ws.rs.client.Invocation;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1008
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1008
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CDIValidationCoreTest {
@@ -57,9 +57,9 @@ public class CDIValidationCoreTest {
    }
 
    /**
-     * @tpTestDetails Check validation with all valid parameters
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check validation with all valid parameters
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAllValid() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -71,9 +71,9 @@ public class CDIValidationCoreTest {
    }
 
    /**
-     * @tpTestDetails Check validation with invalid inputs
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check validation with invalid inputs
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInputsInvalid() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -94,9 +94,9 @@ public class CDIValidationCoreTest {
    }
 
    /**
-     * @tpTestDetails Check validation with invalid return value
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check validation with invalid return value
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testReturnValueInvalid() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -111,9 +111,9 @@ public class CDIValidationCoreTest {
    }
 
    /**
-     * @tpTestDetails Check validation with valid locators
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check validation with valid locators
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLocatorAllValid() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -125,9 +125,9 @@ public class CDIValidationCoreTest {
    }
 
    /**
-     * @tpTestDetails Check validation with invalid subparameters
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check validation with invalid subparameters
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLocatorInvalidSubparameter() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -142,9 +142,9 @@ public class CDIValidationCoreTest {
    }
 
    /**
-     * @tpTestDetails Check validation with locators and invalid return values
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check validation with locators and invalid return values
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLocatorInvalidReturnValue() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -159,9 +159,9 @@ public class CDIValidationCoreTest {
    }
 
    /**
-     * @tpTestDetails Check validation with invalid inputs and no executables
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check validation with invalid inputs and no executables
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInputsInvalidNoExecutableValidation() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -180,9 +180,9 @@ public class CDIValidationCoreTest {
    }
 
    /**
-     * @tpTestDetails Check validation with invalid inputs and no parameters are used
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check validation with invalid inputs and no parameters are used
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInputsInvalidNoParameters() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

@@ -90,13 +90,13 @@ public class JettyClientEngine implements AsyncClientHttpEngine {
    }
 
    /**
-     * Implementation note: due to lack of asynchronous message decoders the request must either be buffered,
-     * or it must have a {@code null} extractor and type parameter {@code <T>} must be {@link ClientResponse},
-     * which will read the data through its stream.  It is not possible to use the synchronous JAX-RS message
-     * decoding infrastructure without buffering or spinning up auxiliary threads (arguably more expensive than buffering).
-     *
-     * @see AsyncClientHttpEngine#submit(ClientInvocation, boolean, InvocationCallback, org.jboss.resteasy.client.jaxrs.engines.AsyncClientHttpEngine.ResultExtractor)
-     */
+    * Implementation note: due to lack of asynchronous message decoders the request must either be buffered,
+    * or it must have a {@code null} extractor and type parameter {@code <T>} must be {@link ClientResponse},
+    * which will read the data through its stream.  It is not possible to use the synchronous JAX-RS message
+    * decoding infrastructure without buffering or spinning up auxiliary threads (arguably more expensive than buffering).
+    *
+    * @see AsyncClientHttpEngine#submit(ClientInvocation, boolean, InvocationCallback, org.jboss.resteasy.client.jaxrs.engines.AsyncClientHttpEngine.ResultExtractor)
+    */
    @Override
    public <T> Future<T> submit(ClientInvocation invocation, boolean bufIn, InvocationCallback<T> callback, ResultExtractor<T> extractor) {
       final boolean buffered;

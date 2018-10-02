@@ -24,11 +24,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression tests for RESTEASY-263 and RESTEASY-274
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression tests for RESTEASY-263 and RESTEASY-274
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ScanTest {
@@ -54,9 +54,9 @@ public class ScanTest {
    }
 
    /**
-     * @tpTestDetails Test with new client
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test with new client
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNewClient() throws Exception {
       Response response = client.target(PortProviderUtil.generateURL("/test/doit", ScanTest.class.getSimpleName())).request().get();

@@ -4,9 +4,9 @@ import java.nio.charset.StandardCharsets;
 
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class BasicAuthHelper
 {
    public static String createHeader(String username, String password) 

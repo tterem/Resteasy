@@ -3,8 +3,8 @@ package org.jboss.resteasy.jsapi.testing.sub;
 import javax.ws.rs.Path;
 
 /**
-   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
-   */
+ * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+ */
 public class ChapterImpl implements Chapter {
    private final int number;
 

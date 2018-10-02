@@ -20,9 +20,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
-   * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
+ * @version $Revision: 1 $
+ */
 
 @SuppressWarnings("rawtypes")
 public class ResteasyView implements View

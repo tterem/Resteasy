@@ -21,11 +21,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for true value of resteasy.validation.suppress.path parameter
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for true value of resteasy.validation.suppress.path parameter
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationSurpressPathTrueTest extends ValidationSuppressPathTestBase {
@@ -44,18 +44,18 @@ public class ValidationSurpressPathTrueTest extends ValidationSuppressPathTestBa
    }
 
    /**
-     * @tpTestDetails Test input violations.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test input violations.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInputViolations() throws Exception {
       doTestInputViolations("*", "*", "*", "*");
    }
 
    /**
-     * @tpTestDetails Test return value violations.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test return value violations.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testReturnValues() throws Exception {
       doTestReturnValueViolations("*");

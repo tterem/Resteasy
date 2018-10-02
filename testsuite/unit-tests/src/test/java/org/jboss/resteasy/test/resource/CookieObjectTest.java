@@ -17,19 +17,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * @tpSubChapter Resource tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Set of tests for Cookie and NewCookie objects
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Set of tests for Cookie and NewCookie objects
+ * @tpSince RESTEasy 3.0.16
+ */
 public class CookieObjectTest {
 
    private static Logger logger = Logger.getLogger(CookieObjectTest.class);
 
    /**
-     * @tpTestDetails Create a version 0 Cookie instance by Parsing a String
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create a version 0 Cookie instance by Parsing a String
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testParse1() throws Exception {
       boolean pass = true;
@@ -46,9 +46,9 @@ public class CookieObjectTest {
    }
 
    /**
-     * @tpTestDetails Create a version 1 Cookie instance by Parsing a String
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create a version 1 Cookie instance by Parsing a String
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testParse2() throws Exception {
       boolean pass = true;
@@ -67,9 +67,9 @@ public class CookieObjectTest {
    }
 
    /**
-     * @tpTestDetails Test if correct exception is thrown when calling Cookie.valueOf(null)
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test if correct exception is thrown when calling Cookie.valueOf(null)
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testParse3() throws Exception {
 
@@ -81,9 +81,9 @@ public class CookieObjectTest {
    }
 
    /**
-     * @tpTestDetails Create a version 1 NewCookie instance by Parsing a String
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create a version 1 NewCookie instance by Parsing a String
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNewCookie1() throws Exception {
       boolean pass = true;
@@ -105,9 +105,9 @@ public class CookieObjectTest {
    }
 
    /**
-     * @tpTestDetails Create a version 1 NewCookie instance by Parsing a String
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create a version 1 NewCookie instance by Parsing a String
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNewCookie2() throws Exception {
       boolean pass = true;
@@ -130,9 +130,9 @@ public class CookieObjectTest {
    }
 
    /**
-     * @tpTestDetails Create a NewCookie instance by Parsing a null String. Verify that IllegalArgumentException is thrown.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create a NewCookie instance by Parsing a null String. Verify that IllegalArgumentException is thrown.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNewCookie3() throws Exception {
       try {
@@ -144,9 +144,9 @@ public class CookieObjectTest {
    }
 
    /**
-     * @tpTestDetails Create a version 1 NewCookie instance by Parsing a String
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create a version 1 NewCookie instance by Parsing a String
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNewCookie4() throws Exception {
       boolean pass = true;
@@ -352,10 +352,10 @@ public class CookieObjectTest {
    }
 
    /**
-     * @tpTestDetails Create an instance of Response using Response.ResponseBuilder.cookie(NewCookie).build()
-     * and verify that correct status code is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create an instance of Response using Response.ResponseBuilder.cookie(NewCookie).build()
+    * and verify that correct status code is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void cookieTest5() throws Exception {
       StringBuffer sb = new StringBuffer();
@@ -406,10 +406,10 @@ public class CookieObjectTest {
    }
 
    /**
-     * @tpTestDetails Create an instance of Response using Response.ResponseBuilder.header(String, Object).build()
-     * and verify that correct status code is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create an instance of Response using Response.ResponseBuilder.header(String, Object).build()
+    * and verify that correct status code is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testHeader() throws Exception {
       StringBuffer sb = new StringBuffer();

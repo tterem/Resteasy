@@ -28,10 +28,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 /**
-   * @tpSubChapter Jackson2 provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.1.0
-   */
+ * @tpSubChapter Jackson2 provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.1.0
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JacksonJsonViewTest {
@@ -86,11 +86,11 @@ public class JacksonJsonViewTest {
    private static ResteasyClient client;
 
    /**
-     * @tpTestDetails Tests Jackson JsonView with jaxr-rs
-     * @tpPassCrit The response entity contains correctly serialized values. Jax-rs resource doesn't contain JsonView annotation
-     * @tpInfo RESTEASY-1366, JBEAP-5435
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Tests Jackson JsonView with jaxr-rs
+    * @tpPassCrit The response entity contains correctly serialized values. Jax-rs resource doesn't contain JsonView annotation
+    * @tpInfo RESTEASY-1366, JBEAP-5435
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testJacksonProxyJsonViewTest() throws Exception {
@@ -102,11 +102,11 @@ public class JacksonJsonViewTest {
    }
 
    /**
-     * @tpTestDetails Tests Jackson JsonView with jaxr-rs
-     * @tpPassCrit The response entity contains correctly serialized values. Jax-rs resource contains JsonView annotation
-     * with TestJsonView interface
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Tests Jackson JsonView with jaxr-rs
+    * @tpPassCrit The response entity contains correctly serialized values. Jax-rs resource contains JsonView annotation
+    * with TestJsonView interface
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    public void testJacksonProxyJsonViewWithJasonViewTest() throws Exception {
       JacksonViewProxy proxy = client.target(generateURL("")).proxy(JacksonViewProxy.class);
@@ -117,11 +117,11 @@ public class JacksonJsonViewTest {
    }
 
    /**
-     * @tpTestDetails Tests Jackson JsonView with jaxr-rs
-     * @tpPassCrit The response entity contains correctly serialized values. Jax-rs resource contains JsonView annotation
-     * with TestJsonView2 interface
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Tests Jackson JsonView with jaxr-rs
+    * @tpPassCrit The response entity contains correctly serialized values. Jax-rs resource contains JsonView annotation
+    * with TestJsonView2 interface
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    @Category({ExpectedFailingOnWildFly13.class})
    public void testJacksonProxyJsonView2WithJasonViewTest() throws Exception {

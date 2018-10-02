@@ -23,9 +23,9 @@ import java.io.OutputStream;
 import java.io.Writer;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class FastinfoSetMarshaller implements Marshaller
 {
    private JAXBContext context;

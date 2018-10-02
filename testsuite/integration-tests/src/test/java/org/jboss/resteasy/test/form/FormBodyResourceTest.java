@@ -17,10 +17,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Form tests
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Form tests
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FormBodyResourceTest {
@@ -33,9 +33,9 @@ public class FormBodyResourceTest {
    }
 
    /**
-     * @tpTestDetails Check body of form.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check body of form.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

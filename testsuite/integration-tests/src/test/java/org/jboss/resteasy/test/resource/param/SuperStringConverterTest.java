@@ -25,14 +25,14 @@ import org.junit.runner.RunWith;
 
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Test for org.jboss.resteasy.spi.StringConverter class
-   *                    StringConverter is deprecated.
-   *                    See javax.ws.rs.ext.ParamConverter
-   *                    See org.jboss.resteasy.test.resource.param.ParamConverterTest
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Test for org.jboss.resteasy.spi.StringConverter class
+ *                    StringConverter is deprecated.
+ *                    See javax.ws.rs.ext.ParamConverter
+ *                    See org.jboss.resteasy.test.resource.param.ParamConverterTest
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SuperStringConverterTest {
@@ -56,9 +56,9 @@ public class SuperStringConverterTest {
    }
 
    /**
-     * @tpTestDetails Test converter on basic object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test converter on basic object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPerson() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -72,9 +72,9 @@ public class SuperStringConverterTest {
    }
 
    /**
-     * @tpTestDetails Test converter on object with override on "toString" method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test converter on object with override on "toString" method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCompany() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

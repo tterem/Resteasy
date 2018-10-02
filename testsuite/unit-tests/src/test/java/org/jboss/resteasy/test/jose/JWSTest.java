@@ -29,11 +29,11 @@ import java.security.KeyPairGenerator;
 import static org.hamcrest.CoreMatchers.containsString;
 
 /**
-   * @tpSubChapter Jose tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for JWS
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jose tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for JWS
+ * @tpSince RESTEasy 3.0.16
+ */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JWSTest {
    protected static final Logger logger = LogManager.getLogger(JWSTest.class.getName());
@@ -42,9 +42,9 @@ public class JWSTest {
    private static final String VERIFY_ERROR_MSG = "Wrong verification";
 
    /**
-     * @tpTestDetails Header serialization test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Header serialization test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testHeaderSerialization() throws Exception {
       ObjectMapper mapper = new ObjectMapper();
@@ -63,9 +63,9 @@ public class JWSTest {
    }
 
    /**
-     * @tpTestDetails Basic RSA test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic RSA test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRSA() throws Exception {
       KeyPair keyPair = KeyPairGenerator.getInstance("RSA").generateKeyPair();
@@ -84,9 +84,9 @@ public class JWSTest {
    }
 
    /**
-     * @tpTestDetails RSA with content type test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails RSA with content type test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRSAWithContentType() throws Exception {
       KeyPair keyPair = KeyPairGenerator.getInstance("RSA").generateKeyPair();
@@ -107,9 +107,9 @@ public class JWSTest {
    }
 
    /**
-     * @tpTestDetails HMAC with ContentType test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails HMAC with ContentType test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testHMACWithContentType() throws Exception {
       SecretKey key = KeyGenerator.getInstance(HMACProvider.getJavaAlgorithm(Algorithm.HS256)).generateKey();

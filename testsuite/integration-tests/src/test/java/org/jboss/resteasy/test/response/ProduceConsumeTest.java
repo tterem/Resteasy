@@ -29,10 +29,10 @@ import javax.ws.rs.core.Response;
 import java.math.BigDecimal;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ProduceConsumeTest {
@@ -62,11 +62,11 @@ public class ProduceConsumeTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request, server return empty successful response. Client parses the response
-     * and tries to read it as BigDecimal.class object.
-     * @tpPassCrit Instance of NoContentException is thrown
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request, server return empty successful response. Client parses the response
+    * and tries to read it as BigDecimal.class object.
+    * @tpPassCrit Instance of NoContentException is thrown
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmpty() {
       Response response = client.target(generateURL("/resource/empty")).request().get();
@@ -83,11 +83,11 @@ public class ProduceConsumeTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request, server return empty successful response. Client parses the response
-     * and tries to read it as Character.class object.
-     * @tpPassCrit Instance of NoContentException is thrown
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request, server return empty successful response. Client parses the response
+    * and tries to read it as Character.class object.
+    * @tpPassCrit Instance of NoContentException is thrown
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmptyCharacter() {
       Response response = client.target(generateURL("/resource/empty")).request().get();
@@ -104,11 +104,11 @@ public class ProduceConsumeTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request, server return empty successful response. Client parses the response
-     * and tries to read it as Integer.class object.
-     * @tpPassCrit Instance of NoContentException is thrown
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request, server return empty successful response. Client parses the response
+    * and tries to read it as Integer.class object.
+    * @tpPassCrit Instance of NoContentException is thrown
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmptyInteger() {
       Response response = client.target(generateURL("/resource/empty")).request().get();
@@ -125,11 +125,11 @@ public class ProduceConsumeTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request, server return empty successful response. Client parses the response
-     * and tries to read it as MultivaluedMap.class object.
-     * @tpPassCrit The returned MultivaluedMap object is null
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request, server return empty successful response. Client parses the response
+    * and tries to read it as MultivaluedMap.class object.
+    * @tpPassCrit The returned MultivaluedMap object is null
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmptyForm() {
       Response response = client.target(generateURL("/resource/empty")).request().get();
@@ -142,13 +142,13 @@ public class ProduceConsumeTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with entity of mediatype WILDCARD. The application has two providers to
-     * write and read Data object. One for mediatype text/plain and one wildcard provider. The server choses one provider
-     * and sends response back to the client
-     * @tpPassCrit The text/plain provider is chosen by the server, because if the request has wildcard mediatype,
-     * the most specific provider has to be chosen.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with entity of mediatype WILDCARD. The application has two providers to
+    * write and read Data object. One for mediatype text/plain and one wildcard provider. The server choses one provider
+    * and sends response back to the client
+    * @tpPassCrit The text/plain provider is chosen by the server, because if the request has wildcard mediatype,
+    * the most specific provider has to be chosen.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testWild() {
       client.register(ProduceConsumeTextData.class);

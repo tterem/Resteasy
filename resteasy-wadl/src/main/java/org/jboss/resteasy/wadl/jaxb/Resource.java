@@ -30,35 +30,35 @@ import org.w3c.dom.Element;
 
 
 /**
-   * <p>Java class for anonymous complex type.
-   * 
-   * <p>The following schema fragment specifies the expected content contained within this class.
-   * 
-   * <pre>
-   * &lt;complexType&gt;
-   *   &lt;complexContent&gt;
-   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
-   *       &lt;sequence&gt;
-   *         &lt;element ref="{http://wadl.dev.java.net/2009/02}doc" maxOccurs="unbounded" minOccurs="0"/&gt;
-   *         &lt;element ref="{http://wadl.dev.java.net/2009/02}param" maxOccurs="unbounded" minOccurs="0"/&gt;
-   *         &lt;choice maxOccurs="unbounded" minOccurs="0"&gt;
-   *           &lt;element ref="{http://wadl.dev.java.net/2009/02}method"/&gt;
-   *           &lt;element ref="{http://wadl.dev.java.net/2009/02}resource"/&gt;
-   *         &lt;/choice&gt;
-   *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
-   *       &lt;/sequence&gt;
-   *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}ID" /&gt;
-   *       &lt;attribute name="type" type="{http://wadl.dev.java.net/2009/02}resource_type_list" /&gt;
-   *       &lt;attribute name="queryType" type="{http://www.w3.org/2001/XMLSchema}string" default="application/x-www-form-urlencoded" /&gt;
-   *       &lt;attribute name="path" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
-   *       &lt;anyAttribute processContents='lax' namespace='##other'/&gt;
-   *     &lt;/restriction&gt;
-   *   &lt;/complexContent&gt;
-   * &lt;/complexType&gt;
-   * </pre>
-   * 
-   * 
-   */
+ * <p>Java class for anonymous complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element ref="{http://wadl.dev.java.net/2009/02}doc" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element ref="{http://wadl.dev.java.net/2009/02}param" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;choice maxOccurs="unbounded" minOccurs="0"&gt;
+ *           &lt;element ref="{http://wadl.dev.java.net/2009/02}method"/&gt;
+ *           &lt;element ref="{http://wadl.dev.java.net/2009/02}resource"/&gt;
+ *         &lt;/choice&gt;
+ *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}ID" /&gt;
+ *       &lt;attribute name="type" type="{http://wadl.dev.java.net/2009/02}resource_type_list" /&gt;
+ *       &lt;attribute name="queryType" type="{http://www.w3.org/2001/XMLSchema}string" default="application/x-www-form-urlencoded" /&gt;
+ *       &lt;attribute name="path" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;anyAttribute processContents='lax' namespace='##other'/&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
+ * </pre>
+ * 
+ * 
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
    "doc",
@@ -93,27 +93,27 @@ public class Resource {
    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
    /**
-     * Gets the value of the doc property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the doc property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getDoc().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Doc }
-     * 
-     * 
-     */
+    * Gets the value of the doc property.
+    * 
+    * <p>
+    * This accessor method returns a reference to the live list,
+    * not a snapshot. Therefore any modification you make to the
+    * returned list will be present inside the JAXB object.
+    * This is why there is not a <CODE>set</CODE> method for the doc property.
+    * 
+    * <p>
+    * For example, to add a new item, do as follows:
+    * <pre>
+    *    getDoc().add(newItem);
+    * </pre>
+    * 
+    * 
+    * <p>
+    * Objects of the following type(s) are allowed in the list
+    * {@link Doc }
+    * 
+    * 
+    */
    public List<Doc> getDoc() {
       if (doc == null) {
          doc = new ArrayList<Doc>();
@@ -122,27 +122,27 @@ public class Resource {
    }
 
    /**
-     * Gets the value of the param property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the param property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getParam().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Param }
-     * 
-     * 
-     */
+    * Gets the value of the param property.
+    * 
+    * <p>
+    * This accessor method returns a reference to the live list,
+    * not a snapshot. Therefore any modification you make to the
+    * returned list will be present inside the JAXB object.
+    * This is why there is not a <CODE>set</CODE> method for the param property.
+    * 
+    * <p>
+    * For example, to add a new item, do as follows:
+    * <pre>
+    *    getParam().add(newItem);
+    * </pre>
+    * 
+    * 
+    * <p>
+    * Objects of the following type(s) are allowed in the list
+    * {@link Param }
+    * 
+    * 
+    */
    public List<Param> getParam() {
       if (param == null) {
          param = new ArrayList<Param>();
@@ -151,28 +151,28 @@ public class Resource {
    }
 
    /**
-     * Gets the value of the methodOrResource property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the methodOrResource property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getMethodOrResource().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Method }
-     * {@link Resource }
-     * 
-     * 
-     */
+    * Gets the value of the methodOrResource property.
+    * 
+    * <p>
+    * This accessor method returns a reference to the live list,
+    * not a snapshot. Therefore any modification you make to the
+    * returned list will be present inside the JAXB object.
+    * This is why there is not a <CODE>set</CODE> method for the methodOrResource property.
+    * 
+    * <p>
+    * For example, to add a new item, do as follows:
+    * <pre>
+    *    getMethodOrResource().add(newItem);
+    * </pre>
+    * 
+    * 
+    * <p>
+    * Objects of the following type(s) are allowed in the list
+    * {@link Method }
+    * {@link Resource }
+    * 
+    * 
+    */
    public List<Object> getMethodOrResource() {
       if (methodOrResource == null) {
          methodOrResource = new ArrayList<Object>();
@@ -181,28 +181,28 @@ public class Resource {
    }
 
    /**
-     * Gets the value of the any property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the any property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getAny().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Element }
-     * {@link Object }
-     * 
-     * 
-     */
+    * Gets the value of the any property.
+    * 
+    * <p>
+    * This accessor method returns a reference to the live list,
+    * not a snapshot. Therefore any modification you make to the
+    * returned list will be present inside the JAXB object.
+    * This is why there is not a <CODE>set</CODE> method for the any property.
+    * 
+    * <p>
+    * For example, to add a new item, do as follows:
+    * <pre>
+    *    getAny().add(newItem);
+    * </pre>
+    * 
+    * 
+    * <p>
+    * Objects of the following type(s) are allowed in the list
+    * {@link Element }
+    * {@link Object }
+    * 
+    * 
+    */
    public List<Object> getAny() {
       if (any == null) {
          any = new ArrayList<Object>();
@@ -211,51 +211,51 @@ public class Resource {
    }
 
    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
+    * Gets the value of the id property.
+    * 
+    * @return
+    *     possible object is
+    *     {@link String }
+    *     
+    */
    public String getId() {
       return id;
    }
 
    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
+    * Sets the value of the id property.
+    * 
+    * @param value
+    *     allowed object is
+    *     {@link String }
+    *     
+    */
    public void setId(String value) {
       this.id = value;
    }
 
    /**
-     * Gets the value of the type property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the type property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getType().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * 
-     * 
-     */
+    * Gets the value of the type property.
+    * 
+    * <p>
+    * This accessor method returns a reference to the live list,
+    * not a snapshot. Therefore any modification you make to the
+    * returned list will be present inside the JAXB object.
+    * This is why there is not a <CODE>set</CODE> method for the type property.
+    * 
+    * <p>
+    * For example, to add a new item, do as follows:
+    * <pre>
+    *    getType().add(newItem);
+    * </pre>
+    * 
+    * 
+    * <p>
+    * Objects of the following type(s) are allowed in the list
+    * {@link String }
+    * 
+    * 
+    */
    public List<String> getType() {
       if (type == null) {
          type = new ArrayList<String>();
@@ -264,13 +264,13 @@ public class Resource {
    }
 
    /**
-     * Gets the value of the queryType property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
+    * Gets the value of the queryType property.
+    * 
+    * @return
+    *     possible object is
+    *     {@link String }
+    *     
+    */
    public String getQueryType() {
       if (queryType == null) {
          return "application/x-www-form-urlencoded";
@@ -280,55 +280,55 @@ public class Resource {
    }
 
    /**
-     * Sets the value of the queryType property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
+    * Sets the value of the queryType property.
+    * 
+    * @param value
+    *     allowed object is
+    *     {@link String }
+    *     
+    */
    public void setQueryType(String value) {
       this.queryType = value;
    }
 
    /**
-     * Gets the value of the path property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
+    * Gets the value of the path property.
+    * 
+    * @return
+    *     possible object is
+    *     {@link String }
+    *     
+    */
    public String getPath() {
       return path;
    }
 
    /**
-     * Sets the value of the path property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
+    * Sets the value of the path property.
+    * 
+    * @param value
+    *     allowed object is
+    *     {@link String }
+    *     
+    */
    public void setPath(String value) {
       this.path = value;
    }
 
    /**
-     * Gets a map that contains attributes that aren't bound to any typed property on this class.
-     * 
-     * <p>
-     * the map is keyed by the name of the attribute and 
-     * the value is the string value of the attribute.
-     * 
-     * the map returned by this method is live, and you can add new attribute
-     * by updating the map directly. Because of this design, there's no setter.
-     * 
-     * 
-     * @return
-     *     always non-null
-     */
+    * Gets a map that contains attributes that aren't bound to any typed property on this class.
+    * 
+    * <p>
+    * the map is keyed by the name of the attribute and 
+    * the value is the string value of the attribute.
+    * 
+    * the map returned by this method is live, and you can add new attribute
+    * by updating the map directly. Because of this design, there's no setter.
+    * 
+    * 
+    * @return
+    *     always non-null
+    */
    public Map<QName, String> getOtherAttributes() {
       return otherAttributes;
    }

@@ -25,11 +25,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for custom Application class
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for custom Application class
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ApplicationConfigTest {
@@ -66,9 +66,9 @@ public class ApplicationConfigTest {
    }
 
    /**
-     * @tpTestDetails Test base resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test base resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIt() {
       basicTest(generateURL("/my"), "\"hello\"");
@@ -76,27 +76,27 @@ public class ApplicationConfigTest {
    }
 
    /**
-     * @tpTestDetails Injection test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Injection test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFieldInjection() {
       basicTest(generateURL("/injection/field"), "true");
    }
 
    /**
-     * @tpTestDetails Setter injection test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Setter injection test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSetterInjection() {
       basicTest(generateURL("/injection/setter"), "true");
    }
 
    /**
-     * @tpTestDetails Setter injection test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Setter injection test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testConstructorInjection() {
       basicTest(generateURL("/injection/constructor"), "true");

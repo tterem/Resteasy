@@ -27,10 +27,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CharSetTest {
@@ -61,11 +61,11 @@ public class CharSetTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with jaxb annotated object entity and the targeted resource receives jaxb
-     * object with corect encoding.
-     * @tpPassCrit The jaxb object xml element is same as original
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with jaxb annotated object entity and the targeted resource receives jaxb
+    * object with corect encoding.
+    * @tpPassCrit The jaxb object xml element is same as original
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testReceiveJaxbObjectAsItis() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/test/string"));
@@ -78,11 +78,11 @@ public class CharSetTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with jaxb annotated object entity and the targeted resource receives
-     * xml string.
-     * @tpPassCrit Jaxb object is unmarshalled to the expected xml string with correct encoding
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with jaxb annotated object entity and the targeted resource receives
+    * xml string.
+    * @tpPassCrit Jaxb object is unmarshalled to the expected xml string with correct encoding
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testReceiveJaxbObjectAsString() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/test"));

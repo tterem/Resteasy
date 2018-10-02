@@ -24,10 +24,10 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ProviderContextInjectionTest {
@@ -58,11 +58,11 @@ public class ProviderContextInjectionTest {
    }
 
    /**
-     * @tpTestDetails Providers are injected into Resource with @Context injection. The resource gets ContextResolver
-     * provider for user defined enum type EnumProvider and verifies that correct application provider was chosen.
-     * @tpPassCrit Correct application provider was chosen
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Providers are injected into Resource with @Context injection. The resource gets ContextResolver
+    * provider for user defined enum type EnumProvider and verifies that correct application provider was chosen.
+    * @tpPassCrit Correct application provider was chosen
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void isRegisteredWildCardContextResolverTest() {
       Response response = client.target(generateURL("/resource/isRegisteredContextResolver")).request().get();
@@ -72,11 +72,11 @@ public class ProviderContextInjectionTest {
 
 
    /**
-     * @tpTestDetails Providers are injected into Resource with @Context injection. The resource gets ExceptionMapper
-     * provider for RuntimeException and verifies that the correct application provider was chosen.
-     * @tpPassCrit Correct application provider was chosen
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Providers are injected into Resource with @Context injection. The resource gets ExceptionMapper
+    * provider for RuntimeException and verifies that the correct application provider was chosen.
+    * @tpPassCrit Correct application provider was chosen
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testExceptionMapped() {
       Response response = client.target(generateURL("/resource/isRegisteredRuntimeExceptionMapper")).request().get();

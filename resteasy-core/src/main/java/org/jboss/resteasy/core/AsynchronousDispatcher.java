@@ -39,9 +39,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Path("/")
 public class AsynchronousDispatcher extends SynchronousDispatcher
 {
@@ -139,10 +139,10 @@ public class AsynchronousDispatcher extends SynchronousDispatcher
    }
 
    /**
-   * Max response cache size default is 100.
-   *
-   * @param maxCacheSize max cache size
-   */
+    * Max response cache size default is 100.
+    *
+    * @param maxCacheSize max cache size
+    */
    public void setMaxCacheSize(int maxCacheSize)
    {
       this.maxCacheSize = maxCacheSize;
@@ -150,40 +150,40 @@ public class AsynchronousDispatcher extends SynchronousDispatcher
    }
 
    /**
-   * Maximum wait time.  This overrides any wait query parameter.
-   *
-   * @param maxWaitMilliSeconds max wait time in millis
-   */
+    * Maximum wait time.  This overrides any wait query parameter.
+    *
+    * @param maxWaitMilliSeconds max wait time in millis
+    */
    public void setMaxWaitMilliSeconds(long maxWaitMilliSeconds)
    {
       this.maxWaitMilliSeconds = maxWaitMilliSeconds;
    }
 
    /**
-   * Set the base path to find jobs.
-   *
-   * @param basePath base path
-   */
+    * Set the base path to find jobs.
+    *
+    * @param basePath base path
+    */
    public void setBasePath(String basePath)
    {
       this.basePath = basePath;
    }
 
    /**
-   * Fixed thread pool size of asynchronous delivery.
-   *
-   * @param threadPoolSize thread pool size
-   */
+    * Fixed thread pool size of asynchronous delivery.
+    *
+    * @param threadPoolSize thread pool size
+    */
    public void setThreadPoolSize(int threadPoolSize)
    {
       this.threadPoolSize = threadPoolSize;
    }
 
    /**
-   * Plug in your own executor to process requests.
-   *
-   * @param executor executor service
-   */
+    * Plug in your own executor to process requests.
+    *
+    * @param executor executor service
+    */
    public void setExecutor(ExecutorService executor)
    {
       this.executor = executor;

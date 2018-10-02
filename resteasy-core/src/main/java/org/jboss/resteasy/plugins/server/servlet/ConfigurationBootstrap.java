@@ -12,11 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * Create a deployment from String-based configuration data
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Create a deployment from String-based configuration data
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 abstract public class ConfigurationBootstrap implements ResteasyConfiguration
 {
    private ResteasyDeployment deployment = new ResteasyDeploymentImpl();

@@ -27,10 +27,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResponseContainerFilterTest {
@@ -62,12 +62,12 @@ public class ResponseContainerFilterTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with it's custom header "OPERATION" specified in it. Server has registered
-     * two ContainerResponseFilters, which have common ancestor and different priority. The filter ResponseFilter
-     * with higher priority should be used here first, because the order of execution for Response filters is descending.
-     * @tpPassCrit The ResponseFilter is used first for processing the response
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with it's custom header "OPERATION" specified in it. Server has registered
+    * two ContainerResponseFilters, which have common ancestor and different priority. The filter ResponseFilter
+    * with higher priority should be used here first, because the order of execution for Response filters is descending.
+    * @tpPassCrit The ResponseFilter is used first for processing the response
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testHasEntity() {
       Response response = client.target(generateURL("/resource/hasentity")).request("*/*")

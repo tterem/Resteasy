@@ -42,11 +42,11 @@ public class SseReconnectTest {
    }
 
    /**
-     * @tpTestDetails Check SseEvent.getReconnectDelay() returns SseEvent.RECONNECT_NOT_SET,
-     * when OutboundSseEvent.reconnectDelay() is not set.
-     * @tpInfo RESTEASY-1680
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails Check SseEvent.getReconnectDelay() returns SseEvent.RECONNECT_NOT_SET,
+    * when OutboundSseEvent.reconnectDelay() is not set.
+    * @tpInfo RESTEASY-1680
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testReconnectDelayIsNotSet() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -62,11 +62,11 @@ public class SseReconnectTest {
    }
 
    /**
-     * @tpTestDetails *** Check SseEvent.getReconnectDelay() returns correct delay,
-     * when OutboundSseEvent.reconnectDelay() is set.
-     * @tpInfo RESTEASY-1680
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails *** Check SseEvent.getReconnectDelay() returns correct delay,
+    * when OutboundSseEvent.reconnectDelay() is set.
+    * @tpInfo RESTEASY-1680
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testReconnectDelayIsSet() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -82,11 +82,11 @@ public class SseReconnectTest {
    }
 
    /**
-     * @tpTestDetails SseEventSource receives HTTP 503 + "Retry-After" from the SSE endpoint. Check that SseEventSource
-     * retries after the specified period
-     * @tpInfo RESTEASY-1680
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails SseEventSource receives HTTP 503 + "Retry-After" from the SSE endpoint. Check that SseEventSource
+    * retries after the specified period
+    * @tpInfo RESTEASY-1680
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testSseEndpointUnavailable() throws Exception {
       final CountDownLatch latch = new CountDownLatch(1);

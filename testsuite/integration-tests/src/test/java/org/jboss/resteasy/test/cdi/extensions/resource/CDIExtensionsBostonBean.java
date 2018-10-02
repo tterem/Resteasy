@@ -19,11 +19,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.ext.Provider;
 
 /**
-   * A BostonBean is just like other beans, only much, much better.
-   *
-   * BostonBeans are handled by the CDI extension BostonBeanExtension, and are implemented by classes
-   * annotated with @Boston.
-   */
+ * A BostonBean is just like other beans, only much, much better.
+ *
+ * BostonBeans are handled by the CDI extension BostonBeanExtension, and are implemented by classes
+ * annotated with @Boston.
+ */
 public class CDIExtensionsBostonBean<T> implements Bean<T> {
    private static Logger log = Logger.getLogger(CDIExtensionsBostonBean.class);
 

@@ -32,11 +32,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Validation
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1459
-   * @tpSince RESTEasy 3.1.0.Final
-   */
+ * @tpSubChapter Validation
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1459
+ * @tpSince RESTEasy 3.1.0.Final
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ApplicationScopeValidationTest {

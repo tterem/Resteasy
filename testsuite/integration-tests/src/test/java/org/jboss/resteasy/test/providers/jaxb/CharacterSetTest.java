@@ -25,10 +25,10 @@ import static org.junit.Assert.assertTrue;
 
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CharacterSetTest {
@@ -57,9 +57,9 @@ public class CharacterSetTest {
    }
 
    /**
-     * @tpTestDetails Tests if correct Variant is chosen for given combination of mediatype xml and charsets.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests if correct Variant is chosen for given combination of mediatype xml and charsets.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void variantSelection() throws URISyntaxException {
       assertCharset("/variant-selection");

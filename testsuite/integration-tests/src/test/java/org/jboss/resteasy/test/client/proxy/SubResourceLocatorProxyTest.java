@@ -24,10 +24,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SubResourceLocatorProxyTest {
@@ -79,11 +79,11 @@ public class SubResourceLocatorProxyTest {
    }
 
    /**
-     * @tpTestDetails Client sends request thru client proxy. The processing of the response goes first to the Book
-     * resource which creates Chapter subresource and creates the response.
-     * @tpPassCrit Expected string is returned in the response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends request thru client proxy. The processing of the response goes first to the Book
+    * resource which creates Chapter subresource and creates the response.
+    * @tpPassCrit Expected string is returned in the response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSubresourceProxy() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/gulliverstravels"));

@@ -17,9 +17,9 @@ import org.jboss.resteasy.annotations.providers.multipart.PartType;
 import org.jboss.resteasy.spi.util.FindAnnotation;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @Produces("multipart/form-data")
 public class MapMultipartFormDataWriter extends AbstractMultipartFormDataWriter implements MessageBodyWriter<Map<String, Object>>

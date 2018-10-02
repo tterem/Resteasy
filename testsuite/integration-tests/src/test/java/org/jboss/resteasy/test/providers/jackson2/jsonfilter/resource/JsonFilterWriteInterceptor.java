@@ -10,9 +10,9 @@ import javax.ws.rs.ext.WriterInterceptorContext;
 import com.fasterxml.jackson.jaxrs.cfg.ObjectWriterInjector;
 
 /**
-   * @author <a href="mailto:ema@redhat.com">Jim Ma</a>
-   *
-   */
+ * @author <a href="mailto:ema@redhat.com">Jim Ma</a>
+ *
+ */
 @Provider
 public class JsonFilterWriteInterceptor implements WriterInterceptor{
 

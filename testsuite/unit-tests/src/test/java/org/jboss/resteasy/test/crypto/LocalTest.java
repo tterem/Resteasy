@@ -21,11 +21,11 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
-   * @tpSubChapter Crypto
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for DosetaKeyRepository without EAP and arquillian.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Crypto
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for DosetaKeyRepository without EAP and arquillian.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class LocalTest {
    protected static final LogMessages logger = Logger.getMessageLogger(LogMessages.class, LocalTest.class.getName());
    public static KeyPair keys;

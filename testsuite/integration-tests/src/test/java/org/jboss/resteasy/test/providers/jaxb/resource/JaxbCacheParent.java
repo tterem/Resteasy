@@ -29,37 +29,37 @@ public class JaxbCacheParent {
    }
 
    /**
-     * Get the name.
-     *
-     * @return the name.
-     */
+    * Get the name.
+    *
+    * @return the name.
+    */
    public String getName() {
       return name;
    }
 
    /**
-     * Set the name.
-     *
-     * @param name The name to set.
-     */
+    * Set the name.
+    *
+    * @param name The name to set.
+    */
    public void setName(String name) {
       this.name = name;
    }
 
    /**
-     * Get the children.
-     *
-     * @return the children.
-     */
+    * Get the children.
+    *
+    * @return the children.
+    */
    public List<JaxbCacheChild> getChildren() {
       return children;
    }
 
    /**
-     * Set the children.
-     *
-     * @param children The children to set.
-     */
+    * Set the children.
+    *
+    * @param children The children to set.
+    */
    public void setChildren(List<JaxbCacheChild> children) {
       this.children = children;
    }

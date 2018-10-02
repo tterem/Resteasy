@@ -41,10 +41,10 @@ public class SseEventSourceTest {
    }
 
    /**
-     * @tpTestDetails Test `SseEventSource.register(Consumer<InboundSseEvent> onEvent)`
-     * @tpInfo RESTEASY-1680
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails Test `SseEventSource.register(Consumer<InboundSseEvent> onEvent)`
+    * @tpInfo RESTEASY-1680
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testSseEventSourceOnEventCallback() throws Exception {
       final CountDownLatch latch = new CountDownLatch(1);
@@ -72,10 +72,10 @@ public class SseEventSourceTest {
    }
 
    /**
-     * @tpTestDetails Test `SseEventSource.register(Consumer<InboundSseEvent> onEvent, Consumer<Throwable> onError)`
-     * @tpInfo RESTEASY-1680
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails Test `SseEventSource.register(Consumer<InboundSseEvent> onEvent, Consumer<Throwable> onError)`
+    * @tpInfo RESTEASY-1680
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testSseEventSourceOnEventOnErrorCallback() throws Exception {
       final CountDownLatch latch = new CountDownLatch(1);
@@ -108,10 +108,10 @@ public class SseEventSourceTest {
    }
 
    /**
-     * @tpTestDetails Test `SseEventSource.register(Consumer<InboundSseEvent> onEvent, Consumer<Throwable> onError, Runnable onComplete)`
-     * @tpInfo RESTEASY-1680
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails Test `SseEventSource.register(Consumer<InboundSseEvent> onEvent, Consumer<Throwable> onError, Runnable onComplete)`
+    * @tpInfo RESTEASY-1680
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testSseEventSourceOnEventOnErrorOnCompleteCallback() throws Exception {
       final CountDownLatch latch = new CountDownLatch(1);

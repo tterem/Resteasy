@@ -8,11 +8,11 @@ import org.junit.Test;
 import java.net.URL;
 
 /**
-   * @tpSubChapter Gzip
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1735
-   * @tpSince RESTEasy 3.6
-   */
+ * @tpSubChapter Gzip
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1735
+ * @tpSince RESTEasy 3.6
+ */
 public class AllowGzipOnServerAllowGzipOnClientTest extends AllowGzipOnServerAbstractTestBase {
 
    @BeforeClass
@@ -26,9 +26,9 @@ public class AllowGzipOnServerAllowGzipOnClientTest extends AllowGzipOnServerAbs
    }
 
    /**
-     * @tpTestDetails gzip is allowed on both server and client by resteasy.allowGzip system property
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails gzip is allowed on both server and client by resteasy.allowGzip system property
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    @OperateOnDeployment(WAR_WITHOUT_PROVIDERS_FILE)
    public void allowGzipOnServerAllowGzipOnClientTest() throws Exception {

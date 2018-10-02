@@ -7,35 +7,35 @@ import net.jcip.annotations.Immutable;
 
 
 /**
-   * Authenticated cipher text. This class is immutable.
-   *
-   * @author Vladimir Dzhuvinov
-   * @Version $version$ (2013-05-06)
-   */
+ * Authenticated cipher text. This class is immutable.
+ *
+ * @author Vladimir Dzhuvinov
+ * @Version $version$ (2013-05-06)
+ */
 @Immutable
 final class AuthenticatedCipherText
 {
 
 
    /**
-   * The cipher text.
-   */
+    * The cipher text.
+    */
    private final byte[] cipherText;
 
 
    /**
-   * The authentication tag.
-   */
+    * The authentication tag.
+    */
    private final byte[] authenticationTag;
 
 
    /**
-   * Creates a new authenticated cipher text.
-   *
-   * @param cipherText        The cipher text. Must not be {@code null}.
-   * @param authenticationTag The authentication tag. Must not be
-   *                          {@code null}.
-   */
+    * Creates a new authenticated cipher text.
+    *
+    * @param cipherText        The cipher text. Must not be {@code null}.
+    * @param authenticationTag The authentication tag. Must not be
+    *                          {@code null}.
+    */
    AuthenticatedCipherText(final byte[] cipherText, final byte[] authenticationTag) {
 
       if (cipherText == null)
@@ -52,10 +52,10 @@ final class AuthenticatedCipherText
 
 
    /**
-   * Gets the cipher text.
-   *
-   * @return The cipher text.
-   */
+    * Gets the cipher text.
+    *
+    * @return The cipher text.
+    */
    public byte[] getCipherText() {
 
       return cipherText;
@@ -63,10 +63,10 @@ final class AuthenticatedCipherText
 
 
    /**
-   * Gets the authentication tag.
-   *
-   * @return The authentication tag.
-   */
+    * Gets the authentication tag.
+    *
+    * @return The authentication tag.
+    */
    public byte[] getAuthenticationTag() {
 
       return authenticationTag;

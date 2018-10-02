@@ -43,11 +43,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.LoggingPermission;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails JAXB shouldn't have a concurrent problem and should unmarshall a Map property all the time
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails JAXB shouldn't have a concurrent problem and should unmarshall a Map property all the time
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class JaxbMarshallingSoakTest {
    private static Logger logger = Logger.getLogger(JaxbMarshallingSoakTest.class);
@@ -104,9 +104,9 @@ public class JaxbMarshallingSoakTest {
    }
 
    /**
-     * @tpTestDetails Test with client.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test with client.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void basicTest() throws Exception {
       latch = new CountDownLatch(iterator);
@@ -127,9 +127,9 @@ public class JaxbMarshallingSoakTest {
    }
 
    /**
-     * @tpTestDetails Server test.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Server test.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void compare() throws Exception {
       itemString = setString();

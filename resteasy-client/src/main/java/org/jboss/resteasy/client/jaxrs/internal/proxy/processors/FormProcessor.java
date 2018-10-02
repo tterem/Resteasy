@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class FormProcessor implements InvocationProcessor, WebTargetProcessor
 {
    protected HashMap<Field, Object> fieldMap = new HashMap<Field, Object>();

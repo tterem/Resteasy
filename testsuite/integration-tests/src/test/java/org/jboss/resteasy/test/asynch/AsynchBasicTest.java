@@ -33,11 +33,11 @@ import java.util.logging.LoggingPermission;
 import static org.jboss.resteasy.utils.PortProviderUtil.generateURL;
 
 /**
-   * @tpSubChapter Asynchronous RESTEasy
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Basic asynchronous test for "resteasy.async.job.service.max.job.results" property.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Asynchronous RESTEasy
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Basic asynchronous test for "resteasy.async.job.service.max.job.results" property.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class AsynchBasicTest {
    private static org.jboss.logging.Logger logger = org.jboss.logging.Logger.getLogger(AsynchBasicTest.class);
@@ -100,9 +100,9 @@ public class AsynchBasicTest {
    }
 
    /**
-     * @tpTestDetails Test oneway=true query parameter
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test oneway=true query parameter
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment(DEFAULT_DEPLOYMENT)
    public void testOneway() throws Exception {
@@ -125,9 +125,9 @@ public class AsynchBasicTest {
    }
 
    /**
-     * @tpTestDetails Use default value of resteasy.async.job.service.max.job.results
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Use default value of resteasy.async.job.service.max.job.results
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment(DEFAULT_DEPLOYMENT)
    public void testAsynchBasic() throws Exception {
@@ -184,9 +184,9 @@ public class AsynchBasicTest {
    }
 
    /**
-     * @tpTestDetails Set value of resteasy.async.job.service.max.job.results to 1. Try to store to cache to items.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Set value of resteasy.async.job.service.max.job.results to 1. Try to store to cache to items.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment(ONE_MAX_DEPLOYMENT)
    public void testAsynchOne() throws Exception {
@@ -231,9 +231,9 @@ public class AsynchBasicTest {
 
 
    /**
-     * @tpTestDetails Test default value of resteasy.server.cache.maxsize. It should be 100. Try to store 110 items to cache. 10 items should be gone.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of resteasy.server.cache.maxsize. It should be 100. Try to store 110 items to cache. 10 items should be gone.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment(DEFAULT_DEPLOYMENT)
    public void testAsynchMaxSizeDefault() throws Exception {
@@ -273,9 +273,9 @@ public class AsynchBasicTest {
    }
 
    /**
-     * @tpTestDetails Set value of resteasy.server.cache.maxsize to 10. Try to restore item from cache.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Set value of resteasy.server.cache.maxsize to 10. Try to restore item from cache.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment(TEN_MAX_DEPLOYMENT)
    public void testAsynchTen() throws Exception {

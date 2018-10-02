@@ -33,9 +33,9 @@ import java.lang.reflect.Type;
 import java.util.concurrent.ExecutorService;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class ClientInvoker implements MethodInvoker
 {
    protected String httpMethod;

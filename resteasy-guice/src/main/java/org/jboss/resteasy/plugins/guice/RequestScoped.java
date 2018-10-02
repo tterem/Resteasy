@@ -6,8 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import javax.inject.Scope;
 
 /**
-   * Provides an instance-per-request.
-   */
+ * Provides an instance-per-request.
+ */
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequestScoped

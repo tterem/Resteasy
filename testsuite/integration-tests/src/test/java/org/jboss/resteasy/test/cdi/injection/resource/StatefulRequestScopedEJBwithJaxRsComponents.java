@@ -60,15 +60,15 @@ public class StatefulRequestScopedEJBwithJaxRsComponents implements StatefulRequ
    }
 
    /**
-     * This is a SFSB.  See discussion in ReverseInjectionEJBHolder.test().
-     * <p>
-     * If NON_CONTEXTUAL.equals(key), then this bean was obtained from JNDI, and
-     * it is not a CDI contextual object.  It follows that it is not request
-     * scoped, which means it will not be recreated, with new injections, upon a
-     * second invocation.
-     * <p>
-     * Otherwise, it will be recreated, and CDI will redo the injections.
-     */
+    * This is a SFSB.  See discussion in ReverseInjectionEJBHolder.test().
+    * <p>
+    * If NON_CONTEXTUAL.equals(key), then this bean was obtained from JNDI, and
+    * it is not a CDI contextual object.  It follows that it is not request
+    * scoped, which means it will not be recreated, with new injections, upon a
+    * second invocation.
+    * <p>
+    * Otherwise, it will be recreated, and CDI will redo the injections.
+    */
    @Override
    public boolean test(String key) {
       log.info("entering StatefulRequestScopedEJBwithJaxRsComponents.test(" + key + ")");

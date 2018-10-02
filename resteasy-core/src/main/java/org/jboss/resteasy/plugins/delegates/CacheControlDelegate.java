@@ -9,9 +9,9 @@ import javax.ws.rs.ext.RuntimeDelegate;
 import java.util.List;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class CacheControlDelegate implements RuntimeDelegate.HeaderDelegate<CacheControl>
 {
    public CacheControl fromString(String value) throws IllegalArgumentException

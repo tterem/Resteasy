@@ -17,9 +17,9 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @ConstrainedTo(RuntimeType.CLIENT)
 public class ClientDigitalVerificationHeaderDecoratorFeature implements DynamicFeature

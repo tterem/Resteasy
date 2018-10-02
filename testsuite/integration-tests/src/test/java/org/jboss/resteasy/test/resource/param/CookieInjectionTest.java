@@ -30,11 +30,11 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Parameters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Tests cookie injection via @CookieParam and @Context header injection
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Parameters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Tests cookie injection via @CookieParam and @Context header injection
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CookieInjectionTest {
@@ -95,9 +95,9 @@ public class CookieInjectionTest {
    }
 
    /**
-     * @tpTestDetails Injection of the cookie into resource, request issued with client
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Injection of the cookie into resource, request issued with client
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIt() {
       _test("/set");
@@ -123,10 +123,10 @@ public class CookieInjectionTest {
    }
 
    /**
-     * @tpTestDetails Cookie in the response header contains correct "Expires" attribute. Tested for cookie version 0 and 1.
-     * See RESTEASY-1476 for details.
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Cookie in the response header contains correct "Expires" attribute. Tested for cookie version 0 and 1.
+    * See RESTEASY-1476 for details.
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testCookieExpire() {
@@ -136,10 +136,10 @@ public class CookieInjectionTest {
    }
 
    /**
-     * @tpTestDetails Cookie in the response header contains correct "Expires" attribute. Tested for cookie version 0 and 1.
-     * Proxy is used. See RESTEASY-1476 for details.
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Cookie in the response header contains correct "Expires" attribute. Tested for cookie version 0 and 1.
+    * Proxy is used. See RESTEASY-1476 for details.
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testProxyExpire() {
@@ -152,9 +152,9 @@ public class CookieInjectionTest {
    }
 
    /**
-     * @tpTestDetails Injection of the cookie into resource, request issued with proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Injection of the cookie into resource, request issued with proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProxy() {
       {

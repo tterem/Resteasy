@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class Verifier
 {
    protected KeyRepository repository;
@@ -43,13 +43,13 @@ public class Verifier
    }
 
    /**
-   * Try to verify a set of signatures and store the results.
-   *
-   * @param signatures list of signatures
-   * @param headers headers map
-   * @param body body
-   * @return {@link VerificationResults}
-   */
+    * Try to verify a set of signatures and store the results.
+    *
+    * @param signatures list of signatures
+    * @param headers headers map
+    * @param body body
+    * @return {@link VerificationResults}
+    */
    public VerificationResults verify(List<DKIMSignature> signatures, Map headers, byte[] body)
    {
       VerificationResults results = new VerificationResults();
@@ -103,14 +103,14 @@ public class Verifier
    }
 
    /**
-   * Verify one signature and store the results.
-   *
-   * @param headers headers map
-   * @param body body
-   * @param verification verification
-   * @param signature signature
-   * @return {@link VerificationResult}
-   */
+    * Verify one signature and store the results.
+    *
+    * @param headers headers map
+    * @param body body
+    * @param verification verification
+    * @param signature signature
+    * @return {@link VerificationResult}
+    */
    public VerificationResult verify(Map headers, byte[] body, Verification verification, DKIMSignature signature)
    {
       VerificationResult result = new VerificationResult();

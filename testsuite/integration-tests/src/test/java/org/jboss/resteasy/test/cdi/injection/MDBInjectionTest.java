@@ -52,12 +52,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails This class tests the use of MDBs with Resteasy, including the injection of a
-   *                    JAX-RS resource into an MDB.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails This class tests the use of MDBs with Resteasy, including the injection of a
+ *                    JAX-RS resource into an MDB.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MDBInjectionTest extends AbstractInjectionTestBase {
@@ -115,9 +115,9 @@ public class MDBInjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails Tests the injection of JMS Producers, Consumers, Queues, and MDBs using producer fields and methods.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests the injection of JMS Producers, Consumers, Queues, and MDBs using producer fields and methods.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMDB() throws Exception {
       log.trace("starting testJMS()");

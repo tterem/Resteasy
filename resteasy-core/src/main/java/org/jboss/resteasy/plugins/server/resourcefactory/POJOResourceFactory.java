@@ -14,11 +14,11 @@ import org.jboss.resteasy.spi.metadata.ResourceClass;
 import org.jboss.resteasy.spi.metadata.ResourceConstructor;
 
 /**
-   * Allocates an instance of a class at each invocation
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Allocates an instance of a class at each invocation
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class POJOResourceFactory implements ResourceFactory
 {
    private final ResourceBuilder resourceBuilder;

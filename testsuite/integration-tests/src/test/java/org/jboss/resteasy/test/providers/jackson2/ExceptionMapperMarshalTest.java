@@ -38,11 +38,11 @@ import java.util.Map;
 import java.util.PropertyPermission;
 
 /**
-   * @tpSubChapter Jackson2 provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-937
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jackson2 provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-937
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExceptionMapperMarshalTest {
@@ -81,10 +81,10 @@ public class ExceptionMapperMarshalTest {
    }
 
    /**
-     * @tpTestDetails Tests usage of custom ExceptionMapper producing json response
-     * @tpPassCrit The resource returns Success response
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests usage of custom ExceptionMapper producing json response
+    * @tpPassCrit The resource returns Success response
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCustomUsed() {
       Type exceptionType = Types.getActualTypeArgumentsOfAnInterface(ExceptionMapperMarshalMyCustomExceptionMapper.class, ExceptionMapper.class)[0];

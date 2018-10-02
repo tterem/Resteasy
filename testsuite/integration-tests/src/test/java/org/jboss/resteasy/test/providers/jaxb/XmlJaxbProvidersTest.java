@@ -39,10 +39,10 @@ import java.io.InputStream;
 import java.lang.reflect.ReflectPermission;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class XmlJaxbProvidersTest {
@@ -87,9 +87,9 @@ public class XmlJaxbProvidersTest {
    }
 
    /**
-     * @tpTestDetails Test jaxb unmarshaller to correctly unmarshall InputStream
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test jaxb unmarshaller to correctly unmarshall InputStream
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUnmarshalOrder() throws Exception {
       InputStream in = XmlJaxbProvidersTest.class.getResourceAsStream("orders/order_123.xml");
@@ -100,10 +100,10 @@ public class XmlJaxbProvidersTest {
    }
 
    /**
-     * @tpTestDetails An xml file is loaded on the server and jaxb converts the xml entity Order from xml file into an
-     * object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails An xml file is loaded on the server and jaxb converts the xml entity Order from xml file into an
+    * object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetOrder() {
       Order order = proxy.getOrderById("order_123");
@@ -111,10 +111,10 @@ public class XmlJaxbProvidersTest {
    }
 
    /**
-     * @tpTestDetails Clients sends request with order if and  set xml headerr. An xml file is loaded on the server
-     * and jaxb converts the xml entity Order from xml file into an object.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Clients sends request with order if and  set xml headerr. An xml file is loaded on the server
+    * and jaxb converts the xml entity Order from xml file into an object.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetOrderAndUnmarshal() throws Exception {
       Response response = client.target(generateURL("/jaxb/orders") + "/order_123").request()
@@ -129,10 +129,10 @@ public class XmlJaxbProvidersTest {
    }
 
    /**
-     * @tpTestDetails Same as testGetOrderWithParams() except that it uses the client framework to implicitly unmarshal
-     * the returned order and it tests its value, instead of just printing it out.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Same as testGetOrderWithParams() except that it uses the client framework to implicitly unmarshal
+    * the returned order and it tests its value, instead of just printing it out.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetOrderWithParamsToOrder() throws Exception {
       Response response = client.target(generateURL("/jaxb/orders") + "/order_123").request()
@@ -143,9 +143,9 @@ public class XmlJaxbProvidersTest {
    }
 
    /**
-     * @tpTestDetails Updates the specified order and returns updated object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Updates the specified order and returns updated object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUpdateOrder() {
       InputStream in = XmlJaxbProvidersTest.class.getResourceAsStream("orders/order_123.xml");

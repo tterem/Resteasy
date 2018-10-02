@@ -39,10 +39,10 @@ import org.jboss.resteasy.spi.util.Types;
 import org.jboss.resteasy.util.StringToPrimitive;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @author Nicolas NESMON
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @author Nicolas NESMON
+ * @version $Revision: 1 $
+ */
 @SuppressWarnings(value = { "unchecked" })
 public class StringParameterInjector
 {

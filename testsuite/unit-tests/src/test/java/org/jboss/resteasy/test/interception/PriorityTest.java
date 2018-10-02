@@ -23,18 +23,18 @@ import javax.ws.rs.container.ContainerResponseFilter;
 import static org.junit.Assert.assertTrue;
 
 /**
-   * @tpSubChapter Interception tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Check functionality of Priority annotation on filter classes. Use more classes with different value in Priority annotation.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Interception tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Check functionality of Priority annotation on filter classes. Use more classes with different value in Priority annotation.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class PriorityTest {
 
    private static final String ERROR_MESSAGE = "RESTEasy uses filter in wrong older";
    /**
-     * @tpTestDetails Test for classes implements ContainerResponseFilter.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for classes implements ContainerResponseFilter.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPriority() throws Exception {
       JaxrsInterceptorRegistry<ContainerResponseFilter> containerResponseFilterRegistry = new ContainerResponseFilterRegistryImpl(ResteasyProviderFactory.newInstance());
@@ -71,9 +71,9 @@ public class PriorityTest {
    }
 
    /**
-     * @tpTestDetails Test for classes implements ClientRequestFilter.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for classes implements ClientRequestFilter.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPriorityOverride() {
       JaxrsInterceptorRegistry<ClientRequestFilter> clientRequestFilterRegistry = new JaxrsInterceptorRegistryImpl<ClientRequestFilter>(ResteasyProviderFactory.newInstance(), ClientRequestFilter.class);

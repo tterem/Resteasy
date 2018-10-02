@@ -22,11 +22,11 @@ import static org.junit.Assert.fail;
 import java.net.URL;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.6.0
-   * @tpTestCaseDetails Regression test for RESTEASY-1847
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.6.0
+ * @tpTestCaseDetails Regression test for RESTEASY-1847
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResponseExceptionMapperRuntimeExceptionTest {
@@ -39,9 +39,9 @@ public class ResponseExceptionMapperRuntimeExceptionTest {
    }
 
    /**
-     * @tpTestDetails Check ExceptionMapper for WebApplicationException
-     * @tpSince RESTEasy 3.6.0
-   */
+    * @tpTestDetails Check ExceptionMapper for WebApplicationException
+    * @tpSince RESTEasy 3.6.0
+    */
    @Test
    public void testRuntimeApplicationException() throws Exception {
       ResponseExceptionMapperRuntimeExceptionResourceInterface service = MicroprofileClientBuilderResolver.instance()

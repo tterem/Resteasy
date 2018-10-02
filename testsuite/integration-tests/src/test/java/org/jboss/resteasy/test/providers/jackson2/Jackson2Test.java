@@ -43,10 +43,10 @@ import javax.ws.rs.core.Response;
 
 
 /**
-   * @tpSubChapter Jackson2 provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jackson2 provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class Jackson2Test {
@@ -112,8 +112,8 @@ public class Jackson2Test {
    }
 
    /**
-     * Jettison is deprecated, so it needs to be added to EAP manually (see JBEAP-2856).
-     */
+    * Jettison is deprecated, so it needs to be added to EAP manually (see JBEAP-2856).
+    */
    @Deployment(name = "jettison")
    public static Archive<?> deployJettison() {
       WebArchive war = TestUtil.prepareArchive(JETTISON_DEPLOYMENT);
@@ -140,11 +140,11 @@ public class Jackson2Test {
    }
 
    /**
-     * @tpTestDetails Client sends GET request for json annotated resource. In the first case it returns single json entity,
-     * in the second case multiple json entities as String.
-     * @tpPassCrit The resource returns json entities in correct format
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request for json annotated resource. In the first case it returns single json entity,
+    * in the second case multiple json entities as String.
+    * @tpPassCrit The resource returns json entities in correct format
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @Category({ExpectedFailingOnWildFly13.class})
    public void testJacksonString() throws Exception {
@@ -169,12 +169,12 @@ public class Jackson2Test {
    }
 
    /**
-     * @tpTestDetails Client sends GET request for Json resource. The request url contains 'callback' keyword which should
-     * trigger processing of the response in the format callbackvalue("key":"value")
-     * @tpPassCrit The resource returns json entities in correct format (with callback function wrapping)
-     * @tpInfo This test fails, see RESTEASY-1168. This should be fixed in 3.0.12 release.
-     * @tpSince RESTEasy 3.0.16 as testJacksonJsonp() (but Jackson2JsonpInterceptor didn't need to be enabled)
-     */
+    * @tpTestDetails Client sends GET request for Json resource. The request url contains 'callback' keyword which should
+    * trigger processing of the response in the format callbackvalue("key":"value")
+    * @tpPassCrit The resource returns json entities in correct format (with callback function wrapping)
+    * @tpInfo This test fails, see RESTEASY-1168. This should be fixed in 3.0.12 release.
+    * @tpSince RESTEasy 3.0.16 as testJacksonJsonp() (but Jackson2JsonpInterceptor didn't need to be enabled)
+    */
    @Test
    public void testJacksonJsonpEnabled() throws Exception {
       WebTarget target = client.target(PortProviderUtil.generateURL("/products/333?callback=foo", JSONP_ENABLED));
@@ -187,12 +187,12 @@ public class Jackson2Test {
    }
     
    /**
-     * @tpTestDetails Client sends GET request for Json resource. The request url contains 'callback' keyword which should
-     * trigger processing of the response in the format callbackvalue("key":"value"). However, Jackson2JsonpInterceptor is disabled.
-     * @tpPassCrit The resource returns json entities in correct format (without callback function wrapping)
-     * @tpInfo RESTEASY-1486
-     * @tpSince RESTEasy 3.1.0.Final
-     */
+    * @tpTestDetails Client sends GET request for Json resource. The request url contains 'callback' keyword which should
+    * trigger processing of the response in the format callbackvalue("key":"value"). However, Jackson2JsonpInterceptor is disabled.
+    * @tpPassCrit The resource returns json entities in correct format (without callback function wrapping)
+    * @tpInfo RESTEASY-1486
+    * @tpSince RESTEasy 3.1.0.Final
+    */
    @Test
    @Category({NotForForwardCompatibility.class, ExpectedFailingOnWildFly13.class})
    public void testJacksonJsonpDisabled() throws Exception {
@@ -206,12 +206,12 @@ public class Jackson2Test {
    }
     
    /**
-     * @tpTestDetails Client sends GET request for Json resource. The request url contains 'callback' keyword which should
-     * trigger processing of the response in the format callbackvalue("key":"value")
-     * @tpPassCrit The resource returns json entities in correct format (without callback function wrapping)
-     * @tpInfo RESTEASY-1486
-     * @tpSince RESTEasy 3.0.16 (as testJacksonJsonp() but Jackson2JsonpInterceptor would have been enabled)
-     */
+    * @tpTestDetails Client sends GET request for Json resource. The request url contains 'callback' keyword which should
+    * trigger processing of the response in the format callbackvalue("key":"value")
+    * @tpPassCrit The resource returns json entities in correct format (without callback function wrapping)
+    * @tpInfo RESTEASY-1486
+    * @tpSince RESTEasy 3.0.16 (as testJacksonJsonp() but Jackson2JsonpInterceptor would have been enabled)
+    */
    @Test
    @Category({NotForForwardCompatibility.class, ExpectedFailingOnWildFly13.class})
    public void testJacksonJsonpDefault() throws Exception {
@@ -225,12 +225,12 @@ public class Jackson2Test {
    }
 
    /**
-     * @tpTestDetails Client sends GET request for json annotated resource. The resource is annotated with @Formatted,
-     * annotation available in Jackson 2 provider. It formats the response entity to look prettier. The test tests whether
-     * response contains '\n' (new line) character, because the annotation inserts new lines between element fields.
-     * @tpPassCrit The resource returns json entities in correct format
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request for json annotated resource. The resource is annotated with @Formatted,
+    * annotation available in Jackson 2 provider. It formats the response entity to look prettier. The test tests whether
+    * response contains '\n' (new line) character, because the annotation inserts new lines between element fields.
+    * @tpPassCrit The resource returns json entities in correct format
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @Category({ExpectedFailingOnWildFly13.class})
    public void testFormattedJacksonString() throws Exception {
@@ -244,13 +244,13 @@ public class Jackson2Test {
    }
 
    /**
-     * @tpTestDetails Client sends GET request for json annotated resource. The resource is annotated with @BadgerFish
-     * and @NoJackson annotations. The jettison provider should be triggered instead of jackson one.
-     * Jettison is deprecated, so it needs to be added to EAP manually (see JBEAP-2856).
-     * @tpPassCrit The resource returns json entities in correct format
-     * @tpInfo JBEAP-2856
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request for json annotated resource. The resource is annotated with @BadgerFish
+    * and @NoJackson annotations. The jettison provider should be triggered instead of jackson one.
+    * Jettison is deprecated, so it needs to be added to EAP manually (see JBEAP-2856).
+    * @tpPassCrit The resource returns json entities in correct format
+    * @tpInfo JBEAP-2856
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlString() throws Exception {
       WebTarget target = client.target(PortProviderUtil.generateURL("/xml/products/333", JETTISON_DEPLOYMENT));
@@ -271,14 +271,14 @@ public class Jackson2Test {
    }
 
    /**
-     * @tpTestDetails Client sends GET and POST request for json annotated resource. For the response processing is used jackson
-     * provider. There are three types of response in this test:
-     * + The response entity is returned as instance of Jackson2Product class.
-     * + The response entity is returned as instance of String class
-     * + The response entity is returned as instance of Jackson2Product class and response is mediatype of 'application/foo+json'
-     * @tpPassCrit The returned object contains expected values
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET and POST request for json annotated resource. For the response processing is used jackson
+    * provider. There are three types of response in this test:
+    * + The response entity is returned as instance of Jackson2Product class.
+    * + The response entity is returned as instance of String class
+    * + The response entity is returned as instance of Jackson2Product class and response is mediatype of 'application/foo+json'
+    * @tpPassCrit The returned object contains expected values
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testJackson() throws Exception {
       WebTarget target = client.target(generateURL("/products/333"));
@@ -306,10 +306,10 @@ public class Jackson2Test {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with Jackson2Product entity using client proxy.
-     * @tpPassCrit The returned object contains expected values
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with Jackson2Product entity using client proxy.
+    * @tpPassCrit The returned object contains expected values
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testJacksonProxy() throws Exception {
       Jackson2Proxy proxy = client.target(generateURL("")).proxy(Jackson2Proxy.class);
@@ -320,12 +320,12 @@ public class Jackson2Test {
    }
 
    /**
-     * @tpTestDetails Client has both, JAXB and Jackson v.2 providers on the classpath. First it sends GET request for
-     * JAXB annotated resource and verifies renaming of the Xml element attribute. Second it sends GET request for resource
-     * with Jackson annotation and verifies that json response contains the renamed attribute.
-     * @tpPassCrit The response contains the renamed attributes
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client has both, JAXB and Jackson v.2 providers on the classpath. First it sends GET request for
+    * JAXB annotated resource and verifies renaming of the Xml element attribute. Second it sends GET request for resource
+    * with Jackson annotation and verifies that json response contains the renamed attribute.
+    * @tpPassCrit The response contains the renamed attributes
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @Category({ExpectedFailingOnWildFly13.class})
    public void testJacksonJAXB() throws Exception {

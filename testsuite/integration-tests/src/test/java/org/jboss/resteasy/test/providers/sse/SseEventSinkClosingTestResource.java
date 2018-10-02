@@ -21,10 +21,10 @@ import javax.ws.rs.sse.SseEventSink;
 import org.jboss.resteasy.core.ResteasyContext;
 
 /**
-   * 
-   * @author Nicolas NESMON
-   *
-   */
+ * 
+ * @author Nicolas NESMON
+ *
+ */
 @Path(SseEventSinkClosingTestResource.BASE_PATH)
 public class SseEventSinkClosingTestResource {
 

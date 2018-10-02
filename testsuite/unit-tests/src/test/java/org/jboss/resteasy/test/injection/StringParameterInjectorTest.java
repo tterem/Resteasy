@@ -17,19 +17,19 @@ import org.jboss.resteasy.test.injection.resource.StringParameterInjectorType;
 import org.junit.Test;
 
 /**
-   * @tpSubChapter Injection tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for org.jboss.resteasy.annotations.Decorator class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Injection tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for org.jboss.resteasy.annotations.Decorator class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class StringParameterInjectorTest {
 
    private static final String MY_SPECIAL_STRING = "MySpecialString";
 
    /**
-     * @tpTestDetails Unmarshaller test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Unmarshaller test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void shouldInjectForAnnotationConfiguredUnmarshaller() throws Exception {
       ResteasyContext.pushContext(StringParameterInjectorInjected.class, new StringParameterInjectorInjected(MY_SPECIAL_STRING));
@@ -43,9 +43,9 @@ public class StringParameterInjectorTest {
    }
 
    /**
-     * @tpTestDetails Instantiation test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Instantiation test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void instantiation() throws Exception {
       final Type type = StringParameterInjectorGenericType.class.getDeclaredMethod("returnSomething").getGenericReturnType();

@@ -21,11 +21,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for custom Application class with overridden getProperties() method
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for custom Application class with overridden getProperties() method
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ApplicationPropertiesConfigPropertyApplicationInjectionTest {
@@ -54,9 +54,9 @@ public class ApplicationPropertiesConfigPropertyApplicationInjectionTest {
    }
 
    /**
-     * @tpTestDetails Test for custom Application class with overriden getProperties() method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for custom Application class with overriden getProperties() method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testApplicationPropertiesConfigApplicationInjection() {
       WebTarget target = client.target(generateURL("/getconfigproperty"));

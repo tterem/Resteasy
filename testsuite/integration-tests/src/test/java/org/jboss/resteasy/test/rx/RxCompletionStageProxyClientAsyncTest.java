@@ -35,13 +35,13 @@ import org.junit.runner.RunWith;
 
 
 /**
-   * @tpSubChapter Reactive classes
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 4.0
-   * 
-   * These tests run asynchronously on client, calling a proxy which calls a CompletionStageRxInvoker.
-   * The server creates and returns objects synchronously.
-   */
+ * @tpSubChapter Reactive classes
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 4.0
+ * 
+ * These tests run asynchronously on client, calling a proxy which calls a CompletionStageRxInvoker.
+ * The server creates and returns objects synchronously.
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RxCompletionStageProxyClientAsyncTest {

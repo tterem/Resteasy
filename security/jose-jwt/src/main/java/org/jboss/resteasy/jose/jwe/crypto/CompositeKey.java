@@ -9,52 +9,52 @@ import org.jboss.resteasy.jose.i18n.Messages;
 
 
 /**
-   * Composite key used in AES/CBC/PKCS5Padding/HMAC-SHA2 encryption. This class
-   * is immutable.
-   *
-   * <p>See draft-ietf-jose-json-web-algorithms-10, section 4.8.2.
-   *
-   * <p>See draft-mcgrew-aead-aes-cbc-hmac-sha2-01
-   *
-   * @author Vladimir Dzhuvinov
-   * @version $version$ (2013-05-06)
-   */
+ * Composite key used in AES/CBC/PKCS5Padding/HMAC-SHA2 encryption. This class
+ * is immutable.
+ *
+ * <p>See draft-ietf-jose-json-web-algorithms-10, section 4.8.2.
+ *
+ * <p>See draft-mcgrew-aead-aes-cbc-hmac-sha2-01
+ *
+ * @author Vladimir Dzhuvinov
+ * @version $version$ (2013-05-06)
+ */
 final class CompositeKey
 {
 
 
    /**
-   * The input key.
-   */
+    * The input key.
+    */
    private final SecretKey inputKey;
 
 
    /**
-   * The extracted MAC key.
-   */
+    * The extracted MAC key.
+    */
    private final SecretKey macKey;
 
 
    /**
-   * The extracted AES key.
-   */
+    * The extracted AES key.
+    */
    private final SecretKey encKey;
 
 
    /**
-   * The expected truncated MAC output length.
-   */
+    * The expected truncated MAC output length.
+    */
    private final int truncatedMacLength;
 
 
    /**
-   * Creates a new composite key from the specified secret key.
-   *
-   * @param inputKey The input key. Must be 256 or 512 bits long. Must
-   *                 not be {@code null}.
-   *
-   * @throws RuntimeException If the input key length is not supported.
-   */
+    * Creates a new composite key from the specified secret key.
+    *
+    * @param inputKey The input key. Must be 256 or 512 bits long. Must
+    *                 not be {@code null}.
+    *
+    * @throws RuntimeException If the input key length is not supported.
+    */
    CompositeKey(final SecretKey inputKey)
       throws RuntimeException {
 
@@ -86,10 +86,10 @@ final class CompositeKey
 
 
    /**
-   * Gets the input key.
-   *
-   * @return The input key.
-   */
+    * Gets the input key.
+    *
+    * @return The input key.
+    */
    public SecretKey getInputKey() {
 
       return inputKey;
@@ -97,10 +97,10 @@ final class CompositeKey
 
 
    /**
-   * Gets the extracted MAC key.
-   *
-   * @return The extracted MAC key.
-   */
+    * Gets the extracted MAC key.
+    *
+    * @return The extracted MAC key.
+    */
    public SecretKey getMACKey() {
 
       return macKey;
@@ -108,10 +108,10 @@ final class CompositeKey
 
 
    /**
-   * Gets the expected truncated MAC length.
-   *
-   * @return The expected truncated MAC length, in bytes.
-   */
+    * Gets the expected truncated MAC length.
+    *
+    * @return The expected truncated MAC length, in bytes.
+    */
    public int getTruncatedMACByteLength() {
 
       return truncatedMacLength;
@@ -119,10 +119,10 @@ final class CompositeKey
 
 
    /**
-   * Gets the extracted encryption key.
-   *
-   * @return The extracted encryption key.
-   */
+    * Gets the extracted encryption key.
+    *
+    * @return The extracted encryption key.
+    */
    public SecretKey getAESKey() {
 
       return encKey;

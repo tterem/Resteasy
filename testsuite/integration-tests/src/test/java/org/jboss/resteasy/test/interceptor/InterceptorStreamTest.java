@@ -22,11 +22,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Interceptors
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.1.0
-   * @tpTestCaseDetails Change InputStream and OutputStream in ReaderInterceptor and WriterInterceptor
-   */
+ * @tpSubChapter Interceptors
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.1.0
+ * @tpTestCaseDetails Change InputStream and OutputStream in ReaderInterceptor and WriterInterceptor
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InterceptorStreamTest {
@@ -52,9 +52,9 @@ public class InterceptorStreamTest {
       return PortProviderUtil.generateURL(path, InterceptorStreamTest.class.getSimpleName());
    }
    /**
-     * @tpTestDetails Use ReaderInterceptor and WriterInterceptor together
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Use ReaderInterceptor and WriterInterceptor together
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    public void testPriority() throws Exception {
       Response response = client.target(generateURL("/test")).request().post(Entity.text("test"));

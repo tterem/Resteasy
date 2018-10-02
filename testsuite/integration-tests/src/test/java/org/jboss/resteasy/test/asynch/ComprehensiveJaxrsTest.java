@@ -47,12 +47,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Asynchronous RESTEasy
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for asyncHttpServlet module. Check stage URL
-   *                    property.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Asynchronous RESTEasy
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for asyncHttpServlet module. Check stage URL
+ *                    property.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ComprehensiveJaxrsTest
@@ -214,9 +214,9 @@ public class ComprehensiveJaxrsTest
    }
 
    /**
-   * @tpTestDetails Complex test. Check stage=0 and stage=1 values.
-   * @tpSince RESTEasy 3.0.16
-   */
+    * @tpTestDetails Complex test. Check stage=0 and stage=1 values.
+    * @tpSince RESTEasy 3.0.16
+    */
 
    @Test
    public void cancelVoidTest() throws Exception

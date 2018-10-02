@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class AbortedResponse extends ClientResponse
 {
    protected InputStream is;
@@ -133,8 +133,8 @@ public class AbortedResponse extends ClientResponse
    }
    
    /**
-   * Added for RESTEASY-1540.
-   */
+    * Added for RESTEASY-1540.
+    */
    @Override
    public synchronized <T> T readEntity(Class<T> type, Type genericType, Annotation[] anns)
    {

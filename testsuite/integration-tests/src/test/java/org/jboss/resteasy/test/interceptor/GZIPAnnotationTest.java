@@ -23,11 +23,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Interceptor
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Tests @GZIP annotation on client (RESTEASY-1265)
-   * @tpSince RESTEasy 3.0.20
-   */
+ * @tpSubChapter Interceptor
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Tests @GZIP annotation on client (RESTEASY-1265)
+ * @tpSince RESTEasy 3.0.20
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GZIPAnnotationTest {
@@ -60,11 +60,11 @@ public class GZIPAnnotationTest {
    }
 
    /**
-   * @tpTestDetails Test that org.jboss.resteasy.plugins.interceptors.ClientContentEncodingAnnotationFilter
-   *                and org.jboss.resteasy.plugins.interceptors.AcceptEncodingGZIPFilter
-   *                are called on client side
-   * @tpSince RESTEasy 3.0.20
-   */
+    * @tpTestDetails Test that org.jboss.resteasy.plugins.interceptors.ClientContentEncodingAnnotationFilter
+    *                and org.jboss.resteasy.plugins.interceptors.AcceptEncodingGZIPFilter
+    *                are called on client side
+    * @tpSince RESTEasy 3.0.20
+    */
    @Test
    public void testGZIP() {
       ResteasyWebTarget target = (ResteasyWebTarget) client.target(generateURL(""));

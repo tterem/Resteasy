@@ -19,11 +19,11 @@ import javax.ws.rs.core.Response;
 
 
 /**
-   * @tpSubChapter Constructors
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-489
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Constructors
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-489
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PrivateConstructorTest {
@@ -35,9 +35,9 @@ public class PrivateConstructorTest {
    }
 
    /**
-     * @tpTestDetails Exception should not be thrown  on WS with a non-public constructor
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Exception should not be thrown  on WS with a non-public constructor
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMapper() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

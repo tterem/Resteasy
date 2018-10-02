@@ -34,9 +34,9 @@ import java.security.NoSuchProviderException;
 import java.security.cert.CertificateEncodingException;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @Produces("application/pkcs7-signature")
 public class PKCS7SignatureWriter implements MessageBodyWriter<SignedOutput>

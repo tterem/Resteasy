@@ -35,9 +35,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class ServerCacheTest
 {
    private static NettyJaxrsServer server;
@@ -79,8 +79,8 @@ public class ServerCacheTest
    }
 
    /**
-   * @param resource
-   */
+    * @param resource
+    */
    public static void addPerRequestResource(Class<?> resource)
    {
       deployment.getRegistry().addPerRequestResource(resource);

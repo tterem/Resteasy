@@ -24,11 +24,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Jettison provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails This tests automatically picking content type based on Accept header and/or @Produces
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jettison provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails This tests automatically picking content type based on Accept header and/or @Produces
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ContentTypeMatchingTest {
@@ -61,10 +61,10 @@ public class ContentTypeMatchingTest {
    }
 
    /**
-     * @tpTestDetails Test that media type is chosen from resource method
-     * @tpPassCrit The response returned with expected http response code
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that media type is chosen from resource method
+    * @tpPassCrit The response returned with expected http response code
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProduces() throws Exception {
       WebTarget target = client.target(generateURL("/mapper/produces"));
@@ -80,10 +80,10 @@ public class ContentTypeMatchingTest {
    }
 
    /**
-     * @tpTestDetails Test that media type is chosen from resource method and accepts
-     * @tpPassCrit The response returned with expected http response code
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that media type is chosen from resource method and accepts
+    * @tpPassCrit The response returned with expected http response code
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAcceptsProduces() throws Exception {
       WebTarget target = client.target(generateURL("/mapper/accepts-produces"));
@@ -108,10 +108,10 @@ public class ContentTypeMatchingTest {
    }
 
    /**
-     * @tpTestDetails Test that media type is chosen from accepts
-     * @tpPassCrit The response returned with expected http response code
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that media type is chosen from accepts
+    * @tpPassCrit The response returned with expected http response code
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAccepts() throws Exception {
       WebTarget target = client.target(generateURL("/mapper/accepts"));
@@ -136,10 +136,10 @@ public class ContentTypeMatchingTest {
    }
 
    /**
-     * @tpTestDetails Test that media type is chosen from accepts when returning an entity
-     * @tpPassCrit The response returned with expected http response code
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that media type is chosen from accepts when returning an entity
+    * @tpPassCrit The response returned with expected http response code
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAcceptsEntity() throws Exception {
       WebTarget target = client.target(generateURL("/mapper/accepts-entity"));

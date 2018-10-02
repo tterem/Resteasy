@@ -27,11 +27,11 @@ import java.util.HashSet;
 import java.util.TreeSet;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Regression for RESTEASY-756
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Regression for RESTEASY-756
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ParameterListTest extends ClientTestBase{
@@ -63,9 +63,9 @@ public class ParameterListTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails New client: set matrix param by URL and by matrixParam function
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails New client: set matrix param by URL and by matrixParam function
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatrixNewClient() throws Exception {
       Response response = restClient.target(generateURL("/matrix;m1=a/list;m1=b;p2=c")).matrixParam("m1", "d").request().get();
@@ -74,9 +74,9 @@ public class ParameterListTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails New client: set query param by URL and by queryParam function
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails New client: set query param by URL and by queryParam function
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testQueryNewClient() throws Exception {
       Response response = restClient.target(generateURL("/query/list?q1=a&q2=b&q1=c")).queryParam("q1", "d").request().get();
@@ -85,9 +85,9 @@ public class ParameterListTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails New client: check settings of matrix list by proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails New client: check settings of matrix list by proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatrixProxyListNewClient() throws Exception {
       final ParameterListInterface client = ProxyBuilder.builder(ParameterListInterface.class,
@@ -103,9 +103,9 @@ public class ParameterListTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails New client: check settings of matrix set by proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails New client: check settings of matrix set by proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatrixProxySetNewClient() throws Exception {
       final ParameterListInterface client = ProxyBuilder.builder(ParameterListInterface.class,
@@ -120,9 +120,9 @@ public class ParameterListTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails New client: check settings of matrix sorted set by proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails New client: check settings of matrix sorted set by proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatrixProxySortedSetNewClient() throws Exception {
       final ParameterListInterface client = ProxyBuilder.builder(ParameterListInterface.class,
@@ -137,9 +137,9 @@ public class ParameterListTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails New client: check settings of matrix list and other parameter by proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails New client: check settings of matrix list and other parameter by proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatrixWithEntityProxyNewClient() throws Exception {
       final ParameterListInterface client = ProxyBuilder.builder(ParameterListInterface.class,
@@ -154,9 +154,9 @@ public class ParameterListTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails New client: check settings of query list by proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails New client: check settings of query list by proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testQueryProxyListNewClient() throws Exception {
       final ParameterListInterface client = ProxyBuilder.builder(ParameterListInterface.class,
@@ -171,9 +171,9 @@ public class ParameterListTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails New client: check settings of query set by proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails New client: check settings of query set by proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testQueryProxySetNewClient() throws Exception {
       final ParameterListInterface client = ProxyBuilder.builder(ParameterListInterface.class,
@@ -188,9 +188,9 @@ public class ParameterListTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails New client: check settings of query sorted set by proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails New client: check settings of query sorted set by proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testQueryProxySortedSetNewClient() throws Exception {
       final ParameterListInterface client = ProxyBuilder.builder(ParameterListInterface.class,
@@ -205,9 +205,9 @@ public class ParameterListTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails New client: check settings of query list with other parameter by proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails New client: check settings of query list with other parameter by proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testQueryWithEntityProxyNewClient() throws Exception {
       final ParameterListInterface client = ProxyBuilder.builder(ParameterListInterface.class,
@@ -222,9 +222,9 @@ public class ParameterListTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails New client: check settings of query list, matrix list and other parameter by proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails New client: check settings of query list, matrix list and other parameter by proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatrixQueryWithEntityProxyNewClient() throws Exception {
       final ParameterListInterface client = ProxyBuilder.builder(ParameterListInterface.class,

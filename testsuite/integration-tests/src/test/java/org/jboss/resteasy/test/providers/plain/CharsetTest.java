@@ -30,12 +30,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Plain provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1066. If the content-type of the response is not specified in the request,
-   *
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Plain provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1066. If the content-type of the response is not specified in the request,
+ *
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CharsetTest {
@@ -74,9 +74,9 @@ public class CharsetTest {
    }
 
    /**
-     * @tpTestDetails Tests StringTextStar provider, where the charset is unspecified.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests StringTextStar provider, where the charset is unspecified.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testStringDefault() throws Exception {
       logger.info("client default charset: " + Charset.defaultCharset());
@@ -91,10 +91,10 @@ public class CharsetTest {
    }
 
    /**
-     * @tpTestDetails Tests StringTextStar provider, where the charset is specified
-     * by the resource method.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests StringTextStar provider, where the charset is specified
+    * by the resource method.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testStringProducesUtf16() throws Exception {
       WebTarget target = client.target(generateURL("/produces/string/utf16"));
@@ -108,10 +108,10 @@ public class CharsetTest {
    }
 
    /**
-     * @tpTestDetails Tests StringTextStar provider, where the charset is specified
-     * by the Accept header.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests StringTextStar provider, where the charset is specified
+    * by the Accept header.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testStringAcceptsUtf16() throws Exception {
       WebTarget target = client.target(generateURL("/accepts/string/default"));
@@ -125,9 +125,9 @@ public class CharsetTest {
    }
 
    /**
-     * @tpTestDetails Tests DefaultTextPlain provider, where the charset is unspecified.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests DefaultTextPlain provider, where the charset is unspecified.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFooDefault() throws Exception {
       WebTarget target = client.target(generateURL("/accepts/foo/default"));
@@ -141,10 +141,10 @@ public class CharsetTest {
    }
 
    /**
-     * @tpTestDetails Tests DefaultTextPlain provider, where the charset is specified
-     * by the resource method.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests DefaultTextPlain provider, where the charset is specified
+    * by the resource method.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFooProducesUtf16() throws Exception {
       WebTarget target = client.target(generateURL("/produces/foo/utf16"));
@@ -158,10 +158,10 @@ public class CharsetTest {
    }
 
    /**
-     * @tpTestDetails Tests DefaultTextPlain provider, where the charset is specified
-     * by the Accept header.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests DefaultTextPlain provider, where the charset is specified
+    * by the Accept header.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFooAcceptsUtf16() throws Exception {
       WebTarget target = client.target(generateURL("/accepts/foo/default"));
@@ -175,9 +175,9 @@ public class CharsetTest {
    }
 
    /**
-     * @tpTestDetails Tests StringTextStar provider, default charset
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests StringTextStar provider, default charset
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFormDefault() throws Exception {
       WebTarget target = client.target(generateURL("/accepts/form/default"));

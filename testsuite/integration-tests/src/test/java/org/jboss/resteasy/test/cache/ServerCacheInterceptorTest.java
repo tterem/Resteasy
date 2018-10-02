@@ -29,11 +29,11 @@ import org.junit.runner.RunWith;
 
 
 /**
-   * @tpSubChapter RESTEasy Cache Core
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1423
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter RESTEasy Cache Core
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1423
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ServerCacheInterceptorTest {
@@ -70,9 +70,9 @@ public class ServerCacheInterceptorTest {
    }
 
    /**
-     * @tpTestDetails Verifies that a 'public' resource is cached by the server side cache. 
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verifies that a 'public' resource is cached by the server side cache. 
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void cachePublicResource() {
       String responseA = clientA.target(generateURL("/public")).request().get(String.class);
@@ -81,9 +81,9 @@ public class ServerCacheInterceptorTest {
    }
 
    /**
-     * @tpTestDetails Verifies that a 'private' resource is not cached by the server side cache.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verifies that a 'private' resource is not cached by the server side cache.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void doNotCachePrivateResource() {
       String responseA = clientA.target(generateURL("/private")).request().get(String.class);
@@ -92,9 +92,9 @@ public class ServerCacheInterceptorTest {
    }
 
    /**
-     * @tpTestDetails Verifies that a resource marked with the 'no-store' directive is not cached by the server side cache.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verifies that a resource marked with the 'no-store' directive is not cached by the server side cache.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void doNotCacheNoStoreResource() {
       String responseA = clientA.target(generateURL("/no-store")).request().get(String.class);

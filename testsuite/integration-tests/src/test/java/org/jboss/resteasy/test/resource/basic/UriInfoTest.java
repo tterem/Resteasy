@@ -37,11 +37,11 @@ import java.util.List;
 import java.util.PropertyPermission;
 
 /**
-   * @tpSubChapter Resources
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Tests for java.net.URI class
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resources
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Tests for java.net.URI class
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class UriInfoTest {
@@ -78,9 +78,9 @@ public class UriInfoTest {
    }
 
    /**
-     * @tpTestDetails Check uri from resource on server. Simple resource is used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check uri from resource on server. Simple resource is used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUriInfo() throws Exception {
       basicTest("/simple", UriInfoSimpleResource.class.getSimpleName());
@@ -101,9 +101,9 @@ public class UriInfoTest {
    }
 
    /**
-     * @tpTestDetails Check uri from resource on server. Resource is set as singleton to RESTEasy.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check uri from resource on server. Resource is set as singleton to RESTEasy.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUriInfoWithSingleton() throws Exception {
       basicTest("/simple/fromField", UriInfoSimpleSingletonResource.class.getSimpleName());
@@ -117,9 +117,9 @@ public class UriInfoTest {
    }
 
    /**
-     * @tpTestDetails Check uri from resource on server. Test complex parameter.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check uri from resource on server. Test complex parameter.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEscapedMatrParam() throws Exception {
       basicTest("/queryEscapedMatrParam;a=a%3Bb;b=x%2Fy;c=m%5Cn;d=k%3Dl", UriInfoEscapedMatrParamResource.class.getSimpleName());
@@ -133,9 +133,9 @@ public class UriInfoTest {
    }
 
    /**
-     * @tpTestDetails Check uri from resource on server. Test space character in URI.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check uri from resource on server. Test space character in URI.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncodedTemplateParams() throws Exception {
       basicTest("/a%20b/x%20y", UriInfoEncodedTemplateResource.class.getSimpleName());
@@ -150,9 +150,9 @@ public class UriInfoTest {
    }
 
    /**
-     * @tpTestDetails Check uri from resource on server. Test space character in URI attribute.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check uri from resource on server. Test space character in URI attribute.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncodedQueryParams() throws Exception {
       basicTest("/query?a=a%20b", UriInfoEncodedQueryResource.class.getSimpleName());
@@ -166,9 +166,9 @@ public class UriInfoTest {
    }
 
    /**
-     * @tpTestDetails Check uri from resource on server. Test return value from resource - same URI address.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check uri from resource on server. Test return value from resource - same URI address.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRelativize() throws Exception {
       String uri = PortProviderUtil.generateURL("/", UriInfoRelativizeResource.class.getSimpleName());
@@ -183,9 +183,9 @@ public class UriInfoTest {
    }
 
    /**
-     * @tpTestDetails Check uri on client. Base unit test.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check uri on client. Base unit test.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResolve() throws Exception {
       URI uri = new URI("http://localhost/base1/base2");
@@ -212,9 +212,9 @@ public class UriInfoTest {
    }
 
    /**
-     * @tpTestDetails Test that UriInfo.getQueryParameters() returns an immutable map. Test's logic is in end-point.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Test that UriInfo.getQueryParameters() returns an immutable map. Test's logic is in end-point.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testQueryParamsMutability() throws Exception {

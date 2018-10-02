@@ -16,11 +16,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
-   * @tpSubChapter Util tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for UriBuilder class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Util tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for UriBuilder class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class UriBuilderTest {
    private static final String ERROR_MSG = "UriBuilder works incorrectly";
    protected static final Logger logger = LogManager.getLogger(UriBuilderTest.class.getName());
@@ -33,9 +33,9 @@ public class UriBuilderTest {
    private static final String ENCODED_EXPECTED_PATH = "path-rootless%2Ftest2/x%25yz/%2Fpath-absolute%2F%2525test1/fred@example.com/x%25yz";
 
    /**
-     * @tpTestDetails Test for all important method and use cases of UriBuilder class.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for all important method and use cases of UriBuilder class.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void uriBuilderTest() throws Exception {
       // testExceptions

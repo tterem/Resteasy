@@ -12,25 +12,25 @@ import java.security.NoSuchAlgorithmException;
 
 
 /**
-   * AES encryption, decryption and key generation methods. Uses the 
-   * BouncyCastle.org provider.
-   *
-   * @author Vladimir Dzhuvinov
-   * @version $version$ (2013-05-06)
-   */
+ * AES encryption, decryption and key generation methods. Uses the 
+ * BouncyCastle.org provider.
+ *
+ * @author Vladimir Dzhuvinov
+ * @version $version$ (2013-05-06)
+ */
 class AES
 {
 
 
    /**
-   * Generates an AES key of the specified length.
-   *
-   * @param keyBitLength The key length, in bits.
-   *
-   * @return The AES key.
-   *
-   * @throws RuntimeException If an AES key couldn't be generated.
-   */
+    * Generates an AES key of the specified length.
+    *
+    * @param keyBitLength The key length, in bits.
+    *
+    * @return The AES key.
+    *
+    * @throws RuntimeException If an AES key couldn't be generated.
+    */
    public static SecretKey generateKey(final int keyBitLength)
       throws RuntimeException {
 
@@ -50,15 +50,15 @@ class AES
 
 
    /**
-   * Creates a new AES cipher.
-   *
-   * @param secretKey     The AES key. Must not be {@code null}.
-   * @param forEncryption If {@code true} creates an AES encryption
-   *                      cipher, else creates an AES decryption
-   *                      cipher.
-   *
-   * @return The AES cipher.
-   */
+    * Creates a new AES cipher.
+    *
+    * @param secretKey     The AES key. Must not be {@code null}.
+    * @param forEncryption If {@code true} creates an AES encryption
+    *                      cipher, else creates an AES decryption
+    *                      cipher.
+    *
+    * @return The AES cipher.
+    */
    public static AESEngine createCipher(final SecretKey secretKey,
                                    final boolean forEncryption) {
 
@@ -73,7 +73,7 @@ class AES
 
 
    /**
-   * Prevents public instantiation.
-   */
+    * Prevents public instantiation.
+    */
    private AES() { }
 }

@@ -11,25 +11,25 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
-   * Finds DecoratorProcessors and calls decorates on them by introspecting annotations.
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   * @see org.jboss.resteasy.spi.DecoratorProcessor
-   * @see org.jboss.resteasy.annotations.DecorateTypes
-   * @see org.jboss.resteasy.annotations.Decorator
-   */
+ * Finds DecoratorProcessors and calls decorates on them by introspecting annotations.
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ * @see org.jboss.resteasy.spi.DecoratorProcessor
+ * @see org.jboss.resteasy.annotations.DecorateTypes
+ * @see org.jboss.resteasy.annotations.Decorator
+ */
 public class DecoratorMatcher
 {
    /**
-   * @param targetClass i.e. Marshaller
-   * @param target target object
-   * @param type        i.e. a JAXB annotated class
-   * @param annotations i.e. method or parameter annotations
-   * @param mediaType media type
-   * @param <T> type
-   * @return decorated target object
-   */
+    * @param targetClass i.e. Marshaller
+    * @param target target object
+    * @param type        i.e. a JAXB annotated class
+    * @param annotations i.e. method or parameter annotations
+    * @param mediaType media type
+    * @param <T> type
+    * @return decorated target object
+    */
    @SuppressWarnings(value = "unchecked")
    public <T> T decorate(Class<T> targetClass, T target, Class type, Annotation[] annotations, MediaType mediaType)
    {

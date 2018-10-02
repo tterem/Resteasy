@@ -16,9 +16,9 @@ import org.jboss.resteasy.plugins.providers.jaxb.XmlJAXBContextFinder;
 import org.jboss.resteasy.spi.util.FindAnnotation;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @Consumes({"application/fastinfoset", "application/*+fastinfoset"})
 @Produces({"application/fastinfoset", "application/*+fastinfoset"})

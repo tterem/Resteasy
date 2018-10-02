@@ -25,11 +25,11 @@ import javax.ws.rs.core.Response;
 import java.lang.reflect.ReflectPermission;
 
 /**
-   * @tpSubChapter Multipart provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for default content type encoding of multipart provider
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Multipart provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for default content type encoding of multipart provider
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InputPartDefaultContentTypeEncodingOverwriteTest {
@@ -68,9 +68,9 @@ public class InputPartDefaultContentTypeEncodingOverwriteTest {
    private static final String TEST_URI = generateURL("");
 
    /**
-     * @tpTestDetails Test for new client
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for new client
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testContentTypeNewClient() throws Exception {
       String message = "--boo\r\n"

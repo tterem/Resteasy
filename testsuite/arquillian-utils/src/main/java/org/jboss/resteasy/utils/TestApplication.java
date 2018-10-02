@@ -9,8 +9,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
-   * Base class used from deployment.
-   */
+ * Base class used from deployment.
+ */
 @Provider
 @ApplicationPath("/")
 public class TestApplication extends Application {
@@ -19,10 +19,10 @@ public class TestApplication extends Application {
    public static Set<Object> singletons = new HashSet<Object>();
 
    /**
-     * Load resources from classes.txt file from deployment
-     *
-     * @return Array of class names.
-     */
+    * Load resources from classes.txt file from deployment
+    *
+    * @return Array of class names.
+    */
    public static String[] getClassesFromDeployment(String name) {
       String resource = name + ".txt";
       String stripped = resource.startsWith("/") ?
@@ -46,19 +46,19 @@ public class TestApplication extends Application {
    }
 
    /**
-     * Convert input stream to String
-     *
-     * @param is Input stream
-     * @return string
-     */
+    * Convert input stream to String
+    *
+    * @param is Input stream
+    * @return string
+    */
    private static String convertStreamToString(final java.io.InputStream is) {
       java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
       return s.hasNext() ? s.next() : "";
    }
 
    /**
-     * @see javax.ws.rs.core.Application#getClasses()
-     */
+    * @see javax.ws.rs.core.Application#getClasses()
+    */
    @Override
    public Set<Class<?>> getClasses() {
       if (classes.isEmpty()) {
@@ -76,8 +76,8 @@ public class TestApplication extends Application {
    }
 
    /**
-     * @see javax.ws.rs.core.Application#getSingletons()
-     */
+    * @see javax.ws.rs.core.Application#getSingletons()
+    */
    @Override
    public Set<Object> getSingletons() {
       if (singletons.isEmpty()) {

@@ -27,11 +27,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Parameters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for form parameters
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Parameters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for form parameters
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FormParamTest {
@@ -67,9 +67,9 @@ public class FormParamTest {
    private static final String ENCODED = "_%60%27%24X+Y%40%22a+a%22";
 
    /**
-     * @tpTestDetails Check form parameters with POST method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check form parameters with POST method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void postTest() {
       Entity entity = Entity.entity("param=" + ENCODED, MediaType.APPLICATION_FORM_URLENCODED_TYPE);
@@ -80,9 +80,9 @@ public class FormParamTest {
    }
 
    /**
-     * @tpTestDetails Check non default form parameters, accept special object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check non default form parameters, accept special object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void nonDefaultFormParamFromStringTest() {
       Entity entity = Entity.entity("default_argument=" + SENT, MediaType.APPLICATION_FORM_URLENCODED_TYPE);
@@ -93,9 +93,9 @@ public class FormParamTest {
    }
 
    /**
-     * @tpTestDetails Check non default form parameters, accept String
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check non default form parameters, accept String
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void string() {
       Entity entity = Entity.entity("default_argument=" + SENT, MediaType.APPLICATION_FORM_URLENCODED_TYPE);
@@ -106,9 +106,9 @@ public class FormParamTest {
    }
 
    /**
-     * @tpTestDetails Check non default form parameters, accept sorted set
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check non default form parameters, accept sorted set
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void defaultFormParamFromSortedSetFromStringTest() {
       Response response = client.target(generateURL("/FormParamTest/SortedSetFromString")).request().
@@ -119,9 +119,9 @@ public class FormParamTest {
    }
 
    /**
-     * @tpTestDetails Check non default form parameters, accept list
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check non default form parameters, accept list
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void defaultListConstructor() {
       Response response = client.target(generateURL("/FormParamTest/ListConstructor")).request().
@@ -132,9 +132,9 @@ public class FormParamTest {
    }
 
    /**
-     * @tpTestDetails Check wrong arguments, exception is excepted
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check wrong arguments, exception is excepted
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIllegalArgumentException() {
       Response response = client.target(generateURL("/FormParamTest/IllegalArgumentException")).request().

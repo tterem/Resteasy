@@ -9,12 +9,12 @@ import org.springframework.web.context.ServletContextAware;
 import javax.servlet.ServletContext;
 
 /**
-   * Use this subclass of SpringBeanProcessor if you are manually applying the SpringBeanProcessor for Resteasy.  This assumes that the
-   * Registry and ResteasyProviderFactory objects are registered as attributes in the ServletContext
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Use this subclass of SpringBeanProcessor if you are manually applying the SpringBeanProcessor for Resteasy.  This assumes that the
+ * Registry and ResteasyProviderFactory objects are registered as attributes in the ServletContext
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class SpringBeanProcessorServletAware extends SpringBeanProcessor implements ServletContextAware
 {
    protected ServletContext servletContext;

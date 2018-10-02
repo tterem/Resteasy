@@ -29,11 +29,11 @@ import java.lang.reflect.ReflectPermission;
 import java.lang.reflect.Type;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Regression test for RESTEASY-666
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Regression test for RESTEASY-666
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AbstractExceptionMapperTest {
@@ -64,9 +64,9 @@ public class AbstractExceptionMapperTest {
    }
 
    /**
-     * @tpTestDetails Correct exception mapper should be chosen when ExceptionMapper implement statement is in abstract class.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Correct exception mapper should be chosen when ExceptionMapper implement statement is in abstract class.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCustomUsed() {
       Type exceptionType = Types.getActualTypeArgumentsOfAnInterface(AbstractMapperMyCustom.class, ExceptionMapper.class)[0];

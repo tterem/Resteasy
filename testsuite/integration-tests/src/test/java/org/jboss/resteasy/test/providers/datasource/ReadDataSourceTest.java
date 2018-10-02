@@ -24,10 +24,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter DataSource provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter DataSource provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ReadDataSourceTest {
@@ -55,11 +55,11 @@ public class ReadDataSourceTest {
    }
 
    /**
-     * @tpTestDetails Tests DataSourceProviders ability to read the same stream twice and verifies the results of both reads
-     * are equal
-     * @tpInfo RESTEASY-1182
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests DataSourceProviders ability to read the same stream twice and verifies the results of both reads
+    * are equal
+    * @tpInfo RESTEASY-1182
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDataSourceInputStream() throws Exception {
       WebTarget target = client.target(generateURL("/" + ReadDataSourceResource.PATH_UPLOAD));

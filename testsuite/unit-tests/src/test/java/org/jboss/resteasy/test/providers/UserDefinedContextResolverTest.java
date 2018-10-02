@@ -14,11 +14,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1471
-   * @tpSince RESTEasy 3.1.0.Final
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1471
+ * @tpSince RESTEasy 3.1.0.Final
+ */
 public class UserDefinedContextResolverTest {
 
    public static class TestException extends RuntimeException {

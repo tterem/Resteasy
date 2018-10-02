@@ -19,11 +19,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Exceptions
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for javax.ws.rs.WebApplicationException class
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Exceptions
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for javax.ws.rs.WebApplicationException class
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class WebApplicationExceptionTest {
@@ -48,19 +48,19 @@ public class WebApplicationExceptionTest {
    }
 
    /**
-     * @tpTestDetails Test for exception without error entity
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for exception without error entity
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testException() {
       basicTest("/exception", HttpResponseCodes.SC_UNAUTHORIZED);
    }
 
    /**
-     * @tpTestDetails Test for exception with error entity.
-     *                Regression test for RESTEASY-24
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for exception with error entity.
+    *                Regression test for RESTEASY-24
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testExceptionWithEntity() {
       basicTest("/exception/entity", HttpResponseCodes.SC_UNAUTHORIZED);

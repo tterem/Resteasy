@@ -38,11 +38,11 @@ import io.reactivex.Observable;
 import io.reactivex.Single;
 
 /**
-   * @tpSubChapter Interceptors
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1932
-   * @tpSince RESTEasy 4.0
-   */
+ * @tpSubChapter Interceptors
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1932
+ * @tpSince RESTEasy 4.0
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ClientResponseFilterExceptionTest {
@@ -93,9 +93,9 @@ public class ClientResponseFilterExceptionTest {
    }
 
    /**
-   * @tpTestDetails test synchronous call
-   * @tpSince RESTEasy 4.0
-   */
+    * @tpTestDetails test synchronous call
+    * @tpSince RESTEasy 4.0
+    */
    @Test
    public void testSync() throws Exception {
       int i = 0;
@@ -110,9 +110,9 @@ public class ClientResponseFilterExceptionTest {
    }
 
    /**
-   * @tpTestDetails test asynchronous call: CompletionStage
-   * @tpSince RESTEasy 4.0
-   */
+    * @tpTestDetails test asynchronous call: CompletionStage
+    * @tpSince RESTEasy 4.0
+    */
    @Test
    public void testCompletionStage() throws Exception {
       Assert.assertTrue(
@@ -124,9 +124,9 @@ public class ClientResponseFilterExceptionTest {
    }
 
    /**
-   * @tpTestDetails test asynchronous call: Single
-   * @tpSince RESTEasy 4.0
-   */
+    * @tpTestDetails test asynchronous call: Single
+    * @tpSince RESTEasy 4.0
+    */
    @Test
    public void testSingle() throws Exception {
       Assert.assertTrue(
@@ -137,9 +137,9 @@ public class ClientResponseFilterExceptionTest {
    }
       
    /**
-   * @tpTestDetails test asynchronous call: Observable
-   * @tpSince RESTEasy 4.0
-   */
+    * @tpTestDetails test asynchronous call: Observable
+    * @tpSince RESTEasy 4.0
+    */
    @Test
    public void testObservable() throws Exception {
       Assert.assertTrue(
@@ -150,9 +150,9 @@ public class ClientResponseFilterExceptionTest {
    }
 
    /**
-   * @tpTestDetails test asynchronous call: Flowable
-   * @tpSince RESTEasy 4.0
-   */
+    * @tpTestDetails test asynchronous call: Flowable
+    * @tpSince RESTEasy 4.0
+    */
    @Test
    public void testFlowable() throws Exception {
       Assert.assertTrue(

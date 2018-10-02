@@ -11,18 +11,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
-   * @tpSubChapter Util tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for GroupParameterParser and ParameterParser class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Util tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for GroupParameterParser and ParameterParser class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class GroupParameterParserTest {
    protected final Logger logger = LogManager.getLogger(GroupParameterParserTest.class.getName());
 
    /**
-     * @tpTestDetails Test for GroupParameterParser class.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for GroupParameterParser class.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGroups() throws Exception {
       String params = "a=b; c=d; e=\"f,;\" , one=two; three=\"four\"";
@@ -34,9 +34,9 @@ public class GroupParameterParserTest {
    }
 
    /**
-     * @tpTestDetails Test for ParameterParser class, base parameters are used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for ParameterParser class, base parameters are used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSetAttribute() throws Exception {
       String header = "v=1   ;z=33333   ;b=xxxxxxx";
@@ -47,9 +47,9 @@ public class GroupParameterParserTest {
    }
 
    /**
-     * @tpTestDetails Test for ParameterParser class, complex parameters are used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for ParameterParser class, complex parameters are used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSetAttributeComplex() throws Exception {
       String header = "v=1   ;z=33333   ;b=xxxxxxx   ;   foo=bar   ";

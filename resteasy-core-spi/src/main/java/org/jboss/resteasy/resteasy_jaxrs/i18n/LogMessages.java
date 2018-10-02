@@ -14,12 +14,12 @@ import org.jboss.logging.annotations.Message.Format;
 import org.jboss.logging.annotations.MessageLogger;
 
 /**
-   *
-   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
-   * @version $Revision: 1.1 $
-   *
-   * Copyright Aug 13, 2015
-   */
+ *
+ * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+ * @version $Revision: 1.1 $
+ *
+ * Copyright Aug 13, 2015
+ */
 @MessageLogger(projectCode = "RESTEASY")
 public interface LogMessages extends BasicLogger
 {

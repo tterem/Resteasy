@@ -25,10 +25,10 @@ import javax.xml.bind.JAXBContext;
 import java.io.StringWriter;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SeeAlsoAnnotationTest {
@@ -59,9 +59,9 @@ public class SeeAlsoAnnotationTest {
    }
 
    /**
-     * @tpTestDetails Tests jaxb @SeeAlsoAnnotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests jaxb @SeeAlsoAnnotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIntf() throws Exception {
       String url = generateURL("/see/intf");
@@ -69,9 +69,9 @@ public class SeeAlsoAnnotationTest {
    }
 
    /**
-     * @tpTestDetails Tests jaxb @SeeAlsoAnnotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests jaxb @SeeAlsoAnnotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testTest() throws Exception {
       String url = generateURL("/see/base");

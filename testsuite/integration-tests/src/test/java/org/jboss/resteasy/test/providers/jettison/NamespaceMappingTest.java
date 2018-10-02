@@ -25,11 +25,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Jettison provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Namespace mapping test for jettison provider
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jettison provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Namespace mapping test for jettison provider
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class NamespaceMappingTest {
@@ -59,9 +59,9 @@ public class NamespaceMappingTest {
    }
 
    /**
-     * @tpTestDetails Test "application/*+json" media type
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test "application/*+json" media type
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testJsonReqRes() throws Exception {
       String getData = getDataFromUrl();

@@ -24,11 +24,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for limited and unlimited path
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for limited and unlimited path
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PathLimitedTest {
@@ -59,9 +59,9 @@ public class PathLimitedTest {
    }
 
    /**
-     * @tpTestDetails Check unlimited behaviour on class
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check unlimited behaviour on class
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUnlimitedOnClass() {
       basicTest("/unlimited");
@@ -69,9 +69,9 @@ public class PathLimitedTest {
    }
 
    /**
-     * @tpTestDetails Check unlimited behaviour on method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check unlimited behaviour on method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUnlimitedOnMethod() {
       basicTest("/unlimited2/on/and/on");
@@ -80,9 +80,9 @@ public class PathLimitedTest {
    }
 
    /**
-     * @tpTestDetails Check location of resources
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check location of resources
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLocator() {
       basicTest("/locator");

@@ -1,9 +1,9 @@
 /*
-   * Hibernate Validator, declare and validate application constraints
-   *
-   * License: Apache License, Version 2.0
-   * See the license.txt file in the root directory or <http://www.apache.org/licenses/LICENSE-2.0>.
-   */
+ * Hibernate Validator, declare and validate application constraints
+ *
+ * License: Apache License, Version 2.0
+ * See the license.txt file in the root directory or <http://www.apache.org/licenses/LICENSE-2.0>.
+ */
 package org.jboss.resteasy.test.validation;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -31,11 +31,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Validator provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test - RESTEASY-1296
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Validator provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test - RESTEASY-1296
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationThroughRestTest {
@@ -55,9 +55,9 @@ public class ValidationThroughRestTest {
    }
 
    /**
-     * @tpTestDetails Field and EJB parameter validation.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Field and EJB parameter validation.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void validationOfFieldAndParameterOfEjbResource() {
       Client client = ClientBuilder.newClient();

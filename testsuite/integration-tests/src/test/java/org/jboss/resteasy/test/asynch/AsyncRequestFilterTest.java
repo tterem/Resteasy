@@ -34,11 +34,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Async Request Filter test.
-   * @tpSince RESTEasy 4.0.0
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Async Request Filter test.
+ * @tpSince RESTEasy 4.0.0
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AsyncRequestFilterTest {
@@ -61,9 +61,9 @@ public class AsyncRequestFilterTest {
    }
 
    /**
-     * @tpTestDetails Interceptors work
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Interceptors work
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testRequestFilters() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -193,9 +193,9 @@ public class AsyncRequestFilterTest {
    }
 
    /**
-     * @tpTestDetails Interceptors work
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Interceptors work
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testPreMatchRequestFilters() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -308,9 +308,9 @@ public class AsyncRequestFilterTest {
    }
 
    /**
-     * @tpTestDetails Interceptors work
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Interceptors work
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testResponseFilters() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -439,9 +439,9 @@ public class AsyncRequestFilterTest {
       client.close();
    }
    /**
-     * @tpTestDetails Interceptors work
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Interceptors work
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testResponseFilters2() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -462,9 +462,9 @@ public class AsyncRequestFilterTest {
    }
 
    /**
-     * @tpTestDetails Async filters work with resume(Throwable) wrt filters/callbacks/complete
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Async filters work with resume(Throwable) wrt filters/callbacks/complete
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testResponseFiltersThrow() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -545,9 +545,9 @@ public class AsyncRequestFilterTest {
    }
 
    /**
-     * @tpTestDetails Interceptors work with non-Response resource methods
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Interceptors work with non-Response resource methods
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testRequestFiltersGuessReturnType() throws Exception {
       Client client = ClientBuilder.newClient();

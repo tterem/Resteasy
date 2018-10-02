@@ -33,11 +33,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test basic validation with disable executable-validation in validation.xml file. Validation should not be active.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test basic validation with disable executable-validation in validation.xml file. Validation should not be active.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExecutableValidationDisabledTest {
@@ -71,9 +71,9 @@ public class ExecutableValidationDisabledTest {
    }
 
    /**
-     * @tpTestDetails Test disabled validation of returned value.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test disabled validation of returned value.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testReturnValues() throws Exception {
       // Valid native constraint
@@ -129,9 +129,9 @@ public class ExecutableValidationDisabledTest {
    }
 
    /**
-     * @tpTestDetails Test disabled validation before return value evaluation.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test disabled validation before return value evaluation.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testViolationsBeforeReturnValue() throws Exception {
       // Valid

@@ -22,10 +22,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Resteasy MessageBodyWriter<Object>
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.1.4
-   */
+ * @tpSubChapter Resteasy MessageBodyWriter<Object>
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.1.4
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MessageBodyWriterObjectDefaultTest {

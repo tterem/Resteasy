@@ -22,10 +22,10 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ProxyJaxbResourceIntfTest {
@@ -56,9 +56,9 @@ public class ProxyJaxbResourceIntfTest {
    }
 
    /**
-     * @tpTestDetails Tests client proxy with annotated jaxb resource, RESTEASY-306
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests client proxy with annotated jaxb resource, RESTEASY-306
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIt() throws Exception {
       ProxyJaxbResourceIntf proxy = ProxyBuilder.builder(ProxyJaxbResourceIntf.class, client.target(generateURL("/"))).build();

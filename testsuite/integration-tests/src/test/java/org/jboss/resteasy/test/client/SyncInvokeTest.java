@@ -24,10 +24,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SyncInvokeTest extends ClientTestBase{
@@ -58,11 +58,11 @@ public class SyncInvokeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends  GET, PUT, DELETE, POST and custom defined requests. First request expects
-     * Response object in return, the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends  GET, PUT, DELETE, POST and custom defined requests. First request expects
+    * Response object in return, the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMethods() throws Exception {
       {
@@ -118,11 +118,11 @@ public class SyncInvokeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends  GET, PUT, DELETE, POST and custom defined requests. The request is send using
-     * invoke() method. First request expects Response object in return, the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends  GET, PUT, DELETE, POST and custom defined requests. The request is send using
+    * invoke() method. First request expects Response object in return, the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInvoke() throws Exception {
       {

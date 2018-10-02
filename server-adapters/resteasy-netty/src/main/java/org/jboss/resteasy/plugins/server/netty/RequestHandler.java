@@ -19,16 +19,16 @@ import static org.jboss.netty.handler.codec.http.HttpResponseStatus.CONTINUE;
 import static org.jboss.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 /**
-   * {@link SimpleChannelUpstreamHandler} which handles the requests and dispatch them.
-   *
-   * This class is {@link Sharable}.
-   *
-   * @author <a href="http://www.jboss.org/netty/">The Netty Project</a>
-   * @author Andy Taylor (andy.taylor@jboss.org)
-   * @author <a href="http://gleamynode.net/">Trustin Lee</a>
-   * @author Norman Maurer
-   * @version $Rev: 2368 $, $Date: 2010-10-18 17:19:03 +0900 (Mon, 18 Oct 2010) $
-   */
+ * {@link SimpleChannelUpstreamHandler} which handles the requests and dispatch them.
+ *
+ * This class is {@link Sharable}.
+ *
+ * @author <a href="http://www.jboss.org/netty/">The Netty Project</a>
+ * @author Andy Taylor (andy.taylor@jboss.org)
+ * @author <a href="http://gleamynode.net/">Trustin Lee</a>
+ * @author Norman Maurer
+ * @version $Rev: 2368 $, $Date: 2010-10-18 17:19:03 +0900 (Mon, 18 Oct 2010) $
+ */
 @Sharable
 public class RequestHandler extends SimpleChannelUpstreamHandler
 {

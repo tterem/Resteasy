@@ -38,11 +38,11 @@ import org.springframework.context.ApplicationContext;
 import org.jboss.resteasy.test.spring.inmodule.resource.TestResource;
 
 /**
-   * @tpSubChapter Spring
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Tests adding spring as resource root with dependency for server module
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Spring
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Tests adding spring as resource root with dependency for server module
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AddSpringResteasyAsResourceRootInModuleTest {
@@ -60,11 +60,11 @@ public class AddSpringResteasyAsResourceRootInModuleTest {
    }
 
    /**
-     * @tpTestDetails Add dependency to spring libraries. Spring libraries are available as server module.
-     * Deployment is configured with SpringMVC Dispatcher Servlet.
-     * @tpPassCrit The application is successfully deployed, resource is available, and Spring classes are on the path.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Add dependency to spring libraries. Spring libraries are available as server module.
+    * Deployment is configured with SpringMVC Dispatcher Servlet.
+    * @tpPassCrit The application is successfully deployed, resource is available, and Spring classes are on the path.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test @OperateOnDeployment("dep3")
    public void testDeploymentWithSpringMvcDispatcherAddsResourceRoot() throws Exception {
       deploymentName = deploymentWithSpringMvcDispatcherSpringInModule;
@@ -88,11 +88,11 @@ public class AddSpringResteasyAsResourceRootInModuleTest {
    }
 
    /**
-     * @tpTestDetails Add dependency to spring libraries. Spring libraries are available as server module.
-     * Deployment is configured with Spring context loader listener.
-     * @tpPassCrit The application is successfully deployed, resource is available, and Spring classes are on the path.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Add dependency to spring libraries. Spring libraries are available as server module.
+    * Deployment is configured with Spring context loader listener.
+    * @tpPassCrit The application is successfully deployed, resource is available, and Spring classes are on the path.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test @OperateOnDeployment("dep2")
    public void testDeploymentWithSpringContextLoaderListenerAddsResourceRoot() throws Exception {
       deploymentName = deploymentWithSpringContextLoaderListenerSpringInModule;
@@ -123,11 +123,11 @@ public class AddSpringResteasyAsResourceRootInModuleTest {
    }
 
    /**
-     * @tpTestDetails Add dependency to spring libraries. Spring libraries are available as server module.
-     * Deployment is configured without Spring context loader listener or MVC dispatcher.
-     * @tpPassCrit The application is successfully deployed, resource is available, and Spring classes are on the path.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Add dependency to spring libraries. Spring libraries are available as server module.
+    * Deployment is configured without Spring context loader listener or MVC dispatcher.
+    * @tpPassCrit The application is successfully deployed, resource is available, and Spring classes are on the path.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test @OperateOnDeployment("dep1")
    public void testDeploymentWithoutSpringMvcDispatcherOrListenerDoesNotAddResourceRoot() throws Exception {
       deploymentName = deploymentWithoutSpringMvcDispatcherOrListenerSpringInModule;

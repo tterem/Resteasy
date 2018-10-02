@@ -56,11 +56,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Interceptors test.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Interceptors test.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InterceptorTest {
@@ -91,9 +91,9 @@ public class InterceptorTest {
    }
 
    /**
-     * @tpTestDetails One item is stored and load to collection in resources.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails One item is stored and load to collection in resources.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInterceptors() throws Exception {
       Client client = ClientBuilder.newClient();

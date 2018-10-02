@@ -31,9 +31,9 @@ import org.jboss.resteasy.core.ResteasyContext;
 import org.jboss.resteasy.security.doseta.i18n.Messages;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @ConstrainedTo(RuntimeType.SERVER)
 public class ServerDigitalVerificationHeaderDecoratorFeature implements DynamicFeature

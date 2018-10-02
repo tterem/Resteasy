@@ -26,10 +26,10 @@ import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class TimeoutTest extends ClientTestBase{
@@ -49,11 +49,11 @@ public class TimeoutTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create client with custom SocketTimeout setting. Client sends GET request for the resource which
-     * calls sleep() for the specified amount of time.
-     * @tpPassCrit The request gets timeouted
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create client with custom SocketTimeout setting. Client sends GET request for the resource which
+    * calls sleep() for the specified amount of time.
+    * @tpPassCrit The request gets timeouted
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testTimeout() throws Exception {
       ResteasyClient clientengine = ((ResteasyClientBuilder)ClientBuilder.newBuilder()).readTimeout(2, TimeUnit.SECONDS).build();

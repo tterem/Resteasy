@@ -8,10 +8,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
-   * This interface is used on the client side only.
-   *
-   * @author Jozef Hartinger
-   */
+ * This interface is used on the client side only.
+ *
+ * @author Jozef Hartinger
+ */
 
 @Path("/student/{id}")
 @Produces("application/student")

@@ -29,11 +29,11 @@ import javax.ws.rs.core.Response;
 import static org.junit.Assert.fail;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails https://issues.jboss.org/browse/RESTEASY-621
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails https://issues.jboss.org/browse/RESTEASY-621
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ClientExecutorShutdownTest extends ClientTestBase{
@@ -54,12 +54,12 @@ public class ClientExecutorShutdownTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Verify that if ApacheHttpClient4Executor creates its own HttpClient,
-     * then ApacheHttpClient4Executor.finalize() will close the HttpClient's
-     * org.apache.http.conn.ClientConnectionManager.
-     * @tpPassCrit ApacheHttpClient4Executor.finalize() will close the connection
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verify that if ApacheHttpClient4Executor creates its own HttpClient,
+    * then ApacheHttpClient4Executor.finalize() will close the HttpClient's
+    * org.apache.http.conn.ClientConnectionManager.
+    * @tpPassCrit ApacheHttpClient4Executor.finalize() will close the connection
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testApacheHttpClient4ExecutorNonSharedHttpClientFinalize() throws Throwable {
       ApacheHttpClient43Engine engine = new ApacheHttpClient43Engine();
@@ -78,12 +78,12 @@ public class ClientExecutorShutdownTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Verify that if ApacheHttpClient4Executor creates its own HttpClient,
-     * then ApacheHttpClient4Executor.close() will close the HttpClient's
-     * org.apache.http.conn.ClientConnectionManager.
-     * @tpPassCrit ApacheHttpClient4Executor.close() will close the connection
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verify that if ApacheHttpClient4Executor creates its own HttpClient,
+    * then ApacheHttpClient4Executor.close() will close the HttpClient's
+    * org.apache.http.conn.ClientConnectionManager.
+    * @tpPassCrit ApacheHttpClient4Executor.close() will close the connection
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testApacheHttpClient4ExecutorNonSharedHttpClientClose() throws Throwable {
       ApacheHttpClient43Engine engine = new ApacheHttpClient43Engine();
@@ -102,12 +102,12 @@ public class ClientExecutorShutdownTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Verify that if ApacheHttpClient4Executor receives an HttpClient through
-     * a constructor, then ApacheHttpClient4Executor.finalize() will not close the
-     * HttpClient's org.apache.http.conn.ClientConnectionManager.
-     * @tpPassCrit ApacheHttpClient4Executor.finalize() will not close the connection
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verify that if ApacheHttpClient4Executor receives an HttpClient through
+    * a constructor, then ApacheHttpClient4Executor.finalize() will not close the
+    * HttpClient's org.apache.http.conn.ClientConnectionManager.
+    * @tpPassCrit ApacheHttpClient4Executor.finalize() will not close the connection
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testApacheHttpClient4ExecutorSharedHttpClientFinalize() throws Throwable {
       HttpClient httpClient = HttpClientBuilder.create().build();
@@ -125,12 +125,12 @@ public class ClientExecutorShutdownTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Verify that if ApacheHttpClient4Executor receives an HttpClient through
-     * a constructor, then ApacheHttpClient4Executor.close() will not close the
-     * HttpClient's org.apache.http.conn.ClientConnectionManager.
-     * @tpPassCrit ApacheHttpClient4Executor.close() will not close the connection
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verify that if ApacheHttpClient4Executor receives an HttpClient through
+    * a constructor, then ApacheHttpClient4Executor.close() will not close the
+    * HttpClient's org.apache.http.conn.ClientConnectionManager.
+    * @tpPassCrit ApacheHttpClient4Executor.close() will not close the connection
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testApacheHttpClient4ExecutorSharedHttpClientClose() throws Throwable {
       HttpClient httpClient = HttpClientBuilder.create().build();

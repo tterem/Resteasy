@@ -54,9 +54,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorRegistryListener
 {
    protected MethodInjector methodInjector;
@@ -256,10 +256,10 @@ public class ResourceMethodInvoker implements ResourceInvoker, JaxrsInterceptorR
    }
 
    /**
-   * Key is httpMethod called.
-   *
-   * @return statistics map
-   */
+    * Key is httpMethod called.
+    *
+    * @return statistics map
+    */
    public Map<String, AtomicLong> getStats()
    {
       return stats;

@@ -45,10 +45,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
-   * @tpSubChapter Multipart provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Multipart provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MimeMultipartProviderTest {
@@ -85,9 +85,9 @@ public class MimeMultipartProviderTest {
    }
 
    /**
-     * @tpTestDetails MultipartFormDataOutput entity in put request with data from file is used
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails MultipartFormDataOutput entity in put request with data from file is used
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPutForm() throws Exception {
       // prepare file
@@ -107,9 +107,9 @@ public class MimeMultipartProviderTest {
    }
 
    /**
-     * @tpTestDetails MultipartOutput entity in put request with data from file is used
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails MultipartOutput entity in put request with data from file is used
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPut() throws Exception {
       // prepare file
@@ -130,9 +130,9 @@ public class MimeMultipartProviderTest {
    }
 
    /**
-     * @tpTestDetails MultipartFormDataOutput entity in put request with created by jxb marshaller is used
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails MultipartFormDataOutput entity in put request with created by jxb marshaller is used
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testForm() throws Exception {
       testMultipart(TEST_URI + "/form");
@@ -154,9 +154,9 @@ public class MimeMultipartProviderTest {
    }
 
    /**
-     * @tpTestDetails MultipartOutput entity in put request with manually created jaxb objects is used
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails MultipartOutput entity in put request with manually created jaxb objects is used
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMultipartOutput() throws Exception {
       MimeMultipartProviderClient proxy = ProxyBuilder.builder(MimeMultipartProviderClient.class, client.target(generateURL(""))).build();
@@ -167,9 +167,9 @@ public class MimeMultipartProviderTest {
    }
 
    /**
-     * @tpTestDetails MultipartFormDataOutput entity in put request with manually created jaxb objects is used
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails MultipartFormDataOutput entity in put request with manually created jaxb objects is used
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMultipartFormDataOutput() throws Exception {
       MimeMultipartProviderClient proxy = ProxyBuilder.builder(MimeMultipartProviderClient.class, client.target(generateURL(""))).build();
@@ -180,9 +180,9 @@ public class MimeMultipartProviderTest {
    }
 
    /**
-     * @tpTestDetails  MultipartRelatedOutput entity in put request with manually generated xml is used
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails  MultipartRelatedOutput entity in put request with manually generated xml is used
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMultipartRelatedOutput() throws Exception {
       MimeMultipartProviderClient proxy = ProxyBuilder.builder(MimeMultipartProviderClient.class, client.target(generateURL(""))).build();
@@ -210,9 +210,9 @@ public class MimeMultipartProviderTest {
    }
 
    /**
-     * @tpTestDetails List is send in put request with the @PartType annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails List is send in put request with the @PartType annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMultipartList() throws Exception {
       MimeMultipartProviderClient proxy = ProxyBuilder.builder(MimeMultipartProviderClient.class, client.target(generateURL(""))).build();
@@ -223,9 +223,9 @@ public class MimeMultipartProviderTest {
    }
 
    /**
-     * @tpTestDetails Map is send in put request with the @PartType annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Map is send in put request with the @PartType annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMultipartMap() throws Exception {
       MimeMultipartProviderClient proxy = ProxyBuilder.builder(MimeMultipartProviderClient.class, client.target(generateURL(""))).build();
@@ -236,9 +236,9 @@ public class MimeMultipartProviderTest {
    }
 
    /**
-     * @tpTestDetails Custom Form type in put request with @MultipartForm annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Custom Form type in put request with @MultipartForm annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMultipartForm() throws Exception {
       MimeMultipartProviderClient proxy = ProxyBuilder.builder(MimeMultipartProviderClient.class, client.target(generateURL(""))).build();
@@ -248,9 +248,9 @@ public class MimeMultipartProviderTest {
    }
 
    /**
-     * @tpTestDetails Custom jaxb object in put request with @XopWithMultipartRelated
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Custom jaxb object in put request with @XopWithMultipartRelated
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXop() throws Exception {
       MimeMultipartProviderClient proxy = ProxyBuilder.builder(MimeMultipartProviderClient.class, client.target(generateURL(""))).build();
@@ -272,9 +272,9 @@ public class MimeMultipartProviderTest {
    }
 
    /**
-     * @tpTestDetails Client sends get request for InputStream from the server
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends get request for InputStream from the server
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGet() throws Exception {
       Response response = client.target(TEST_URI).request().get();
@@ -288,9 +288,9 @@ public class MimeMultipartProviderTest {
    }
 
    /**
-     * @tpTestDetails Client sends post request with "multipart/form-data" and boundary definition
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends post request with "multipart/form-data" and boundary definition
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFile() throws Exception {
       Response response = client.target(TEST_URI + "/file/test").request()

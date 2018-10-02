@@ -24,11 +24,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-381, RESTEASY-518 and RESTEASY-582. Check ServletConfig instance.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-381, RESTEASY-518 and RESTEASY-582. Check ServletConfig instance.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ServletConfigTest {
@@ -58,9 +58,9 @@ public class ServletConfigTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-381
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-381
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCount() throws Exception {
       String count = client.target(generateURL("/my/application/count")).request().get(String.class);
@@ -68,9 +68,9 @@ public class ServletConfigTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-518
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-518
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNullJaxb() throws Exception {
       Response response = client.target(generateURL("/my/null")).request().header("Content-Type", "application/xml").post(Entity.text(""));
@@ -79,9 +79,9 @@ public class ServletConfigTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-582
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-582
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadMediaTypeNoSubtype() throws Exception {
       Response response = client.target(generateURL("/my/application/count")).request().accept("text").get();

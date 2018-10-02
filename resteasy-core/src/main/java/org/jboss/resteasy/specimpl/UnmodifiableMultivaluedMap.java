@@ -8,11 +8,11 @@ import java.util.Map;
 import java.util.Set;
 
 /**
-   * Unmodifiable implementation of {@link javax.ws.rs.core.MultivaluedMap} interface
-   *
-   * @author <a href="mailto:mstefank@redhat.conm">Martin Stefanko</a>
-   * @version $Revision: 1 $
-   */
+ * Unmodifiable implementation of {@link javax.ws.rs.core.MultivaluedMap} interface
+ *
+ * @author <a href="mailto:mstefank@redhat.conm">Martin Stefanko</a>
+ * @version $Revision: 1 $
+ */
 public class UnmodifiableMultivaluedMap<K, V> implements MultivaluedMap<K, V>
 {
 

@@ -4,10 +4,10 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.HeaderParam;
 
 /**
-   * 12 03 2012
-   *
-   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
-   */
+ * 12 03 2012
+ *
+ * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+ */
 public class MyForm2 {
    @FormParam("stuff")
    private String stuff;

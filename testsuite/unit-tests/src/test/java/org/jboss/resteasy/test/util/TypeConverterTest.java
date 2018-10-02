@@ -12,19 +12,19 @@ import static org.junit.Assert.assertTrue;
 
 
 /**
-   * @tpSubChapter Util tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for {@link org.jboss.resteasy.util.TypeConverter#getType(Class, String)}.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Util tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for {@link org.jboss.resteasy.util.TypeConverter#getType(Class, String)}.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class TypeConverterTest {
 
    private static final String CONVERSION_ERROR = "Wrong type of converted value";
 
    /**
-     * @tpTestDetails Boolean conversion.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Boolean conversion.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBooleanTypes() {
       assertTrue(CONVERSION_ERROR, TypeConverter.getType(Boolean.class, "T"));
@@ -47,9 +47,9 @@ public class TypeConverterTest {
    }
 
    /**
-     * @tpTestDetails Integer and int conversion.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Integer and int conversion.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIntegerTypes() {
       assertEquals(CONVERSION_ERROR, 11, (int) TypeConverter.getType(int.class, "11"));
@@ -57,9 +57,9 @@ public class TypeConverterTest {
    }
 
    /**
-     * @tpTestDetails Double conversion.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Double conversion.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDoubleTypes() {
       assertEquals(CONVERSION_ERROR, 20.15d, TypeConverter.getType(double.class, "20.15"), 0);
@@ -67,9 +67,9 @@ public class TypeConverterTest {
    }
 
    /**
-     * @tpTestDetails Float conversion.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Float conversion.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFloatTypes() {
       assertEquals(CONVERSION_ERROR, 23.44f, TypeConverter.getType(float.class, "23.44"), 0);
@@ -77,9 +77,9 @@ public class TypeConverterTest {
    }
 
    /**
-     * @tpTestDetails Long conversion.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Long conversion.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLongTypes() {
       assertEquals(CONVERSION_ERROR, 23L, (long) TypeConverter.getType(long.class, "23"));
@@ -87,8 +87,8 @@ public class TypeConverterTest {
    }
 
    /**
-   * @tpTestDetails character conversion.
-   */
+    * @tpTestDetails character conversion.
+    */
    @Test
    public void testCharacterTypes() {
       assertEquals(CONVERSION_ERROR, 'A', TypeConverter.getType(Character.class, "A").charValue());
@@ -96,9 +96,9 @@ public class TypeConverterTest {
    }
 
    /**
-     * @tpTestDetails Date conversion.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Date conversion.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDate() {
       try {

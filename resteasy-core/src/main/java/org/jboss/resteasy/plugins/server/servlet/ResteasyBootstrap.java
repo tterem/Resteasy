@@ -7,11 +7,11 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 /**
-   * This is a ServletContextListener that creates the registry for resteasy and stuffs it as a servlet context attribute
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * This is a ServletContextListener that creates the registry for resteasy and stuffs it as a servlet context attribute
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class ResteasyBootstrap implements ServletContextListener
 {
    protected ResteasyDeployment deployment;

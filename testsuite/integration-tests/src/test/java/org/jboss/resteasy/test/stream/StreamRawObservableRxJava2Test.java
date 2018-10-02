@@ -28,12 +28,12 @@ import org.junit.runner.RunWith;
 
 
 /**
-   * @tpSubChapter Reactive classes
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 4.0
-   * 
-   * These tests check raw streaming.
-   */
+ * @tpSubChapter Reactive classes
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 4.0
+ * 
+ * These tests check raw streaming.
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class StreamRawObservableRxJava2Test {

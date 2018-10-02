@@ -12,9 +12,9 @@ import org.springframework.stereotype.Controller;
 
 
 /**
-   * User: rsearls
-   * Date: 2/20/17
-   */
+ * User: rsearls
+ * Date: 2/20/17
+ */
 @Controller
 @Path("numbers")
 public class NumbersResource {

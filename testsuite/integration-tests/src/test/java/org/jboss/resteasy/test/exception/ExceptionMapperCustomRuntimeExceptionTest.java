@@ -21,11 +21,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Regression test for RESTEASY-421
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Regression test for RESTEASY-421
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExceptionMapperCustomRuntimeExceptionTest {
@@ -39,10 +39,10 @@ public class ExceptionMapperCustomRuntimeExceptionTest {
    }
 
    /**
-     * @tpTestDetails Check ExceptionMapper for Custom RuntimeException. Check the response contains headers and entity
-     * from custom exception mapper. Using Resteasy client.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check ExceptionMapper for Custom RuntimeException. Check the response contains headers and entity
+    * from custom exception mapper. Using Resteasy client.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMapperWithResteasyClient() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

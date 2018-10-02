@@ -30,11 +30,11 @@ import javax.ws.rs.core.Response;
 import java.lang.reflect.ReflectPermission;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for servlet mapping. This settings is in web.xml
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for servlet mapping. This settings is in web.xml
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ServletMappingTest {
@@ -69,9 +69,9 @@ public class ServletMappingTest {
    }
 
    /**
-     * @tpTestDetails Test for new resteasy client without proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for new resteasy client without proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNoDefaultsResourceNewRESTEasyClient() throws Exception {
       WebTarget target = client.target(generateURL("/resteasy/rest/basic"));
@@ -82,9 +82,9 @@ public class ServletMappingTest {
    }
 
    /**
-     * @tpTestDetails Test for apache client
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for apache client
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNoDefaultsResourceApacheClient() throws Exception {
       CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -100,9 +100,9 @@ public class ServletMappingTest {
    }
 
    /**
-     * @tpTestDetails Test for new resteasy client with proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for new resteasy client with proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFormParamNewRESTEasyClient() {
       ResteasyWebTarget target = client.target(generateURL("/resteasy/rest"));

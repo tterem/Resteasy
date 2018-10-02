@@ -9,11 +9,11 @@ import org.junit.Test;
 import java.net.URL;
 
 /**
-   * @tpSubChapter Gzip
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1735
-   * @tpSince RESTEasy 3.6
-   */
+ * @tpSubChapter Gzip
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1735
+ * @tpSince RESTEasy 3.6
+ */
 public class NotAllowGzipOnServerAllowGzipOnClientTest extends NotAllowGzipOnServerAbstractTestBase {
 
    @BeforeClass
@@ -30,10 +30,10 @@ public class NotAllowGzipOnServerAllowGzipOnClientTest extends NotAllowGzipOnSer
    private URL deploymentBaseUrl;
 
    /**
-     * @tpTestDetails gzip is disabled on server
-     *                gzip is allowed on client by resteasy.allowGzip system property
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails gzip is disabled on server
+    *                gzip is allowed on client by resteasy.allowGzip system property
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    @OperateOnDeployment(WAR_WITHOUT_PROVIDERS_FILE)
    public void noProvidersFileOnServer() throws Exception {
@@ -41,10 +41,10 @@ public class NotAllowGzipOnServerAllowGzipOnClientTest extends NotAllowGzipOnSer
    }
 
    /**
-     * @tpTestDetails gzip is enabled on server by javax.ws.rs.ext.Providers file in deployment
-     *                gzip is allowed on client by resteasy.allowGzip system property
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails gzip is enabled on server by javax.ws.rs.ext.Providers file in deployment
+    *                gzip is allowed on client by resteasy.allowGzip system property
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    @OperateOnDeployment(WAR_WITH_PROVIDERS_FILE)
    public void providersFileOnServer() throws Exception {

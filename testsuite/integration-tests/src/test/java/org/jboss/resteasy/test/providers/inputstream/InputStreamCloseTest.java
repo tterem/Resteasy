@@ -21,11 +21,11 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-741
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-741
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InputStreamCloseTest {
@@ -54,9 +54,9 @@ public class InputStreamCloseTest {
    }
 
    /**
-     * @tpTestDetails New client test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails New client test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void newClient() throws Exception {
       // Resource creates and returns InputStream.

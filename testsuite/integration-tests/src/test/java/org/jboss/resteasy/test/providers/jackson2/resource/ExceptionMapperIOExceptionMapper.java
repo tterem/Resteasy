@@ -8,9 +8,9 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 /**
-   * User: rsearls
-   * Date: 10/26/16
-   */
+ * User: rsearls
+ * Date: 10/26/16
+ */
 @Provider
 public class ExceptionMapperIOExceptionMapper implements ExceptionMapper<Throwable> {
    @Override

@@ -9,11 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * Attributes common across all atom types
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Attributes common across all atom types
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class CommonAttributes
 {

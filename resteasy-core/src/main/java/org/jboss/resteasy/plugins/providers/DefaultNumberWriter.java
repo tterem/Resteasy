@@ -19,9 +19,9 @@ import javax.ws.rs.ext.Provider;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 
 /**
-   * @author <a href="mailto:rsigal@redhat.com">Ron Sigal</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:rsigal@redhat.com">Ron Sigal</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @Produces("text/plain")
 public class DefaultNumberWriter implements MessageBodyWriter<Number>

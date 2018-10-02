@@ -21,12 +21,12 @@ import java.security.MessageDigest;
 import java.security.interfaces.RSAPublicKey;
 
 /**
-   *
-   * Encrypt content.  Default EncryptionMethod is A256CBC_HS512
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ *
+ * Encrypt content.  Default EncryptionMethod is A256CBC_HS512
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class JWEBuilder
 {
    String type;
@@ -172,11 +172,11 @@ public class JWEBuilder
       }
 
       /**
-      * Hashes the string into the required secret key size defined by the EncryptionMethod.
-      *
-      * @param secret secret key
-      * @return encrypted data
-      */
+       * Hashes the string into the required secret key size defined by the EncryptionMethod.
+       *
+       * @param secret secret key
+       * @return encrypted data
+       */
       public String dir(String secret)
       {
          MessageDigest digest = encryptionMethod.createSecretDigester();
@@ -185,11 +185,11 @@ public class JWEBuilder
       }
 
       /**
-      * Secret must meet the size requirements of the EncryptionMethod.
-      *
-      * @param secret secret key
-      * @return encrypted data
-      */
+       * Secret must meet the size requirements of the EncryptionMethod.
+       *
+       * @param secret secret key
+       * @return encrypted data
+       */
       public String dir(byte[] secret)
       {
          SecretKey key = new SecretKeySpec(secret, "AES");

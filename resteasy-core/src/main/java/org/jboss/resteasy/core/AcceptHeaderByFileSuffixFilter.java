@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
-   * Modifies Accept and Accept-Language headers by looking at path file suffix i.e. .xml means Accept application/xml
-   */
+ * Modifies Accept and Accept-Language headers by looking at path file suffix i.e. .xml means Accept application/xml
+ */
 @Provider
 @PreMatching
 public class AcceptHeaderByFileSuffixFilter implements ContainerRequestFilter

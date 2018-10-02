@@ -12,8 +12,8 @@ public class FormResourceValueHolder implements Serializable {
 
 
    /**
-     * The serialVersionUID
-     */
+    * The serialVersionUID
+    */
    private static final long serialVersionUID = 1L;
 
    @FormParam("booleanValue")
@@ -74,109 +74,109 @@ public class FormResourceValueHolder implements Serializable {
    }
 
    /**
-     * Get the booleanValue.
-     *
-     * @return the booleanValue.
-     */
+    * Get the booleanValue.
+    *
+    * @return the booleanValue.
+    */
    public Boolean getBooleanValue() {
       return booleanValue;
    }
 
    /**
-     * Set the booleanValue.
-     *
-     * @param booleanValue The booleanValue to set.
-     */
+    * Set the booleanValue.
+    *
+    * @param booleanValue The booleanValue to set.
+    */
    public void setBooleanValue(Boolean booleanValue) {
       this.booleanValue = booleanValue;
    }
 
    /**
-     * Get the name.
-     *
-     * @return the name.
-     */
+    * Get the name.
+    *
+    * @return the name.
+    */
    public String getName() {
       return name;
    }
 
    /**
-     * Set the name.
-     *
-     * @param name The name to set.
-     */
+    * Set the name.
+    *
+    * @param name The name to set.
+    */
    public void setName(String name) {
       this.name = name;
    }
 
    /**
-     * Get the doubleValue.
-     *
-     * @return the doubleValue.
-     */
+    * Get the doubleValue.
+    *
+    * @return the doubleValue.
+    */
    public Double getDoubleValue() {
       return doubleValue;
    }
 
    /**
-     * Set the doubleValue.
-     *
-     * @param doubleValue The doubleValue to set.
-     */
+    * Set the doubleValue.
+    *
+    * @param doubleValue The doubleValue to set.
+    */
    public void setDoubleValue(Double doubleValue) {
       this.doubleValue = doubleValue;
    }
 
    /**
-     * Get the longValue.
-     *
-     * @return the longValue.
-     */
+    * Get the longValue.
+    *
+    * @return the longValue.
+    */
    public Long getLongValue() {
       return longValue;
    }
 
    /**
-     * Set the longValue.
-     *
-     * @param longValue The longValue to set.
-     */
+    * Set the longValue.
+    *
+    * @param longValue The longValue to set.
+    */
    public void setLongValue(Long longValue) {
       this.longValue = longValue;
    }
 
    /**
-     * Get the integerValue.
-     *
-     * @return the integerValue.
-     */
+    * Get the integerValue.
+    *
+    * @return the integerValue.
+    */
    public Integer getIntegerValue() {
       return integerValue;
    }
 
    /**
-     * Set the integerValue.
-     *
-     * @param integerValue The integerValue to set.
-     */
+    * Set the integerValue.
+    *
+    * @param integerValue The integerValue to set.
+    */
    public void setIntegerValue(Integer integerValue) {
       this.integerValue = integerValue;
    }
 
    /**
-     * Get the shortValue.
-     *
-     * @return the shortValue.
-     */
+    * Get the shortValue.
+    *
+    * @return the shortValue.
+    */
    public Short getShortValue() {
       return shortValue;
    }
 
    /**
-     * Set the shortValue.
-     *
-     * @param shortValue The shortValue to set.
-     */
+    * Set the shortValue.
+    *
+    * @param shortValue The shortValue to set.
+    */
    public void setShortValue(Short shortValue) {
       this.shortValue = shortValue;
    }

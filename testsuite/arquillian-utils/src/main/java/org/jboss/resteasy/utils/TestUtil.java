@@ -35,8 +35,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
-   * Base util class for RESTEasy testing.
-   */
+ * Base util class for RESTEasy testing.
+ */
 public class TestUtil {
 
    protected static Logger logger;
@@ -46,9 +46,9 @@ public class TestUtil {
          .append("test").append(File.separator)
          .append("resources").append(File.separator).toString();
    /**
-     * Try to initialize logger. This is unsuccessful on EAP deployment, because EAP do not contain log4j.
-     * Logger is not necessary for this class. Some methods could be used without it.
-     */
+    * Try to initialize logger. This is unsuccessful on EAP deployment, because EAP do not contain log4j.
+    * Logger is not necessary for this class. Some methods could be used without it.
+    */
    static {
       try {
          logger = LogManager.getLogger(TestUtil.class.getName());
@@ -57,10 +57,10 @@ public class TestUtil {
       }
    }
    /**
-     * Initialize deployment.
-     *
-     * @return Deployment.
-     */
+    * Initialize deployment.
+    *
+    * @return Deployment.
+    */
    public static WebArchive prepareArchive(String deploymentName) {
       WebArchive war = ShrinkWrap.create(WebArchive.class, deploymentName + ".war");
       war.addClass(TestApplication.class);
@@ -68,28 +68,28 @@ public class TestUtil {
    }
 
    /**
-     * Finish preparing war deployment and deploy it.
-     *
-     * Add classes in @resources to deployment. Also all sub-classes of classes in @resources are added to deployment.
-     * But only classes in @resources (not sub-classes of classes in @resources) can be used as resources
-     * (getClasses function of TestApplication class return only classes in @resources).
-     *
-     * @param resources classes used in deployment as resources
-     */
+    * Finish preparing war deployment and deploy it.
+    *
+    * Add classes in @resources to deployment. Also all sub-classes of classes in @resources are added to deployment.
+    * But only classes in @resources (not sub-classes of classes in @resources) can be used as resources
+    * (getClasses function of TestApplication class return only classes in @resources).
+    *
+    * @param resources classes used in deployment as resources
+    */
    public static Archive<?> finishContainerPrepare(WebArchive war, Map<String, String> contextParams, final Class<?>... resources) {
       return finishContainerPrepare(war, contextParams, null, resources);
    }
 
    /**
-     * Finish preparing war deployment and deploy it.
-     *
-     * Add classes in @resources to deployment. Also all sub-classes of classes in @resources are added to deployment.
-     * But only classes in @resources (not sub-classes of classes in @resources) can be used as resources
-     * (getClasses function of TestApplication class return only classes in @resources).
-     *
-     * @param singletons classes used in deployment as singletons
-     * @param resources classes used in deployment as resources
-     */
+    * Finish preparing war deployment and deploy it.
+    *
+    * Add classes in @resources to deployment. Also all sub-classes of classes in @resources are added to deployment.
+    * But only classes in @resources (not sub-classes of classes in @resources) can be used as resources
+    * (getClasses function of TestApplication class return only classes in @resources).
+    *
+    * @param singletons classes used in deployment as singletons
+    * @param resources classes used in deployment as resources
+    */
    public static Archive<?> finishContainerPrepare(WebArchive war, Map<String, String> contextParams, List<Class<?>> singletons, final Class<?>... resources) {
 
       if (contextParams == null) {
@@ -184,10 +184,10 @@ public class TestUtil {
 
 
    /**
-     * Add package info to deployment.
-     *
-     * @param clazz Package info is for package of this class.
-     */
+    * Add package info to deployment.
+    *
+    * @param clazz Package info is for package of this class.
+    */
    protected WebArchive addPackageInfo(WebArchive war, final Class<?> clazz) {
       return war.addPackages(false, new org.jboss.shrinkwrap.api.Filter<org.jboss.shrinkwrap.api.ArchivePath>() {
          @Override
@@ -198,11 +198,11 @@ public class TestUtil {
    }
 
    /**
-     * Convert input stream to String.
-     *
-     * @param in Input stream
-     * @return Converted string
-     */
+    * Convert input stream to String.
+    *
+    * @param in Input stream
+    * @return Converted string
+    */
    public static String readString(final InputStream in) throws IOException {
       char[] buffer = new char[1024];
       StringBuilder builder = new StringBuilder();
@@ -245,27 +245,27 @@ public class TestUtil {
    }
 
    /**
-     * Get the path to the containers base dir for standalone mode (configuration, logs, etc..).
-     * When arquillian.xml contains more containers that could be started simultaneously the parameter containerQualifier
-     * is used to determine which base dir to get.
-     * @param containerQualifier container qualifier or null if the arquillian.xml contains max 1 container available
-     *                           to be running at time
-     * @return absolute path to base dir
-     */
+    * Get the path to the containers base dir for standalone mode (configuration, logs, etc..).
+    * When arquillian.xml contains more containers that could be started simultaneously the parameter containerQualifier
+    * is used to determine which base dir to get.
+    * @param containerQualifier container qualifier or null if the arquillian.xml contains max 1 container available
+    *                           to be running at time
+    * @return absolute path to base dir
+    */
    public static String getStandaloneDir(String containerQualifier) {
       return getStandaloneDir(false, containerQualifier);
    }
 
    /**
-     * Get the path to the containers base dir for standalone mode (configuration, logs, etc..).
-     * When arquillian.xml contains more containers that could be started simultaneously the parameter containerQualifier
-     * is used to determine which base dir to get.
-     * @param onServer whether the check is made from client side (the path is constructed) or from deployment (the path
-     *                 is read from actual runtime value)
-     * @param containerQualifier container qualifier or null if the arquillian.xml contains max 1 container available
-     *                           to be running at time; this has no effect when onServer is true
-     * @return absolute path to base dir
-     */
+    * Get the path to the containers base dir for standalone mode (configuration, logs, etc..).
+    * When arquillian.xml contains more containers that could be started simultaneously the parameter containerQualifier
+    * is used to determine which base dir to get.
+    * @param onServer whether the check is made from client side (the path is constructed) or from deployment (the path
+    *                 is read from actual runtime value)
+    * @param containerQualifier container qualifier or null if the arquillian.xml contains max 1 container available
+    *                           to be running at time; this has no effect when onServer is true
+    * @return absolute path to base dir
+    */
    public static String getStandaloneDir(boolean onServer, String containerQualifier) {
       if (onServer == false) {
          if (containerQualifier == null) {
@@ -300,9 +300,9 @@ public class TestUtil {
    }
 
    /**
-     * Get resource in test scope for some class.
-     * Example: class org.test.MyTest and name "my_resource.txt" returns "src/test/resource/org/test/my_resource.txt"
-     */
+    * Get resource in test scope for some class.
+    * Example: class org.test.MyTest and name "my_resource.txt" returns "src/test/resource/org/test/my_resource.txt"
+    */
    public static String getResourcePath(Class<?> c, String name) {
       return new StringBuilder()
             .append(baseResourcePath)
@@ -312,8 +312,8 @@ public class TestUtil {
    }
 
    /**
-     * Read server log file from standalone/log/server.log
-     */
+    * Read server log file from standalone/log/server.log
+    */
    public static List<String> readServerLogLines() {
       return readServerLogLines(false);
    }
@@ -344,15 +344,15 @@ public class TestUtil {
    }
 
    /**
-     * Get count of lines with specific string in log
-     */
+    * Get count of lines with specific string in log
+    */
    public static int getWarningCount(String findedString, boolean onServer) {
       return getWarningCount(findedString, onServer, null);
    }
 
    /**
-     * Get count of lines with specific string in log
-     */
+    * Get count of lines with specific string in log
+    */
    public static int getWarningCount(String findedString, boolean onServer, String containerQualifier) {
       int count = 0;
       List<String> lines = TestUtil.readServerLogLines(onServer, containerQualifier);
@@ -365,8 +365,8 @@ public class TestUtil {
    }
 
    /**
-     * Check count of violations in ResteasyViolationException.
-     */
+    * Check count of violations in ResteasyViolationException.
+    */
    public static void countViolations(ResteasyViolationException e,
                                    int totalCount, int fieldCount, int propertyCount, int classCount, int parameterCount, int returnValueCount) {
       Assert.assertEquals("Different total count of violations expected", totalCount, e.getViolations().size());
@@ -386,11 +386,11 @@ public class TestUtil {
    }
 
    /**
-     * Get specified single dependency
-     *
-     * @param dependency
-     * @return Dependency gav
-     */
+    * Get specified single dependency
+    *
+    * @param dependency
+    * @return Dependency gav
+    */
    public static File resolveDependency(String dependency) {
       MavenUtil mavenUtil;
       mavenUtil = MavenUtil.create(true);
@@ -406,11 +406,11 @@ public class TestUtil {
    }
 
    /**
-     * Adds additional dependency needed for the deployment tests. Specified by parameter in the format 'groupId:artifactId:version'
-     *
-     * @param archive
-     * @param dependency
-     */
+    * Adds additional dependency needed for the deployment tests. Specified by parameter in the format 'groupId:artifactId:version'
+    *
+    * @param archive
+    * @param dependency
+    */
    public static void addOtherLibrary(WebArchive archive, String dependency) {
       archive.addAsLibrary(resolveDependency(dependency));
    }

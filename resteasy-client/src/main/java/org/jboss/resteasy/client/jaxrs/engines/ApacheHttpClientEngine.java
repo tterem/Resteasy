@@ -7,26 +7,26 @@ import org.jboss.resteasy.client.jaxrs.ClientHttpEngine;
 public interface ApacheHttpClientEngine extends ClientHttpEngine
 {
    /**
-   * Enumeration to represent memory units.
-   */
+    * Enumeration to represent memory units.
+    */
    public enum MemoryUnit {
       /**
-      * Bytes
-      */
+       * Bytes
+       */
       BY,
       /**
-      * Killo Bytes
-      */
+       * Killo Bytes
+       */
       KB,
 
       /**
-      * Mega Bytes
-      */
+       * Mega Bytes
+       */
       MB,
 
       /**
-      * Giga Bytes
-      */
+       * Giga Bytes
+       */
       GB
    }
 

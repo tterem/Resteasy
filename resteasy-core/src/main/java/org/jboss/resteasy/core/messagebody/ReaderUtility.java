@@ -20,11 +20,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * Utility for accessing RESTEasy's MessageBodyReader setup
-   *
-   * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
-   * @version $Revision: 1 $
-   */
+ * Utility for accessing RESTEasy's MessageBodyReader setup
+ *
+ * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
+ * @version $Revision: 1 $
+ */
 
 @SuppressWarnings("unchecked")
 public abstract class ReaderUtility

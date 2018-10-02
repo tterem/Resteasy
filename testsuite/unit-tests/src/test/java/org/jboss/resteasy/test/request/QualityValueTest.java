@@ -8,18 +8,18 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
-   * @tpSubChapter Requests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for QualityValue class and its base conversion
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Requests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for QualityValue class and its base conversion
+ * @tpSince RESTEasy 3.0.16
+ */
 public class QualityValueTest {
 
    private static final String ERROR_MSG = "Wrong conversion";
    /**
-     * @tpTestDetails Conversion of zero number.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Conversion of zero number.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void zero() {
       assertEquals(ERROR_MSG, 0, QualityValue.valueOf("0").intValue());
@@ -30,9 +30,9 @@ public class QualityValueTest {
    }
 
    /**
-     * @tpTestDetails Conversion of one number.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Conversion of one number.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void one() {
       assertEquals(ERROR_MSG, 1000, QualityValue.valueOf("1").intValue());
@@ -43,9 +43,9 @@ public class QualityValueTest {
    }
 
    /**
-     * @tpTestDetails Fraction conversion.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Fraction conversion.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void fractions() {
       assertEquals(ERROR_MSG, 1, QualityValue.valueOf("0.001").intValue());
@@ -56,9 +56,9 @@ public class QualityValueTest {
    }
 
    /**
-     * @tpTestDetails Check equivalent values.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check equivalent values.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void equivalent() {
       assertEquals(ERROR_MSG, QualityValue.valueOf("0.1"), QualityValue.valueOf("0.10"));
@@ -66,9 +66,9 @@ public class QualityValueTest {
    }
 
    /**
-     * @tpTestDetails Check compareTo method.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check compareTo method.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void comparison() {
       assertTrue(ERROR_MSG, QualityValue.LOWEST.compareTo(QualityValue.HIGHEST) < 0);
@@ -77,63 +77,63 @@ public class QualityValueTest {
    }
 
    /**
-     * @tpTestDetails Check 1.001 value.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check 1.001 value.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test(expected = BadRequestException.class)
    public void tooLarge() {
       QualityValue.valueOf("1.001");
    }
 
    /**
-     * @tpTestDetails Check -0.001 value (exception expected).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check -0.001 value (exception expected).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test(expected = BadRequestException.class)
    public void tooSmall() {
       QualityValue.valueOf("-0.001");
    }
 
    /**
-     * @tpTestDetails Check 0.1234 value (exception expected).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check 0.1234 value (exception expected).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test(expected = BadRequestException.class)
    public void tooLong() {
       QualityValue.valueOf("0.1234");
    }
 
    /**
-     * @tpTestDetails Check "" value (exception expected).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check "" value (exception expected).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test(expected = BadRequestException.class)
    public void tooShort() {
       QualityValue.valueOf("");
    }
 
    /**
-     * @tpTestDetails Check 0,2F value (exception expected).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check 0,2F value (exception expected).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test(expected = BadRequestException.class)
    public void wrongContent() {
       QualityValue.valueOf("0,2F");
    }
 
    /**
-     * @tpTestDetails Check default value.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check default value.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void nullContent() {
       assertEquals(ERROR_MSG, QualityValue.DEFAULT, QualityValue.valueOf(null));
    }
 
    /**
-     * @tpTestDetails Check numbers.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check numbers.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void numbers() {
       QualityValue x = QualityValue.valueOf("0.08");

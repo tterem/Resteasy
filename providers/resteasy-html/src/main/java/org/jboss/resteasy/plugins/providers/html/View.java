@@ -19,9 +19,9 @@ public class View implements Renderable
 {
 
    /**
-   * If left unspecified, the default name of the model in the request
-   * attributes
-   */
+    * If left unspecified, the default name of the model in the request
+    * attributes
+    */
    public static final String DEFAULT_MODEL_NAME = "model";
 
    /** */
@@ -29,12 +29,12 @@ public class View implements Renderable
    protected Map<String, Object> model = new HashMap<String, Object>();
 
    /**
-   * Creates a view without a model.
-   * 
-   * @param path
-   *           will be dispatched to using the servlet container; it should
-   *           have a leading /.
-   */
+    * Creates a view without a model.
+    * 
+    * @param path
+    *           will be dispatched to using the servlet container; it should
+    *           have a leading /.
+    */
    public View(String path)
    {
       this(path, null, null);
@@ -83,9 +83,9 @@ public class View implements Renderable
    }
 
    /**
-   * Sets up the model in the request attributes, creates a dispatcher, and
-   * forwards the request.
-   */
+    * Sets up the model in the request attributes, creates a dispatcher, and
+    * forwards the request.
+    */
    public void render(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException,
          WebApplicationException
    {

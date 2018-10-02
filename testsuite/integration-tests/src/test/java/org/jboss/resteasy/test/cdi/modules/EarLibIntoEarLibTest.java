@@ -30,11 +30,11 @@ import javax.ws.rs.core.Response;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test bean injection from lib to lib in ear.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test bean injection from lib to lib in ear.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EarLibIntoEarLibTest {
@@ -60,9 +60,9 @@ public class EarLibIntoEarLibTest {
    }
 
    /**
-     * @tpTestDetails Test bean injection from lib to lib in ear.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test bean injection from lib to lib in ear.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testModules() throws Exception {
       log.info("starting testModules()");

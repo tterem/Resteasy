@@ -33,11 +33,11 @@ import java.util.logging.LoggingPermission;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter Spring
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test Spring request bean and RESTEasy integration
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Spring
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test Spring request bean and RESTEasy integration
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RequestScopedBeanTest {
@@ -76,9 +76,9 @@ public class RequestScopedBeanTest {
    }
 
    /**
-     * @tpTestDetails Test request bean defined in xml spring settings
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test request bean defined in xml spring settings
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBean() throws Exception {
       Client client = ResteasyClientBuilder.newClient();

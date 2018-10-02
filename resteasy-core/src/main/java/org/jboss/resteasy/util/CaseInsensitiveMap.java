@@ -5,9 +5,9 @@ import java.util.Comparator;
 import org.jboss.resteasy.specimpl.MultivaluedTreeMap;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class CaseInsensitiveMap<V> extends MultivaluedTreeMap<String, V>
 {
    public static final Comparator<String> CASE_INSENSITIVE_ORDER

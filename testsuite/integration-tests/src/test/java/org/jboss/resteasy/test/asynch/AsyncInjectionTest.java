@@ -39,11 +39,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Async Request Filter test.
-   * @tpSince RESTEasy 4.0.0
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Async Request Filter test.
+ * @tpSince RESTEasy 4.0.0
+ */
 @RunWith(Arquillian.class)
 //@RunWith(UndertowTestRunner.class)
 @RunAsClient
@@ -71,9 +71,9 @@ public class AsyncInjectionTest {
    }
 
    /**
-     * @tpTestDetails Async Injection works
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Async Injection works
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testAsyncInjection() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -88,9 +88,9 @@ public class AsyncInjectionTest {
    }
 
    /**
-     * @tpTestDetails Async Injection works for interfaces
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Async Injection works for interfaces
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testAsyncInjectionInterface() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -105,9 +105,9 @@ public class AsyncInjectionTest {
    }
 
    /**
-     * @tpTestDetails Async Injection does not suspend request if already resolved
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Async Injection does not suspend request if already resolved
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testAsyncInjectionResolved() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -122,9 +122,9 @@ public class AsyncInjectionTest {
    }
 
    /**
-     * @tpTestDetails Async Injection suspends request if not yet resolved
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Async Injection suspends request if not yet resolved
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testAsyncInjectionSuspended() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -139,9 +139,9 @@ public class AsyncInjectionTest {
    }
 
    /**
-     * @tpTestDetails Async Injection with exceptions
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Async Injection with exceptions
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testAsyncInjectionException() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -156,9 +156,9 @@ public class AsyncInjectionTest {
    }
 
    /**
-     * @tpTestDetails Async Injection with async exceptions
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Async Injection with async exceptions
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testAsyncInjectionExceptionAsync() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -173,9 +173,9 @@ public class AsyncInjectionTest {
    }
 
    /**
-     * @tpTestDetails Async Injection in places where it does not work
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Async Injection in places where it does not work
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testAsyncInjectionExceptionLate() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -190,9 +190,9 @@ public class AsyncInjectionTest {
    }
 
    /**
-     * @tpTestDetails Async Injection of primitive types
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails Async Injection of primitive types
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testAsyncInjectionPrimitives() throws Exception {
       Client client = ClientBuilder.newClient();

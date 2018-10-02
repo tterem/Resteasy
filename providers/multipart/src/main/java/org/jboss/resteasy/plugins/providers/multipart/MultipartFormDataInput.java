@@ -8,13 +8,13 @@ import java.util.Map;
 import javax.ws.rs.core.GenericType;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public interface MultipartFormDataInput extends MultipartInput {
    /**
-   * @return A parameter map containing a list of values per name.
-   */
+    * @return A parameter map containing a list of values per name.
+    */
    Map<String, List<InputPart>> getFormDataMap();
 
    <T> T getFormDataPart(String key, Class<T> rawType, Type genericType)

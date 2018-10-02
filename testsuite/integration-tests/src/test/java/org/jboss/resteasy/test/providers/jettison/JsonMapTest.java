@@ -24,10 +24,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Jettison provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jettison provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JsonMapTest {
@@ -60,11 +60,11 @@ public class JsonMapTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request for json resource. The response should be processed with jettison provider.
-     * The json map is send as entity with the POST request.
-     * @tpPassCrit The response returned successfully
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request for json resource. The response should be processed with jettison provider.
+    * The json map is send as entity with the POST request.
+    * @tpPassCrit The response returned successfully
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProvider() throws Exception {
       WebTarget target = client.target(generateURL("/map"));
@@ -86,11 +86,11 @@ public class JsonMapTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request for json resource. The response should be processed with jettison provider.
-     * The entity in the resource is empty map.
-     * @tpPassCrit The response returned successfully
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request for json resource. The response should be processed with jettison provider.
+    * The entity in the resource is empty map.
+    * @tpPassCrit The response returned successfully
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmptyMap() throws Exception {
       WebTarget target = client.target(generateURL("/map/empty"));

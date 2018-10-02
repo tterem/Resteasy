@@ -28,10 +28,10 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter HTML provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.1.3.Final
-   */
+ * @tpSubChapter HTML provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.1.3.Final
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class HeadersInViewResponseTest {
@@ -60,10 +60,10 @@ public class HeadersInViewResponseTest {
    }
 
    /**
-     * @tpTestDetails Tests HTTP headers set in Response with View entity.
-     * @tpInfo RESTEASY-1422
-     * @tpSince RESTEasy 3.1.3.Final
-     */
+    * @tpTestDetails Tests HTTP headers set in Response with View entity.
+    * @tpInfo RESTEASY-1422
+    * @tpSince RESTEasy 3.1.3.Final
+    */
    @Test
    @Category(NotForForwardCompatibility.class)
    public void testView() throws Exception {

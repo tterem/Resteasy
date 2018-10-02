@@ -55,10 +55,10 @@ public class SseSmokeTest {
    }
 
    /**
-     * @tpTestDetails REST resource with SSE endpoint. Event is sent to the client.
-     * @tpInfo RESTEASY-1680
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails REST resource with SSE endpoint. Event is sent to the client.
+    * @tpInfo RESTEASY-1680
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testSmoke() throws Exception {
       final List<String> results = new ArrayList<String>();

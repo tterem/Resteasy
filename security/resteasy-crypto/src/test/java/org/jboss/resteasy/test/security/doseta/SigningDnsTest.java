@@ -35,9 +35,9 @@ import org.junit.Test;
 import se.unlogic.eagledns.EagleDNS;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class SigningDnsTest
 {
    private static NettyJaxrsServer server;
@@ -58,8 +58,8 @@ public class SigningDnsTest
    }
 
    /**
-   * @param resource
-   */
+    * @param resource
+    */
    public static void addPerRequestResource(Class<?> resource)
    {
       deployment.getRegistry().addPerRequestResource(resource);

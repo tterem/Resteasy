@@ -21,11 +21,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Resources
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Add charset "UTF-8" to response mediatype if context parameter "resteasy.add.charset" is true
-   * @tpSince RESTEasy 3.1.1.Final
-   */
+ * @tpSubChapter Resources
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Add charset "UTF-8" to response mediatype if context parameter "resteasy.add.charset" is true
+ * @tpSince RESTEasy 3.1.1.Final
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class DefaultCharsetTest {

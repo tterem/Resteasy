@@ -35,11 +35,11 @@ import java.util.Map;
 import java.util.Set;
 
 /**
-   * Registry of resources and methods/classes that can dispatch HTTP method requests.
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Registry of resources and methods/classes that can dispatch HTTP method requests.
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @SuppressWarnings("rawtypes")
 public class ResourceMethodRegistry implements Registry
 {
@@ -75,10 +75,10 @@ public class ResourceMethodRegistry implements Registry
    }
 
    /**
-   * Register a vanilla JAX-RS resource class.
-   *
-   * @param clazz class
-   */
+    * Register a vanilla JAX-RS resource class.
+    *
+    * @param clazz class
+    */
    public void addPerRequestResource(Class clazz)
    {
       addResourceFactory(new POJOResourceFactory(resourceBuilder, clazz));
@@ -157,23 +157,23 @@ public class ResourceMethodRegistry implements Registry
 
 
    /**
-   * Bind an endpoint ResourceFactory.  ResourceFactory.getScannableClass() defines what class should be scanned
-   * for JAX-RS annotations.  The class and any implemented interfaces are scanned for annotations.
-   *
-   * @param ref resource factory
-   */
+    * Bind an endpoint ResourceFactory.  ResourceFactory.getScannableClass() defines what class should be scanned
+    * for JAX-RS annotations.  The class and any implemented interfaces are scanned for annotations.
+    *
+    * @param ref resource factory
+    */
    public void addResourceFactory(ResourceFactory ref)
    {
       addResourceFactory(ref, null);
    }
 
    /**
-   * ResourceFactory.getScannableClass() defines what class should be scanned
-   * for JAX-RS annotations.    The class and any implemented interfaces are scanned for annotations.
-   *
-   * @param ref resource factory
-   * @param base base URI path for any resources provided by the factory, in addition to rootPath
-   */
+    * ResourceFactory.getScannableClass() defines what class should be scanned
+    * for JAX-RS annotations.    The class and any implemented interfaces are scanned for annotations.
+    *
+    * @param ref resource factory
+    * @param base base URI path for any resources provided by the factory, in addition to rootPath
+    */
    public void addResourceFactory(ResourceFactory ref, String base)
    {
       Class<?> clazz = ref.getScannableClass();
@@ -191,13 +191,13 @@ public class ResourceMethodRegistry implements Registry
    }
 
    /**
-   * ResourceFactory.getScannableClass() is not used, only the clazz parameter and not any implemented interfaces
-   * of the clazz parameter.
-   *
-   * @param ref resource factory
-   * @param base  base URI path for any resources provided by the factory, in addition to rootPath
-   * @param clazz specific class
-   */
+    * ResourceFactory.getScannableClass() is not used, only the clazz parameter and not any implemented interfaces
+    * of the clazz parameter.
+    *
+    * @param ref resource factory
+    * @param base  base URI path for any resources provided by the factory, in addition to rootPath
+    * @param clazz specific class
+    */
    public void addResourceFactory(ResourceFactory ref, String base, Class<?> clazz)
    {
       Class<?>[] classes = {clazz};
@@ -206,13 +206,13 @@ public class ResourceMethodRegistry implements Registry
    }
 
    /**
-   * ResourceFactory.getScannableClass() is not used, only the clazz parameter and not any implemented interfaces
-   * of the clazz parameter.
-   *
-   * @param ref resource factory
-   * @param base    base URI path for any resources provided by the factory, in addition to rootPath
-   * @param classes specific class
-   */
+    * ResourceFactory.getScannableClass() is not used, only the clazz parameter and not any implemented interfaces
+    * of the clazz parameter.
+    *
+    * @param ref resource factory
+    * @param base    base URI path for any resources provided by the factory, in addition to rootPath
+    * @param classes specific class
+    */
    public void addResourceFactory(ResourceFactory ref, String base, Class<?>[] classes)
    {
       if (ref != null) ref.registered(providerFactory);
@@ -287,11 +287,11 @@ public class ResourceMethodRegistry implements Registry
    }
 
    /**
-   * Resteasy 2.x does not properly handle sub-resource and sub-resource locator
-   * endpoints with the same uri.  Resteasy 3.x does handle this properly.  In
-   * assisting customers identify this issue during an upgrade from Resteasy 2 to 3
-   * provides a waring when the situation is found.
-   */
+    * Resteasy 2.x does not properly handle sub-resource and sub-resource locator
+    * endpoints with the same uri.  Resteasy 3.x does handle this properly.  In
+    * assisting customers identify this issue during an upgrade from Resteasy 2 to 3
+    * provides a waring when the situation is found.
+    */
    public void checkAmbiguousUri()
    {
       for (Map.Entry<String, List<ResourceInvoker>> entry : this.root.getBounded().entrySet())
@@ -366,10 +366,10 @@ public class ResourceMethodRegistry implements Registry
    }
 
    /**
-   * Find all endpoints reachable by clazz and unregister them.
-   *
-   * @param clazz class
-   */
+    * Find all endpoints reachable by clazz and unregister them.
+    *
+    * @param clazz class
+    */
    public void removeRegistrations(Class clazz)
    {
       removeRegistrations(clazz, null);
@@ -424,10 +424,10 @@ public class ResourceMethodRegistry implements Registry
    }
 
    /**
-   * Number of endpoints registered.
-   *
-   * @return number of endpoints registered
-   */
+    * Number of endpoints registered.
+    *
+    * @return number of endpoints registered
+    */
    public int getSize()
    {
       if (widerMatching) return rootNode.getSize();
@@ -435,10 +435,10 @@ public class ResourceMethodRegistry implements Registry
    }
 
    /**
-   * Find a resource to invoke on.
-   *
-   * @return resource invoker
-   */
+    * Find a resource to invoke on.
+    *
+    * @return resource invoker
+    */
    public ResourceInvoker getResourceInvoker(HttpRequest request)
    {
       RESTEasyTracingLogger tracingLogger = RESTEasyTracingLogger.getInstance(request);

@@ -1,11 +1,11 @@
 package org.jboss.resteasy.plugins.server.servlet;
 
 /**
-   * constant names of resteasy configuration variables within a servlet
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * constant names of resteasy configuration variables within a servlet
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public interface ResteasyContextParameters {
    String RESTEASY_PROVIDERS = "resteasy.providers";
 
@@ -30,49 +30,49 @@ public interface ResteasyContextParameters {
    String RESTEASY_ADD_CHARSET = "resteasy.add.charset";
 
    /**
-     * Enable tracing support.
-     * <p>
-     * It allows service developer to get diagnostic information about request processing by RESTEasy.
-     * Those diagnostic/tracing information are returned in response headers ({@code X-RESTEasy-Tracing-nnn}).
-     * The feature should not be switched on on production environment.
-     * <p>
-     * <p>
-     * Allowed values:
-     * <ul>
-     * <li>{@code OFF} - tracing support is disabled.</li>
-     * <li>{@code ON_DEMAND} - tracing support is in 'stand by' mode, it is enabled on demand by existence of request HTTP header</li>
-     * <li>{@code ALL} - tracing support is enabled for every request.</li>
-     * </ul>
-     * Type of the property value is {@code String}. The default value is {@code "OFF"}.
-     * </p>
-     * <p>
-     * The name of the configuration property is <tt>{@value}</tt>.
-     * </p>
-     */
+    * Enable tracing support.
+    * <p>
+    * It allows service developer to get diagnostic information about request processing by RESTEasy.
+    * Those diagnostic/tracing information are returned in response headers ({@code X-RESTEasy-Tracing-nnn}).
+    * The feature should not be switched on on production environment.
+    * <p>
+    * <p>
+    * Allowed values:
+    * <ul>
+    * <li>{@code OFF} - tracing support is disabled.</li>
+    * <li>{@code ON_DEMAND} - tracing support is in 'stand by' mode, it is enabled on demand by existence of request HTTP header</li>
+    * <li>{@code ALL} - tracing support is enabled for every request.</li>
+    * </ul>
+    * Type of the property value is {@code String}. The default value is {@code "OFF"}.
+    * </p>
+    * <p>
+    * The name of the configuration property is <tt>{@value}</tt>.
+    * </p>
+    */
    String RESTEASY_TRACING_TYPE = "resteasy.server.tracing.type";
    String RESTEASY_TRACING_TYPE_OFF = "OFF";
    String RESTEASY_TRACING_TYPE_ALL = "ALL";
    String RESTEASY_TRACING_TYPE_ON_DEMAND = "ON_DEMAND";
 
    /**
-     * Set level o tracing information.
-     * <p>
-     * The property allows to set application default level o diagnostic information.
-     * Tracing level can be changed for each request by specifying request HTTP header {@code X-RESTEasy-Tracing-Threshold}.
-     * <p>
-     * <p>
-     * Allowed values:
-     * <ul>
-     * <li>{@code SUMMARY}</li>
-     * <li>{@code TRACE}</li>
-     * <li>{@code VERBOSE}</li>
-     * </ul>
-     * Type of the property value is {@code String}. The default value is {@code "TRACE"}.
-     * </p>
-     * <p>
-     * The name of the configuration property is <tt>{@value}</tt>.
-     * </p>
-     */
+    * Set level o tracing information.
+    * <p>
+    * The property allows to set application default level o diagnostic information.
+    * Tracing level can be changed for each request by specifying request HTTP header {@code X-RESTEasy-Tracing-Threshold}.
+    * <p>
+    * <p>
+    * Allowed values:
+    * <ul>
+    * <li>{@code SUMMARY}</li>
+    * <li>{@code TRACE}</li>
+    * <li>{@code VERBOSE}</li>
+    * </ul>
+    * Type of the property value is {@code String}. The default value is {@code "TRACE"}.
+    * </p>
+    * <p>
+    * The name of the configuration property is <tt>{@value}</tt>.
+    * </p>
+    */
    String RESTEASY_TRACING_THRESHOLD = "resteasy.server.tracing.threshold";
    String RESTEASY_TRACING_LEVEL_SUMMARY = "SUMMARY";
    String RESTEASY_TRACING_LEVEL_TRACE = "TRACE";

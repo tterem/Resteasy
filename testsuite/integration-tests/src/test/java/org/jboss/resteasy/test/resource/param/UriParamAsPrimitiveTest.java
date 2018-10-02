@@ -40,11 +40,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Parameters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test all variants of primitive URI parameters (boolean, int, long, float, etc.)
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Parameters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test all variants of primitive URI parameters (boolean, int, long, float, etc.)
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class UriParamAsPrimitiveTest {
@@ -125,9 +125,9 @@ public class UriParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Test boolean primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test boolean primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBoolean() {
       basicTest("boolean", "true");
@@ -135,9 +135,9 @@ public class UriParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Test byte primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test byte primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetByte() {
       basicTest("byte", "127");
@@ -145,54 +145,54 @@ public class UriParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Test short primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test short primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetShort() {
       basicTest("short", "32767");
    }
 
    /**
-     * @tpTestDetails Test int primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test int primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetInt() {
       basicTest("int", "2147483647");
    }
 
    /**
-     * @tpTestDetails Test long primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test long primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLong() {
       basicTest("long", "9223372036854775807");
    }
 
    /**
-     * @tpTestDetails Test float primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test float primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetFloat() {
       basicTest("float", "3.14159265");
    }
 
    /**
-     * @tpTestDetails Test double primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test double primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetDouble() {
       basicTest("double", "3.14159265358979");
    }
    
    /**
-     * @tpTestDetails Test char primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test char primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetChar() {
       basicTest("char", "a");

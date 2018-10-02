@@ -9,8 +9,8 @@ import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.spi.CDI;
 
 /**
-   * A CDI aware Netty Jaxrs Server.
-   */
+ * A CDI aware Netty Jaxrs Server.
+ */
 @Dependent
 public class CdiNettyJaxrsServer extends NettyJaxrsServer {
    private Instance<Object> instance;

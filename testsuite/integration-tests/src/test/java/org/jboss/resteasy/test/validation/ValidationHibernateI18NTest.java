@@ -25,11 +25,11 @@ import javax.ws.rs.core.Response;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for internationalization of hibernate validator
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for internationalization of hibernate validator
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationHibernateI18NTest {
@@ -57,9 +57,9 @@ public class ValidationHibernateI18NTest {
    }
 
    /**
-     * @tpTestDetails Test two languages.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test two languages.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testI18NSetAcceptLanguage() throws Exception {
       doTestI18NSetAcceptLanguage("fr", "la taille doit être");

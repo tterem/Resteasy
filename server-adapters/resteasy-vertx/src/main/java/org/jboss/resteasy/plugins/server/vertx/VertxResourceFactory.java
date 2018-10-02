@@ -12,8 +12,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 /**
-   * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
-   */
+ * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+ */
 public class VertxResourceFactory implements ResourceFactory
 {
 

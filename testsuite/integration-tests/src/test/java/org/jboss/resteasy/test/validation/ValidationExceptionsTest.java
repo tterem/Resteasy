@@ -49,10 +49,10 @@ import static org.jboss.resteasy.utils.PortProviderUtil.generateURL;
 import java.util.List;
 
 /**
-   * @tpSubChapter Validator provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Validator provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationExceptionsTest {
@@ -144,9 +144,9 @@ public class ValidationExceptionsTest {
    }
 
    /**
-     * @tpTestDetails Resource with incorrect constraint, constrain definitiont exception is expected
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Resource with incorrect constraint, constrain definitiont exception is expected
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment(DEF_EXCEPTION)
    public void testConstraintDefinitionException() throws Exception {
@@ -176,9 +176,9 @@ public class ValidationExceptionsTest {
    }
 
    /**
-     * @tpTestDetails Resource with incorrect constraint declaration, constraint definition exception is expected
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Resource with incorrect constraint declaration, constraint definition exception is expected
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment(DECL_EXCEPTION)
    public void testConstraintDeclarationException() throws Exception {
@@ -209,9 +209,9 @@ public class ValidationExceptionsTest {
    }
 
    /**
-     * @tpTestDetails Resource with incorrect group definition, group definition exception is expected
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Resource with incorrect group definition, group definition exception is expected
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment(GROUP_DEF_EXCEPTION)
    public void testGroupDefinitionException() throws Exception {
@@ -241,10 +241,10 @@ public class ValidationExceptionsTest {
    }
 
    /**
-     * @tpTestDetails Tests for: Exception thrown during validation of field, Exception thrown during validation of parameter,
-     * Exception thrown during validation of return value, Exception thrown by resource method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests for: Exception thrown during validation of field, Exception thrown during validation of parameter,
+    * Exception thrown during validation of return value, Exception thrown by resource method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment(OTHER_EXCEPTION)
    public void testOtherValidationException() throws Exception {
@@ -301,9 +301,9 @@ public class ValidationExceptionsTest {
    }
 
    /**
-     * @tpTestDetails Resource with crazy message in constraint
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Resource with crazy message in constraint
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment(CRAZY_EXCEPTION)
    public void testCrazyMessage() throws Exception {

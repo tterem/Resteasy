@@ -50,10 +50,10 @@ public class PatchErrorHandlingTest {
    }
 
    /**
-     * @tpTestDetails When the server determines that the patch document provided by the client is not properly formatted,
-     * it SHOULD return a 400 (Bad Request) response.
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails When the server determines that the patch document provided by the client is not properly formatted,
+    * it SHOULD return a 400 (Bad Request) response.
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testMalformedPatchDocument() throws Exception {
       WebTarget base = client.target(generateURL("/students"));
@@ -69,10 +69,10 @@ public class PatchErrorHandlingTest {
    }
 
    /**
-     * @tpTestDetails Client sends PATCH request in the format which is not supported for the resource.
-     * Server should return 415 (Unsupported media type)
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails Client sends PATCH request in the format which is not supported for the resource.
+    * Server should return 415 (Unsupported media type)
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testUnsupportedPatchDocument() throws Exception {
       WebTarget patchTarget = client.target(generateURL("/students/1"));
@@ -82,10 +82,10 @@ public class PatchErrorHandlingTest {
    }
 
    /**
-     * @tpTestDetails Client sends valid Patch request with with valid format descriptor, but the resource doesn't exists.
-     * Server should return 404 (Not found).
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails Client sends valid Patch request with with valid format descriptor, but the resource doesn't exists.
+    * Server should return 404 (Not found).
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testResourceNotFound() throws Exception {
       WebTarget base = client.target(generateURL("/students"));
@@ -101,10 +101,10 @@ public class PatchErrorHandlingTest {
    }
 
    /**
-     * @tpTestDetails Client sends Patch request to patch property of the object which doesn't exists.
-     * Server should return 409 (Conflict)
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails Client sends Patch request to patch property of the object which doesn't exists.
+    * Server should return 409 (Conflict)
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testConflictingState() throws Exception {
       WebTarget base = client.target(generateURL("/students"));

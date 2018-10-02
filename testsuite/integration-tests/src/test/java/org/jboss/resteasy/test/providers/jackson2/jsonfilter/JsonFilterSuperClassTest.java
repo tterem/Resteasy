@@ -28,12 +28,12 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Jackson2 provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Filters fields from json object. Specifies the filter implementation class in web.xml.
-   * JsonFilterParent defines the @JsonFilter annotation. JsonFilter applies to its subclass JsonFilterChild as well.
-   * @tpSince RESTEasy 3.1.0
-   */
+ * @tpSubChapter Jackson2 provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Filters fields from json object. Specifies the filter implementation class in web.xml.
+ * JsonFilterParent defines the @JsonFilter annotation. JsonFilter applies to its subclass JsonFilterChild as well.
+ * @tpSince RESTEasy 3.1.0
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 @Category({NotForForwardCompatibility.class, ExpectedFailingOnWildFly13.class})
@@ -54,9 +54,9 @@ public class JsonFilterSuperClassTest {
    }
 
    /**
-     * @tpTestDetails Json string in the response is correctly filtered
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Json string in the response is correctly filtered
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    public void testJacksonStringInSuperClass() throws Exception {
       Client client = ClientBuilder.newClient();

@@ -37,11 +37,11 @@ import javax.ws.rs.core.Response;
 import java.util.logging.LoggingPermission;
 
 /**
-   * @tpSubChapter Resources
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test resources with sub-resources with parameters.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resources
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test resources with sub-resources with parameters.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ParameterSubResTest {
@@ -85,18 +85,18 @@ public class ParameterSubResTest {
    }
 
    /**
-     * @tpTestDetails Check types of parameter.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check types of parameter.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testParametized() throws Exception {
       Types.findParameterizedTypes(ParameterSubResConcreteSubImpl.class, ParameterSubResInternalInterface.class);
    }
 
    /**
-     * @tpTestDetails Check sub resources.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check sub resources.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSubResource() throws Exception {
       Response response = client.target(generateURL("/path/sub/fred")).request().get();
@@ -115,9 +115,9 @@ public class ParameterSubResTest {
    }
    
    /**
-     * @tpTestDetails Check root resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check root resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRoot() throws Exception {
       Response response = client.target(generateURL("/generic/sub")).queryParam("foo", "42.0").request().get();

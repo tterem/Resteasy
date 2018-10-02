@@ -47,11 +47,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-   * @tpSubChapter Parameters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test all variants of primitive query parameters (boolean, int, long, float, etc.)
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Parameters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test all variants of primitive query parameters (boolean, int, long, float, etc.)
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class QueryParamAsPrimitiveTest {
@@ -229,9 +229,9 @@ public class QueryParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Test boolean primitive object for get request
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test boolean primitive object for get request
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBoolean() {
       basicTest("boolean", "true");
@@ -247,45 +247,45 @@ public class QueryParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Test boolean primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test boolean primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBooleanPrimitivesDefault() {
       testDefault("boolean", "true");
    }
 
    /**
-     * @tpTestDetails Test boolean primitive object with proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test boolean primitive object with proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBooleanPrimitiveWrapperDefault() {
       testWrappersDefault("boolean", "true");
    }
 
    /**
-     * @tpTestDetails Test boolean primitive objects in list
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test boolean primitive objects in list
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBooleanPrimitiveListDefault() {
       testListDefault("boolean", "true");
    }
 
    /**
-     * @tpTestDetails Test boolean primitive objects in array
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test boolean primitive objects in array
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBooleanPrimitiveArrayDefault() {
       testArrayDefault("boolean", "true");
    }
 
    /**
-     * @tpTestDetails Test byte primitive object for get method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test byte primitive object for get method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetByte() {
       basicTest("byte", "127");
@@ -301,270 +301,270 @@ public class QueryParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Test byte primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test byte primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBytePrimitivesDefault() {
       testDefault("byte", "127");
    }
 
    /**
-     * @tpTestDetails Test byte primitive object with proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test byte primitive object with proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBytePrimitiveWrappersDefault() {
       testWrappersDefault("byte", "127");
    }
 
    /**
-     * @tpTestDetails Test byte primitive objects in list
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test byte primitive objects in list
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBytePrimitiveListDefault() {
       testListDefault("byte", "127");
    }
 
    /**
-     * @tpTestDetails Test byte primitive objects in array
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test byte primitive objects in array
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBytePrimitiveArrayDefault() {
       testArrayDefault("byte", "127");
    }
 
    /**
-     * @tpTestDetails Test short primitive object for get method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test short primitive object for get method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetShort() {
       basicTest("short", "32767");
    }
 
    /**
-     * @tpTestDetails Test short primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test short primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetShortPrimtivesDefault() {
       testDefault("short", "32767");
    }
 
    /**
-     * @tpTestDetails Test short primitive object with proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test short primitive object with proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetShortPrimtiveWrappersDefault() {
       testWrappersDefault("short", "32767");
    }
 
    /**
-     * @tpTestDetails Test short primitive objects in list
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test short primitive objects in list
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetShortPrimtiveListDefault() {
       testListDefault("short", "32767");
    }
 
    /**
-     * @tpTestDetails Test int primitive object for get method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test int primitive object for get method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetInt() {
       basicTest("int", "2147483647");
    }
 
    /**
-     * @tpTestDetails Test int primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test int primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetIntPrimitivesDefault() {
       testDefault("int", "2147483647");
    }
 
    /**
-     * @tpTestDetails Test int primitive object with proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test int primitive object with proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetIntPrimitiveWrappersDefault() {
       testWrappersDefault("int", "2147483647");
    }
 
    /**
-     * @tpTestDetails Test int primitive objects in list
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test int primitive objects in list
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetIntPrimitiveListDefault() {
       testListDefault("int", "2147483647");
    }
 
    /**
-     * @tpTestDetails Test long primitive object with get method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test long primitive object with get method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLong() {
       basicTest("long", "9223372036854775807");
    }
 
    /**
-     * @tpTestDetails Test long primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test long primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLongPrimitivesDefault() {
       testDefault("long", "9223372036854775807");
    }
 
    /**
-     * @tpTestDetails Test long primitive object with proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test long primitive object with proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLongPrimitiveWrappersDefault() {
       testWrappersDefault("long", "9223372036854775807");
    }
 
    /**
-     * @tpTestDetails Test long primitive objects in list
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test long primitive objects in list
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLongPrimitiveListDefault() {
       testListDefault("long", "9223372036854775807");
    }
 
    /**
-     * @tpTestDetails Test float primitive object with get method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test float primitive object with get method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetFloat() {
       basicTest("float", "3.14159265");
    }
 
    /**
-     * @tpTestDetails Test float primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test float primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetFloatPrimitivesDefault() {
       testDefault("float", "3.14159265");
    }
 
    /**
-     * @tpTestDetails Test float primitive object with proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test float primitive object with proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetFloatPrimitiveWrappersDefault() {
       testWrappersDefault("float", "3.14159265");
    }
 
    /**
-     * @tpTestDetails Test float primitive objects in list
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test float primitive objects in list
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetFloatPrimitiveListDefault() {
       testListDefault("float", "3.14159265");
    }
 
    /**
-     * @tpTestDetails Test double primitive object with get method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test double primitive object with get method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetDouble() {
       basicTest("double", "3.14159265358979");
    }
 
    /**
-     * @tpTestDetails Test double primitive object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test double primitive object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetDoublePrimitivesDefault() {
       testDefault("double", "3.14159265358979");
    }
 
    /**
-     * @tpTestDetails Test double primitive object with proxy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test double primitive object with proxy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetDoublePrimitiveWrappersDefault() {
       testWrappersDefault("double", "3.14159265358979");
    }
 
    /**
-     * @tpTestDetails Test double primitive objects in list
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test double primitive objects in list
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetDoublePrimitiveListDefault() {
       testListDefault("double", "3.14159265358979");
    }
    
    /**
-     * @tpTestDetails Test char primitive object for get method
-     * @tpSince RESTEasy 3.0.24
-     */
+    * @tpTestDetails Test char primitive object for get method
+    * @tpSince RESTEasy 3.0.24
+    */
    @Test
    public void testGetChar() {
       basicTest("char", "a");
    }
 
    /**
-     * @tpTestDetails Test char primitive object
-     * @tpSince RESTEasy 3.0.24
-     */
+    * @tpTestDetails Test char primitive object
+    * @tpSince RESTEasy 3.0.24
+    */
    @Test
    public void testGetCharPrimitivesDefault() {
       testDefault("char", "a");
    }
 
    /**
-     * @tpTestDetails Test char primitive object with proxy
-     * @tpSince RESTEasy 3.0.24
-     */
+    * @tpTestDetails Test char primitive object with proxy
+    * @tpSince RESTEasy 3.0.24
+    */
    @Test
    public void testGetCharPrimitiveWrappersDefault() {
       testWrappersDefault("char", "a");
    }
 
    /**
-     * @tpTestDetails Test char primitive objects in list
-     * @tpSince RESTEasy 3.0.24
-     */
+    * @tpTestDetails Test char primitive objects in list
+    * @tpSince RESTEasy 3.0.24
+    */
    @Test
    public void testGetCharPrimitiveListDefault() {
       testListDefault("char", "a");
    }
    
    /**
-     * @tpTestDetails Test char primitive objects in array
-     * @tpSince RESTEasy 3.0.24
-     */
+    * @tpTestDetails Test char primitive objects in array
+    * @tpSince RESTEasy 3.0.24
+    */
    @Test
    public void testGetCharPrimitiveArrayDefault() {
       testArrayDefault("char", "a");
    }
 
    /**
-     * @tpTestDetails Negative testing: accept only int, but string is provided. Error is excepted.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Negative testing: accept only int, but string is provided. Error is excepted.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadPrimitiveValue() {
       {
@@ -582,10 +582,10 @@ public class QueryParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Negative testing: accept only int, but string is provided. Error is excepted.
-     *                Proxy is used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Negative testing: accept only int, but string is provided. Error is excepted.
+    *                Proxy is used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadPrimitiveWrapperValue() {
       {
@@ -603,10 +603,10 @@ public class QueryParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Negative testing: accept only int, but string is provided. Error is excepted.
-     *                List is tested
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Negative testing: accept only int, but string is provided. Error is excepted.
+    *                List is tested
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadPrimitiveListValue() {
       {

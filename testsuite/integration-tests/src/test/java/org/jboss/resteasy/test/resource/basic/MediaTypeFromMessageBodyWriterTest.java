@@ -32,11 +32,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Resteasy server
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test that MessageBodyWriters can be consulted for media type
-   * @tpSince RESTEasy 3.1.3.Final
-   */
+ * @tpSubChapter Resteasy server
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test that MessageBodyWriters can be consulted for media type
+ * @tpSince RESTEasy 3.1.3.Final
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MediaTypeFromMessageBodyWriterTest {
@@ -111,9 +111,9 @@ public class MediaTypeFromMessageBodyWriterTest {
    }
 
    /**
-     * @tpTestDetails Test that MessageBodyWriters can be consulted for media type
-     * @tpSince RESTEasy 3.1.3.Final
-     */
+    * @tpTestDetails Test that MessageBodyWriters can be consulted for media type
+    * @tpSince RESTEasy 3.1.3.Final
+    */
    @Test
    @OperateOnDeployment("multiple")
    public void test() throws Exception {
@@ -137,11 +137,11 @@ public class MediaTypeFromMessageBodyWriterTest {
    }
 
    /**
-     * @tpTestDetails Test use case described in RESTEASY-1227. If multiple Accept headers are send by the client the chosen
-     * response Content-type will be the one which we are able to write (MessageBodyWriter exists for it), not the one
-     * we are not able to write.
-     * @tpSince RESTEasy 3.1.3.Final
-     */
+    * @tpTestDetails Test use case described in RESTEASY-1227. If multiple Accept headers are send by the client the chosen
+    * response Content-type will be the one which we are able to write (MessageBodyWriter exists for it), not the one
+    * we are not able to write.
+    * @tpSince RESTEasy 3.1.3.Final
+    */
    @Test
    @OperateOnDeployment("single")
    public void test2() throws Exception {

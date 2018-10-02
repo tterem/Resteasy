@@ -16,10 +16,10 @@ import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Unit tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Unit tests
+ * @tpSince RESTEasy 3.0.16
+ */
 public class ProviderFactoryPrecedenceTest {
 
    @Provider
@@ -39,9 +39,9 @@ public class ProviderFactoryPrecedenceTest {
    }
 
    /**
-     * @tpTestDetails Test that classes which extends generic MessageBodyWriter of generic type are of the correct type
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that classes which extends generic MessageBodyWriter of generic type are of the correct type
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testTypes() {
       Assert.assertNull("PlainTextWriter is should be of generic type",
@@ -57,9 +57,9 @@ public class ProviderFactoryPrecedenceTest {
    }
 
    /**
-     * @tpTestDetails ResteasyProviderFactory - register default provider instance, test that correct DefaultTextPlain provider is taken
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails ResteasyProviderFactory - register default provider instance, test that correct DefaultTextPlain provider is taken
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatching2() {
       ResteasyProviderFactory factory = ResteasyProviderFactory.newInstance();
@@ -71,9 +71,9 @@ public class ProviderFactoryPrecedenceTest {
    }
 
    /**
-     * @tpTestDetails ResteasyProviderFactory - register provider instances, test that application providers take precedence over builtin
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails ResteasyProviderFactory - register provider instances, test that application providers take precedence over builtin
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUserPrecendence1() throws Exception {
       // Register Built In first
@@ -91,10 +91,10 @@ public class ProviderFactoryPrecedenceTest {
    }
 
    /**
-     * @tpTestDetails ResteasyProviderFactory - register provider instances, verify they are available in user ordered
-     * precedence
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails ResteasyProviderFactory - register provider instances, verify they are available in user ordered
+    * precedence
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUserPrecendence2() throws Exception {
       // register PlainTextWriter first
@@ -111,10 +111,10 @@ public class ProviderFactoryPrecedenceTest {
    }
 
    /**
-     * @tpTestDetails ResteasyProviderFactory - register provider instances, verify they are available in user ordered
-     * precedence
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails ResteasyProviderFactory - register provider instances, verify they are available in user ordered
+    * precedence
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUserPrecendence3() throws Exception {
       ResteasyProviderFactory factory = ResteasyProviderFactory.newInstance();

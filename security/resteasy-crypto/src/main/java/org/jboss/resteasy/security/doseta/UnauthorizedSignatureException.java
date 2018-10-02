@@ -4,8 +4,8 @@ import org.jboss.resteasy.security.doseta.i18n.Messages;
 import org.jboss.resteasy.spi.ReaderException;
 
 /**
-   * Thrown by RESTEasy when HTTP Unauthorized (401) is encountered
-   */
+ * Thrown by RESTEasy when HTTP Unauthorized (401) is encountered
+ */
 public class UnauthorizedSignatureException extends ReaderException
 {
    protected VerificationResults results;

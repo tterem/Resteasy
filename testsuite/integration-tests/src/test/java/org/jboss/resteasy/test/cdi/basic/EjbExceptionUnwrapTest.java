@@ -28,11 +28,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for unwrapping EJB exception
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for unwrapping EJB exception
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EjbExceptionUnwrapTest {
@@ -64,9 +64,9 @@ public class EjbExceptionUnwrapTest {
    }
 
    /**
-     * @tpTestDetails No default resource for exception
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails No default resource for exception
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNoDefaultsResourceForException() {
       Response response = client.target(generateURL("/exception")).request().get();
@@ -75,9 +75,9 @@ public class EjbExceptionUnwrapTest {
    }
 
    /**
-     * @tpTestDetails No default resource without exception mapping
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails No default resource without exception mapping
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNoDefaultsResource() throws Exception {
       {
@@ -105,9 +105,9 @@ public class EjbExceptionUnwrapTest {
    }
 
    /**
-     * @tpTestDetails Check for locating resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check for locating resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLocatingResource() throws Exception {
       {

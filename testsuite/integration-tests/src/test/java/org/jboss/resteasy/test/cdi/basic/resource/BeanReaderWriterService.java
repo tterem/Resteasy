@@ -14,8 +14,8 @@ public class BeanReaderWriterService {
    BeanReaderWriterConfigBean bean;
 
    /**
-     * Tests to make sure that a CDI bean was injected and that the BeanReaderWriterXFormat provider overrides the default XML provider
-     */
+    * Tests to make sure that a CDI bean was injected and that the BeanReaderWriterXFormat provider overrides the default XML provider
+    */
    @GET
    @Produces("application/xml")
    public BeanReaderWriterXFormat get() {

@@ -10,10 +10,10 @@ public class UserManager {
    private UserRepository userRepository;
 
    /**
-     * Return all supported languages
-     *
-     * @return
-     */
+    * Return all supported languages
+    *
+    * @return
+    */
    public ApplicationUser getUser() {
       ApplicationUser user = userRepository.find(1L);
       return user;

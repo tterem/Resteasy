@@ -21,11 +21,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1475.
-   * @tpSince RESTEasy 3.1.4
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1475.
+ * @tpSince RESTEasy 3.1.4
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EncodedPathProxyTest {
@@ -53,9 +53,9 @@ public class EncodedPathProxyTest {
    }
 
    /**
-     * @tpTestDetails Verify "/" in "t;hawkular/f;jk-feed" is sent encoded
-     * @tpSince RESTEasy 3.1.4
-     */
+    * @tpTestDetails Verify "/" in "t;hawkular/f;jk-feed" is sent encoded
+    * @tpSince RESTEasy 3.1.4
+    */
    @Test
    public void testEncodeProxy() throws Exception
    {
@@ -68,9 +68,9 @@ public class EncodedPathProxyTest {
    }
 
    /**
-     * @tpTestDetails Verify "/" in "t;hawkular/f;jk-feed" is sent unencoded
-     * @tpSince RESTEasy 3.1.4
-     */
+    * @tpTestDetails Verify "/" in "t;hawkular/f;jk-feed" is sent unencoded
+    * @tpSince RESTEasy 3.1.4
+    */
    @Test
    public void testNoencodeProxy() throws Exception
    {

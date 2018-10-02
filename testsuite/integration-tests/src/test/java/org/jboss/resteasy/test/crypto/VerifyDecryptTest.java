@@ -31,11 +31,11 @@ import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
 
 /**
-   * @tpSubChapter Crypto
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-962
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Crypto
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-962
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class VerifyDecryptTest {
@@ -85,9 +85,9 @@ public class VerifyDecryptTest {
    }
 
    /**
-     * @tpTestDetails Encryption output "application/pkcs7-mime"
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Encryption output "application/pkcs7-mime"
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncrypt() throws Exception {
       EnvelopedOutput output = new EnvelopedOutput("xanadu", MediaType.TEXT_PLAIN_TYPE);
@@ -100,9 +100,9 @@ public class VerifyDecryptTest {
    }
 
    /**
-     * @tpTestDetails Signing text/plain output
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Signing text/plain output
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSign() throws Exception {
       SignedOutput signed = new SignedOutput("xanadu", MediaType.TEXT_PLAIN_TYPE);
@@ -116,9 +116,9 @@ public class VerifyDecryptTest {
    }
 
    /**
-     * @tpTestDetails Encryption and signing test, output type is "application/pkcs7-mime"
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Encryption and signing test, output type is "application/pkcs7-mime"
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncryptSign() throws Exception {
       EnvelopedOutput output = new EnvelopedOutput("xanadu", MediaType.TEXT_PLAIN_TYPE);
@@ -134,9 +134,9 @@ public class VerifyDecryptTest {
    }
 
    /**
-     * @tpTestDetails Encryption and signing test, output type is "multipart/signed"
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Encryption and signing test, output type is "multipart/signed"
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSignEncrypt() throws Exception {
       SignedOutput signed = new SignedOutput("xanadu", MediaType.TEXT_PLAIN_TYPE);
@@ -152,9 +152,9 @@ public class VerifyDecryptTest {
    }
 
    /**
-     * @tpTestDetails Encrepted input and output
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Encrepted input and output
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncryptedEncrypted() {
       MultipartOutput multipart = new MultipartOutput();
@@ -173,9 +173,9 @@ public class VerifyDecryptTest {
    }
 
    /**
-     * @tpTestDetails Encrepted input and output
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Encrepted input and output
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncryptSignSign() throws Exception {
       EnvelopedOutput output = new EnvelopedOutput("xanadu", MediaType.TEXT_PLAIN_TYPE);
@@ -194,9 +194,9 @@ public class VerifyDecryptTest {
    }
 
    /**
-     * @tpTestDetails Encrypted multipart output
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Encrypted multipart output
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMultipartEncrypted() {
       MultipartOutput multipart = new MultipartOutput();

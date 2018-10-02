@@ -21,10 +21,10 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class LinkJaxbTest {
@@ -53,9 +53,9 @@ public class LinkJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test for javax.ws.rs.core.Link class with Jaxb object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for javax.ws.rs.core.Link class with Jaxb object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCustomer() throws Exception {
       Client client = ClientBuilder.newClient();

@@ -30,10 +30,10 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JaxbXmlRootElementProviderTest {
@@ -81,9 +81,9 @@ public class JaxbXmlRootElementProviderTest {
    }
 
    /**
-     * @tpTestDetails Resteasy proxy client sends get request for jaxb annotated class, the response is expected to be in xml format
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Resteasy proxy client sends get request for jaxb annotated class, the response is expected to be in xml format
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetParent() {
       Parent parent = jaxbClient.getParent(XML_PARENT);
@@ -91,10 +91,10 @@ public class JaxbXmlRootElementProviderTest {
    }
 
    /**
-     * @tpTestDetails Resteasy proxy client sends get request for jaxb annotated class, the response is expected to be in xml format,
-     * client proxy with @Produces ""application/junk+xml" is used
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Resteasy proxy client sends get request for jaxb annotated class, the response is expected to be in xml format,
+    * client proxy with @Produces ""application/junk+xml" is used
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetParentJunk() {
       Parent parent = junkClient.getParent(XML_PARENT);
@@ -102,10 +102,10 @@ public class JaxbXmlRootElementProviderTest {
    }
 
    /**
-     * @tpTestDetails Resteasy proxy client sends get request for jaxb annotated class, the response is expected to convert
-     * into JAXBElement<Parent>
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Resteasy proxy client sends get request for jaxb annotated class, the response is expected to convert
+    * into JAXBElement<Parent>
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetParentElement() {
       JAXBElement<Parent> element = jaxbElementClient.getParent(XML_PARENT);
@@ -114,10 +114,10 @@ public class JaxbXmlRootElementProviderTest {
    }
 
    /**
-     * @tpTestDetails Resteasy proxy client sends get request for jaxb annotated class, the response is expected to be in
-     * json format. Regression test for JBEAP-3530.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Resteasy proxy client sends get request for jaxb annotated class, the response is expected to be in
+    * json format. Regression test for JBEAP-3530.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetParentJson() throws Exception {
       Parent parent = null;
@@ -135,18 +135,18 @@ public class JaxbXmlRootElementProviderTest {
    }
 
    /**
-     * @tpTestDetails Resteasy proxy client sends post request with jaxb annotated object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Resteasy proxy client sends post request with jaxb annotated object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPostParent() {
       jaxbClient.postParent(Parent.createTestParent("TEST"));
    }
 
    /**
-     * @tpTestDetails Resteasy proxy client sends post request with JAXBElement object containing jaxb annotated object instance
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Resteasy proxy client sends post request with JAXBElement object containing jaxb annotated object instance
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPostParentElement() {
       Parent parent = Parent.createTestParent("TEST ELEMENT");

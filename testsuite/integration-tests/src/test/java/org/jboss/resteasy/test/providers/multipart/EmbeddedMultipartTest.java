@@ -26,11 +26,11 @@ import javax.ws.rs.core.Response;
 import java.lang.reflect.ReflectPermission;
 
 /**
-   * @tpSubChapter Multipart provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-929
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Multipart provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-929
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EmbeddedMultipartTest {
@@ -52,9 +52,9 @@ public class EmbeddedMultipartTest {
    }
 
    /**
-     * @tpTestDetails Test embedded part of multipart message
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test embedded part of multipart message
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmbedded() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -71,9 +71,9 @@ public class EmbeddedMultipartTest {
    }
 
    /**
-     * @tpTestDetails Test complete multipart message
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test complete multipart message
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCustomer() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -88,9 +88,9 @@ public class EmbeddedMultipartTest {
    }
 
    /**
-     * @tpTestDetails Test exception in embedded multipart message
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test exception in embedded multipart message
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInvalid() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

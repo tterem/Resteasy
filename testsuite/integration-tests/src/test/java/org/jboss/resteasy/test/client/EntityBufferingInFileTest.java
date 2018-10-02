@@ -41,10 +41,10 @@ import org.wildfly.extras.creaper.core.online.operations.Operations;
 import org.wildfly.extras.creaper.core.online.operations.admin.Administration;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EntityBufferingInFileTest extends ClientTestBase{
@@ -95,85 +95,85 @@ public class EntityBufferingInFileTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 16 bytes
-     * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
-     * of defined size (10 bytes),
-     * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
-     * Response entity is type of ByteArrayEntity.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 16 bytes
+    * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
+    * of defined size (10 bytes),
+    * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
+    * Response entity is type of ByteArrayEntity.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBytes1() throws Exception {
       doTest(ApacheHttpClientEngine.MemoryUnit.BY, 16, 10, true);
    }
 
    /**
-     * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 16 bytes
-     * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
-     * of defined size (20 bytes)
-     * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 16 bytes
+    * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
+    * of defined size (20 bytes)
+    * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBytes2() throws Exception {
       doTest(ApacheHttpClientEngine.MemoryUnit.BY, 16, 20, false);
    }
 
    /**
-     * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 1 KB
-     * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
-     * of defined size (500 bytes)
-     * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 1 KB
+    * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
+    * of defined size (500 bytes)
+    * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testKilobytes1() throws Exception {
       doTest(ApacheHttpClientEngine.MemoryUnit.KB, 1, 500, true);
    }
 
    /**
-     * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 1 KB
-     * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
-     * of defined size (2000 bytes)
-     * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 1 KB
+    * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
+    * of defined size (2000 bytes)
+    * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testKilobytes2() throws Exception {
       doTest(ApacheHttpClientEngine.MemoryUnit.KB, 1, 2000, false);
    }
 
    /**
-     * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 1 MB
-     * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
-     * of defined size (500000 bytes)
-     * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 1 MB
+    * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
+    * of defined size (500000 bytes)
+    * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMegabytes1() throws Exception {
       doTest(ApacheHttpClientEngine.MemoryUnit.MB, 1, 500000, true);
    }
 
    /**
-     * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 1 GB
-     * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
-     * of defined size (2000000000 bytes)
-     * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 1 GB
+    * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
+    * of defined size (2000000000 bytes)
+    * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMegabytes2() throws Exception {
       doTest(ApacheHttpClientEngine.MemoryUnit.MB, 1, 2000000, false);
    }
 
    /**
-     * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 1 GB
-     * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
-     * of defined size (500000000 bytes)
-     * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Custom ApacheHttpClient4Engine is created which defines maximum file size allowed in memory - 1 GB
+    * (defined by memoryUnit and threshold size in doTest() method). Client then sends POST request with String entity
+    * of defined size (500000000 bytes)
+    * @tpPassCrit Successful response is returned, the entity stream returned is same as original string
+    * @tpSince RESTEasy 3.0.16
+    */
    @Ignore("The tests fails on some machines on client side. As this is performance test and performance tests were dropped" +
          "from EAP7 rfe list, this is not priority now.")
    @Test

@@ -34,11 +34,11 @@ import java.util.PropertyPermission;
 import java.util.logging.LoggingPermission;
 
 /**
-   * Test that springframework MVC works in conjuction with jaxrs Application subclass.
-   * It's all about having the proper configuration in the web.xml.
-   * User: rsearls
-   * Date: 2/20/17
-   */
+ * Test that springframework MVC works in conjuction with jaxrs Application subclass.
+ * It's all about having the proper configuration in the web.xml.
+ * User: rsearls
+ * Date: 2/20/17
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JaxrsWithSpringMVCTest {
@@ -92,7 +92,7 @@ public class JaxrsWithSpringMVCTest {
    }
 
    /**
-     */
+    */
    @Test
    public void testAllEndpoints() throws Exception {
 

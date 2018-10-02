@@ -19,13 +19,13 @@ import org.jboss.resteasy.plugins.validation.i18n.Messages;
 import org.jboss.resteasy.spi.validation.GeneralValidatorCDI;
 
 /**
-   * 
-   * @author Leandro Ferro Luzia
-   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
-   * @version $Revision: 1.1 $
-   *
-   * Copyright May 23, 2013
-   */
+ * 
+ * @author Leandro Ferro Luzia
+ * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+ * @version $Revision: 1.1 $
+ *
+ * Copyright May 23, 2013
+ */
 public class AbstractValidatorContextResolver
 {
    private volatile ValidatorFactory validatorFactory;

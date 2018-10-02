@@ -25,8 +25,8 @@ public class SingletonCustomProviderApplication extends Application {
    public static Set<Object> singletons = new HashSet<Object>();
 
    /**
-     * @see Application#getClasses()
-     */
+    * @see Application#getClasses()
+    */
    @Override
    public Set<Class<?>> getClasses() {
       if (classes.isEmpty()) {
@@ -36,8 +36,8 @@ public class SingletonCustomProviderApplication extends Application {
    }
 
    /**
-     * @see Application#getSingletons()
-     */
+    * @see Application#getSingletons()
+    */
    @Override
    public Set<Object> getSingletons() {
       if (singletons.isEmpty()) {

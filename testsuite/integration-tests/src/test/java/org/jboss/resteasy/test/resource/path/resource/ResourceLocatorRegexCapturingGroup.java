@@ -4,9 +4,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 /**
-   * User: rsearls
-   * Date: 2/17/17
-   */
+ * User: rsearls
+ * Date: 2/17/17
+ */
 @Path("/capture")
 public class ResourceLocatorRegexCapturingGroup {
 

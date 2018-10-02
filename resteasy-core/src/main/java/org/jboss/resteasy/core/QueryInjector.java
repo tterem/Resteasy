@@ -11,8 +11,8 @@ import java.lang.reflect.Constructor;
 import java.util.concurrent.CompletionStage;
 
 /**
-   * Created by Simon Ström on 7/17/14.
-   */
+ * Created by Simon Ström on 7/17/14.
+ */
 @SuppressWarnings(value = "unchecked")
 public class QueryInjector implements ValueInjector {
 

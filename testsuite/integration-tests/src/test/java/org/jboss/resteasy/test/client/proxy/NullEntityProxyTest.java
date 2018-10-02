@@ -22,11 +22,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1684
-   * @tpSince RESTEasy 3.0.24
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1684
+ * @tpSince RESTEasy 3.0.24
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class NullEntityProxyTest {
@@ -55,9 +55,9 @@ public class NullEntityProxyTest {
    }
 
    /**
-     * @tpTestDetails Test to send null Entity with proxy
-     * @tpSince RESTEasy 3.0.24
-     */
+    * @tpTestDetails Test to send null Entity with proxy
+    * @tpSince RESTEasy 3.0.24
+    */
    @Test
    public void testNullEntityWithProxy() {
       ResteasyWebTarget target = client.target(generateBaseUrl());

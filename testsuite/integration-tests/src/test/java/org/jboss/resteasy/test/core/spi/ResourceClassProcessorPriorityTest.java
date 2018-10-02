@@ -32,11 +32,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
 /**
-   * @tpSubChapter ResourceClassProcessor SPI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails ResourceClassProcessor and Priority annotation test
-   * @tpSince RESTEasy 3.6
-   */
+ * @tpSubChapter ResourceClassProcessor SPI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails ResourceClassProcessor and Priority annotation test
+ * @tpSince RESTEasy 3.6
+ */
 @RunWith(Arquillian.class)
 public class ResourceClassProcessorPriorityTest {
 
@@ -78,10 +78,10 @@ public class ResourceClassProcessorPriorityTest {
 
 
    /**
-     * @tpTestDetails Deployment uses three ResourceClassProcessors with Priority annotation,
-     *                this priority annotation should be used by RESTEasy
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Deployment uses three ResourceClassProcessors with Priority annotation,
+    *                this priority annotation should be used by RESTEasy
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void priorityTest() {
       // init client

@@ -27,18 +27,18 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
-   * 
-   * @author <a href="mailto:jeff@infohazard.org">Jeff Schnitzer</a>
-   * @author Thomas Broyer
-   */
+ * 
+ * @author <a href="mailto:jeff@infohazard.org">Jeff Schnitzer</a>
+ * @author Thomas Broyer
+ */
 @Provider
 @Produces("text/html")
 public class HtmlRenderableWriter implements MessageBodyWriter<Renderable>
 {
 
    /* (non-Javadoc
-   * @see javax.ws.rs.ext.MessageBodyWriter#getSize(java.lang.Object, java.lang.Class, java.lang.reflect.Type, java.lang.annotation.Annotation[], javax.ws.rs.core.MediaType)
-   */
+    * @see javax.ws.rs.ext.MessageBodyWriter#getSize(java.lang.Object, java.lang.Class, java.lang.reflect.Type, java.lang.annotation.Annotation[], javax.ws.rs.core.MediaType)
+    */
    //@Override
    public long getSize(Renderable obj, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
    {
@@ -47,8 +47,8 @@ public class HtmlRenderableWriter implements MessageBodyWriter<Renderable>
    }
 
    /* (non-Javadoc)
-   * @see javax.ws.rs.ext.MessageBodyWriter#isWriteable(java.lang.Class, java.lang.reflect.Type, java.lang.annotation.Annotation[], javax.ws.rs.core.MediaType)
-   */
+    * @see javax.ws.rs.ext.MessageBodyWriter#isWriteable(java.lang.Class, java.lang.reflect.Type, java.lang.annotation.Annotation[], javax.ws.rs.core.MediaType)
+    */
    //@Override
    public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
    {
@@ -56,8 +56,8 @@ public class HtmlRenderableWriter implements MessageBodyWriter<Renderable>
    }
 
    /* (non-Javadoc)
-   * @see javax.ws.rs.ext.MessageBodyWriter#writeTo(java.lang.Object, java.lang.Class, java.lang.reflect.Type, java.lang.annotation.Annotation[], javax.ws.rs.core.MediaType, javax.ws.rs.core.MultivaluedMap, java.io.OutputStream)
-   */
+    * @see javax.ws.rs.ext.MessageBodyWriter#writeTo(java.lang.Object, java.lang.Class, java.lang.reflect.Type, java.lang.annotation.Annotation[], javax.ws.rs.core.MediaType, javax.ws.rs.core.MultivaluedMap, java.io.OutputStream)
+    */
    //@Override
    public void writeTo(Renderable viewingPleasure, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType,
          MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException

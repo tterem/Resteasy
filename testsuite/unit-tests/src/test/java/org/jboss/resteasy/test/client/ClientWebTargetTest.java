@@ -9,17 +9,17 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpTestCaseDetails Regression test for JBEAP-4708
-   * @tpSince RESTEasy 3.0.17
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpTestCaseDetails Regression test for JBEAP-4708
+ * @tpSince RESTEasy 3.0.17
+ */
 public class ClientWebTargetTest {
 
    /**
-     * @tpTestDetails Test for removing property from WebTarget.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Test for removing property from WebTarget.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void propertyNullTest() throws Exception {
       String property = "property";

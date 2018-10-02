@@ -29,11 +29,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Asynchronous RESTEasy: RESTEASY-1225
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Tests that Providers context is not discarded prematurely
-   * @tpSince RESTEasy 3.1.1.Final
-   */
+ * @tpSubChapter Asynchronous RESTEasy: RESTEASY-1225
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Tests that Providers context is not discarded prematurely
+ * @tpSince RESTEasy 3.1.1.Final
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AsynchContextualDataTest {
@@ -66,9 +66,9 @@ public class AsynchContextualDataTest {
    }
 
    /**
-     * @tpTestDetails Test stack handling of context data map
-     * @tpSince RESTEasy 3.1.1.Final
-     */
+    * @tpTestDetails Test stack handling of context data map
+    * @tpSince RESTEasy 3.1.1.Final
+    */
    @Test
    public void testContextualData() throws Exception {
       String id = "334";

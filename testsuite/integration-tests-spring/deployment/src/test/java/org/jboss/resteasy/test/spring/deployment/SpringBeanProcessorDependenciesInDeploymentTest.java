@@ -45,12 +45,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Spring
-   * @tpChapter Integration tests - dependencies included in deployment
-   * @tpTestCaseDetails This class tests a gamut of Spring related functionality including @Configuration beans, @Autowired,
-   * scanned beans, interceptors and overall integration between RESTEasy and the Spring ApplicationContext.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Spring
+ * @tpChapter Integration tests - dependencies included in deployment
+ * @tpTestCaseDetails This class tests a gamut of Spring related functionality including @Configuration beans, @Autowired,
+ * scanned beans, interceptors and overall integration between RESTEasy and the Spring ApplicationContext.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SpringBeanProcessorDependenciesInDeploymentTest {
@@ -116,9 +116,9 @@ public class SpringBeanProcessorDependenciesInDeploymentTest {
    }
 
    /**
-     * @tpTestDetails Tests org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator integration with Resteasy
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator integration with Resteasy
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAutoProxy() throws Exception {
       WebTarget target = client.target(generateURL("/intercepted"));
@@ -128,9 +128,9 @@ public class SpringBeanProcessorDependenciesInDeploymentTest {
    }
 
    /**
-     * @tpTestDetails Tests that resource bean defined in xml spring application context is registred by resourceBeanProcessor
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that resource bean defined in xml spring application context is registred by resourceBeanProcessor
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProcessor() throws Exception {
       WebTarget target = client.target(generateURL(""));
@@ -140,10 +140,10 @@ public class SpringBeanProcessorDependenciesInDeploymentTest {
    }
 
    /**
-     * @tpTestDetails Tests that resource bean defined in xml spring application context with scope prototype
-     * is registred by resourceBeanProcessor
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that resource bean defined in xml spring application context with scope prototype
+    * is registred by resourceBeanProcessor
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPrototyped() throws Exception {
       WebTarget target = client.target(generateURL("/prototyped/1"));
@@ -157,10 +157,10 @@ public class SpringBeanProcessorDependenciesInDeploymentTest {
    }
 
    /**
-     * @tpTestDetails Tests that resource is automatically registered without defining it in spring application context
-     * configuration file, but defined programatically with @Configuration annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that resource is automatically registered without defining it in spring application context
+    * configuration file, but defined programatically with @Configuration annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRegistration() throws Exception {
       WebTarget target = client.target(generateURL("/registered/singleton/count"));
@@ -170,10 +170,10 @@ public class SpringBeanProcessorDependenciesInDeploymentTest {
    }
 
    /**
-     * @tpTestDetails Tests that resource is automatically registered without defining it in spring application context
-     * configuration file
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that resource is automatically registered without defining it in spring application context
+    * configuration file
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testScanned() throws Exception {
       WebTarget target = client.target(generateURL("/scanned"));
@@ -183,9 +183,9 @@ public class SpringBeanProcessorDependenciesInDeploymentTest {
    }
 
    /**
-     * @tpTestDetails Tests that resource is available when using @Autowired annotation for the service
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that resource is available when using @Autowired annotation for the service
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAutowiredProvider() throws Exception {
       WebTarget target = client.target(generateURL("/customer-name?name=Solomon"));

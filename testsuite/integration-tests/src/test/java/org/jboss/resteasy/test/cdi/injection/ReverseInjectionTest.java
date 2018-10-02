@@ -81,17 +81,17 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails ReverseInjectionTest goes beyond InjectionTest by injecting Resteasy objects
-   *                    into other kinds of beans, e.g., EJBs. For example,
-   *                    *) an EJB called ReverseInjectionEJBHolder is injected into the Resteasy resource ReverseInjectionResource
-   *                    *) a variety of EJBs, e.g., StatelessEJBwithJaxRsComponents, are injected  into ReverseInjectionEJBHolder
-   *                    *) a variety of Resteasy resources are injected into StatelessEJBwithJaxRsComponents and similar EJBs.
-   *                    Also, the EJBs like StatelessEJBwithJaxRsComponents are injected into ReverseInjectionEJBHolder using both.
-   *                    Annotation @EJB and @Inject, and the semantics of both are tested.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails ReverseInjectionTest goes beyond InjectionTest by injecting Resteasy objects
+ *                    into other kinds of beans, e.g., EJBs. For example,
+ *                    *) an EJB called ReverseInjectionEJBHolder is injected into the Resteasy resource ReverseInjectionResource
+ *                    *) a variety of EJBs, e.g., StatelessEJBwithJaxRsComponents, are injected  into ReverseInjectionEJBHolder
+ *                    *) a variety of Resteasy resources are injected into StatelessEJBwithJaxRsComponents and similar EJBs.
+ *                    Also, the EJBs like StatelessEJBwithJaxRsComponents are injected into ReverseInjectionEJBHolder using both.
+ *                    Annotation @EJB and @Inject, and the semantics of both are tested.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class ReverseInjectionTest extends AbstractInjectionTestBase {
    private static Logger log = Logger.getLogger(ReverseInjectionTest.class);
@@ -167,13 +167,13 @@ public class ReverseInjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails Addresses injection of JAX-RS components (BookResource, BookReader, BookWriter) into
-     *                a stateless EJB3.  The target SLSB is not a contextual object, since it is
-     *                obtained through JNDI, so CDI performs injections when the SLSB is created,
-     *                but there is no scope management.  It follows that the target SLSB is not recreated
-     *                for the second invocation.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Addresses injection of JAX-RS components (BookResource, BookReader, BookWriter) into
+    *                a stateless EJB3.  The target SLSB is not a contextual object, since it is
+    *                obtained through JNDI, so CDI performs injections when the SLSB is created,
+    *                but there is no scope management.  It follows that the target SLSB is not recreated
+    *                for the second invocation.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSLSB() throws Exception {
       log.info("starting testSLSB()");
@@ -190,13 +190,13 @@ public class ReverseInjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails Addresses injection of JAX-RS components (BookResource, BookReader, BookWriter) into
-     *                a @Dependent annotated stateful EJB3.  The target SFSB is not a contextual object,
-     *                since it is obtained through JNDI, so CDI performs injections when the SFSB is created,
-     *                but there is no scope management.  It follows that the target SFSB is not recreated
-     *                for the second invocation.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Addresses injection of JAX-RS components (BookResource, BookReader, BookWriter) into
+    *                a @Dependent annotated stateful EJB3.  The target SFSB is not a contextual object,
+    *                since it is obtained through JNDI, so CDI performs injections when the SFSB is created,
+    *                but there is no scope management.  It follows that the target SFSB is not recreated
+    *                for the second invocation.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSFSBDependentScope() throws Exception {
       log.info("starting testSFSBDependentScope()");
@@ -204,13 +204,13 @@ public class ReverseInjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails Addresses injection of JAX-RS components (BookResource, BookReader, BookWriter) into
-     *                a @RequestScoped annotated stateful EJB3.  The target SFSB is not a contextual object,
-     *                since it is obtained through JNDI, so CDI performs injections when the SFSB is created,
-     *                but there is no scope management.  It follows that the target SFSB is not recreated
-     *                for the second invocation.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Addresses injection of JAX-RS components (BookResource, BookReader, BookWriter) into
+    *                a @RequestScoped annotated stateful EJB3.  The target SFSB is not a contextual object,
+    *                since it is obtained through JNDI, so CDI performs injections when the SFSB is created,
+    *                but there is no scope management.  It follows that the target SFSB is not recreated
+    *                for the second invocation.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSFSBRequestScope() throws Exception {
       log.info("starting testSFSBRequestScope()");
@@ -219,13 +219,13 @@ public class ReverseInjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails Addresses injection of JAX-RS components (BookResource, BookReader, BookWriter) into
-     *                a @ApplicationScoped annotated stateful EJB3.  The target SFSB is not a contextual object,
-     *                since it is obtained through JNDI, so CDI performs injections when the SFSB is created,
-     *                but there is no scope management.  It follows that the target SFSB is not recreated
-     *                for the second invocation.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Addresses injection of JAX-RS components (BookResource, BookReader, BookWriter) into
+    *                a @ApplicationScoped annotated stateful EJB3.  The target SFSB is not a contextual object,
+    *                since it is obtained through JNDI, so CDI performs injections when the SFSB is created,
+    *                but there is no scope management.  It follows that the target SFSB is not recreated
+    *                for the second invocation.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSFSBApplicationScope() throws Exception {
       log.info("starting testSFSBApplicationScope()");
@@ -248,9 +248,9 @@ public class ReverseInjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails Verifies the scopes of the EJBs used in this set of tests.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verifies the scopes of the EJBs used in this set of tests.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEJBHolderInResourceScopes() throws Exception {
       WebTarget base = client.target(generateURL("/reverse/testScopes/"));
@@ -260,9 +260,9 @@ public class ReverseInjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails Test static hash map in RequestScoped bean used as REST point.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test static hash map in RequestScoped bean used as REST point.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEJBHolderInResource() throws Exception {
       WebTarget base = client.target(generateURL("/reverse/setup/"));
@@ -277,9 +277,9 @@ public class ReverseInjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails Tests the injection of a JAX-RS resource (BookResource) into an MDB.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests the injection of a JAX-RS resource (BookResource) into an MDB.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMDB() throws Exception {
       String destinationName = "queue/test";

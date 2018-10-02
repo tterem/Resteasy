@@ -29,10 +29,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Jackson2 provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jackson2 provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JacksonJaxbCoexistenceTest {
@@ -51,8 +51,8 @@ public class JacksonJaxbCoexistenceTest {
    }
 
    /**
-     * Jettison is deprecated, so it needs to be added to EAP manually (see JBEAP-2856).
-     */
+    * Jettison is deprecated, so it needs to be added to EAP manually (see JBEAP-2856).
+    */
    @Deployment(name = "jettison")
    public static Archive<?> deployJettison() {
       WebArchive war = TestUtil.prepareArchive(JETTISON_DEPLOYMENT);
@@ -78,11 +78,11 @@ public class JacksonJaxbCoexistenceTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request for json annotated resource. In the first case it returns single json entity,
-     * in the second case multiple json entities as String.
-     * @tpPassCrit The resource returns json entities in correct format
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request for json annotated resource. In the first case it returns single json entity,
+    * in the second case multiple json entities as String.
+    * @tpPassCrit The resource returns json entities in correct format
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @Category({ExpectedFailingOnWildFly13.class})
    public void testJacksonString() throws Exception {
@@ -107,9 +107,9 @@ public class JacksonJaxbCoexistenceTest {
    }
 
    /**
-     * @tpTestDetails Test that Jackson is picked
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that Jackson is picked
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @Category({ExpectedFailingOnWildFly13.class})
    public void testJacksonXmlString() throws Exception {
@@ -133,10 +133,10 @@ public class JacksonJaxbCoexistenceTest {
    }
 
    /**
-     * @tpTestDetails Test that Jettison is picked
-     * Jettison is deprecated, so it needs to be added to EAP manually (see JBEAP-2856).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that Jettison is picked
+    * Jettison is deprecated, so it needs to be added to EAP manually (see JBEAP-2856).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlString() throws Exception {
       WebTarget target = client.target(PortProviderUtil.generateURL("/xml/products/333", JETTISON_DEPLOYMENT));
@@ -156,9 +156,9 @@ public class JacksonJaxbCoexistenceTest {
    }
 
    /**
-     * @tpTestDetails Test that Jackson is picked and object can be returned from the resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that Jackson is picked and object can be returned from the resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testJackson() throws Exception {
       WebTarget target = client.target(generateURL("/products/333"));

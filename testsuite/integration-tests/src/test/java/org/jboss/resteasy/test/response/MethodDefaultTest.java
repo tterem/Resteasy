@@ -21,11 +21,11 @@ import javax.ws.rs.core.Response;
 import java.util.HashSet;
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Spec requires that HEAD and OPTIONS are handled in a default manner
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Spec requires that HEAD and OPTIONS are handled in a default manner
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MethodDefaultTest {
@@ -53,11 +53,11 @@ public class MethodDefaultTest {
    }
 
    /**
-     * @tpTestDetails Client invokes Head on root resource at /GetTest;
-     *                which no request method designated for HEAD;
-     *                Verify that corresponding GET Method is invoked.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client invokes Head on root resource at /GetTest;
+    *                which no request method designated for HEAD;
+    *                Verify that corresponding GET Method is invoked.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testHeadPlain() throws Exception {
       Response response = client.target(generateURL("/GetTest")).request().header("Accept", "text/plain").head();
@@ -68,11 +68,11 @@ public class MethodDefaultTest {
    }
 
    /**
-     * @tpTestDetails Client invokes HEAD on root resource at /GetTest;
-     *                which no request method designated for HEAD;
-     *                Verify that corresponding GET Method is invoked.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client invokes HEAD on root resource at /GetTest;
+    *                which no request method designated for HEAD;
+    *                Verify that corresponding GET Method is invoked.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testHeadHtml() throws Exception {
       Response response = client.target(generateURL("/GetTest")).request().header("Accept", "text/html").head();
@@ -83,11 +83,11 @@ public class MethodDefaultTest {
    }
 
    /**
-     * @tpTestDetails Client invokes HEAD on sub resource at /GetTest/sub;
-     * which no request method designated for HEAD;
-     * Verify that corresponding GET Method is invoked instead.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client invokes HEAD on sub resource at /GetTest/sub;
+    * which no request method designated for HEAD;
+    * Verify that corresponding GET Method is invoked instead.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testHeadSubresource() throws Exception {
       Response response = client.target(generateURL("/GetTest/sub")).request().header("Accept", "text/plain").head();
@@ -98,10 +98,10 @@ public class MethodDefaultTest {
    }
 
    /**
-     * @tpTestDetails If client invokes OPTIONS and there is no request method that exists, verify that an automatic response is
-     *                generated
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails If client invokes OPTIONS and there is no request method that exists, verify that an automatic response is
+    *                generated
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testOptions() throws Exception {
 

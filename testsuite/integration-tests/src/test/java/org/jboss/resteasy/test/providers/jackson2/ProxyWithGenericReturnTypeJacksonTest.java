@@ -28,10 +28,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Jackson2 provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jackson2 provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 @Category({ExpectedFailingOnWildFly13.class})
@@ -65,10 +65,10 @@ public class ProxyWithGenericReturnTypeJacksonTest {
    }
 
    /**
-     * @tpTestDetails Tests usage of proxied subresource
-     * @tpPassCrit The resource returns Success response
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests usage of proxied subresource
+    * @tpPassCrit The resource returns Success response
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProxyWithGenericReturnType() throws Exception {
       WebTarget target = client.target(generateURL("/test/one/"));

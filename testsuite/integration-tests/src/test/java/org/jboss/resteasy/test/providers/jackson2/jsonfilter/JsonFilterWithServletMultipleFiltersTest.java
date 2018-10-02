@@ -26,13 +26,13 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Jackson2 provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Filters fields from json object. Specifies the filter implementation class in web.xml.
-   * The filter filters field personType of Jackson2Person pojo. The ObjectWriterModifier has multiple filters registered.
-   * Only one is set to for Json2Person pojo.
-   * @tpSince RESTEasy 3.1.0
-   */
+ * @tpSubChapter Jackson2 provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Filters fields from json object. Specifies the filter implementation class in web.xml.
+ * The filter filters field personType of Jackson2Person pojo. The ObjectWriterModifier has multiple filters registered.
+ * Only one is set to for Json2Person pojo.
+ * @tpSince RESTEasy 3.1.0
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 @Category({NotForForwardCompatibility.class, ExpectedFailingOnWildFly13.class})
@@ -51,9 +51,9 @@ public class JsonFilterWithServletMultipleFiltersTest {
    }
 
    /**
-     * @tpTestDetails Correct filter is used when multiple filters available
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Correct filter is used when multiple filters available
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    public void testJacksonString() throws Exception {
       Client client = ClientBuilder.newClient();

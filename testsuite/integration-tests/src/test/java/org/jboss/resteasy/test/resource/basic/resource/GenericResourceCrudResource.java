@@ -6,12 +6,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 /**
-   * This is a sample of a CRUD resource template which can be reused for different entities.
-   *
-   * @param <ENTITY_TYPE>            Type of the entity which CRUD operations are performed on.
-   * @param <ENTITY_IDENTIFIER_TYPE> Type of the entity identified i.e. java.lang.Long
-   * @author Jozef Hartinger
-   */
+ * This is a sample of a CRUD resource template which can be reused for different entities.
+ *
+ * @param <ENTITY_TYPE>            Type of the entity which CRUD operations are performed on.
+ * @param <ENTITY_IDENTIFIER_TYPE> Type of the entity identified i.e. java.lang.Long
+ * @author Jozef Hartinger
+ */
 public abstract class GenericResourceCrudResource<ENTITY_TYPE, ENTITY_IDENTIFIER_TYPE>
 {
    abstract ENTITY_TYPE getEntity(ENTITY_IDENTIFIER_TYPE id);

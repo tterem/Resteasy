@@ -24,11 +24,11 @@ import java.net.URI;
 import java.util.Date;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for atom provider model
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for atom provider model
+ * @tpSince RESTEasy 3.0.16
+ */
 public class AtomProviderModelTest {
 
    protected final Logger logger = LogManager.getLogger(AtomProviderModelTest.class.getName());
@@ -83,9 +83,9 @@ public class AtomProviderModelTest {
                "   </feed>";
 
    /**
-     * @tpTestDetails Test JAXB content - text form
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test JAXB content - text form
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testContentText() throws Exception {
       JAXBContext ctx = JAXBContext.newInstance(Content.class);
@@ -96,9 +96,9 @@ public class AtomProviderModelTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-242
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-242
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testContentSetElement() throws Exception {
       Content c = new Content();
@@ -107,9 +107,9 @@ public class AtomProviderModelTest {
 
 
    /**
-     * @tpTestDetails Check JAXB content
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check JAXB content
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testContent() throws Exception {
 
@@ -152,9 +152,9 @@ public class AtomProviderModelTest {
 
 
    /**
-     * @tpTestDetails Check Atom Provider Binding
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check Atom Provider Binding
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBinding() throws Exception {
       Feed feed = new Feed();
@@ -212,9 +212,9 @@ public class AtomProviderModelTest {
 
 
    /**
-     * @tpTestDetails Check RFC
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check RFC
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRFC() throws Exception {
       JAXBContext ctx = JAXBContext.newInstance(Feed.class);

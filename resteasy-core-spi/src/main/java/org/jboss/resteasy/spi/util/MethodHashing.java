@@ -7,9 +7,9 @@ import java.security.DigestOutputStream;
 import java.security.MessageDigest;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public final class MethodHashing
 {
    public static long methodHash(Method method)

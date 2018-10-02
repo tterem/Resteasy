@@ -28,12 +28,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Parameters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for RESTEasy param annotations (https://issues.jboss.org/browse/RESTEASY-1880)
-   *                    Test logic is in the end-point in deployment.
-   * @tpSince RESTEasy 3.6
-   */
+ * @tpSubChapter Parameters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for RESTEasy param annotations (https://issues.jboss.org/browse/RESTEASY-1880)
+ *                    Test logic is in the end-point in deployment.
+ * @tpSince RESTEasy 3.6
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RESTEasyParamBasicTest {
@@ -68,11 +68,11 @@ public class RESTEasyParamBasicTest {
    }
 
    /**
-     * @tpTestDetails Basic check of new query parameters, matrix parameters, header parameters, cookie parameters and form parameters
-     *                Test checks that RESTEasy can inject correct values to setters, constructors, class variables and method attributes
-     *                This test uses new annotation only without any annotation value.
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Basic check of new query parameters, matrix parameters, header parameters, cookie parameters and form parameters
+    *                Test checks that RESTEasy can inject correct values to setters, constructors, class variables and method attributes
+    *                This test uses new annotation only without any annotation value.
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void basicTest() {
       Response response = client.target(generateURL("/basic/a/pathParam0/pathParam1/pathParam2/pathParam3"))
@@ -103,11 +103,11 @@ public class RESTEasyParamBasicTest {
    }
 
    /**
-     * @tpTestDetails Same check as basicTest with this changes:
-     *                  * RESTEasy proxy is used
-     *                  * test checks injection to method attributes only
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Same check as basicTest with this changes:
+    *                  * RESTEasy proxy is used
+    *                  * test checks injection to method attributes only
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void proxyTest() {
       Response response = client.target(generateURL("/proxy/a/pathParam3"))
@@ -123,9 +123,9 @@ public class RESTEasyParamBasicTest {
    }
 
    /**
-     * @tpTestDetails Checks new parameter annotations with custom values
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Checks new parameter annotations with custom values
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void customValuesTest() {
       Response response = client.target(generateURL("/custom/values/a/pathParam0/pathParam1/pathParam2/pathParam3"))
@@ -156,9 +156,9 @@ public class RESTEasyParamBasicTest {
    }
 
    /**
-     * @tpTestDetails Checks both original and new parameters together in one end-point, original and new annotations uses the same param names
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Checks both original and new parameters together in one end-point, original and new annotations uses the same param names
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void theSameNamesTest() {
       Response response = client.target(generateURL("/same/a/pathParam0/pathParam1/pathParam2/pathParam3"))
@@ -189,9 +189,9 @@ public class RESTEasyParamBasicTest {
    }
 
    /**
-     * @tpTestDetails Checks both original and new parameters together in one end-point, original and new annotations uses different param names
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails Checks both original and new parameters together in one end-point, original and new annotations uses different param names
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void differentNamesTest() {
       Response response = client.target(generateURL("/different/a/pathParam0/pathParam1/pathParam2/pathParam3/pathParam4"))

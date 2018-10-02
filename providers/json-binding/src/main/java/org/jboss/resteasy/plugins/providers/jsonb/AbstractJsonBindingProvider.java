@@ -12,8 +12,8 @@ import java.nio.charset.Charset;
 
 
 /**
-   * Created by rsearls
-   */
+ * Created by rsearls
+ */
 public class AbstractJsonBindingProvider extends JsonBindingProvider {
 
    private static final String JSON = "json";

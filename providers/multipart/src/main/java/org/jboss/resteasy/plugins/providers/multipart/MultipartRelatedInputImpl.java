@@ -12,12 +12,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
-   * Implements {@link MultipartRelatedInput} by extending
-   * {@link MultipartInputImpl} and adding multipart/related functionality.
-   * 
-   * @author Attila Kiraly
-   * @version $Revision: 1 $
-   */
+ * Implements {@link MultipartRelatedInput} by extending
+ * {@link MultipartInputImpl} and adding multipart/related functionality.
+ * 
+ * @author Attila Kiraly
+ * @version $Revision: 1 $
+ */
 public class MultipartRelatedInputImpl extends MultipartInputImpl implements
       MultipartRelatedInput {
    private Map<String, InputPart> relatedMap = new LinkedHashMap<String, InputPart>();

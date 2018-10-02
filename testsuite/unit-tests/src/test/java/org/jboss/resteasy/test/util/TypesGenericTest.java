@@ -19,19 +19,19 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 
 /**
-   * @tpSubChapter Util tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for Types class for generic types.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Util tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for Types class for generic types.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class TypesGenericTest {
 
    protected final Logger logger = LogManager.getLogger(TypesGenericTest.class.getName());
 
    /**
-     * @tpTestDetails Check findParameterizedTypes method of Types class for corrected parametrized type.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check findParameterizedTypes method of Types class for corrected parametrized type.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInterfaceGenericTypeDiscovery() throws Exception {
       Type[] types = Types.findParameterizedTypes(TypesGenericFooBar.class, TypesGenericBar.class);
@@ -60,9 +60,9 @@ public class TypesGenericTest {
    }
 
    /**
-     * @tpTestDetails Check getImplementingMethod method of Types class for implemented methods.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check getImplementingMethod method of Types class for implemented methods.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFindImplementedMethod() throws Exception {
       Class bar = TypesGenericFooBar.class.getInterfaces()[0].getInterfaces()[0];
@@ -89,9 +89,9 @@ public class TypesGenericTest {
    }
 
    /**
-     * @tpTestDetails Check findParameterizedTypes method of Types class for generic type discovery.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check findParameterizedTypes method of Types class for generic type discovery.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testClassGenericTypeDiscovery() throws Exception {
       Type[] types = Types.findParameterizedTypes(TypesGenericClassFooBar.class, TypesGenericClassBar.class);

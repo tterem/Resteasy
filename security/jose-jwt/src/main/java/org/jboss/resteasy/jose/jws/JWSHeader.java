@@ -11,9 +11,9 @@ import java.io.IOException;
 import java.io.Serializable;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class JWSHeader implements Serializable
 {
    @JsonProperty("alg")

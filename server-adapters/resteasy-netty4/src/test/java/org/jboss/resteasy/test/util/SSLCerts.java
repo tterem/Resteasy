@@ -13,10 +13,10 @@ import java.security.GeneralSecurityException;
 import java.security.KeyStore;
 
 /**
-   * Utility class for handling SSL certificates.
-   *
-   * @author Sebastian Łaskawiec
-   */
+ * Utility class for handling SSL certificates.
+ *
+ * @author Sebastian Łaskawiec
+ */
 public enum SSLCerts
 {
    DEFAULT_SERVER_KEYSTORE("sni/default_server_keystore.jks", "secret".toCharArray(), null, null),

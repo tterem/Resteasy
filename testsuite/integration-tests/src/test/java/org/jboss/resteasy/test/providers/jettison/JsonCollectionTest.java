@@ -27,10 +27,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Jettison provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jettison provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JsonCollectionTest {
@@ -63,10 +63,10 @@ public class JsonCollectionTest {
    }
 
    /**
-     * @tpTestDetails Test that an array containing json objects can be received and send
-     * @tpPassCrit The response with Success is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that an array containing json objects can be received and send
+    * @tpPassCrit The response with Success is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testArray() throws Exception {
       WebTarget target = client.target(generateURL("/array"));
@@ -88,11 +88,11 @@ public class JsonCollectionTest {
    }
 
    /**
-     * @tpTestDetails Test that json entity is correctly marshalled into the array, and json string is returned from the server
-     * and the same entity is send back to the server to produce a list and returned as json string.
-     * @tpPassCrit The response with Success is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that json entity is correctly marshalled into the array, and json string is returned from the server
+    * and the same entity is send back to the server to produce a list and returned as json string.
+    * @tpPassCrit The response with Success is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testList() throws Exception {
 
@@ -111,10 +111,10 @@ public class JsonCollectionTest {
    }
 
    /**
-     * @tpTestDetails Test that an array of namespaced json objects can be received and send
-     * @tpPassCrit The response with Success is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that an array of namespaced json objects can be received and send
+    * @tpPassCrit The response with Success is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNamespacedArray() throws Exception {
       WebTarget target = client.target(generateURL("/namespaced/array"));
@@ -131,11 +131,11 @@ public class JsonCollectionTest {
    }
 
    /**
-     * @tpTestDetails Test that namespaced json entity is correctly marshalled into the array, and json string is returned from the server
-     * and the same entity is send back to the server to produce a list and returned as json string.
-     * @tpPassCrit The response with Success is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that namespaced json entity is correctly marshalled into the array, and json string is returned from the server
+    * and the same entity is send back to the server to produce a list and returned as json string.
+    * @tpPassCrit The response with Success is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNamespacedList() throws Exception {
       WebTarget target = client.target(generateURL("/namespaced/array"));
@@ -153,10 +153,10 @@ public class JsonCollectionTest {
    }
 
    /**
-     * @tpTestDetails Test to send and receive empty json array
-     * @tpPassCrit The response with Success is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test to send and receive empty json array
+    * @tpPassCrit The response with Success is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmptyArray() throws Exception {
       WebTarget target = client.target(generateURL("/empty/array"));
@@ -166,10 +166,10 @@ public class JsonCollectionTest {
    }
 
    /**
-     * @tpTestDetails Test to send and receive empty json list
-     * @tpPassCrit The response with Success is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test to send and receive empty json list
+    * @tpPassCrit The response with Success is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmptyList() throws Exception {
       WebTarget target = client.target(generateURL("/empty/list"));
@@ -179,10 +179,10 @@ public class JsonCollectionTest {
    }
 
    /**
-     * @tpTestDetails Test to send non-json input
-     * @tpPassCrit The response with code Bad request is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test to send non-json input
+    * @tpPassCrit The response with code Bad request is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadArray() throws Exception {
       WebTarget target = client.target(generateURL("/array"));

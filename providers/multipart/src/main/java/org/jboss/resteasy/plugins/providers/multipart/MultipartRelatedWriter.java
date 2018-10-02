@@ -12,12 +12,12 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
-   * The {@link MessageBodyWriter} implementation to serialize
-   * {@link MultipartRelatedOutput} objects.
-   *
-   * @author Attila Kiraly
-   * @version $Revision: 1 $
-   */
+ * The {@link MessageBodyWriter} implementation to serialize
+ * {@link MultipartRelatedOutput} objects.
+ *
+ * @author Attila Kiraly
+ * @version $Revision: 1 $
+ */
 @Provider
 @Produces("multipart/related")
 public class MultipartRelatedWriter extends AbstractMultipartRelatedWriter

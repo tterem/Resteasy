@@ -12,9 +12,9 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.fasterxml.jackson.jaxrs.cfg.EndpointConfigBase;
 import com.fasterxml.jackson.jaxrs.cfg.ObjectWriterModifier;
 /**
-   * @author <a href="mailto:ema@redhat.com">Jim Ma</a>
-   *
-   */
+ * @author <a href="mailto:ema@redhat.com">Jim Ma</a>
+ *
+ */
 public class ObjectFilterModifier extends ObjectWriterModifier {
    public ObjectFilterModifier() {
    }

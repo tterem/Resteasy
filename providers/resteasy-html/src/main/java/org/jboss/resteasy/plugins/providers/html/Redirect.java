@@ -22,9 +22,9 @@ public class Redirect implements Renderable
    }
 
    /**
-   * @param path
-   *           must be a valid URI
-   */
+    * @param path
+    *           must be a valid URI
+    */
    public Redirect(String path)
    {
       try

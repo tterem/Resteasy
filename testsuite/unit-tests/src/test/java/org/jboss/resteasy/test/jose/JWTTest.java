@@ -12,19 +12,19 @@ import static org.hamcrest.core.Is.is;
 
 
 /**
-   * @tpSubChapter Jose tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for JWT
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jose tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for JWT
+ * @tpSince RESTEasy 3.0.16
+ */
 public class JWTTest {
    protected static final Logger logger = LogManager.getLogger(JWTTest.class.getName());
    private static final String ERROR_MSG = "Wrong JsonWebToken conversion";
 
    /**
-     * @tpTestDetails JsonWebToken test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails JsonWebToken test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testJWT() throws Exception {
       JsonWebToken token = new JsonWebToken().id("123");

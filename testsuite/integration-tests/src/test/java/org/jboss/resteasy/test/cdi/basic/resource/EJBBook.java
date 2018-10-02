@@ -11,13 +11,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
-   * Book is
-   * 1) a JAXB class, suitable for transport over the network, and
-   * 2) an @Entity class, suitable for JPA storage
-   *
-   * It implements Serializable so that it can be returned from a JAX-RS resource
-   * in its role as EJB.
-   */
+ * Book is
+ * 1) a JAXB class, suitable for transport over the network, and
+ * 2) an @Entity class, suitable for JPA storage
+ *
+ * It implements Serializable so that it can be returned from a JAX-RS resource
+ * in its role as EJB.
+ */
 @Entity
 @XmlRootElement(name = "book")
 @XmlAccessorType(XmlAccessType.FIELD)

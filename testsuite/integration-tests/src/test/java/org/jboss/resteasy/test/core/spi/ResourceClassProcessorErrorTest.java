@@ -21,11 +21,11 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALIFIER;
 
 /**
-   * @tpSubChapter ResourceClassProcessor SPI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails ResourceClassProcessor should print suitable error/exception, if some exception is thrown
-   * @tpSince RESTEasy 3.6
-   */
+ * @tpSubChapter ResourceClassProcessor SPI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails ResourceClassProcessor should print suitable error/exception, if some exception is thrown
+ * @tpSince RESTEasy 3.6
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResourceClassProcessorErrorTest {
@@ -50,9 +50,9 @@ public class ResourceClassProcessorErrorTest {
 
 
    /**
-     * @tpTestDetails ResourceClassProcessor should print suitable error/exception, if some exception is thrown
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails ResourceClassProcessor should print suitable error/exception, if some exception is thrown
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void errorTest() {
       LogCounter errorLogCounter = new LogCounter("java.lang.RuntimeException: Exception from ResourceClassProcessorErrorImplementation",

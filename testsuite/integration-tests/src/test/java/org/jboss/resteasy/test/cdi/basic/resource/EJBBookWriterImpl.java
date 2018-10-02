@@ -40,10 +40,10 @@ public class EJBBookWriterImpl implements MessageBodyWriter<EJBBook> {
    }
 
    /*
-     * It seems that EJBBookWriterImpl is treated somewhat differently than EJBBookReaderImpl, perhaps
-     * because EJBBookWriterImpl has a no-interface view.  In any case, EJBBookReaderImpl is able to
-     * get an instance of ResteasyProviderFactory in a static block, but EJBBookWriterImpl isn't.
-     */
+    * It seems that EJBBookWriterImpl is treated somewhat differently than EJBBookReaderImpl, perhaps
+    * because EJBBookWriterImpl has a no-interface view.  In any case, EJBBookReaderImpl is able to
+    * get an instance of ResteasyProviderFactory in a static block, but EJBBookWriterImpl isn't.
+    */
    static void getDelegate() {
       ResteasyProviderFactory factory = ResteasyProviderFactory.getInstance();
       delegate = factory.getMessageBodyWriter(NonBook.class, null, null, MediaType.APPLICATION_XML_TYPE);

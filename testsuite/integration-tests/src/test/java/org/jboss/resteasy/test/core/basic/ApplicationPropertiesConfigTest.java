@@ -20,12 +20,12 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for custom Application class with overriden getProperties() method, by injecting Configuration into
-   * the resource.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for custom Application class with overriden getProperties() method, by injecting Configuration into
+ * the resource.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ApplicationPropertiesConfigTest {
@@ -53,10 +53,10 @@ public class ApplicationPropertiesConfigTest {
    }
 
    /**
-     * @tpTestDetails Test for custom Application class with overriden getProperties() method, by injecting Configuration
-     * into the resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for custom Application class with overriden getProperties() method, by injecting Configuration
+    * into the resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testApplicationPropertiesConfig() {
       String errorMessage = "The property is not found in the deployment";

@@ -41,11 +41,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
-   * @tpSubChapter Spring
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Tests various http response codes returned from the server
-   * @tpSince RESTEasy 3.1.0
-   */
+ * @tpSubChapter Spring
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Tests various http response codes returned from the server
+ * @tpSince RESTEasy 3.1.0
+ */
 @ServerSetup({SpringMvcHttpResponseCodesTest.SecurityDomainSetup.class})
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -104,10 +104,10 @@ public class SpringMvcHttpResponseCodesTest {
    }
 
    /**
-     * @tpTestDetails Test server http response code for NotAcceptableException
-     * (The resource produces text/plain responses, while the client accepts application/json only)
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Test server http response code for NotAcceptableException
+    * (The resource produces text/plain responses, while the client accepts application/json only)
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    @Category(NotForForwardCompatibility.class)
    public void testNotAcceptableException() {
@@ -117,10 +117,10 @@ public class SpringMvcHttpResponseCodesTest {
    }
 
    /**
-     * @tpTestDetails Test server http response code for NotFoundException
-     * (The client sends a GET to a URL that does not exist)
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Test server http response code for NotFoundException
+    * (The client sends a GET to a URL that does not exist)
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    public void testNotFoundException() {
       Response response = authorizedClient.target(generateURL("/dummy")).request().get();
@@ -128,10 +128,10 @@ public class SpringMvcHttpResponseCodesTest {
    }
 
    /**
-     * @tpTestDetails Test server http response code for NotFoundException
-     * (The client sends a POST request to a resource path accepting GET only)
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Test server http response code for NotFoundException
+    * (The client sends a POST request to a resource path accepting GET only)
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    @Category(NotForForwardCompatibility.class)
    public void testMethodNotAllowedException() {
@@ -140,10 +140,10 @@ public class SpringMvcHttpResponseCodesTest {
    }
 
    /**
-     * @tpTestDetails Test server http response code for BadRequestException
-     * (The client sends a bad request, not matching expected data format)
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Test server http response code for BadRequestException
+    * (The client sends a bad request, not matching expected data format)
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    public void testBadRequestException() {
       Response response = authorizedClient.target(generateURL("/" + TestResource.TEST_PATH + "/json")).request()
@@ -152,10 +152,10 @@ public class SpringMvcHttpResponseCodesTest {
    }
 
    /**
-     * @tpTestDetails Test server http response code for NotSupportedException
-     * (The client posts an application/xml request, while the server only accepts application/json 
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Test server http response code for NotSupportedException
+    * (The client posts an application/xml request, while the server only accepts application/json 
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    @Category(NotForForwardCompatibility.class)
    public void testNotSupportedException() {
@@ -165,9 +165,9 @@ public class SpringMvcHttpResponseCodesTest {
    }
 
    /**
-     * @tpTestDetails Test server http response code for NotAuthorizedException using client without credentials
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Test server http response code for NotAuthorizedException using client without credentials
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    public void testNotAuthorizedException() {
       Response response = nonAutorizedClient.target(generateURL("/secured/json")).request()
@@ -176,10 +176,10 @@ public class SpringMvcHttpResponseCodesTest {
    }
 
    /**
-     * @tpTestDetails Test server http response code for ForbiddenException using client with credentials which are not
-     * sufficient to grant access to the resource
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Test server http response code for ForbiddenException using client with credentials which are not
+    * sufficient to grant access to the resource
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    @Category(NotForForwardCompatibility.class)
    public void testForbiddenException() {

@@ -32,11 +32,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Regression test for RESTEASY-981
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Regression test for RESTEASY-981
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExceptionBufferingTest {
@@ -80,9 +80,9 @@ public class ExceptionBufferingTest {
 
 
    /**
-     * @tpTestDetails Test default value of resteasy.buffer.exception.entity property
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of resteasy.buffer.exception.entity property
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBufferedResponseDefault() throws Exception {
       Response response = null;
@@ -103,9 +103,9 @@ public class ExceptionBufferingTest {
    }
 
    /**
-     * @tpTestDetails Test false value of resteasy.buffer.exception.entity property
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test false value of resteasy.buffer.exception.entity property
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBufferedResponseFalse() throws Exception {
       Response response = null;
@@ -133,9 +133,9 @@ public class ExceptionBufferingTest {
    }
 
    /**
-     * @tpTestDetails Test true value of resteasy.buffer.exception.entity property
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test true value of resteasy.buffer.exception.entity property
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBufferedResponseTrue() throws Exception {
       Response response = null;

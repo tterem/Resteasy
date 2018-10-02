@@ -35,10 +35,10 @@ import java.io.StringWriter;
 import java.util.Map;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MapTest {
@@ -67,9 +67,9 @@ public class MapTest {
    }
 
    /**
-     * @tpTestDetails Tests marshalling and unmarshalling jaxb object into/from map
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests marshalling and unmarshalling jaxb object into/from map
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMap() throws Exception {
       String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
@@ -101,9 +101,9 @@ public class MapTest {
    }
 
    /**
-     * @tpTestDetails Tests Jaxb object which is send to the server and from server, the response is read by using GenericType
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests Jaxb object which is send to the server and from server, the response is read by using GenericType
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProvider() throws Exception {
       String xml = "<resteasy:map xmlns:resteasy=\"http://jboss.org/resteasy\">"
@@ -130,10 +130,10 @@ public class MapTest {
    }
 
    /**
-     * @tpTestDetails Tests Jaxb object which is send to the server and from server, the response is read by using GenericType,
-     * The tested entity contains integer key types
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests Jaxb object which is send to the server and from server, the response is read by using GenericType,
+    * The tested entity contains integer key types
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProviderMapIntegerFoo() throws Exception {
       String xml = "<resteasy:map xmlns:resteasy=\"http://jboss.org/resteasy\">"
@@ -166,10 +166,10 @@ public class MapTest {
 
 
    /**
-     * @tpTestDetails Tests Jaxb object which is send to the server and from server, the response is read by using GenericType,
-     * the resource is annotated with @WrappedMap annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests Jaxb object which is send to the server and from server, the response is read by using GenericType,
+    * the resource is annotated with @WrappedMap annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testWrapped() throws Exception {
       String xml = "<map xmlns:mapFoo=\"http://foo.com\">"
@@ -191,9 +191,9 @@ public class MapTest {
    }
 
    /**
-     * @tpTestDetails Tests that Jaxb object with wrong structure returns bad request (400) response code
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that Jaxb object with wrong structure returns bad request (400) response code
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadWrapped() throws Exception {
       String xml = "<resteasy:map xmlns:resteasy=\"http://jboss.org/resteasy\">"

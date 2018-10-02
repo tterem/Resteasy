@@ -25,10 +25,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.RuntimeDelegate;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ */
 public class ClientResponseFilterTest {
 
    static Client client;
@@ -46,13 +46,13 @@ public class ClientResponseFilterTest {
    }
 
    /**
-     * @tpTestDetails Client registers ClientRequestFilter and ClientResponseFilter. The first returns Response provided
-     * as argument. The latter processes the response and checks that the header of the response is not null.
-     * Note: This test uses custom implementation of RuntimeDelegate, allowing to customize conversion between String
-     * representation of HTTP header and the corresponding JAX-RS type (StringBean in this case)
-     * @tpPassCrit Successful response is returned and response header is not null
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client registers ClientRequestFilter and ClientResponseFilter. The first returns Response provided
+    * as argument. The latter processes the response and checks that the header of the response is not null.
+    * Note: This test uses custom implementation of RuntimeDelegate, allowing to customize conversion between String
+    * representation of HTTP header and the corresponding JAX-RS type (StringBean in this case)
+    * @tpPassCrit Successful response is returned and response header is not null
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void emptyHeaderStringTest() {
 
@@ -72,12 +72,12 @@ public class ClientResponseFilterTest {
    }
 
    /**
-     * @tpTestDetails Client registers ClientRequestFilter and ClientResponseFilter. The first returns Response provided
-     * as argument. The latter processes the response and checks that the length of the response is same
-     * as in the original response
-     * @tpPassCrit Successful response is returned and response length is same as original response
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client registers ClientRequestFilter and ClientResponseFilter. The first returns Response provided
+    * as argument. The latter processes the response and checks that the length of the response is same
+    * as in the original response
+    * @tpPassCrit Successful response is returned and response length is same as original response
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void lengthTest() {
       Response abortWith = Response.ok()
@@ -88,11 +88,11 @@ public class ClientResponseFilterTest {
    }
 
    /**
-     * @tpTestDetails Client registers ClientRequestFilter and ClientResponseFilter. The first returns Response provided
-     * as argument. The latter processes the response and checks that response contains header 'OPTIONS' as allowed method
-     * @tpPassCrit Successful response is returned and 'OPTIONS' method is allowed header
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client registers ClientRequestFilter and ClientResponseFilter. The first returns Response provided
+    * as argument. The latter processes the response and checks that response contains header 'OPTIONS' as allowed method
+    * @tpPassCrit Successful response is returned and 'OPTIONS' method is allowed header
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void allowedTest() {
       Response abortWith = Response.ok().header(HttpHeaders.ALLOW, "get")
@@ -104,11 +104,11 @@ public class ClientResponseFilterTest {
    }
 
    /**
-     * @tpTestDetails Client registers ClientRequestFilter and ClientResponseFilter. The first returns Response provided
-     * as argument. The latter processes the response and changes the response code to 'FORBIDDEN'
-     * @tpPassCrit Response with status code 'FORBIDDEN' is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client registers ClientRequestFilter and ClientResponseFilter. The first returns Response provided
+    * as argument. The latter processes the response and changes the response code to 'FORBIDDEN'
+    * @tpPassCrit Response with status code 'FORBIDDEN' is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void statusOverrideTest() {
       Response response = client.target(dummyUrl).register(new ClientResponseFilterAbortWith(Response.ok().build()))
@@ -117,11 +117,11 @@ public class ClientResponseFilterTest {
    }
 
    /**
-     * @tpTestDetails Client registers ClientRequestFilter and ClientResponseFilter. The first returns Response provided
-     * as argument. The latter processes the response and prints all headers in the response
-     * @tpPassCrit The response with reponse code success is expected
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client registers ClientRequestFilter and ClientResponseFilter. The first returns Response provided
+    * as argument. The latter processes the response and prints all headers in the response
+    * @tpPassCrit The response with reponse code success is expected
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void headersTest() {
       Response.ResponseBuilder builder = Response.ok()
@@ -134,11 +134,11 @@ public class ClientResponseFilterTest {
    }
 
    /**
-     * @tpTestDetails Client registers ClientRequestFilter and two ReaderInterceptors. The first returns Response provided
-     * as argument. The ReaderInterceptorOne calls ReaderInterceptorTwo and catches IOException raised by ReaderInterceptorTwo
-     * @tpPassCrit The ReaderInterceptorOne catches IOException and sends successful response
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client registers ClientRequestFilter and two ReaderInterceptors. The first returns Response provided
+    * as argument. The ReaderInterceptorOne calls ReaderInterceptorTwo and catches IOException raised by ReaderInterceptorTwo
+    * @tpPassCrit The ReaderInterceptorOne catches IOException and sends successful response
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void interceptorOrderTest() {
       Response.ResponseBuilder builder = Response.ok()

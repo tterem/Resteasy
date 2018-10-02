@@ -24,10 +24,10 @@ import javax.ws.rs.core.MediaType;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class DefaultMediaTypesTest {
@@ -66,10 +66,10 @@ public class DefaultMediaTypesTest {
    }
 
    /**
-     * @tpTestDetails Client sends request thru client proxy, no default consumes type is specified.
-     * @tpPassCrit Runtime exception is raised
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends request thru client proxy, no default consumes type is specified.
+    * @tpPassCrit Runtime exception is raised
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test(expected = RuntimeException.class)
    public void testOldBehaviorContinues() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/foo"));
@@ -77,10 +77,10 @@ public class DefaultMediaTypesTest {
    }
 
    /**
-     * @tpTestDetails Client sends request thru client proxy, the request has specified default produces and consumes type
-     * @tpPassCrit The response contains acceptable media types set up by client (text/plain)
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends request thru client proxy, the request has specified default produces and consumes type
+    * @tpPassCrit The response contains acceptable media types set up by client (text/plain)
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDefaultValues() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/foo"));
@@ -92,10 +92,10 @@ public class DefaultMediaTypesTest {
    }
 
    /**
-     * @tpTestDetails Client sends request thru client proxy, the request has specified default produces and consumes type
-     * @tpPassCrit The response contains acceptable media types set up by client (application/json)
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends request thru client proxy, the request has specified default produces and consumes type
+    * @tpPassCrit The response contains acceptable media types set up by client (application/json)
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMismatch() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/foo"));

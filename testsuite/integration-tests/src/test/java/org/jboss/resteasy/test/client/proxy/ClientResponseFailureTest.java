@@ -23,10 +23,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ClientResponseFailureTest {
@@ -67,10 +67,10 @@ public class ClientResponseFailureTest {
    }
 
    /**
-     * @tpTestDetails Client sends async GET requests thru client proxy. The NotFoundException should be thrown as response.
-     * @tpPassCrit Exception NotFoundException is thrown
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async GET requests thru client proxy. The NotFoundException should be thrown as response.
+    * @tpPassCrit Exception NotFoundException is thrown
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testStreamStillOpen() throws Exception {
 

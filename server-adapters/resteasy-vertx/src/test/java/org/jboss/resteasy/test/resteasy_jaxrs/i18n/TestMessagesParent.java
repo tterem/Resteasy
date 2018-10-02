@@ -9,12 +9,12 @@ import java.util.Locale;
 import java.util.Properties;
 
 /**
-   * 
-   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
-   * @version $Revision: 1.1 $
-   * 
-   * Copyright Oct 8, 2014
-   */
+ * 
+ * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+ * @version $Revision: 1.1 $
+ * 
+ * Copyright Oct 8, 2014
+ */
 abstract public class TestMessagesParent
 {
    private static final Logger LOG = Logger.getLogger(TestMessagesParent.class);

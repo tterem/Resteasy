@@ -22,15 +22,15 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resources
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails @Path annotation paths can consist of Regex Capturing groups used with
-   * Resource Locator scenarios.
-   * @tpSince RESTEasy 3.0.22
-   *
-   * User: rsearls
-   * Date: 2/17/17
-   */
+ * @tpSubChapter Resources
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails @Path annotation paths can consist of Regex Capturing groups used with
+ * Resource Locator scenarios.
+ * @tpSince RESTEasy 3.0.22
+ *
+ * User: rsearls
+ * Date: 2/17/17
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResourceLocatorRegexCapturingGroupTest {
@@ -66,9 +66,9 @@ public class ResourceLocatorRegexCapturingGroupTest {
    }
 
    /**
-     * @tpTestDetails Test for root resource and for subresource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for root resource and for subresource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBasic() throws Exception {
       {

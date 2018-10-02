@@ -5,14 +5,14 @@ import java.lang.reflect.Proxy;
 import java.util.HashMap;
 
 /**
-   * This class represents the proxying functionality for creating a
-   * "rich response object" that has the @ResponseObject annotation. The method
-   * implementations ware created in ResponseObjectEntityExtractorFactory
-   *
-   * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
-   * @version $Revision: 1 $
-   * @see EntityExtractor , ResponseObjectEntityExtractorFactory
-   */
+ * This class represents the proxying functionality for creating a
+ * "rich response object" that has the @ResponseObject annotation. The method
+ * implementations ware created in ResponseObjectEntityExtractorFactory
+ *
+ * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
+ * @version $Revision: 1 $
+ * @see EntityExtractor , ResponseObjectEntityExtractorFactory
+ */
 
 @SuppressWarnings("unchecked")
 public class ResponseObjectProxy<T> implements EntityExtractor

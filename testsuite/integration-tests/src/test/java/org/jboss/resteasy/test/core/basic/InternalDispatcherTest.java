@@ -30,11 +30,11 @@ import java.util.PropertyPermission;
 import java.util.logging.LoggingPermission;
 
 /**
-   * @tpSubChapter Core
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Test for InternalDispatcher
-   */
+ * @tpSubChapter Core
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Test for InternalDispatcher
+ */
 @RunWith(Arquillian.class)
 public class InternalDispatcherTest {
    private static Logger logger = Logger.getLogger(InternalDispatcherTest.class);
@@ -90,9 +90,9 @@ public class InternalDispatcherTest {
    }
 
    /**
-     * @tpTestDetails Check response of forwarded reuests.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check response of forwarded reuests.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testClientResponse() throws Exception {
       InternalDispatcherClient proxy = client.target(generateBaseUrl()).proxy(InternalDispatcherClient.class);
@@ -118,12 +118,12 @@ public class InternalDispatcherTest {
    }
 
    /**
-     * @tpTestDetails assert that even though there were infinite forwards, there still was
-     *                only 1 level of "context" data and that clean up occurred correctly.
-     *                This should not spin forever, since RESTEasy stops the recursive loop
-     *                after 20 internal dispatches
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails assert that even though there were infinite forwards, there still was
+    *                only 1 level of "context" data and that clean up occurred correctly.
+    *                This should not spin forever, since RESTEasy stops the recursive loop
+    *                after 20 internal dispatches
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInfinitForward() {
       InternalDispatcherClient proxy = client.target(generateBaseUrl()).proxy(InternalDispatcherClient.class);
@@ -131,9 +131,9 @@ public class InternalDispatcherTest {
    }
 
    /**
-     * @tpTestDetails Check UriInfo information without forwarding
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check UriInfo information without forwarding
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUriInfoBasic() {
       InternalDispatcherClient proxy = client.target(generateBaseUrl()).proxy(InternalDispatcherClient.class);
@@ -144,9 +144,9 @@ public class InternalDispatcherTest {
    }
 
    /**
-     * @tpTestDetails Check UriInfo information with forwarding. This is also regression test for JBEAP-2476
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check UriInfo information with forwarding. This is also regression test for JBEAP-2476
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUriInfoForwardBasic() throws Exception {
       InternalDispatcherClient proxy = client.target(generateBaseUrl()).proxy(InternalDispatcherClient.class);
@@ -163,9 +163,9 @@ public class InternalDispatcherTest {
    }
 
    /**
-     * @tpTestDetails Regression test for JBEAP-2476
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for JBEAP-2476
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUriInfoForwardBasicComplexUri() {
       String baseUrl = generateBaseUrl();

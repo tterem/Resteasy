@@ -36,9 +36,9 @@ import org.junit.Test;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class NettyTest
 {
    @Path("/")
@@ -247,16 +247,16 @@ public class NettyTest
 
 
    /**
-   * Per the HTTP spec, we must allow requests like:
-   *
-   * <pre>
-   *     GET http://www.example.com/content HTTP/1.1
-   *     Host: www.example.com
-   * </pre>
-   *
-   * <blockquote>
-   * RFC 2616 5.1.12:
-   * To allow for transition to absoluteURIs in all requests in future
+    * Per the HTTP spec, we must allow requests like:
+    *
+    * <pre>
+    *     GET http://www.example.com/content HTTP/1.1
+    *     Host: www.example.com
+    * </pre>
+    *
+    * <blockquote>
+    * RFC 2616 5.1.12:
+    * To allow for transition to absoluteURIs in all requests in future
    versions of HTTP, all HTTP/1.1 servers MUST accept the absoluteURI
    form in requests, even though HTTP/1.1 clients will only generate
    them in requests to proxies.

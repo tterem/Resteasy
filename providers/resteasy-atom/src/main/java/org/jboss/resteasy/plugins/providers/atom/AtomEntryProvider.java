@@ -31,9 +31,9 @@ import java.lang.reflect.Type;
 import java.util.HashSet;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @Produces("application/atom+*")
 @Consumes("application/atom+*")

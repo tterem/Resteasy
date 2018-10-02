@@ -8,19 +8,19 @@ import javax.xml.bind.annotation.XmlValue;
 import java.net.URI;
 
 /**
-   * <p>Per RFC4287</p>
-   * <pre>
-   *  atomGenerator = element atom:generator {
-   *     atomCommonAttributes,
-   *     attribute uri { atomUri }?,
-   *     attribute version { text }?,
-   *     text
-   *  }
-   * </pre>
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * <p>Per RFC4287</p>
+ * <pre>
+ *  atomGenerator = element atom:generator {
+ *     atomCommonAttributes,
+ *     attribute uri { atomUri }?,
+ *     attribute version { text }?,
+ *     text
+ *  }
+ * </pre>
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @XmlRootElement(name = "generator")
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class Generator

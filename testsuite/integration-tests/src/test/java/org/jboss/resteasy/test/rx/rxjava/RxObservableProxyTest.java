@@ -48,15 +48,15 @@ import rx.Observable;
 
 
 /**
-   * @tpSubChapter Reactive classes
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 4.0
-   * 
-   * In these tests, the server uses Observables to create results asynchronously and streams the elements
-   * of the Observables as they are created.
-   * 
-   * The client uses a proxy that calls an ObservableRxInvoker.
-   */
+ * @tpSubChapter Reactive classes
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 4.0
+ * 
+ * In these tests, the server uses Observables to create results asynchronously and streams the elements
+ * of the Observables as they are created.
+ * 
+ * The client uses a proxy that calls an ObservableRxInvoker.
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RxObservableProxyTest {

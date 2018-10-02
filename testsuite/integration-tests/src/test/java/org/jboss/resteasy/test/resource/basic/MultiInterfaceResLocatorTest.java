@@ -21,10 +21,10 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resources
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resources
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MultiInterfaceResLocatorTest {
@@ -42,9 +42,9 @@ public class MultiInterfaceResLocatorTest {
    }
 
    /**
-     * @tpTestDetails Test for resource with more interfaces.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for resource with more interfaces.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test() throws Exception {
       Client client = ClientBuilder.newClient();

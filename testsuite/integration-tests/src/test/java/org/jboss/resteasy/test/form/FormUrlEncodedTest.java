@@ -32,10 +32,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Form tests
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Form tests
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FormUrlEncodedTest {
@@ -63,9 +63,9 @@ public class FormUrlEncodedTest {
    }
    
    /**
-     * @tpTestDetails Get form parameter from resource using InputStream and StreamingOutput
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Get form parameter from resource using InputStream and StreamingOutput
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPost() {
       WebTarget base = client.target(generateURL("/simple"));
@@ -79,9 +79,9 @@ public class FormUrlEncodedTest {
    }
    
    /**
-     * @tpTestDetails Send form with an empty parameter value.
-     * @tpSince RESTEasy 3.0.20
-     */
+    * @tpTestDetails Send form with an empty parameter value.
+    * @tpSince RESTEasy 3.0.20
+    */
    @Test
    public void testResteasy109() {
       Builder builder = client.target(generateURL("/RESTEASY-109")).request();
@@ -102,9 +102,9 @@ public class FormUrlEncodedTest {
    }
 
    /**
-     * @tpTestDetails Send form with a missing query parameter.
-     * @tpSince RESTEasy 3.0.20
-     */
+    * @tpTestDetails Send form with a missing query parameter.
+    * @tpSince RESTEasy 3.0.20
+    */
    @Test
    public void testQueryParamIsNull() {
       Builder builder = client.target(generateURL("/simple")).request();
@@ -121,9 +121,9 @@ public class FormUrlEncodedTest {
    }
    
    /**
-     * @tpTestDetails Send form with two parameters.
-     * @tpSince RESTEasy 3.0.20
-     */
+    * @tpTestDetails Send form with two parameters.
+    * @tpSince RESTEasy 3.0.20
+    */
    @Test
    public void testPostTwoParameters() {
       Builder builder = client.target(generateURL("/form/twoparams")).request();
@@ -157,9 +157,9 @@ public class FormUrlEncodedTest {
    }
 
    /**
-     * @tpTestDetails Send form by proxy.
-     * @tpSince RESTEasy 3.0.20
-     */
+    * @tpTestDetails Send form by proxy.
+    * @tpSince RESTEasy 3.0.20
+    */
    @Test
    public void testProxy() {
       ResteasyWebTarget target = (ResteasyWebTarget) client.target(generateURL(""));

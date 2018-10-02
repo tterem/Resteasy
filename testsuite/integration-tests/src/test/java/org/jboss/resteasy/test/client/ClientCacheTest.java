@@ -30,11 +30,11 @@ import java.util.logging.LoggingPermission;
 
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Test for client cache
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Test for client cache
+ */
 @RunWith(Arquillian.class)
 public class ClientCacheTest {
 
@@ -69,9 +69,9 @@ public class ClientCacheTest {
    }
 
    /**
-     * @tpTestDetails Complex proxy test for client cache
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Complex proxy test for client cache
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProxy() throws Exception {
       count.set(0);
@@ -145,9 +145,9 @@ public class ClientCacheTest {
    }
 
    /**
-     * @tpTestDetails Test for max size of client cache
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for max size of client cache
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMaxSize() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

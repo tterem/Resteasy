@@ -31,11 +31,11 @@ import java.io.File;
 import java.io.InputStream;
 
 /**
-   * @tpSubChapter Multipart provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-190
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Multipart provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-190
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class HeaderFlushedOutputStreamTest {
@@ -72,9 +72,9 @@ public class HeaderFlushedOutputStreamTest {
    private static final String TEST_URI = generateURL("/mime");
 
    /**
-     * @tpTestDetails Loopback to examine form-data
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Loopback to examine form-data
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPost() throws Exception {
       // prepare file
@@ -96,9 +96,9 @@ public class HeaderFlushedOutputStreamTest {
 
 
    /**
-     * @tpTestDetails Test post method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test post method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPostForm() throws Exception {
       // prepare file
@@ -121,9 +121,9 @@ public class HeaderFlushedOutputStreamTest {
    }
 
    /**
-     * @tpTestDetails Test get method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test get method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGet() throws Exception {
 

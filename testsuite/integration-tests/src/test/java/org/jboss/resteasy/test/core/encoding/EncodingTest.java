@@ -32,11 +32,11 @@ import java.nio.charset.StandardCharsets;
 
 
 /**
-   * @tpSubChapter Encoding
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for HTML encoding and decoding.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Encoding
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for HTML encoding and decoding.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EncodingTest {
@@ -82,9 +82,9 @@ public class EncodingTest {
    }
 
    /**
-     * @tpTestDetails Tests requesting special characters via a ClientProxy.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests requesting special characters via a ClientProxy.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncodingCharacters() throws Exception {
       for (Character ch : RESERVED_CHARACTERS) {
@@ -110,18 +110,18 @@ public class EncodingTest {
    }
 
    /**
-     * @tpTestDetails Tests backslash encoding.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests backslash encoding.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPercent() {
       encodingCharacter('\\');
    }
 
    /**
-     * @tpTestDetails Tests requesting special characters via manual URL construction.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests requesting special characters via manual URL construction.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testViaDirectURI() throws Exception {
       for (Character ch : RESERVED_CHARACTERS) {
@@ -140,9 +140,9 @@ public class EncodingTest {
    }
 
    /**
-     * @tpTestDetails Chinese character decoding in path.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Chinese character decoding in path.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void decodeChineseInPath() throws Exception {
       String path = Encode.decodePath("/%E5%B9%B4%E5%81%87%E6%9C%9F/%E5%B9%B4%E5%81%87%E6%9C%9F");
@@ -151,9 +151,9 @@ public class EncodingTest {
    }
 
    /**
-     * @tpTestDetails Western European character decoding in path.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Western European character decoding in path.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void decodeWesternEuropeanCharsInPath() throws Exception {
       Assert.assertEquals("Wrong decoded path", "Gr\u00FC\u00DF Gott", Encode.decodePath("Gr%C3%BC%C3%9F%20Gott"));
@@ -184,28 +184,28 @@ public class EncodingTest {
    }
 
    /**
-     * @tpTestDetails Test method for {@link org.jboss.resteasy.util.Encode#encodeQueryParam(String)}
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test method for {@link org.jboss.resteasy.util.Encode#encodeQueryParam(String)}
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncodeQueryParam() {
       Assert.assertEquals("Wrong encoded path", "Test", Encode.encodeQueryParam("Test"));
    }
 
    /**
-     * @tpTestDetails Test method for {@link org.jboss.resteasy.util.Encode#encodeQueryParam(String)}.
-     *                Special characters are used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test method for {@link org.jboss.resteasy.util.Encode#encodeQueryParam(String)}.
+    *                Special characters are used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncodeQueryParam_special() {
       Assert.assertEquals("Wrong encoded path", ".-%2B%2F%7C", Encode.encodeQueryParam(".-+/|"));
    }
 
    /**
-     * @tpTestDetails Test for scands characters.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for scands characters.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncodeQueryParamScands() throws UnsupportedEncodingException {
       String input = "\u00E5\u00E4\u00F6\u00C5\u00C4\u00D6";
@@ -214,9 +214,9 @@ public class EncodingTest {
    }
 
    /**
-     * @tpTestDetails Test for 2bytes UTF8 character.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for 2bytes UTF8 character.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncodeQueryParamUtf8TwoByte() throws CharacterCodingException, UnsupportedEncodingException {
       StringBuilder sb = new StringBuilder();
@@ -238,9 +238,9 @@ public class EncodingTest {
    }
 
    /**
-     * @tpTestDetails Test path for {} characters
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test path for {} characters
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPathParamWithBraces() {
       String paramWithBraces = "start{param}end";
@@ -251,9 +251,9 @@ public class EncodingTest {
    }
 
    /**
-     * @tpTestDetails Test path for % character
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test path for % character
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPathParamWithLifePercentDeath() {
       String paramWithLifePercentDeath = "life%death";
@@ -264,9 +264,9 @@ public class EncodingTest {
    }
 
    /**
-     * @tpTestDetails Test query for %% characters
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test query for %% characters
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testQueryParamWithDoublePercent() {
       String paramWithDoublePercent = "start%%end";
@@ -277,9 +277,9 @@ public class EncodingTest {
    }
 
    /**
-     * @tpTestDetails Test query for {} characters
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test query for {} characters
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testQueryParamWithBraces() {
       String paramWithBraces = "start{param}end";
@@ -290,9 +290,9 @@ public class EncodingTest {
    }
 
    /**
-     * @tpTestDetails Test query for % character
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test query for % character
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testQueryParamWithLifePercentDeath() {
       String paramWithLifePercentDeath = "life%death";
@@ -303,9 +303,9 @@ public class EncodingTest {
    }
 
    /**
-     * @tpTestDetails Test for encoding string seems to be a code, but it is not a code
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for encoding string seems to be a code, but it is not a code
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEncodeNonCodes() {
       final String ERROR_MSG = "Text was not encoded successfully";

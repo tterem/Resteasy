@@ -1,8 +1,8 @@
 package org.jboss.resteasy.spi.metadata;
 
 /**
-   * @author Christian Kaltepoth
-   */
+ * @author Christian Kaltepoth
+ */
 public interface ResourceClass
 {
    String getPath();

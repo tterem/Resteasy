@@ -43,14 +43,14 @@ import org.jboss.resteasy.client.jaxrs.internal.ClientResponse;
 import org.jboss.resteasy.util.CaseInsensitiveMap;
 
 /**
-   * An Apache HTTP engine for use with the new Builder Config style.
-   */
+ * An Apache HTTP engine for use with the new Builder Config style.
+ */
 public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
 {
 
    /**
-   * Used to build temp file prefix.
-   */
+    * Used to build temp file prefix.
+    */
    private static String processId = null;
 
    static
@@ -79,30 +79,30 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
    protected boolean followRedirects = false;
 
    /**
-   * For uploading File's over JAX-RS framework, this property, together with {@link #fileUploadMemoryUnit},
-   * defines the maximum File size allowed in memory. If fileSize exceeds this size, it will be stored to
-   * {@link #fileUploadTempFileDir}. <br>
-   * <br>
-   * Defaults to 1 MB
-   */
+    * For uploading File's over JAX-RS framework, this property, together with {@link #fileUploadMemoryUnit},
+    * defines the maximum File size allowed in memory. If fileSize exceeds this size, it will be stored to
+    * {@link #fileUploadTempFileDir}. <br>
+    * <br>
+    * Defaults to 1 MB
+    */
    protected int fileUploadInMemoryThresholdLimit = 1;
 
    /**
-   * The unit for {@link #fileUploadInMemoryThresholdLimit}. <br>
-   * <br>
-   * Defaults to MB.
-   *
-   * @see MemoryUnit
-   */
+    * The unit for {@link #fileUploadInMemoryThresholdLimit}. <br>
+    * <br>
+    * Defaults to MB.
+    *
+    * @see MemoryUnit
+    */
    protected MemoryUnit fileUploadMemoryUnit = MemoryUnit.MB;
 
    /**
-   * Temp directory to write output request stream to. Any file to be uploaded has to be written out to the
-   * output request stream to be sent to the service and when the File is too huge the output request stream is
-   * written out to the disk rather than to memory. <br>
-   * <br>
-   * Defaults to JVM temp directory.
-   */
+    * Temp directory to write output request stream to. Any file to be uploaded has to be written out to the
+    * output request stream to be sent to the service and when the File is too huge the output request stream is
+    * written out to the disk rather than to memory. <br>
+    * <br>
+    * Defaults to JVM temp directory.
+    */
    protected File fileUploadTempFileDir = new File(System.getProperty("java.io.tmpdir"));
 
    public ApacheHttpClient43Engine()
@@ -143,31 +143,31 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
    }
 
    /**
-   * Response stream is wrapped in a BufferedInputStream.  Default is 8192.  Value of 0 will not wrap it.
-   * Value of -1 will use a SelfExpandingBufferedInputStream
-   *
-   * @return response buffer size
-   */
+    * Response stream is wrapped in a BufferedInputStream.  Default is 8192.  Value of 0 will not wrap it.
+    * Value of -1 will use a SelfExpandingBufferedInputStream
+    *
+    * @return response buffer size
+    */
    public int getResponseBufferSize()
    {
       return responseBufferSize;
    }
 
    /**
-   * Response stream is wrapped in a BufferedInputStream.  Default is 8192.  Value of 0 will not wrap it.
-   * Value of -1 will use a SelfExpandingBufferedInputStream
-   *
-   * @param responseBufferSize response buffer size
-   */
+    * Response stream is wrapped in a BufferedInputStream.  Default is 8192.  Value of 0 will not wrap it.
+    * Value of -1 will use a SelfExpandingBufferedInputStream
+    *
+    * @param responseBufferSize response buffer size
+    */
    public void setResponseBufferSize(int responseBufferSize)
    {
       this.responseBufferSize = responseBufferSize;
    }
 
    /**
-   * Based on memory unit
-   * @return threshold limit
-   */
+    * Based on memory unit
+    * @return threshold limit
+    */
    public int getFileUploadInMemoryThresholdLimit()
    {
       return fileUploadInMemoryThresholdLimit;
@@ -493,12 +493,12 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
    }
 
    /**
-   * If passed httpMethod is of type HttpPost then obtain its entity. If the entity has an enclosing File then
-   * delete it by invoking this method after the request has completed. The entity will have an enclosing File
-   * only if it was too huge to fit into memory.
-   *
-   * @param httpMethod - the httpMethod to clean up.
-   */
+    * If passed httpMethod is of type HttpPost then obtain its entity. If the entity has an enclosing File then
+    * delete it by invoking this method after the request has completed. The entity will have an enclosing File
+    * only if it was too huge to fit into memory.
+    *
+    * @param httpMethod - the httpMethod to clean up.
+    */
    protected void cleanUpAfterExecute(final HttpRequestBase httpMethod)
    {
       if (httpMethod != null && httpMethod instanceof HttpPost)
@@ -525,14 +525,14 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
    }
 
    /**
-   * Build the HttpEntity to be sent to the Service as part of (POST) request. Creates a off-memory
-   * {@link FileExposingFileEntity} or a regular in-memory {@link ByteArrayEntity} depending on if the request
-   * OutputStream fit into memory when built by calling.
-   *
-   * @param request -
-   * @return - the built HttpEntity
-   * @throws IOException -
-   */
+    * Build the HttpEntity to be sent to the Service as part of (POST) request. Creates a off-memory
+    * {@link FileExposingFileEntity} or a regular in-memory {@link ByteArrayEntity} depending on if the request
+    * OutputStream fit into memory when built by calling.
+    *
+    * @param request -
+    * @return - the built HttpEntity
+    * @throws IOException -
+    */
    protected HttpEntity buildEntity(final ClientInvocation request) throws IOException
    {
       AbstractHttpEntity entityToBuild = null;
@@ -558,15 +558,15 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
    }
 
    /**
-   * Creates the request OutputStream, to be sent to the end Service invoked, as a
-   * <a href="http://commons.apache.org/io/api-release/org/apache/commons/io/output/DeferredFileOutputStream.html"
-   * >DeferredFileOutputStream</a>.
-   *
-   *
-   * @param request -
-   * @return - DeferredFileOutputStream with the ClientRequest written out per HTTP specification.
-   * @throws IOException -
-   */
+    * Creates the request OutputStream, to be sent to the end Service invoked, as a
+    * <a href="http://commons.apache.org/io/api-release/org/apache/commons/io/output/DeferredFileOutputStream.html"
+    * >DeferredFileOutputStream</a>.
+    *
+    *
+    * @param request -
+    * @return - DeferredFileOutputStream with the ClientRequest written out per HTTP specification.
+    * @throws IOException -
+    */
    private DeferredFileOutputStream writeRequestBodyToOutputStream(final ClientInvocation request) throws IOException
    {
       DeferredFileOutputStream memoryManagedOutStream = new DeferredFileOutputStream(
@@ -579,20 +579,20 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
    }
 
    /**
-   * Use context information, which will include node name, to avoid conflicts in case of multiple VMS using same
-   * temp directory location.
-   *
-   * @return -
-   */
+    * Use context information, which will include node name, to avoid conflicts in case of multiple VMS using same
+    * temp directory location.
+    *
+    * @return -
+    */
    protected String getTempfilePrefix()
    {
       return processId;
    }
 
    /**
-   * @return - the constant to multiply {@link #fileUploadInMemoryThresholdLimit} with based on
-   *         {@link #fileUploadMemoryUnit} enumeration value.
-   */
+    * @return - the constant to multiply {@link #fileUploadInMemoryThresholdLimit} with based on
+    *         {@link #fileUploadMemoryUnit} enumeration value.
+    */
    private int getMemoryUnitMultiplier()
    {
       switch (this.fileUploadMemoryUnit)
@@ -610,12 +610,12 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
    }
 
    /**
-   * Log that the file did not get deleted but prevent the request from failing by eating the exception.
-   * Register the file to be deleted on exit, so it will get deleted eventually.
-   *
-   * @param tempRequestFile -
-   * @param ex - a null may be passed in which case this param gets ignored.
-   */
+    * Log that the file did not get deleted but prevent the request from failing by eating the exception.
+    * Register the file to be deleted on exit, so it will get deleted eventually.
+    *
+    * @param tempRequestFile -
+    * @param ex - a null may be passed in which case this param gets ignored.
+    */
    private void handleFileNotDeletedError(File tempRequestFile, Exception ex)
    {
       LogMessages.LOGGER.warn(Messages.MESSAGES.couldNotDeleteFile(tempRequestFile.getAbsolutePath()), ex);
@@ -623,22 +623,22 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
    }
 
    /**
-   * We use {@link org.apache.http.entity.FileEntity} as the {@link HttpEntity} implementation when the request OutputStream has been
-   * saved to a File on disk (because it was too large to fit into memory see however, we have to delete
-   * the File supporting the <code>FileEntity</code>, otherwise the disk will soon run out of space - remember
-   * that there can be very huge files, in GB range, processed on a regular basis - and FileEntity exposes its
-   * content File as a protected field. For the enclosing parent class ( {@link ApacheHttpClient4Engine} ) to be
-   * able to get a handle to this content File and delete it, this class expose the content File.<br>
-   * This class is private scoped to prevent access to this content File outside of the parent class.
-   *
-   * @author <a href="mailto:stikoo@digitalriver.com">Sandeep Tikoo</a>
-   */
+    * We use {@link org.apache.http.entity.FileEntity} as the {@link HttpEntity} implementation when the request OutputStream has been
+    * saved to a File on disk (because it was too large to fit into memory see however, we have to delete
+    * the File supporting the <code>FileEntity</code>, otherwise the disk will soon run out of space - remember
+    * that there can be very huge files, in GB range, processed on a regular basis - and FileEntity exposes its
+    * content File as a protected field. For the enclosing parent class ( {@link ApacheHttpClient4Engine} ) to be
+    * able to get a handle to this content File and delete it, this class expose the content File.<br>
+    * This class is private scoped to prevent access to this content File outside of the parent class.
+    *
+    * @author <a href="mailto:stikoo@digitalriver.com">Sandeep Tikoo</a>
+    */
    private static class FileExposingFileEntity extends FileEntity
    {
       /**
-      * @param pFile -
-      * @param pContentType -
-      */
+       * @param pFile -
+       * @param pContentType -
+       */
       @SuppressWarnings("deprecation")
       FileExposingFileEntity(File pFile, String pContentType)
       {
@@ -646,8 +646,8 @@ public class ApacheHttpClient43Engine implements ApacheHttpClientEngine
       }
 
       /**
-      * @return - the content File enclosed by this FileEntity.
-      */
+       * @return - the content File enclosed by this FileEntity.
+       */
       File getFile()
       {
          return this.file;

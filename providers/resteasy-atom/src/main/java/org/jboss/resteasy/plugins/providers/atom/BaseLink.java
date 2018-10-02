@@ -12,12 +12,12 @@ import org.jboss.resteasy.core.ResteasyContext;
 import org.jboss.resteasy.plugins.providers.resteasy_atom.i18n.Messages;
 
 /**
-   * If invoked within the context of a JAX-RS call, it will automatically build a
-   * URI based the base URI of the JAX-RS application.  Same URI as UriInfo.getBaseUri().
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * If invoked within the context of a JAX-RS call, it will automatically build a
+ * URI based the base URI of the JAX-RS application.  Same URI as UriInfo.getBaseUri().
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @XmlRootElement(name = "link")
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class BaseLink extends Link

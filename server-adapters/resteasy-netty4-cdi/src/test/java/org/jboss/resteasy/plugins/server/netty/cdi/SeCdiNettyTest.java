@@ -22,8 +22,8 @@ import javax.ws.rs.core.Response;
 import java.util.Random;
 
 /**
-   * Test for cdi2.0 api SeContainer
-   */
+ * Test for cdi2.0 api SeContainer
+ */
 @RunWith(Arquillian.class)
 public class SeCdiNettyTest {
 

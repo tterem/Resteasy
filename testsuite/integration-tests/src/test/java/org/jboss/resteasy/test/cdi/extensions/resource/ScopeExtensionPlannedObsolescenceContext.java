@@ -40,10 +40,10 @@ public class ScopeExtensionPlannedObsolescenceContext implements Context {
    }
 
    /**
-     * Technically, this version of get() should not create a new object, but,
-     * for purposes of the test, we destroy and recreate an object when it is
-     * obsolete.
-     */
+    * Technically, this version of get() should not create a new object, but,
+    * for purposes of the test, we destroy and recreate an object when it is
+    * obsolete.
+    */
    @Override
    public <T> T get(Contextual<T> contextual) {
       @SuppressWarnings("unchecked")

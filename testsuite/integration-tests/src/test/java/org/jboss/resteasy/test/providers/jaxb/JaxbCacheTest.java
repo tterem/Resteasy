@@ -26,10 +26,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class JaxbCacheTest {
 
@@ -51,10 +51,10 @@ public class JaxbCacheTest {
    }
 
    /**
-     * @tpTestDetails Gets contextResolver for JAXBContextFinder class and mediatype "APPLICATION_XML_TYPE" or "APPLICATION_ATOM_XML_TYPE",
-     * then gets calls findCachedContext() twice to get JAXBContext and ensures that the result is the same
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Gets contextResolver for JAXBContextFinder class and mediatype "APPLICATION_XML_TYPE" or "APPLICATION_ATOM_XML_TYPE",
+    * then gets calls findCachedContext() twice to get JAXBContext and ensures that the result is the same
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCache() throws Exception {
       ResteasyProviderFactory factory = ResteasyProviderFactory.getInstance();
@@ -82,10 +82,10 @@ public class JaxbCacheTest {
    }
 
    /**
-     * @tpTestDetails Gets contextResolver for JAXBContextFinder class and mediatype "APPLICATION_XML_TYPE" or "APPLICATION_ATOM_XML_TYPE",
-     * thrn gets calls findCacheContext() twice to get JAXBContext and ensures that the result is the same
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Gets contextResolver for JAXBContextFinder class and mediatype "APPLICATION_XML_TYPE" or "APPLICATION_ATOM_XML_TYPE",
+    * thrn gets calls findCacheContext() twice to get JAXBContext and ensures that the result is the same
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCache2() throws Exception {
       ResteasyProviderFactory factory = ResteasyProviderFactory.getInstance();

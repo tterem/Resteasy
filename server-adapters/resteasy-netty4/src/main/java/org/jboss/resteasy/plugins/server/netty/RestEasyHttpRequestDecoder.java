@@ -17,14 +17,14 @@ import org.jboss.resteasy.specimpl.ResteasyHttpHeaders;
 import org.jboss.resteasy.specimpl.ResteasyUriInfo;
 
 /**
-   * This {@link MessageToMessageDecoder} is responsible for decode {@link io.netty.handler.codec.http.HttpRequest}
-   * to {@link NettyHttpRequest}'s
-   *
-   * This implementation is {@link Sharable}
-   *
-   * @author Norman Maurer
-   *
-   */
+ * This {@link MessageToMessageDecoder} is responsible for decode {@link io.netty.handler.codec.http.HttpRequest}
+ * to {@link NettyHttpRequest}'s
+ *
+ * This implementation is {@link Sharable}
+ *
+ * @author Norman Maurer
+ *
+ */
 @Sharable
 public class RestEasyHttpRequestDecoder extends MessageToMessageDecoder<io.netty.handler.codec.http.HttpRequest>
 {

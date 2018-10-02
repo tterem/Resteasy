@@ -10,10 +10,10 @@ import javax.ws.rs.ext.ExceptionMapper;
 import org.jboss.resteasy.api.validation.Validation;
 
 /**
-   * 
-   * @author Nicolas NESMON
-   *
-   */
+ * 
+ * @author Nicolas NESMON
+ *
+ */
 public abstract class ValidationExceptionMapper<T extends ValidationException> implements ExceptionMapper<T> {
 
    @Override

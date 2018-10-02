@@ -23,11 +23,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
-   * @tpSubChapter Util tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Basic unit test for Utilities class used for many CDI integration tests.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Util tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Basic unit test for Utilities class used for many CDI integration tests.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class UtilitiesTest {
    private static Logger log = Logger.getLogger(UtilitiesTest.class.getName());
 
@@ -37,9 +37,9 @@ public class UtilitiesTest {
    }
 
    /**
-     * @tpTestDetails Test for getQualifiers method.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for getQualifiers method.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetQualifiers() {
       log.info("entering testGetQualifiers()");
@@ -58,9 +58,9 @@ public class UtilitiesTest {
    }
 
    /**
-     * @tpTestDetails Test for hasQualifier method.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for hasQualifier method.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testHasQualifier() {
       log.info("entering testHasQualifier()");
@@ -83,9 +83,9 @@ public class UtilitiesTest {
    }
 
    /**
-     * @tpTestDetails Test for getTypeClosure method.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for getTypeClosure method.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testTypeClosure() throws Exception {
       log.info("entering testTypeClosure()");
@@ -98,9 +98,9 @@ public class UtilitiesTest {
    }
 
    /**
-     * @tpTestDetails Test for isAnnotationPresent method.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for isAnnotationPresent method.
+    * @tpSince RESTEasy 3.0.16
+    */
    @SuppressWarnings("serial")
    @Test
    public void testAnnotationPresent() throws Exception {

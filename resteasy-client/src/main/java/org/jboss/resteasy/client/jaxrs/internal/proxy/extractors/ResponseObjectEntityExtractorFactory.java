@@ -22,14 +22,14 @@ import java.net.URL;
 import java.util.Set;
 
 /**
-   * This class represents the method level creation of a "rich response object"
-   * that has the @ResponseObject annotation. These EntityExtractors will be used
-   * to implment methods of ResponseObject via ResponseObjectEntityExtractor
-   *
-   * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
-   * @version $Revision: 1 $
-   * @see org.jboss.resteasy.client.jaxrs.internal.proxy.extractors.EntityExtractor , ResponseObjectEntityExtractor
-   */
+ * This class represents the method level creation of a "rich response object"
+ * that has the @ResponseObject annotation. These EntityExtractors will be used
+ * to implment methods of ResponseObject via ResponseObjectEntityExtractor
+ *
+ * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
+ * @version $Revision: 1 $
+ * @see org.jboss.resteasy.client.jaxrs.internal.proxy.extractors.EntityExtractor , ResponseObjectEntityExtractor
+ */
 public class ResponseObjectEntityExtractorFactory extends DefaultEntityExtractorFactory
 {
 

@@ -1,8 +1,8 @@
 package org.jboss.resteasy.test;
 
 /**
-   * Various contants for containers defined in arquillian.xml. Keep this file in sync with the values there.
-   */
+ * Various contants for containers defined in arquillian.xml. Keep this file in sync with the values there.
+ */
 public class ContainerConstants {
 
    public static final String DEFAULT_CONTAINER_QUALIFIER = "jbossas-managed";

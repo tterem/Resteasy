@@ -31,16 +31,16 @@ import org.jboss.resteasy.cdi.i18n.Messages;
 import org.jboss.resteasy.util.GetRestful;
 
 /**
-   * This Extension handles default scopes for discovered JAX-RS components. It
-   * also observes ProcessInjectionTarget event and wraps InjectionTargets
-   * representing JAX-RS components within JaxrsInjectionTarget. Furthermore, it
-   * builds the sessionBeanInterface map which maps Session Bean classes to a
-   * local interface. This map is used in CdiInjectorFactory during lookup of
-   * Sesion Bean JAX-RS components.
-   *
-   * @author Jozef Hartinger
-   *
-   */
+ * This Extension handles default scopes for discovered JAX-RS components. It
+ * also observes ProcessInjectionTarget event and wraps InjectionTargets
+ * representing JAX-RS components within JaxrsInjectionTarget. Furthermore, it
+ * builds the sessionBeanInterface map which maps Session Bean classes to a
+ * local interface. This map is used in CdiInjectorFactory during lookup of
+ * Sesion Bean JAX-RS components.
+ *
+ * @author Jozef Hartinger
+ *
+ */
 public class ResteasyCdiExtension implements Extension
 {
    private static boolean active;
@@ -70,11 +70,11 @@ public class ResteasyCdiExtension implements Extension
    private Map<Class<?>, Type> sessionBeanInterface = new HashMap<Class<?>, Type>();
 
    /**
-   * Obtain BeanManager reference for future use.
-   * 
-   * @param event event
-   * @param beanManager bean manager
-   */
+    * Obtain BeanManager reference for future use.
+    * 
+    * @param event event
+    * @param beanManager bean manager
+    */
    public void observeBeforeBeanDiscovery(@Observes BeforeBeanDiscovery event, BeanManager beanManager)
    {
       this.beanManager = beanManager;
@@ -82,12 +82,12 @@ public class ResteasyCdiExtension implements Extension
    }
 
    /**
-   * Set a default scope for each CDI bean which is a JAX-RS Resource.
-   *
-   * @param <T> type
-   * @param event event
-   * @param beanManager bean manager
-   */
+    * Set a default scope for each CDI bean which is a JAX-RS Resource.
+    *
+    * @param <T> type
+    * @param event event
+    * @param beanManager bean manager
+    */
    public <T> void observeResources(@WithAnnotations({Path.class}) @Observes ProcessAnnotatedType<T> event, BeanManager beanManager)
    {
       setBeanManager(beanManager);
@@ -106,12 +106,12 @@ public class ResteasyCdiExtension implements Extension
    }
 
    /**
-   * Set a default scope for each CDI bean which is a JAX-RS Provider.
-   *
-   * @param <T> type
-   * @param event event
-   * @param beanManager bean manager
-   */
+    * Set a default scope for each CDI bean which is a JAX-RS Provider.
+    *
+    * @param <T> type
+    * @param event event
+    * @param beanManager bean manager
+    */
    public <T> void observeProviders(@WithAnnotations({Provider.class}) @Observes ProcessAnnotatedType<T> event, BeanManager beanManager)
    {
       setBeanManager(beanManager);
@@ -129,12 +129,12 @@ public class ResteasyCdiExtension implements Extension
    }
 
    /**
-   * Set a default scope for each CDI bean which is a JAX-RS Application subclass.
-   *
-   * @param <T> type
-   * @param event event
-   * @param beanManager bean manager
-   */
+    * Set a default scope for each CDI bean which is a JAX-RS Application subclass.
+    *
+    * @param <T> type
+    * @param event event
+    * @param beanManager bean manager
+    */
    public <T extends Application> void observeApplications(@Observes ProcessAnnotatedType<T> event, BeanManager beanManager)
    {
       setBeanManager(beanManager);
@@ -162,12 +162,12 @@ public class ResteasyCdiExtension implements Extension
    }
 
    /**
-   * Wrap InjectionTarget of JAX-RS components within JaxrsInjectionTarget
-   * which takes care of JAX-RS property injection.
-   * 
-   * @param <T> type
-   * @param event event
-   */
+    * Wrap InjectionTarget of JAX-RS components within JaxrsInjectionTarget
+    * which takes care of JAX-RS property injection.
+    * 
+    * @param <T> type
+    * @param event event
+    */
    public <T> void observeInjectionTarget(@Observes ProcessInjectionTarget<T> event)
    {
       if (event.getAnnotatedType() == null)
@@ -188,15 +188,15 @@ public class ResteasyCdiExtension implements Extension
    }
 
    /**
-   * Observes ProcessSessionBean events and creates a (Bean class {@literal ->} Local
-   * interface) map for Session beans with local interfaces. This map is
-   * necessary since RESTEasy identifies a bean class as JAX-RS components
-   * while CDI requires a local interface to be used for lookup.
-   * 
-   * @param <T> type
-   * @param event event
-   * 
-   */
+    * Observes ProcessSessionBean events and creates a (Bean class {@literal ->} Local
+    * interface) map for Session beans with local interfaces. This map is
+    * necessary since RESTEasy identifies a bean class as JAX-RS components
+    * while CDI requires a local interface to be used for lookup.
+    * 
+    * @param <T> type
+    * @param event event
+    * 
+    */
    public <T> void observeSessionBeans(@Observes ProcessSessionBean<T> event)
    {
       Bean<Object> sessionBean = event.getBean();

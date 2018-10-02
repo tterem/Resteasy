@@ -29,12 +29,12 @@ import java.util.logging.LoggingPermission;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter Spring
-   * @tpChapter Integration tests - dependencies included in deployment
-   * @tpTestCaseDetails Test extension mapping by ResteasyDeployment property mediaTypeMappings.
-   * Logic of this test is in spring-typemapping-test-server.xml.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Spring
+ * @tpChapter Integration tests - dependencies included in deployment
+ * @tpTestCaseDetails Test extension mapping by ResteasyDeployment property mediaTypeMappings.
+ * Logic of this test is in spring-typemapping-test-server.xml.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class TypeMappingDependenciesInDeploymentTest {
@@ -89,9 +89,9 @@ public class TypeMappingDependenciesInDeploymentTest {
    }
 
    /**
-     * @tpTestDetails Test various option of type mapping. Reproducer for RESTEASY-1287.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test various option of type mapping. Reproducer for RESTEASY-1287.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void test() throws Exception {

@@ -6,15 +6,15 @@ import javax.ws.rs.ext.WriterInterceptor;
 import java.lang.annotation.Annotation;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public interface ResteasyAsynchronousResponse extends AsyncResponse
 {
    /**
-     * Callback by the initial http request thread.  It is used to help simulate suspend/resume asynchronous semantics
-     * in containers that do not support asychronous HTTP. This method is a no-op in environments that support async HTTP.
-     */
+    * Callback by the initial http request thread.  It is used to help simulate suspend/resume asynchronous semantics
+    * in containers that do not support asychronous HTTP. This method is a no-op in environments that support async HTTP.
+    */
    void initialRequestThreadFinished();
 
    ContainerResponseFilter[] getResponseFilters();

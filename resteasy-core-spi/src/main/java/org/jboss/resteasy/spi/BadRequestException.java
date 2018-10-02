@@ -3,8 +3,8 @@ package org.jboss.resteasy.spi;
 import javax.ws.rs.core.Response;
 
 /**
-   * Thrown by RESTEasy when HTTP Bad Request (400) is encountered
-   */
+ * Thrown by RESTEasy when HTTP Bad Request (400) is encountered
+ */
 public class BadRequestException extends Failure
 {
 

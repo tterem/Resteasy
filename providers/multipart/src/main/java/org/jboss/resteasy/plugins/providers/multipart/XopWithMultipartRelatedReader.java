@@ -19,12 +19,12 @@ import org.jboss.resteasy.plugins.providers.multipart.i18n.Messages;
 import org.jboss.resteasy.spi.util.FindAnnotation;
 
 /**
-   * This provider is for reading xop packages packed as multipart/related. For
-   * more information see {@link XopWithMultipartRelated}.
-   *
-   * @author Attila Kiraly
-   * @version $Revision: 1 $
-   */
+ * This provider is for reading xop packages packed as multipart/related. For
+ * more information see {@link XopWithMultipartRelated}.
+ *
+ * @author Attila Kiraly
+ * @version $Revision: 1 $
+ */
 @Provider
 @Consumes("multipart/related")
 public class XopWithMultipartRelatedReader implements MessageBodyReader<Object>

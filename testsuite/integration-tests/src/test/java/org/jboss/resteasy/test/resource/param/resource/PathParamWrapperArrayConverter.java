@@ -5,10 +5,10 @@ import java.lang.reflect.Array;
 import javax.ws.rs.ext.ParamConverter;
 
 /**
-   * 
-   * @author Nicolas NESMON
-   *
-   */
+ * 
+ * @author Nicolas NESMON
+ *
+ */
 
 public class PathParamWrapperArrayConverter implements ParamConverter<PathParamWrapper<Object>[]> {
 

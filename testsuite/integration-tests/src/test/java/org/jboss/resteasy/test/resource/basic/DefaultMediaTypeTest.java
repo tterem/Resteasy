@@ -29,11 +29,11 @@ import javax.ws.rs.core.Response;
 import java.io.ByteArrayOutputStream;
 
 /**
-   * @tpSubChapter Resources
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for JBEAP-2847. DefaultTextPlain should be used, if produce annotation annotation is not used in end-point.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resources
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for JBEAP-2847. DefaultTextPlain should be used, if produce annotation annotation is not used in end-point.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class DefaultMediaTypeTest {
@@ -65,9 +65,9 @@ public class DefaultMediaTypeTest {
    }
 
    /**
-     * @tpTestDetails Test Date object with produce annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test Date object with produce annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void postDateProduce() throws Exception {
       WebTarget target = client.target(generateURL("/postDateProduce"));
@@ -82,9 +82,9 @@ public class DefaultMediaTypeTest {
    }
 
    /**
-     * @tpTestDetails Test Date object without produce annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test Date object without produce annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @Category({ ExpectedFailing.class, NotForForwardCompatibility.class })
    public void postDate() throws Exception {
@@ -100,9 +100,9 @@ public class DefaultMediaTypeTest {
    }
 
    /**
-     * @tpTestDetails Test Foo object with produce annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test Foo object with produce annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void postFooProduce() throws Exception {
       WebTarget target = client.target(generateURL("/postFooProduce"));
@@ -117,9 +117,9 @@ public class DefaultMediaTypeTest {
    }
 
    /**
-     * @tpTestDetails Test Foo object without produce annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test Foo object without produce annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @Category({ ExpectedFailing.class, NotForForwardCompatibility.class })
    public void postFoo() throws Exception {
@@ -135,9 +135,9 @@ public class DefaultMediaTypeTest {
    }
 
    /**
-     * @tpTestDetails Test int primitive with produce annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test int primitive with produce annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void postIntProduce() throws Exception {
       WebTarget target = client.target(generateURL("/postIntProduce"));
@@ -152,9 +152,9 @@ public class DefaultMediaTypeTest {
    }
 
    /**
-     * @tpTestDetails Test int primitive without produce annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test int primitive without produce annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void postInt() throws Exception {
       WebTarget target = client.target(generateURL("/postInt"));
@@ -169,9 +169,9 @@ public class DefaultMediaTypeTest {
    }
 
    /**
-     * @tpTestDetails Test Integer object with produce annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test Integer object with produce annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void postIntegerProduce() throws Exception {
       WebTarget target = client.target(generateURL("/postIntegerProduce"));
@@ -186,9 +186,9 @@ public class DefaultMediaTypeTest {
    }
 
    /**
-     * @tpTestDetails Test Integer object without produce annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test Integer object without produce annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void postInteger() throws Exception {
       WebTarget target = client.target(generateURL("/postInteger"));

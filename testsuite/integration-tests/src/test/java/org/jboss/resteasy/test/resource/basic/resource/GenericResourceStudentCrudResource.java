@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * RESTEasy should be able to use type parameter values (Student, Integer) for (de)marshalling parameters/entity body.
-   *
-   * @author Jozef Hartinger
-   */
+ * RESTEasy should be able to use type parameter values (Student, Integer) for (de)marshalling parameters/entity body.
+ *
+ * @author Jozef Hartinger
+ */
 @Path("/student")
 @Produces("application/student")
 @Consumes("application/student")

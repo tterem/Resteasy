@@ -10,9 +10,9 @@ import javax.ws.rs.core.FeatureContext;
 import java.lang.reflect.Method;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class CacheControlFeature implements DynamicFeature
 {
    @Override

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-   * Util class for RESTEasy rxjava (1) related testing.
-   */
+ * Util class for RESTEasy rxjava (1) related testing.
+ */
 public class TestUtilRxJava {
 
    private static String defaultReactiveContextsVersion = "0.0.4";

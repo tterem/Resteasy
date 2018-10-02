@@ -25,11 +25,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Core
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.6.1
-   * @tpTestCaseDetails Regression test for RESTEASY-1861
-   */
+ * @tpSubChapter Core
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.6.1
+ * @tpTestCaseDetails Regression test for RESTEASY-1861
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CustomConstrainedFeatureTest {
@@ -50,9 +50,9 @@ public class CustomConstrainedFeatureTest {
    }
 
    /**
-     * @tpTestDetails Call client with restricted feature for server runtime.
-     * @tpSince RESTEasy 3.6.1
-     */
+    * @tpTestDetails Call client with restricted feature for server runtime.
+    * @tpSince RESTEasy 3.6.1
+    */
    @Test
    public void testClientCall() {
       CustomServerConstrainedFeature.reset();

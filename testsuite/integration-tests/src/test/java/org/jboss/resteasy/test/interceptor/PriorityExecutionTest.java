@@ -47,11 +47,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.LoggingPermission;
 
 /**
-   * @tpSubChapter Interceptors
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Regression test for RESTEASY-1294
-   */
+ * @tpSubChapter Interceptors
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Regression test for RESTEASY-1294
+ */
 @RunWith(Arquillian.class)
 public class PriorityExecutionTest {
    public static volatile Queue<String> interceptors = new ConcurrentLinkedQueue<String>();
@@ -119,9 +119,9 @@ public class PriorityExecutionTest {
    }
 
    /**
-     * @tpTestDetails Check order of client and server filters
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check order of client and server filters
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPriority() throws Exception {
       client.register(PriorityExecutionClientResponseFilter3.class);

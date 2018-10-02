@@ -24,11 +24,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-994
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-994
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class VariantAcceptTest {
@@ -70,9 +70,9 @@ public class VariantAcceptTest {
    }
 
    /**
-     * @tpTestDetails Verifies that a more specific media type is preferred.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verifies that a more specific media type is preferred.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testVariant() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -86,9 +86,9 @@ public class VariantAcceptTest {
    }
 
    /**
-     * @tpTestDetails Verifies that the number of parameters does not outweigh more specific media types.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verifies that the number of parameters does not outweigh more specific media types.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testVariantWithParameters() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -102,10 +102,10 @@ public class VariantAcceptTest {
    }
 
    /**
-     * @tpTestDetails Verifies that the q/qs factors are stripped from the response Content-type header if they are provided
-     * in the request/@Produces. See RESTEASY-1765.
-     * @tpSince RESTEasy 3.0.25
-     */
+    * @tpTestDetails Verifies that the q/qs factors are stripped from the response Content-type header if they are provided
+    * in the request/@Produces. See RESTEASY-1765.
+    * @tpSince RESTEasy 3.0.25
+    */
    @Test
    public void testVariantWithQParameter() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

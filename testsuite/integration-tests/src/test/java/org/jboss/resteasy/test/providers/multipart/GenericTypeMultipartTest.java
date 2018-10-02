@@ -25,11 +25,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Multipart provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for JBEAP-1795
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Multipart provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for JBEAP-1795
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GenericTypeMultipartTest {
@@ -49,9 +49,9 @@ public class GenericTypeMultipartTest {
    }
 
    /**
-     * @tpTestDetails List is in request.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails List is in request.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGenericType() throws Exception {
       Client client = ClientBuilder.newBuilder().register(GenericTypeStringListReaderWriter.class).build();

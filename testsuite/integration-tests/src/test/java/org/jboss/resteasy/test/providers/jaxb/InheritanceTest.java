@@ -25,10 +25,10 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InheritanceTest {
@@ -57,9 +57,9 @@ public class InheritanceTest {
    }
 
    /**
-     * @tpTestDetails Tests Jaxb object with inheritance structure
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests Jaxb object with inheritance structure
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInheritance() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/zoo"));

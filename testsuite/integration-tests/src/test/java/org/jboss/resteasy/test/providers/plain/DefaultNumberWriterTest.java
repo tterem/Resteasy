@@ -24,12 +24,12 @@ import java.net.SocketPermission;
 import java.util.PropertyPermission;
 
 /**
-   * @tpSubChapter Plain provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for DefaultNumberWriter provider.
-   *                    Regression test for partial fix for JBEAP-2847.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Plain provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for DefaultNumberWriter provider.
+ *                    Regression test for partial fix for JBEAP-2847.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class DefaultNumberWriterTest {
    private static Logger logger = Logger.getLogger(DefaultNumberWriterTest.class);
@@ -65,9 +65,9 @@ public class DefaultNumberWriterTest {
    }
     
    /**
-     * @tpTestDetails Tests Byte object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests Byte object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testByte() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -80,9 +80,9 @@ public class DefaultNumberWriterTest {
    }
 
    /**
-     * @tpTestDetails Tests byte primitive
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests byte primitive
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBytePrimitive() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -95,9 +95,9 @@ public class DefaultNumberWriterTest {
    }
 
    /**
-     * @tpTestDetails Tests Double object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests Double object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDouble() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -110,9 +110,9 @@ public class DefaultNumberWriterTest {
    }
 
    /**
-     * @tpTestDetails Tests double primitive
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests double primitive
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDoublePrimitive() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -125,9 +125,9 @@ public class DefaultNumberWriterTest {
    }
 
    /**
-     * @tpTestDetails Tests Float object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests Float object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFloat() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -140,9 +140,9 @@ public class DefaultNumberWriterTest {
    }
 
    /**
-     * @tpTestDetails Tests float primitive
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests float primitive
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFloatPrimitive() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -155,9 +155,9 @@ public class DefaultNumberWriterTest {
    }
 
    /**
-     * @tpTestDetails Tests Integer object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests Integer object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInteger() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -170,9 +170,9 @@ public class DefaultNumberWriterTest {
    }
 
    /**
-     * @tpTestDetails Tests integer primitive
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests integer primitive
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIntegerPrimitive() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -185,9 +185,9 @@ public class DefaultNumberWriterTest {
    }
 
    /**
-     * @tpTestDetails Tests Long object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests Long object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLong() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -200,9 +200,9 @@ public class DefaultNumberWriterTest {
    }
 
    /**
-     * @tpTestDetails Tests long primitive
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests long primitive
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLongPrimitive() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -215,9 +215,9 @@ public class DefaultNumberWriterTest {
    }
 
    /**
-     * @tpTestDetails Tests Short object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests Short object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testShort() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -230,9 +230,9 @@ public class DefaultNumberWriterTest {
    }
 
    /**
-     * @tpTestDetails Tests short primitive
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests short primitive
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testShortPrimitive() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -245,9 +245,9 @@ public class DefaultNumberWriterTest {
    }
 
    /**
-     * @tpTestDetails Tests BigDecimal object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests BigDecimal object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBigDecimal() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -260,9 +260,9 @@ public class DefaultNumberWriterTest {
    }
 
    /**
-     * @tpTestDetails Tests BigDecimal object with register custom provider on client
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests BigDecimal object with register custom provider on client
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProviderGetsUsed() throws Exception {
       Client client = ClientBuilder.newClient();

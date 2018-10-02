@@ -9,11 +9,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
-   * Helper base class for multipart/related producing providers.
-   * 
-   * @author Attila Kiraly
-   * @version $Revision: 1 $
-   */
+ * Helper base class for multipart/related producing providers.
+ * 
+ * @author Attila Kiraly
+ * @version $Revision: 1 $
+ */
 public class AbstractMultipartRelatedWriter extends AbstractMultipartWriter {
    protected void writeRelated(MultipartRelatedOutput multipartRelatedOutput,
          MediaType mediaType, MultivaluedMap<String, Object> httpHeaders,

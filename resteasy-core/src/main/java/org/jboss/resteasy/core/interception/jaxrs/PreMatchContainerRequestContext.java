@@ -29,9 +29,9 @@ import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.tracing.RESTEasyTracingLogger;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class PreMatchContainerRequestContext implements SuspendableContainerRequestContext
 {
    protected final HttpRequest httpRequest;
@@ -285,9 +285,9 @@ public class PreMatchContainerRequestContext implements SuspendableContainerRequ
    private void writeException(Throwable t)
    {
       /*
-      * Here, contrary to ContainerResponseContextImpl.writeException, we can use the async response
-      * to write the exception, because it calls the right response filters, complete() and callbacks
-      */
+       * Here, contrary to ContainerResponseContextImpl.writeException, we can use the async response
+       * to write the exception, because it calls the right response filters, complete() and callbacks
+       */
       httpRequest.getAsyncContext().getAsyncResponse().resume(t);
    }
 

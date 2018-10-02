@@ -19,11 +19,11 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.NotAuthorizedException;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Regression test for RESTEASY-435
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Regression test for RESTEASY-435
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class UnauthorizedExceptionTest {
@@ -40,9 +40,9 @@ public class UnauthorizedExceptionTest {
    }
 
    /**
-     * @tpTestDetails Check thrown exception on client side.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check thrown exception on client side.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMe() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

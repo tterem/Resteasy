@@ -26,56 +26,56 @@ public class Order {
    private String orderid;
 
    /**
-     * Get the person.
-     *
-     * @return the person.
-     */
+    * Get the person.
+    *
+    * @return the person.
+    */
    public String getPerson() {
       return person;
    }
 
    /**
-     * Set the person.
-     *
-     * @param person The person to set.
-     */
+    * Set the person.
+    *
+    * @param person The person to set.
+    */
    public void setPerson(String person) {
       this.person = person;
    }
 
    /**
-     * Get the shipto.
-     *
-     * @return the shipto.
-     */
+    * Get the shipto.
+    *
+    * @return the shipto.
+    */
    public ShipTo getShipto() {
       return shipto;
    }
 
    /**
-     * Set the shipto.
-     *
-     * @param shipto The shipto to set.
-     */
+    * Set the shipto.
+    *
+    * @param shipto The shipto to set.
+    */
    public void setShipto(ShipTo shipto) {
       this.shipto = shipto;
    }
 
    /**
-     * Add item to items
-     *
-     * @param item
-     */
+    * Add item to items
+    *
+    * @param item
+    */
    public void addItem(Item item) {
       item.setOrder(this);
       items.add(item);
    }
 
    /**
-     * Get the item.
-     *
-     * @return the item.
-     */
+    * Get the item.
+    *
+    * @return the item.
+    */
    public List<Item> getItems() {
       return items;
    }
@@ -85,47 +85,47 @@ public class Order {
    }
 
    /**
-     * Remove item from items
-     *
-     * @param item
-     */
+    * Remove item from items
+    *
+    * @param item
+    */
    public void removeItem(Item item) {
       items.remove(item);
    }
 
    /**
-     * Remove item on specified index
-     *
-     * @param index
-     * @return
-     */
+    * Remove item on specified index
+    *
+    * @param index
+    * @return
+    */
    public Item removeItem(int index) {
       return items.remove(index);
    }
 
    /**
-     * Set the item.
-     *
-     * @param item The item to set.
-     */
+    * Set the item.
+    *
+    * @param item The item to set.
+    */
    public void setItems(List<Item> items) {
       this.items = items;
    }
 
    /**
-     * Get the orderid.
-     *
-     * @return the orderid.
-     */
+    * Get the orderid.
+    *
+    * @return the orderid.
+    */
    public String getOrderid() {
       return orderid;
    }
 
    /**
-     * Set the orderid.
-     *
-     * @param orderid The orderid to set.
-     */
+    * Set the orderid.
+    *
+    * @param orderid The orderid to set.
+    */
    public void setOrderid(String orderid) {
       this.orderid = orderid;
    }

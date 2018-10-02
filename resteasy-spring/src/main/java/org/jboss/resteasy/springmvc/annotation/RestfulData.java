@@ -7,10 +7,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
-   * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
-   * @version $Revision: 1 $
-   * 
-   */
+ * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
+ * @version $Revision: 1 $
+ * 
+ */
 
 @Target(
 { ElementType.PARAMETER })
@@ -20,11 +20,11 @@ public @interface RestfulData
 {
 
    /**
-   * what content type does this support? This has the same allowed values as
-   * javax.ws.rs.Consumes
-   * 
-   * @see javax.ws.rs.Consumes
-   * */
+    * what content type does this support? This has the same allowed values as
+    * javax.ws.rs.Consumes
+    * 
+    * @see javax.ws.rs.Consumes
+    * */
    String[] value = null;
 
 }

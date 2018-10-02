@@ -11,11 +11,11 @@ import javax.servlet.ServletContext;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter Spring
-   * @tpChapter Unit test
-   * @tpTestCaseDetails  Tests that SpringContextLoader does proper validations and adds an application listener
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Spring
+ * @tpChapter Unit test
+ * @tpTestCaseDetails  Tests that SpringContextLoader does proper validations and adds an application listener
+ * @tpSince RESTEasy 3.0.16
+ */
 public class SpringContextLoaderTest {
 
    private SpringContextLoaderSubclass contextLoader;
@@ -26,17 +26,17 @@ public class SpringContextLoaderTest {
    }
 
    /**
-     * @tpTestDetails Tests that ResteasyDeployment is required for customizeContext() of SpringContextLoader
-     */
+    * @tpTestDetails Tests that ResteasyDeployment is required for customizeContext() of SpringContextLoader
+    */
    @Test(expected = RuntimeException.class)
    public void testThatDeploymentIsRequired() {
       contextLoader.customizeContext(mockServletContext(null), mockWebApplicationContext());
    }
 
    /**
-     * @tpTestDetails Tests that only one application listener is added for customizeContext() call of SpringContextLoader
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that only one application listener is added for customizeContext() call of SpringContextLoader
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testThatWeAddedAnApplicationListener() {
       StaticWebApplicationContext context = mockWebApplicationContext();

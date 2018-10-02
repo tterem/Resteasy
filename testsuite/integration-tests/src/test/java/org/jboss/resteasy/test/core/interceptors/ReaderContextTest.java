@@ -31,11 +31,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-   * @tpSubChapter Interceptors
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Basic test for reated context
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Interceptors
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Basic test for reated context
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ReaderContextTest {
@@ -72,9 +72,9 @@ public class ReaderContextTest {
    }
 
    /**
-     * @tpTestDetails Check post request.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check post request.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void readerContextOnClientTest() {
       client = ClientBuilder.newClient();

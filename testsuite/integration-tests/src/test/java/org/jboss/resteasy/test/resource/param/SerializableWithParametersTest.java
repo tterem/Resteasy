@@ -18,11 +18,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Regression test for RESTEASY-839
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Regression test for RESTEASY-839
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SerializableWithParametersTest {
@@ -40,12 +40,12 @@ public class SerializableWithParametersTest {
    }
 
    /**
-     * @tpTestDetails Get serializable object.
-     *                Test was updated by RESTEASY-1269 in this
-     *                commit: https://github.com/resteasy/Resteasy/commit/bb8657c9808763d4c4b9227f6a2fcf47b9146636
-     *                Serializable provider was deprecated in RESTEASY-1461
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Get serializable object.
+    *                Test was updated by RESTEASY-1269 in this
+    *                commit: https://github.com/resteasy/Resteasy/commit/bb8657c9808763d4c4b9227f6a2fcf47b9146636
+    *                Serializable provider was deprecated in RESTEASY-1461
+    * @tpSince RESTEasy 3.0.16
+    */
    @SuppressWarnings("deprecation")
    @Test
    public void testSerialize() throws Exception {

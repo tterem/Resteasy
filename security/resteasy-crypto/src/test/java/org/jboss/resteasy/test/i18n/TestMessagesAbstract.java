@@ -10,12 +10,12 @@ import org.jboss.resteasy.security.doseta.i18n.Messages;
 import org.junit.Test;
 
 /**
-   * 
-   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
-   * @version $Revision: 1.1 $
-   *
-   * Copyright Aug 29, 2015
-   */
+ * 
+ * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+ * @version $Revision: 1.1 $
+ *
+ * Copyright Aug 29, 2015
+ */
 abstract public class TestMessagesAbstract extends TestMessagesParent
 {
    private static final Logger LOG = Logger.getLogger(TestMessagesAbstract.class);

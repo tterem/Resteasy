@@ -27,11 +27,11 @@ import java.util.Map;
 
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Tests for RFC 7232 functionality
-   * @tpSince RESTEasy 3.0.17
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Tests for RFC 7232 functionality
+ * @tpSince RESTEasy 3.0.17
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PreconditionRfc7232Test {
@@ -63,9 +63,9 @@ public class PreconditionRfc7232Test {
    }
 
    /**
-     * @tpTestDetails Response if all match
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if all match
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testPrecedence_AllMatch() {
       Response response = webTarget.request().header(HttpHeaderNames.IF_MATCH, "1")  // true
@@ -78,9 +78,9 @@ public class PreconditionRfc7232Test {
    }
 
    /**
-     * @tpTestDetails Response if all match without IF_MATCH
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if all match without IF_MATCH
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testPrecedence_IfMatchWithNonMatchingEtag() {
       Response response = webTarget.request()
@@ -94,9 +94,9 @@ public class PreconditionRfc7232Test {
    }
 
    /**
-     * @tpTestDetails Response if all match without IF_MATCH
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if all match without IF_MATCH
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testPrecedence_IfMatchNotPresentUnmodifiedSinceBeforeLastModified() {
       Response response = webTarget.request()
@@ -109,9 +109,9 @@ public class PreconditionRfc7232Test {
    }
 
    /**
-     * @tpTestDetails Response if IF_MATH is missing
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if IF_MATH is missing
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testPrecedence_IfNoneMatchWithMatchingEtag() {
       Response response = webTarget.request()
@@ -124,9 +124,9 @@ public class PreconditionRfc7232Test {
    }
 
    /**
-     * @tpTestDetails Response if IF_MATH is missing and IF_NONE_MATCH don't match
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if IF_MATH is missing and IF_NONE_MATCH don't match
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testPrecedence_IfNoneMatchWithNonMatchingEtag() {
@@ -140,9 +140,9 @@ public class PreconditionRfc7232Test {
    }
 
    /**
-     * @tpTestDetails Response if IF_MODIFIED_SINCE don't match
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if IF_MODIFIED_SINCE don't match
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testPrecedence_IfNoneMatchNotPresent_IfModifiedSinceBeforeLastModified() {
       Response response = webTarget.request()
@@ -154,9 +154,9 @@ public class PreconditionRfc7232Test {
    }
 
    /**
-     * @tpTestDetails Response if IF_MODIFIED_SINCE match
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Response if IF_MODIFIED_SINCE match
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testPrecedence_IfNoneMatchNotPresent_IfModifiedSinceAfterLastModified() {
       Response response = webTarget.request()

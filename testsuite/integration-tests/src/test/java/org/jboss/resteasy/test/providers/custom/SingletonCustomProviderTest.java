@@ -22,11 +22,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for anonymous classes as resource added to REST singletons
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for anonymous classes as resource added to REST singletons
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SingletonCustomProviderTest {
@@ -55,9 +55,9 @@ public class SingletonCustomProviderTest {
    }
 
    /**
-     * @tpTestDetails Check post request
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check post request
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMessageReaderThrowingWebApplicationException() throws Exception {
       Response response = client.target(generateURL("/test")).request().post(Entity.entity("foo", "application/octet-stream"));
@@ -66,9 +66,9 @@ public class SingletonCustomProviderTest {
    }
 
    /**
-     * @tpTestDetails Check get request
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check get request
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMessageWriterThrowingWebApplicationException() throws Exception {
       Response response = client.target(generateURL("/test")).request().get();

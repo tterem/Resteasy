@@ -30,10 +30,10 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AsyncInvokeTest extends ClientTestBase{
@@ -69,11 +69,11 @@ public class AsyncInvokeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends async GET requests. First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async GET requests. First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void AsyncGetTest() throws Exception {
       {
@@ -92,11 +92,11 @@ public class AsyncInvokeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends async DELETE requests. First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async DELETE requests. First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void AsyncDeleteTest() throws Exception {
 
@@ -116,11 +116,11 @@ public class AsyncInvokeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends async PUT requests. First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async PUT requests. First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void AsyncPutTest() throws Exception {
       {
@@ -139,11 +139,11 @@ public class AsyncInvokeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends async POST requests. First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async POST requests. First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void AsyncPostTest() throws Exception {
       {
@@ -164,11 +164,11 @@ public class AsyncInvokeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends async custom PATCH requests. First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async custom PATCH requests. First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void AsyncCustomMethodTest() throws Exception {
       {
@@ -187,11 +187,11 @@ public class AsyncInvokeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends async GET requests using Asynchronous InvocationCallback. First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async GET requests using Asynchronous InvocationCallback. First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void AsyncCallbackGetTest() throws Exception {
       {
@@ -234,11 +234,11 @@ public class AsyncInvokeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends async DELETE requests using Asynchronous InvocationCallback. First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async DELETE requests using Asynchronous InvocationCallback. First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void AsyncCallbackDeleteTest() throws Exception {
 
@@ -282,11 +282,11 @@ public class AsyncInvokeTest extends ClientTestBase{
 
 
    /**
-     * @tpTestDetails Client sends async PUT requests using Asynchronous InvocationCallback. First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async PUT requests using Asynchronous InvocationCallback. First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void AsyncCallbackPutTest() throws Exception {
       {
@@ -329,11 +329,11 @@ public class AsyncInvokeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends async POST requests using Asynchronous InvocationCallback. First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async POST requests using Asynchronous InvocationCallback. First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void AsyncCallbackPostTest() throws Exception {
       {
@@ -376,11 +376,11 @@ public class AsyncInvokeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends async custom PATCH requests using Asynchronous InvocationCallback. First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async custom PATCH requests using Asynchronous InvocationCallback. First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void AsyncCallbackCustomMethodTest() throws Exception {
       {
@@ -472,12 +472,12 @@ public class AsyncInvokeTest extends ClientTestBase{
 
 
    /**
-     * @tpTestDetails Client sends async GET requests using submit() method to send request as asynchronous
-     * (opposite of invoke() method). First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async GET requests using submit() method to send request as asynchronous
+    * (opposite of invoke() method). First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void SubmitGetTest() throws Exception {
 
@@ -497,12 +497,12 @@ public class AsyncInvokeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends async DELETE requests using submit() method to send request as asynchronous
-     * (opposite of invoke() method). First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async DELETE requests using submit() method to send request as asynchronous
+    * (opposite of invoke() method). First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void SubmitDeleteTest() throws Exception {
       {
@@ -521,12 +521,12 @@ public class AsyncInvokeTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends async PUT requests using submit() method to send request as asynchronous
-     * (opposite of invoke() method). First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async PUT requests using submit() method to send request as asynchronous
+    * (opposite of invoke() method). First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void SubmitPutTest() throws Exception {
       {
@@ -546,12 +546,12 @@ public class AsyncInvokeTest extends ClientTestBase{
 
 
    /**
-     * @tpTestDetails Client sends async POST requests using submit() method to send request as asynchronous
-     * (opposite of invoke() method). First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async POST requests using submit() method to send request as asynchronous
+    * (opposite of invoke() method). First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void SubmitPostTest() throws Exception {
       {
@@ -571,12 +571,12 @@ public class AsyncInvokeTest extends ClientTestBase{
 
 
    /**
-     * @tpTestDetails Client sends async custom PATCH requests using submit() method to send request as asynchronous
-     * (opposite of invoke() method). First request expects Response object in return,
-     * the second expects String object in return
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async custom PATCH requests using submit() method to send request as asynchronous
+    * (opposite of invoke() method). First request expects Response object in return,
+    * the second expects String object in return
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void SubmitCustomMethodTest() throws Exception {
       {

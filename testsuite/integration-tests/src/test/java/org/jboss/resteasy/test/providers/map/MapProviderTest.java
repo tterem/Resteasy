@@ -23,10 +23,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MapProviderTest {
@@ -55,12 +55,12 @@ public class MapProviderTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with specified mediatype and entity of type APPLICATION_FORM_URLENCODED_TYPE.
-     * This entity is read by application provided MapProvider, which creates Multivaluedmap and adds item into it.
-     * Server sends response using application provided MapProvider, replacing content of the first item in the map.
-     * @tpPassCrit Correct response is returned from the server and map contains replaced item
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with specified mediatype and entity of type APPLICATION_FORM_URLENCODED_TYPE.
+    * This entity is read by application provided MapProvider, which creates Multivaluedmap and adds item into it.
+    * Server sends response using application provided MapProvider, replacing content of the first item in the map.
+    * @tpPassCrit Correct response is returned from the server and map contains replaced item
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMapProvider() {
       // writers sorted by type, mediatype, and then by app over builtin

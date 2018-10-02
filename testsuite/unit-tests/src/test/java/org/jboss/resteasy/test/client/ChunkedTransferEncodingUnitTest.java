@@ -22,13 +22,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
-   * @author <a href="mailto:rsigal@redhat.com">Ron Sigal</a>
-   * @version $Revision: 1 $
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Verify request is sent in chunked format
-   * @tpSince RESTEasy 3.1.4
-   */
+ * @author <a href="mailto:rsigal@redhat.com">Ron Sigal</a>
+ * @version $Revision: 1 $
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Verify request is sent in chunked format
+ * @tpSince RESTEasy 3.1.4
+ */
 public class ChunkedTransferEncodingUnitTest
 {
    private static Thread t;

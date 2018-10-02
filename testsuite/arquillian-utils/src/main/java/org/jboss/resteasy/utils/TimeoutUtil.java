@@ -1,16 +1,16 @@
 package org.jboss.resteasy.utils;
 
 /**
-   * This class is copied from shared module of wildfly-core testsuite.
-   * <p>
-   * Adjusts default timeouts according to the system property.
-   * <p>
-   * All tests influenced by machine slowness should employ this util.
-   *
-   * @author Ondrej Zizka
-   * @author Radoslav Husar
-   * @author Jan Lanik
-   */
+ * This class is copied from shared module of wildfly-core testsuite.
+ * <p>
+ * Adjusts default timeouts according to the system property.
+ * <p>
+ * All tests influenced by machine slowness should employ this util.
+ *
+ * @author Ondrej Zizka
+ * @author Radoslav Husar
+ * @author Jan Lanik
+ */
 public class TimeoutUtil {
 
    public static final String FACTOR_SYS_PROP = "ts.timeout.factor";
@@ -21,10 +21,10 @@ public class TimeoutUtil {
    }
 
    /**
-     * Adjusts timeout for operations.
-     *
-     * @return given timeout adjusted by ratio from system property "ts.timeout.factor"
-     */
+    * Adjusts timeout for operations.
+    *
+    * @return given timeout adjusted by ratio from system property "ts.timeout.factor"
+    */
    public static int adjust(int amount) {
       if (amount < 0) {
          throw new IllegalArgumentException("amount must be non-negative");
@@ -44,19 +44,19 @@ public class TimeoutUtil {
    }
 
    /**
-     * Get timeout factor to multiply by.
-     *
-     * @return double factor value
-     */
+    * Get timeout factor to multiply by.
+    *
+    * @return double factor value
+    */
    public static double getFactor() {
       return (double) factor / 100;
    }
 
    /**
-     * Get raw timeout factor.
-     *
-     * @return value of parsed system property "ts.timeout.factor"
-     */
+    * Get raw timeout factor.
+    *
+    * @return value of parsed system property "ts.timeout.factor"
+    */
    public static int getRawFactor() {
       return factor;
    }

@@ -23,10 +23,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ContextTest {
@@ -63,11 +63,11 @@ public class ContextTest {
    }
 
    /**
-     * @tpTestDetails Client sends async GET requests thru client proxy. UriInfo is injected as argument of the GET
-     * method call.
-     * @tpPassCrit UriInfo was injected into method call
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends async GET requests thru client proxy. UriInfo is injected as argument of the GET
+    * method call.
+    * @tpPassCrit UriInfo was injected into method call
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testContextInjectionProxy() {
       ResourceInterface proxy = client.target(generateURL("")).proxy(ResourceInterface.class);

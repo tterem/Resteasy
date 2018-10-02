@@ -23,10 +23,10 @@ import javax.ws.rs.core.Response;
 import java.util.PropertyPermission;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ConstructedInjectionTest {
@@ -75,9 +75,9 @@ public class ConstructedInjectionTest {
    }
 
    /**
-     * @tpTestDetails Test with the resource containing custom constructor with @Context and @QueryParam injection
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test with the resource containing custom constructor with @Context and @QueryParam injection
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUriInfo() throws Exception {
       _test("/simple");

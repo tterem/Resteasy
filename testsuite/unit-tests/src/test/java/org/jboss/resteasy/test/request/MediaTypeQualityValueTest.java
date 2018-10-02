@@ -19,11 +19,11 @@ import static org.junit.Assert.fail;
 
 
 /**
-   * @tpSubChapter Requests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for AcceptHeaders and QualityValue classes, media type.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Requests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for AcceptHeaders and QualityValue classes, media type.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class MediaTypeQualityValueTest {
 
    private static void assertList(String header, MediaType[] fields, QualityValue[] qualities) {
@@ -35,9 +35,9 @@ public class MediaTypeQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Test for simple values.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for simple values.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void simple() {
       String header = "audio/*; q=0.2, audio/basic";
@@ -53,9 +53,9 @@ public class MediaTypeQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Test for special parameters.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for special parameters.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void parameters() {
       String header = "text/html;level=\"1\", text/html;level=2;q=0.4";
@@ -71,9 +71,9 @@ public class MediaTypeQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Test for unsupported extension.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for unsupported extension.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void unsupportedExtension() {
       String header = "plain/text; a=b; q=0.2; extension=unsupported";
@@ -83,9 +83,9 @@ public class MediaTypeQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Test for bad requests.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for bad requests.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void badRequests() {
       String[] badHeaders = {
@@ -110,9 +110,9 @@ public class MediaTypeQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Test empty quality values.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test empty quality values.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void empty() {
       final String ERROR_MSG = "Local quality values should not be null";

@@ -9,22 +9,22 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 
 /**
-   * Pick
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Pick
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public final class PickConstructor
 {
 
    /**
-   * Pick best constructor for a provider or resource class
-   * <p>
-   * Picks constructor with most parameters.  Will ignore constructors that have parameters with no @Context annotation
-   *
-   * @param clazz class
-   * @return constructor
-   */
+    * Pick best constructor for a provider or resource class
+    * <p>
+    * Picks constructor with most parameters.  Will ignore constructors that have parameters with no @Context annotation
+    *
+    * @param clazz class
+    * @return constructor
+    */
    public static Constructor pickSingletonConstructor(Class clazz)
    {
       Constructor<?>[] constructors = clazz.getConstructors();
@@ -72,13 +72,13 @@ public final class PickConstructor
    }
 
    /**
-   * Pick best constructor for a provider or resource class
-   * <p>
-   * Picks constructor with most parameters.  Will ignore constructors that have parameters with no @Context annotation
-   *
-   * @param clazz class
-   * @return constructor
-   */
+    * Pick best constructor for a provider or resource class
+    * <p>
+    * Picks constructor with most parameters.  Will ignore constructors that have parameters with no @Context annotation
+    *
+    * @param clazz class
+    * @return constructor
+    */
    public static Constructor pickPerRequestConstructor(Class clazz)
    {
       Constructor<?>[] constructors = clazz.getConstructors();

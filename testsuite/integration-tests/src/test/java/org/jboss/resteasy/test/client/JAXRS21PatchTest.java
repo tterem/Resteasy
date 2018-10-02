@@ -46,9 +46,9 @@ public class JAXRS21PatchTest extends ClientTestBase {
    }
 
    /**
-     * @tpTestDetails Client sends http PATCH request with invoke() method
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails Client sends http PATCH request with invoke() method
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testMethods() throws Exception {
       {
@@ -64,9 +64,9 @@ public class JAXRS21PatchTest extends ClientTestBase {
    }
 
    /**
-     * @tpTestDetails Client sends http PATCH request with method() method
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails Client sends http PATCH request with method() method
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testInvoke() throws Exception {
       {
@@ -82,9 +82,9 @@ public class JAXRS21PatchTest extends ClientTestBase {
    }
 
    /**
-     * @tpTestDetails Check that PATCH is present in OPTIONS response if the resource supports PATCH method
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails Check that PATCH is present in OPTIONS response if the resource supports PATCH method
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testOptionsContainsAllowPatch() throws Exception {
       Response res = client.target(generateURL("/test")).request().options();
@@ -93,9 +93,9 @@ public class JAXRS21PatchTest extends ClientTestBase {
    }
 
    /**
-     * @tpTestDetails Check that OPTIONS response contains Accept-Patch header with supported PATCH format descriptors
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails Check that OPTIONS response contains Accept-Patch header with supported PATCH format descriptors
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testOptionsContainsAcceptPatch() throws Exception {
       Response res = client.target(generateURL("/test")).request().options();
@@ -104,9 +104,9 @@ public class JAXRS21PatchTest extends ClientTestBase {
    }
 
    /**
-     * @tpTestDetails Check http headers in the response after successful PATCH request
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails Check http headers in the response after successful PATCH request
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testPatchHeaders() throws Exception {
       Response res = client.target(generateURL("/test")).request().method(HttpMethod.PATCH, Entity.text("hello"));

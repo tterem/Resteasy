@@ -17,9 +17,9 @@ import org.jboss.resteasy.plugins.providers.jaxb.JAXBContextFinder;
 import org.jboss.resteasy.spi.util.FindAnnotation;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @Produces({"application/json", "application/*+json"})
 public class JsonJAXBContextFinder extends AbstractJAXBContextFinder implements ContextResolver<JAXBContextFinder>

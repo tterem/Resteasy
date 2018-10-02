@@ -25,11 +25,11 @@ import org.jboss.resteasy.util.DelegatingOutputStream;
 import org.junit.Test;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Multipart Contains JSON part should not trigger Stream Closed
-   * @tpSince RESTEasy 3.0.14
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Multipart Contains JSON part should not trigger Stream Closed
+ * @tpSince RESTEasy 3.0.14
+ */
 public class MultipurtContainsJsonTest {
    private static final LogMessages logger = Logger.getMessageLogger(LogMessages.class, MultipurtContainsJsonTest.class.getName());
    private static final Annotation[] EMPTY_ANNOTATION = new Annotation[0];

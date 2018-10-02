@@ -25,11 +25,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
-   * @author <a href="mailto:ema@redhat.com">Jim Ma</a>
-   * @tpSubChapter Jackson2 provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.1.0
-   */
+ * @author <a href="mailto:ema@redhat.com">Jim Ma</a>
+ * @tpSubChapter Jackson2 provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.1.0
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 @Category({NotForForwardCompatibility.class, ExpectedFailingOnWildFly13.class})
@@ -48,9 +48,9 @@ public class JsonFilterWithInterceptrTest {
    }
 
    /**
-     * @tpTestDetails Filters fields from json response entity using interceptor
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Filters fields from json response entity using interceptor
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    public void testJacksonString() throws Exception {
       Client client = ClientBuilder.newClient();

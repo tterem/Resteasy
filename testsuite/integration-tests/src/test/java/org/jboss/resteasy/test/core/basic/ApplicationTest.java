@@ -25,11 +25,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for usage of more application in one deployment
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for usage of more application in one deployment
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ApplicationTest {
@@ -55,9 +55,9 @@ public class ApplicationTest {
    }
 
    /**
-     * @tpTestDetails Test first application in deployment
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test first application in deployment
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testExplicitA() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -72,9 +72,9 @@ public class ApplicationTest {
    }
 
    /**
-     * @tpTestDetails Test second application in deployment
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test second application in deployment
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testExplicitB() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -89,9 +89,9 @@ public class ApplicationTest {
    }
 
    /**
-     * @tpTestDetails Test scanned application in deployment: getClasses method is not used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test scanned application in deployment: getClasses method is not used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testScanned() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -104,9 +104,9 @@ public class ApplicationTest {
    }
 
    /**
-     * @tpTestDetails Test scanned application in deployment: getClasses method is not used. This application is mapped to different location.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test scanned application in deployment: getClasses method is not used. This application is mapped to different location.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMapped() throws Exception {
       Client client = ClientBuilder.newClient();

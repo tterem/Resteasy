@@ -4,31 +4,31 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
-   * A ExceptionAdapter.
-   *
-   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
-   * @version $Revision: $
-   */
+ * A ExceptionAdapter.
+ *
+ * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+ * @version $Revision: $
+ */
 public class ExceptionAdapter extends RuntimeException
 {
 
    /**
-   * The serialVersionUID
-   */
+    * The serialVersionUID
+    */
    private static final long serialVersionUID = 6628087350457915908L;
 
    private final String stackTrace;
 
    /**
-   *
-   */
+    *
+    */
    private Exception originalException;
 
    /**
-   * Create a new ExceptionAdapter.
-   *
-   * @param e exception
-   */
+    * Create a new ExceptionAdapter.
+    *
+    * @param e exception
+    */
    public ExceptionAdapter(Exception e)
    {
       this(e.getMessage(), e);
@@ -44,10 +44,10 @@ public class ExceptionAdapter extends RuntimeException
    }
 
    /**
-   * Prints stack trace.
-   *
-   * @see java.lang.Throwable#printStackTrace()
-   */
+    * Prints stack trace.
+    *
+    * @see java.lang.Throwable#printStackTrace()
+    */
    //CHECKSTYLE.OFF: RegexpSinglelineJava
    public void printStackTrace()
    {
@@ -56,11 +56,11 @@ public class ExceptionAdapter extends RuntimeException
    //CHECKSTYLE.ON: RegexpSinglelineJava
 
    /**
-   * Prints stack trace.
-   *
-   * @param s print stream
-   * @see java.lang.Throwable#printStackTrace(java.io.PrintStream)
-   */
+    * Prints stack trace.
+    *
+    * @param s print stream
+    * @see java.lang.Throwable#printStackTrace(java.io.PrintStream)
+    */
    public void printStackTrace(java.io.PrintStream s)
    {
       synchronized (s)
@@ -71,11 +71,11 @@ public class ExceptionAdapter extends RuntimeException
    }
 
    /**
-   * Prints stack trace.
-   *
-   * @param s print writer
-   * @see java.lang.Throwable#printStackTrace(java.io.PrintWriter)
-   */
+    * Prints stack trace.
+    *
+    * @param s print writer
+    * @see java.lang.Throwable#printStackTrace(java.io.PrintWriter)
+    */
    public void printStackTrace(java.io.PrintWriter s)
    {
       synchronized (s)
@@ -87,10 +87,10 @@ public class ExceptionAdapter extends RuntimeException
 
 
    /**
-   * Rethrows the original exception class.
-   *
-   * @throws Exception exception
-   */
+    * Rethrows the original exception class.
+    *
+    * @throws Exception exception
+    */
    public void rethrow() throws Exception
    {
       throw this.originalException;

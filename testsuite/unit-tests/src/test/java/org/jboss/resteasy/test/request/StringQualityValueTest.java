@@ -15,11 +15,11 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
 /**
-   * @tpSubChapter Requests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for AcceptHeaders and QualityValue classes, string type.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Requests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for AcceptHeaders and QualityValue classes, string type.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class StringQualityValueTest {
 
    private static void assertList(String header, String[] fields, QualityValue[] qualities) {
@@ -31,9 +31,9 @@ public class StringQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Test for simple values.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for simple values.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void simple() {
       String[] fields = {"compress", "gzip"};
@@ -47,9 +47,9 @@ public class StringQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Test for special parameters.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for special parameters.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void parameter() {
       String header = "iso-8859-5, unicode-1-1;q=0.8";
@@ -62,9 +62,9 @@ public class StringQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Test for * in header.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for * in header.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void wildcard() {
       String header = "*";
@@ -74,9 +74,9 @@ public class StringQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Test for wildcard with parameter.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for wildcard with parameter.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void wildcardWithParameter() {
       String header = "gzip;q=1.0, identity; q=0.5, *;q=0";
@@ -90,9 +90,9 @@ public class StringQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Bad requests test.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Bad requests test.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void badRequests() {
       String[] badHeaders = {
@@ -116,9 +116,9 @@ public class StringQualityValueTest {
    }
 
    /**
-     * @tpTestDetails Check empty values.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check empty values.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void empty() {
       assertNull(AcceptHeaders.getStringQualityValues(null));

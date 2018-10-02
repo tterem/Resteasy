@@ -26,47 +26,47 @@ public class JaxbCacheChild {
    }
 
    /**
-     * Get the name.
-     *
-     * @return the name.
-     */
+    * Get the name.
+    *
+    * @return the name.
+    */
    public String getName() {
       return name;
    }
 
    /**
-     * Set the name.
-     *
-     * @param name The name to set.
-     */
+    * Set the name.
+    *
+    * @param name The name to set.
+    */
    public void setName(String name) {
       this.name = name;
    }
 
    /**
-     * Get the parent.
-     *
-     * @return the parent.
-     */
+    * Get the parent.
+    *
+    * @return the parent.
+    */
    public JaxbCacheParent getParent() {
       return parent;
    }
 
    /**
-     * Set the parent.
-     *
-     * @param parent The parent to set.
-     */
+    * Set the parent.
+    *
+    * @param parent The parent to set.
+    */
    public void setParent(JaxbCacheParent parent) {
       this.parent = parent;
    }
 
    /**
-     * Set parent after unmarshalling
-     *
-     * @param unmarshaller
-     * @param JaxbCacheParent
-     */
+    * Set parent after unmarshalling
+    *
+    * @param unmarshaller
+    * @param JaxbCacheParent
+    */
    public void afterUnmarshal(Unmarshaller unmarshaller, Object object) {
       this.parent = (JaxbCacheParent) object;
    }

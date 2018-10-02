@@ -42,11 +42,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Security
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Basic test for RESTEasy authentication.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Security
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Basic test for RESTEasy authentication.
+ * @tpSince RESTEasy 3.0.16
+ */
 @ServerSetup({BasicAuthTest.SecurityDomainSetup.class})
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -110,9 +110,9 @@ public class BasicAuthTest {
    }
 
    /**
-     * @tpTestDetails Basic ProxyFactory test. Correct credentials are used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic ProxyFactory test. Correct credentials are used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProxy() throws Exception {
       BasicAuthBaseProxy proxy = authorizedClient.target(generateURL("/")).proxyBuilder(BasicAuthBaseProxy.class).build();
@@ -121,9 +121,9 @@ public class BasicAuthTest {
    }
 
    /**
-     * @tpTestDetails Basic ProxyFactory test. No credentials are used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic ProxyFactory test. No credentials are used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProxyFailure() throws Exception {
       BasicAuthBaseProxy proxy = noAutorizationClient.target(generateURL("/")).proxyBuilder(BasicAuthBaseProxy.class).build();
@@ -136,9 +136,9 @@ public class BasicAuthTest {
    }
 
    /**
-     * @tpTestDetails Test secured resource with correct and incorrect credentials.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test secured resource with correct and incorrect credentials.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurity() throws Exception {
       // authorized client
@@ -179,9 +179,9 @@ public class BasicAuthTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-579
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-579
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test579() throws Exception {
       Response response = authorizedClient.target(generateURL("/secured2")).request().get();
@@ -190,9 +190,9 @@ public class BasicAuthTest {
    }
 
    /**
-     * @tpTestDetails Check failures for secured resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check failures for secured resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSecurityFailure() throws Exception {
       {
@@ -215,9 +215,9 @@ public class BasicAuthTest {
    }
 
    /**
-     * @tpTestDetails Regression test for JBEAP-1589, RESTEASY-1249
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for JBEAP-1589, RESTEASY-1249
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAccesForbiddenMessage() throws Exception {
       UsernamePasswordCredentials credentials = new UsernamePasswordCredentials("bill", "password1");
@@ -234,9 +234,9 @@ public class BasicAuthTest {
    }
 
    /**
-     * @tpTestDetails Test Content-type when forbidden exception is raised, RESTEASY-1563
-     * @tpSince RESTEasy 3.1.1
-     */
+    * @tpTestDetails Test Content-type when forbidden exception is raised, RESTEASY-1563
+    * @tpSince RESTEasy 3.1.1
+    */
    @Test
    @Category(NotForForwardCompatibility.class)
    public void testContentTypeWithForbiddenMessage() {
@@ -247,9 +247,9 @@ public class BasicAuthTest {
    }
 
    /**
-     * @tpTestDetails Test Content-type when unauthorized exception is raised
-     * @tpSince RESTEasy 3.1.1
-     */
+    * @tpTestDetails Test Content-type when unauthorized exception is raised
+    * @tpSince RESTEasy 3.1.1
+    */
    @Test
    public void testContentTypeWithUnauthorizedMessage() {
       Response response = noAutorizationClient.target(generateURL("/secured/denyWithContentType")).request().get();

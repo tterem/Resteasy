@@ -11,22 +11,22 @@ import java.util.TimeZone;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 
 /**
-   * Server-side cookie representation.  Stolen from Tomcat.
-   */
+ * Server-side cookie representation.  Stolen from Tomcat.
+ */
 public class ServerCookie implements Serializable
 {
    private static final String tspecials = ",; ";
    private static final String tspecials2 = "()<>@,;:\\\"/[]?={} \t";
 
    /*
-   * Tests a string and returns true if the string counts as a
-   * reserved token in the Java language.
-   *
-   * @param value the <code>String</code> to be tested
-   *
-   * @return      <code>true</code> if the <code>String</code> is a reserved
-   *              token; <code>false</code> if it is not
-   */
+    * Tests a string and returns true if the string counts as a
+    * reserved token in the Java language.
+    *
+    * @param value the <code>String</code> to be tested
+    *
+    * @return      <code>true</code> if the <code>String</code> is a reserved
+    *              token; <code>false</code> if it is not
+    */
    public static boolean isToken(String value)
    {
       if (value == null) return true;
@@ -75,10 +75,10 @@ public class ServerCookie implements Serializable
    }
 
    /**
-   * @deprecated Not used: Deprecated in the original org.apache.tomcat.util.http.ServerCookie class.
-   * @param name name
-   * @return boolean flag
-   */
+    * @deprecated Not used: Deprecated in the original org.apache.tomcat.util.http.ServerCookie class.
+    * @param name name
+    * @return boolean flag
+    */
    public static boolean checkName(String name)
    {
       if (!isToken(name)
@@ -102,10 +102,10 @@ public class ServerCookie implements Serializable
 
 
    /**
-   * Return the header name to set the cookie, based on cookie version.
-   * @param version cookie version
-   * @return cookie header name
-   */
+    * Return the header name to set the cookie, based on cookie version.
+    * @param version cookie version
+    * @return cookie header name
+    */
    public static String getCookieHeaderName(int version)
    {
       // TODO Re-enable logging when RFC2965 is implemented
@@ -128,17 +128,17 @@ public class ServerCookie implements Serializable
    }
 
    /**
-   * US locale - all HTTP dates are in english
-   */
+    * US locale - all HTTP dates are in english
+    */
    private final static Locale LOCALE_US = Locale.US;
 
    /**
-   * GMT timezone - all HTTP dates are on GMT
-   */
+    * GMT timezone - all HTTP dates are on GMT
+    */
    public final static TimeZone GMT_ZONE = TimeZone.getTimeZone("GMT");
    /**
-   * Pattern used for old cookies
-   */
+    * Pattern used for old cookies
+    */
    private final static String OLD_COOKIE_PATTERN = "EEE, dd-MMM-yyyy HH:mm:ss z";
 
 
@@ -255,12 +255,12 @@ public class ServerCookie implements Serializable
    }
 
    /**
-   * Quotes values using rules that vary depending on Cookie version.
-   *
-   * @param version cookie version
-   * @param buf buffer
-   * @param value value
-   */
+    * Quotes values using rules that vary depending on Cookie version.
+    *
+    * @param version cookie version
+    * @param buf buffer
+    * @param value value
+    */
    public static void maybeQuote2(int version, StringBuffer buf, String value)
    {
       if (value == null || value.length() == 0)
@@ -295,13 +295,13 @@ public class ServerCookie implements Serializable
 
 
    /**
-   * Escapes any double quotes in the given string.
-   *
-   * @param s          the input string
-   * @param beginIndex start index inclusive
-   * @param endIndex   exclusive
-   * @return The (possibly) escaped string
-   */
+    * Escapes any double quotes in the given string.
+    *
+    * @param s          the input string
+    * @param beginIndex start index inclusive
+    * @param endIndex   exclusive
+    * @return The (possibly) escaped string
+    */
    private static String escapeDoubleQuotes(String s, int beginIndex, int endIndex)
    {
 

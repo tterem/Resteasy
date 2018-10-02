@@ -27,11 +27,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resources
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test nested form parameters
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resources
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test nested form parameters
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class NestedCollectionsFormTest {
@@ -63,9 +63,9 @@ public class NestedCollectionsFormTest {
    }
 
    /**
-     * @tpTestDetails Set all relevant parameters to form.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Set all relevant parameters to form.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void shouldSupportCollectionsWithNestedObjectsInForm() throws Exception {
       javax.ws.rs.core.Form form = new javax.ws.rs.core.Form()

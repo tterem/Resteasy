@@ -26,10 +26,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class LocatorSubResourceReturningThisTest {
@@ -76,11 +76,11 @@ public class LocatorSubResourceReturningThisTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request for the resource Locator, which returns itself. The Resource Locator here
-     * extends the resource with HTTP methods annotations directly.
-     * @tpPassCrit Correct response is returned from the server
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request for the resource Locator, which returns itself. The Resource Locator here
+    * extends the resource with HTTP methods annotations directly.
+    * @tpPassCrit Correct response is returned from the server
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void LocatorWithSubWithPathAnnotationTest() {
       Response response = client.target(PortProviderUtil.generateURL("/resource/subresource/ParamEntityWithConstructor/ParamEntityWithConstructor=JAXRS", LocatorSubResourceReturningThisTest.class.getSimpleName())).request().get();

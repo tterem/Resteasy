@@ -35,11 +35,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEasy issues
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEasy issues
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ReaderWriterTest {
@@ -94,9 +94,9 @@ public class ReaderWriterTest {
       client.close();
    }
    /**
-     * @tpTestDetails Regression test for RESTEASY-144
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-144
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test144() throws Exception {
       WebTarget base = client.target(PortProviderUtil.generateURL("/implicit", ReaderWriterCustomerWriter.class.getSimpleName()));
@@ -122,9 +122,9 @@ public class ReaderWriterTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-61
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-61
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testJdkURLConnection() throws Exception {
       URL url = new URL(PortProviderUtil.generateURL("/simple", ReaderWriterResource.class.getSimpleName()));
@@ -134,9 +134,9 @@ public class ReaderWriterTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-24 and RESTEASY-139
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-24 and RESTEASY-139
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test24() throws Exception {
       WebTarget base = client.target(PortProviderUtil.generateURL("/complex", ReaderWriterResource.class.getSimpleName()));
@@ -150,9 +150,9 @@ public class ReaderWriterTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-1 and RESTEASY-2
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-1 and RESTEASY-2
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test1and2() throws Exception {
       WebTarget base = client.target(PortProviderUtil.generateURL("/simple", ReaderWriterResource.class.getSimpleName()));
@@ -164,9 +164,9 @@ public class ReaderWriterTest {
    }
 
    /**
-     * @tpTestDetails Test for resource mapped to nowhere using proxy.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for resource mapped to nowhere using proxy.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testItNewProxy() throws Exception {
       ReaderWriterNowhereClient proxy = ProxyBuilder.builder(ReaderWriterNowhereClient.class,
@@ -176,9 +176,9 @@ public class ReaderWriterTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-212
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-212
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test212() throws Exception {
       WebTarget base = client.target(PortProviderUtil.generateURL("/spaces/with%20spaces/without", ReaderWriterSpaces.class.getSimpleName()));
@@ -188,9 +188,9 @@ public class ReaderWriterTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-227
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for RESTEASY-227
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @OperateOnDeployment("ReaderWriterCurlyBraces")
    public void test227() throws Exception {

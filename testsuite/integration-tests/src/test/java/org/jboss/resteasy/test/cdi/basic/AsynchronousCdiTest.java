@@ -28,11 +28,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for asynchronous behavior of RESTEasy with CDI.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for asynchronous behavior of RESTEasy with CDI.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AsynchronousCdiTest {
@@ -56,9 +56,9 @@ public class AsynchronousCdiTest {
    }
 
    /**
-     * @tpTestDetails Delay is in stateless bean.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Delay is in stateless bean.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAsynchJaxRs() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -73,9 +73,9 @@ public class AsynchronousCdiTest {
    }
 
    /**
-     * @tpTestDetails Delay is in RESTEasy resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Delay is in RESTEasy resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAsynchResourceAsynchEJB() throws Exception {
       Client client = ClientBuilder.newClient();

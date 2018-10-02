@@ -23,11 +23,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Cookies and filters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1266
-   * @tpSince RESTEasy 3.1.0.Final
-   */
+ * @tpSubChapter Cookies and filters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1266
+ * @tpSince RESTEasy 3.1.0.Final
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 @Category({NotForForwardCompatibility.class})
@@ -47,9 +47,9 @@ public class FilteredCookieTest {
    }
 
    /**
-   * @tpTestDetails Tests if multiple cookies are returned by the server
-   * @tpSince RESTEasy 3.1.0.Final
-   */
+    * @tpTestDetails Tests if multiple cookies are returned by the server
+    * @tpSince RESTEasy 3.1.0.Final
+    */
    @Test
    public void testServerHeaders() {
       

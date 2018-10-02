@@ -29,10 +29,10 @@ import javax.ws.rs.core.Response;
 import static org.hamcrest.CoreMatchers.containsString;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Check jaxb requests with collection
-   * @tpSince RESTEasy 3.0.16
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Check jaxb requests with collection
+ * @tpSince RESTEasy 3.0.16
 */
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -64,9 +64,9 @@ public class CollectionCoreTest {
    }
 
    /**
-     * @tpTestDetails Test array response
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test array response
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testArray() throws Exception {
       Invocation.Builder request = client.target(generateURL("/array")).request();
@@ -81,9 +81,9 @@ public class CollectionCoreTest {
    }
 
    /**
-     * @tpTestDetails Test list response
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test list response
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testList() throws Exception {
       Invocation.Builder request = client.target(generateURL("/list")).request();
@@ -98,9 +98,9 @@ public class CollectionCoreTest {
    }
 
    /**
-     * @tpTestDetails Test GenericEntity of list response
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test GenericEntity of list response
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResponse() throws Exception {
       Invocation.Builder request = client.target(generateURL("/list/response")).request();
@@ -110,9 +110,9 @@ public class CollectionCoreTest {
    }
 
    /**
-     * @tpTestDetails Test array of customers with namespace in XML
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test array of customers with namespace in XML
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNamespacedArray() throws Exception {
       Invocation.Builder request = client.target(generateURL("/namespaced/array")).request();
@@ -128,9 +128,9 @@ public class CollectionCoreTest {
    }
 
    /**
-     * @tpTestDetails Test GenericEntity with list of customers with namespace in XML
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test GenericEntity with list of customers with namespace in XML
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNamespacedList() throws Exception {
       Invocation.Builder request = client.target(generateURL("/namespaced/list")).request();
@@ -146,9 +146,9 @@ public class CollectionCoreTest {
    }
 
    /**
-     * @tpTestDetails Test list of customers with namespace in XML
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test list of customers with namespace in XML
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNamespacedResponse() throws Exception {
       Invocation.Builder request = client.target(generateURL("/namespaced/list/response")).request();

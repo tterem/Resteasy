@@ -21,10 +21,10 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Writers
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Writers
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class WriterMatchingTest {
@@ -53,9 +53,9 @@ public class WriterMatchingTest {
    }
 
    /**
-     * @tpTestDetails Check correct sort of writers. RESTEasy should check correct writer.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check correct sort of writers. RESTEasy should check correct writer.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatch() {
       // writers sorted by type, mediatype, and then by app over builtin

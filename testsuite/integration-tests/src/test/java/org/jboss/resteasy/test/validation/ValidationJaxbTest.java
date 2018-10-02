@@ -39,11 +39,11 @@ import static org.hamcrest.CoreMatchers.containsString;
 import java.util.Arrays;
 
 /**
-   * @tpSubChapter Validation
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for JBEAP-3280
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Validation
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for JBEAP-3280
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationJaxbTest {
@@ -79,36 +79,36 @@ public class ValidationJaxbTest {
    }
 
    /**
-     * @tpTestDetails Raw XML check.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Raw XML check.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRawXML() throws Exception {
       doRawTest(MediaType.APPLICATION_XML_TYPE, "<fieldViolations><constraintType>FIELD</constraintType><path>s</path>");
    }
 
    /**
-     * @tpTestDetails Raw JSON check.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Raw JSON check.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRawJSON() throws Exception {
       doRawTest(MediaType.APPLICATION_JSON_TYPE, "\"fieldViolations\":[{\"constraintType\":\"FIELD\",\"path\":\"s\"");
    }
 
    /**
-     * @tpTestDetails ViolationReport from XML check.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails ViolationReport from XML check.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXML() throws Exception {
       doTest(MediaType.APPLICATION_XML_TYPE);
    }
 
    /**
-     * @tpTestDetails ViolationReport from JSON check.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails ViolationReport from JSON check.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testJSON() throws Exception {
       doTest(MediaType.APPLICATION_JSON_TYPE);

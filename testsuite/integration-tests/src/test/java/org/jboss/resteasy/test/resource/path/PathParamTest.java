@@ -22,11 +22,11 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Spec requires that HEAD and OPTIONS are handled in a default manner
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Spec requires that HEAD and OPTIONS are handled in a default manner
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PathParamTest {
@@ -39,12 +39,12 @@ public class PathParamTest {
    }
 
    /**
-     * @tpTestDetails Check 6 parameters on path.
-     *                Client invokes GET on root resource at /PathParamTest;
-     *                Verify that right Method is invoked using
-     *                PathParam primitive type List<String>.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check 6 parameters on path.
+    *                Client invokes GET on root resource at /PathParamTest;
+    *                Verify that right Method is invoked using
+    *                PathParam primitive type List<String>.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test6() throws Exception {
 
@@ -62,9 +62,9 @@ public class PathParamTest {
    }
 
    /**
-     * @tpTestDetails Check digits on path
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check digits on path
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test178() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -85,9 +85,9 @@ public class PathParamTest {
    }
 
    /**
-     * @tpTestDetails Check example car resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check example car resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCarResource() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -115,9 +115,9 @@ public class PathParamTest {
    }
 
    /**
-     * @tpTestDetails Test email format on path
-     * @tpSince RESTEasy 3.0.20
-     */
+    * @tpTestDetails Test email format on path
+    * @tpSince RESTEasy 3.0.20
+    */
    @Test
    public void testEmail() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

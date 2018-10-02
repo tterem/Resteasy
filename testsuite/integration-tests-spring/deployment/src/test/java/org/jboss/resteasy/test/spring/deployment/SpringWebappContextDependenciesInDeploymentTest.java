@@ -27,11 +27,11 @@ import java.util.PropertyPermission;
 import java.util.logging.LoggingPermission;
 
 /**
-   * @tpSubChapter Spring
-   * @tpChapter Integration tests - dependencies included in deployment
-   * @tpTestCaseDetails Test basic header and uri info context injection with spring dependencies on the classpath
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Spring
+ * @tpChapter Integration tests - dependencies included in deployment
+ * @tpTestCaseDetails Test basic header and uri info context injection with spring dependencies on the classpath
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SpringWebappContextDependenciesInDeploymentTest {
@@ -69,27 +69,27 @@ public class SpringWebappContextDependenciesInDeploymentTest {
    }
 
    /**
-     * @tpTestDetails Get uri info from @Context injection
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Get uri info from @Context injection
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetUri() throws Exception {
       doTestGet(PATH + "/uri", EXPECTED_URI, null);
    }
 
    /**
-     * @tpTestDetails Get headers from @Context injection
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Get headers from @Context injection
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetHeaders() throws Exception {
       doTestGet(PATH + "/headers", EXPECTED_HEADERS, null);
    }
 
    /**
-     * @tpTestDetails Test that the parameters given to the first request doesn't stick for the second request
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that the parameters given to the first request doesn't stick for the second request
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testParamsDontStick() throws Exception {
       Map<String, String> parameters = new HashMap<String, String>();
@@ -100,9 +100,9 @@ public class SpringWebappContextDependenciesInDeploymentTest {
    }
 
    /**
-     * @tpTestDetails Ensure concurrent invocations see different injected values
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Ensure concurrent invocations see different injected values
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testConcurrent() throws Exception {
       Thread uri = new Thread(new Runnable() {

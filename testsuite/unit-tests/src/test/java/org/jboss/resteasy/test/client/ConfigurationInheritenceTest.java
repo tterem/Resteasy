@@ -76,9 +76,9 @@ public class ConfigurationInheritenceTest extends ResteasyProviderFactoryImpl {
    private static final String ERROR_MSG = "Error during client-side registration";
 
    /**
-     * @tpTestDetails Register items to clientBuilder.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Register items to clientBuilder.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testClientBuilderToClient() {
       ResteasyClientBuilder clientBuilder = new ResteasyClientBuilderImpl();
@@ -112,9 +112,9 @@ public class ConfigurationInheritenceTest extends ResteasyProviderFactoryImpl {
    }
 
    /**
-     * @tpTestDetails Register items to client.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Register items to client.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testClientToWebTarget() {
       ResteasyClientBuilder clientBuilder = new ResteasyClientBuilderImpl();
@@ -149,9 +149,9 @@ public class ConfigurationInheritenceTest extends ResteasyProviderFactoryImpl {
    }
 
    /**
-     * @tpTestDetails Check default RuntimeType oc clientBuilder, client end webTarget.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Check default RuntimeType oc clientBuilder, client end webTarget.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testRuntimeType() {
       ResteasyClientBuilder clientBuilder = new ResteasyClientBuilderImpl();

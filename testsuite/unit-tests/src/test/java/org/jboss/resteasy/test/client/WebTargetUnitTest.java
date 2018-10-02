@@ -15,12 +15,12 @@ import java.util.Map;
 import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 
 /**
-   * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
-   * @version $Revision: 1 $
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Unit tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
+ * @version $Revision: 1 $
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Unit tests
+ * @tpSince RESTEasy 3.0.16
+ */
 public class WebTargetUnitTest {
 
    static Client client;
@@ -40,11 +40,11 @@ public class WebTargetUnitTest {
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve template
-     * from decoded characters
-     * @tpPassCrit Response from the server matches the pattern
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve template
+    * from decoded characters
+    * @tpPassCrit Response from the server matches the pattern
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResolveTemplateDecoded() {
       final String usernameDecoded = "a%20%3F/*/";
@@ -58,11 +58,11 @@ public class WebTargetUnitTest {
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve template
-     * from encoded characters
-     * @tpPassCrit Response from the server matches the pattern
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve template
+    * from encoded characters
+    * @tpPassCrit Response from the server matches the pattern
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResolveTemplateEncoded() {
       final String usernameEncoded = "a%20%3F/*/";
@@ -73,10 +73,10 @@ public class WebTargetUnitTest {
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve templates with empty map
-     * @tpPassCrit Response from the server matches the pattern
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, resolve templates with empty map
+    * @tpPassCrit Response from the server matches the pattern
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResolveTemplatesEmptyMap() {
       WebTarget created = base.path("{id}/{question}/{question}");
@@ -89,22 +89,22 @@ public class WebTargetUnitTest {
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, test resolveTemplate()
-     * for NullPointerException
-     * @tpPassCrit NullPointerException is raised
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, test resolveTemplate()
+    * for NullPointerException
+    * @tpPassCrit NullPointerException is raised
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test(expected = NullPointerException.class)
    public void testResolveTemplateNull() {
       created.resolveTemplate(null, null);
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance,
-     * test queryParam() NullPointerException
-     * @tpPassCrit NullPointerException is raised
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance,
+    * test queryParam() NullPointerException
+    * @tpPassCrit NullPointerException is raised
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test(expected = NullPointerException.class)
    public void testQueryParamNullPointer() {
       WebTarget created = base.path("param/{id}");
@@ -113,10 +113,10 @@ public class WebTargetUnitTest {
    }
 
    /**
-     * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, call MatrixParam with null argument
-     * @tpPassCrit NullPointerException is raised
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget Instance from another base WebTarget instance, call MatrixParam with null argument
+    * @tpPassCrit NullPointerException is raised
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test(expected = NullPointerException.class)
    public void testMatrixParamNullPointer() {
       WebTarget created = base.path("matrix/{id}");

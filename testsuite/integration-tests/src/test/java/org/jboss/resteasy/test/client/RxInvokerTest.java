@@ -35,11 +35,11 @@ import org.wildfly.extras.creaper.core.online.operations.Operations;
 import org.wildfly.extras.creaper.core.online.operations.admin.Administration;
 
 /**
-   * 
-   * @author <a href="mailto:ron.sigal@jboss.com">Ron Sigal</a>
-   * @author <a href="mailto:alessio.soldano@jboss.com">Alessio Soldano</a>
-   * @date March 9, 2016
-   */
+ * 
+ * @author <a href="mailto:ron.sigal@jboss.com">Ron Sigal</a>
+ * @author <a href="mailto:alessio.soldano@jboss.com">Alessio Soldano</a>
+ * @date March 9, 2016
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RxInvokerTest extends ClientTestBase
@@ -598,11 +598,11 @@ public class RxInvokerTest extends ClientTestBase
    }
 
    /**
-   * @tpTestDetails end-point method returns String data after some delay (3s)
-   *                client use RxInvoker. Data should not be prepared right after CompletionStage object are returned from client
-   *                CompletionStage should return correct data after 3s delay
-   * @tpSince RESTEasy 3.5
-   */
+    * @tpTestDetails end-point method returns String data after some delay (3s)
+    *                client use RxInvoker. Data should not be prepared right after CompletionStage object are returned from client
+    *                CompletionStage should return correct data after 3s delay
+    * @tpSince RESTEasy 3.5
+    */
    @Test
    public void testGetDataWithDelay() throws Exception
    {

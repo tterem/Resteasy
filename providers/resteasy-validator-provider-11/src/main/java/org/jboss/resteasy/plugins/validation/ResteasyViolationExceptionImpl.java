@@ -22,32 +22,32 @@ public class ResteasyViolationExceptionImpl extends ResteasyViolationException
    }
 
    /**
-   * New constructor
-   *
-   * @param constraintViolations set of constraint violations
-   * @param accept list of accept media types
-   */
+    * New constructor
+    *
+    * @param constraintViolations set of constraint violations
+    * @param accept list of accept media types
+    */
    public ResteasyViolationExceptionImpl(final Set<? extends ConstraintViolation<?>> constraintViolations, final List<MediaType> accept)
    {
       super(constraintViolations, accept);
    }
 
    /**
-   * New constructor
-   *
-   * @param container violation container
-   */
+    * New constructor
+    *
+    * @param container violation container
+    */
    public ResteasyViolationExceptionImpl(final SimpleViolationsContainer container)
    {
       super(container);
    }
 
    /**
-   * New constructor
-   *
-   * @param container violation container
-   * @param accept list of accept media types
-   */
+    * New constructor
+    *
+    * @param container violation container
+    * @param accept list of accept media types
+    */
 
    public ResteasyViolationExceptionImpl(final SimpleViolationsContainer container, final List<MediaType> accept)
    {

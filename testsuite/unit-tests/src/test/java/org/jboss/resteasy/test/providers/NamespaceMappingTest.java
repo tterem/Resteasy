@@ -26,11 +26,11 @@ import java.util.Map;
 import static org.hamcrest.CoreMatchers.containsString;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Namespace mapping test for jettison provider
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Namespace mapping test for jettison provider
+ * @tpSince RESTEasy 3.0.16
+ */
 public class NamespaceMappingTest {
    static JAXBContext ctx = null;
    static Unmarshaller unmarshaller = null;
@@ -44,9 +44,9 @@ public class NamespaceMappingTest {
    }
 
    /**
-     * @tpTestDetails Marshalling and unmarshalling test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Marshalling and unmarshalling test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testManual() throws Exception {
       String marshallError = "Wrong marshalling";

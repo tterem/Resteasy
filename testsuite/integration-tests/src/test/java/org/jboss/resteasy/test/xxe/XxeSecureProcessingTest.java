@@ -25,11 +25,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * @tpSubChapter XXE
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-869
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter XXE
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-869
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class XxeSecureProcessingTest {
@@ -96,9 +96,9 @@ public class XxeSecureProcessingTest {
    }
 
    /**
-     * @tpTestDetails Small request in XML root element. "resteasy.document.expand.entity.references" property is not set.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Small request in XML root element. "resteasy.document.expand.entity.references" property is not set.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlRootElementDefaultSmall() throws Exception {
       Response response = client.target(PortProviderUtil.generateURL("/xmlRootElement", null)).request().post(Entity.entity(small, "application/xml"));
@@ -110,9 +110,9 @@ public class XxeSecureProcessingTest {
    }
 
    /**
-     * @tpTestDetails Big request in XML root element. "resteasy.document.expand.entity.references" property is not set.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Big request in XML root element. "resteasy.document.expand.entity.references" property is not set.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlRootElementDefaultBig() throws Exception {
       Response response = client.target(PortProviderUtil.generateURL("/xmlRootElement", null)).request().post(Entity.entity(big, "application/xml"));
@@ -124,9 +124,9 @@ public class XxeSecureProcessingTest {
    }
 
    /**
-     * @tpTestDetails Small request in XML root element. "resteasy.document.expand.entity.references" property is set to false.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Small request in XML root element. "resteasy.document.expand.entity.references" property is set to false.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlRootElementWithoutExternalExpansionSmall() throws Exception {
       Response response = client.target(PortProviderUtil.generateURL("/xmlRootElement", T_FALSE)).request()
@@ -139,9 +139,9 @@ public class XxeSecureProcessingTest {
    }
 
    /**
-     * @tpTestDetails Big request in XML root element. "resteasy.document.expand.entity.references" property is set to false.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Big request in XML root element. "resteasy.document.expand.entity.references" property is set to false.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlRootElementWithoutExternalExpansionBig() throws Exception {
       Response response = client.target(PortProviderUtil.generateURL("/xmlRootElement", T_FALSE)).request()
@@ -154,9 +154,9 @@ public class XxeSecureProcessingTest {
    }
 
    /**
-     * @tpTestDetails Small request in XML root element. "resteasy.document.expand.entity.references" property is set to true.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Small request in XML root element. "resteasy.document.expand.entity.references" property is set to true.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlRootElementWithExternalExpansionSmall() throws Exception {
       Response response = client.target(PortProviderUtil.generateURL("/xmlRootElement", T_TRUE)).request()
@@ -169,9 +169,9 @@ public class XxeSecureProcessingTest {
    }
 
    /**
-     * @tpTestDetails Big request in XML root element. "resteasy.document.expand.entity.references" property is set to true.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Big request in XML root element. "resteasy.document.expand.entity.references" property is set to true.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlRootElementWithExternalExpansionBig() throws Exception {
       Response response = client.target(PortProviderUtil.generateURL("/xmlRootElement", T_TRUE)).request()

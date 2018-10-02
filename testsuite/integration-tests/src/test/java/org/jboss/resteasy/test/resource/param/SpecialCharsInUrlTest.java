@@ -22,11 +22,11 @@ import javax.ws.rs.core.Response;
 
 
 /**
-   * @tpSubChapter Parameters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for special characters in url
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Parameters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for special characters in url
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SpecialCharsInUrlTest {
@@ -57,9 +57,9 @@ public class SpecialCharsInUrlTest {
    private static final String decodedPart = "foo+bar gee@foo.com";
 
    /**
-     * @tpTestDetails Test for '+' and '@' characters in url, RESTEASY-137
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for '+' and '@' characters in url, RESTEASY-137
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGet() throws Exception {
       WebTarget target = client.target(String.format("%s%s?foo=%s", generateURL("/simple/"), encodedPart, encodedPart));

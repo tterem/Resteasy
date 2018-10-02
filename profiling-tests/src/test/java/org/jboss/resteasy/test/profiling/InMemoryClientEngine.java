@@ -33,10 +33,10 @@ import org.jboss.resteasy.spi.Registry;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @author <a href="mailto:rsigal@redhat.com">Ron Sigal</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @author <a href="mailto:rsigal@redhat.com">Ron Sigal</a>
+ * @version $Revision: 1 $
+ */
 public class InMemoryClientEngine implements ClientHttpEngine
 {
    protected Dispatcher dispatcher;

@@ -33,10 +33,10 @@ import java.io.FilePermission;
 import java.lang.reflect.ReflectPermission;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class XmlJAXBContextFinderTest {
@@ -158,12 +158,12 @@ public class XmlJAXBContextFinderTest {
    }
 
    /**
-     * @tpTestDetails In the following test both firstWebTarget and secondWebTarget will share the same XmlJAXBContextFinder
-     * inherited from their shared parent configuration. We define and register a ContextResolver<JAXBContext> for each
-     * webTarget so that firstWebTarget and secondWebTarget have its own (respectively firstJaxbContextResolver
-     * and secondJaxbContextResolver).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails In the following test both firstWebTarget and secondWebTarget will share the same XmlJAXBContextFinder
+    * inherited from their shared parent configuration. We define and register a ContextResolver<JAXBContext> for each
+    * webTarget so that firstWebTarget and secondWebTarget have its own (respectively firstJaxbContextResolver
+    * and secondJaxbContextResolver).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test() {
       Client client = ClientBuilder.newClient();

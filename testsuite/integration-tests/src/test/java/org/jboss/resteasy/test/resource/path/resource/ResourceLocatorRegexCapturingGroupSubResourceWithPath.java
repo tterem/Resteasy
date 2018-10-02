@@ -6,9 +6,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 /**
-   * User: rsearls
-   * Date: 2/17/17
-   */
+ * User: rsearls
+ * Date: 2/17/17
+ */
 @Produces("text/plain")
 public class ResourceLocatorRegexCapturingGroupSubResourceWithPath {
    private String name;

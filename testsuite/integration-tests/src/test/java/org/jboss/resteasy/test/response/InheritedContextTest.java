@@ -21,11 +21,11 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-952
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-952
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InheritedContextTest {
@@ -42,9 +42,9 @@ public class InheritedContextTest {
    }
 
    /**
-     * @tpTestDetails Test basic resource with no inheritance
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test basic resource with no inheritance
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testContext() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -57,9 +57,9 @@ public class InheritedContextTest {
    }
 
    /**
-     * @tpTestDetails Test basic resource with one level of inheritance
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test basic resource with one level of inheritance
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInheritedContextOneLevel() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -72,9 +72,9 @@ public class InheritedContextTest {
    }
 
    /**
-     * @tpTestDetails Test basic resource with two levels of inheritance
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test basic resource with two levels of inheritance
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInheritedContextTwoLevels() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

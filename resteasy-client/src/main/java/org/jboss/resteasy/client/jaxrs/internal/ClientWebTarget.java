@@ -20,9 +20,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class ClientWebTarget implements ResteasyWebTarget
 {
    protected ResteasyClient client;
@@ -55,13 +55,13 @@ public class ClientWebTarget implements ResteasyWebTarget
    }
    
    /**
-   * Get a new UriBuilder explicitly using RESTEasy implementation
-   * (instead of running UriBuilder.fromUri(uri) which relies on
-   * current registered JAX-RS implementation)
-   * 
-   * @param uri
-   * @return
-   */
+    * Get a new UriBuilder explicitly using RESTEasy implementation
+    * (instead of running UriBuilder.fromUri(uri) which relies on
+    * current registered JAX-RS implementation)
+    * 
+    * @param uri
+    * @return
+    */
    private static UriBuilder uriBuilderFromUri(URI uri)
    {
       return new ResteasyUriBuilderImpl().uri(uri);

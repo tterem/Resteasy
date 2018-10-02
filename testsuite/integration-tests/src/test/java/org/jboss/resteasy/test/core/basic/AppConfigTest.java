@@ -25,11 +25,11 @@ import org.junit.runner.RunWith;
 
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for resource and provider defined in one class together.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for resource and provider defined in one class together.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AppConfigTest {
@@ -60,9 +60,9 @@ public class AppConfigTest {
    }
 
    /**
-     * @tpTestDetails Test for apache client
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for apache client
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void apacheClient() throws Exception {
       CloseableHttpClient httpclient = HttpClients.createDefault();

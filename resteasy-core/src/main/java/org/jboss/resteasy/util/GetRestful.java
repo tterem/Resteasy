@@ -8,28 +8,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class GetRestful
 {
    /**
-   * Given a class, search itself and implemented interfaces for jax-rs annotations.
-   *
-   * @param clazz class
-   * @return list of class and intertfaces that have jax-rs annotations
-   */
+    * Given a class, search itself and implemented interfaces for jax-rs annotations.
+    *
+    * @param clazz class
+    * @return list of class and intertfaces that have jax-rs annotations
+    */
    public static Class getRootResourceClass(Class clazz)
    {
       return AnnotationResolver.getClassWithAnnotation(clazz, Path.class);
    }
 
    /**
-   * Given a class, search itself and implemented interfaces for jax-rs annotations.
-   *
-   * @param clazz class
-   * @return list of class and interfaces that have jax-rs annotations
-   */
+    * Given a class, search itself and implemented interfaces for jax-rs annotations.
+    *
+    * @param clazz class
+    * @return list of class and interfaces that have jax-rs annotations
+    */
    public static boolean isSubResourceClass(Class clazz)
    {
       // check class & superclasses for JAX-RS annotations
@@ -49,11 +49,11 @@ public class GetRestful
    }
    
    /**
-   * Given a class, search itself and implemented interfaces for jax-rs annotations.
-   *
-   * @param clazz class
-   * @return list of class and interfaces that have jax-rs annotations
-   */
+    * Given a class, search itself and implemented interfaces for jax-rs annotations.
+    *
+    * @param clazz class
+    * @return list of class and interfaces that have jax-rs annotations
+    */
    public static Class getSubResourceClass(Class clazz)
    {
       // check class & superclasses for JAX-RS annotations
@@ -73,11 +73,11 @@ public class GetRestful
    }
 
    /**
-   * Given a class, search itself and implemented interfaces for jax-rs annotations.
-   *
-   * @param clazz class
-   * @return list of class and interfaces that have jax-rs annotations
-   */
+    * Given a class, search itself and implemented interfaces for jax-rs annotations.
+    *
+    * @param clazz class
+    * @return list of class and interfaces that have jax-rs annotations
+    */
    public static Class<?>[] getSubResourceClasses(Class<?> clazz)
    {
       List<Class<?>> classes = new ArrayList<Class<?>>();

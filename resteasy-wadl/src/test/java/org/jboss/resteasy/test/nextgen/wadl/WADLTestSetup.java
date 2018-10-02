@@ -2,8 +2,8 @@ package org.jboss.resteasy.test.nextgen.wadl;
 
 
 /**
-   * Created by weli on 6/14/16.
-   */
+ * Created by weli on 6/14/16.
+ */
 public abstract class WADLTestSetup {
 
 

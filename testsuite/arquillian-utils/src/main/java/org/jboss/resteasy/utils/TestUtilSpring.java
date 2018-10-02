@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-   * Base util class for RESTEasy spring related testing.
-   */
+ * Base util class for RESTEasy spring related testing.
+ */
 public class TestUtilSpring {
 
    private static String defaultSpringVersion = "4.2.4.RELEASE";
@@ -17,32 +17,32 @@ public class TestUtilSpring {
 
 
    /**
-     * Read system proprty
-     *
-     * @param name         of the property
-     * @param defaultValue which will be used if system property name is not defined
-     * @return property value
-     */
+    * Read system proprty
+    *
+    * @param name         of the property
+    * @param defaultValue which will be used if system property name is not defined
+    * @return property value
+    */
    private static String readSystemProperty(String name, String defaultValue) {
       String value = System.getProperty(name);
       return (value == null) ? defaultValue : value;
    }
 
    /**
-     * Get spring version
-     *
-     * @return Spring version.
-     */
+    * Get spring version
+    *
+    * @return Spring version.
+    */
    private static String getSpringVersion() {
       return readSystemProperty("version.org.springframework", defaultSpringVersion);
    }
 
    /**
-     * Get Spring dependencies for specified spring version
-     *
-     * @param springVersion
-     * @return Spring libraries
-     */
+    * Get Spring dependencies for specified spring version
+    *
+    * @param springVersion
+    * @return Spring libraries
+    */
    private static File[] resolveSpringDependencies(String springVersion) {
       MavenUtil mavenUtil;
       mavenUtil = MavenUtil.create(true);
@@ -65,10 +65,10 @@ public class TestUtilSpring {
    }
 
    /**
-     * Adds Spring libraries and its dependencies into webarchove
-     *
-     * @param archive
-     */
+    * Adds Spring libraries and its dependencies into webarchove
+    *
+    * @param archive
+    */
    public static void addSpringLibraries(WebArchive archive) {
       archive.addAsLibraries(resolveSpringDependencies(getSpringVersion()));
    }

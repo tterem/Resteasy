@@ -22,11 +22,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Validation
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for validation of null error value
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Validation
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for validation of null error value
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationNullErrorValueTest {
@@ -59,9 +59,9 @@ public class ValidationNullErrorValueTest {
    }
 
    /**
-     * @tpTestDetails Test null field and property.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test null field and property.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNullFieldAndProperty() throws Exception {
       Response response = client.target(PortProviderUtil.generateURL("/get",
@@ -72,9 +72,9 @@ public class ValidationNullErrorValueTest {
    }
 
    /**
-     * @tpTestDetails Test null return value
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test null return value
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNullParameterAndReturnValue() throws Exception {
       {

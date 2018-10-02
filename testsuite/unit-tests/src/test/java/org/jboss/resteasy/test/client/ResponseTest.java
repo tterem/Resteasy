@@ -16,17 +16,17 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ */
 public class ResponseTest {
    protected static final Logger logger = LogManager.getLogger(ResponseTest.class.getName());
 
    /**
-     * @tpTestDetails Test getLastModified method of response"
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test getLastModified method of response"
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void getLastModifiedTest() {
       Date date = Calendar.getInstance().getTime();
@@ -38,9 +38,9 @@ public class ResponseTest {
    }
 
    /**
-     * @tpTestDetails Test expires item from metadata.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test expires item from metadata.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void expiresTest() {
       Date now = Calendar.getInstance().getTime();

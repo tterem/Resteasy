@@ -25,11 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpTestCaseDetails Test for generic proxy return type. Proxy is set on server (not on client).
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpTestCaseDetails Test for generic proxy return type. Proxy is set on server (not on client).
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ProxyWithGenericReturnTypeTest {
@@ -48,9 +48,9 @@ public class ProxyWithGenericReturnTypeTest {
    }
 
    /**
-     * @tpTestDetails Test for new client
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for new client
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void newClientTest() throws Exception {
       Client client = ClientBuilder.newClient();

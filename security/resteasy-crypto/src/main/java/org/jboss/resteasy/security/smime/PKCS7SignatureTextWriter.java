@@ -19,9 +19,9 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @Produces("text/plain")
 public class PKCS7SignatureTextWriter implements MessageBodyWriter<SignedOutput>

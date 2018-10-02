@@ -36,10 +36,10 @@ import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResponseTest {
@@ -73,11 +73,11 @@ public class ResponseTest {
    }
 
    /**
-     * @tpTestDetails Client sends HEAD request. The resource returns response with entity but the resulting response
-     * must not contain entity as per HEAD method HTTP1.1 spec.
-     * @tpPassCrit Response doesn't contain entity
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends HEAD request. The resource returns response with entity but the resulting response
+    * must not contain entity as per HEAD method HTTP1.1 spec.
+    * @tpPassCrit Response doesn't contain entity
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testHead() {
       Response response = client.target(generateURL("/head")).request().head();
@@ -88,10 +88,10 @@ public class ResponseTest {
    }
 
    /**
-     * @tpTestDetails Client sends HEAD request. The resource returns empty response.
-     * @tpPassCrit The resulting response must not contain entity as per HEAD method HTTP1.1 spec.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends HEAD request. The resource returns empty response.
+    * @tpPassCrit The resulting response must not contain entity as per HEAD method HTTP1.1 spec.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmpty() {
       Response response = client.target(generateURL("/empty")).request().head();
@@ -101,10 +101,10 @@ public class ResponseTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request. The resource creates response from RuntimeDelegate ResponseBuilder.
-     * @tpPassCrit The response code status is changed to 200 (SUCCESS) and response contains the correct entity
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request. The resource creates response from RuntimeDelegate ResponseBuilder.
+    * @tpPassCrit The response code status is changed to 200 (SUCCESS) and response contains the correct entity
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNoStatus() {
       Response response = client.target(generateURL("/entitybodyresponsetest")).request().get();
@@ -114,11 +114,11 @@ public class ResponseTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request. The resource creates response from RuntimeDelegate ResponseBuilder with
-     * empty entity.
-     * @tpPassCrit The response code status is 204 (NO CONTENT)
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request. The resource creates response from RuntimeDelegate ResponseBuilder with
+    * empty entity.
+    * @tpPassCrit The response code status is 204 (NO CONTENT)
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNullEntityNoStatus() {
       Response response = client.target(generateURL("/nullEntityResponse")).request().get();
@@ -128,10 +128,10 @@ public class ResponseTest {
 
 
    /**
-     * @tpTestDetails Client sends POST request, The resource creates link and attaches it to the Response.
-     * @tpPassCrit The response contains the link
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request, The resource creates link and attaches it to the Response.
+    * @tpPassCrit The response contains the link
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void hasLinkWhenLinkTest() {
       Response response = client.target(generateURL("/link")).request().post(Entity.text("path"));
@@ -157,12 +157,12 @@ public class ResponseTest {
    }
 
    /**
-     * @tpTestDetails Client sends registers DateReaderWriter and sends get request. The resource sends the date back
-     * in the response.
-     * @tpPassCrit The ANNOTATIONS fields are set up correctly in the DateReaderWriter after processing the response and
-     * the correct date is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends registers DateReaderWriter and sends get request. The resource sends the date back
+    * in the response.
+    * @tpPassCrit The ANNOTATIONS fields are set up correctly in the DateReaderWriter after processing the response and
+    * the correct date is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void readEntityGenericTypeAnnotationTest() {
       Date date = Calendar.getInstance().getTime();
@@ -196,12 +196,12 @@ public class ResponseTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request. The returned Response contains string entity, which is buffered and
-     * read multiple times as generic entity
-     * @tpPassCrit The response code status is changed to 200 (SUCCESS) and the entity can be read with generic Reader
-     * class and can be stored directly as array of bytes
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request. The returned Response contains string entity, which is buffered and
+    * read multiple times as generic entity
+    * @tpPassCrit The response code status is changed to 200 (SUCCESS) and the entity can be read with generic Reader
+    * class and can be stored directly as array of bytes
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void readEntityGenericTypeTest() throws Exception {
       Response response = client.target(generateURL("/entity")).request().get();

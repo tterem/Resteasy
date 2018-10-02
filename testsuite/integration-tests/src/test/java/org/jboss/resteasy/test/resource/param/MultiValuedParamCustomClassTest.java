@@ -22,12 +22,12 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Parameters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for RESTEasy extended support for multivalue @*Param (RESTEASY-1566 + RESTEASY-1746)
-   *                    org.jboss.resteasy.test.resource.param.resource.MultiValuedParamPersonWithConverter class is used
-   * @tpSince RESTEasy 4.0.0
-   */
+ * @tpSubChapter Parameters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for RESTEasy extended support for multivalue @*Param (RESTEASY-1566 + RESTEASY-1746)
+ *                    org.jboss.resteasy.test.resource.param.resource.MultiValuedParamPersonWithConverter class is used
+ * @tpSince RESTEasy 4.0.0
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MultiValuedParamCustomClassTest {
@@ -52,8 +52,8 @@ public class MultiValuedParamCustomClassTest {
 
 
    /**
-     * Define testcase data set
-     */
+    * Define testcase data set
+    */
    static String name1 = "George";
    static String name2 = "Jack";
    static String name3 = "John";
@@ -70,9 +70,9 @@ public class MultiValuedParamCustomClassTest {
 
 
    /**
-     * @tpTestDetails QueryParam test
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails QueryParam test
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testQueryParam() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -122,9 +122,9 @@ public class MultiValuedParamCustomClassTest {
 
 
    /**
-     * @tpTestDetails HeaderParam test
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails HeaderParam test
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testHeaderParam() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -173,9 +173,9 @@ public class MultiValuedParamCustomClassTest {
    }
 
    /**
-     * @tpTestDetails MatrixParam test
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails MatrixParam test
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testMatrixParam() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -224,9 +224,9 @@ public class MultiValuedParamCustomClassTest {
    }
 
    /**
-     * @tpTestDetails CookieParam test
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails CookieParam test
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testCookieParam() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -278,9 +278,9 @@ public class MultiValuedParamCustomClassTest {
    }
 
    /**
-     * @tpTestDetails PathParam test
-     * @tpSince RESTEasy 4.0.0
-     */
+    * @tpTestDetails PathParam test
+    * @tpSince RESTEasy 4.0.0
+    */
    @Test
    public void testPathParam() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

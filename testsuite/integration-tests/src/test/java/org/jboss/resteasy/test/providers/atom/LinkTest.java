@@ -23,11 +23,11 @@ import org.junit.runner.RunWith;
 
 
 /**
-   * @tpSubChapter Atom provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for org.jboss.resteasy.plugins.providers.atom.Link class
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Atom provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for org.jboss.resteasy.plugins.providers.atom.Link class
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class LinkTest {
@@ -56,9 +56,9 @@ public class LinkTest {
    }
 
    /**
-     * @tpTestDetails Test response as java custom object
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test response as java custom object
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRelativeLinkProductOutput() throws Exception {
       Response response = client.target(generateURL("/products/333")).request().get();
@@ -69,9 +69,9 @@ public class LinkTest {
    }
 
    /**
-     * @tpTestDetails Test response as XML String
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test response as XML String
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRelativeLinkStringOutput() throws Exception {
       Response response = client.target(generateURL("/products/333")).request().get();

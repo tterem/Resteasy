@@ -12,17 +12,17 @@ import java.util.Collections;
 import java.util.List;
 
 /**
-   * @tpSubChapter Requests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for javax.ws.rs.core.MediaType class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Requests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for javax.ws.rs.core.MediaType class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class MediaTypeTest {
 
    /**
-     * @tpTestDetails Test for MediaType parsing.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for MediaType parsing.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testParsing() {
       String errorMsg = "MediaType parse error";
@@ -79,9 +79,9 @@ public class MediaTypeTest {
    }
 
    /**
-     * @tpTestDetails Test for MediaType sorting.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for MediaType sorting.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSort() {
       String errorMsg = "MediaType sort error";
@@ -132,9 +132,9 @@ public class MediaTypeTest {
    }
 
    /**
-     * @tpTestDetails Test for MediaType sorting with weight
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for MediaType sorting with weight
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testWeightedSort() {
       String errorMsg = "MediaType sort error";
@@ -186,9 +186,9 @@ public class MediaTypeTest {
    }
 
    /**
-     * @tpTestDetails Test for MediaType composition
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for MediaType composition
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testComposite() {
       String errorMsg = "MediaType composite error";

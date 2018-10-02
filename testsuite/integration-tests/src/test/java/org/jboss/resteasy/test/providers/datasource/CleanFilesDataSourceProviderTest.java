@@ -37,10 +37,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.PropertyPermission;
 
 /**
-   * @tpSubChapter DataSource provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter DataSource provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CleanFilesDataSourceProviderTest {
@@ -76,12 +76,12 @@ public class CleanFilesDataSourceProviderTest {
    }
 
    /**
-     * @tpTestDetails Tests DataSourceProviders ability to read the same stream and then checks whether number of temporary
-     * files is same as before request. The manipulation with DataSourceProvider happens on the server, no data are send
-     * back and forth
-     * @tpInfo RESTEASY-1182
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests DataSourceProviders ability to read the same stream and then checks whether number of temporary
+    * files is same as before request. The manipulation with DataSourceProvider happens on the server, no data are send
+    * back and forth
+    * @tpInfo RESTEASY-1182
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDataSourceProviderInputStreamOnce() throws Exception {
       // count temporary files before
@@ -109,12 +109,12 @@ public class CleanFilesDataSourceProviderTest {
    }
 
    /**
-     * @tpTestDetails Tests DataSourceProviders ability to read the same stream twice and then checks whether number of temporary
-     * files is same as before request. The manipulation with DataSourceProvider happens on the server, no data are send
-     * back and forth
-     * @tpInfo RESTEASY-1182
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests DataSourceProviders ability to read the same stream twice and then checks whether number of temporary
+    * files is same as before request. The manipulation with DataSourceProvider happens on the server, no data are send
+    * back and forth
+    * @tpInfo RESTEASY-1182
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDataSourceProviderInputStreamTwice() throws Exception {
       // count temporary files before
@@ -142,10 +142,10 @@ public class CleanFilesDataSourceProviderTest {
    }
 
    /**
-     * @tpTestDetails Tests that DataSourceProvider removes temporary file it creates in the case when input stream is not read.
-     * @tpInfo RESTEASY-1670
-     * @tpSince RESTEasy 3.0.24
-     */
+    * @tpTestDetails Tests that DataSourceProvider removes temporary file it creates in the case when input stream is not read.
+    * @tpInfo RESTEASY-1670
+    * @tpSince RESTEasy 3.0.24
+    */
    @Test
    public void testDataSourceProviderInputStreamNotRead() throws Exception {
       // count temporary files before

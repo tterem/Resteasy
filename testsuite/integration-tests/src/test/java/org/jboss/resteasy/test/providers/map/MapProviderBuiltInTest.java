@@ -23,10 +23,10 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MapProviderBuiltInTest {
@@ -54,12 +54,12 @@ public class MapProviderBuiltInTest {
    }
 
    /**
-     * @tpTestDetails Client creates request of type "POST" with entity of type MultiValuesMap and sends it to the
-     * server using invocation method. The server returns response containing MultiValuedMap. The builtin Resteasy MapProvider
-     * is used for reading request and writing response.
-     * @tpPassCrit Correct response is returned from the server and map contains original item
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client creates request of type "POST" with entity of type MultiValuesMap and sends it to the
+    * server using invocation method. The server returns response containing MultiValuedMap. The builtin Resteasy MapProvider
+    * is used for reading request and writing response.
+    * @tpPassCrit Correct response is returned from the server and map contains original item
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMapInvoke() {
       // writers sorted by type, mediatype, and then by app over builtin
@@ -74,12 +74,12 @@ public class MapProviderBuiltInTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with specified mediatype and entity of type APPLICATION_FORM_URLENCODED_TYPE
-     * using post method. The server returns response containing MultiValuedMap. The builtin Resteasy MapProvider
-     * is used for reading request and writing response.
-     * @tpPassCrit Correct response is returned from the server and map contains original item
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with specified mediatype and entity of type APPLICATION_FORM_URLENCODED_TYPE
+    * using post method. The server returns response containing MultiValuedMap. The builtin Resteasy MapProvider
+    * is used for reading request and writing response.
+    * @tpPassCrit Correct response is returned from the server and map contains original item
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMapPost() {
       // writers sorted by type, mediatype, and then by app over builtin

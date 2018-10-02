@@ -14,9 +14,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.io.IOException;
 
 /**
-   * This test is a shameless copy of
-   * {@link org.jboss.resteasy.springmvc.test.client.BasicSpringTest}.
-   */
+ * This test is a shameless copy of
+ * {@link org.jboss.resteasy.springmvc.test.client.BasicSpringTest}.
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring-test-client2.xml" })
 @DirtiesContext

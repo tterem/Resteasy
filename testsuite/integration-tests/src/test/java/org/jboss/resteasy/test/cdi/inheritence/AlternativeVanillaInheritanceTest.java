@@ -28,11 +28,11 @@ import javax.ws.rs.core.Response;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails This class tests CDI inheritance (BookVanilaAlternative should not be used)
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails This class tests CDI inheritance (BookVanilaAlternative should not be used)
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AlternativeVanillaInheritanceTest {
@@ -48,10 +48,10 @@ public class AlternativeVanillaInheritanceTest {
    }
 
    /**
-     * @tpTestDetails Client get request. Resource check inheritance bean on server.
-     * @tpPassCrit Response status should not contain error.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client get request. Resource check inheritance bean on server.
+    * @tpPassCrit Response status should not contain error.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAlternative() throws Exception {
       Client client = ClientBuilder.newClient();

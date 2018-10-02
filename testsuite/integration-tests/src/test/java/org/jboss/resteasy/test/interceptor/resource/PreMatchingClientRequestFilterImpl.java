@@ -6,11 +6,11 @@ import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.core.Response;
 
 /**
-   * Annotation PreMatching is not valid for ClientRequestFilterImpl.
-   * This test confirms RESTEasy ignores the annotation and logs a warning msg.
-   *
-   * Created by rsearls on 8/21/17.
-   */
+ * Annotation PreMatching is not valid for ClientRequestFilterImpl.
+ * This test confirms RESTEasy ignores the annotation and logs a warning msg.
+ *
+ * Created by rsearls on 8/21/17.
+ */
 @PreMatching
 public class PreMatchingClientRequestFilterImpl implements ClientRequestFilter {
 

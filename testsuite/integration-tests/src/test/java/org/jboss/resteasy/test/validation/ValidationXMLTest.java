@@ -34,11 +34,11 @@ import java.util.Iterator;
 
 
 /**
-   * @tpSubChapter Validation
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test of xml validation
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Validation
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test of xml validation
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationXMLTest {
@@ -69,72 +69,72 @@ public class ValidationXMLTest {
    }
 
    /**
-     * @tpTestDetails Test standard XML
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test standard XML
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testStandardXML() throws Exception {
       doTestXML(MediaType.APPLICATION_XML);
    }
 
    /**
-     * @tpTestDetails Test standard JSON
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test standard JSON
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testStandardJSON() throws Exception {
       doTestJSON(MediaType.APPLICATION_JSON);
    }
 
    /**
-     * @tpTestDetails Test standard plain text
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test standard plain text
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testText() throws Exception {
       doTestText(MediaType.TEXT_PLAIN);
    }
 
    /**
-     * @tpTestDetails Check wildcard
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check wildcard
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testWildcard() throws Exception {
       doTestText(MediaType.WILDCARD);
    }
 
    /**
-     * @tpTestDetails Check XML and JSON. JSON use q=.5
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check XML and JSON. JSON use q=.5
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void tesXML_NoQ_JSON() throws Exception {
       doTestXML(MediaType.APPLICATION_XML + "," + MediaType.APPLICATION_JSON + ";q=.5");
    }
 
    /**
-     * @tpTestDetails Check XML and JSON. JSON use q=.5
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check XML and JSON. JSON use q=.5
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void tesXML_JSON_NoQ() throws Exception {
       doTestJSON(MediaType.APPLICATION_XML + ";q=.5" + "," + MediaType.APPLICATION_JSON);
    }
 
    /**
-     * @tpTestDetails Check XML and JSON. JSON use q=.5. XML use q=1
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check XML and JSON. JSON use q=.5. XML use q=1
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXML_GT_JSON() throws Exception {
       doTestXML(MediaType.APPLICATION_XML + ";q=1," + MediaType.APPLICATION_JSON + ";q=.5");
    }
 
    /**
-     * @tpTestDetails Check XML and JSON. JSON use q=1. XML use q=.5
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check XML and JSON. JSON use q=1. XML use q=.5
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXML_LT_JSON() throws Exception {
       doTestJSON(MediaType.APPLICATION_XML + ";q=.5," + MediaType.APPLICATION_JSON + ";q=1");

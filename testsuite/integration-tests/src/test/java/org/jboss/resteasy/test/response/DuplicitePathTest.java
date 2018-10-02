@@ -35,11 +35,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALIFIER;
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for JBEAP-3459
-   * @tpSince RESTEasy 3.0.17
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for JBEAP-3459
+ * @tpSince RESTEasy 3.0.17
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class DuplicitePathTest {
@@ -77,10 +77,10 @@ public class DuplicitePathTest {
    }
 
    /**
-     * @tpTestDetails Check that warning message was logged, if client makes request to path,
-     * that is handled by two methods in two end-point in two application classes
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Check that warning message was logged, if client makes request to path,
+    * that is handled by two methods in two end-point in two application classes
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class, ExpectedFailing.class}) //[RESTEASY-1445] FIXME
    public void testDuplicationTwoAppTwoResourceSameMethodPath() throws Exception {
@@ -102,10 +102,10 @@ public class DuplicitePathTest {
    }
 
    /**
-     * @tpTestDetails Check that warning message was logged, if client makes request to path,
-     * that is handled by two methods in two end-point in two application classes
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Check that warning message was logged, if client makes request to path,
+    * that is handled by two methods in two end-point in two application classes
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testDuplicationMoreAccepts() throws Exception {
@@ -126,10 +126,10 @@ public class DuplicitePathTest {
    }
 
    /**
-     * @tpTestDetails Check that warning message was logged, if client makes request to path,
-     * that is handled by two methods in two end-point in two application classes
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Check that warning message was logged, if client makes request to path,
+    * that is handled by two methods in two end-point in two application classes
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testDuplicationMoretypes() throws Exception {
@@ -150,10 +150,10 @@ public class DuplicitePathTest {
    }
 
    /**
-     * @tpTestDetails Check that warning message was logged, if client makes request to path,
-     * that is handled by two methods in two end-point in one application classes
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Check that warning message was logged, if client makes request to path,
+    * that is handled by two methods in two end-point in one application classes
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testDuplicationOneAppTwoResourcesWithSamePath() throws Exception {
@@ -174,9 +174,9 @@ public class DuplicitePathTest {
    }
 
    /**
-     * @tpTestDetails Check that warning message was logged, if client makes request to path, that is handled by two methods
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Check that warning message was logged, if client makes request to path, that is handled by two methods
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testDuplicationPathInMethod() throws Exception {
@@ -196,9 +196,9 @@ public class DuplicitePathTest {
    }
 
    /**
-     * @tpTestDetails Check that warning message was not logged, if client makes request to path, that is handled by one method (correct behaviour)
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Check that warning message was not logged, if client makes request to path, that is handled by one method (correct behaviour)
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testNoDuplicationPathInMethod() throws Exception {
       int initWarningsCount = getWarningCount();

@@ -21,10 +21,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Interceptors
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.20
-   */
+ * @tpSubChapter Interceptors
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.20
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ApplicationConfigWithInterceptorTest

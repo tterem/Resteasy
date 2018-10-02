@@ -24,10 +24,10 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class LocatorWithClassHierarchyTest {
@@ -54,11 +54,11 @@ public class LocatorWithClassHierarchyTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with null entity for the resource Locator, which creates the targeted
-     * resource object.
-     * @tpPassCrit Correct response is returned from the server
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with null entity for the resource Locator, which creates the targeted
+    * resource object.
+    * @tpPassCrit Correct response is returned from the server
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLocatorWithSubWithPathAnnotation() {
       Response response = client.target(PortProviderUtil.generateURL("/resource/locator/ParamEntityWithConstructor/ParamEntityWithConstructor=JAXRS", LocatorWithClassHierarchyTest.class.getSimpleName())).request().post(null);

@@ -26,10 +26,10 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 @Category({NotForForwardCompatibility.class})
@@ -61,10 +61,10 @@ public class XmlHeaderTest {
    }
 
    /**
-     * @tpTestDetails This tests decorators in general with the @XmlHeader annotation
-     * @tpPassCrit The response contains expected xml-stylesheet header
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails This tests decorators in general with the @XmlHeader annotation
+    * @tpPassCrit The response contains expected xml-stylesheet header
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testHeader() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/test/header"));
@@ -76,10 +76,10 @@ public class XmlHeaderTest {
    }
 
    /**
-     * @tpTestDetails This tests decorators in general with the @Stylesheet annotation
-     * @tpPassCrit The response contains expected xml-stylesheet header
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails This tests decorators in general with the @Stylesheet annotation
+    * @tpPassCrit The response contains expected xml-stylesheet header
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testStylesheet() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/test/stylesheet"));

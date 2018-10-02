@@ -44,11 +44,11 @@ import java.security.Security;
 import java.security.cert.X509Certificate;
 
 /**
-   * @tpSubChapter Crypto
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for sign by content of message signed by X509Certificate.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Crypto
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for sign by content of message signed by X509Certificate.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class EnvelopedTest {
 
    protected static final Logger logger = LogManager.getLogger(EnvelopedTest.class.getName());
@@ -77,9 +77,9 @@ public class EnvelopedTest {
    }
 
    /**
-     * @tpTestDetails Check body of message content
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check body of message content
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBody() throws Exception {
       OutputEncryptor encryptor = new JceCMSContentEncryptorBuilder(CMSAlgorithm.DES_EDE3_CBC)
@@ -118,9 +118,9 @@ public class EnvelopedTest {
    }
 
    /**
-     * @tpTestDetails Check headers
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check headers
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testHeaders()
          throws Exception {
@@ -152,9 +152,9 @@ public class EnvelopedTest {
    }
 
    /**
-     * @tpTestDetails Check bython generated content
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check bython generated content
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFromPythonGenerated() throws Exception {
       {

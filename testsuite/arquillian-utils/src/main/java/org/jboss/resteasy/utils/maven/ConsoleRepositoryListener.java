@@ -6,8 +6,8 @@ import org.eclipse.aether.AbstractRepositoryListener;
 import org.eclipse.aether.RepositoryEvent;
 
 /**
-   * This class prints logs about status of downloaded artifacts. It is used from MavenUtil class.
-   */
+ * This class prints logs about status of downloaded artifacts. It is used from MavenUtil class.
+ */
 class ConsoleRepositoryListener extends AbstractRepositoryListener {
 
    protected static final Logger logger = LogManager.getLogger(ConsoleRepositoryListener.class.getName());

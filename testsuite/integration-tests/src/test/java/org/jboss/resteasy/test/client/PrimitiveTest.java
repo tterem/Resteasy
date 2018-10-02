@@ -19,10 +19,10 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class PrimitiveTest extends ClientTestBase{
@@ -46,10 +46,10 @@ public class PrimitiveTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends POST request with text entity, server sends echoes to value and returns int.
-     * @tpPassCrit Correct response is returned from the server
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with text entity, server sends echoes to value and returns int.
+    * @tpPassCrit Correct response is returned from the server
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInt() {
       Response response = client.target(generateURL("/int")).request().post(Entity.text("5"));
@@ -59,10 +59,10 @@ public class PrimitiveTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends POST request with text entity, server sends echoes to value and returns boolean.
-     * @tpPassCrit Correct response is returned from the server
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with text entity, server sends echoes to value and returns boolean.
+    * @tpPassCrit Correct response is returned from the server
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBoolean() {
       Response response = client.target(generateURL("/boolean")).request().post(Entity.text("true"));
@@ -72,10 +72,10 @@ public class PrimitiveTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends GET request, server sends Accepted response
-     * @tpPassCrit Correct response is returned from the server
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request, server sends Accepted response
+    * @tpPassCrit Correct response is returned from the server
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBuildResponse() {
       Response response = client.target(generateURL("/nothing")).request().get();

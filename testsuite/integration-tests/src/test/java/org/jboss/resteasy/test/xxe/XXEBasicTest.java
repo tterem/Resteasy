@@ -26,12 +26,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * @tpSubChapter XXE
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-637
-   *                    Basic XXE test.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter XXE
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-637
+ *                    Basic XXE test.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class XXEBasicTest {
@@ -80,9 +80,9 @@ public class XXEBasicTest {
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.disableDTDs" is set to false
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.disableDTDs" is set to false
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXXEWithoutExpansion() throws Exception {
       logger.info(String.format("Request body: %s", request));
@@ -96,9 +96,9 @@ public class XXEBasicTest {
    }
 
    /**
-     * @tpTestDetails "resteasy.document.secure.disableDTDs" is set to true
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails "resteasy.document.secure.disableDTDs" is set to true
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXXEWithExpansion() throws Exception {
       Response response = client.target(PortProviderUtil.generateURL("/", "true")).request().post(Entity.entity(request, "application/xml"));

@@ -29,11 +29,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1066. If the content-type of the response is not specified in the request,
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1066. If the content-type of the response is not specified in the request,
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class KeepCharsetTest {
@@ -82,22 +82,22 @@ public class KeepCharsetTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with jaxb annotated object entity. Request encoding is different than from
-     * encoding of the server. Default encoding is used and entity expansion is set to true.
-     * @tpPassCrit The response is returned in encoding of the original request not in encoding of the server.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with jaxb annotated object entity. Request encoding is different than from
+    * encoding of the server. Default encoding is used and entity expansion is set to true.
+    * @tpPassCrit The response is returned in encoding of the original request not in encoding of the server.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlDefaultExpand() throws Exception {
       xmlDefault(EXPAND);
    }
 
    /**
-     * @tpTestDetails Client sends POST request with jaxb annotated object entity. Request encoding is different than from
-     * encoding of the server. Default encoding is used and entity expansion is set to false.
-     * @tpPassCrit The response is returned in encoding of the original request not in encoding of the server.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with jaxb annotated object entity. Request encoding is different than from
+    * encoding of the server. Default encoding is used and entity expansion is set to false.
+    * @tpPassCrit The response is returned in encoding of the original request not in encoding of the server.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlDefaultNoExpand() throws Exception {
       xmlDefault(NO_EXPAND);
@@ -117,22 +117,22 @@ public class KeepCharsetTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with jaxb annotated object entity. Request encoding is different than from
-     * encoding of the server. Encoding is set up in resource produces annotation and entity expansion is set to true.
-     * @tpPassCrit The response is returned in encoding of the original request not in encoding of the server.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with jaxb annotated object entity. Request encoding is different than from
+    * encoding of the server. Encoding is set up in resource produces annotation and entity expansion is set to true.
+    * @tpPassCrit The response is returned in encoding of the original request not in encoding of the server.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlProducesExpand() throws Exception {
       XmlProduces(EXPAND);
    }
 
    /**
-     * @tpTestDetails Client sends POST request with jaxb annotated object entity. Request encoding is different than from
-     * encoding of the server. Encoding is set up in resource produces annotation and entity expansion is set to false.
-     * @tpPassCrit The response is returned in encoding of the original request not in encoding of the server.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with jaxb annotated object entity. Request encoding is different than from
+    * encoding of the server. Encoding is set up in resource produces annotation and entity expansion is set to false.
+    * @tpPassCrit The response is returned in encoding of the original request not in encoding of the server.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlProducesNoExpand() throws Exception {
       XmlProduces(NO_EXPAND);
@@ -150,22 +150,22 @@ public class KeepCharsetTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request with jaxb annotated object entity. Request encoding is different than from
-     * encoding of the server. Encoding is set up in the request accepts header and entity expansion is set to true.
-     * @tpPassCrit The response is returned in encoding of the original request not in encoding of the server.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with jaxb annotated object entity. Request encoding is different than from
+    * encoding of the server. Encoding is set up in the request accepts header and entity expansion is set to true.
+    * @tpPassCrit The response is returned in encoding of the original request not in encoding of the server.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlAcceptsExpand() throws Exception {
       XmlAccepts(EXPAND);
    }
 
    /**
-     * @tpTestDetails Client sends POST request with jaxb annotated object entity. Request encoding is different than from
-     * encoding of the server. Encoding is set up in the request accepts header and entity expansion is set to false.
-     * @tpPassCrit The response is returned in encoding of the original request not in encoding of the server.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request with jaxb annotated object entity. Request encoding is different than from
+    * encoding of the server. Encoding is set up in the request accepts header and entity expansion is set to false.
+    * @tpPassCrit The response is returned in encoding of the original request not in encoding of the server.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlAcceptsNoExpand() throws Exception {
       XmlAccepts(NO_EXPAND);

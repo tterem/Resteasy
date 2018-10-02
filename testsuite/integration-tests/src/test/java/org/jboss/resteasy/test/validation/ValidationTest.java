@@ -35,11 +35,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Validator provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test - RESTEASY-1054
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Validator provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test - RESTEASY-1054
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ValidationTest {
@@ -75,10 +75,10 @@ public class ValidationTest {
    }
 
    /**
-     * @tpTestDetails Tests for Valid native constraint, Valid imposed constraint, Valid native and imposed constraints,
-     * Invalid native constraint, Invalid imposed constraint, Invalid native and imposed constraints
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests for Valid native constraint, Valid imposed constraint, Valid native and imposed constraints,
+    * Invalid native constraint, Invalid imposed constraint, Invalid native and imposed constraints
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testReturnValues() throws Exception {
       // Valid native constraint
@@ -165,9 +165,9 @@ public class ValidationTest {
    }
 
    /**
-     * @tpTestDetails Tests that resteasy correctly report expected constraint violations
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that resteasy correctly report expected constraint violations
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testViolationsBeforeReturnValue() throws Exception {
       // Valid

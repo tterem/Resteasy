@@ -51,22 +51,22 @@ public class RESTEasyTracingUtils {
    }
     
    /**
-     * Test if application and request settings enabled tracing support.
-     *
-     * @param type    application tracing configuration type.
-     * @param request request instance to check request headers.
-     * @return {@code true} if tracing support is switched on for the request.
-     */
+    * Test if application and request settings enabled tracing support.
+    *
+    * @param type    application tracing configuration type.
+    * @param request request instance to check request headers.
+    * @return {@code true} if tracing support is switched on for the request.
+    */
    static boolean isTracingSupportEnabled(RESTEasyTracingConfig type, HttpRequest request) {
       return (type == RESTEasyTracingConfig.ALL)
             || ((type == RESTEasyTracingConfig.ON_DEMAND) && (getHeaderString(request, RESTEasyTracing.HEADER_ACCEPT) != null));
    }
 
    /**
-     * Return configuration type of tracing support according to application configuration.
-     * <p>
-     * By default tracing support is switched OFF.
-     */
+    * Return configuration type of tracing support according to application configuration.
+    * <p>
+    * By default tracing support is switched OFF.
+    */
    static RESTEasyTracingConfig getRESTEasyTracingConfig(Configuration configuration) {
       final Object tracingText = configuration.getProperty(ResteasyContextParameters.RESTEASY_TRACING_TYPE);
       final RESTEasyTracingConfig result;
@@ -80,20 +80,20 @@ public class RESTEasyTracingUtils {
    }
     
    /**
-     * Get request header specified JDK logger name suffix.
-     *
-     * @param request container request instance to get request header {@link RESTEasyTracing#HEADER_LOGGER} value.
-     * @return Logger name suffix or {@code null} if not set.
-     */
+    * Get request header specified JDK logger name suffix.
+    *
+    * @param request container request instance to get request header {@link RESTEasyTracing#HEADER_LOGGER} value.
+    * @return Logger name suffix or {@code null} if not set.
+    */
    static String getTracingLoggerNameSuffix(HttpRequest request) {
       return getHeaderString(request, RESTEasyTracing.HEADER_LOGGER);
    }
 
    /**
-     * Get application-wide tracing level threshold.
-     *
-     * @return tracing level threshold.
-     */
+    * Get application-wide tracing level threshold.
+    *
+    * @return tracing level threshold.
+    */
    static RESTEasyTracingLevel getRESTEasyTracingThreshold(Configuration configuration) {
       final Object thresholdText = configuration.getProperty(ResteasyContextParameters.RESTEASY_TRACING_THRESHOLD);
       return (thresholdText == null) ? RESTEasyTracing.DEFAULT_LEVEL : RESTEasyTracingLevel.valueOf((String) thresholdText);

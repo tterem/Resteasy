@@ -29,10 +29,10 @@ import javax.ws.rs.ext.ExceptionMapper;
 import java.lang.reflect.Type;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExceptionMapperTest {
@@ -63,12 +63,12 @@ public class ExceptionMapperTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request to the server, which causes application custom exception being thrown, this
-     * exception is caught by application provided ExceptionMapper. The application provides two providers for mapping
-     * exceptions. General RuntimeException mapping and MyCustomException mapping which extends the RuntimeException.
-     * @tpPassCrit The more specific MyCustomException mapping will be used.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request to the server, which causes application custom exception being thrown, this
+    * exception is caught by application provided ExceptionMapper. The application provides two providers for mapping
+    * exceptions. General RuntimeException mapping and MyCustomException mapping which extends the RuntimeException.
+    * @tpPassCrit The more specific MyCustomException mapping will be used.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCustomExceptionsUsed() {
       Type exceptionType = Types.getActualTypeArgumentsOfAnInterface(ExceptionMapperMyCustomExceptionMapper.class, ExceptionMapper.class)[0];
@@ -81,11 +81,11 @@ public class ExceptionMapperTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request to the server, which causes WebapplicationException being thrown, this
-     * exception is caught by application provided ExceptionMapper
-     * @tpPassCrit Application provided ExceptionMapper serves the exception and creates response with ACCEPTED status
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request to the server, which causes WebapplicationException being thrown, this
+    * exception is caught by application provided ExceptionMapper
+    * @tpPassCrit Application provided ExceptionMapper serves the exception and creates response with ACCEPTED status
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testWAEResponseUsed() {
       Response response = client.target(generateURL("/resource/responseok")).request().get();
@@ -94,11 +94,11 @@ public class ExceptionMapperTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request to the server, which causes the subclass of an exception
-     * which has an ExceptionMapper to be thrown. This subclass exception is caught by application provided ExceptionMapper
-     * @tpPassCrit Application provided ExceptionMapper serves the exception and creates response with ACCEPTED status
-     * @tpSince RESTEasy 3.0.20
-     */
+    * @tpTestDetails Client sends GET request to the server, which causes the subclass of an exception
+    * which has an ExceptionMapper to be thrown. This subclass exception is caught by application provided ExceptionMapper
+    * @tpPassCrit Application provided ExceptionMapper serves the exception and creates response with ACCEPTED status
+    * @tpSince RESTEasy 3.0.20
+    */
    @Test
    public void testCustomSubExceptionsUsed() {
       Response response = client.target(generateURL("/resource/sub")).request().get();
@@ -107,10 +107,10 @@ public class ExceptionMapperTest {
    }
     
    /**
-     * @tpTestDetails Client sends GET request to a nonexistent resource, which causes a NotFoundException to be thrown.
-     * The NotFoundException is caught by the application provided NotFoundExceptionMapper, which sends a 410 status.
-     * @tpSince RESTEasy 3.0.20
-     */
+    * @tpTestDetails Client sends GET request to a nonexistent resource, which causes a NotFoundException to be thrown.
+    * The NotFoundException is caught by the application provided NotFoundExceptionMapper, which sends a 410 status.
+    * @tpSince RESTEasy 3.0.20
+    */
    @Test
    public void testNotFoundExceptionMapping() {
       Response response = client.target(generateURL("/bogus")).request().get();

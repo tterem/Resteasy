@@ -33,11 +33,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Asynchronous RESTEasy
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for asyncHttpServlet module. Check cooperation during more requests and exception mapping.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Asynchronous RESTEasy
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for asyncHttpServlet module. Check cooperation during more requests and exception mapping.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JaxrsAsyncServletTest {
@@ -70,9 +70,9 @@ public class JaxrsAsyncServletTest {
    }
 
    /**
-     * @tpTestDetails Check ForbiddenException throwing during async request. Try to inject un-exist bean.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check ForbiddenException throwing during async request. Try to inject un-exist bean.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInjectionFailure() throws Exception {
       long start = System.currentTimeMillis();
@@ -87,9 +87,9 @@ public class JaxrsAsyncServletTest {
    }
 
    /**
-     * @tpTestDetails Check ForbiddenException throwing during async request. No injection of some beans.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check ForbiddenException throwing during async request. No injection of some beans.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMethodFailure() throws Exception {
       long start = System.currentTimeMillis();
@@ -104,9 +104,9 @@ public class JaxrsAsyncServletTest {
    }
 
    /**
-     * @tpTestDetails Try to get xml response.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Try to get xml response.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAsync() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -121,9 +121,9 @@ public class JaxrsAsyncServletTest {
    }
 
    /**
-     * @tpTestDetails Check timeout exception
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check timeout exception
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testTimeout() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -134,9 +134,9 @@ public class JaxrsAsyncServletTest {
    }
 
    /**
-     * @tpTestDetails Test cooperation between two requests. Use 408 HTTP status.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test cooperation between two requests. Use 408 HTTP status.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testCancel() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -163,9 +163,9 @@ public class JaxrsAsyncServletTest {
    }
 
    /**
-     * @tpTestDetails Test cooperation between two requests. Use 200 HTTP status.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test cooperation between two requests. Use 200 HTTP status.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResumeObject() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -181,9 +181,9 @@ public class JaxrsAsyncServletTest {
    }
 
    /**
-     * @tpTestDetails Create response in new thread.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create response in new thread.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResumeObjectThread() throws Exception {
       Client client = ClientBuilder.newClient();

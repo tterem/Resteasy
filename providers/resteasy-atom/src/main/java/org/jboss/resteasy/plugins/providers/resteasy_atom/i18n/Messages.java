@@ -6,12 +6,12 @@ import org.jboss.logging.annotations.Message;
 import org.jboss.logging.annotations.MessageBundle;
 
 /**
-   * 
-   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
-   * @version $Revision: 1.1 $
-   * 
-   * Copyright October 2, 2014
-   */
+ * 
+ * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+ * @version $Revision: 1.1 $
+ * 
+ * Copyright October 2, 2014
+ */
 @MessageBundle(projectCode = "RESTEASY")
 public interface Messages
 {

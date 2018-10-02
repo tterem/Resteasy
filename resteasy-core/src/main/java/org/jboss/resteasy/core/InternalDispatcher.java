@@ -12,29 +12,29 @@ import org.jboss.resteasy.spi.Dispatcher;
 import org.jboss.resteasy.spi.HttpRequest;
 
 /**
-   * <p>
-   * InternalDispatch represents a "forward" in servlet terms. You can perform an
-   * internal GET/POST/DELETE/PUT using IntenalDispatch using Java Object. For
-   * example:
-   * </p>
-   * <pre>
-   * &#064;GET
-   * &#064;Produces(&quot;text/plain&quot;)
-   * &#064;Path(&quot;/forward/object&quot;)
-   * public SomeObject forward(@Context InternalDispatcher dispatcher)
-   * {
-   *    return (SomeObject) dispatcher.getEntity(&quot;/some-object&quot;);
-   * }
-   * </pre>
-   * <p>
-   * That previous snippet performs an internal request to /some-object and
-   * returns the Object representation of the Resource that lives at
-   * "/some-object".
-   * </p>
-   *
-   * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
-   * @version $Revision: 1 $
-   */
+ * <p>
+ * InternalDispatch represents a "forward" in servlet terms. You can perform an
+ * internal GET/POST/DELETE/PUT using IntenalDispatch using Java Object. For
+ * example:
+ * </p>
+ * <pre>
+ * &#064;GET
+ * &#064;Produces(&quot;text/plain&quot;)
+ * &#064;Path(&quot;/forward/object&quot;)
+ * public SomeObject forward(@Context InternalDispatcher dispatcher)
+ * {
+ *    return (SomeObject) dispatcher.getEntity(&quot;/some-object&quot;);
+ * }
+ * </pre>
+ * <p>
+ * That previous snippet performs an internal request to /some-object and
+ * returns the Object representation of the Resource that lives at
+ * "/some-object".
+ * </p>
+ *
+ * @author <a href="mailto:sduskis@gmail.com">Solomon Duskis</a>
+ * @version $Revision: 1 $
+ */
 
 public class InternalDispatcher
 {

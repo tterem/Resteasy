@@ -16,11 +16,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Smoke tests for jaxrs
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Smoke test for client ProxyFactory.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Smoke tests for jaxrs
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Smoke test for client ProxyFactory.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ClientSmokeTest {
@@ -32,9 +32,9 @@ public class ClientSmokeTest {
    }
 
    /**
-     * @tpTestDetails Check results from ResourceWithInterfaceSimpleClient.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check results from ResourceWithInterfaceSimpleClient.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNoDefaultsResource() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

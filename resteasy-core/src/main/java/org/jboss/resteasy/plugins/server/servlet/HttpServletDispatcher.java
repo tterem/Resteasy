@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class HttpServletDispatcher extends HttpServlet implements HttpRequestFactory, HttpResponseFactory
 {
    protected ServletContainerDispatcher servletContainerDispatcher;

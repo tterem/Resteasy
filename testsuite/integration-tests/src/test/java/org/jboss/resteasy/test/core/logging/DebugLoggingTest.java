@@ -35,12 +35,12 @@ import static org.hamcrest.core.Is.is;
 import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALIFIER;
 
 /**
-   * @tpSubChapter Interceptors
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test debug messages for used Interceptors and Providers.
-   *                    Regression test for RESTEASY-1415 and RESTEASY-1558.
-   * @tpSince RESTEasy 3.1.0
-   */
+ * @tpSubChapter Interceptors
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test debug messages for used Interceptors and Providers.
+ *                    Regression test for RESTEASY-1415 and RESTEASY-1558.
+ * @tpSince RESTEasy 3.1.0
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class DebugLoggingTest {
@@ -101,9 +101,9 @@ public class DebugLoggingTest {
    }
 
    /**
-     * @tpTestDetails Check build-in providers and interceptors
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Check build-in providers and interceptors
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    public void  testBuildIn() throws Exception {
       // count log messages before request
@@ -127,9 +127,9 @@ public class DebugLoggingTest {
    }
 
    /**
-     * @tpTestDetails Check user's custom providers and interceptors
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Check user's custom providers and interceptors
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    public void  testCustom() throws Exception {
       // count log messages before request

@@ -19,8 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * A request dispatcher that starts a RequestContext during invocation.
-   */
+ * A request dispatcher that starts a RequestContext during invocation.
+ */
 @Vetoed
 public class CdiRequestDispatcher extends RequestDispatcher {
    private final Instance<Object> instance;

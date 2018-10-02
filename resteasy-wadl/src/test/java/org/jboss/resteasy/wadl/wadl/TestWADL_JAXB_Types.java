@@ -8,8 +8,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
 /**
-   * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
-   */
+ * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
+ */
 public class TestWADL_JAXB_Types {
 
    @Test

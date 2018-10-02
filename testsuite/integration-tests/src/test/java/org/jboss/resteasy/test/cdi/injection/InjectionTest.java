@@ -59,13 +59,13 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails This is a collection of tests addressed to the interactions of
-   *                    Resteasy, CDI, EJB, and so forth in the context of a JEE Application Server.
-   *                    It tests the injection of a variety of beans into Resteasy objects.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails This is a collection of tests addressed to the interactions of
+ *                    Resteasy, CDI, EJB, and so forth in the context of a JEE Application Server.
+ *                    It tests the injection of a variety of beans into Resteasy objects.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InjectionTest extends AbstractInjectionTestBase {
@@ -158,16 +158,16 @@ public class InjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails Addresses the correct handling of built-in scopes. E.g.
-     * 1) Providers are in the application scope, whether they are annotated or not.
-     * 2) Resources are in the request scope, annotated or not.
-     * 3) Objects in the dependent scope, when injected into JAX-RS objects, are handled properly.
-     * 4) Singletons in the application scope, when injected in request scoped JAX-RS resources as
-     *    EJB proxies or Weld proxies, are handled properly.
-     * A side effect of 3) and 4) is to test that beans managed by CDI (managed beans, singleton beans,
-     * stateless EJBs) are injected properly into JAX-RS objects.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Addresses the correct handling of built-in scopes. E.g.
+    * 1) Providers are in the application scope, whether they are annotated or not.
+    * 2) Resources are in the request scope, annotated or not.
+    * 3) Objects in the dependent scope, when injected into JAX-RS objects, are handled properly.
+    * 4) Singletons in the application scope, when injected in request scoped JAX-RS resources as
+    *    EJB proxies or Weld proxies, are handled properly.
+    * A side effect of 3) and 4) is to test that beans managed by CDI (managed beans, singleton beans,
+    * stateless EJBs) are injected properly into JAX-RS objects.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testVerifyScopes() throws Exception {
       log.info("starting testVerifyScopes()");
@@ -186,10 +186,10 @@ public class InjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails Addresses the injection of managed beans, singletons, and stateless EJBs into JAX-RS objects.
-     *                Uses a singleton (BookCollection) to interact with an EntityManager.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Addresses the injection of managed beans, singletons, and stateless EJBs into JAX-RS objects.
+    *                Uses a singleton (BookCollection) to interact with an EntityManager.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEJBs() throws Exception {
       log.info("starting testEJBs()");
@@ -267,11 +267,11 @@ public class InjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails This test verifies that a session scoped SFSB survives throughout the course of a session and is
-     * re-injected into the request scoped BookResource over the course of the session.  Also, it is destroyed
-     * and replaced when an invocation is made on BookResource after the session ends.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails This test verifies that a session scoped SFSB survives throughout the course of a session and is
+    * re-injected into the request scoped BookResource over the course of the session.  Also, it is destroyed
+    * and replaced when an invocation is made on BookResource after the session ends.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSessionScope() throws Exception {
       log.info("starting testSessionScope()");
@@ -329,9 +329,9 @@ public class InjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails Tests the injection of JMS Producers, Consumers, and Queues using producer fields and methods.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests the injection of JMS Producers, Consumers, and Queues using producer fields and methods.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testJMS() throws Exception {
       log.info("starting testJMS()");
@@ -359,9 +359,9 @@ public class InjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails Verifies that BookResource.postConstruct() and preDestroy() are called for each invocation.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verifies that BookResource.postConstruct() and preDestroy() are called for each invocation.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPostConstructPreDestroy() throws Exception {
       log.info("starting testPostConstructPreDestroy()");
@@ -382,9 +382,9 @@ public class InjectionTest extends AbstractInjectionTestBase {
    }
 
    /**
-     * @tpTestDetails Verifies that ResourceProducer disposer method has been called for Queue.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verifies that ResourceProducer disposer method has been called for Queue.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDisposer() throws Exception {
       log.info("starting testDisposer()");

@@ -22,11 +22,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for resteasy.media.type.mappings and resteasy.language.mappings parameters
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for resteasy.media.type.mappings and resteasy.language.mappings parameters
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExtensionTest {
@@ -54,9 +54,9 @@ public class ExtensionTest {
    }
 
    /**
-     * @tpTestDetails Check correct values
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check correct values
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIt() {
       basicTest("/extension.xml", "xml");
@@ -68,9 +68,9 @@ public class ExtensionTest {
    }
 
    /**
-     * @tpTestDetails Check wrong value
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check wrong value
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testError() {
       Response response = client.target(PortProviderUtil.generateURL("/extension.junk", ExtensionTest.class.getSimpleName())).request().get();

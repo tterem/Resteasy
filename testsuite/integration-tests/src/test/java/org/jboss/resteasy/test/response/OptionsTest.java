@@ -26,11 +26,11 @@ import javax.ws.rs.core.Response;
 
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-363
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-363
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class OptionsTest {
@@ -58,9 +58,9 @@ public class OptionsTest {
    }
 
    /**
-     * @tpTestDetails Check options HTTP request
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check options HTTP request
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testOptions() throws Exception {
       WebTarget base = client.target(generateURL("/params/customers/333/phonenumbers"));
@@ -70,9 +70,9 @@ public class OptionsTest {
    }
 
    /**
-     * @tpTestDetails Check not allowed request
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check not allowed request
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMethodNotAllowed() throws Exception {
       WebTarget base = client.target(generateURL("/params/customers/333/phonenumbers"));
@@ -117,9 +117,9 @@ public class OptionsTest {
    }
     
    /**
-     * @tpTestDetails Check Allow header on 200 status
-     * @tpSince RESTEasy 3.0.20
-     */
+    * @tpTestDetails Check Allow header on 200 status
+    * @tpSince RESTEasy 3.0.20
+    */
    @Test
    public void testAllowHeaderOK() {
       WebTarget base = client.target(generateURL("/users/53/contacts"));
@@ -130,9 +130,9 @@ public class OptionsTest {
    }
     
    /**
-     * @tpTestDetails Check Allow header on 405 status
-     * @tpSince RESTEasy 3.0.20
-     */
+    * @tpTestDetails Check Allow header on 405 status
+    * @tpSince RESTEasy 3.0.20
+    */
    @Test
    public void testAllowHeaderMethodNotAllowed() {
       WebTarget base = client.target(generateURL("/params/customers/333/phonenumbers"));

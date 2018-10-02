@@ -9,9 +9,9 @@ import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 import java.io.InputStream;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class NoContent
 {
    public static InputStream noContentCheck( MultivaluedMap httpHeaders, InputStream is) throws NoContentException

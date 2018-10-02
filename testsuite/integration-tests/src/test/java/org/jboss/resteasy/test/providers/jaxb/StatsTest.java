@@ -33,10 +33,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class StatsTest {
@@ -68,10 +68,10 @@ public class StatsTest {
    }
 
    /**
-     * @tpTestDetails Tests resteasy jaxb utility RegistryStatsResource, it is getting information about resources available
-     * to the application
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests resteasy jaxb utility RegistryStatsResource, it is getting information about resources available
+    * to the application
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRegistryStats() throws Exception {
       StatsProxy stats = client.target(generateURL("/")).proxy(StatsProxy.class);

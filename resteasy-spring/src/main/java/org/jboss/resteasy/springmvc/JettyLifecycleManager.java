@@ -49,11 +49,11 @@ public class JettyLifecycleManager implements InitializingBean, DisposableBean
       }
 
       /*
-      * For manual testing (e.g. browser, infinite loop while(true) { try {
-      * while (!servletContainer.isStarted()) { Thread.sleep(3000); } } catch
-      * (InterruptedException e) { // TODO Auto-generated catch block
-      * e.printStackTrace(); } }
-      */
+       * For manual testing (e.g. browser, infinite loop while(true) { try {
+       * while (!servletContainer.isStarted()) { Thread.sleep(3000); } } catch
+       * (InterruptedException e) { // TODO Auto-generated catch block
+       * e.printStackTrace(); } }
+       */
    }
 
    public void destroy() throws Exception

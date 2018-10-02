@@ -52,11 +52,11 @@ import java.util.Map;
 import static org.hamcrest.CoreMatchers.containsString;
 
 /**
-   * @tpSubChapter Crypto
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Signing test for RESTEasy-crypto
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Crypto
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Signing test for RESTEasy-crypto
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SigningTest {
@@ -130,9 +130,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Test for "DKIM-Signature" header attribute
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for "DKIM-Signature" header attribute
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRequestOnly() throws Exception {
       WebTarget target = client.target(generateURL("/signed/request-only"));
@@ -157,9 +157,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Test for manual signing
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for manual signing
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSigningManual() throws Exception {
       WebTarget target = client.target(generateURL("/signed"));
@@ -179,9 +179,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Basic verification test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic verification test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBasicVerification() throws Exception {
       WebTarget target = client.target(generateURL("/signed"));
@@ -196,9 +196,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Manual verification test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Manual verification test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testManualVerification() throws Exception {
       WebTarget target = client.target(generateURL("/signed/verify-manual"));
@@ -214,9 +214,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Basic verification test with repository
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic verification test with repository
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBasicVerificationRepository() throws Exception {
       WebTarget target = client.target(generateURL("/signed"));
@@ -231,9 +231,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Basic verification test with bad signature
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic verification test with bad signature
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBasicVerificationBadSignature() throws Exception {
       WebTarget target = client.target(generateURL("/signed"));
@@ -248,9 +248,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Basic verification test with no signature
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic verification test with no signature
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBasicVerificationNoSignature() throws Exception {
       WebTarget target = client.target(generateURL("/signed"));
@@ -260,9 +260,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Test for timestamp signature with set domain
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for timestamp signature with set domain
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testTimestampSignature() throws Exception {
       DKIMSignature signature = new DKIMSignature();
@@ -276,9 +276,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Test for timestamp signature without set domain
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for timestamp signature without set domain
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testTimestamp() throws Exception {
       Verifier verifier = new Verifier();
@@ -301,9 +301,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Stale timestamp test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Stale timestamp test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testStaleTimestamp() throws Exception {
       Verifier verifier = new Verifier();
@@ -330,9 +330,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Hour expiration test (expires attribute in Signed annotation in REST end-point is used).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Hour expiration test (expires attribute in Signed annotation in REST end-point is used).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testExpiresHour() throws Exception {
       Verifier verifier = new Verifier();
@@ -349,9 +349,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Minute expiration test (expires attribute in Signed annotation in REST end-point is used).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Minute expiration test (expires attribute in Signed annotation in REST end-point is used).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testExpiresMinutes() throws Exception {
       Verifier verifier = new Verifier();
@@ -368,9 +368,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Day expiration test (expires attribute in Signed annotation in REST end-point is used).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Day expiration test (expires attribute in Signed annotation in REST end-point is used).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testExpiresDays() throws Exception {
       Verifier verifier = new Verifier();
@@ -387,9 +387,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Month expiration test (expires attribute in Signed annotation in REST end-point is used).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Month expiration test (expires attribute in Signed annotation in REST end-point is used).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testExpiresMonths() throws Exception {
       Verifier verifier = new Verifier();
@@ -406,9 +406,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Year expiration test (expires attribute in Signed annotation in REST end-point is used).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Year expiration test (expires attribute in Signed annotation in REST end-point is used).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testExpiresYears() throws Exception {
       Verifier verifier = new Verifier();
@@ -425,9 +425,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Fail expiration test (expires attribute in Signed annotation in REST end-point is used).
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Fail expiration test (expires attribute in Signed annotation in REST end-point is used).
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testExpiresFail() throws Exception {
       Verifier verifier = new Verifier();
@@ -452,9 +452,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Manual fail test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Manual fail test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testManualFail() throws Exception {
       KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
@@ -484,9 +484,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Manual success test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Manual success test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testManual() throws Exception {
       Verifier verifier = new Verifier();
@@ -505,9 +505,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Manual test with header
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Manual test with header
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testManualWithHeader() throws Exception {
       Verifier verifier = new Verifier();
@@ -526,9 +526,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Bad signature test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Bad signature test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadSignature() throws Exception {
       WebTarget target = client.target(generateURL("/signed/bad-signature"));
@@ -553,9 +553,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Bad hash test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Bad hash test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadHash() throws Exception {
       WebTarget target = client.target(generateURL("/signed/bad-hash"));
@@ -580,9 +580,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Proxy test with correct signature
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Proxy test with correct signature
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProxy() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/"));
@@ -593,9 +593,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Proxy test with bad signature
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Proxy test with bad signature
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadSignatureProxy() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/"));
@@ -610,9 +610,9 @@ public class SigningTest {
    }
 
    /**
-     * @tpTestDetails Regression test for RESTEASY-1169
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Regression test for RESTEASY-1169
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testBasicVerificationBadSignatureNoBody() throws Exception {

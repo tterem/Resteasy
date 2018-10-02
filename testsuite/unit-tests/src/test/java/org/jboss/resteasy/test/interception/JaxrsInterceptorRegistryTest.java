@@ -22,17 +22,17 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter Interception tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Unit test for JaxrsInterceptorRegistry class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Interception tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Unit test for JaxrsInterceptorRegistry class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class JaxrsInterceptorRegistryTest {
 
    /**
-     * @tpTestDetails Test for using name binding annotation.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for using name binding annotation.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void shouldUseNameBindingAnnotation() throws Exception {
       final List<Class<? extends Annotation>> bound = new ArrayList<Class<? extends Annotation>>();
@@ -57,9 +57,9 @@ public class JaxrsInterceptorRegistryTest {
    }
 
    /**
-     * @tpTestDetails Test for JaxrsInterceptorRegistry.Match class
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for JaxrsInterceptorRegistry.Match class
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testOrder() {
       List<JaxrsInterceptorRegistry.Match> matches = new ArrayList<JaxrsInterceptorRegistry.Match>();

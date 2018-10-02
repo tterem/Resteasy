@@ -5,28 +5,28 @@ import org.jboss.resteasy.jose.i18n.Messages;
 import org.jboss.resteasy.jose.jwe.CompressionAlgorithm;
 
 /**
-   * Deflate (RFC 1951) helper methods, intended for use by JWE encrypters and
-   * decrypters.
-   *
-   * @author Vladimir Dzhuvinov
-   * @version $version$ (2013-04-16)
-   */
+ * Deflate (RFC 1951) helper methods, intended for use by JWE encrypters and
+ * decrypters.
+ *
+ * @author Vladimir Dzhuvinov
+ * @version $version$ (2013-04-16)
+ */
 class DeflateHelper
 {
 
 
    /**
-   * Applies compression to the specified plain text if requested.
-   *
-   * @param compressionAlg .
-   * @param bytes             The plain text bytes. Must not be
-   *                          {@code null}.
-   *
-   * @return The bytes to encrypt.
-   *
-   * @throws RuntimeException If compression failed or the requested
-   *                       compression algorithm is not supported.
-   */
+    * Applies compression to the specified plain text if requested.
+    *
+    * @param compressionAlg .
+    * @param bytes             The plain text bytes. Must not be
+    *                          {@code null}.
+    *
+    * @return The bytes to encrypt.
+    *
+    * @throws RuntimeException If compression failed or the requested
+    *                       compression algorithm is not supported.
+    */
    public static byte[] applyCompression(final CompressionAlgorithm compressionAlg, final byte[] bytes)
       throws RuntimeException {
 
@@ -53,17 +53,17 @@ class DeflateHelper
 
 
    /**
-   * Applies decompression to the specified plain text if requested.
-   *
-   * @param compressionAlg
-   * @param bytes             The plain text bytes. Must not be
-   *                          {@code null}.
-   *
-   * @return The output bytes, decompressed if requested.
-   *
-   * @throws RuntimeException If decompression failed or the requested
-   *                       compression algorithm is not supported.
-   */
+    * Applies decompression to the specified plain text if requested.
+    *
+    * @param compressionAlg
+    * @param bytes             The plain text bytes. Must not be
+    *                          {@code null}.
+    *
+    * @return The output bytes, decompressed if requested.
+    *
+    * @throws RuntimeException If decompression failed or the requested
+    *                       compression algorithm is not supported.
+    */
    public static byte[] applyDecompression(final CompressionAlgorithm compressionAlg, final byte[] bytes)
       throws RuntimeException {
 

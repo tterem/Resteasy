@@ -18,8 +18,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ApplicationUser implements Serializable {
 
    /**
-     * The ID property for the entity
-     */
+    * The ID property for the entity
+    */
    @Id
    private Long id;
 

@@ -26,11 +26,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Asynchronous RESTEasy
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Tests use of SecureRandom to generate location job ids, RESTEASY-1483
-   * @tpSince RESTEasy 3.1.0.Final
-   */
+ * @tpSubChapter Asynchronous RESTEasy
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Tests use of SecureRandom to generate location job ids, RESTEASY-1483
+ * @tpSince RESTEasy 3.1.0.Final
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 @Category({NotForForwardCompatibility.class})
@@ -62,10 +62,10 @@ public class AsynchCounterTest {
    }
 
    /**
-     * @tpTestDetails Test that job ids are no longer consecutive
-     * @tpInfo RESTEASY-1483
-     * @tpSince RESTEasy 3.1.0.Final
-     */
+    * @tpTestDetails Test that job ids are no longer consecutive
+    * @tpInfo RESTEASY-1483
+    * @tpSince RESTEasy 3.1.0.Final
+    */
    @Test
    public void testAsynchCounter() throws Exception {
 

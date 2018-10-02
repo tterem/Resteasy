@@ -13,14 +13,14 @@ import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.specimpl.ResteasyUriInfo;
 
 /**
-   * This {@link OneToOneDecoder} is responsible for decode {@link org.jboss.netty.handler.codec.http.HttpRequest}
-   * to {@link NettyHttpRequest}'s
-   * 
-   * This implementation is {@link Sharable}
-   * 
-   * @author Norman Maurer
-   *
-   */
+ * This {@link OneToOneDecoder} is responsible for decode {@link org.jboss.netty.handler.codec.http.HttpRequest}
+ * to {@link NettyHttpRequest}'s
+ * 
+ * This implementation is {@link Sharable}
+ * 
+ * @author Norman Maurer
+ *
+ */
 @Sharable
 public class RestEasyHttpRequestDecoder extends OneToOneDecoder 
 {

@@ -24,11 +24,11 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
 /**
-   * @tpSubChapter Encoding
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-729
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Encoding
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-729
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MatrixParamEncodingTest {
@@ -60,9 +60,9 @@ public class MatrixParamEncodingTest {
    }
 
    /**
-     * @tpTestDetails Check decoded request, do not use UriBuilder
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check decoded request, do not use UriBuilder
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatrixParamRequestDecoded() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/decoded")).matrixParam("param", "ac/dc");
@@ -73,9 +73,9 @@ public class MatrixParamEncodingTest {
    }
 
    /**
-     * @tpTestDetails Check decoded request, one matrix param is not defined, do not use UriBuilder
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check decoded request, one matrix param is not defined, do not use UriBuilder
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatrixParamNullRequestDecoded() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/decodedMultipleParam")).matrixParam("param1", "").matrixParam("param2", "abc");
@@ -86,9 +86,9 @@ public class MatrixParamEncodingTest {
    }
 
    /**
-     * @tpTestDetails Check encoded request, do not use UriBuilder
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check encoded request, do not use UriBuilder
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatrixParamRequestEncoded() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/encoded")).matrixParam("param", "ac/dc");
@@ -99,9 +99,9 @@ public class MatrixParamEncodingTest {
    }
 
    /**
-     * @tpTestDetails Check decoded request, use UriBuilder
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check decoded request, use UriBuilder
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatrixParamUriBuilderDecoded() throws Exception {
       UriBuilder uriBuilder = UriBuilder.fromUri(generateURL("/decoded"));
@@ -116,9 +116,9 @@ public class MatrixParamEncodingTest {
    }
 
    /**
-     * @tpTestDetails Check encoded request, use UriBuilder
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check encoded request, use UriBuilder
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMatrixParamUriBuilderEncoded() throws Exception {
       UriBuilder uriBuilder = UriBuilder.fromUri(generateURL("/encoded"));

@@ -24,10 +24,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Multipart provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.6.0
-   */
+ * @tpSubChapter Multipart provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.6.0
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EncodingMimeMultipartFormProviderTest {
@@ -48,9 +48,9 @@ public class EncodingMimeMultipartFormProviderTest {
    }
 
    /**
-     * @tpTestDetails Test of filename encoding
-     * @tpSince RESTEasy 3.6.0
-     */
+    * @tpTestDetails Test of filename encoding
+    * @tpSince RESTEasy 3.6.0
+    */
    @Test
    public void testPostFormFile() throws Exception {
       // prepare file

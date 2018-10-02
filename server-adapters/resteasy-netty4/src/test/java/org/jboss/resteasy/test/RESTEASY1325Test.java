@@ -81,10 +81,10 @@ public class RESTEASY1325Test
    }
 
    /**
-     * Test case
-     * @throws InterruptedException
-     * @throws MalformedURLException
-     */
+    * Test case
+    * @throws InterruptedException
+    * @throws MalformedURLException
+    */
    private void callAndIdle() throws InterruptedException, MalformedURLException {
 
       EventLoopGroup group = new NioEventLoopGroup();

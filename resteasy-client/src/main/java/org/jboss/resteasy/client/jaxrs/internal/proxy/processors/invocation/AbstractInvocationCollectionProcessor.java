@@ -5,9 +5,9 @@ import org.jboss.resteasy.client.jaxrs.internal.proxy.processors.AbstractCollect
 import org.jboss.resteasy.client.jaxrs.internal.proxy.processors.InvocationProcessor;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public abstract class AbstractInvocationCollectionProcessor extends AbstractCollectionProcessor<ClientInvocation> implements InvocationProcessor
 {
    public AbstractInvocationCollectionProcessor(String paramName)

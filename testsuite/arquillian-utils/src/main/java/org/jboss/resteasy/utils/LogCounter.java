@@ -1,28 +1,28 @@
 package org.jboss.resteasy.utils;
 
 /**
-   * Counter for log messages in log file.
-   */
+ * Counter for log messages in log file.
+ */
 public class LogCounter {
    /**
-     * Examined log message
-     */
+    * Examined log message
+    */
    private String message;
 
    /**
-     * Initial count of examined log message
-     */
+    * Initial count of examined log message
+    */
    private int initCount;
 
    /**
-     * Log file is accessed differently if test is run on server, or as client
-     */
+    * Log file is accessed differently if test is run on server, or as client
+    */
    private boolean onServer;
 
 
    /**
-     * Container qualifier when arquillian starts multiple instance, null otherwise.
-     */
+    * Container qualifier when arquillian starts multiple instance, null otherwise.
+    */
    private String containerQualifier;
 
 
@@ -38,8 +38,8 @@ public class LogCounter {
    }
 
    /**
-     * Get count of examined log message, logged after creation of this LogCounter
-     */
+    * Get count of examined log message, logged after creation of this LogCounter
+    */
    public int count() {
       return TestUtil.getWarningCount(message, onServer, containerQualifier) - initCount;
    }

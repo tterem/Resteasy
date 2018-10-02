@@ -24,11 +24,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Form tests
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test inner form parameters and collections.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Form tests
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test inner form parameters and collections.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CollectionsFormTest {
@@ -42,9 +42,9 @@ public class CollectionsFormTest {
    }
 
    /**
-     * @tpTestDetails Set all relevant parameters to form.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Set all relevant parameters to form.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void shouldSupportCollectionsInForm() throws Exception {
       javax.ws.rs.core.Form form = new javax.ws.rs.core.Form()

@@ -24,11 +24,11 @@ import javax.ws.rs.core.Response;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for interceptors with timer service.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for interceptors with timer service.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class TimerInterceptorTest {
@@ -48,9 +48,9 @@ public class TimerInterceptorTest {
    }
 
    /**
-     * @tpTestDetails Timer is sheduled and than is called.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Timer is sheduled and than is called.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testTimerInterceptor() throws Exception {
       Client client = ClientBuilder.newClient();

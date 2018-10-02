@@ -17,20 +17,20 @@ import java.io.InputStream;
 import java.io.Reader;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Unit tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Test for close calling, if no content in stream is used.
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Unit tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Test for close calling, if no content in stream is used.
+ */
 public class NoContentStreamingCloseTest {
    private static final String NULL_STREAM_ERROR_MSG = "Stream should not be null";
    private static final String RESPONSE_ERROR_MSG = "Response has wrong content";
    private static final String CLOSE_ERROR_MSG = "Object was not closed";
 
    /**
-     * @tpTestDetails Non-empty input stream test.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Non-empty input stream test.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNonEmptyInputStream() throws Exception {
       String expected = "hi";
@@ -55,9 +55,9 @@ public class NoContentStreamingCloseTest {
    }
 
    /**
-     * @tpTestDetails Empty input stream test.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Empty input stream test.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmptyInputStream() throws Exception {
       NoContentStreamingCloseTestInputStream testInputStream = new NoContentStreamingCloseTestInputStream(new byte[0]);
@@ -80,9 +80,9 @@ public class NoContentStreamingCloseTest {
    }
 
    /**
-     * @tpTestDetails Empty Reader test.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Empty Reader test.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmptyReader() throws Exception {
       NoContentStreamingCloseTestInputStream testInputStream = new NoContentStreamingCloseTestInputStream(new byte[0]);
@@ -105,9 +105,9 @@ public class NoContentStreamingCloseTest {
    }
 
    /**
-     * @tpTestDetails Empty DataSource test.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Empty DataSource test.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmptyDataSource() throws Exception {
       NoContentStreamingCloseTestInputStream testInputStream = new NoContentStreamingCloseTestInputStream(new byte[0]);
@@ -130,9 +130,9 @@ public class NoContentStreamingCloseTest {
    }
 
    /**
-     * @tpTestDetails Empty Stream source test.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Empty Stream source test.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmptyStreamSource() throws Exception {
       NoContentStreamingCloseTestInputStream testInputStream = new NoContentStreamingCloseTestInputStream(new byte[0]);
@@ -156,9 +156,9 @@ public class NoContentStreamingCloseTest {
    }
 
    /**
-     * @tpTestDetails Empty Byte array source test.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Empty Byte array source test.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEmptyByteArray() throws Exception {
       NoContentStreamingCloseTestInputStream testInputStream = new NoContentStreamingCloseTestInputStream(new byte[0]);

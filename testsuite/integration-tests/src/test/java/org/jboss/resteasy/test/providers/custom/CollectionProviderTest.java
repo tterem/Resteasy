@@ -29,10 +29,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CollectionProviderTest {
@@ -117,11 +117,11 @@ public class CollectionProviderTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request to the server, server sends LinkedList with String items. Two message
-     * body readers are registered. One always returns isWritable false, so the other one has to be used.
-     * @tpPassCrit Correct MessageBodyReader is used for writing response of the type LinkedList<String>
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request to the server, server sends LinkedList with String items. Two message
+    * body readers are registered. One always returns isWritable false, so the other one has to be used.
+    * @tpPassCrit Correct MessageBodyReader is used for writing response of the type LinkedList<String>
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGenericTypeDefault() {
       Response response = client.target(generateURL("/resource/response/linkedlist")).request().get();
@@ -130,12 +130,12 @@ public class CollectionProviderTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request to the server, server sends response with GenericEntity of the type
-     * LinkedList with String items. Two message body readers are registered. One always returns isWritable false,
-     * so the other one has to be used.
-     * @tpPassCrit Correct MessageBodyReader is used for writing response with GenericEntity of the type LinkedList<String>
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request to the server, server sends response with GenericEntity of the type
+    * LinkedList with String items. Two message body readers are registered. One always returns isWritable false,
+    * so the other one has to be used.
+    * @tpPassCrit Correct MessageBodyReader is used for writing response with GenericEntity of the type LinkedList<String>
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGenericTypeResponse() {
       Response response = client.target(generateURL("/resource/genericentity/linkedlist")).request().get();

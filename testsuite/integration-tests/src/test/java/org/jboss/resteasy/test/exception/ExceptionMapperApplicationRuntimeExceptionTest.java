@@ -21,11 +21,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Regression test for RESTEASY-421
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Regression test for RESTEASY-421
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExceptionMapperApplicationRuntimeExceptionTest {
@@ -39,9 +39,9 @@ public class ExceptionMapperApplicationRuntimeExceptionTest {
    }
 
    /**
-     * @tpTestDetails Check ExceptionMapper for ApplicationException
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check ExceptionMapper for ApplicationException
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMapper() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

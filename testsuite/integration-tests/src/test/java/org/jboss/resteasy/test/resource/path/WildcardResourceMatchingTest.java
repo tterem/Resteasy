@@ -22,11 +22,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Check class name of sub-resources, which process client request
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Check class name of sub-resources, which process client request
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class WildcardResourceMatchingTest {
@@ -55,9 +55,9 @@ public class WildcardResourceMatchingTest {
    }
 
    /**
-     * @tpTestDetails Check root resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check root resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMain() {
       Response response = client.target(generateURL("/main")).request().get();
@@ -67,9 +67,9 @@ public class WildcardResourceMatchingTest {
    }
 
    /**
-     * @tpTestDetails Check sub-resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check sub-resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMainSub() {
       Response response = client.target(generateURL("/main/sub")).request().get();
@@ -79,9 +79,9 @@ public class WildcardResourceMatchingTest {
    }
 
    /**
-     * @tpTestDetails Check sub-sub-resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check sub-sub-resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMainSubSub() {
       Response response = client.target(generateURL("/main/sub/sub")).request().get();

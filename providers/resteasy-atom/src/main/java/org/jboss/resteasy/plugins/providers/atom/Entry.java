@@ -23,80 +23,80 @@ import java.util.Date;
 import java.util.List;
 
 /**
-   * <p>Per RFC4287:</p>
-   * <pre>
-   * The "atom:entry" element represents an individual entry, acting as a
-   * container for metadata and data associated with the entry.  This
-   * element can appear as a child of the atom:feed element, or it can
-   * appear as the document (i.e., top-level) element of a stand-alone
-   * Atom Entry Document.
-   *
-   * atomEntry =
-   *    element atom:entry {
-   *       atomCommonAttributes,
-   *       (atomAuthor*
-   *        &amp; atomCategory*
-   *        &amp; atomContent?
-   *        &amp; atomContributor*
-   *        &amp; atomId
-   *        &amp; atomLink*
-   *        &amp; atomPublished?
-   *        &amp; atomRights?
-   *        &amp; atomSource?
-   *        &amp; atomSummary?
-   *        &amp; atomTitle
-   *        &amp; atomUpdated
-   *        &amp; extensionElement*)
-   *    }
-   *
-   * This specification assigns no significance to the order of appearance
-   * of the child elements of atom:entry.
-   *
-   * The following child elements are defined by this specification (note
-   * that it requires the presence of some of these elements):
-   *
-   * o  atom:entry elements MUST contain one or more atom:author elements,
-   *    unless the atom:entry contains an atom:source element that
-   *    contains an atom:author element or, in an Atom Feed Document, the
-   *    atom:feed element contains an atom:author element itself.
-   * o  atom:entry elements MAY contain any number of atom:category
-   *    elements.
-   * o  atom:entry elements MUST NOT contain more than one atom:content
-   *    element.
-   * o  atom:entry elements MAY contain any number of atom:contributor
-   *    elements.
-   * o  atom:entry elements MUST contain exactly one atom:id element.
-   * o  atom:entry elements that contain no child atom:content element
-   *    MUST contain at least one atom:link element with a rel attribute
-   *    value of "alternate".
-   * o  atom:entry elements MUST NOT contain more than one atom:link
-   *    element with a rel attribute value of "alternate" that has the
-   *    same combination of type and hreflang attribute values.
-   * o  atom:entry elements MAY contain additional atom:link elements
-   *    beyond those described above.
-   * o  atom:entry elements MUST NOT contain more than one atom:published
-   *    element.
-   * o  atom:entry elements MUST NOT contain more than one atom:rights
-   *    element.
-   * o  atom:entry elements MUST NOT contain more than one atom:source
-   *    element.
-   * o  atom:entry elements MUST contain an atom:summary element in either
-   *    of the following cases:
-   *    *  the atom:entry contains an atom:content that has a "src"
-   *       attribute (and is thus empty).
-   *    *  the atom:entry contains content that is encoded in Base64;
-   *       i.e., the "type" attribute of atom:content is a MIME media type
-   *       [MIMEREG], but is not an XML media type [RFC3023], does not
-   *       begin with "text/", and does not end with "/xml" or "+xml".
-   * o  atom:entry elements MUST NOT contain more than one atom:summary
-   *    element.
-   * o  atom:entry elements MUST contain exactly one atom:title element.
-   * o  atom:entry elements MUST contain exactly one atom:updated element.
-   * </pre>
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * <p>Per RFC4287:</p>
+ * <pre>
+ * The "atom:entry" element represents an individual entry, acting as a
+ * container for metadata and data associated with the entry.  This
+ * element can appear as a child of the atom:feed element, or it can
+ * appear as the document (i.e., top-level) element of a stand-alone
+ * Atom Entry Document.
+ *
+ * atomEntry =
+ *    element atom:entry {
+ *       atomCommonAttributes,
+ *       (atomAuthor*
+ *        &amp; atomCategory*
+ *        &amp; atomContent?
+ *        &amp; atomContributor*
+ *        &amp; atomId
+ *        &amp; atomLink*
+ *        &amp; atomPublished?
+ *        &amp; atomRights?
+ *        &amp; atomSource?
+ *        &amp; atomSummary?
+ *        &amp; atomTitle
+ *        &amp; atomUpdated
+ *        &amp; extensionElement*)
+ *    }
+ *
+ * This specification assigns no significance to the order of appearance
+ * of the child elements of atom:entry.
+ *
+ * The following child elements are defined by this specification (note
+ * that it requires the presence of some of these elements):
+ *
+ * o  atom:entry elements MUST contain one or more atom:author elements,
+ *    unless the atom:entry contains an atom:source element that
+ *    contains an atom:author element or, in an Atom Feed Document, the
+ *    atom:feed element contains an atom:author element itself.
+ * o  atom:entry elements MAY contain any number of atom:category
+ *    elements.
+ * o  atom:entry elements MUST NOT contain more than one atom:content
+ *    element.
+ * o  atom:entry elements MAY contain any number of atom:contributor
+ *    elements.
+ * o  atom:entry elements MUST contain exactly one atom:id element.
+ * o  atom:entry elements that contain no child atom:content element
+ *    MUST contain at least one atom:link element with a rel attribute
+ *    value of "alternate".
+ * o  atom:entry elements MUST NOT contain more than one atom:link
+ *    element with a rel attribute value of "alternate" that has the
+ *    same combination of type and hreflang attribute values.
+ * o  atom:entry elements MAY contain additional atom:link elements
+ *    beyond those described above.
+ * o  atom:entry elements MUST NOT contain more than one atom:published
+ *    element.
+ * o  atom:entry elements MUST NOT contain more than one atom:rights
+ *    element.
+ * o  atom:entry elements MUST NOT contain more than one atom:source
+ *    element.
+ * o  atom:entry elements MUST contain an atom:summary element in either
+ *    of the following cases:
+ *    *  the atom:entry contains an atom:content that has a "src"
+ *       attribute (and is thus empty).
+ *    *  the atom:entry contains content that is encoded in Base64;
+ *       i.e., the "type" attribute of atom:content is a MIME media type
+ *       [MIMEREG], but is not an XML media type [RFC3023], does not
+ *       begin with "text/", and does not end with "/xml" or "+xml".
+ * o  atom:entry elements MUST NOT contain more than one atom:summary
+ *    element.
+ * o  atom:entry elements MUST contain exactly one atom:title element.
+ * o  atom:entry elements MUST contain exactly one atom:updated element.
+ * </pre>
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @XmlRootElement(name = "entry")
 @XmlAccessorType(XmlAccessType.PROPERTY)
 @XmlType(propOrder = {"titleElement", "links", "categories", "updated", "id", "published", "authors", "contributors", "source",
@@ -316,10 +316,10 @@ public class Entry extends CommonAttributes
    
    
    /**
-   * Get content as an XML Element if the content is XML.  Otherwise, this will just return null.
-   *
-   * @return {@link Element}
-   */
+    * Get content as an XML Element if the content is XML.  Otherwise, this will just return null.
+    *
+    * @return {@link Element}
+    */
    @XmlTransient
    public Element getAnyOtherElement()
    {
@@ -345,18 +345,18 @@ public class Entry extends CommonAttributes
       return this.anyOther;
    }
    /**
-   * Extract the content as the provided JAXB annotated type.
-   * <p>
-   * This method will use a cached JAXBContext used by the Resteasy JAXB providers
-   * or, if those are not existent, it will create a new JAXBContext from scratch
-   * using the class.
-   *
-   * @param <T> type
-   * @param clazz                class type you are expecting
-   * @param otherPossibleClasses Other classe you want to create the JAXBContext with
-   * @return null if there is no XML content
-   * @throws JAXBException jaxb exception
-   */
+    * Extract the content as the provided JAXB annotated type.
+    * <p>
+    * This method will use a cached JAXBContext used by the Resteasy JAXB providers
+    * or, if those are not existent, it will create a new JAXBContext from scratch
+    * using the class.
+    *
+    * @param <T> type
+    * @param clazz                class type you are expecting
+    * @param otherPossibleClasses Other classe you want to create the JAXBContext with
+    * @return null if there is no XML content
+    * @throws JAXBException jaxb exception
+    */
    @SuppressWarnings({ "unchecked", "rawtypes" })
    public <T> T getAnyOtherJAXBObject(Class<T> clazz, Class... otherPossibleClasses) throws JAXBException {
       JAXBContext ctx = null;
@@ -402,11 +402,11 @@ public class Entry extends CommonAttributes
 
    
    /**
-   * Returns previous extracted jaxbobject from a call to getJAXBObject(Class{@literal <}T{@literal >} clazz)
-   * or value passed in through a previous setJAXBObject().
-   *
-   * @return object
-   */
+    * Returns previous extracted jaxbobject from a call to getJAXBObject(Class{@literal <}T{@literal >} clazz)
+    * or value passed in through a previous setJAXBObject().
+    *
+    * @return object
+    */
    @XmlTransient
    public Object getAnyOtherJAXBObject()
    {

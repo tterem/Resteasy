@@ -34,11 +34,11 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Parameters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test all variants of primitive matrix parameters (boolean, int, long, float, etc.)
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Parameters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test all variants of primitive matrix parameters (boolean, int, long, float, etc.)
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MatrixParamAsPrimitiveTest {
@@ -167,36 +167,36 @@ public class MatrixParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Basic test for boolean
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic test for boolean
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBoolean() {
       basicTest("boolean", "true");
    }
 
    /**
-     * @tpTestDetails Test default value for boolean
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value for boolean
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBooleanPrimitivesDefault() {
       testDefault("boolean", "true");
    }
 
    /**
-     * @tpTestDetails Test default value of boolean with wrapper
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of boolean with wrapper
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBooleanPrimitiveWrapperDefault() {
       testWrappersDefault("boolean", "true");
    }
 
    /**
-     * @tpTestDetails Test default values of list of boolean
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default values of list of boolean
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBooleanPrimitiveListDefault() {
       testListDefault("boolean", "true");
@@ -204,36 +204,36 @@ public class MatrixParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Basic test for byte
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic test for byte
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetByte() {
       basicTest("byte", "127");
    }
 
    /**
-     * @tpTestDetails Test default value of byte
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of byte
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBytePrimitivesDefault() {
       testDefault("byte", "127");
    }
 
    /**
-     * @tpTestDetails Test default value of byte with wrapper
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of byte with wrapper
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBytePrimitiveWrappersDefault() {
       testWrappersDefault("byte", "127");
    }
 
    /**
-     * @tpTestDetails Test default value of list and array of byte
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of list and array of byte
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetBytePrimitiveListDefault() {
       testListDefault("byte", "127");
@@ -241,36 +241,36 @@ public class MatrixParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Basic test for short
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic test for short
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetShort() {
       basicTest("short", "32767");
    }
 
    /**
-     * @tpTestDetails Test default values of short
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default values of short
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetShortPrimtivesDefault() {
       testDefault("short", "32767");
    }
 
    /**
-     * @tpTestDetails Test default values of short with wrapper
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default values of short with wrapper
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetShortPrimtiveWrappersDefault() {
       testWrappersDefault("short", "32767");
    }
 
    /**
-     * @tpTestDetails Test default values of list and array of short
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default values of list and array of short
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetShortPrimtiveListDefault() {
       testListDefault("short", "32767");
@@ -278,36 +278,36 @@ public class MatrixParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Basic test for int
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic test for int
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetInt() {
       basicTest("int", "2147483647");
    }
 
    /**
-     * @tpTestDetails Test default value of int
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of int
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetIntPrimitivesDefault() {
       testDefault("int", "2147483647");
    }
 
    /**
-     * @tpTestDetails Test default value of int with wrapper
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of int with wrapper
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetIntPrimitiveWrappersDefault() {
       testWrappersDefault("int", "2147483647");
    }
 
    /**
-     * @tpTestDetails Test default value of list and array of integer
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of list and array of integer
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetIntPrimitiveListDefault() {
       testListDefault("int", "2147483647");
@@ -315,36 +315,36 @@ public class MatrixParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Basic test for long
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic test for long
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLong() {
       basicTest("long", "9223372036854775807");
    }
 
    /**
-     * @tpTestDetails Test default value of long
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of long
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLongPrimitivesDefault() {
       testDefault("long", "9223372036854775807");
    }
 
    /**
-     * @tpTestDetails Test default value of long with wrapper
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of long with wrapper
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLongPrimitiveWrappersDefault() {
       testWrappersDefault("long", "9223372036854775807");
    }
 
    /**
-     * @tpTestDetails Test default value of list and array of long
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of list and array of long
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetLongPrimitiveListDefault() {
       testListDefault("long", "9223372036854775807");
@@ -352,36 +352,36 @@ public class MatrixParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Basic test for float
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic test for float
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetFloat() {
       basicTest("float", "3.14159265");
    }
 
    /**
-     * @tpTestDetails Test default value of float
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of float
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetFloatPrimitivesDefault() {
       testDefault("float", "3.14159265");
    }
 
    /**
-     * @tpTestDetails Test default value of float with wrapper
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of float with wrapper
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetFloatPrimitiveWrappersDefault() {
       testWrappersDefault("float", "3.14159265");
    }
 
    /**
-     * @tpTestDetails Test default value of array and list of float
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of array and list of float
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetFloatPrimitiveListDefault() {
       testListDefault("float", "3.14159265");
@@ -389,36 +389,36 @@ public class MatrixParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Basic test for double
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic test for double
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetDouble() {
       basicTest("double", "3.14159265358979");
    }
 
    /**
-     * @tpTestDetails Test default value of double
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of double
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetDoublePrimitivesDefault() {
       testDefault("double", "3.14159265358979");
    }
 
    /**
-     * @tpTestDetails Test default value of double with wrapper
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of double with wrapper
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetDoublePrimitiveWrappersDefault() {
       testWrappersDefault("double", "3.14159265358979");
    }
 
    /**
-     * @tpTestDetails Test default value of list and array of double
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test default value of list and array of double
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetDoublePrimitiveListDefault() {
       testListDefault("double", "3.14159265358979");
@@ -426,36 +426,36 @@ public class MatrixParamAsPrimitiveTest {
    }
    
    /**
-     * @tpTestDetails Basic test for char
-     * @tpSince RESTEasy 3.0.24
-     */
+    * @tpTestDetails Basic test for char
+    * @tpSince RESTEasy 3.0.24
+    */
    @Test
    public void testGetChar() {
       basicTest("char", "a");
    }
 
    /**
-     * @tpTestDetails Test default value of char
-     * @tpSince RESTEasy 3.0.24
-     */
+    * @tpTestDetails Test default value of char
+    * @tpSince RESTEasy 3.0.24
+    */
    @Test
    public void testGetCharPrimitivesDefault() {
       testDefault("char", "a");
    }
 
    /**
-     * @tpTestDetails Test default value of char with wrapper
-     * @tpSince RESTEasy 3.0.24
-     */
+    * @tpTestDetails Test default value of char with wrapper
+    * @tpSince RESTEasy 3.0.24
+    */
    @Test
    public void testGetCharPrimitiveWrappersDefault() {
       testWrappersDefault("char", "a");
    }
 
    /**
-     * @tpTestDetails Test default value of list and array of char
-     * @tpSince RESTEasy 3.0.24
-     */
+    * @tpTestDetails Test default value of list and array of char
+    * @tpSince RESTEasy 3.0.24
+    */
    @Test
    public void testGetCharPrimitiveListDefault() {
       testListDefault("char", "a");
@@ -463,9 +463,9 @@ public class MatrixParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Test wrong data stored in int format
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test wrong data stored in int format
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadPrimitiveValue() {
       {
@@ -480,9 +480,9 @@ public class MatrixParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Test wrong data stored in int format, wrapper is used
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test wrong data stored in int format, wrapper is used
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadPrimitiveWrapperValue() {
       {
@@ -497,9 +497,9 @@ public class MatrixParamAsPrimitiveTest {
    }
 
    /**
-     * @tpTestDetails Test wrong data stored in list of int
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test wrong data stored in list of int
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBadPrimitiveListValue() {
       {

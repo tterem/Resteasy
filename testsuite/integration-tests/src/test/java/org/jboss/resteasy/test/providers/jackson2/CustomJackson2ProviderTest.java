@@ -31,10 +31,10 @@ import org.junit.runner.RunWith;
 
 
 /**
-   * @tpSubChapter Jackson2 provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.23
-   */
+ * @tpSubChapter Jackson2 provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.23
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CustomJackson2ProviderTest {
@@ -82,12 +82,12 @@ public class CustomJackson2ProviderTest {
    }
 
    /**
-     * @tpTestDetails Deployment contains jboss-deployment-structure.xml, which excludes jaxrs subsystem and brings its
-     * own version of resteasy libraries (resteasy-servlet-initializer, resteasy-jaxrs, resteasy-jackson2-provider and it's dependencies).
-     * Test verifies that Jackson2Provider from .war archive was loaded instead of the container default one.
-     * @tpPassCrit The resource returns Success response
-     * @tpSince RESTEasy 3.0.23
-     */
+    * @tpTestDetails Deployment contains jboss-deployment-structure.xml, which excludes jaxrs subsystem and brings its
+    * own version of resteasy libraries (resteasy-servlet-initializer, resteasy-jaxrs, resteasy-jackson2-provider and it's dependencies).
+    * Test verifies that Jackson2Provider from .war archive was loaded instead of the container default one.
+    * @tpPassCrit The resource returns Success response
+    * @tpSince RESTEasy 3.0.23
+    */
    @Test
    public void testCustomUsed() {
       WebTarget target = client.target(generateURL("/jackson2providerpath"));

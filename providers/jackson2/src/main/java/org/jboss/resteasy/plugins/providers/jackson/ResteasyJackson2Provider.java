@@ -39,11 +39,11 @@ import com.fasterxml.jackson.jaxrs.json.JsonEndpointConfig;
 import com.fasterxml.jackson.jaxrs.util.ClassKey;
 
 /**
-   * Only different from Jackson one is *+json in @Produces/@Consumes
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Only different from Jackson one is *+json in @Produces/@Consumes
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @Consumes({"application/json", "application/*+json", "text/json"})
 @Produces({"application/json", "application/*+json", "text/json"})
@@ -190,8 +190,8 @@ public class ResteasyJackson2Provider extends JacksonJaxbJsonProvider
       }
 
       /* 27-Feb-2009, tatu: Where can we find desired encoding? Within
-      *   HTTP headers?
-      */
+       *   HTTP headers?
+       */
       JsonEncoding enc = findEncoding(mediaType, httpHeaders);
       final JsonGenerator jg = writer.getFactory().createGenerator(entityStream, enc);
       jg.disable(JsonGenerator.Feature.AUTO_CLOSE_TARGET);

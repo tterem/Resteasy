@@ -26,11 +26,11 @@ import org.junit.runner.RunWith;
 import java.util.logging.LoggingPermission;
 
 /**
-   * @tpSubChapter Resources
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression tests for RESTEASY-1398
-   * @tpSince RESTEasy 3.0.20
-   */
+ * @tpSubChapter Resources
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression tests for RESTEASY-1398
+ * @tpSince RESTEasy 3.0.20
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class MultipleEndpointsWarningTest

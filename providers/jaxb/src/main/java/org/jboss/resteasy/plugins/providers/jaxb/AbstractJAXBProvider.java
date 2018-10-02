@@ -31,12 +31,12 @@ import org.jboss.resteasy.util.TypeConverter;
 import org.xml.sax.InputSource;
 
 /**
-   * A AbstractJAXBProvider.
-   *
-   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
-   * @version $Revision:$
-   * @param <T> type
-   */
+ * A AbstractJAXBProvider.
+ *
+ * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+ * @version $Revision:$
+ * @param <T> type
+ */
 public abstract class AbstractJAXBProvider<T> extends AbstractEntityProvider<T>
 {
    @Context
@@ -157,13 +157,13 @@ public abstract class AbstractJAXBProvider<T> extends AbstractEntityProvider<T>
    }
 
    /**
-   * Retrieve JAXB marshaller.
-   *
-   * @param type type
-   * @param annotations annotations
-   * @param mediaType media type
-   * @return jaxb marshaller
-   */
+    * Retrieve JAXB marshaller.
+    *
+    * @param type type
+    * @param annotations annotations
+    * @param mediaType media type
+    * @return jaxb marshaller
+    */
    protected Marshaller getMarshaller(Class<?> type,
                                       Annotation[] annotations,
                                       MediaType mediaType)
@@ -213,19 +213,19 @@ public abstract class AbstractJAXBProvider<T> extends AbstractEntityProvider<T>
    }
 
    /**
-   *
-   */
+    *
+    */
    public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
    {
       return isReadWritable(type, genericType, annotations, mediaType);
    }
 
    /**
-   * Gets the character set from media type.
-   *
-   * @param mediaType media type
-   * @return charset
-   */
+    * Gets the character set from media type.
+    *
+    * @param mediaType media type
+    * @return charset
+    */
    public static String getCharset(final MediaType mediaType)
    {
       if (mediaType != null)

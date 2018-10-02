@@ -35,10 +35,10 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResourceMatchingTest {
@@ -82,11 +82,11 @@ public class ResourceMatchingTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request, the returned response Mediatype is APPLICATION_SVG_XML_TYPE as set up
-     * by the custom MessageBodyWriter.
-     * @tpPassCrit The correct mediatype and response code 200 (Success) is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request, the returned response Mediatype is APPLICATION_SVG_XML_TYPE as set up
+    * by the custom MessageBodyWriter.
+    * @tpPassCrit The correct mediatype and response code 200 (Success) is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMediaTypeFromProvider() {
       Response response = client.target(generateURL("/nomedia/list")).request().get();
@@ -97,11 +97,11 @@ public class ResourceMatchingTest {
 
 
    /**
-     * @tpTestDetails Client sends GET request, the returned response Mediatype is APPLICATION_OCTET_STREAM_TYPE as
-     * set up by the custom MessageBodyWriter.
-     * @tpPassCrit The correct mediatype and response code 200 (Success) is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request, the returned response Mediatype is APPLICATION_OCTET_STREAM_TYPE as
+    * set up by the custom MessageBodyWriter.
+    * @tpPassCrit The correct mediatype and response code 200 (Success) is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNoProduces() {
       Response response = client.target(generateURL("/nomedia/nothing")).request().get();
@@ -112,13 +112,13 @@ public class ResourceMatchingTest {
 
 
    /**
-     * @tpTestDetails Client sends GET request with request header of media type "text/*". The matching resource path
-     * doesn't accept this mediatype. According to HTTP 1.1 specification:
-     * "HTTP/1.1 servers are allowed to return responses which are not acceptable according to the accept headers
-     * sent in the request."
-     * @tpPassCrit The response code 406 (Not Acceptable) is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request with request header of media type "text/*". The matching resource path
+    * doesn't accept this mediatype. According to HTTP 1.1 specification:
+    * "HTTP/1.1 servers are allowed to return responses which are not acceptable according to the accept headers
+    * sent in the request."
+    * @tpPassCrit The response code 406 (Not Acceptable) is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNonConcreteMatch() {
       Response response = client.target(generateURL("/error")).request("text/*").get();
@@ -128,10 +128,10 @@ public class ResourceMatchingTest {
 
 
    /**
-     * @tpTestDetails Client sends GET request, with header accept type "testi/*", the more specific resource is chosen
-     * @tpPassCrit The response code 200 (Success) is returned and the correct resource is chosen
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request, with header accept type "testi/*", the more specific resource is chosen
+    * @tpPassCrit The response code 200 (Success) is returned and the correct resource is chosen
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testWildcard() {
       Response response = client.target(generateURL("/yas")).request("testi/*").get();
@@ -141,12 +141,12 @@ public class ResourceMatchingTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request, with header accept type "testiii/textiii" and "application/xml",
-     * "application/xml" media type has in the resource higher probability to be chosen (indicates that by higher "qs"
-     * than other resources)
-     * @tpPassCrit The returned resource is the resource with media type "application/xml"
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request, with header accept type "testiii/textiii" and "application/xml",
+    * "application/xml" media type has in the resource higher probability to be chosen (indicates that by higher "qs"
+    * than other resources)
+    * @tpPassCrit The returned resource is the resource with media type "application/xml"
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testQS() {
       Response response = client.target(generateURL("/yas")).request("testiii/textiii", "application/xml").get();
@@ -156,10 +156,10 @@ public class ResourceMatchingTest {
    }
 
    /**
-     * @tpTestDetails Client sends empty POST request, with specified header Content-Type "text/plain",
-     * @tpPassCrit The correct subresource is chosen
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends empty POST request, with specified header Content-Type "text/plain",
+    * @tpPassCrit The correct subresource is chosen
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testOverride() {
       Response response = client.target(generateURL("/resource/subresource/sub")).request()
@@ -170,11 +170,11 @@ public class ResourceMatchingTest {
    }
 
    /**
-     * @tpTestDetails Client sends OPTIONS request, which allows it to determine which HTTP methods it can issue without
-     * initiating resource retrieval.
-     * @tpPassCrit The response code 200 (Success) is returned and response contains GET option.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends OPTIONS request, which allows it to determine which HTTP methods it can issue without
+    * initiating resource retrieval.
+    * @tpPassCrit The response code 200 (Success) is returned and response contains GET option.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testOptions() {
       Response response = client.target(generateURL("/resource/subresource/something")).request().options();
@@ -185,11 +185,11 @@ public class ResourceMatchingTest {
    }
 
    /**
-     * @tpTestDetails Client sends empty POST request with mediatype q parameter specified. It gives higher weight (q=0.9)
-     * to a mediatype "application/*" then to mediatype "application/xml" (q=0.1).
-     * @tpPassCrit The more specific mediatype will be chosen by the server ("application/xml")
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends empty POST request with mediatype q parameter specified. It gives higher weight (q=0.9)
+    * to a mediatype "application/*" then to mediatype "application/xml" (q=0.1).
+    * @tpPassCrit The more specific mediatype will be chosen by the server ("application/xml")
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAvoidWildcard() {
       Response response = client.target(generateURL("/weight")).request("application/*;q=0.9", "application/xml;q=0.1")

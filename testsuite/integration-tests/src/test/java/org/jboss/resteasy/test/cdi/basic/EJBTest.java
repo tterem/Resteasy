@@ -46,11 +46,11 @@ import java.util.logging.LoggingPermission;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails EJB and RESTEasy integration test.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails EJB and RESTEasy integration test.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class EJBTest {
 
@@ -60,8 +60,8 @@ public class EJBTest {
    EJBLocalResource localResource;
 
    /**
-     * value of DEPLOYMENT_NAME is also used in ejbtest_web.xml file
-     */
+    * value of DEPLOYMENT_NAME is also used in ejbtest_web.xml file
+    */
    public static final String DEPLOYMENT_NAME = "resteasy-ejb-test";
 
    private Client client;
@@ -98,8 +98,8 @@ public class EJBTest {
    }
 
    /**
-     * client needs to be non-static. BeforeClass and AfterClass methods are not executed on server (@RunAsClient annotation is not used).
-     */
+    * client needs to be non-static. BeforeClass and AfterClass methods are not executed on server (@RunAsClient annotation is not used).
+    */
    @Before
    public void init() {
       client = ClientBuilder.newClient();
@@ -111,10 +111,10 @@ public class EJBTest {
    }
 
    /**
-     * @tpTestDetails Verify that EJBBookReaderImpl, EJBBookWriterImpl, and EJBBookResource
-     *                are placed in the correct scope.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verify that EJBBookReaderImpl, EJBBookWriterImpl, and EJBBookResource
+    *                are placed in the correct scope.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testVerifyScopesJaxRs() throws Exception {
       log.info("starting testVerifyScopesJaxRs()");
@@ -126,10 +126,10 @@ public class EJBTest {
    }
 
    /**
-     * @tpTestDetails Verify that EJBBookReaderImpl, EJBBookWriterImpl, and EJBBookResource
-     *                are placed in the correct scope on local.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verify that EJBBookReaderImpl, EJBBookWriterImpl, and EJBBookResource
+    *                are placed in the correct scope on local.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testVerifyScopesLocalEJB() throws Exception {
       log.info("starting testVerifyScopesLocalEJB()");
@@ -138,10 +138,10 @@ public class EJBTest {
    }
 
    /**
-     * @tpTestDetails Verify that EJBBookReaderImpl, EJBBookWriterImpl, and EJBBookResource
-     *                are placed in the correct scope on remote.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verify that EJBBookReaderImpl, EJBBookWriterImpl, and EJBBookResource
+    *                are placed in the correct scope on remote.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testVerifyScopesRemoteEJB() throws Exception {
       log.info("starting testVerifyScopesRemoteEJB()");
@@ -155,10 +155,10 @@ public class EJBTest {
    }
 
    /**
-     * @tpTestDetails Verify that EJBBookReader and EJBBookWriterImpl are correctly injected
-     *                into EJBBookResource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verify that EJBBookReader and EJBBookWriterImpl are correctly injected
+    *                into EJBBookResource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testVerifyInjectionJaxRs() throws Exception {
       log.info("starting testVerifyInjectionJaxRs()");
@@ -169,10 +169,10 @@ public class EJBTest {
    }
 
    /**
-     * @tpTestDetails Verify that EJBBookReader and EJBBookWriterImpl are correctly injected
-     *                into EJBBookResource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verify that EJBBookReader and EJBBookWriterImpl are correctly injected
+    *                into EJBBookResource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testVerifyInjectionLocalEJB() throws Exception {
       log.info("starting testVerifyInjectionLocalEJB()");
@@ -182,10 +182,10 @@ public class EJBTest {
    }
 
    /**
-     * @tpTestDetails Verify that EJBBookReader and EJBBookWriterImpl are correctly injected
-     *                into EJBBookResource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Verify that EJBBookReader and EJBBookWriterImpl are correctly injected
+    *                into EJBBookResource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testVerifyInjectionRemoteEJB() throws Exception {
       log.info("starting testVerifyInjectionRemoteEJB()");
@@ -199,9 +199,9 @@ public class EJBTest {
    }
 
    /**
-     * @tpTestDetails Further addresses the use of EJBs as JAX-RS components.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Further addresses the use of EJBs as JAX-RS components.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAsJaxRSResource() throws Exception {
       log.info("entering testAsJaxRSResource()");
@@ -259,9 +259,9 @@ public class EJBTest {
    }
 
    /**
-     * @tpTestDetails Invokes additional methods of JAX-RS resource as local EJB.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Invokes additional methods of JAX-RS resource as local EJB.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAsLocalEJB() throws Exception {
       log.info("entering testAsLocalEJB()");
@@ -296,9 +296,9 @@ public class EJBTest {
    }
 
    /**
-     * @tpTestDetails Invokes additional methods of JAX-RS resource as remote EJB.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Invokes additional methods of JAX-RS resource as remote EJB.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAsRemoteEJB() throws Exception {
       log.info("entering testAsRemoteEJB()");

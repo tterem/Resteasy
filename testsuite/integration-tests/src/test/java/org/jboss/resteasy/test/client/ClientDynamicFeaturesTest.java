@@ -25,20 +25,20 @@ import java.util.PropertyPermission;
 import java.util.Set;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1083
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1083
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class ClientDynamicFeaturesTest {
    private static final String CLIENT_FEATURE_ERROR_MSG = "Wrong count of client features";
    private static final String SERVER_FEATURE_ERROR_MSG = "Wrong count of server features";
 
    /**
-     * Test needs to be run on deployment.
-     * @return
-     */
+    * Test needs to be run on deployment.
+    * @return
+    */
    @Deployment
    public static Archive<?> deploy() {
       WebArchive war = TestUtil.prepareArchive(ClientDynamicFeaturesTest.class.getSimpleName());
@@ -57,9 +57,9 @@ public class ClientDynamicFeaturesTest {
    }
 
    /**
-     * @tpTestDetails Check dynamic feature counts.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check dynamic feature counts.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDynamicFeatures() throws Exception {
       ResteasyProviderFactory factory =  ResteasyProviderFactory.newInstance();

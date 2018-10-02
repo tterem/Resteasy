@@ -27,12 +27,12 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1125. Jaxb message body reader not recognized when using generics in
-   * complex inheritance structure
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1125. Jaxb message body reader not recognized when using generics in
+ * complex inheritance structure
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GenericResourceTest {
@@ -64,9 +64,9 @@ public class GenericResourceTest {
    }
 
    /**
-     * @tpTestDetails Tests Jaxb object with resource using inheritance, generics and abstract classes
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests Jaxb object with resource using inheritance, generics and abstract classes
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGenericInheritingResource() throws Exception {
       WebTarget target = client.target(generateURL("/test"));
@@ -79,9 +79,9 @@ public class GenericResourceTest {
    }
 
    /**
-     * @tpTestDetails Tests Jaxb object with resource using inheritance, generics and abstract classes
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests Jaxb object with resource using inheritance, generics and abstract classes
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGenericResource() throws Exception {
       WebTarget target = client.target(generateURL("/test2"));

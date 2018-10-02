@@ -24,11 +24,11 @@ import javax.ws.rs.client.Invocation;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter Response
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-1103
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Response
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-1103
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SubresourceValidationTest {
@@ -45,9 +45,9 @@ public class SubresourceValidationTest {
    }
 
    /**
-     * @tpTestDetails Test for subresources
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for subresources
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSubresource() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -59,9 +59,9 @@ public class SubresourceValidationTest {
    }
 
    /**
-     * @tpTestDetails Test for validation of returned value
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for validation of returned value
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testReturnValue() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

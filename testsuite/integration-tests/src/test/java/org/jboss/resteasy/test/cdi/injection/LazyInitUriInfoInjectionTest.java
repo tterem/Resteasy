@@ -21,11 +21,11 @@ import javax.ws.rs.client.WebTarget;
 
 
 /**
-   * @tpSubChapter Injection
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-573
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Injection
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-573
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class LazyInitUriInfoInjectionTest {
@@ -43,9 +43,9 @@ public class LazyInitUriInfoInjectionTest {
    }
 
    /**
-     * @tpTestDetails Repeat client request without query parameter
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Repeat client request without query parameter
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDup() throws Exception {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

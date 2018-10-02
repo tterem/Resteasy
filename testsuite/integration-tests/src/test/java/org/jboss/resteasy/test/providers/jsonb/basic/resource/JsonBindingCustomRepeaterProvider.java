@@ -23,8 +23,8 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 
 /**
-   * This test provider is based on DefaultTextPlain provider
-   */
+ * This test provider is based on DefaultTextPlain provider
+ */
 @SuppressWarnings("unchecked")
 @Provider
 @Produces({"application/json", "application/*+json", "text/json", "*/*"})

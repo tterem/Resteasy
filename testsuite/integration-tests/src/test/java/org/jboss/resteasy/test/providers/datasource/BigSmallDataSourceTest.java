@@ -28,10 +28,10 @@ import java.io.FileInputStream;
 import java.io.ByteArrayInputStream;
 
 /**
-   * @tpSubChapter DataSource provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter DataSource provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class BigSmallDataSourceTest {
@@ -64,9 +64,9 @@ public class BigSmallDataSourceTest {
    }
 
    /**
-     * @tpTestDetails Tests DataSourceProviders ability to get content type of the file attached to the request
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests DataSourceProviders ability to get content type of the file attached to the request
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPostDataSource() throws Exception {
       File file = new File(testFilePath);
@@ -78,9 +78,9 @@ public class BigSmallDataSourceTest {
    }
 
    /**
-     * @tpTestDetails Tests DataSourceProviders ability to read and write bigger file
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests DataSourceProviders ability to read and write bigger file
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEchoDataSourceBigData() throws Exception {
       WebTarget target = client.target(generateURL("/jaf/echo"));
@@ -114,9 +114,9 @@ public class BigSmallDataSourceTest {
    }
 
    /**
-     * @tpTestDetails Tests DataSourceProviders ability to read and write small stream
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests DataSourceProviders ability to read and write small stream
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEchoDataSourceSmallData() throws Exception {
       WebTarget target = client.target(generateURL("/jaf/echo"));
@@ -149,9 +149,9 @@ public class BigSmallDataSourceTest {
    }
 
    /**
-     * @tpTestDetails Tests DataSourceProviders ability to return InputStream for given value
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests DataSourceProviders ability to return InputStream for given value
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetDataSource() throws Exception {
       String value = "foo";

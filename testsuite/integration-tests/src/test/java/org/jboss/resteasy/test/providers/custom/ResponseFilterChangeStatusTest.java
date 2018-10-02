@@ -27,10 +27,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResponseFilterChangeStatusTest {
@@ -63,11 +63,11 @@ public class ResponseFilterChangeStatusTest {
    }
 
    /**
-     * @tpTestDetails Client sends HEAD request. The response gets processed by custom ResponseFilter.
-     * @tpPassCrit The response code status is changed to 201 (CREATED), the response doesn't contain any entity,
-     * because this was HEAD request and response has set up its MediaType
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends HEAD request. The response gets processed by custom ResponseFilter.
+    * @tpPassCrit The response code status is changed to 201 (CREATED), the response doesn't contain any entity,
+    * because this was HEAD request and response has set up its MediaType
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDefaultHead() {
       Response response = client.target(generateURL("/default_head")).request().head();
@@ -83,10 +83,10 @@ public class ResponseFilterChangeStatusTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST request. The response gets processed by custom ResponseFilter.
-     * @tpPassCrit The response code status is changed to 201 (CREATED)
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST request. The response gets processed by custom ResponseFilter.
+    * @tpPassCrit The response code status is changed to 201 (CREATED)
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testChangeStatus() {
       Response response = client.target(generateURL("/empty")).request().post(null);

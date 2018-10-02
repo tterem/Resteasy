@@ -24,10 +24,10 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ExceptionMapperJaxbTest {
@@ -57,10 +57,10 @@ public class ExceptionMapperJaxbTest {
    }
 
    /**
-     * @tpTestDetails Test for custom JAXBUnmarshalException excetion mapper
-     * @tpInfo RESTEASY-519
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for custom JAXBUnmarshalException excetion mapper
+    * @tpInfo RESTEASY-519
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFailure() throws Exception {
       ResteasyWebTarget target = client.target(generateURL("/test"));

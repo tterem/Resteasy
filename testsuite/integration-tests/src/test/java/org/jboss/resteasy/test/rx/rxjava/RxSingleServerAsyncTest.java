@@ -37,13 +37,13 @@ import org.junit.runner.RunWith;
 
 
 /**
-   * @tpSubChapter Reactive classes
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 4.0
-   * 
-   * In these tests, the server resource methods create and return objects of type Single<T>. 
-   * The client does synchronous invocations to get objects of type T.
-   */
+ * @tpSubChapter Reactive classes
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 4.0
+ * 
+ * In these tests, the server resource methods create and return objects of type Single<T>. 
+ * The client does synchronous invocations to get objects of type T.
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class RxSingleServerAsyncTest {

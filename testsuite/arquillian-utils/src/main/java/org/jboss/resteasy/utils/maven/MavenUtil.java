@@ -50,10 +50,10 @@ import org.eclipse.aether.version.InvalidVersionSpecificationException;
 import org.eclipse.aether.version.VersionScheme;
 
 /**
-   * This class was originally written by Kabir Khan to download old maven artifact in wildfly-core.
-   * This class was updated for RESTEasy TS purposes.
-   * Original sources can be found in wildfly-core:/model-test/src/main/java/org/jboss/as/model/test/MavenUtil.java
-   */
+ * This class was originally written by Kabir Khan to download old maven artifact in wildfly-core.
+ * This class was updated for RESTEasy TS purposes.
+ * Original sources can be found in wildfly-core:/model-test/src/main/java/org/jboss/as/model/test/MavenUtil.java
+ */
 public class MavenUtil {
 
    protected static final Logger logger = LogManager.getLogger(MavenUtil.class.getName());
@@ -266,11 +266,11 @@ public class MavenUtil {
    }
 
    /*
-     * Aether's components implement
-     * org.sonatype.aether.spi.locator.Service to ease manual wiring and
-     * using the prepopulated DefaultServiceLocator, we only need to
-     * register the repository connector factories.
-     */
+    * Aether's components implement
+    * org.sonatype.aether.spi.locator.Service to ease manual wiring and
+    * using the prepopulated DefaultServiceLocator, we only need to
+    * register the repository connector factories.
+    */
    public static RepositorySystem newRepositorySystem() {
       DefaultServiceLocator locator = new DefaultServiceLocator();
       locator.addService(ArtifactDescriptorReader.class, DefaultArtifactDescriptorReader.class);

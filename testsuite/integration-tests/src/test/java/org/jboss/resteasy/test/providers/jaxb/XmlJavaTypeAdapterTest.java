@@ -38,10 +38,10 @@ import org.junit.Assert;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class XmlJavaTypeAdapterTest {
 
@@ -87,10 +87,10 @@ public class XmlJavaTypeAdapterTest {
    }
 
    /**
-     * @tpTestDetails Tests jaxb resource is returning correct string with @XmlJavaTypeAdapter in place
-     * @tpInfo RESTEASY-1088
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests jaxb resource is returning correct string with @XmlJavaTypeAdapter in place
+    * @tpInfo RESTEASY-1088
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @RunAsClient
    public void testPostHuman() {
@@ -102,10 +102,10 @@ public class XmlJavaTypeAdapterTest {
    }
 
    /**
-     * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning Foo object
-     * @tpInfo RESTEASY-1088
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning Foo object
+    * @tpInfo RESTEASY-1088
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @RunAsClient
    public void testPostFooToFoo() {
@@ -117,10 +117,10 @@ public class XmlJavaTypeAdapterTest {
    }
 
    /**
-     * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning String
-     * @tpInfo RESTEASY-1088
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning String
+    * @tpInfo RESTEASY-1088
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @RunAsClient
    public void testPostFooToString() {
@@ -134,10 +134,10 @@ public class XmlJavaTypeAdapterTest {
    }
 
    /**
-     * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning list of Human objects
-     * @tpInfo RESTEASY-1088
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning list of Human objects
+    * @tpInfo RESTEASY-1088
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    @RunAsClient
    public void testPostHumanList() {
@@ -156,12 +156,12 @@ public class XmlJavaTypeAdapterTest {
    }
 
    /**
-     * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning list of Alien objects,
-     * where application expects the use of Human class with jaxb annotation, XmlJavaTypeAdapter is used to convert Alien
-     * to Human and back
-     * @tpInfo RESTEASY-1088
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning list of Alien objects,
+    * where application expects the use of Human class with jaxb annotation, XmlJavaTypeAdapter is used to convert Alien
+    * to Human and back
+    * @tpInfo RESTEASY-1088
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPostAlienList() {
       ResteasyWebTarget target = client.target(generateURL("/list/alien"));
@@ -190,12 +190,12 @@ public class XmlJavaTypeAdapterTest {
    }
 
    /**
-     * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning array of Alien objects,
-     * where application expects the use of Human class with jaxb annotation, XmlJavaTypeAdapter is used to convert Alien
-     * to Human and back
-     * @tpInfo RESTEASY-1088
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning array of Alien objects,
+    * where application expects the use of Human class with jaxb annotation, XmlJavaTypeAdapter is used to convert Alien
+    * to Human and back
+    * @tpInfo RESTEASY-1088
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPostAlienArray() {
       ResteasyWebTarget target = client.target(generateURL("/array/alien"));
@@ -224,12 +224,12 @@ public class XmlJavaTypeAdapterTest {
    }
 
    /**
-     * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning map of Alien objects,
-     * where application expects the use of Human class with jaxb annotation, XmlJavaTypeAdapter is used to convert Alien
-     * to Human and back
-     * @tpInfo RESTEASY-1088
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning map of Alien objects,
+    * where application expects the use of Human class with jaxb annotation, XmlJavaTypeAdapter is used to convert Alien
+    * to Human and back
+    * @tpInfo RESTEASY-1088
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPostAlienMap() {
       ResteasyWebTarget target = client.target(generateURL("/map/alien"));
@@ -258,12 +258,12 @@ public class XmlJavaTypeAdapterTest {
    }
 
    /**
-     * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning list of Alien objects,
-     * where application expects the use of Human class with jaxb annotation, XmlJavaTypeAdapter is used to convert Alien
-     * to Human and back. The Entity send to the server extends Alien class.
-     * @tpInfo RESTEASY-1088
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests jaxb with class annotated by @XmlJavaTypeAdapter, resource returning list of Alien objects,
+    * where application expects the use of Human class with jaxb annotation, XmlJavaTypeAdapter is used to convert Alien
+    * to Human and back. The Entity send to the server extends Alien class.
+    * @tpInfo RESTEASY-1088
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPostTralfamadoreanList() {
       ResteasyWebTarget target = client.target(generateURL("/list/alien"));

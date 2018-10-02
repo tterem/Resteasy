@@ -22,11 +22,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Tests generic resource class
-   * @tpSince RESTEasy 3.0.20
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Tests generic resource class
+ * @tpSince RESTEasy 3.0.20
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GenericResourceTest {

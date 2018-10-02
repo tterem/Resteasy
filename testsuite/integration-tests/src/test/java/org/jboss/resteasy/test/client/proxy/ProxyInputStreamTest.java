@@ -21,11 +21,11 @@ import org.junit.runner.RunWith;
 import java.io.InputStream;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-351
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-351
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ProxyInputStreamTest {
@@ -54,9 +54,9 @@ public class ProxyInputStreamTest {
    }
 
    /**
-     * @tpTestDetails New client version
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails New client version
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testInputStreamNewClient() throws Exception {
       ProxyInputStreamProxy proxy = client.target(generateURL("/")).proxy(ProxyInputStreamProxy.class);

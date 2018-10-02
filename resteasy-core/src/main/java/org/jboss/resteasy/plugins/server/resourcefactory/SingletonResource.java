@@ -11,11 +11,11 @@ import org.jboss.resteasy.spi.metadata.ResourceBuilder;
 import org.jboss.resteasy.spi.metadata.ResourceClass;
 
 /**
-   * VERY simple implementation that just returns the instance the SingleResource was created with
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * VERY simple implementation that just returns the instance the SingleResource was created with
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class SingletonResource implements ResourceFactory
 {
    private final Object obj;

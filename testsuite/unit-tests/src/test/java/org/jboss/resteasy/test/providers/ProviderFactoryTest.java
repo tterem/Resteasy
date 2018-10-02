@@ -34,11 +34,11 @@ import java.util.Set;
 import static org.junit.Assert.assertNotNull;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Regression test for RESTEASY-584
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Regression test for RESTEASY-584
+ * @tpSince RESTEasy 3.0.16
+ */
 public class ProviderFactoryTest {
 
    private ResteasyProviderFactory factory;
@@ -49,9 +49,9 @@ public class ProviderFactoryTest {
    }
 
    /**
-     * @tpTestDetails Basic check for ResteasyProviderFactory class.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic check for ResteasyProviderFactory class.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void shouldReturnStringParameterUnmarshallerAddedForType() {
       factory.registerProvider(ProviderFactoryStrParamUnmarshaller.class);
@@ -59,10 +59,10 @@ public class ProviderFactoryTest {
    }
 
    /**
-     * @tpTestDetails Regression test for JBEAP-4706
-     *                Test whether the priority is supplied to the container request filter registry.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Regression test for JBEAP-4706
+    *                Test whether the priority is supplied to the container request filter registry.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testRegisterProviderInstancePriorityContainerRequestFilter() throws Exception {
       ContainerRequestFilter requestFilter = new ContainerRequestFilter() {
@@ -73,10 +73,10 @@ public class ProviderFactoryTest {
    }
 
    /**
-     * @tpTestDetails Regression test for JBEAP-4706
-     *                Test whether the priority is supplied to the container response filter registry.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Regression test for JBEAP-4706
+    *                Test whether the priority is supplied to the container response filter registry.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void testRegisterProviderInstancePriorityContainerResponseFilter() throws Exception {
       ContainerResponseFilter responseFilter = new ContainerResponseFilter() {
@@ -87,10 +87,10 @@ public class ProviderFactoryTest {
    }
 
    /**
-     * Generic helper method for RESTEASY-1311 cases, because the test logic is the same.
-     * Unfortunately, there seems to be no public accessors for the properties we need,
-     * so we have to resort to using reflection to check the right priority setting.
-     */
+    * Generic helper method for RESTEASY-1311 cases, because the test logic is the same.
+    * Unfortunately, there seems to be no public accessors for the properties we need,
+    * so we have to resort to using reflection to check the right priority setting.
+    */
    private void testRegisterProviderInstancePriority(Object filter, Object registry) throws Exception {
       int priorityOverride = Priorities.USER + 1;
       factory.registerProviderInstance(filter, null, priorityOverride, false);

@@ -25,10 +25,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class StreamResetTest {
@@ -61,9 +61,9 @@ public class StreamResetTest {
    }
 
    /**
-     * @tpTestDetails Regression test for JBEAP-2138.  BufferEntity method is called.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for JBEAP-2138.  BufferEntity method is called.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testJBEAP2138() throws Exception {
       Client client = ClientBuilder.newClient();
@@ -81,9 +81,9 @@ public class StreamResetTest {
    }
 
    /**
-     * @tpTestDetails Regression test for JBEAP-2138.  BufferEntity method is not called.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Regression test for JBEAP-2138.  BufferEntity method is not called.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testJBEAP2138WithoutBufferedEntity() throws Exception {
       try {

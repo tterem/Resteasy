@@ -23,11 +23,11 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
-   * An HTTP cache that behaves somewhat the same way as a proxy (like Squid)
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * An HTTP cache that behaves somewhat the same way as a proxy (like Squid)
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class InfinispanCache implements ServerCache
 {
 

@@ -37,8 +37,8 @@ import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.spi.ResteasyUriBuilder;
 
 /**
-   * Created by hbraun on 15.01.18.
-   */
+ * Created by hbraun on 15.01.18.
+ */
 @SuppressWarnings("rawtypes")
 class MicroprofileClientBuilder implements RestClientBuilder {
 

@@ -16,12 +16,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
-   * Handles CORS requests both preflight and simple CORS requests.
-   * You must bind this as a singleton and set up allowedOrigins and other settings to use.
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Handles CORS requests both preflight and simple CORS requests.
+ * You must bind this as a singleton and set up allowedOrigins and other settings to use.
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @PreMatching
 public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilter
 {
@@ -33,20 +33,20 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
    protected Set<String> allowedOrigins = new HashSet<String>();
 
    /**
-   * Put "*" if you want to accept all origins.
-   *
-   * @return allowed origins
-   */
+    * Put "*" if you want to accept all origins.
+    *
+    * @return allowed origins
+    */
    public Set<String> getAllowedOrigins()
    {
       return allowedOrigins;
    }
 
    /**
-   * Defaults to true.
-   *
-   * @return allow credentials
-   */
+    * Defaults to true.
+    *
+    * @return allow credentials
+    */
    public boolean isAllowCredentials()
    {
       return allowCredentials;
@@ -58,21 +58,21 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
    }
 
    /**
-   * Will allow all by default.
-   *
-   * @return allowed methods
-   */
+    * Will allow all by default.
+    *
+    * @return allowed methods
+    */
    public String getAllowedMethods()
    {
       return allowedMethods;
    }
 
    /**
-   * Will allow all by default
-   * comma delimited string for Access-Control-Allow-Methods.
-   *
-   * @param allowedMethods allowed methods
-   */
+    * Will allow all by default
+    * comma delimited string for Access-Control-Allow-Methods.
+    *
+    * @param allowedMethods allowed methods
+    */
    public void setAllowedMethods(String allowedMethods)
    {
       this.allowedMethods = allowedMethods;
@@ -84,11 +84,11 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
    }
 
    /**
-   * Will allow all by default
-   * comma delimited string for Access-Control-Allow-Headers.
-   *
-   * @param allowedHeaders allowed headers
-   */
+    * Will allow all by default
+    * comma delimited string for Access-Control-Allow-Headers.
+    *
+    * @param allowedHeaders allowed headers
+    */
    public void setAllowedHeaders(String allowedHeaders)
    {
       this.allowedHeaders = allowedHeaders;
@@ -110,10 +110,10 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
    }
 
    /**
-   * Comma delimited list.
-   *
-   * @param exposedHeaders exposed headers
-   */
+    * Comma delimited list.
+    *
+    * @param exposedHeaders exposed headers
+    */
    public void setExposedHeaders(String exposedHeaders)
    {
       this.exposedHeaders = exposedHeaders;

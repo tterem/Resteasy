@@ -27,11 +27,11 @@ import java.net.SocketPermission;
 import java.util.PropertyPermission;
 
 /**
-   * @tpSubChapter Asynchronous RESTEasy
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-767
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Asynchronous RESTEasy
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-767
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class AsyncPostProcessingTest {
 
@@ -73,9 +73,9 @@ public class AsyncPostProcessingTest {
    }
 
    /**
-     * @tpTestDetails Test synchronized request.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test synchronized request.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSync() throws Exception {
       reset();
@@ -93,9 +93,9 @@ public class AsyncPostProcessingTest {
    }
 
    /**
-     * @tpTestDetails Test async request with delay.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test async request with delay.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAsyncWithDelay() throws Exception {
       reset();
@@ -113,9 +113,9 @@ public class AsyncPostProcessingTest {
    }
 
    /**
-     * @tpTestDetails Test async request without delay.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test async request without delay.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAsyncWithNoDelay() throws Exception {
       reset();

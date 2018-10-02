@@ -23,10 +23,10 @@ import javax.ws.rs.core.Response;
 import java.util.Map;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CookieTest {
@@ -58,11 +58,11 @@ public class CookieTest {
 
 
    /**
-     * @tpTestDetails Client sends GET request to the server, server text response, the response is then checked, that
-     * it contains cookie with guid parameter sent by server.
-     * @tpPassCrit Response contains cookie sent by server
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request to the server, server text response, the response is then checked, that
+    * it contains cookie with guid parameter sent by server.
+    * @tpPassCrit Response contains cookie sent by server
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testWeirdCookie() {
       Response response = client.target(generateURL("/cookie/weird")).request().get();
@@ -83,11 +83,11 @@ public class CookieTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request to the server, server text response, the response is then checked, that
-     * it contains standard cookie sent by server.
-     * @tpPassCrit Response contains cookie sent by server
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request to the server, server text response, the response is then checked, that
+    * it contains standard cookie sent by server.
+    * @tpPassCrit Response contains cookie sent by server
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testStandardCookie() {
       Response response = client.target(generateURL("/cookie/standard")).request().get();

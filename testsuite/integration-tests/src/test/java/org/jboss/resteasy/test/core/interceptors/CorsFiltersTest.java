@@ -31,11 +31,11 @@ import java.util.logging.LoggingPermission;
 import static org.hamcrest.core.Is.is;
 
 /**
-   * @tpSubChapter Interceptors
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test CorsFilter usage
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Interceptors
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test CorsFilter usage
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class CorsFiltersTest {
 
@@ -80,11 +80,11 @@ public class CorsFiltersTest {
    }
 
    /**
-     * @tpTestDetails Check different options of Cors headers.
-     * CorsFilter is created as singleton in TestApplication instance.
-     * In this test is CorsFilter get from static set from TestApplication class.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check different options of Cors headers.
+    * CorsFilter is created as singleton in TestApplication instance.
+    * In this test is CorsFilter get from static set from TestApplication class.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPreflight() throws Exception {
       String testedURL = "http://" + PortProviderUtil.getHost();
@@ -119,10 +119,10 @@ public class CorsFiltersTest {
    }
 
    /**
-     * @tpTestDetails Test that the response contains the Vary: Origin header
-     * @tpInfo RESTEASY-1704
-     * @tpSince RESTEasy 3.0.25
-     */
+    * @tpTestDetails Test that the response contains the Vary: Origin header
+    * @tpInfo RESTEASY-1704
+    * @tpSince RESTEasy 3.0.25
+    */
    @Test
    public void testVaryOriginHeader() {
       String testedURL = "http://" + PortProviderUtil.getHost();

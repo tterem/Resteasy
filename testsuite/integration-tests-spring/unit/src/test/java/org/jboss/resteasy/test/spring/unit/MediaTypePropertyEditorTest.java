@@ -10,11 +10,11 @@ import java.beans.PropertyEditor;
 import java.nio.charset.StandardCharsets;
 
 /**
-   * @tpSubChapter Spring
-   * @tpChapter Unit test
-   * @tpTestCaseDetails  Tests MediaTypeEditor
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Spring
+ * @tpChapter Unit test
+ * @tpTestCaseDetails  Tests MediaTypeEditor
+ * @tpSince RESTEasy 3.0.16
+ */
 public class MediaTypePropertyEditorTest {
 
    private PropertyEditor propertyEditor;
@@ -27,9 +27,9 @@ public class MediaTypePropertyEditorTest {
    }
 
    /**
-     * @tpTestDetails Tests that mediatype is set correctly to MediaTypeEditor
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that mediatype is set correctly to MediaTypeEditor
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSetAsText() {
       propertyEditor.setAsText("application/xml");
@@ -39,9 +39,9 @@ public class MediaTypePropertyEditorTest {
    }
 
    /**
-     * @tpTestDetails Tests that mediatype and charset is set correctly to MediaTypeEditor
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that mediatype and charset is set correctly to MediaTypeEditor
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSetAsTextWithCharset() {
       propertyEditor.setAsText("application/xml;charset=UTF-8");
@@ -52,9 +52,9 @@ public class MediaTypePropertyEditorTest {
    }
 
    /**
-     * @tpTestDetails Tests that custom mediatype is set correctly to MediaTypeEditor
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that custom mediatype is set correctly to MediaTypeEditor
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSetAsTextCustom() {
       propertyEditor.setAsText("application/custom");
@@ -64,9 +64,9 @@ public class MediaTypePropertyEditorTest {
    }
 
    /**
-     * @tpTestDetails Tests that getAsText() of MediaTypeEditor returns correct value
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that getAsText() of MediaTypeEditor returns correct value
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetAsText() {
       MediaType type = MediaType.valueOf("application/xml");
@@ -76,9 +76,9 @@ public class MediaTypePropertyEditorTest {
    }
 
    /**
-     * @tpTestDetails Tests that getAsText() of MediaTypeEditor with custom MediaType returns correct value
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Tests that getAsText() of MediaTypeEditor with custom MediaType returns correct value
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetAsTextCustom() {
       MediaType type = MediaType.valueOf("application/custom");

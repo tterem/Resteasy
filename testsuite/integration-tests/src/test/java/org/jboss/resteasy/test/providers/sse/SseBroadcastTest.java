@@ -42,12 +42,12 @@ public class SseBroadcastTest {
    }
 
    /**
-     * @tpTestDetails Server broadcaster can be used to manage multiple server sinks. Use sseBroadcaster.register(sink);
-     * to multiple sinks (client connections). Broadcast to all clients. Note: there is similar test SseTest.testBroadcast(),
-     * which uses two different broadcasters. This test uses one broadcaster and three clients subscribed to it.
-     * @tpInfo RESTEASY-1680
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails Server broadcaster can be used to manage multiple server sinks. Use sseBroadcaster.register(sink);
+    * to multiple sinks (client connections). Broadcast to all clients. Note: there is similar test SseTest.testBroadcast(),
+    * which uses two different broadcasters. This test uses one broadcaster and three clients subscribed to it.
+    * @tpInfo RESTEASY-1680
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testBroadcasterMultipleSinks() throws Exception {
       final CountDownLatch latch = new CountDownLatch(3);
@@ -111,10 +111,10 @@ public class SseBroadcastTest {
    }
 
    /**
-     * @tpTestDetails SseBroadcaster.onClose(). The SseBroadcaster.onClose() is called, when server calls broadcaster.close().
-     * @tpInfo RESTEASY-1680
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails SseBroadcaster.onClose(). The SseBroadcaster.onClose() is called, when server calls broadcaster.close().
+    * @tpInfo RESTEASY-1680
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testBroadcasterOnCloseCallbackCloseBroadsCasterOnServer() throws Exception {
       final CountDownLatch latch = new CountDownLatch(1);
@@ -151,11 +151,11 @@ public class SseBroadcastTest {
    }
 
    /**
-     * @tpTestDetails SseBroadcaster.onClose() The SseBroadcaster.onClose() is called after the broadcast event is sent
-     * and the SseEventSink is closed.
-     * @tpInfo RESTEASY-1680
-     * @tpSince RESTEasy 3.5.0
-     */
+    * @tpTestDetails SseBroadcaster.onClose() The SseBroadcaster.onClose() is called after the broadcast event is sent
+    * and the SseEventSink is closed.
+    * @tpInfo RESTEASY-1680
+    * @tpSince RESTEasy 3.5.0
+    */
    @Test
    public void testBroadcasterOnCloseCallbackCloseSinkOnServer() throws Exception {
       Client client = ClientBuilder.newClient();

@@ -26,20 +26,20 @@ import org.jboss.resteasy.util.NoContent;
 import org.xml.sax.InputSource;
 
 /**
-   * <p>
-   * A JAXB Provider which handles parameter and return types of {@link JAXBElement}. This provider will be
-   * selected when the resource is declared as:
-   * </p>
-   * <code>
-   * &#064;POST<br>
-   * &#064;Consumes("applictaion/xml")<br>
-   * &#064;Produces("applictaion/xml")<br>
-   * public JAXBElement&lt;Contact&gt; getContact(JAXBElement&lt;Contact&gt; value);<br>
-   * </code>
-   *
-   * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
-   * @version $Revision:$
-   */
+ * <p>
+ * A JAXB Provider which handles parameter and return types of {@link JAXBElement}. This provider will be
+ * selected when the resource is declared as:
+ * </p>
+ * <code>
+ * &#064;POST<br>
+ * &#064;Consumes("applictaion/xml")<br>
+ * &#064;Produces("applictaion/xml")<br>
+ * public JAXBElement&lt;Contact&gt; getContact(JAXBElement&lt;Contact&gt; value);<br>
+ * </code>
+ *
+ * @author <a href="ryan@damnhandy.com">Ryan J. McDonough</a>
+ * @version $Revision:$
+ */
 @Provider
 @Produces({"application/xml", "application/*+xml", "text/xml", "text/*+xml"})
 @Consumes({"application/xml", "application/*+xml", "text/xml", "text/*+xml"})
@@ -57,8 +57,8 @@ public class JAXBElementProvider extends AbstractJAXBProvider<JAXBElement<?>>
    }
 
    /**
-   *
-   */
+    *
+    */
    public JAXBElement<?> readFrom(Class<JAXBElement<?>> type,
                                   Type genericType,
                                   Annotation[] annotations,

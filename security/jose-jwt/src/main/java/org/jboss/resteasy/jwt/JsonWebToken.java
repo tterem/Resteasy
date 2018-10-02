@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class JsonWebToken implements Serializable
 {
    @JsonProperty("jti")
@@ -78,10 +78,10 @@ public class JsonWebToken implements Serializable
    }
 
    /**
-   * Tests that the token is not expired and is not-before.
-   *
-   * @return true if the token is not expired and is not-before
-   */
+    * Tests that the token is not expired and is not-before.
+    *
+    * @return true if the token is not expired and is not-before
+    */
    @JsonIgnore
    public boolean isActive()
    {
@@ -94,10 +94,10 @@ public class JsonWebToken implements Serializable
    }
 
    /**
-   * Set issuedAt to the current time.
-   *
-   * @return {@link JsonWebToken}
-   */
+    * Set issuedAt to the current time.
+    *
+    * @return {@link JsonWebToken}
+    */
    @JsonIgnore
    public JsonWebToken issuedNow()
    {

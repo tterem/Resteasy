@@ -19,11 +19,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for CDI locator
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for CDI locator
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CDILocatorTest {
@@ -52,9 +52,9 @@ public class CDILocatorTest {
    }
 
    /**
-     * @tpTestDetails Check generic type
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check generic type
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void genericTypeTest() throws Exception {
       String result = baseTarget.path("test").queryParam("foo", "yo").request().get(String.class);
@@ -62,9 +62,9 @@ public class CDILocatorTest {
    }
 
    /**
-     * @tpTestDetails Check locator
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check locator
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void locatorTest() throws Exception {
       String result = baseTarget.path("test/lookup").queryParam("foo", "yo").request().get(String.class);

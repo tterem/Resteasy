@@ -13,17 +13,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * @tpSubChapter Providers
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Correct selection of Reader and Writer
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Providers
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Correct selection of Reader and Writer
+ * @tpSince RESTEasy 3.0.16
+ */
 public class ContractsTest {
 
    /**
-     * @tpTestDetails Basic test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLimitedContract() {
       ResteasyProviderFactory factory = ResteasyProviderFactory.newInstance();
@@ -35,9 +35,9 @@ public class ContractsTest {
    }
 
    /**
-     * @tpTestDetails Test for map
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for map
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLimitedContractMap() {
       ResteasyProviderFactory factory = ResteasyProviderFactory.newInstance();

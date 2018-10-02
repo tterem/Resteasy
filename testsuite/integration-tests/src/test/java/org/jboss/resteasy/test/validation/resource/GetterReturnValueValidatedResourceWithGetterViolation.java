@@ -17,9 +17,9 @@ public class GetterReturnValueValidatedResourceWithGetterViolation {
    @Size(min = 2, max = 4)
    public String getS() {
       /*
-         * Called three times by Hibernate Validator 5 during field, property, class
-         * constraint validation.
-         */
+       * Called three times by Hibernate Validator 5 during field, property, class
+       * constraint validation.
+       */
       logger.info("getS(): count: " + count);
       String s = count++ <= maxCount ? "abc" : "a";
       logger.info("s: " + s);

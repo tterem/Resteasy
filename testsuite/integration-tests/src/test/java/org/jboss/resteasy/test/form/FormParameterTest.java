@@ -25,11 +25,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Form tests
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-760
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Form tests
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-760
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FormParameterTest {
@@ -59,10 +59,10 @@ public class FormParameterTest {
    }
 
    /**
-     * @tpTestDetails Client sends PUT requests.
-     *      Form parameter is used and should be returned by RE resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends PUT requests.
+    *      Form parameter is used and should be returned by RE resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFormParamWithNoQueryParamPut() throws Exception {
       Form form = new Form();
@@ -77,10 +77,10 @@ public class FormParameterTest {
    }
 
    /**
-     * @tpTestDetails Client sends PUT requests.
-     *      Form parameter is used (encoded) and should be returned by RE resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends PUT requests.
+    *      Form parameter is used (encoded) and should be returned by RE resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFormParamWithNoQueryParamPutEncoded() throws Exception {
       Form form = new Form();
@@ -95,10 +95,10 @@ public class FormParameterTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST requests.
-     *      Form parameter is used and should be returned by RE resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST requests.
+    *      Form parameter is used and should be returned by RE resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFormParamWithNoQueryParamPost() throws Exception {
       Form form = new Form();
@@ -113,10 +113,10 @@ public class FormParameterTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST requests.
-     *      Form parameter is used (encoded) and should be returned by RE resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST requests.
+    *      Form parameter is used (encoded) and should be returned by RE resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFormParamWithNoQueryParamPostEncoded() throws Exception {
       Form form = new Form();
@@ -131,11 +131,11 @@ public class FormParameterTest {
    }
 
    /**
-     * @tpTestDetails Client sends PUT requests. Query parameter is used.
-     *      Form parameter is used too and should be returned by RE resource.
-     *      This is regression test for JBEAP-982
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends PUT requests. Query parameter is used.
+    *      Form parameter is used too and should be returned by RE resource.
+    *      This is regression test for JBEAP-982
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFormParamWithQueryParamPut() throws Exception {
       Form form = new Form();
@@ -150,11 +150,11 @@ public class FormParameterTest {
    }
 
    /**
-     * @tpTestDetails Client sends PUT requests. Query parameter is used.
-     *      Form parameter is used too (encoded) and should be returned by RE resource.
-     *      This is regression test for JBEAP-982
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends PUT requests. Query parameter is used.
+    *      Form parameter is used too (encoded) and should be returned by RE resource.
+    *      This is regression test for JBEAP-982
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFormParamWithQueryParamPutEncoded() throws Exception {
       Form form = new Form();
@@ -169,10 +169,10 @@ public class FormParameterTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST requests. Query parameter is used.
-     *      Form parameter is used too and should be returned by RE resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST requests. Query parameter is used.
+    *      Form parameter is used too and should be returned by RE resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFormParamWithQueryParamPost() throws Exception {
       Form form = new Form();
@@ -187,10 +187,10 @@ public class FormParameterTest {
    }
 
    /**
-     * @tpTestDetails Client sends POST requests. Query parameter is used.
-     *      Form parameter is used too (encoded) and should be returned by RE resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends POST requests. Query parameter is used.
+    *      Form parameter is used too (encoded) and should be returned by RE resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testFormParamWithQueryParamPostEncoded() throws Exception {
       Form form = new Form();

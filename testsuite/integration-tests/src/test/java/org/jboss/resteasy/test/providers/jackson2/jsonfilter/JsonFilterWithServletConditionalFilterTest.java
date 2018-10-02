@@ -27,13 +27,13 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Jackson2 provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Filters fields from json object. Specifies the filter implementation class in web.xml.
-   * The filter filters field of Jackson2Product pojo upon value if its 'id' field. Pojo with id value < 0 is filtered
-   * out and not returned in the response. See http://www.baeldung.com/jackson-serialize-field-custom-criteria
-   * @tpSince RESTEasy 3.1.0
-   */
+ * @tpSubChapter Jackson2 provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Filters fields from json object. Specifies the filter implementation class in web.xml.
+ * The filter filters field of Jackson2Product pojo upon value if its 'id' field. Pojo with id value < 0 is filtered
+ * out and not returned in the response. See http://www.baeldung.com/jackson-serialize-field-custom-criteria
+ * @tpSince RESTEasy 3.1.0
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 @Category({NotForForwardCompatibility.class})
@@ -65,9 +65,9 @@ public class JsonFilterWithServletConditionalFilterTest {
    }
 
    /**
-     * @tpTestDetails Json field id is filtered out
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Json field id is filtered out
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    @Category({ExpectedFailingOnWildFly13.class})
    public void testJacksonConditionalStringPropertyFiltered() throws Exception {
@@ -79,9 +79,9 @@ public class JsonFilterWithServletConditionalFilterTest {
    }
 
    /**
-     * @tpTestDetails Json field id is not filtered
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Json field id is not filtered
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    public void testJacksonConditionalStringPropertyNotFiltered() throws Exception {
       WebTarget target = client.target(generateURL("/products/333"));

@@ -18,11 +18,11 @@ import java.util.Set;
 import static org.junit.Assert.assertTrue;
 
 /**
-   * @tpSubChapter Injection tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Session bean interface test.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Injection tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Session bean interface test.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class SessionBeanInterfaceTest {
    private ResteasyCdiExtension extension;
 
@@ -32,9 +32,9 @@ public class SessionBeanInterfaceTest {
    }
 
    /**
-     * @tpTestDetails Interface is selected
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Interface is selected
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testJaxrsAnnotatedInterfaceSelected() {
       Set<Type> types = new HashSet<Type>();
@@ -48,9 +48,9 @@ public class SessionBeanInterfaceTest {
    }
 
    /**
-     * @tpTestDetails Unmarshaller test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Unmarshaller test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNoInterfaceSelected() {
       Set<Type> types = new HashSet<>();

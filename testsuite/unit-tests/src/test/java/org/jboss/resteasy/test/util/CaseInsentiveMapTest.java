@@ -5,17 +5,17 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
-   * @tpSubChapter Util tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for CaseInsensitiveMap class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Util tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for CaseInsensitiveMap class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class CaseInsentiveMapTest {
 
    /**
-     * @tpTestDetails Test for CaseInsensitiveMap class, key of map should be case insensitive.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for CaseInsensitiveMap class, key of map should be case insensitive.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMap() {
       CaseInsensitiveMap<String> map = new CaseInsensitiveMap<String>();

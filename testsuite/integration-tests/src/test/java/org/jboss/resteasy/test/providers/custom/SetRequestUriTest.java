@@ -21,10 +21,10 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SetRequestUriTest {
@@ -53,11 +53,11 @@ public class SetRequestUriTest {
 
 
    /**
-     * @tpTestDetails Client sends GET request with https protocol uri. The resource has injected UriInfo and returns
-     * response containing absolute path of the uri from the request.
-     * @tpPassCrit The response code status is changed to 200 (SUCCESS) and the absolute uri matches the original request
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request with https protocol uri. The resource has injected UriInfo and returns
+    * response containing absolute path of the uri from the request.
+    * @tpPassCrit The response code status is changed to 200 (SUCCESS) and the absolute uri matches the original request
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSchemaChange() {
       String uri = generateURL("/base/resource/change");
@@ -69,11 +69,11 @@ public class SetRequestUriTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request with https protocol uri. The resource has injected UriInfo and returns
-     * response containing absolute path of the uri from the request.
-     * @tpPassCrit The response code status is changed to 200 (SUCCESS) and the absolute uri matches the original request
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request with https protocol uri. The resource has injected UriInfo and returns
+    * response containing absolute path of the uri from the request.
+    * @tpPassCrit The response code status is changed to 200 (SUCCESS) and the absolute uri matches the original request
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUriOverride() {
       Response response = client.target(generateURL("/base/resource/setrequesturi1")).request().get();
@@ -82,12 +82,12 @@ public class SetRequestUriTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET request with non existing uri path. The request is catched by PreMatching
-     * RequestFilter which applies to all requests not matter if the resource exists on the server. The RequestFilter
-     * processes the request aborts processing of the request and sends response back to the client.
-     * @tpPassCrit The response code status is 200 (SUCCESS) and the absolute uri is changed by RequestFilter
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET request with non existing uri path. The request is catched by PreMatching
+    * RequestFilter which applies to all requests not matter if the resource exists on the server. The RequestFilter
+    * processes the request aborts processing of the request and sends response back to the client.
+    * @tpPassCrit The response code status is 200 (SUCCESS) and the absolute uri is changed by RequestFilter
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUriOverride2() {
       Response response = client.target(generateURL("/base/resource/setrequesturi2")).request().get();

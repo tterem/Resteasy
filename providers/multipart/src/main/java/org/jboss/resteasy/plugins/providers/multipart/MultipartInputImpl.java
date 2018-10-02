@@ -63,9 +63,9 @@ import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.util.CaseInsensitiveMap;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class MultipartInputImpl implements MultipartInput, ProvidersContextRetainer
 {
    protected MediaType contentType;
@@ -509,10 +509,10 @@ public class MultipartInputImpl implements MultipartInput, ProvidersContextRetai
    }
 
    /**
-   * A custom TempFileStorageProvider that do no set deleteOnExit on temp files,
-   * to avoid memory leaks (see https://issues.apache.org/jira/browse/MIME4J-251)
-   *
-   */
+    * A custom TempFileStorageProvider that do no set deleteOnExit on temp files,
+    * to avoid memory leaks (see https://issues.apache.org/jira/browse/MIME4J-251)
+    *
+    */
    private static class CustomTempFileStorageProvider extends AbstractStorageProvider
    {
 

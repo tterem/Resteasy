@@ -11,10 +11,10 @@ import javax.ws.rs.sse.Sse;
 import javax.ws.rs.sse.SseEventSink;
 
 /**
-   * 
-   * @author Nicolas NESMON
-   *
-   */
+ * 
+ * @author Nicolas NESMON
+ *
+ */
 @Path(SseEnablingTestResource.PATH)
 public class SseEnablingTestResource {
 

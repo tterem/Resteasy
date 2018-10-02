@@ -32,11 +32,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
 /**
-   * @tpSubChapter Multipart provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-723
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Multipart provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-723
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InputPartDefaultCharsetOverwriteTest {
@@ -143,18 +143,18 @@ public class InputPartDefaultCharsetOverwriteTest {
    }
 
    /**
-     * @tpTestDetails Test UTF8 content-type, no charset, preprocessor with no content-type
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test UTF8 content-type, no charset, preprocessor with no content-type
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUTF8ContentTypeNoCharsetPreprocessorWithNoContentTypeCharset() throws Exception {
       doTestWithContentTypeInMessage(abc_utf8_bytes, abc_utf8, TEXT_PLAIN, TEXT_PLAIN_WITH_CHARSET_UTF_8, InputPartDefaultCharsetOverwriteNoContentTypeCharsetUTF8.class);
    }
 
    /**
-     * @tpTestDetails The tests use no interceptor.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails The tests use no interceptor.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void noInterceptorTest() throws Exception {
       // testNoContentTypeDefault
@@ -183,9 +183,9 @@ public class InputPartDefaultCharsetOverwriteTest {
    }
 
    /**
-     * @tpTestDetails The tests use an interceptor that installs a content-type but no charset.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails The tests use an interceptor that installs a content-type but no charset.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void interceptorNoCharsetYesContentType() throws Exception {
       // testNoContentTypePreprocessorWithContentTypeNoCharsetUTF8
@@ -221,9 +221,9 @@ public class InputPartDefaultCharsetOverwriteTest {
    }
 
    /**
-     * @tpTestDetails The tests use an interceptor that installs a charset but no content-type.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails The tests use an interceptor that installs a charset but no content-type.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNoContentTypePreprocessorWithNoContentTypeCharsetUTF8() throws Exception {
       // testNoContentTypePreprocessorWithNoContentTypeCharsetUTF8
@@ -259,9 +259,9 @@ public class InputPartDefaultCharsetOverwriteTest {
    }
 
    /**
-     * @tpTestDetails The tests use an interceptor that installs both a content-type and a charset.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails The tests use an interceptor that installs both a content-type and a charset.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNoContentTypePreprocessorWithContentTypeCharset8() throws Exception {
       // testNoContentTypePreprocessorWithContentTypeCharset8
@@ -297,9 +297,9 @@ public class InputPartDefaultCharsetOverwriteTest {
    }
 
    /**
-     * @tpTestDetails The tests use a non-text media type.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails The tests use a non-text media type.
+    * @tpSince RESTEasy 3.0.16
+    */
    //////////////////////////////////////////////////////////////////////////////////////////
    //
    //////////////////////////////////////////////////////////////////////////////////////////

@@ -19,10 +19,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Localization
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Localization
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AcceptLanguagesTest {
@@ -34,9 +34,9 @@ public class AcceptLanguagesTest {
    }
 
    /**
-     * @tpTestDetails Check some languages for accepting
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check some languages for accepting
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLanguages() throws Exception {
       Client client = ClientBuilder.newClient();

@@ -20,11 +20,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-903
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-903
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class FilterDispatcherUndertowTest {
@@ -41,11 +41,11 @@ public class FilterDispatcherUndertowTest {
    }
 
    /**
-     * @tpTestDetails Server should be able to forward a HttpServletRequest/HttpServletResponse captured
-     *                using the @Context annotation on a member variables inside a resource class.
-     * @tpPassCrit Response should have code 200.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Server should be able to forward a HttpServletRequest/HttpServletResponse captured
+    *                using the @Context annotation on a member variables inside a resource class.
+    * @tpPassCrit Response should have code 200.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testUndertow() throws Exception {
       logger.info("starting testUndertow()");

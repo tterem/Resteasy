@@ -7,13 +7,13 @@ import java.io.InputStream;
 import org.jboss.resteasy.resteasy_jaxrs.i18n.Messages;
 
 /**
-   * Extension of {@link BufferedInputStream} enforcing the contract where reset()
-   * always returns to the beginning of the stream, and the internal buffer
-   * expands automatically to the total length of content read from the underlying
-   * stream.
-   *
-   * @author ul8b
-   */
+ * Extension of {@link BufferedInputStream} enforcing the contract where reset()
+ * always returns to the beginning of the stream, and the internal buffer
+ * expands automatically to the total length of content read from the underlying
+ * stream.
+ *
+ * @author ul8b
+ */
 public class SelfExpandingBufferredInputStream extends BufferedInputStream
 {
    private static int defaultBufferSize = 8192;
@@ -31,8 +31,8 @@ public class SelfExpandingBufferredInputStream extends BufferedInputStream
    }
 
    /**
-   * Not supported. Mark position is always zero.
-   */
+    * Not supported. Mark position is always zero.
+    */
    @Override
    public synchronized void mark(int readlimit)
    {
@@ -70,11 +70,11 @@ public class SelfExpandingBufferredInputStream extends BufferedInputStream
    }
 
    /**
-   * Double the current buffer size limit. Reset to zero, then double the
-   * buffer size and restore last position in the buffer.
-   *
-   * @throws IOException
-   */
+    * Double the current buffer size limit. Reset to zero, then double the
+    * buffer size and restore last position in the buffer.
+    *
+    * @throws IOException
+    */
    private void expand() throws IOException
    {
       int lastPos = pos;
@@ -84,10 +84,10 @@ public class SelfExpandingBufferredInputStream extends BufferedInputStream
    }
 
    /**
-   * Return the current maximum size of the internal buffer. This is
-   * independent of how much data is actually contained within the buffer.
-   * @return internal buffer size
-   */
+    * Return the current maximum size of the internal buffer. This is
+    * independent of how much data is actually contained within the buffer.
+    * @return internal buffer size
+    */
    public int getBufSize()
    {
       return buf.length;

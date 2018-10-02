@@ -18,9 +18,9 @@ import java.net.URISyntaxException;
 import static org.junit.Assert.assertTrue;
 
 /**
-   * This abstract class implements steps needed to create PicketBox or Elytron security domain.
-   *
-   */
+ * This abstract class implements steps needed to create PicketBox or Elytron security domain.
+ *
+ */
 public abstract class AbstractUsersRolesSecurityDomainSetup implements ServerSetupTask {
 
    // Creaper fields
@@ -64,17 +64,17 @@ public abstract class AbstractUsersRolesSecurityDomainSetup implements ServerSet
          = Address.subsystem("undertow").and("application-security-domain", UNDERTOW_APPLICATION_SECURITY_DOMAIN_NAME);
 
    /**
-     * Set security subsystem
-     * @param subsystem
-     */
+    * Set security subsystem
+    * @param subsystem
+    */
    public void setSubsystem(String subsystem) {
       this.subsystem = subsystem;
    }
 
    /**
-     * Set security domain name related configuration
-     * @param securityDomainName
-     */
+    * Set security domain name related configuration
+    * @param securityDomainName
+    */
    public void setSecurityDomainName(String securityDomainName) {
       this.securityDomainName = securityDomainName;
       this.PICKETBOX_SECURITY_DOMAIN_ADDRESS=Address.subsystem("security").and("security-domain", securityDomainName);
@@ -84,9 +84,9 @@ public abstract class AbstractUsersRolesSecurityDomainSetup implements ServerSet
    }
 
    /**
-     * Creates Files pointing to users.properties and roles.properties for the current test.
-     * @param folder
-     */
+    * Creates Files pointing to users.properties and roles.properties for the current test.
+    * @param folder
+    */
    public void createPropertiesFiles(File folder) {
       this.USERS_FILE = new File(folder, USERS_FILENAME);
       this.ROLES_FILE = new File(folder, ROLES_FILENAME);
@@ -121,14 +121,14 @@ public abstract class AbstractUsersRolesSecurityDomainSetup implements ServerSet
    }
 
    /**
-     * Set necessary test related paths
-     */
+    * Set necessary test related paths
+    */
    public abstract void setConfigurationPath() throws URISyntaxException, MalformedURLException;
 
    /**
-     * Creates Elytron security domain
-     * @throws Exception
-     */
+    * Creates Elytron security domain
+    * @throws Exception
+    */
    private void configureElytron() throws Exception {
 
       // Note: This complicated setting may be simplified once WFLY-7949 is resolved
@@ -169,9 +169,9 @@ public abstract class AbstractUsersRolesSecurityDomainSetup implements ServerSet
    }
 
    /**
-     * Creates PicketBox security domain
-     * @throws Exception
-     */
+    * Creates PicketBox security domain
+    * @throws Exception
+    */
    private void configurePicketBox() throws Exception {
 
       // Create security domain
@@ -196,9 +196,9 @@ public abstract class AbstractUsersRolesSecurityDomainSetup implements ServerSet
    }
 
    /**
-     * Reverts all configuration done for Elytron
-     * @throws Exception
-     */
+    * Reverts all configuration done for Elytron
+    * @throws Exception
+    */
    private void cleanUpElytron() throws Exception {
       try {
          ops.removeIfExists(UNDERTOW_APPLICATION_SECURITY_DOMAIN_ADDRESS);
@@ -212,9 +212,9 @@ public abstract class AbstractUsersRolesSecurityDomainSetup implements ServerSet
    }
 
    /**
-     * Reverts all configuration done for PicketBox
-     * @throws Exception
-     */
+    * Reverts all configuration done for PicketBox
+    * @throws Exception
+    */
    private void cleanUpPicketBox() throws Exception {
       try {
          ops.removeIfExists(PICKETBOX_SECURITY_DOMAIN_ADDRESS);

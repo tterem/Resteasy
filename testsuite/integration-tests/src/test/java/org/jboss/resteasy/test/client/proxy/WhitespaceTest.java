@@ -22,10 +22,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class WhitespaceTest {
@@ -64,11 +64,11 @@ public class WhitespaceTest {
    }
 
    /**
-     * @tpTestDetails Client sends GET requests thru client proxy. The string parameter passed in the request has white
-     * space in it. The parameter is delivered with white space in the response as well.
-     * @tpPassCrit The response entity contains white space as the original request
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends GET requests thru client proxy. The string parameter passed in the request has white
+    * space in it. The parameter is delivered with white space in the response as well.
+    * @tpPassCrit The response entity contains white space as the original request
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEchoWithWhiteSpace() {
       HelloClient proxy = client.target(generateURL("")).proxy(HelloClient.class);

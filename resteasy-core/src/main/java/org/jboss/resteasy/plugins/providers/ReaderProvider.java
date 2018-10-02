@@ -20,9 +20,9 @@ import org.jboss.resteasy.resteasy_jaxrs.i18n.LogMessages;
 import org.jboss.resteasy.util.HttpHeaderNames;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">BillBurke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">BillBurke</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @Produces("*/*")
 @Consumes("*/*")

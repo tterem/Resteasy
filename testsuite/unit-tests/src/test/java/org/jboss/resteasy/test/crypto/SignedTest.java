@@ -33,11 +33,11 @@ import java.security.Security;
 import java.security.cert.X509Certificate;
 
 /**
-   * @tpSubChapter Crypto
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for sign by X509Certificate.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Crypto
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for sign by X509Certificate.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class SignedTest {
 
    protected static final Logger logger = LogManager.getLogger(SignedTest.class.getName());
@@ -91,9 +91,9 @@ public class SignedTest {
    }
 
    /**
-     * @tpTestDetails Multipart test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Multipart test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testMultipart() throws Exception {
       MimeMultipart mp = new MimeMultipart();
@@ -122,9 +122,9 @@ public class SignedTest {
 
 
    /**
-     * @tpTestDetails Test for python sign format
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for python sign format
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPythonSigned() throws Exception {
       final InputStream pythonIs = new FileInputStream(pythonPath);
@@ -149,9 +149,9 @@ public class SignedTest {
    }
 
    /**
-     * @tpTestDetails Check output after signing
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check output after signing
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testOutput() throws Exception {
       {
@@ -184,9 +184,9 @@ public class SignedTest {
    }
 
    /**
-     * @tpTestDetails Test python-style verification
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test python-style verification
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPythonVerified() throws Exception {
       SMIMESignedGenerator gen = new SMIMESignedGenerator();
@@ -210,9 +210,9 @@ public class SignedTest {
    }
 
    /**
-     * @tpTestDetails Test python-style wrong verification
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test python-style wrong verification
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPythonVerifiedBad() throws Exception {
       SMIMESignedGenerator gen = new SMIMESignedGenerator();

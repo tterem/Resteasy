@@ -21,11 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-   * @tpSubChapter Requests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for accepting correct method.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Requests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for accepting correct method.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class AcceptTest {
    private static final String METHOD_ERROR_MESSAGE = "Unexpected method received";
 
@@ -42,9 +42,9 @@ public class AcceptTest {
    }
 
    /**
-     * @tpTestDetails Accepting GET method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Accepting GET method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAcceptGet() throws Exception {
       Registry registry = new ResourceMethodRegistry(ResteasyProviderFactory.getInstance());
@@ -100,9 +100,9 @@ public class AcceptTest {
    }
 
    /**
-     * @tpTestDetails Accepting PUT method, schema attribute is added to media type
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Accepting PUT method, schema attribute is added to media type
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testConsume() throws Exception {
       Registry registry = new ResourceMethodRegistry(ResteasyProviderFactory.getInstance());
@@ -119,9 +119,9 @@ public class AcceptTest {
    }
 
    /**
-     * @tpTestDetails Accepting updated PUT method, schema and q attributes are added to media type
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Accepting updated PUT method, schema and q attributes are added to media type
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testConsume2() throws Exception {
       Registry registry = new ResourceMethodRegistry(ResteasyProviderFactory.getInstance());
@@ -140,9 +140,9 @@ public class AcceptTest {
    }
 
    /**
-     * @tpTestDetails Accepting PUT method, schema and q attributes are added to media type
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Accepting PUT method, schema and q attributes are added to media type
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testConsume3() throws Exception {
       Registry registry = new ResourceMethodRegistry(ResteasyProviderFactory.getInstance());
@@ -161,9 +161,9 @@ public class AcceptTest {
    }
 
    /**
-     * @tpTestDetails Accepting wild card
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Accepting wild card
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAcceptGetWildCard() throws Exception {
       Registry registry = new ResourceMethodRegistry(ResteasyProviderFactory.getInstance());
@@ -184,9 +184,9 @@ public class AcceptTest {
    }
 
    /**
-     * @tpTestDetails Accepting multiple values
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Accepting multiple values
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testAcceptMultiple() throws Exception {
       Registry registry = new ResourceMethodRegistry(ResteasyProviderFactory.getInstance());
@@ -228,9 +228,9 @@ public class AcceptTest {
    }
 
    /**
-     * @tpTestDetails Test content type matching
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test content type matching
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testContentTypeMatching() throws Exception {
       Registry registry = new ResourceMethodRegistry(ResteasyProviderFactory.getInstance());
@@ -261,9 +261,9 @@ public class AcceptTest {
    }
 
    /**
-     * @tpTestDetails Complex test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Complex test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testComplex() throws Exception {
       Registry registry = new ResourceMethodRegistry(ResteasyProviderFactory.getInstance());

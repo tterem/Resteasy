@@ -7,17 +7,17 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 /**
-   * @tpSubChapter Resource tests
-   * @tpChapter Unit tests
-   * @tpSince RESTEasy 3.0.17
-   * @tpTestCaseDetails Regression test for JBEAP-4698
-   */
+ * @tpSubChapter Resource tests
+ * @tpChapter Unit tests
+ * @tpSince RESTEasy 3.0.17
+ * @tpTestCaseDetails Regression test for JBEAP-4698
+ */
 public class TrailingSlashTest {
    private static final String ERROR_MSG = "ResteasyUriInfo parsed slash wrongly";
    /**
-     * @tpTestDetails Simple construction of ResteasyUriInfo.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Simple construction of ResteasyUriInfo.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void oneArgConstructorTest() throws Exception {
       doOneArgConstructorTest(new URI("http://localhost/abc"), "/abc");
@@ -34,9 +34,9 @@ public class TrailingSlashTest {
    }
 
    /**
-     * @tpTestDetails ResteasyUriInfo is based of two URIs.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails ResteasyUriInfo is based of two URIs.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void twoArgConstructorTest() throws Exception {
       doTwoArgConstructorTest(new URI("http://localhost/abc"), new URI("xyz"), "/xyz");
@@ -58,9 +58,9 @@ public class TrailingSlashTest {
    }
 
    /**
-     * @tpTestDetails ResteasyUriInfo is based on queryString and contextPath.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails ResteasyUriInfo is based on queryString and contextPath.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    public void threeArgConstructorTest() throws Exception {
       doThreeArgConstructorTest("http://localhost/abc", "/abc");

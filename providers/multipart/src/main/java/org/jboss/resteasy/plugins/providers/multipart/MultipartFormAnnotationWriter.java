@@ -25,9 +25,9 @@ import org.jboss.resteasy.spi.WriterException;
 import org.jboss.resteasy.spi.util.FindAnnotation;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @Provider
 @Produces("multipart/form-data")
 public class MultipartFormAnnotationWriter extends AbstractMultipartFormDataWriter implements MessageBodyWriter<Object>

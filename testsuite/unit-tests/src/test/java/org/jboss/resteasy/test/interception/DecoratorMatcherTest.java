@@ -19,11 +19,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
-   * @tpSubChapter Interception tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for org.jboss.resteasy.annotations.Decorator class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Interception tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for org.jboss.resteasy.annotations.Decorator class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class DecoratorMatcherTest {
    private static final AtomicBoolean called = new AtomicBoolean(false);
    private JAXBContext jaxbContext;
@@ -37,9 +37,9 @@ public class DecoratorMatcherTest {
    }
 
    /**
-     * @tpTestDetails Decorator method should not be called in this test.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Decorator method should not be called in this test.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void shouldNotThrowOnUnmarshaller() throws JAXBException {
       decoratorMatcher.decorate(Unmarshaller.class, jaxbContext.createUnmarshaller(), AnObject.class, new Annotation[0], MediaType.APPLICATION_XML_TYPE);
@@ -47,9 +47,9 @@ public class DecoratorMatcherTest {
    }
 
    /**
-     * @tpTestDetails Decorator method should be called in this test.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Decorator method should be called in this test.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void shouldCallOnMarshaller() throws JAXBException {
       decoratorMatcher.decorate(Marshaller.class, jaxbContext.createMarshaller(), AnObject.class, new Annotation[0], MediaType.APPLICATION_XML_TYPE);

@@ -17,11 +17,11 @@ import javax.ws.rs.client.ClientBuilder;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter Resource
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Check for slash in URL
-   */
+ * @tpSubChapter Resource
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Check for slash in URL
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResteasyTrailingSlashTest {
@@ -37,9 +37,9 @@ public class ResteasyTrailingSlashTest {
    }
 
    /**
-     * @tpTestDetails Client should accept also URL ended by slash
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client should accept also URL ended by slash
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testTrailingSlash() throws Exception {
       Client client = ClientBuilder.newClient();

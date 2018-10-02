@@ -25,11 +25,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-143
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-143
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ParsingTest {
@@ -80,9 +80,9 @@ public class ParsingTest {
             + "</ns:ParsingDataCollectionPackage>";
 
    /**
-     * @tpTestDetails Check XML parsing
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check XML parsing
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testWire() throws Exception {
       {

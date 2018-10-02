@@ -19,11 +19,11 @@ import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Regression for RESTEASY-1057
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Regression for RESTEASY-1057
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class NullEntityTest extends ClientTestBase{
@@ -35,9 +35,9 @@ public class NullEntityTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Test to send null by post request.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test to send null by post request.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPostNull() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -48,9 +48,9 @@ public class NullEntityTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Test to send null via entity by post request.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test to send null via entity by post request.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEntity() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -61,9 +61,9 @@ public class NullEntityTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Test to send null via form
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test to send null via form
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testForm() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -74,9 +74,9 @@ public class NullEntityTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Test resource with "text/html" media type
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test resource with "text/html" media type
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testHtml() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -87,9 +87,9 @@ public class NullEntityTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Test resource with "application/xhtml+xml" media type
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test resource with "application/xhtml+xml" media type
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXhtml() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();
@@ -100,9 +100,9 @@ public class NullEntityTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Test resource with "application/xml" media type
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test resource with "application/xml" media type
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXml() {
       ResteasyClient client = (ResteasyClient)ClientBuilder.newClient();

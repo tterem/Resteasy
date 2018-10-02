@@ -22,11 +22,11 @@ import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for org.jboss.resteasy.annotations.cache.Cache class
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for org.jboss.resteasy.annotations.cache.Cache class
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class CacheControlAnnotationTest {
@@ -54,9 +54,9 @@ public class CacheControlAnnotationTest {
    }
 
    /**
-     * @tpTestDetails Test for correct value of max-age of cache annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for correct value of max-age of cache annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResourceValid() {
       WebTarget base = client.target(generateURL("/maxage"));
@@ -71,9 +71,9 @@ public class CacheControlAnnotationTest {
    }
 
    /**
-     * @tpTestDetails Test for no-cache settings
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for no-cache settings
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testResourceNoCach() {
       WebTarget base = client.target(generateURL("/nocache"));

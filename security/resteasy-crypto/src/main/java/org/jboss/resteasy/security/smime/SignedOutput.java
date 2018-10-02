@@ -4,9 +4,9 @@ import javax.ws.rs.core.MediaType;
 import java.security.PrivateKey;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class SignedOutput extends SMIMEOutput
 {
    protected PrivateKey privateKey;

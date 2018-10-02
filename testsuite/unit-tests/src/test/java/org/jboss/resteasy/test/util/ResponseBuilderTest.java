@@ -19,11 +19,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
-   * @tpSubChapter Util tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for javax.ws.rs.core.Response#ResponseBuilder class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Util tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for javax.ws.rs.core.Response#ResponseBuilder class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class ResponseBuilderTest {
    private static final URI BASE_URI = URI.create("http://localhost/");
    private static final URI REQUEST_URI = URI.create("http://localhost/path/to/resource");
@@ -48,9 +48,9 @@ public class ResponseBuilderTest {
    }
 
    /**
-     * @tpTestDetails Complex test for all relevant functions of ResponseBuilder
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Complex test for all relevant functions of ResponseBuilder
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void responseBuilderTest() {
       // testLocationSimple

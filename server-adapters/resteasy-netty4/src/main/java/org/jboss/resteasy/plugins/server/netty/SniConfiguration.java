@@ -11,33 +11,33 @@ import javax.net.ssl.SSLContext;
 import java.util.Arrays;
 
 /**
-   * TLS/SSL Server Name Indication configuration.
-   *
-   * @author Sebastian Łaskawiec
-   * @see <a href="https://tools.ietf.org/html/rfc6066#page-6">TLS extensions</a>
-   */
+ * TLS/SSL Server Name Indication configuration.
+ *
+ * @author Sebastian Łaskawiec
+ * @see <a href="https://tools.ietf.org/html/rfc6066#page-6">TLS extensions</a>
+ */
 public class SniConfiguration
 {
 
    protected final DomainNameMappingBuilder<SslContext> mapping;
 
    /**
-     * Constructs new {@link SniConfiguration}.
-     *
-     * @param defaultServerKeystore default keystore to be used when no SNI is specified by the client.
-     */
+    * Constructs new {@link SniConfiguration}.
+    *
+    * @param defaultServerKeystore default keystore to be used when no SNI is specified by the client.
+    */
    public SniConfiguration(SSLContext defaultServerKeystore)
    {
       mapping = new DomainNameMappingBuilder<>(createContext(defaultServerKeystore));
    }
 
    /**
-     * Adds SNI mapping.
-     *
-     * @param sniHostName SNI Host Name from TLS Extensions.
-     * @param sslContext  SSLContext to be associated with given SNI Host Name.
-     * @return <code>this</code> configuration.
-     */
+    * Adds SNI mapping.
+    *
+    * @param sniHostName SNI Host Name from TLS Extensions.
+    * @param sslContext  SSLContext to be associated with given SNI Host Name.
+    * @return <code>this</code> configuration.
+    */
    public SniConfiguration addSniMapping(String sniHostName, SSLContext sslContext)
    {
       mapping.add(sniHostName, createContext(sslContext));

@@ -9,8 +9,8 @@ import org.jboss.resteasy.spi.metadata.ResourceBuilder;
 import org.jboss.resteasy.spi.metadata.ResourceClass;
 
 /**
-   * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
-   */
+ * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+ */
 public class VertxRegistry implements Registry
 {
 

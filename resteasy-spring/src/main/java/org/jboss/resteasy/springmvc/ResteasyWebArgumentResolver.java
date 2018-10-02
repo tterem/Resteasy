@@ -22,12 +22,12 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 
 /**
-   * This class can be used as part of Spring's AnnotationMethodHandlerAdapter.
-   * Take a look at AnnotationMethodHandlerAdapter.setCustomArgumentResolver()
-   *
-   * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
-   * @version $Revision: 1 $
-   */
+ * This class can be used as part of Spring's AnnotationMethodHandlerAdapter.
+ * Take a look at AnnotationMethodHandlerAdapter.setCustomArgumentResolver()
+ *
+ * @author <a href="mailto:sduskis@gmail.com">Solomn Duskis</a>
+ * @version $Revision: 1 $
+ */
 @SuppressWarnings("rawtypes")
 public class ResteasyWebArgumentResolver implements WebArgumentResolver
 {

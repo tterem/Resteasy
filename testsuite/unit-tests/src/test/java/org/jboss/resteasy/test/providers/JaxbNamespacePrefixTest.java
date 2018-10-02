@@ -18,18 +18,18 @@ import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
 
 /**
-   * @tpSubChapter Providers - jaxb
-   * @tpChapter Unit tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Providers - jaxb
+ * @tpChapter Unit tests
+ * @tpSince RESTEasy 3.0.16
+ */
 public class JaxbNamespacePrefixTest {
 
    private static final LogMessages logger = Logger.getMessageLogger(LogMessages.class, JaxbNamespacePrefixTest.class.getName());
 
    /**
-     * @tpTestDetails Create xml schema from provided class and set "namespacePrefixMapper" for the Marshaller
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create xml schema from provided class and set "namespacePrefixMapper" for the Marshaller
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNamespacePrefix() throws Exception {
       JAXBContext ctx = JAXBContext.newInstance(JaxbNameSpacePrefixPurchaseOrderType.class);

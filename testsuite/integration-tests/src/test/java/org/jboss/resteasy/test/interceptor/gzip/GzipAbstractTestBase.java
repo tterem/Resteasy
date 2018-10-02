@@ -30,14 +30,14 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 /**
-   * Abstract base class for gzip tests
-   *
-   * This abstract class provides basic test methods, Arquillian URL Resource and RESTEasy client
-   *
-   * This abstract class is extended by:
-   *      AllowGzipOnServerAbstractTestBase
-   *      NotAllowGzipOnServerAbstractTestBase
-   */
+ * Abstract base class for gzip tests
+ *
+ * This abstract class provides basic test methods, Arquillian URL Resource and RESTEasy client
+ *
+ * This abstract class is extended by:
+ *      AllowGzipOnServerAbstractTestBase
+ *      NotAllowGzipOnServerAbstractTestBase
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public abstract class GzipAbstractTestBase {
@@ -45,8 +45,8 @@ public abstract class GzipAbstractTestBase {
    private static final Logger LOG = LogManager.getLogger(GzipAbstractTestBase.class);
 
    /**
-     * Allow gzip property
-     */
+    * Allow gzip property
+    */
    protected static final String PROPERTY_NAME = "resteasy.allowGzip";
 
    protected static final String WAR_WITH_PROVIDERS_FILE = "war_with_providers_file";
@@ -54,8 +54,8 @@ public abstract class GzipAbstractTestBase {
 
 
    /**
-     * Prepare archive for the tests
-     */
+    * Prepare archive for the tests
+    */
    protected static Archive<?> createWebArchive(String name, boolean addProvidersFileWithGzipInterceptors) {
       WebArchive war = TestUtil.prepareArchive(name);
       war = war.addClass(GzipInterface.class);
@@ -72,15 +72,15 @@ public abstract class GzipAbstractTestBase {
    private ResteasyClient client;
 
    /**
-     * Perform gzip test
-     *
-     * @param deploymentUrl URL of the deployment to test
-     * @param manuallyUseGzipOnClient manually register gzip interceptors on client side
-     * @param assertAllowGzipOnServer if true, method asserts that resteasy.allowGzip == true on server side
-     * @param assertAllowGzipOnClient if true, method asserts that client send gzip header in request
-     * @param assertServerReturnGzip method asserts whether gzip encoding should be in header or should not
-     * @throws Exception
-     */
+    * Perform gzip test
+    *
+    * @param deploymentUrl URL of the deployment to test
+    * @param manuallyUseGzipOnClient manually register gzip interceptors on client side
+    * @param assertAllowGzipOnServer if true, method asserts that resteasy.allowGzip == true on server side
+    * @param assertAllowGzipOnClient if true, method asserts that client send gzip header in request
+    * @param assertServerReturnGzip method asserts whether gzip encoding should be in header or should not
+    * @throws Exception
+    */
    protected void testNormalClient(URL deploymentUrl, boolean manuallyUseGzipOnClient, String assertAllowGzipOnServer, boolean assertAllowGzipOnClient,
                            boolean assertServerReturnGzip) throws Exception {
       client = (ResteasyClient)ClientBuilder.newClient();

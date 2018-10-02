@@ -21,11 +21,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Configuration
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for resource without @Path annotation.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Configuration
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for resource without @Path annotation.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class AnnotationInheritanceTest {
@@ -54,9 +54,9 @@ public class AnnotationInheritanceTest {
    }
 
    /**
-     * @tpTestDetails Test basic functionality of test resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test basic functionality of test resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testSuperclassInterfaceAnnotation() {
       AnnotationInheritanceSomeOtherInterface proxy = client.target(generateURL("/somewhere")).proxy(AnnotationInheritanceSomeOtherInterface.class);
@@ -64,9 +64,9 @@ public class AnnotationInheritanceTest {
    }
 
    /**
-     * @tpTestDetails Check wrong resource without @Path annotation
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check wrong resource without @Path annotation
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDetectionOfNonResource() {
       try {

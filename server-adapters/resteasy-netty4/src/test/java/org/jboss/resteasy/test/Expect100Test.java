@@ -20,9 +20,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
-   * @author <a href="mailto:rsigal@redhat.com">Ron Sigal</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:rsigal@redhat.com">Ron Sigal</a>
+ * @version $Revision: 1 $
+ */
 public class Expect100Test
 {  
    @Path("/")

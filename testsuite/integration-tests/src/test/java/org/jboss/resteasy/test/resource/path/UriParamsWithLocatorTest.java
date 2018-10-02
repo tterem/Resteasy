@@ -23,11 +23,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter UriParamsWithLocatorResource
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Test that a locator and resource with same path params work
-   */
+ * @tpSubChapter UriParamsWithLocatorResource
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Test that a locator and resource with same path params work
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class UriParamsWithLocatorTest {
@@ -58,9 +58,9 @@ public class UriParamsWithLocatorTest {
    }
 
    /**
-     * @tpTestDetails CTest double ID as String in resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails CTest double ID as String in resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDoubleId() throws Exception {
       Response response = client.target(PortProviderUtil.generateURL("/1/2", "one"))
@@ -70,9 +70,9 @@ public class UriParamsWithLocatorTest {
    }
 
    /**
-     * @tpTestDetails CTest double ID as PathSegment in resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails CTest double ID as PathSegment in resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDoubleIdAsPathSegment() throws Exception {
       Response response = client.target(PortProviderUtil.generateURL("/1/2", "two"))

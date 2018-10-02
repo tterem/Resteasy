@@ -24,11 +24,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Smoke tests for jaxrs
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Check basic resource function.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Smoke tests for jaxrs
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Check basic resource function.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class WireSmokeTest {
@@ -67,9 +67,9 @@ public class WireSmokeTest {
    }
 
    /**
-     * @tpTestDetails Check result from simple resource.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check result from simple resource.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testNoDefaultsResource() throws Exception {
       {
@@ -95,9 +95,9 @@ public class WireSmokeTest {
    }
 
    /**
-     * @tpTestDetails Check result from more resources.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check result from more resources.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLocatingResource() throws Exception {
       {

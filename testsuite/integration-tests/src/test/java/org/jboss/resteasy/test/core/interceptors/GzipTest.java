@@ -44,11 +44,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Interceptors
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Gzip compression tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Interceptors
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Gzip compression tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class GzipTest {
@@ -84,9 +84,9 @@ public class GzipTest {
    }
 
    /**
-     * @tpTestDetails Check ByteArrayOutputStream of gzip data
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check ByteArrayOutputStream of gzip data
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRawStreams() throws Exception {
       ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
@@ -109,9 +109,9 @@ public class GzipTest {
    }
 
    /**
-     * @tpTestDetails Check ProxyFactory
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check ProxyFactory
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testProxy() throws Exception {
       GzipIGZIP proxy = client.target(generateURL("")).proxy(GzipIGZIP.class);
@@ -130,9 +130,9 @@ public class GzipTest {
    }
 
    /**
-     * @tpTestDetails Check length of content. Gzip data should have at least 11 bytes
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check length of content. Gzip data should have at least 11 bytes
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testContentLength() throws Exception {
       {
@@ -158,9 +158,9 @@ public class GzipTest {
    }
 
    /**
-     * @tpTestDetails Check wrong URL
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check wrong URL
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRequestError() throws Exception {
       Response response = client.target(generateURL("/error")).request().get();
@@ -169,9 +169,9 @@ public class GzipTest {
    }
 
    /**
-     * @tpTestDetails Check stream from PUT request
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check stream from PUT request
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPutStream() throws Exception {
       Response response = client.target(generateURL("/stream")).request().header("Content-Encoding", "gzip")
@@ -181,9 +181,9 @@ public class GzipTest {
    }
 
    /**
-     * @tpTestDetails Check text from PUT request
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check text from PUT request
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testPutText() throws Exception {
       Response response = client.target(generateURL("/text")).request().header("Content-Encoding", "gzip")
@@ -193,9 +193,9 @@ public class GzipTest {
    }
 
    /**
-     * @tpTestDetails Check plain text response
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check plain text response
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRequestPlain() throws Exception {
       Response response = client.target(generateURL("/text")).request().get();
@@ -204,9 +204,9 @@ public class GzipTest {
    }
 
    /**
-     * @tpTestDetails Check encoded text response
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check encoded text response
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRequestEncoded() throws Exception {
       Response response = client.target(generateURL("/encoded/text")).request().get();
@@ -214,9 +214,9 @@ public class GzipTest {
    }
 
    /**
-     * @tpTestDetails Test that it was zipped by running it through Apache HTTP Client which does not automatically unzip
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that it was zipped by running it through Apache HTTP Client which does not automatically unzip
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testWasZipped() throws Exception {
       CloseableHttpClient client = HttpClientBuilder.create().disableContentCompression().build();
@@ -247,9 +247,9 @@ public class GzipTest {
    }
 
    /**
-     * @tpTestDetails Test that if there is no accept-encoding: gzip header that result isn't encoded
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test that if there is no accept-encoding: gzip header that result isn't encoded
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testWithoutAcceptEncoding() throws Exception {
       CloseableHttpClient client = HttpClientBuilder.create().build();
@@ -264,10 +264,10 @@ public class GzipTest {
    }
 
    /**
-     * @tpTestDetails Send POST request with gzip encoded data using @GZIP annotation and client proxy framework
-     * @tpInfo RESTEASY-1499
-     * @tpSince RESTEasy 3.1.0
-     */
+    * @tpTestDetails Send POST request with gzip encoded data using @GZIP annotation and client proxy framework
+    * @tpInfo RESTEASY-1499
+    * @tpSince RESTEasy 3.1.0
+    */
    @Test
    public void testGzipPost() {
       GzipProxy gzipProxy = ProxyBuilder.builder(GzipProxy.class, client.target(generateURL(""))).build();
@@ -281,10 +281,10 @@ public class GzipTest {
    }
    
    /**
-     * @tpTestDetails Test exceeding default maximum size
-     * @tpInfo RESTEASY-1484
-     * @tpSince RESTEasy 3.1.0.Final
-     */
+    * @tpTestDetails Test exceeding default maximum size
+    * @tpInfo RESTEASY-1484
+    * @tpSince RESTEasy 3.1.0.Final
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testMaxDefaultSizeSending() throws Exception {

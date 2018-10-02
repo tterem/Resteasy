@@ -7,34 +7,34 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
-   * Can inject lists.
-   */
+ * Can inject lists.
+ */
 public class ListFormInjector extends AbstractCollectionFormInjector<List> {
 
    /**
-     * Constructor.
-     * @param collectionType collection type
-     * @param genericType generic type
-     * @param prefix prefix
-     * @param factory provider factory
-     */
+    * Constructor.
+    * @param collectionType collection type
+    * @param genericType generic type
+    * @param prefix prefix
+    * @param factory provider factory
+    */
    public ListFormInjector(Class collectionType, Class genericType, String prefix, ResteasyProviderFactory factory) {
       super(collectionType, genericType, prefix, Pattern.compile("^" + prefix + "\\[(\\d+)\\]"), factory);
    }
 
    /**
-     * {@inheritDoc}
-     *
-     * @return ArrayList
-     */
+    * {@inheritDoc}
+    *
+    * @return ArrayList
+    */
    @Override
    protected List createInstance(Class collectionType) {
       return new ArrayList();
    }
 
    /**
-     * {@inheritDoc}
-     */
+    * {@inheritDoc}
+    */
    @SuppressWarnings(value = "unchecked")
    @Override
    protected void addTo(List collection, String key, Object value) {

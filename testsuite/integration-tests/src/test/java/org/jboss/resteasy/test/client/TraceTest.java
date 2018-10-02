@@ -33,10 +33,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class TraceTest extends ClientTestBase{
@@ -100,10 +100,10 @@ public class TraceTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Client sends request for custom defined http method 'TRACE'
-     * @tpPassCrit Successful response is returned
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Client sends request for custom defined http method 'TRACE'
+    * @tpPassCrit Successful response is returned
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void TraceTest() {
       Response response = client.target(generateURL("/resource/trace")).request().trace(Response.class);

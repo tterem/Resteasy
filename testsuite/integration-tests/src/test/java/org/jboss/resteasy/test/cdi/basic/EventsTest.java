@@ -40,11 +40,11 @@ import static org.junit.Assert.assertEquals;
 
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test integration of Events and RESTEasy.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test integration of Events and RESTEasy.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class EventsTest {
@@ -82,9 +82,9 @@ public class EventsTest {
    }
 
    /**
-     * @tpTestDetails Test creating object on resource and retrieving this object again.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test creating object on resource and retrieving this object again.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testEvents() throws Exception {
       Client client = ClientBuilder.newClient();

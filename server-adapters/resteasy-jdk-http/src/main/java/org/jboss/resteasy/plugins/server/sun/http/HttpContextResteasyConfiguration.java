@@ -6,11 +6,11 @@ import org.jboss.resteasy.spi.ResteasyConfiguration;
 import java.util.Set;
 
 /**
-   * ResteasyConfiguration adapter for HttpContext attributes
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * ResteasyConfiguration adapter for HttpContext attributes
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class HttpContextResteasyConfiguration implements ResteasyConfiguration
 {
    protected HttpContext context;

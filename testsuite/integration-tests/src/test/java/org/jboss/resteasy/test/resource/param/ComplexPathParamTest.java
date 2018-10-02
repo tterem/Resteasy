@@ -23,11 +23,11 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.core.Response;
 
 /**
-   * @tpSubChapter Parameters
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Test for complex path parameters
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Parameters
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Test for complex path parameters
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ComplexPathParamTest {
@@ -61,9 +61,9 @@ public class ComplexPathParamTest {
    }
 
    /**
-     * @tpTestDetails Check special characters and various path combination
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check special characters and various path combination
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testIt() throws Exception {
       basicTest("/1,2/3/blah4-5ttt", "hello");

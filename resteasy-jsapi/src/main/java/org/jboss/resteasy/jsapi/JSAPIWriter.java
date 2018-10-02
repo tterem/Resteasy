@@ -23,8 +23,8 @@ import java.util.regex.Matcher;
 import java.util.zip.GZIPOutputStream;
 
 /**
-   * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
-   */
+ * @author <a href="mailto:stef@epardaud.fr">Stéphane Épardaud</a>
+ */
 public class JSAPIWriter
 {
 

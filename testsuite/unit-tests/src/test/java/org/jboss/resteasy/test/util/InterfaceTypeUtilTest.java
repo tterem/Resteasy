@@ -10,17 +10,17 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
-   * @tpSubChapter Util tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for org.jboss.resteasy.spi.util.Types class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Util tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for org.jboss.resteasy.spi.util.Types class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class InterfaceTypeUtilTest {
 
    /**
-     * @tpTestDetails Test for getTemplateParameterOfInterface method
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for getTemplateParameterOfInterface method
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testType() throws Exception {
       Assert.assertNull("Types util class works incorrectly", Types.getTemplateParameterOfInterface(InterfaceTypeUtilD.class, InterfaceTypeUtilJ.class));

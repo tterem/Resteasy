@@ -9,19 +9,19 @@ import java.math.BigDecimal;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter Requests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Test for VariantQuality class.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Requests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Test for VariantQuality class.
+ * @tpSince RESTEasy 3.0.16
+ */
 public class VariantQualityTest {
 
    private static final String ERROR_MSG = "Wrong conversion";
 
    /**
-     * @tpTestDetails Check default values.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check default values.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void defaultQuality() {
       VariantQuality q = new VariantQuality();
@@ -34,9 +34,9 @@ public class VariantQualityTest {
    }
 
    /**
-     * @tpTestDetails Check quality setters.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check quality setters.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void qualitySetters() {
       VariantQuality q = new VariantQuality();

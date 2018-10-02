@@ -30,15 +30,15 @@ import java.io.BufferedReader;
 import java.io.Reader;
 
 /**
-   * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Client registers it's own implementations as variants of built-in entity providers.
-   * The entity providers registered by client have to be used before built-in ones. See spec 4.2.4:
-   * "An implementation MUST support application-provided entity providers and MUST use those in preference to
-   * its own pre-packaged providers when either could handle the same request."
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @author <a href="mailto:kanovotn@redhat.com">Katerina Novotna</a>
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Client registers it's own implementations as variants of built-in entity providers.
+ * The entity providers registered by client have to be used before built-in ones. See spec 4.2.4:
+ * "An implementation MUST support application-provided entity providers and MUST use those in preference to
+ * its own pre-packaged providers when either could handle the same request."
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ClientProviderTest extends ClientTestBase{
@@ -92,11 +92,11 @@ public class ClientProviderTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget from client and register custom MessageBodyReader on it
-     * @tpPassCrit Verify application provided MessageBodyReader is used instead of built-in one,
-     * verify that following request is is processed by built-in MessageBodyReader again
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget from client and register custom MessageBodyReader on it
+    * @tpPassCrit Verify application provided MessageBodyReader is used instead of built-in one,
+    * verify that following request is is processed by built-in MessageBodyReader again
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void applicationDefinedMessageBodyReaderTest() {
       WebTarget base = client.target(generateURL("/") + "get");
@@ -109,11 +109,11 @@ public class ClientProviderTest extends ClientTestBase{
    }
 
    /**
-     * @tpTestDetails Create WebTarget from client and register custom MessageBodyWriter on it
-     * @tpPassCrit Verify application provided MessageBodyWriter is used instead of built-in one,
-     * verify that following request is is processed by built-in MessageBodyWriter again
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Create WebTarget from client and register custom MessageBodyWriter on it
+    * @tpPassCrit Verify application provided MessageBodyWriter is used instead of built-in one,
+    * verify that following request is is processed by built-in MessageBodyWriter again
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void applicationDefinedMessageBodyWriterTest() {
       WebTarget base = client.target(generateURL("/") + "post");

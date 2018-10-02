@@ -25,11 +25,11 @@ import java.io.IOException;
 import static org.jboss.resteasy.test.ContainerConstants.DEFAULT_CONTAINER_QUALIFIER;
 
 /**
-   * @tpSubChapter Core
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.17
-   * @tpTestCaseDetails Regression test for JBEAP-3725
-   */
+ * @tpSubChapter Core
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.17
+ * @tpTestCaseDetails Regression test for JBEAP-3725
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class NotFoundErrorMessageTest {
@@ -61,9 +61,9 @@ public class NotFoundErrorMessageTest {
    }
 
    /**
-     * @tpTestDetails Check that no ERROR message was in logs after 404.
-     * @tpSince RESTEasy 3.0.17
-     */
+    * @tpTestDetails Check that no ERROR message was in logs after 404.
+    * @tpSince RESTEasy 3.0.17
+    */
    @Test
    @Category({NotForForwardCompatibility.class})
    public void testDeploy() throws IOException {

@@ -7,12 +7,12 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.ext.Provider;
 
 /**
-   * 
-   * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
-   * @version $Revision: 1.1 $
-   *
-   * Copyright June 7, 2014
-   */
+ * 
+ * @author <a href="ron.sigal@jboss.com">Ron Sigal</a>
+ * @version $Revision: 1.1 $
+ *
+ * Copyright June 7, 2014
+ */
 @Provider
 public class TestApplication extends Application
 {

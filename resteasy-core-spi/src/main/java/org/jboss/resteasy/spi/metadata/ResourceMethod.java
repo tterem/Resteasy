@@ -5,8 +5,8 @@ import java.util.Set;
 import javax.ws.rs.core.MediaType;
 
 /**
-   * @author Christian Kaltepoth
-   */
+ * @author Christian Kaltepoth
+ */
 public interface ResourceMethod extends ResourceLocator
 {
    Set<String> getHttpMethods();

@@ -25,11 +25,11 @@ import javax.ws.rs.core.Response;
 import java.io.FilePermission;
 
 /**
-   * @tpSubChapter Resteasy-client
-   * @tpChapter Client tests
-   * @tpSince RESTEasy 3.0.16
-   * @tpTestCaseDetails Regression for RESTEASY-699
-   */
+ * @tpSubChapter Resteasy-client
+ * @tpChapter Client tests
+ * @tpSince RESTEasy 3.0.16
+ * @tpTestCaseDetails Regression for RESTEASY-699
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ContextTest {
@@ -66,9 +66,9 @@ public class ContextTest {
    }
 
    /**
-     * @tpTestDetails Test for forwarding request to external HTML file
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for forwarding request to external HTML file
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testForward() throws Exception {
       Response response = client.target(generateURL("/test/forward")).request().get();
@@ -78,9 +78,9 @@ public class ContextTest {
    }
 
    /**
-     * @tpTestDetails Base URL should not be affected by URL parameter
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Base URL should not be affected by URL parameter
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testRepeat() throws Exception {
       Response response = client.target(generateURL("/test/test")).request().get();
@@ -94,9 +94,9 @@ public class ContextTest {
    }
 
    /**
-     * @tpTestDetails Test for getting servlet context in REST resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for getting servlet context in REST resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testServletContext() throws Exception {
       final String HEADER_ERROR_MESSAGE = "Response don't have correct headers";
@@ -111,9 +111,9 @@ public class ContextTest {
    }
 
    /**
-     * @tpTestDetails Test for getting servlet config in REST resource
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for getting servlet config in REST resource
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testServletConfig() throws Exception {
       Response response = client.target(generateURL("/test/test/servletconfig")).request().get();
@@ -123,9 +123,9 @@ public class ContextTest {
    }
 
    /**
-     * @tpTestDetails XML extension mapping test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails XML extension mapping test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testXmlMappings() throws Exception {
       Response response = client.target(generateURL("/test/stuff.xml")).request().get();
@@ -136,9 +136,9 @@ public class ContextTest {
    }
 
    /**
-     * @tpTestDetails Json extension mapping test
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Json extension mapping test
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testJsonMappings() throws Exception {
       Response response = client.target(generateURL("/test/stuff.json")).request().get();

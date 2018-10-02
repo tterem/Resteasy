@@ -21,11 +21,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter Interceptors
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.0.21
-   * @tpTestCaseDetails Throw custom exception from a ClientResponseFilter [RESTEASY-1591]
-   */
+ * @tpSubChapter Interceptors
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.0.21
+ * @tpTestCaseDetails Throw custom exception from a ClientResponseFilter [RESTEASY-1591]
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ResponseFilterCustomExceptionTest {
@@ -53,9 +53,9 @@ public class ResponseFilterCustomExceptionTest {
       return PortProviderUtil.generateURL(path, ResponseFilterCustomExceptionTest.class.getSimpleName());
    }
    /**
-     * @tpTestDetails Use ClientResponseFilter
-     * @tpSince RESTEasy 3.0.21
-     */
+    * @tpTestDetails Use ClientResponseFilter
+    * @tpSince RESTEasy 3.0.21
+    */
    @Test
    public void testThrowCustomException() throws Exception {
       try {

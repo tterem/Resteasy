@@ -21,10 +21,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
-   * @tpSubChapter NewCookie httponly flag is processed
-   * @tpChapter Integration tests
-   * @tpSince RESTEasy 3.1.0.Final
-   */
+ * @tpSubChapter NewCookie httponly flag is processed
+ * @tpChapter Integration tests
+ * @tpSince RESTEasy 3.1.0.Final
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class HttponlyCookieTest {

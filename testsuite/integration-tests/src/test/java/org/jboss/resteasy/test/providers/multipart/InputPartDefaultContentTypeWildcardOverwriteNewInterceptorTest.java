@@ -26,11 +26,11 @@ import javax.ws.rs.core.Response;
 
 
 /**
-   * @tpSubChapter Multipart provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails MultiPart provider should be able to process xml, if wildcard is set. Wildcard is set in new version of interceptor.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Multipart provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails MultiPart provider should be able to process xml, if wildcard is set. Wildcard is set in new version of interceptor.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class InputPartDefaultContentTypeWildcardOverwriteNewInterceptorTest {
@@ -60,9 +60,9 @@ public class InputPartDefaultContentTypeWildcardOverwriteNewInterceptorTest {
    }
 
    /**
-     * @tpTestDetails Test for new client
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test for new client
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testContentTypeNewClient() throws Exception {
       String message = "--boo\r\n"

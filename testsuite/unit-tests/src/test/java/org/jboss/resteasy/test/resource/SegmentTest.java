@@ -18,18 +18,18 @@ import javax.ws.rs.NotAllowedException;
 import java.net.URISyntaxException;
 
 /**
-   * @tpSubChapter Resource tests
-   * @tpChapter Unit tests
-   * @tpTestCaseDetails Tests to make sure that standard segment mapping work correctly, especially
-   *                    regexes that contain "\"
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Resource tests
+ * @tpChapter Unit tests
+ * @tpTestCaseDetails Tests to make sure that standard segment mapping work correctly, especially
+ *                    regexes that contain "\"
+ * @tpSince RESTEasy 3.0.16
+ */
 public class SegmentTest {
 
    /**
-     * @tpTestDetails Basic segment check
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Basic segment check
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testBasic() throws URISyntaxException {
       ResourceMethodRegistry registry = new ResourceMethodRegistry(ResteasyProviderFactory
@@ -43,9 +43,9 @@ public class SegmentTest {
    }
 
    /**
-     * @tpTestDetails Check default option for segment
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check default option for segment
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testDefaultOptions() throws URISyntaxException {
       ResourceMethodRegistry registry = new ResourceMethodRegistry(ResteasyProviderFactory
@@ -62,9 +62,9 @@ public class SegmentTest {
    }
 
    /**
-     * @tpTestDetails Check locator option
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check locator option
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLocatorOptions() throws URISyntaxException {
       ResourceMethodRegistry registry = new ResourceMethodRegistry(ResteasyProviderFactory
@@ -76,9 +76,9 @@ public class SegmentTest {
    }
 
    /**
-     * @tpTestDetails Check complex locator
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Check complex locator
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testLocator3() throws URISyntaxException {
       ResourceMethodRegistry registry = new ResourceMethodRegistry(ResteasyProviderFactory

@@ -41,9 +41,9 @@ import java.util.Map.Entry;
 import java.util.function.Consumer;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class ServerResponseWriter
 {
    @FunctionalInterface
@@ -564,8 +564,8 @@ public class ServerResponseWriter
    }
    
    /**
-   * m1, m2 are compatible
-   */
+    * m1, m2 are compatible
+    */
    private static SortableMediaType selectMostSpecific(SortableMediaType m1, SortableMediaType m2)
    {
       if (m1.getType().equals("*"))

@@ -38,11 +38,11 @@ import java.lang.reflect.ReflectPermission;
 import java.util.PropertyPermission;
 
 /**
-   * @tpSubChapter Jaxb provider
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails Regression test for RESTEASY-636
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Jaxb provider
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails Regression test for RESTEASY-636
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 public class GenericSuperInterfaceTest {
 
@@ -75,9 +75,9 @@ public class GenericSuperInterfaceTest {
    }
 
    /**
-     * @tpTestDetails Test on server.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Test on server.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testGetImplementationReflection() throws Exception {
       Class updatableResource = GenericSuperInterfaceBackendDataCenterResource.class.getInterfaces()[0].getInterfaces()[0];

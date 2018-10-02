@@ -27,12 +27,12 @@ import java.util.PropertyPermission;
 import java.util.logging.LoggingPermission;
 
 /**
-   * @tpSubChapter Spring
-   * @tpChapter Integration tests - dependencies included in deployment
-   * @tpTestCaseDetails This test will verify that the resource invoked by RESTEasy has been
-   * initialized by spring when defined using spring's JavaConfig.
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter Spring
+ * @tpChapter Integration tests - dependencies included in deployment
+ * @tpTestCaseDetails This test will verify that the resource invoked by RESTEasy has been
+ * initialized by spring when defined using spring's JavaConfig.
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class JavaConfigDependenciesInDeploymentTest {
@@ -70,10 +70,10 @@ public class JavaConfigDependenciesInDeploymentTest {
    }
 
    /**
-     * @tpTestDetails This test will verify that the resource invoked by RESTEasy has been
-     * initialized by spring when defined using spring's JavaConfig.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails This test will verify that the resource invoked by RESTEasy has been
+    * initialized by spring when defined using spring's JavaConfig.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void test() throws Exception {
       Client client = ResteasyClientBuilder.newClient();

@@ -54,9 +54,9 @@ public class ServletInitializerTwoTest {
    URI baseUri;
 
    /**
-     * No web.xml provided in app.  The server must auto scan for files.
-     * @throws Exception
-     */
+    * No web.xml provided in app.  The server must auto scan for files.
+    * @throws Exception
+    */
    @Test
    public void testEndpoint() throws Exception {
       Response response = ResteasyClientBuilder.newClient()

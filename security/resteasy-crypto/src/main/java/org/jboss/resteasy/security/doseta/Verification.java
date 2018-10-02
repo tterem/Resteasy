@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class Verification
 {
    protected PublicKey key;
@@ -192,8 +192,8 @@ public class Verification
    }
 
    /**
-   * Headers can be a {@literal Map<String, Object> or a Map<String, List<Object>>}.  This gives some compatibility with
-   * JAX-RS's MultivaluedMap.   If a map of lists, every value of each header duplicate will be added.
+    * Headers can be a {@literal Map<String, Object> or a Map<String, List<Object>>}.  This gives some compatibility with
+    * JAX-RS's MultivaluedMap.   If a map of lists, every value of each header duplicate will be added.
 
    *
    * @param signature signature

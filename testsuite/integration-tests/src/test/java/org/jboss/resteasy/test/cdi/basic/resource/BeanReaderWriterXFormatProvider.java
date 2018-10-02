@@ -19,8 +19,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 /**
-   * Tests to make sure that a CDI bean was injected and that this provider overrides the default XML provider
-   */
+ * Tests to make sure that a CDI bean was injected and that this provider overrides the default XML provider
+ */
 @Provider
 @Produces("application/xml")
 @Consumes("application/xml")

@@ -35,11 +35,11 @@ import javax.ws.rs.core.Response;
 import static org.junit.Assert.assertEquals;
 
 /**
-   * @tpSubChapter CDI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails RESTEasy integration test for CDI && decorators
-   * @tpSince RESTEasy 3.0.16
-   */
+ * @tpSubChapter CDI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails RESTEasy integration test for CDI && decorators
+ * @tpSince RESTEasy 3.0.16
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
 public class ConcreteDecoratorTest {
@@ -64,9 +64,9 @@ public class ConcreteDecoratorTest {
    }
 
    /**
-     * @tpTestDetails Run REST point method and check execution of decorators.
-     * @tpSince RESTEasy 3.0.16
-     */
+    * @tpTestDetails Run REST point method and check execution of decorators.
+    * @tpSince RESTEasy 3.0.16
+    */
    @Test
    public void testConcreteConcreteDecorator() throws Exception {
       Client client = ClientBuilder.newClient();

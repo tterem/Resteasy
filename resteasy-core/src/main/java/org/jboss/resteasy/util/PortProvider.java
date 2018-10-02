@@ -1,27 +1,27 @@
 /*
-   * Copyright 2012 JBoss Inc
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *      http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   */
+ * Copyright 2012 JBoss Inc
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.resteasy.util;
 
 
 /**
-   * Utility class that provides a port number for the Resteasy embedded container.
-   *
-   * @author <a href="justin@justinedelson.com">Justin Edelson</a>
-   * @version $Revision$
-   */
+ * Utility class that provides a port number for the Resteasy embedded container.
+ *
+ * @author <a href="justin@justinedelson.com">Justin Edelson</a>
+ * @version $Revision$
+ */
 public class PortProvider
 {
    private static final int DEFAULT_PORT = 8081;
@@ -38,11 +38,11 @@ public class PortProvider
 
    /**
    /**
-   * Look up the configured port number, first checking an environment variable (RESTEASY_PORT),
-   * then a system property (org.jboss.resteasy.port), and finally the default port (8081).
-   *
-   * @return the port number specified in either the environment or system properties
-   */
+    * Look up the configured port number, first checking an environment variable (RESTEASY_PORT),
+    * then a system property (org.jboss.resteasy.port), and finally the default port (8081).
+    *
+    * @return the port number specified in either the environment or system properties
+    */
    public static int getPort()
    {
       int port = -1;
@@ -81,11 +81,11 @@ public class PortProvider
    }
    
    /**
-   * Look up the configured hostname, first checking an environment variable (RESTEASY_HOST),
-   * then a system property (org.jboss.resteasy.host), and finally the default hostname (localhost).
-   *
-   * @return the host specified in either the environment or system properties
-   */
+    * Look up the configured hostname, first checking an environment variable (RESTEASY_HOST),
+    * then a system property (org.jboss.resteasy.host), and finally the default hostname (localhost).
+    *
+    * @return the host specified in either the environment or system properties
+    */
    public static String getHost()
    {
       String host = null;

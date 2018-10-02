@@ -7,11 +7,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 /**
-   * Any class that extends JsonWebToken will use NON_DEFAULT inclusion
-   *
-   * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-   * @version $Revision: 1 $
-   */
+ * Any class that extends JsonWebToken will use NON_DEFAULT inclusion
+ *
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class JWTContextResolver implements ContextResolver<ObjectMapper>
 {
    protected ObjectMapper mapper = new ObjectMapper();

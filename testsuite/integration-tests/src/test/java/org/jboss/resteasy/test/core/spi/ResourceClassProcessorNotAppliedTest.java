@@ -27,11 +27,11 @@ import java.util.PropertyPermission;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
 /**
-   * @tpSubChapter ResourceClassProcessor SPI
-   * @tpChapter Integration tests
-   * @tpTestCaseDetails ResourceClassProcessor should not be used in some case
-   * @tpSince RESTEasy 3.6
-   */
+ * @tpSubChapter ResourceClassProcessor SPI
+ * @tpChapter Integration tests
+ * @tpTestCaseDetails ResourceClassProcessor should not be used in some case
+ * @tpSince RESTEasy 3.6
+ */
 @RunWith(Arquillian.class)
 public class ResourceClassProcessorNotAppliedTest {
 
@@ -71,10 +71,10 @@ public class ResourceClassProcessorNotAppliedTest {
 
 
    /**
-     * @tpTestDetails ResourceClassProcessor implementation should not be used if web.xml doesn't contains provider name
-     *                and resteasy.scan is not allowed
-     * @tpSince RESTEasy 3.6
-     */
+    * @tpTestDetails ResourceClassProcessor implementation should not be used if web.xml doesn't contains provider name
+    *                and resteasy.scan is not allowed
+    * @tpSince RESTEasy 3.6
+    */
    @Test
    public void notAppliedTest() {
       // init client

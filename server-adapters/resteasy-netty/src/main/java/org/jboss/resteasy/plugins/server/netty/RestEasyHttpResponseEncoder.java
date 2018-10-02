@@ -20,14 +20,14 @@ import static org.jboss.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 
 /**
-   * {@link OneToOneEncoder} implementation which encodes {@link org.jboss.resteasy.spi.HttpResponse}'s to
-   * {@link HttpResponse}'s
-   * 
-   * This implementation is {@link Sharable}
-   * 
-   * @author Norman Maurer
-   *
-   */
+ * {@link OneToOneEncoder} implementation which encodes {@link org.jboss.resteasy.spi.HttpResponse}'s to
+ * {@link HttpResponse}'s
+ * 
+ * This implementation is {@link Sharable}
+ * 
+ * @author Norman Maurer
+ *
+ */
 @Sharable
 public class RestEasyHttpResponseEncoder extends OneToOneEncoder 
 {
