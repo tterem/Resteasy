@@ -31,6 +31,7 @@ import org.jboss.resteasy.plugins.providers.jsonb.i18n.Messages;
 import org.jboss.resteasy.plugins.server.servlet.ResteasyContextParameters;
 import org.jboss.resteasy.spi.ResteasyConfiguration;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
+import org.jboss.resteasy.util.DelegatingOutputStream;
 import org.jboss.resteasy.util.FindAnnotation;
 import org.jboss.resteasy.util.Types;
 
@@ -142,6 +143,13 @@ public class JsonBindingProvider extends AbstractJsonBindingProvider
       Jsonb jsonb = getJsonb(type);
       try
       {
+         entityStream = new DelegatingOutputStream(entityStream) {
+            @Override
+            public void flush() throws IOException {
+               // don't flush as this is a performance hit on Undertow.
+               // and causes chunked encoding to happen.
+            }
+         };
          entityStream.write(jsonb.toJson(t).getBytes(getCharset(mediaType)));
          entityStream.flush();
       } catch (Throwable e)
