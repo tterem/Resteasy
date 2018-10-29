@@ -298,7 +298,7 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
          resourceBuilder = new ResourceBuilder();
       }
    }
-   
+
    protected void registerBuiltin()
    {
       RegisterBuiltin.register(this);
@@ -2274,7 +2274,7 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
     * Create an instance of a class using provider allocation rules of the specification as well as the InjectorFactory
     * only does constructor injection.
     *
-    * @param clazz class 
+    * @param clazz class
     * @param <T> type
     * @return provider instance of type T
     */
@@ -2655,6 +2655,6 @@ public class ResteasyProviderFactoryImpl extends ResteasyProviderFactory impleme
    public <T> T getContextData(Class<T> type)
    {
       return ResteasyContext.getContextData(type);
-   }   
+   }
 
 }

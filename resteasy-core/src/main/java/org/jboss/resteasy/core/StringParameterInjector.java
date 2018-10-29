@@ -411,13 +411,13 @@ public class StringParameterInjector
       this.target = target;
       baseType = type;
       baseGenericType = genericType;
-      
+
       //Step 1: try to find a conversion mechanism using the type as it is
       if(initialize(annotations, factory))
       {
          return;
       }
-      
+
       //Step2: try to find a conversion mechanism if the type is an array type
       if (type.isArray())
       {
@@ -450,12 +450,12 @@ public class StringParameterInjector
             return;
          }
       }
-      
+
       throw new RuntimeException(Messages.MESSAGES.unableToFindConstructor(getParamSignature(), target, baseType.getName()));
 
    }
-   
-   
+
+
    private boolean initialize(Annotation[] annotations, ResteasyProviderFactory factory){
 
       //No need to find any conversion mechanism if we are dealing with primitive type
@@ -466,11 +466,11 @@ public class StringParameterInjector
 
       // First try to find a ParamConverter if any
       paramConverter = factory.getParamConverter(baseType, baseGenericType, annotations);
-      if (paramConverter != null) 
+      if (paramConverter != null)
       {
          return true;
       }
-      
+
       // Else try to find a StringParameterUnmarshaller if any
       unmarshaller = factory.createStringParameterUnmarshaller(baseType);
       if (unmarshaller != null)
@@ -500,7 +500,7 @@ public class StringParameterInjector
             return true;
          }
       }
-      
+
       // Else try to find a RuntimeDelegate.HeaderDelegate if any
       if (paramType.equals(HeaderParam.class))
       {
@@ -510,12 +510,12 @@ public class StringParameterInjector
             return true;
          }
       }
-      
+
       // Else try to find a public Constructor that accepts a single String argument if any
       try
       {
          constructor = baseType.getConstructor(String.class);
-         if (!Modifier.isPublic(constructor.getModifiers())) 
+         if (!Modifier.isPublic(constructor.getModifiers()))
          {
             constructor = null;
          }
@@ -528,7 +528,7 @@ public class StringParameterInjector
       {
 
       }
-      
+
      // Else try to find a public fromValue (JAXB enum) or valueOf or fromString method that accepts a single String argument if any.
       try
       {
@@ -589,10 +589,10 @@ public class StringParameterInjector
             }
          }
       }
-      
+
       return valueOf != null;
    }
-   
+
    @SuppressWarnings("rawtypes")
    private Class<? extends Collection> convertParameterTypeToCollectionType() {
       if (List.class.equals(type) || ArrayList.class.equals(type)) {
@@ -710,7 +710,7 @@ public class StringParameterInjector
          }
          catch (IllegalAccessException e)
          {
-            throwProcessingException(Messages.MESSAGES.unableToExtractParameter(getParamSignature(), strVal, target), e);  
+            throwProcessingException(Messages.MESSAGES.unableToExtractParameter(getParamSignature(), strVal, target), e);
          }
          catch (InvocationTargetException e)
          {

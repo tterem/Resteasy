@@ -35,7 +35,7 @@ public class WADLBasicTest extends WADLTestSetup {
    private Client client;
    private String url;
 
-    
+
    public Client getClient() {
       return client;
    }
@@ -67,19 +67,19 @@ public class WADLBasicTest extends WADLTestSetup {
 
    @AfterClass
    public static void after() throws Exception {
-        
+
       contextBuilder.cleanup();
       httpServer.stop(0);
       Thread.sleep(100);
    }
-    
+
    @Before
    public void init() {
       setClient(ClientBuilder.newClient());
       setUrl("http://127.0.0.1:${port}/application.xml".replaceAll("\\$\\{port\\}",
          Integer.valueOf(TestPortProvider.getPort()).toString()));
    }
-    
+
    @After
    public void clean() {
       try {
