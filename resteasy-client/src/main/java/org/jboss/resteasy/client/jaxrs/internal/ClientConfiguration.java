@@ -37,7 +37,7 @@ public class ClientConfiguration implements Configuration, Configurable<ClientCo
 {
    protected ResteasyProviderFactory providerFactory;
 
-   public ClientConfiguration(ResteasyProviderFactory factory)
+   public ClientConfiguration(final ResteasyProviderFactory factory)
    {
       if (factory instanceof ThreadLocalResteasyProviderFactory)
       {
@@ -46,7 +46,7 @@ public class ClientConfiguration implements Configuration, Configurable<ClientCo
       this.providerFactory = new LocalResteasyProviderFactory(factory);
    }
 
-   public ClientConfiguration(ClientConfiguration parent)
+   public ClientConfiguration(final ClientConfiguration parent)
    {
       this(parent.getProviderFactory());
       setProperties(parent.getProperties());
