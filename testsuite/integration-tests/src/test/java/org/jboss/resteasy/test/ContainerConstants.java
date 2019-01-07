@@ -15,4 +15,12 @@ public class ContainerConstants {
 
    public static final int TRACING_CONTAINER_PORT_OFFSET = 2000;
 
+   public static final String SSL_CONTAINER_QUALIFIER = "jbossas-manual-ssl";
+
+   public static final int SSL_CONTAINER_PORT_OFFSET = 3000;
+
+   public static final String SSL_CONTAINER_QUALIFIER_2 = "jbossas-manual-ssl2";
+
+   public static final int SSL_CONTAINER_PORT_OFFSET_2 = 4000;
+
 }

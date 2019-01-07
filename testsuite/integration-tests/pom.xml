@@ -16,15 +16,23 @@
         <container.base.dir.managed>${project.build.directory}${file.separator}${container.qualifier.managed}</container.base.dir.managed>
         <container.base.dir.manual.gzip>${project.build.directory}${file.separator}${container.qualifier.manual.gzip}</container.base.dir.manual.gzip>
         <container.base.dir.manual.tracing>${project.build.directory}${file.separator}${container.qualifier.manual.tracing}</container.base.dir.manual.tracing>
+        <container.base.dir.manual.ssl>${project.build.directory}${file.separator}${container.qualifier.manual.ssl}</container.base.dir.manual.ssl>
+        <container.base.dir.manual.ssl2>${project.build.directory}${file.separator}${container.qualifier.manual.ssl2}</container.base.dir.manual.ssl2>
         <container.offset.managed>0</container.offset.managed>
         <container.offset.manual.gzip>1000</container.offset.manual.gzip>
         <container.offset.manual.tracing>2000</container.offset.manual.tracing>
+        <container.offset.manual.ssl>3000</container.offset.manual.ssl>
+        <container.offset.manual.ssl2>4000</container.offset.manual.ssl2>
         <container.management.port.managed>9990</container.management.port.managed><!-- keep in sync with port offset -->
         <container.management.port.manual.gzip>10990</container.management.port.manual.gzip><!-- keep in sync with port offset -->
         <container.management.port.manual.tracing>11990</container.management.port.manual.tracing><!-- keep in sync with port offset -->
+        <container.management.port.manual.ssl>12990</container.management.port.manual.ssl><!-- keep in sync with port offset -->
+        <container.management.port.manual.ssl2>13990</container.management.port.manual.ssl2><!-- keep in sync with port offset -->
         <container.qualifier.managed>jbossas-managed</container.qualifier.managed>
         <container.qualifier.manual.gzip>jbossas-manual-gzip</container.qualifier.manual.gzip>
         <container.qualifier.manual.tracing>jbossas-manual-tracing</container.qualifier.manual.tracing>
+        <container.qualifier.manual.ssl>jbossas-manual-ssl</container.qualifier.manual.ssl>
+        <container.qualifier.manual.ssl2>jbossas-manual-ssl2</container.qualifier.manual.ssl2>
     </properties>
 
     <artifactId>resteasy-integration-tests</artifactId>
@@ -454,6 +462,16 @@
 
                                 <delete quiet="true" dir="${container.base.dir.manual.tracing}" />
                                 <copy todir="${container.base.dir.manual.tracing}" overwrite="true" failonerror="true">
+                                    <fileset dir="${jboss.home}/standalone"/>
+                                </copy>
+
+                                <delete quiet="true" dir="${container.base.dir.manual.ssl}" />
+                                <copy todir="${container.base.dir.manual.ssl}" overwrite="true" failonerror="true">
+                                    <fileset dir="${jboss.home}/standalone"/>
+                                </copy>
+
+                                <delete quiet="true" dir="${container.base.dir.manual.ssl2}" />
+                                <copy todir="${container.base.dir.manual.ssl2}" overwrite="true" failonerror="true">
                                     <fileset dir="${jboss.home}/standalone"/>
                                 </copy>
                             </target>

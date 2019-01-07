@@ -32,11 +32,14 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.ssl.SSLContexts;
+import org.jboss.logging.Logger;
 import org.jboss.resteasy.client.jaxrs.ClientHttpEngine;
 import org.jboss.resteasy.client.jaxrs.ClientHttpEngineBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 
 public class ClientHttpEngineBuilder43 implements ClientHttpEngineBuilder {
+
+   private static final Logger LOG = Logger.getLogger(ClientHttpEngineBuilder43.class.getSimpleName());
 
    private ResteasyClientBuilder that;
 
@@ -90,6 +93,7 @@ public class ClientHttpEngineBuilder43 implements ClientHttpEngineBuilder {
                   if(!that.getSniHostNames().isEmpty()) {
                      List<SNIServerName> sniNames = new ArrayList<>(that.getSniHostNames().size());
                      for(String sniHostName : that.getSniHostNames()) {
+                        LOG.error("1 " + sniHostName);
                         sniNames.add(new SNIHostName(sniHostName));
                      }
 
@@ -119,6 +123,7 @@ public class ClientHttpEngineBuilder43 implements ClientHttpEngineBuilder {
                   if(!sniHostNames.isEmpty()) {
                      List<SNIServerName> sniNames = new ArrayList<>(sniHostNames.size());
                      for (String sniHostName : sniHostNames) {
+                        LOG.error("2 " + sniHostName);
                         sniNames.add(new SNIHostName(sniHostName));
                      }
 
